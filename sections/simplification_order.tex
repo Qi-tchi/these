@@ -1,0 +1,28 @@
+Suppose $|V| \in \mathbb{N}$.
+    
+\begin{definition}[Simplification Partial Order \cite{nipkow1998term} \cite{urbain2001approche}]
+A strict partial order $>$ on $T(\Sigma,V)$ is called a simplification partial order if and only if:
+\begin{itemize}
+    \item it is stable under context and substitution, and
+    \item it satisfies the following subterm property:
+    \begin{itemize}
+        \item For all terms $t \in T(\Sigma,V)$ and all positions $p \in \mathcal{Pos}(t) \setminus \{\epsilon\}$, we have $t > t|_p$.
+    \end{itemize}
+\end{itemize}  
+\end{definition}
+
+\begin{proposition}[\cite{nipkow1998term}]
+For any strict order $>$ on $\Sigma$, the induced lexicographic path order $>_{lpo}$ is a simplification order on $T(\Sigma,V)$.
+\end{proposition}
+    
+\begin{proposition}[\cite{nipkow1998term}]
+Let $>$ be a strict order on $\Sigma$, and let $w$ be an admissible weight function for $>$. The Knuth-Bendix order (KBO) induced by $>$ and $w$ is a simplification order.
+\end{proposition}
+    
+\begin{theorem}[\cite{nipkow1998term}]
+Let $\Sigma$ be a finite signature. Every simplification order $>$ on $T(\Sigma,V)$ is a reduction order.
+\end{theorem}
+
+\begin{corollary}
+  Let $\Sigma$ be a finite signature. Let $>$ be a simplification order on $T(\Sigma,V)$. The term rewriting system $(T(\Sigma,\mathcal{X}),>)$ terminates. Let $\mathcal{R}$ be a term rewriting system. If $id : (T(\Sigma,\mathcal{X}),R) \to  (T(\Sigma,\mathcal{X}),>)$ is a homomorphism, then $\mathcal{R}$ terminates.
+\end{corollary}

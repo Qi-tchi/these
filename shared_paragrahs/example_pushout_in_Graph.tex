@@ -1,0 +1,68 @@
+\begin{example}
+    \label{ex:po_in_graph}
+    The following diagram
+    %  in \autoref{fig:ex:po_in_graph} 
+
+% \begin{figure}[H] 
+\begin{center}
+    \resizebox{0.5\textwidth}{!}{
+        \begin{tikzpicture}
+               
+                \graphbox{ }{40mm}{5mm}{34mm}{15mm}{2mm}{0mm}{
+                    \coordinate (o) at (0mm,-8mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                }  
+  
+                \graphbox{ }{80mm}{5mm}{45mm}{15mm}{2mm}{-0mm}{
+                    \coordinate (o) at (-5mm,-8mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                    \node[red,draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                    \node[red,draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \draw[red] (l1) -- (l3) node[midway,above] {a};
+                    \draw[red] (l3) -- (l4) node[midway,above] {b};
+                    \draw[red] (l4) -- (l2) node[midway,above] {a};
+                }    
+                \graphbox{ }{40mm}{-17mm}{34mm}{25mm}{2mm}{-5mm}{
+                    \coordinate (o) at (0mm,-3mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                    \draw[blue] (l2) -- (l4) node[midway,right] {a};
+                    \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \draw[blue] (l1) -- (l6) node[midway,left] {a};
+                }    
+  
+                \graphbox{ }{80mm}{-17mm}{45mm}{25mm}{2mm}{-5mm}{
+                    \coordinate (o) at (-5mm,-3mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                    \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {4};
+                    \node[draw,circle,red] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[blue,draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
+                    \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \draw[blue] (l1) -- (l6) node[midway,left] {a};
+                    \draw[red] (l1) -- (l3) node[midway,above] {a};
+                    \draw[red] (l3) -- (l4) node[midway,above] {b};
+                    \draw[red] (l4) -- (l2) node[midway,above] {a};
+                    \draw[blue] (l2) -- (l5) node[midway,right] {a};
+                }    
+  
+                \node () at (77mm,-3mm) {\( \rightarrowtail \)}; % K -> R
+                \node () at (52mm,-13mm) {\( \downarrowtail \)};
+                \node () at (92mm,-13mm) {\( \downarrowtail \)};
+                \node () at (77mm,-28mm) {\( \rightarrowtail \)}; % C -> H
+        \end{tikzpicture}
+    }
+\end{center}
+% \caption{Example of the pushout of span of monomorphism in \(\mathbf{Graph}\)}
+% \label{fig:ex:po_in_graph}
+% \end{figure}
+     is a pushout square in the category \textbf{Graph} where nodes and arrows are colored to visualize the decomposition as in \autoref{fig:po_decomp}.
+\end{example}
+
+To demonstrate that the diagram above is a pushout square, consider an object \( X \) and morphisms \( f: A \uplus B' \to X \) and \( g: A \uplus C' \to X \) such that \( \alpha \star f = \beta \star g \). Since \( \alpha \) and \( \beta \) are inclusion maps, it follows that \( f \) and \( g \) agree on \( A \). Therefore, the morphism \( h: A \uplus B' \uplus C' \to X \) defined by $h(x) = f(x)$ if $x\in A\uplus B'$ and $h(x) = g(x)$ otherwise is the unique morphism such that $\beta' \star h = f$ and $\alpha' \star h = g$. Thus, the object \( A \uplus B' \uplus C' \), together with the morphisms \( \beta' \) and \( \alpha' \), satisfies the universal property of the pushout. Furthermore, the compositions \( \alpha \star \beta'\) and \( \beta \star \alpha'\) both map elements from \( A \) to \( A \uplus B' \uplus C' \) via inclusion function.
+Since all maps are inclusions and \( A \), \( B' \), and \( C' \) are disjoint, the square commutes $
+     \alpha \star \beta' = \beta \star \alpha'
+$. Therefore, the diagram is indeed a pushout square.

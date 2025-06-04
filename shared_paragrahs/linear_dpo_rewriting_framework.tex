@@ -1,0 +1,27 @@
+\begin{definition}[DPO rewriting framework \cite{endrullis2024generalized}]
+    The \emph{linear DPO rewriting framework with monic matching} $\mathfrak{F}$ is the mapping of linear DPO rewriting rules to classes of DPO diagrams such that, for every DPO rule $\rho$, $\mathfrak{F}(\rho)$ is the class of DPO diagrams of the form
+    \begin{center}
+        \begin{tikzpicture}[node distance=11mm]
+          \node (I) {$K$};
+          \node (L) [left of=I] {$L$};
+          \node (R) [right of=I] {$R$};
+          \node (G) [below of=L] {$G$};
+          \node (C) [below of=I] {$C$};
+          \node (H) [below of=R] {$H$};
+          \draw [->] (I) to  node [midway,above] {$l$} (L);
+          \draw [->] (I) to  node [midway,above] {$r$} (R);
+          \draw [>->] (L) to node [midway,left] {$m$} (G);
+          \draw [->] (I) to (C);
+          \draw [->] (R) to (H);
+          \draw [->] (C) to (G);
+          \draw [->] (C) to (H);
+          \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+          \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+        \end{tikzpicture}
+    \end{center}
+    The DPO rewriting relation $\Rightarrow_{\rho,\mathfrak{F}}$ induced by a DPO rewriting rule $\rho$ in $\mathfrak{F}$ is defined as follows: $G \Rightarrow_{\rho,\mathfrak{F}} H$ iff $G \Rightarrow_\rho^\Delta H$ for some $\Delta \in \mathfrak{F}(\rho)$. 
+    % for some $\delta \in \mathfrak{F}(\rho)$
+    The rewriting relation $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$ is given by: $G \Rightarrow_{\mathcal{R},\mathfrak{F}} H$ iff $G \Rightarrow_{\rho,\mathfrak{F}} H$ for some $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
+    suppress $\mathfrak{F}$ and 
+    write $\Rightarrow_{\rho}$ and $\Rightarrow_{\mathcal{R}}$.
+\end{definition}

@@ -1,0 +1,32 @@
+The existence of a context closure guarantees the existence of morphisms from any object subject to rewriting to the type graph—a critical requirement as emphasized in \hyperref[remark:semiring_0_unpredictable]{\textsection~\ref{remark:semiring_0_unpredictable}}. Further details can be found in~\cite[\textsection 5.3]{endrullis2024generalized}.
+\begin{definition}[Context Closure~\text{\cite[\textdef~5.3]{endrullis2024generalized}}]
+    \label{def:context_closure} 
+    \ \newline 
+\begin{minipage}{0.65\textwidth}
+    Let $\mathcal{T} = (T,\mathbb{E}, S, w)$ be a type graph, \(\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R ) \) a DPO rewriting rule and $\mathfrak{F}$ a rewriting framework. 
+    A \textbf{context closure} for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$ is a morphism $c:L \rightarrow T$ such that for every DPO diagram in $\mathfrak{F}(\rho)$ (shown on the right) 
+    there exists $\alpha : G \rightarrow T$ such that $m \star \alpha = c$.
+\end{minipage}
+\begin{minipage}{0.35\textwidth}
+    \begin{center}
+        \begin{tikzpicture}[rotate=90]
+          \node (I) {$K$}; 
+          \node (L) [left of=I] {$L$};
+          \node (R) [right of=I] {$R$};
+          \node (G) [below of=L] {$G$};
+          \node (C) [below of=I] {$C$};
+          \node (H) [below of=R] {$H$};
+          \node (T) [left=of $(L)!0.5!(G)$] {$T$};
+          \draw [->] (L) to  node [label, above] {$c$}  (T);
+          \draw [->] (G) to  node [label, below] {$\alpha$} (T);
+          \draw [->] (I) to node [label, above] {$l$} (L);
+          \draw [->] (I) to node [label,above] {$r$} (R);
+          \draw [->] (L) to node [label, right] {$m$} (G);
+          \draw [->] (I) to (C);
+          \draw [->] (R) to (H);
+          \draw [->] (C) to (G);
+          \draw [->] (C) to (H);
+        \end{tikzpicture}
+      \end{center}
+\end{minipage}
+\end{definition}

@@ -1,0 +1,1677 @@
+\documentclass{book}
+\input{packages}
+\begin{document}  
+  
+\input{chapters/title_page}  
+ 
+\tableofcontents  
+\newpage     
+     
+\part{Introduction} 
+\chapter{Motivation}
+\input{chapters/intro}
+\chapter{Structure of the thesis}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Binary Relations and Orders
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Binary Relations and Orders}  
+
+We define binary relations and orders on a collection of objects instead of on a set. This is because later we will define rewriting relations as binary relations, and the collection of objects subject to be rewritten in a rewriting system is not necessarily a set. For example, the collection of finite directed edge-labeled graphs is not a set, but a class.
+
+\begin{notation}
+    Let $C$ and $C'$ be collections of objects. We denote $c \in C$ for~\enquote{$c$ is an element of C}, $C \cup C'$ the smallest collection contains all elements in $C$ and all elements in $C'$, $C \cap C'$ the smallest collection contains all elements in $C$ that are also in $C'$, $C * C'$ the collection of ordered pairs with first element in $C$ and second element in $C'$.  
+  \end{notation} 
+  
+  \begin{definition}[Binary relation]
+    \label{def:binary_relation:binary_relation}
+    Let $D$ be a collection of objects. A mathematical structure \( (D, \mathcal{R}) \) where $\mathcal{R}$ is a collection of objects from $D * D$ is called a \textbf{binary relation} on $D$. 
+    
+    For an object in $\mathcal{R}$ with first element $x \in D$ and second element $y\in D$, we write $x \mathcal{R} y$, $\mathcal{R}(x,y)$ or $(x,y) \in \mathcal{R}$. 
+    
+    When $D$ is irrelevant, we say simply that $\mathcal{R}$ is a binary relation.
+  \end{definition} 
+   
+  \begin{definition}[Reflexivity, 
+    %  Antisymmetry, 
+     Transitivity]
+    \label{def:binary_relation:reflexivity_transitivity}
+    A binary relation \( \to \) on \(C\) is said to be \textbf{reflexive} if for every object \(a \in C\), we have \(a \to a\); \textbf{transitive} if for all objects \( a, b, c \in C\), \( a \to b \land (b \to c) \) implies \(a \to c\).
+  %       \item \textbf{antisymmetric} if \(
+  % \forall a, b \in A, \, (a \to b) \land (b \to a) \implies a = b.
+  % \)
+  \end{definition}
+  
+  \begin{definition}[$\mathcal{R}$-sequence]
+    \label{def:binary_relation:sequence}
+    Let \(\mathcal{R}\) be a binary relation on $S$.
+    A \textbf{\( \mathcal{R} \)-sequence} is either a finite sequence \( \left( s_i \right)_{0 \leq i \leq m} \) of elements in $S$ such that \(s_i \mathcal{R} s_{i+1}\) for each \( 0 \leq i \leq m-1\), or an infinite sequence \((s_i)_{i \in \mathbb{N}}\) of elements in $S$ such that \(s_n \mathcal{R} s_{n+1}\) for each \(i \in \mathbb{N}\).
+\end{definition}
+
+\begin{definition}[Well-founded binary relation]
+    \label{def:binary_relation:well_founded}
+    A binary relation $\to$ on a collection $S$ of object is said to be \textbf{well-founded} if there is no infinite $\to$-sequence. 
+    % In other words, there does not exist an infinite sequence of elements $ (s_i)_{i \in \mathbb{N}} $ where $s_i \in S $ such that $s_i \to s_{i+1}$ for $i \in \mathbb{N}$.
+\end{definition}
+
+\begin{definition}[Transitive closure]
+    \label{def:binary_relation:transitive_closure}
+    The \textbf{transitive closure} of a binary relation $\to$, denoted $\to^+$, is the smallest transitive relation that include \( \to \).
+  \end{definition}
+  
+  \begin{definition}[Reflexive-transitive closure]
+    \label{def:binary_relation:reflexive_transitive_closure}
+    The \textbf{reflexive transitive closure} of a binary relation $\to$, denoted $\to^*$, is the smallest reflexive and transitive relation that include \( \to \).
+  \end{definition}
+
+  \begin{definition}[Homomorphisms of binary relations]
+    \label{def:binary_relation:homomorphism}
+    Let $\to_\mathcal{A}$ be a binary relation on a collection $A$ of objects and $\to_\mathcal{B}$ be a binary relation on a collection $B$ of objects. A \textbf{homomorphism} from $\to_\mathcal{A}$ to $\to_\mathcal{B}$ is a function \( h: A \to B \) such that for all \( a, b \in A \), if \( a \to_\mathcal{A} b \) then \( h(a) \to_\mathcal{B} h(b) \).
+  \end{definition}
+  
+\begin{proposition}[Proving well-foundedness]
+  \label{prop:binary_relation:proving_well_foundedness}
+  Let \(\to\) be binary relation and let $\leadsto$ be a well-founded binary relation. If there is a homomorphism from \(\to\) to \(\leadsto\), then \(\to\) is well-founded.
+\end{proposition}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Rewriting relations and systems, and termination
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Rewriting systems}
+    \label{sec:category_of_rewriting_systems}      
+      \begin{definition}[Rewriting relation]
+        \label{def:ars}
+        Let $D$ be a collection of objects.  
+        A \textbf{rewriting relation} $(D, \rightarrow)$ on $D$ is defined as a binary relation on $D$.  
+        The set $D$ is referred to as the \textbf{domain} of the rewriting relation.  
+        For all objects $x, y \in D$, if $x \rightarrow y$ then we say that $x$ \textbf{rewrites} to $y$ (or there exists a \textbf{rewriting step} from $x$ to $y$).
+    \end{definition}
+
+      In the litterature, a rewriting relation is also called abstract rewriting systems or abstract reduction systems \cite{nipkow1998term,terese2003term} and is usually defined on a set of objects. We defined it on a collection of objects to cope with rewriting systems on graphs, which form a collection of objects but not a set.
+       
+      \begin{definition}[Rewriting system]
+        \label{def:rewriting_system_no_framework}
+        A \textbf{rewriting system} is defined as a mathematical structure $(D, \mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I})$ where 
+        \begin{itemize}
+          \item $D$ is a collection of objects. 
+          \item $\mathcal{R}$ is a set of objects, called \textbf{rewriting rules},
+          
+          \item $M$ is a collection of objects, called \textbf{matches}, 
+          
+          \item $W$ is a collection of objects, called \textbf{witnesses of rewriting steps},  
+          
+          \item $\mathfrak{M}$ is a function, called \textbf{match mechanism}, which associates to each $(r,d) \in \mathcal{R} \times D$ a set $\mathfrak{M}(r,d)$ of matches in $M$, called \textbf{matches of the rewriting rule $r$ in the object $d$}, 
+           
+          \item $\mathfrak{W}$ is a function, called \textbf{witness function}, which associates to each $(r,d,m) \in \mathcal{R} \times D \times M$ a witness of rewriting step $\mathfrak{W}(r,d,m)$ in $W$, called \textbf{witness of the rewriting step defined by the match $m$ of the rule $r$ in the object $d$},
+
+          \item $\mathfrak{I}$ is a function, called \textbf{interpretation function},  
+              which associates to each witness $w \in W$, an element 
+              in $D \times D$, called \textbf{rewriting step witnessed by $w$}.
+        \end{itemize} 
+
+        For every rule $\rho \in \mathcal{R}$, it induces a rewriting relation $\Rightarrow_\rho$ that is defined as follows: for all objects $s, t \in D$, the rewriting step $s \Rightarrow_\rho t$ exists
+          iff there exists a match $m \in \mathfrak{M}(\rho,s)$ of the rule in the object $s$ such that $\mathfrak{W}(r,s,m)$ witnesses the rewriting step, i.e. $\mathfrak{I}(\mathfrak{W}(r,s,m)) = (s,t)$. 
+          
+          The \textbf{rewriting relation} $\Rightarrow_\mathcal{R}$ is defined as follows: for all objects $s, t \in D$, the rewriting step $s \Rightarrow_\mathcal{R} t$ exists iff $s \Rightarrow_\rho t$ for some rule $\rho \in \mathcal{R}$.
+
+          For a rewriting step $s \Rightarrow_\rho t$ with match $m$, we denote $s \Rightarrow_\rho^m t$ to indicate the match $m$ used to rewrite $s$ to $t$.
+
+          When the context makes it clear, we say that $\mathcal{R}$ is a rewriting system.
+      \end{definition}
+      
+      When defining a rewriting system, one may want to impose additional constraints on the rewriting relation. This can be done by imposing a more restrictive match mechanism. 
+      
+      However, since rewriting is an intuitive concept, when we talk about a rewriting system on a given domain $D$, we have an intuition of what a match mechanism should be. 
+
+      As a solution, Endrullis et al. proposed in \cite{endrullis2024generalized} to exclude certain witnesses using rewriting frameworks.
+      
+      \begin{definition}[Rewriting system in a rewriting framework]
+        \label{def:rewriting_system_with_framework}
+        A \textbf{rewriting system in a rewriting framework} is defined as a mathematical structure $(D, \mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I},\mathfrak{F})$ where
+        \begin{itemize}
+          \item $(\mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I})$ is a rewriting system,
+          \item $\mathfrak{F}$ is a mapping, called \textbf{rewriting framework}, which associates to each rule $r \in R$, 
+             a collection of witnesses in $W$.
+        \end{itemize}
+        
+        For every rule $\rho \in \mathcal{R}$, it induces a rewriting relation $\Rightarrow_{\mathfrak{F},\rho}$ that is defined as follows: for all objects $s, t \in D$, the rewriting step $s \Rightarrow_{\mathfrak{F},\rho} t$ exists
+          iff $s \Rightarrow_\rho^m t$ for some match $m \in \mathfrak{M}(\rho,s)$ and $\mathfrak{W}(r,s,m) \in \mathfrak{F}(\rho)$.
+
+          The \textbf{rewriting relation} $\Rightarrow_{\mathfrak{F},\mathcal{R}}$ is defined as follows: for all objects $s, t \in D$, the rewriting step $s \Rightarrow_{\mathfrak{F},\mathcal{R}} t$ exists iff $s \Rightarrow_{\mathfrak{F},\rho} t$ for some rule $\rho \in \mathcal{R}$.
+
+          For a rewriting step $s \Rightarrow_{\mathfrak{F},\rho} t$ with match $m$, we denote $s \Rightarrow_{\mathfrak{F},\rho}^m t$ to indicate the match $m$ used to rewrite $s$ to $t$.
+
+          When the context makes it clear, we say that $\mathcal{R}$ is a rewriting system.
+      \end{definition}
+      
+      % \trackedtext{useful ?? \\
+      % The following correspond to the rewriting relation definition by rewriting framework proposed by Endrullis et Overbeek in \cite[Definition 5.2]{endrullis2024generalized}.
+      % \begin{proposition}
+      %   Let $D$ be a collection of objects.
+      %   The structure $(\mathcal{R},\mathfrak{I},\mathfrak{F})$ where
+      %   \begin{itemize}
+      %     \item $\mathcal{R}$ is a set of objects, called \textbf{rewriting rules}, 
+      %     \item $\mathfrak{F}$ is a function, called \textbf{rewriting framework},  which associates to each rule $r \in R$, 
+      %        a class of objects,
+      %     \item $\mathfrak{I}$ is a function, called \textbf{interpretation function},  
+      %     which associates to each object $ w \in \mathcal{F}(r)$ with $r \in R$ an element 
+      %     in $D \times D$, called \textbf{rewriting step using rule $r$ witnessed by $w$},
+      %   \end{itemize}
+      %    defines a rewriting relation $\to$ as follows: $\to = \bigcup_{\rho \in R} \mathfrak{I}(\mathfrak{F}(\rho))$.
+      % \end{proposition}
+      % }
+      
+    % \color{red}\input{chapters/rewriting_systems_FOL}\color{black}
+    \begin{definition}[Terminating rewriting relations]
+        \label{def:rewriting_relation:termination}
+    A rewriting relation is \textbf{terminating} if its transitive closure is well-founded.
+    \end{definition}
+    
+    \begin{definition}[Terminating rewriting system]
+        \label{def:rewriting_system:termination}
+        A rewriting system 
+        %  in a framework $\mathfrak{F}$ 
+         is \textbf{terminating} if its rewriting relation
+        %   $\to_{\mathcal{R},\mathfrak{F}}$ 
+          is terminating.
+    \end{definition}
+    
+    \begin{proposition}[Proving Termination of rewriting systems]
+        Let $\mathcal{R}$ be a rewriting system and $\mathcal{S}$ be a terminating rewriting system.
+        If there exists a homomorphism from the rewriting relation of $\mathcal{R}$ to the rewriting relation of $\mathcal{S}$, then $\mathcal{R}$ is terminating.  
+    \end{proposition}
+    
+    In practice, it is often more convient to embed the rewriting system into a terminating rewriting system via a sequence of homomorphism.
+    \begin{corollary}[Proving termination of rewriting systems]
+      A rewriting system $\mathcal{R}$ is terminating if there is a terminating rewriting system $\mathcal{S}$ and homomorphisms $h_1,\ldots, h_n$ such that $h_n \circ \ldots \circ h_1$ is a homomorphism from $\mathcal{R}$ to $\mathcal{S}$.
+    \end{corollary}
+    
+    \begin{definition}[Relative termination of rewriting relations]
+        \label{def:rewriting_relation:relative_termination}
+        Let \( \to \) and \( \leadsto \) be two rewriting relations. We say that \(\to\) is \textbf{terminating relative to} \(\leadsto\) if every \( \left(\to \cup \leadsto \right) \)-sequence contains only finitely many \(\to\)-steps.
+    \end{definition}
+    
+    \begin{definition}[Relative termination of rewriting systems]
+        \label{def:rewriting_system:relative_termination}
+        Let $D$ be a collection of objects.
+        Let \( \mathcal{A} \) and \( \mathcal{B} \) be two rewriting systems on $D$. We say that \(\mathcal{A}\) is \textbf{terminating relative to} \(\mathcal{B}\) if the rewriting relation induced by \(\mathcal{A}\) is terminating relative to the rewriting relation induced by \(\mathcal{B}\).
+    \end{definition}
+    
+    % \begin{proposition}[Proving Relative Termination]
+    %     Let \((S, \to \cup \leadsto) \) be an abstract rewriting system. \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if there is a terminating rewriting system $(R,>)$ and a function $h : S \to R$ such that
+    %     \begin{itemize}
+    %       \item $h$ is abstract rewriting system homomorphism from $(S,\to)$ to  $(R,>)$
+    %       \item $h$ is abstract rewriting system homomorphism from $(S,\leadsto)$ to  $(R,\geq)$
+    %     \end{itemize} 
+    %     where $\geq$ is the reflexive closure of $>$.
+    %   \end{proposition}
+    \begin{definition}[Proving relative termination]
+        \label{def:rewriting_system:proving_relative_termination}
+        Let \( \mathcal{A} \) and \( \mathcal{B} \) be two rewriting systems on $D$. Let $>$ and $\geq$ be two rewriting relations on $D'$ such that $>$ is terminating relative to $\geq$. If there exists a function $h : D \to D'$ such that: (1) $h$ is a homomorphism from the rewriting relation of \(\mathcal{A}\) to $>$, and (2) $h$ is a homomorphism from the rewriting relation of \(\mathcal{B}\) to $\geq$, then \(\mathcal{A}\) is terminating relative to \(\mathcal{B}\).
+    \end{definition}
+    
+    % \begin{definition}[Relative terminating rewriting systems]
+    %     Let $D$ be a collection of objects.
+    %     Let \( \mathcal{A} \) and \( \mathcal{B} \) be two rewriting systems on $D$.and $\mathfrak{F}$ be a DPO rewriting framework.
+    %      We say that \(\mathcal{A}\) is \textbf{terminating relative to} \(\mathcal{B}\) if the rewriting relation \(\to_{\mathcal{A},\mathfrak{F}} \) is terminating relative to the rewriting relation \(\to_{\mathcal{B},\mathfrak{F}}\).
+    % \end{definition}
+    
+    % \begin{definition}[Relative termination]
+    % Let \((S, \to \cup \leadsto) \) be a rewriting system. We say that \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if every derivation $s_1 (\to \cup \leadsto) s_2 (\to \cup \leadsto) \hdots $ contains only finitely many $\to$-steps.
+    % \end{definition} 
+    
+    % \color{red}
+    % \begin{definition}[Pre-order \cite{davey2002introduction}]
+    %   A reflexive and transitive binary relation $\geq$ on a set is called a pre-order. It give rise to a relation $>$ of strict inequality: $x > y$ iff $x \geq y$ and $x \neq y$. 
+    % \end{definition} 
+    
+    % \begin{definition}[Partial Order]
+    %   A reflexive, antisymmetric, transitive binary relation is called a partial order.
+    % \end{definition}
+    
+    % \begin{definition}[Strict Partial Order]
+    %   A irreflexive, transitive binary relation is called a strict partial order.
+    % \end{definition}
+    
+    % \begin{example}[Lexicographic Product \cite{nipkow1998term}]
+    %   Consider two rewriting systems $(A, >)$ and $(B, \succ)$. The lexicographic product $(A \times B, \gg)$ is defined by the relation \((x,y) \gg (x',y')\) if and only if \(x > x'\) or, \(x = x'\) and \(y \succ y'\). If \(>\) and \(\succ\) are strict partial orders, then \(\gg\) is also a strict partial order. Furthermore, if both \((A, >)\) and \((B, \succ)\) terminate, then the lexicographic product \((A \times B, \gg)\) will also terminate.
+    % \end{example}
+    
+    % \begin{example}[Finite Lexicographic Product \cite{nipkow1998term}]
+    %   By iteration, we can form lexicographic product over any number of rewriting systems $(A_i, >_i), i=1,\ldots,n$. For $n>1$, the lexicographic product $(A_1 \times (A_2 \times \ldots \times A_n),>_{1\ldots n})$ is the lexicographic product of $(A_1, >_1)$ and $(A_2 \times \ldots \times A_n,>{2\ldots n})$. Unwinding the recursion, we get 
+    %   $(x_1,\ldots,x_n) >_{1\ldots n} (x_1',\ldots, x_n')$ iff $\exists k < n.(\forall i < k. x_i = x_i') \land x_k >_k x_k'$.
+    %   If $(A_1,>_1), \ldots, (A_n,>_n)$ are strict partial orders, then so is $(A_1 \times \ldots \times A_n, >_{1\ldots n})$. 
+    %   If $(A_1,>_1), \ldots, (A_n,>_n)$ terminates, then so does $(A_1 \times \ldots \times A_n, >_{1\ldots n})$. 
+    % \end{example}
+    
+    % \begin{example}[Finite Lexicographic Product \cite{nipkow1998term}]
+    %   A lexicographic product can be extended iteratively over any number of rewriting systems \((A_i, >_i)\) for \(i = 1, \ldots, n\). For \(n > 1\), the lexicographic product \((A_1 \times A_2 \times \dots \times A_n, >_{1\ldots n})\) is defined as the lexicographic product of \((A_1, >_1)\) and \((A_2 \times \dots \times A_n, >_{2\ldots n})\). Expanding this recursion, we have 
+    %   \((x_1, \dots, x_n) >_{1\ldots n} (x_1', \dots, x_n')\) if and only if there exists \(k < n\) such that \((\forall i < k . x_i = x_i') \land x_k >_k x_k'\).
+    %   If each \((A_1, >_1), \ldots, (A_n, >_n)\) is a strict partial order, then \((A_1 \times \dots \times A_n, >_{1\ldots n})\) is also a strict partial order. 
+    %   Moreover, if \((A_1, >_1), \ldots, (A_n, >_n)\) terminate, then the lexicographic product \((A_1 \times \dots \times A_n, >_{1\ldots n})\) also terminates.
+    % \end{example}
+    
+    
+    % \begin{example}[Strings of Arbitrary but Finite Length with Lexicographic Order \cite{nipkow1998term}]
+    %   Given an rewriting system \((A, >)\), the lexicographic order \((A^*, >_{lex})\) is defined as follows: \(x > x'\) if and only if \((|x| > |x'|) \lor (|x| = |x'| \land y \succ y')\).
+    %   If \(>\) is a strict partial order, then \(\gg\) is also a strict partial order. Furthermore, if both \((A, >)\) and \((B, \succ)\) are terminating rewriting systems, then their lexicographic product \((A \times B, \gg)\) also terminates.
+    % \end{example}
+    
+    % \begin{definition}[Multiset Order \cite{nipkow1998term}]
+    %   A \textbf{multiset} is a generalization of a set where elements can occur multiple times. Formally, it is defined as a function \( M: A \rightarrow \mathbb{N} \), where for each \(a \in A\), \(M(a)\) represents the number of times \(a\) appears in the multiset \(M\). The collection of all multisets over a set \(A\) is denoted by \(\mathcal{M}(A)\).
+    
+    %   Given a strict partial order \(>\) on a set \(A\), the corresponding multiset order \(>_{mul}\) on \(\mathcal{M}(A)\) is defined as follows: \(M >_{mul} N\) if and only if there exist multisets \(X, Y \in \mathcal{M}(A)\) such that:
+    %   \begin{itemize}
+    %       \item \(X \subseteq M\) and \(X \neq \emptyset\),
+    %       \item \(N = (M - X) \cup Y\), and
+    %       \item \(\forall y \in Y, \exists x \in X \text{ such that } x > y\).
+    %   \end{itemize}
+    %   If the rewriting system \((A, >)\) terminates, then the multiset order \((\mathcal{M}(A), >_{mul})\) also terminates.
+    % \end{definition}
+    % \color{black}
+% In practice, it is often more convient to embed the rewriting system into a terminating rewriting system via a morphism that is the composition of a serie of morphisms.
+% \begin{corollary}[Proving termination]
+%   A rewriting system $\mathcal{R}$ is terminating if there is a terminating rewriting system $\mathcal{S}$ and functors $h_1,\ldots, h_n$ such that $h_1 \star \ldots \star h_n : \mathcal{R} \to \mathcal{S}$
+% \end{corollary}
+
+   
+%   \begin{proposition}[Proving Relative Termination]
+%     Let \((S, \to \cup \leadsto) \) be an abstract rewriting system. \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if there is a terminating rewriting system $(R,>)$ and a function $h : S \to R$ such that
+%     \begin{itemize}
+%       \item $h$ is abstract rewriting system homomorphism from $(S,\to)$ to  $(R,>)$
+%       \item $h$ is abstract rewriting system homomorphism from $(S,\leadsto)$ to  $(R,\geq)$
+%     \end{itemize} 
+%     where $\geq$ is the reflexive closure of $>$.
+%   \end{proposition}
+ \chapter{Graphs}
+    \label{sec:graphs}
+    \begin{definition}[Unlabeled graph~\cite{barr1990category}]
+        \label{def:graph:unlabeled}
+        An \textbf{unlabeled graph} \( G \) consists of a collection of \textbf{nodes} (also called \textbf{objects}) and a collection of \textbf{edges}, each edge $e$ equipped with a \textbf{source} (or \textbf{domain}) node, denoted $\opn{src}(e)$, and a \textbf{target} (or \textbf{codomain}) node, denoted $\opn{dst}(e)$. 
+        For an unlabeled graph \( G \), we denote by \( G_0 \) its collection of nodes, \( G_1 \) its collection of edges, \( \operatorname{dom}:G_1{\to}G_0 \) the domain function, and \( \operatorname{cod}:G_1{\to}G_0 \) the codomain function. An unlabeled graph is \textbf{finite} if \( G_0 \) and \( G_1 \) are both finite sets.
+        We write \( a: s \to t \) to indicate that \( a \) is a directed edge from \( s \) to \( t \). 
+    \end{definition}   
+    \begin{example}
+      A unlabeled graph is a directed multigraph as illustrated below.
+       
+        \begin{center}
+          \resizebox{0.45\textwidth}{!}{
+          \begin{tikzpicture}
+              \graphbox{\(\)}{00mm}{-20mm}{45mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (-5mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
+                  \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                  \draw[->] (l1) edge[bend right]  (l3);
+                  \draw[->] (l1) edge[bend left] (l3);
+                  \draw[->] (l3) -- (l4);
+                  % \draw[->] (l4) -- (l2) node[midway,above] {a};
+              }  
+          \end{tikzpicture}
+      }
+      \end{center} 
+    \end{example}
+    % A homomorphism of unlabeled graphs is a mapping between the nodes and edges of two graphs that preserves the graph structure.
+    \begin{definition}
+        \label{def:unlabeled_graph:homomorphism}
+        Let \( G \) and \( H \) be unlabeled graphs. A \textbf{homomorphism of unlabeled graphs} $h: G \to H$ is a pair of functions $h_0: G_0 \to H_0 $ and $h_1: G_1 \to H_1$ such that for every edge \( a: s \to t \) in \( G \), we have \( h_1(a) : h_0(s) \to h_0(t) \) in \( H \).
+    \end{definition}
+    \begin{definition}
+        \label{def:graph}
+        Let \(\Sigma\) be a finite set of labels. A \textbf{labeled graph} is an ordered pair \((G,\lambda)\) where \( G \) is an unlabeled graph and \( \lambda : G_1 \rightarrow \Sigma\) is an edge-labeling function. 
+        It is called \textbf{finite} if its underlying unlabeled graph is finite.  
+    \end{definition}
+    \begin{example} An labeled graph is edge-labeled directed multigraph as illustrated below.
+       
+        \begin{center}
+          \resizebox{0.45\textwidth}{!}{
+          \begin{tikzpicture}
+              \graphbox{\( \)}{00mm}{-20mm}{45mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (-5mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
+                  \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                  \draw[->] (l1) edge[bend right]  node[midway,below] {a} (l3);
+                  \draw[->] (l1) edge[bend left] node[midway,above] {a}  (l3);
+                  \draw[->] (l3) -- (l4) node[midway,above] {b};
+                  % \draw[->] (l4) -- (l2) node[midway,above] {a};
+              }  
+          \end{tikzpicture}
+      }
+      \end{center} 
+    \end{example}
+    By $a : s\overset{l}{\rightarrow} t$, we denote the arrow $a$ labeled by $l$ from $s$ to $t$. Unless otherwise specified, the term \enquote{graph} refers to the graphs finite. Note that unlabeled graphs can be regarded as labeled graphs. 
+
+    A homomorphism of labeled graphs is a homomorphism of unlabeled graphs that preserves the labels assigned to the edges.
+    \begin{definition}
+        \label{def:graph:homomorphism}
+        Let \( (G,\lambda) \) and \( (H,\lambda') \) be labeled graphs. A \textbf{homomorphism of labeled graphs} $h:(G,\lambda) \rightarrow (H,\lambda')$ is a homomorphism of unlabeled graphs such that for each edge \( a \) in \( G \), we have \( \lambda (a) = \lambda' (h_1 (a)) \).
+    \end{definition}
+    \begin{notation}
+        We use the notation from~\cite[Notation 1]{overbeek2023apbpotutorial} to visualize edge-labeled graph homomorphisms. Labeled graphs are enclosed in boxes with their names displayed in the top-left corner. Nodes and edges are assigned subsets of \(\mathbb{N}\) as identifiers, and these identifiers are chosen such that: (i) Each node or edge \( y \) in the codomain graph is assigned the union of the identifiers of all nodes or edges in the domain graph that are mapped to \( y \); (ii) The graph homomorphism is uniquely determined by this assignment.
+        
+        \noindent To further improve readability, we represent sets by listing their elements. Additionally, we omit identifiers when doing so does not cause confusion. Furthermore, if a node has a unique loop, we omit the loop and represent the corresponding label as a node-label. 
+        This is illustrated in the following representation of a homomorphism \( h: G \to H \).
+        
+        \begin{center}
+            \resizebox{0.45\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{\( G \)}{00mm}{-20mm}{45mm}{25mm}{2mm}{-10mm}{
+                    \coordinate (o) at (-5mm,-8mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {4};
+                    \draw[->] (l1) -- (l3) node[midway,above] {a};
+                    \draw[->] (l3) -- (l4) node[midway,above] {b};
+                    \draw[->] (l4) -- (l2) node[midway,above] {a};
+                }  
+                \graphbox{\( H \)}{50mm}{-20mm}{34mm}{25mm}{2mm}{-10mm}{
+                    \coordinate (o) at (0mm,-8mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3\ 4} node[above] {b};
+                    \draw[->] (l1) edge node[midway,above] {a} (l3)  ;
+                    % \draw[->] (l3) edge [loop above] node[midway,above] {b} (l3) ;
+                    \draw[->] (l3) -- (l2) node[midway,above] {a};
+                }      
+                \node () at (48mm,-30mm) {$\rightarrow$};
+            \end{tikzpicture}
+        }
+        \end{center} 
+        In this example, the sets \(\{1\}\), \(\{2\}\), \(\{3\}\), \(\{4\}\), and \(\{3,4\}\) are represented as \(1\), \(2\), \(3\), \(4\), and \(3\ 4\), respectively. Edge identifiers are omitted.
+    \end{notation} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Graph Relabeling Systems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \chapter{Graph relabeling systems (GLS)} 
+      \label{sec:gls}
+Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting systems. For a given graph, a graph relabeling system identify a subgraph of the graph and modify the labels of the nodes and edges of this subgraph. Since it never modifies the structure of the graph, it is very intuitive.
+
+% \begin{definition}[Graph Relabeling Rule]
+%   A \emph{graph relabeling rule} is a couple of labeled graphs \( ((U,\lambda),(U, \lambda')) \) where \( (U, \lambda) \) is said to be the \emph{left-hand side graph} and \( (U, \lambda')\) the \emph{right-hand side graph}.
+% \end{definition}  
+\begin{definition}[GLS rewriting rule]
+  \label{def:gls_rule}
+  A \textbf{GLS rewriting rule} is an ordered pair of labeled graphs \( \rho = (U,\lambda) \to (U, \lambda') \) that share the same underlying unlabeled graph \( U \). The labeled graph \( (U, \lambda) \) is said to be the \textbf{left-hand side graph}, denoted $\opn{lhs}(\rho)$, and \( (U, \lambda')\) the \textbf{right-hand side graph}, denoted $\opn{rhs}(\rho)$.
+\end{definition} 
+
+\begin{example}
+    \label{ex:gls_rule}
+    The following is an example of a GLS rewriting rule. The left-hand side graph \( (U,\lambda) \) has two nodes labeled \( 1 \) and \( 2 \), and one edge labeled \( 0 \). The right-hand side graph \( (U,\lambda') \) has two nodes both labeled \( 1 \) and one edge labeled \( 1 \).
+  \begin{center} 
+    \begin{tikzpicture}
+        % Left side
+        \node[circle, draw] (A1) at (0,0) {1};
+        \node[circle, draw] (N1) at (2,0) {2};
+        \draw (A1) -- (N1) node[midway, above] {0};
+        \node at (0,-0.5) {A};
+        \node at (2,-0.5) {N};
+    
+        % Arrow
+        \node at (3.5, 0) {$\rightarrow$};
+    
+        % Right side
+        \node[circle, draw] (A2) at (5,0) {1};
+        \node[circle, draw] (A3) at (7,0) {2};
+        \draw (A2) -- (A3) node[midway, above] {1};
+        \node at (5,-0.5) {A};
+        \node at (7,-0.5) {A};
+    \end{tikzpicture}
+    \end{center}
+\end{example}
+
+% \begin{definition}[Match]
+%   Let \(((U,\lambda),(U, \lambda')) \) be a graph relabeling rule. A \emph{match} of this rule in a labeled graph \( (G, \lambda_G) \) is a graph homomorphism \( m : (U,\lambda) \to (G, \lambda_G) \).
+% \end{definition} 
+
+\begin{definition}[Graph relabeling]
+  \label{def:gls:rewriting}
+  % \textbf{GLS match mechanism} is a mapping that associates to \( (\rho, G) \) the set of all injective graph homomorphisms $m : \opn{lhs}(\rho) \rightarrowtail G$.
+ 
+  Let \( \rho = (L, \lambda_L) \to (R,\lambda_R) \) be a GLS rewriting rule, \( (G, \lambda_G) \) a graph.
+
+  A \textbf{GLS match} of \( \rho \) in \( G \) is an injective graph homomorphism \( m : (L, \lambda_L) \rightarrowtail (G, \lambda_G) \). 
+  
+  Let $\lambda'_G$ be the labeling function on nodes and edges of \( G \) such that \( \lambda'_G(x) = \lambda_G(x) \) for all nodes and edges \( x \) in \( G \setminus \operatorname{Im}(m) \), and \( \lambda'_G(x) = \lambda_R(m^{-1}(x)) \) otherwise.
+
+  Let $m' : (R, \lambda_R) \rightarrowtail (G, \lambda'_G)$ be the injective graph homomorphism with \( m(x) = m'(x) \) for all nodes and edges \( x \) in \( G \).
+
+  The pair $(m, m')$ of injective graph homomorphisms is a \textbf{witness} of the rewriting step from \( (G, \lambda_G) \) to \( (G, \lambda'_G) \) using the rule \( \rho \) and match \( m \).
+\end{definition}
+\begin{definition}[Graph relabeling system]
+  Let $\mathcal{R}$ be a set of GLS rewriting rules. Let $M, \mathfrak{M}, W , \mathfrak{W}, \mathfrak{I}$ be the match, match mechanism, witness, witness function and interpretation functions introduced in~\ref{def:gls:rewriting}.
+
+  The structure $(\mathbf{Graph},\mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I})$ defines a rewriting system, called \textbf{graph relabeling system (GLS)}.
+\end{definition}
+\todo{example ref}
+\begin{example}
+  \label{example:gls_spinning_tree}
+  Let \(\mathcal{R}\) be a graph relabeling system with labels in \( \{N, A, 0, 1\}\) a unique graph relabelling rule:
+
+  \begin{center}
+  \begin{tikzpicture}
+      % Left side
+      \node[circle, draw] (A1) at (0,0) {1};
+      \node[circle, draw] (N1) at (2,0) {2};
+      \draw (A1) -- (N1) node[midway, above] {0};
+      \node at (0,-0.5) {A};
+      \node at (2,-0.5) {N};
+  
+      % Arrow
+      \node at (3.5, 0) {$\rightarrow$};
+  
+      % Right side
+      \node[circle, draw] (A2) at (5,0) {1};
+      \node[circle, draw] (A3) at (7,0) {2};
+      \draw (A2) -- (A3) node[midway, above] {1};
+      \node at (5,-0.5) {A};
+      \node at (7,-0.5) {A};
+  \end{tikzpicture}
+  \end{center}
+
+  Let \( (G, \lambda) \) be a labeled graph such that all nodes are labeled \(N\) except for one node labeled \(A\), and all edges are labeled \(0\). 
+  If we apply the rule \(r\) while it is possible, we obtain a labeled graph \( (G', \lambda') \) with all nodes labeled by \(A\) and all edges labeled by \(1\). Edges labeled by \(1\) in \( (G', \lambda') \) form a spanning tree of \( G \). 
+  
+\end{example}
+
+\begin{example}
+   A non-terminating rewriting rule:
+        \begin{itemize}
+            \item rule:  
+            \begin{center} 
+                \resizebox{0.9\textwidth}{!}{
+                \begin{tikzpicture}
+                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \draw[->] (l1) -- (l3) node[midway,above] {a};
+                        \draw[->] (l3) -- (l2) node[midway,above] {b};
+                    } 
+            
+                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    }  
+            
+                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (-5mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        \draw[->] (l1) -- (l3) node[midway,above] {b};
+                        \draw[->] (l3) -- (l4) node[midway,above] {a};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    }    
+                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
+                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
+                \end{tikzpicture}
+                }
+            \end{center}  
+            \item infinite rewriting-sequence: 
+            \tikz[baseline=-0.5ex]{ 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {b} (z) ;
+                \draw[->] (z) -- node[midway,left] {b} (x) ;
+            } 
+            $\Rightarrow$ 
+            \tikz[baseline=-0.5ex]{ 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->] (x) -- node[midway,below] {b} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {a} (z) ;
+                \draw[->,red] (z) -- node[midway,left] {b} (x) ;
+            }
+            $\Rightarrow$ 
+            \tikz[baseline=-0.5ex]{ 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->,red] (x) -- node[midway,below] {b} (y) ;
+                \draw[->] (y) -- node[midway,right] {b} (z) ;
+                \draw[->,red] (z) -- node[midway,left] {a} (x) ;
+            }
+            $\Rightarrow$ 
+            \tikz[baseline=-0.5ex]{ 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {b} (z) ;
+                \draw[->] (z) -- node[midway,left] {b} (x) ;
+            }
+        with matches in red
+        \end{itemize}
+\end{example}
+
+\begin{example}
+  to do example
+
+	\begin{tikzpicture}
+		\draw (-1,0) node[left] {$r_1$:};
+		\draw (1,0) node[above] {0};
+		
+		\node[draw,circle] (x_1) at (0,0) {$1$} ;
+		\draw (0,0.3) node[above]{A};
+		\node[draw,circle, minimum size = 1pt] (x_2) at (2,0) {$2$};
+		\draw (2,0.3) node[above]{N};
+		\draw[-] (x_1) -- (x_2);
+		
+		\draw (3,0) node[right] {$\longrightarrow$};
+		\draw (6,0) node[above] {1};
+		
+		\node[draw,circle] (x3) at (5,0) {$1$} ;
+		\draw (5,0.3) node[above]{A};
+		\node[draw,circle, minimum size = 1pt] (x4) at (7,0) {$2$};
+		\draw (7,0.3) node[above]{A'};
+		\draw[-] (x3) -- (x4);
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		\draw (-1,0) node[left] {$r_2$:};
+		\draw (1,0) node[above] {1};
+		
+		\node[draw,circle] (x_1) at (0,0) {$1$} ;
+		\draw (0,0.3) node[above]{A'};
+		\node[draw,circle, minimum size = 1pt] (x_2) at (2,0) {$2$};
+		\draw (2,0.3) node[above]{N};
+		\draw[-] (x_1) -- (x_2);
+		
+		\draw (3,0) node[right] {$\longrightarrow$};
+		\draw (6,0) node[above] {1};
+		
+		\node[draw,circle] (x3) at (5,0) {$1$} ;
+		\draw (5,0.3) node[above]{A'};
+		\node[draw,circle, minimum size = 1pt] (x4) at (7,0) {$2$};
+		\draw (7,0.3) node[above]{A'};
+		\draw[-] (x3) -- (x4);
+	\end{tikzpicture}
+	\begin{itemize}
+		\item Calcul d'un Arbre couvrant
+		\item Graphe connexe avec étiquettes initiales: 0, N, A.\\
+ \end{itemize}
+ Séquence de règles appliquée: $r_1 \rightarrow r_2 \rightarrow r_1$ \\ \ \ 
+ \resizebox{0.2\textwidth}{!}{
+\begin{tikzpicture}
+	\node[draw, circle, minimum size = 1 cm] (n1) at (0,0) {$1$};
+	\node[draw, circle, minimum size = 1 cm] (n2) at (2,0) {$2$};
+	\node[draw, circle, minimum size = 1 cm] (n3) at (2,2) {$3$};
+	\node[draw, circle, minimum size = 1 cm] (n4) at (0,2) {$4$};
+	
+	\draw[-] (n1)--(n2)--(n3)--(n4);
+	\draw[-] (n4)--(n1);
+	
+	\draw(0,-0.5) node[below] {\textcolor{red}{ A}};
+	\draw(2,-0.5) node[below] {N};
+	\draw(2,2.5) node[above] {N};
+	\draw(0,2.5) node[above] {N};
+	
+	\draw(1,0) node[below] {0};
+	\draw(2,1) node[right] {0};
+	\draw(1,2) node[above] {0};
+	\draw(0,1) node[left] {0};	
+\end{tikzpicture}
+ }
+ \resizebox{0.2\textwidth}{!}{
+\begin{tikzpicture}
+	\node[draw, circle, minimum size = 1 cm] (n1) at (0,0) {$1$};
+	\node[draw, circle, minimum size = 1 cm] (n2) at (2,0) {$2$};
+	\node[draw, circle, minimum size = 1 cm] (n3) at (2,2) {$3$};
+	\node[draw, circle, minimum size = 1 cm] (n4) at (0,2) {$4$};
+	
+	\draw[-] (n1)--(n2)--(n3)--(n4);
+	\draw[-] (n4)--(n1);
+	
+	\draw(0,-0.5) node[below] {\textcolor{red}{ A}};
+	\draw(2,-0.5) node[below] {\textcolor{red}{A'}};
+	\draw(2,2.5) node[above] {N};
+	\draw(0,2.5) node[above] {N};
+	
+	\draw(1,0) node[below] {\textcolor{red}{1}};
+	\draw(2,1) node[right] {0};
+	\draw(1,2) node[above] {0};
+	\draw(0,1) node[left] {0};
+\end{tikzpicture}
+ }
+ \resizebox{0.2\textwidth}{!}{
+  \begin{tikzpicture}
+	\node[draw, circle, minimum size = 1 cm] (n1) at (0,0) {$1$};
+	\node[draw, circle, minimum size = 1 cm] (n2) at (2,0) {$2$};
+	\node[draw, circle, minimum size = 1 cm] (n3) at (2,2) {$3$};
+	\node[draw, circle, minimum size = 1 cm] (n4) at (0,2) {$4$};
+	
+	\draw[-] (n1)--(n2)--(n3)--(n4);
+	\draw[-] (n4)--(n1);
+	
+	\draw(0,-0.5) node[below] {\textcolor{red}{A}};
+	\draw(2,-0.5) node[below] {\textcolor{red}{A'}};
+	\draw(2,2.5) node[above] {\textcolor{red}{A'}};
+	\draw(0,2.5) node[above] {N};
+	
+	\draw(1,0) node[below] {\textcolor{red}{1}};
+	\draw(2,1) node[right] {\textcolor{red}{1}};
+	\draw(1,2) node[above] {0};
+	\draw(0,1) node[left] {0};
+\end{tikzpicture}
+ }
+ \resizebox{0.2\textwidth}{!}{
+\begin{tikzpicture}
+	\node[draw, circle, minimum size = 1 cm] (n1) at (0,0) {$1$};
+	\node[draw, circle, minimum size = 1 cm] (n2) at (2,0) {$2$};
+	\node[draw, circle, minimum size = 1 cm] (n3) at (2,2) {$3$};
+	\node[draw, circle, minimum size = 1 cm] (n4) at (0,2) {$4$};
+	
+	\draw[-] (n1)--(n2)--(n3)--(n4);
+	\draw[-] (n4)--(n1);
+	
+	\draw(0,-0.5) node[below] {\textcolor{red}{A}};
+	\draw(2,-0.5) node[below] {\textcolor{red}{A'}};
+	\draw(2,2.5) node[above] {\textcolor{red}{A'}};
+	\draw(0,2.5) node[above] {\textcolor{red}{A'}};
+	
+	\draw(1,0) node[below] {\textcolor{red}{1}};
+	\draw(2,1) node[right] {\textcolor{red}{1}};
+	\draw(1,2) node[above] {0};
+	\draw(0,1) node[left] {\textcolor{red}{1}};
+\end{tikzpicture}
+ }
+\end{example}
+
+\part{Termination of graph relabeling systems via morphisms to term rewriting relations}
+\chapter{Introduction}
+
+\chapter{Preliminaries}
+    \label{sec:trs} 
+    
+\section{Terms}
+Terms on which first order term rewriting systems are defined are terms of a first order language.
+% \begin{definition}[Signature $\Sigma$~\cite{nipkow1998term}]
+%   A \textbf{signature} \( \Sigma \) is a set of function symbols and for each \( f \in \Sigma \) a non-negative integer \( n \) called the arity of \( f \).
+% \end{definition}
+\begin{definition}[First order language~\text{\cite[Def 1.1.1]{marker2006model},\cite[Def 2.1.1]{terese2003term}}]
+  A \textbf{language} \( \mathcal{L} \) is given by specifying the following data:
+  \begin{itemize}
+      \item  a set of function symbols \( \mathcal{F} \) and positive integers \( n_f \) for each \( f \in \mathcal{F} \);
+      \item  a set of relation symbols \( \mathcal{R} \) and positive integers \( n_R \) for each \( R \in \mathcal{R} \);
+      \item  a set of constant symbols \( \mathcal{C} \).
+  \end{itemize}
+\end{definition}
+% \begin{definition}[$\Sigma$-Terms]
+%   Let $\Sigma$ be a signature. The set $T(\Sigma)$ of $\Sigma$-terms is the smallest set such that 
+%   \begin{itemize}
+%     \item for all $n\geq 0$, all function symbols $f$ of arity n, and all $t_1,\hdots, t_n \in T(\Sigma, \mathcal{X})$, we have $f(t_1,...,t_n) \in T(\Sigma, \mathcal{X})$.
+%   \end{itemize}
+% \end{definition}
+
+\begin{definition}[$(\Sigma,\mathcal{X})$-Terms~\text{\cite{nipkow1998term},\cite[Def 2.1.2]{terese2003term}}]
+  Let $\Sigma$ be a first order language and $\mathcal{X}$ be a countably infinite set of variable symbols such that $\Sigma \cap \mathcal{X} = \emptyset$. The set $T(\Sigma,\mathcal{X})$ of $(\Sigma,\mathcal{X})$-terms is the smallest set such that 
+  \begin{itemize}
+  \item $\mathcal{X} \subseteq T(\Sigma,\mathcal{X})$, and
+  \item for all $n\geq 0$, all function symbols $f$ of arity n, and all $t_1,\hdots, t_n \in T(\Sigma, \mathcal{X})$, we have $f(t_1,...,t_n) \in T(\Sigma, \mathcal{X})$.
+  \end{itemize}
+\end{definition}
+
+
+% \section{Term Rewriting Systems}
+
+\section{TRS}
+A term rewriting system (TRS) is a rewriting system where the objects are $T(\Sigma,\mathcal{X})$-terms where $\Sigma$ is a set of function symbols and $\mathcal{X}$ is a set of variable symbols disjoint from $\Sigma$.
+  
+\begin{definition}[term rewriting rule~\text{\cite[Def.2.2.1]{terese2003term}}]
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables. A \textbf{term rewriting rule} is an ordered pair $(l,r) \in T(\Sigma, \mathcal{X})^2$, denoted $l \to r$, such that
+    \begin{itemize}
+      \item $l$ is not a variable, and
+      \item every variable occurring in $r$ also occurs in $l$.
+    \end{itemize}
+  \end{definition}
+  
+  \begin{definition}[Position \cite{nipkow1998term} \cite{urbain2001approche}]
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variable symbols disjoint from $\Sigma$. Let $s \in T(\Sigma, \mathcal{X})$.
+    The set of positions of subterms of $s$ is a set $\operatorname{Pos}(s)$ defined by induction as follows:
+    \begin{itemize}
+      \item if $s \in \mathcal{X}$, then $\operatorname{Pos}(s) = \set{\epsilon}$
+      \item if $s = f(t_1,\hdots,t_n)$, 
+            then $\operatorname{Pos}(s) = \set{\epsilon} \cup \bigcup_{1 \leq k \leq n} \left \{kp\mid p \in \operatorname{Pos}(t_k) \right \}$
+  \end{itemize}
+  A position of a subterm of $s$ is a word on alphabet $\mathbb{N}\setminus\set{0}$. 
+    The concatenation of words $p$ and $q$ will be denoted $pq$.
+  \end{definition}
+
+  \begin{definition}[Subterm \cite{nipkow1998term} \cite{urbain2001approche}]
+    For $p \in \mathcal{Pos}(s)$, the \textbf{subterm of s at position p}, denoted by $s_{|p}$, is defined by induction on the length of p:
+    \begin{itemize}
+      \item $s_{|\epsilon} := s$, and
+      \item $f(s_1,...,s_n)_{|iq} := \left(s_i\right)_{|q}$.
+    \end{itemize} 
+    
+    Note that, for $p = iq$, $p \in \mathcal{Pos}$ implies that s is of the form $s = f(s_1,...,s_n)$ with $i \le n$
+    
+    For $p \in \mathcal{Pos}(s)$, we denote by $s[t]_p$ the term that is obtained from s by \textbf{replacing the subterm at position p by t}:
+  \begin{itemize}
+    \item $s[t]_\epsilon := t$
+    \item $f(s_1,...,s_n)[t]_{iq} := f(s_1,...,s_i[t]_{q},...,s_n)$
+  \end{itemize}
+ 
+  \end{definition}
+   
+  \begin{definition}[Substitution]
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables.
+    A \text{substitution} is a function $\sigma : \mathcal{X} \rightarrow T(\Sigma, \mathcal{X})$ such that $\sigma(x) \not = x$ for only finitely many variables. Any substitution can be extended to a mapping on $T(\Sigma,\mathcal{X})$ by letting $\sigma(f(s_1,...,s_n)) \overset{\operatorname{def}}{=}f(\sigma(s_1),...,\sigma(s_n))$.
+  \end{definition}
+
+   
+  \begin{definition}[Term rewriting]
+    \label{def:trs:rewriting}
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables. Let $\mathcal{R}$ be a set of TRS rewriting rules. Let $s \in T(\Sigma, \mathcal{X})$ and $\rho = (l \to r) \in \mathcal{R}$. Let $p$ be a match of $\rho$ in $s$.
+
+      A \textbf{match} of $\rho$ in $s$ is a position $p \in \operatorname{Pos}(s)$ such that there exists a substitution $\sigma$ such that $s_{|p} = \sigma(l)$.
+
+    The triple $(\rho, s, p, \sigma)$ is a witness of the rewriting step $s \to_\rho^p t$ where $t = s[\sigma(r)]_p$.
+  \end{definition}
+  
+  \begin{definition}[TRS rewriting system]
+    Let $\mathcal{R}$ be a set of TRS rules. 
+
+    Let $M, \mathfrak{M}, W , \mathfrak{W}, \mathfrak{I}$ be the match, match mechanism, witnesses, witness function and interpretation functions introduced in \autoref{def:trs:rewriting}
+ 
+    The rewriting system $(T(\Sigma,\mathcal{X}), \mathcal{R}, M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I})$ is called a \textbf{term rewriting system (TRS)}.
+  \end{definition}
+
+  % \begin{definition}[Term Rewriting System]
+  %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+  %   Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$.
+  %   For all $s \in T(\Sigma, \mathcal{X})$ and for all $l \to r \in \mathcal{R}$ we define
+  %   % \begin{flalign*}
+  %   %   \operatorname{Acc}_{trs}(s,l \to r) \overset{\operatorname{def}}{=} 
+  %   %     \left \{ 
+  %   %         s[\sigma(r)]_p \mid p \in \operatorname{Pos}(s) \land \exists \sigma. s|_p = \sigma(l)
+  %   %       \right \}
+  %   % \end{flalign*}
+  %   \begin{flalign*}
+  %     \f{F}_{trs}(l \to r) \overset{\operatorname{def}}{=} 
+  %       \left \{ 
+  %           (s,t) \mid 
+  %             \exists C \in T(\Sigma \cup \set{\square}, \mathcal{X}). \exists \sigma. 
+  %            s = C[\sigma(l)] \land C[\sigma(r)] = t
+  %         \right \}
+  %   \end{flalign*}
+  %   The rewriting system $(T(\Sigma,\mathcal{X}), \to_\mathcal{R})$, generated by $\mathcal{R}$ and $\f{F}_{trs}$ is called a \textbf{term rewriting system}.
+  % \end{definition}
+
+
+
+\section{ACTRS}
+
+% Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+% Let $\Sigma_{ac} \subseteq \Sigma_{c} \subseteq \Sigma$. We define $\mathcal{C}$ and $\mathcal{AC}$ as follows:
+
+% $$\mathcal{C} \isdef \{f(x,y) \to f(y,x) \mid f \in \Sigma_{c} \}$$
+
+% $$\mathcal{AC} \isdef 
+%          \{f(f(x,y),z) \to f(x,f(y,z)) \mid f \in \Sigma_{ac} \}$$
+
+% Let $\to_\mathcal{AC}$ be the rewriting relation defined by $\mathcal{AC} \cup \mathcal{C}$.
+% \begin{definition}[ACTRS rule]
+%    A \textbf{ACTRS rule} is a TRS rule.
+% \end{definition}
+
+% \begin{definition}[Match]
+%     Let $[s] \in T(\Sigma, \mathcal{X})/\to_\mathcal{AC}$ and $\rho = l \to r$ be an ACTRS rule. 
+%     An ACTRS match of $\rho$ in $[s]$ is an ordered pair $(s',p)$ where $s' \in [s]$ and $p \in \operatorname{Pos}(s')$ such that there exists a substitution $\sigma$ such that $s'_{|p} = \sigma(l)$.
+% \end{definition}
+
+% \begin{definition}[ACTRS Rewriting step]
+%     Let $[s] \in T(\Sigma, \mathcal{X})/\to_\mathcal{AC}$ and $\rho = l \to r$ be an ACTRS rule. Let $(s',p)$ be a match of $\rho$ in $[s]$.
+
+%     The structure $(s', p, \rho)$ is a \textbf{witness} for the \textbf{ACTRS rewriting step} $[s] \to_\mathcal{R} [t]$
+%      using the rule $\rho$ and match $(s',p)$ where $t \in T(\Sigma, \mathcal{X})$ such that $s' \to_{trs}^p t$.
+% \end{definition}
+ 
+\begin{definition}
+  \label{def:trs:ac}
+  Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+  Let $\Sigma_{ac} \subseteq \Sigma_{c} \subseteq \Sigma$. We define $\mathcal{C}$ and $\mathcal{AC}$ as follows:
+  
+  $$\mathcal{C} \isdef \{f(x,y) \to f(y,x) \mid f \in \Sigma_{c} \}$$
+  
+  $$\mathcal{AC} \isdef 
+           \{f(f(x,y),z) \to f(x,f(y,z)) \mid f \in \Sigma_{ac} \}$$
+  Let $ \to_\mathcal{AC}$ be the TRS rewriting relation induced by $\mathcal{AC} \cup \mathcal{C}$.
+\end{definition}
+
+\begin{definition}[Rewriting of terms with associative and commutative symbols~\cite{urbain2001approche}]
+  \label{def:trs:actrs}
+  Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables disjoint from $\Sigma$.
+  Let $\mathcal{R}$ be a set of TRS rewriting rules, $\rho = l \to r \in \mathcal{R}$ and $s \in T(\Sigma, \mathcal{X})$.
+
+  An \textbf{ACTRS match} of $\rho$ in $s$ is $p \in \operatorname{Pos}(s)$ such that there exists a substitution $\sigma$ such that $s_{|p} \rightarrow_{\opn{AC}}^* \sigma(l)$. 
+
+  % The \textbf{ACTRS match mechanism} is the function $\mathcal{M}$ that associates to each pair $(\rho,s)$, where $\rho$ is an ACTRS rewriting rule and $s$ a term, the set of ACTRS matches of $\rho$ in $s$.
+
+  The quadruple $(\rho, s, p, \sigma)$ is a witness of the \textbf{ACTRS rewriting step} $(s, t)$ where $t = s[\sigma(r)]_p$
+
+  % The \textbf{ACTRS witness function} is the function $\mathfrak{W}$ that associates to each ACTRS match $(\rho, s, p, \sigma)$ the rewriting step $(s, t)$ where $t = s[\sigma(r)]_p$.
+\end{definition}
+
+% \begin{definition}[Term Rewriting modulo AC framework]
+%   Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
+   
+%   For all $\rho \in \mathcal{R}$, we define the the rewriting framework $\f{F}_{actrs}(\rho)$ as follows:
+%   \begin{flalign*}
+%     \f{F}_{actrs}(\rho) \isdef 
+%       \left \{ (s,t) \in T(\Sigma,\mathcal{X})^2 \mid 
+%           \exists s', t'. 
+%           s \to_\mathcal{AC}^* s' \to_\rho t' \to_\mathcal{AC}^* t
+%         \right \}
+%   \end{flalign*}
+%   An element $(s,t) \in \f{F}_{actrs}(\rho)$ is called a \textbf{witness} for the rewriting step $[s] \to_\mathcal{R} [t]$ using the rule $\rho$ where $[s],[t] \in T(\Sigma,\mathcal{X})/\to_\mathcal{AC}$. 
+
+%   We denote by $\to_{\mathcal{R} /\mathcal{AC}}$ the rewriting relation induced by $\mathcal{R}$ in $\f{F}_{actrs}$.
+% \end{definition}
+ 
+\begin{definition}[ACTRS rewriting system]
+  Let $\mathcal{R}$ be a set of TRS rewriting rules. 
+  Let $M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I}$ be the class of ACTRS matches, the match mechanism, the class of ACTRS witnesses, the witness mechanism and the interpretation function, respectively, defined in \autoref{def:trs:actrs}.
+
+  The rewriting system $(T(\Sigma,\mathcal{X}), \mathcal{R}, M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I})$ is called an \textbf{ACTRS rewriting system}.
+\end{definition}
+
+
+
+% \subsection{ACHTRS innermost}
+% \input{chapters/trs_hierachical_innermost.tex}
+
+    % \section{Termination of Term Rewriting Systems}
+    % todo
+    %     \subsection{Reduction Orders}
+    %     \input{sections/trs_reduction_orders}
+    %     \subsection{Termination Methods of Term Rewriting Systems}
+    %     \input{sections/trs_termination_intro}
+    %     \subsection{Interpretation Methods}
+    %     \input{sections/interpretation_methods}
+    %     \subsection{Simplification Order}
+    %     \input{sections/simplification_order}
+    %     \subsection{Lexicographic Path Order}
+    %     \input{sections/lpo}
+    %     \subsection{Knuth-Bendix Order}
+    %     \input{sections/kbo}
+    %     \subsection{dependency pair}
+    %     \input{sections/dependency_pair}  
+
+\chapter{A Morphism from GLS rewriting relations to ACTRS rewriting relations}
+\input{sections/morphisms_from_gls_to_trs_intro}
+    \label{sec:morphism_from_gls_to_actrs}
+    \input{chapters/translation_gls_to_actrs}
+    % \section{PGLS rewriting relations to ACNTRS rewriting relations}
+    % \label{sec:morphism_from_gls_to_ntrs}
+    % \input{chapters/translation_pgls_to_ntrs}
+    % \section{FCGLS rewriting relations to Innermost HTRS}
+    % \label{sec:morphism_from_gls_to_innermost_htrs}
+    % \input{chapters/translation_fcpgls_to_acinnermosthtrs}
+
+\part{Termination of graph relabeling systems via morphisms to graph rewriting relations}
+
+\chapter{Introduction}
+
+
+\chapter{Preliminaries} 
+    \label{sec:grs}
+
+    \section{Hypergraph}
+        \label{sec:hypergraph}
+        \input{sections/hypergraph}
+    
+    \section{Pushout and pullback}
+        \label{sec:category_theory}
+        \input{sections/category_theory}
+
+    \section{Algebraic Rewriting Systems} 
+    \subsection{DPO Rewriting Systems}
+
+    \begin{itemize}
+      \item the most dominant graph rewriting method, called the Double Pushout (DPO) approach.
+      \item It can  specify the specification of rewrite steps with deletion, identification and addition features, for matches m that satisfy the gluing condition.
+      \item Alternatives to the DPO approach avoid the construction of pushout complements. For instance, the Single Pushout (SPO) approach [17] relies on a single pushout construction, but uses partial graph homomorphisms instead of total morphisms, in order to specify deletion. In this approach, the gluing condition no longer needs to be checked either: all edges incident to a removed vertex are simply deleted.
+      \item As another example, the Sesqui-Pushout (corradini2006sesqui) approach [8] replaces the first PO square of DPO by what is called a final pullback complement square. This square allows duplication with deterministic behavior, and like SPO, deletes any edges that would be left dangling.
+      \item !!! implicite deletion of nodes or edges is a problem when we want to prove the termination 
+      \item In DPO, we are only able to delete nodes if they do not leave any edges “dangling” (called the gluing condition). This can be considered a pleasant safety feature, but also a limitation. However, since GLS never delete or duplicate nodes, DPO GRS is a well studied approach with advanced termination method.
+    \end{itemize}
+
+    \begin{definition}[Rewriting rule, Match~\cite{ehrig1997algebraic}]
+        \label{def:grs:dpo_rule}
+      A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where       
+      the object \( K \) is the \textbf{interface}, 
+      the morphism \( l \) is the \textbf{left-hand-side}, denoted \( \operatorname{lhs}(\rho) \),
+      the morphism \( r \) is the \textbf{right-hand-side}, denoted \( \operatorname{rhs}(\rho) \),
+      the object \( L \) is the \textbf{left-hand-side object} and the object \( R \) is the \textbf{right-hand-side object}. The rule is \textbf{left-monic} if \( l \) is monic, \textbf{right-monic} if \( r \) is monic, \textbf{monic} if it is left- and right-monic.
+      A \textbf{match} of the rule in a graph \( G \) is a morphism \( m: L \rightarrow G \).   
+      \end{definition}
+    
+      \begin{example}
+        \label{ex:grsaa}
+        The injective DPO rule from \cite[Example 6]{bruggink2014termination} will be used as a running example throughout this paper to illustrate the concepts disccussed.
+        \begin{center} 
+            \resizebox{0.7\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+                    \coordinate (o) at (0mm,-3mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                    \draw[->] (l1) -- (l3) node[midway,above] {a};
+                    \draw[->] (l3) -- (l2) node[midway,above] {a};
+                }     
+                \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+                    \coordinate (o) at (5mm,-3mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                }    
+                \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+                    \coordinate (o) at (-5mm,-3mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \draw[->] (l1) -- (l3) node[midway,above] {a};
+                    \draw[->] (l3) -- (l4) node[midway,above] {b};
+                    \draw[->] (l4) -- (l2) node[midway,above] {a};
+                }    
+                \node () at (37mm,-8mm) {$\leftarrowtail$};
+                \node () at (67mm,-8mm) {$\rightarrowtail$};
+                % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+            \end{tikzpicture}
+            }
+        \end{center}
+      \end{example}
+      
+      \begin{definition}[Witness, Rewriting step \cite{endrullis2024generalized}]
+        \label{def:rewriting_step}
+          \ \newline
+          \noindent
+          \begin{minipage}{0.72\textwidth}
+            A DPO diagram $\delta$ is a diagram as shown on the right.
+            This diagram $\delta$ is a \textbf{witness} for the \textbf{rewriting step} from \( G \) to \( H \) using the rule \( \rho \) and match \( m \), denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). We denote $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$ the pushout squares $KLGC$ and $KRHC$, respectively.
+          \end{minipage}
+          \hfill
+          \begin{minipage}{0.28\textwidth}
+                % \begin{center}
+                \hfill
+                \resizebox{\textwidth}{!}{
+                \begin{tikzpicture}
+                  % [node distance=11mm]
+                  \node (I) {$K$};
+                  \node (L) [left of=I] {$L$};
+                  \node (R) [right of=I] {$R$};
+                  \node (G) [below of=L] {$G$};
+                  \node (C) [below of=I] {$C$};
+                  \node (H) [below of=R] {$H$};
+                  \draw [->] (I) to  node [midway,above] {$l$} (L);
+                  \draw [->] (I) to  node [midway,above] {$r$} (R);
+                  \draw [->] (L) to node [midway,left] {$m$} (G);
+                  \draw [->] (I) to (C);
+                  \draw [->] (R) to node [midway,right] {$m'$} (H);
+                  \draw [->] (C) to node [midway,below] {$l'$} (G);
+                  \draw [->] (C) to node [midway,below] {$r'$} (H);
+                  \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+                  \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+                \end{tikzpicture}
+              % \end{center}
+              }
+              \end{minipage}
+        \end{definition}
+    
+
+        \begin{example}
+            \label{ex:rewriting_step_grs_aa}
+            The DPO diagram below defines a rewriting step using the rule from \autoref{ex:grsaa}.
+            \begin{center} 
+                \resizebox{0.7\textwidth}{!}{
+                \begin{tikzpicture}
+                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-8mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \draw[->] (l1) -- (l3) node[midway,above] {a};
+                        \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    } 
+            
+                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-8mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    }  
+            
+                    \graphbox{\( R \)}{80mm}{-3mm}{45mm}{12mm}{2mm}{2mm}{
+                        \coordinate (o) at (-5mm,-8mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                        \draw[->] (l1) -- (l3) node[midway,above] {a};
+                        \draw[->] (l3) -- (l4) node[midway,above] {b};
+                        \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    }    
+            
+                    \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+                        \coordinate (o) at (0mm,-3mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                        \draw[->] (l1) -- (l3) node[midway,above] {a};
+                        \draw[->] (l3) -- (l2) node[midway,above] {a};
+                        \draw[->] (l2) -- (l4) node[midway,right] {a};
+                        \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                        \draw[<-] (l1) -- (l6) node[midway,left] {a};
+                        \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                    }    
+            
+                    \graphbox{\( C  \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+                        \coordinate (o) at (0mm,-3mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                        \draw[->] (l2) -- (l4) node[midway,right] {a};
+                        \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                        \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                        \draw[<-] (l1) -- (l6) node[midway,left] {a};
+                    }    
+            
+                    \graphbox{\( H \)}{80mm}{-22mm}{45mm}{22mm}{2mm}{-3mm}{
+                        \coordinate (o) at (-5mm,-3mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                        \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
+                        \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                        \draw[<-] (l1) -- (l6) node[midway,left] {a};
+                        \draw[->] (l1) -- (l3) node[midway,above] {a};
+                        \draw[->] (l3) -- (l4) node[midway,above] {b};
+                        \draw[->] (l4) -- (l2) node[midway,above] {a};
+                        \draw[->] (l2) -- (l5) node[midway,right] {a};
+                        \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                    }    
+            
+                    \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
+                    \node () at (77mm,-8mm) {\( \rightarrowtail \)}; % K -> R
+                    \node () at (15mm,-18mm) {\( m\ \downarrowtail \)};
+                    \node () at (37mm,-33mm) {\( \leftarrowtail \)};
+                    \node () at (58mm,-18mm) {\( \downarrowtail \)};
+                    \node () at (102mm,-18mm) {\( \downarrowtail \)};
+                    \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
+                \end{tikzpicture}
+                }
+            \end{center}
+          \end{example}
+    
+          When a direct graph transformation with a production p and a match m is performed, all the vertices and edges which are matched by $L \setminus K$ are removed from G. The removed part is not a graph, in general, but the remaining structure $D := (G \setminus m(L)) \cup  m(K)$ still has to be a graph. This means that the match $m$ has to satisfy a suitable gluing condition, which makes sure that the gluing of $L\setminus K$ and $D$ is equal to G. In the second step of a graph rewriting step, the graph $D$ is glued together with $R \setminus K$ to obtain the derived graph $H$. For gluing newly created vertices and edges into D, the graph $m(K)$ and $r(K)$ are used: nodes and edges with the same pre-image will be unified.
+
+    \begin{definition}[Rewriting framework \cite{endrullis2024generalized}]
+        A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to classes of DPO diagrams such that, for every rule $\rho$, $\mathfrak{F}(\rho)$ is a class of DPO diagrams with top-span $\rho$.
+      \end{definition}
+
+      
+      \begin{definition}[Rewriting relation]
+        The \textbf{rewriting relation $\Rightarrow_{\mathfrak{dpo},\mathfrak{F},\rho}$ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \Rightarrow_{\mathfrak{dpo},\mathfrak{F},\rho} H$ iff $G \Rightarrow_\rho^\delta H$ for some $\delta \in \mathfrak{F}(\rho)$. 
+          % for some $\delta \in \mathfrak{F}(\rho)$
+          The \textbf{DPO rewriting relation $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \Rightarrow_{\mathfrak{dpo}, \mathfrak{F},\mathcal{R}} H$ iff $G \Rightarrow_{\mathfrak{dpo},\mathfrak{F}, \rho} H$ for some $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
+          suppress $\mathfrak{F}$ and 
+          write $\Rightarrow_{\mathfrak{dpo},\rho}$ and $\Rightarrow_{\mathfrak{dpo},\mathcal{R}}$.
+      \end{definition} 
+
+    % \begin{definition}[DPO Graph Rewriting System]
+    %   Let $M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I}$ be the class of DPO matches, the match mechanism, the class of DPO witnesses, the witness mechanism and the interpretation function, respectively, defined in \autoref{def:grs:dpo_rule}.
+    %   Let $\mathfrak{F}$ be a DPO rewriting framework as defined in \autoref{def:rewriting_framework}.
+    %   The rewriting system $(\mathbf{Graph}, \mathcal{R}, M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I}, \mathfrak{F})$ is called a \textbf{DPO Graph Rewriting System in $\mathfrak{F}$}.
+    % \end{definition}
+
+    
+    \subsection{DPO GRS with Negative Application Condition}
+    \begin{definition}[Rewriting rule, Match~\cite{bottoni2010atermination}]
+        \label{def:grs:dpo_nac_rule}
+        A \textbf{DPO rewriting rule with a negative application condition} $\varphi$ is an ordered pair \( \left( n , \rho \right) \) where $n$ is a monomorphism and $\rho$ is an monic DPO rewriting rule
+         such that $\operatorname{codom}(\operatorname{lhs}(\rho)) = \operatorname{dom}(n)$.
+         
+         A rule is denoted \( N \overset{n}{\leftarrowtail} L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \) with $\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) $.
+    
+        A match of the rule in an object \( G \) is a monomorphism \( m: L \rightarrow G \) such that there is no monomorphism \( q: N \rightarrow G \) such that \( n \star q = m \), as illustrated below.
+    
+        A DPO diagram as shown below is a \textbf{witness} for a \textbf{rewriting step} from \( G \) to \( H \) using the rule $\varphi$ and match \( m \), denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). 
+        % We denote $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$ the pushout squares $KLGC$ and $KRHC$, respectively.
+    
+    \begin{figure}[H]
+        \begin{tikzpicture} 
+            % Define nodes
+            \node (K)  {K};
+            \node (L) [left=of K] {L};
+            \node (R) [right=of K] {R};
+            \node (N) [left=of L] {N};
+            \node (G) [below=of L] {G};
+            \node (D) [below=of K] {D};
+            \node (H) [below=of R] {H};
+    
+            % Draw arrows
+            % Top row
+            \draw[>->] (L) -- node[above] {n} (N);
+            \draw[>->] (K) -- node[above] {l} (L);
+            \draw[>->] (K) -- node[above] {r} (R);
+          
+            % Vertical arrows
+            \draw[>->] (L) -- node[left] {m} (G);
+            \draw[>->] (K) --  (D);
+            \draw[>->] (R) --  (H);
+          
+            % Bottom row
+            \draw[>->] (G) --  (D);
+            \draw[>->] (D) --   (H);
+          
+            % Bent arrow from G to N
+            \draw[>->, bend right,red,dashed] (N) to node[below] {q} (G);
+    
+            \node at ($(N)!0.5!(G)$) {\textcolor{red}{$\neq$}};
+            \node at ($(K)!0.5!(G)$) {$\mathrm{PO}$};
+            \node at ($(K)!0.5!(H)$) {$\mathrm{PO}$};
+          \end{tikzpicture}
+          \label{fig:grs:dpo_nac_rule}
+    \end{figure}
+    \end{definition}
+    \begin{example}
+      The following diagram illustrates a DPO rewriting rule with a negative application condition:
+      \begin{center} 
+        \resizebox{0.7\textwidth}{!}{
+        \begin{tikzpicture}
+          \graphbox{$N$}{-40mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
+            \coordinate (o) at (0mm,-3mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \draw[->] (l1) -- (l3) node[midway,above] {a};
+            \draw[->] (l3) -- (l2) node[midway,above] {a};
+            \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+        }  
+            \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (0mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l2) node[midway,above] {a};
+            }     
+            \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (5mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                % \draw[->] (l1) -- (l3) node[midway,above] {a};
+                % \draw[->] (l3) -- (l2) node[midway,above] {a};
+            }    
+            \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (-5mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l4) node[midway,above] {b};
+                \draw[->] (l4) -- (l2) node[midway,above] {a};
+            }    
+            \node () at (-3mm,-8mm) {$\leftarrowtail$};
+            \node () at (37mm,-8mm) {$\leftarrowtail$};
+            \node () at (67mm,-8mm) {$\rightarrowtail$};
+            % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+        \end{tikzpicture}
+        }
+    \end{center}
+      The rewriting step in \autoref{ex:rewriting_step_grs_aa} is not possible with this rule in DPO rewriting with negative application conditions, because there exists a monomorphism \( q: N \rightarrow G \) such that \( n \star q = m \) as shown in the diagram below.
+      \begin{center} 
+        \resizebox{0.7\textwidth}{!}{
+        \begin{tikzpicture}
+          \graphbox{$N$}{-40mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
+            \coordinate (o) at (0mm,-3mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \draw[->] (l1) -- (l3) node[midway,above] {a};
+            \draw[->] (l3) -- (l2) node[midway,above] {a};
+            \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+        }  
+            \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l2) node[midway,above] {a};
+            } 
+    
+            \graphbox{\( K \)}{40mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+    
+            \graphbox{\( R \)}{80mm}{-3mm}{45mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (-5mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l4) node[midway,above] {b};
+                \draw[->] (l4) -- (l2) node[midway,above] {a};
+            }    
+    
+            \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l2) node[midway,above] {a};
+                \draw[->] (l2) -- (l4) node[midway,right] {a};
+                \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-] (l1) -- (l6) node[midway,left] {a};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }    
+    
+            \graphbox{\( C  \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \draw[->] (l2) -- (l4) node[midway,right] {a};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-] (l1) -- (l6) node[midway,left] {a};
+            }    
+    
+            \graphbox{\( H \)}{80mm}{-22mm}{45mm}{22mm}{2mm}{-3mm}{
+                \coordinate (o) at (-5mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
+                \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-] (l1) -- (l6) node[midway,left] {a};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l4) node[midway,above] {b};
+                \draw[->] (l4) -- (l2) node[midway,above] {a};
+                \draw[->] (l2) -- (l5) node[midway,right] {a};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }    
+            \draw[>->, bend right] (-21mm,-22mm) to node[below] {q} (-4mm,-33mm);
+            \node () at (-3mm,-8mm) {$\leftarrowtail$};
+            \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
+            \node () at (77mm,-8mm) {\( \rightarrowtail \)}; % K -> R
+            \node () at (15mm,-18mm) {\( m\ \downarrowtail \)};
+            \node () at (37mm,-33mm) {\( \leftarrowtail \)};
+            \node () at (58mm,-18mm) {\( \downarrowtail \)};
+            \node () at (102mm,-18mm) {\( \downarrowtail \)};
+            \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
+        \end{tikzpicture}
+        }
+    \end{center}
+    \end{example}
+    
+    \begin{definition}[Rewriting framework]
+      \label{def:dponac:rewriting_framework}
+      A framework of rewriting with a negative application condition $\mathfrak{F}$ is a mapping of DPO rewriting rules with a negative condition to classes of diagrams as illustrated in \autoref{def:grs:dpo_nac_rule} such that, for every rule $\varphi =(n, \rho)$, every diagram in $\mathfrak{F}(\varphi)$ has $\rho$ as the top-span of the DPO subdiagram.
+    \end{definition}
+
+    \trackedtext{
+      \begin{definition}[Rewriting relation]
+        The \textbf{rewriting relation $\Rightarrow_{\mathfrak{dponac},\mathfrak{F},\rho}$ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \Rightarrow_{\mathfrak{dponac},\mathfrak{F},\rho} H$ iff $G \Rightarrow_\rho^\delta H$ for some $\delta \in \mathfrak{F}(\rho)$. 
+          % for some $\delta \in \mathfrak{F}(\rho)$
+          The \textbf{DPO rewriting relation $\Rightarrow_{\mathfrak{dponac},\mathfrak{F},\mathcal{R}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \Rightarrow_{\mathfrak{dponac}, \mathfrak{F},\mathcal{R}} H$ iff $G \Rightarrow_{\mathfrak{dponac},\mathfrak{F}, \rho} H$ for some $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
+          suppress $\mathfrak{F}$ and 
+          write $\Rightarrow_{\mathfrak{dponac},\rho}$ and $\Rightarrow_{\mathfrak{dponac},\mathcal{R}}$.
+      \end{definition}
+    }
+
+    \begin{definition}
+      Let $M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I}$ be the class of DPO matches, the match mechanism, the class of DPO witnesses, the witness mechanism and the interpretation function, respectively, defined in \autoref{def:grs:dpo_nac_rule}.
+
+      Let $\mathfrak{F}$ be a DPO rewriting framework with a negative application condition as defined in \autoref{def:dponac:rewriting_framework}.
+
+      The rewriting system $(\mathbf{Graph}, \mathcal{R}, M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I}, \mathfrak{F})$ is called a \textbf{DPO Graph Rewriting System with a negative application condition in $\mathfrak{F}$}.
+    \end{definition}
+    
+    \subsection{\pbpop~Rewriting Systems}
+    \begin{definition}[PBPO+ Rewriting Rule~\cite{overbeek2023pbpo_JLAMP}]
+      \label{def:pbpop:rule}
+      A \pbpop~\textbf{rewriting rule} \(\rho\) is a diagram of the form
+    \begin{center}
+    
+    \begin{tikzpicture}[node distance=12mm, auto]
+    
+    \node (L) {$L$};
+    \node (K) [right=of L] {$K$};
+    \node (R) [right=of K] {$R$};
+    
+    \node (L') [below=of L] {$L'$};
+    \node (K') [below=of K] {$K'$};
+    
+    % Arrows for the upper row
+    \draw[<-] (L) to node [above] {$l$} (K);
+    \draw[->] (K) to node [above] {$r$} (R);
+    
+    % Vertical arrows 
+    \draw[>->] (L) to node [left] {$t_L$} (L');
+    \draw[>->] (K) to node [right] {$t_K$} (K');
+    
+    % Arrows for the lower row
+    \draw[<-] (L') to node [below] {$l'$} (K');
+    
+    % Pullback label
+    \node at ($(L)!0.5!(K')$) {PB};
+    \end{tikzpicture}
+    \end{center}
+    
+    \noindent 
+    where \(L\), \(K\) and \(R\) are the input, interface and output patterns; \(L'\) is the context type of $L$, and \(t_L\) is the context typing of $L$; \(K'\) is the context type of $K$, and \(t_K\) is the context typing of $K$. 
+    \end{definition} 
+    \textcolor{red}{intuition:
+    L is the pattern; L' restricts the shape of the context; pullback: duplication and filtering(extraction); pushout:merging and extension; strong matching: leftmost pullback square ensures that the context in $G_L$ is not mapped onto the pattern L in L'
+    //
+    The morphism \(l' : L' \leftarrow K'\) is used to define deletion and duplication operations on the type graph. The morphism \(r : K \to R\) subsequently specifies the identification and addition operations, particularly focused on \(l'^{-1}(t_L)\).
+    }
+    % For PBPO\(^*\) matches, it is required that \(\alpha^{-1}(\operatorname{Im} t_L) \overset{iso}{=} L\). Such a match is called a \textit{strong match}, which distinguishes $PBPO+$ from $PBPO$, and is uniquely determined by the means of an adherence morphism.
+    \begin{example}
+        \url{https://www.youtube.com/watch?v=_gwz64o1eBQ&t=1352s} 30:20 an example of a rule which remove a single loop from a graph.
+    \end{example}
+
+    \begin{proposition}[\text{\cite[Proposition 12]{overbeek2023pbpo_JLAMP}}]
+      Consider the following pullback square:
+
+      \begin{tikzpicture}
+          \node (L1) at (0,0) {$L$}; 
+          \node (L2) at (0,-2) {$L$};
+          \node (G) at (2,0) {$G$};
+          \node (L') at (2,-2) {$L'$};
+          \draw[->] (L1) to node [above] {$m$} (G);
+          \draw[->] (L2) to node [above] {$t_L$} (L'); 
+          \draw[->] (G) to node [right] {$\alpha$} (L');
+          \draw[->] (L1) to node [left] {$\opn{id}_L$} (L2);
+          \node () at (1,-1) {$\mathrm{PB}$};
+      \end{tikzpicture}
+
+      The morphism \(m\) is monic if and only if $t_L$ is monic.
+    \end{proposition}
+
+    \begin{definition}[Match]
+      \label{def:pbpop:match}
+      A \textbf{match} of a \pbpop~rewriting rule \(\rho\) as illustrated in \autoref{def:pbpop:rule} in an object \(G\) is an ordered pair of morphisms \((m:L \rightarrowtail G, \alpha: G \rightarrow L')\) such that the following is a pullback square:
+    
+      \begin{tikzpicture}
+        \node (L1) at (0,0) {$L$}; 
+        \node (L2) at (0,-2) {$L$};
+        \node (G) at (2,0) {$G$};
+        \node (L') at (2,-2) {$L'$};
+        \draw[>->] (L1) to node [above] {$m$} (G);
+        \draw[>->] (L2) to node [above] {$t_L$} (L'); 
+        \draw[->] (G) to node [right] {$\alpha$} (L');
+        \draw[->] (L1) to node [left] {$\opn{id}_L$} (L2);
+        \node () at (1,-1) {$\mathrm{PB}$};
+    \end{tikzpicture}
+
+      \end{definition}
+    
+\begin{remark}[\text{\cite[Remark 11]{overbeek2023pbpo_JLAMP}}]
+In both \textbf{Set} and \textbf{Graph} the match diagram of \autoref{def:pbpop:match} states that the preimage of $t_L(L)$ under $\alpha$ is $L$ itself. 
+\end{remark}
+Intuitively, to rewrite a graph \(G\) using a \pbpop~rewriting rule \(\rho\), we need to find an occurrence $m(L)$ of \(L\) in \(G\) such that $m(L)$ is mapped to the occurrence $t_L(L)$ of $L$ in \(L'\), and the other part of \(G\) is mapped to the other part of \(L'\) by \(\alpha\).
+
+\begin{example}
+  todo
+\end{example}
+
+    \begin{proposition}
+      In any category, if diagrams
+    \[
+    \begin{tikzcd}
+    L \arrow[r, "m'"] \arrow[d, equals] & G \arrow[d, "m"] \\
+    L \arrow[r, "t_L"] & L'
+    \arrow[phantom, from=1-1, to=2-2, "\mathrm{PB}" description]
+    \end{tikzcd}
+    \quad \text{and} \quad
+    \begin{tikzcd}
+    L \arrow[r, "m''"] \arrow[d, equals] & G \arrow[d, "m"] \\
+    L \arrow[r, "t_L"] & L'
+    \arrow[phantom, from=1-1, to=2-2, "\mathrm{=}" description]
+    \end{tikzcd}
+    \]
+    hold then $m' = m''$.
+    \end{proposition}
+    
+    \begin{definition}[\pbpop~rewrite step~\cite{overbeek2023pbpo_JLAMP}]
+      \label{def:pbpop:rewriting_step}
+      Let $\rho$ be a \pbpop~rewriting rule as illustrated in \autoref{def:pbpop:rule}. 
+    
+      Let $G_L$ be an object and \(m, \alpha\) a match. 
+      
+     A diagram as illustrated below, where \(u : K \rightarrow G_K\) is the unique morphism satisfying \(t_K = u' \circ u\), is a \textbf{witness} of a \pbpop~\textbf{rewrite step} from $G_L$ to $G_R$ using rule $\rho$ and match $m$, denoted \(G_L \Rightarrow^m_{\text{\pbpop},\rho} G_R\).
+    
+      \begin{tikzpicture} 
+        % Nodes of the diagram
+          \node (L) {$L$};
+          \node (GL) [right=of L] {$G_L$};
+          \node (GK) [right=of GL] {$G_K$};
+          \node (K) [above=of GK] {$K$};
+          \node (R) [right=of K] {$R$};
+          \node (GR) [below=of R] {$G_R$};
+    
+          \node (L2) [below=of L] {$L$};
+          \node (L') [right=of L2] {$L'$};
+          \node (K') [right=of L'] {$K'$};
+    
+          % Arrows on the top row
+          \draw[>->] (L) to node [above] {$m$} (GL);
+          \draw[->] (K) to node [above] {$r$} (R);
+          \draw[<-] (GL) to node [above] {$g_L$} (GK);
+          \draw[->] (GK) to node [left] {$u'$} (K');
+          \draw[<-,dashed] (GK) to node [left] {$!u$} (K);
+          \draw[->] (R) to node [right] {$w$} (GR);
+          \draw[->] (GK) to node [above] {$g_R$} (GR);
+    
+          % Arrows on the bottom row
+          \draw[>->] (L2) to node [below] {$t_L$} (L');
+          \draw[<-] (L') to node [below] {$l'$} (K');
+    
+          % Vertical arrows
+          \draw[->] (GL) to node [right] {$\alpha$} (L');
+          \draw[=] (L) to node [left] {} (L2);
+    
+          % Curved arrow from K to GK
+          \draw[>->] (K) to [bend left] node [pos=0.75,right] {$t_K$} (K');
+    
+          % PB and PO labels
+          \node at ($(L)!0.5!(L')$) {PB};
+          \node at ($(GK)!0.5!(L')$) {PB};
+          \node at ($(K)!0.5!(GR)$) {PO}; 
+      \end{tikzpicture}
+    \end{definition}
+    
+    \textcolor{red}{
+    \begin{definition}[Rewriting framework]
+      A \pbpop~\textbf{rewriting framework} $\mathfrak{F}$ is a mapping associating to each \pbpop~rule $\rho$ as depicted in \autoref{def:pbpop:rule} 
+       the class of \pbpop~witnesses of form as illustrated in \autoref{def:pbpop:rule}.
+    \end{definition}
+    }
+
+    \trackedtext{
+      \begin{definition}[Rewriting relation]
+        The \textbf{rewriting relation $\Rightarrow_{\text{\pbpop},\mathfrak{F},\rho} $ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G_L \Rightarrow_{\text{\pbpop},\mathfrak{F},\rho} G_R$ iff $G_L \Rightarrow^m_{\text{\pbpop},\rho} G_R$ for some match \(m\) and some witness \(w\) in \(\mathfrak{F}(\rho)\).
+        \\
+          The \textbf{rewriting relation $\Rightarrow_{\text{\pbpop},\mathfrak{F},\mathcal{R}}$ induced by a set $\mathcal{R}$ of \pbpop~rewriting rules in $\mathfrak{F}$} is given by: $G_L \Rightarrow_{\text{\pbpop},\mathfrak{F},\mathcal{R}} G_R$ iff $G_L \Rightarrow_{\text{\pbpop},\mathfrak{F},\rho} G_R$ for some rule $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we suppress $\mathfrak{F}$ and write $\Rightarrow_{\text{\pbpop},\rho}$ and $\Rightarrow_{\text{\pbpop},\mathcal{R}}$.
+      \end{definition}
+    }
+    
+    \begin{definition}
+      Let $\mathcal{R}$ be a set of \pbpop~rewriting rules.
+      Let $M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I}$ be the class of \pbpop~matches, the match mechanism, the class of \pbpop~witnesses, the witness mechanism and the interpretation function, respectively, defined in \autoref{def:pbpop:rule} and \autoref{def:pbpop:rewriting_step}.
+      \\
+      The rewriting system $(\mathbf{Graph}, \mathcal{R}, M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I})$ is called a \textbf{\pbpop~graph rewriting system}.
+    \end{definition}
+
+    % \section{Termination of Graph Rewriting Systems}
+    %     \label{sec:grs_termination}
+    %     todo
+    %     \subsection{Modular Termination of DPO GRS}
+    %     \label{sec:modular_termination}
+    %     \input{sections/plump_modular_termination}
+    %     \subsection{Forward Closure Method of DPO GRS}  
+    %     \label{sec:forward_closure}
+    %     \input{sections/plump_forward_closure}
+    %     \subsection{Termination Criterion of injective DPO GRS based on E-dependency relation \textcolor{red}{todo}} 
+    % \input{sections/levendovszky_2007_termination_criterion_based_on_e_dependency} 
+    %     \subsection{Type Graph Method for DPO GRS}
+    %     \label{sec:type_graph_method}
+    %         \subsubsection{Well-founded semirings}
+    %         \input{sections/endrullis_well_founded_semiring}
+    %         \subsubsection{Weighted Type Graphs}
+    %         \input{sections/endrullis_weighted_type_graphs}
+    %         \subsubsection{Weighing Morphisms and Objects}
+    %         \input{sections/endrullis_graph_weight}
+    %         \subsubsection{Estimating Weight Changes}
+    %         \input{sections/endrullis_weighing_pushout_objects}
+    %         % \subsection{Decreasing Rule}
+    %         \input{sections/decreasing_rule} 
+    %         \subsubsection{Termination Criterion} 
+    %         \input{sections/endrullis_termination_criterion}
+    %     \subsection{Subgraph Counting}  
+    %     \input{sections/overbeek_subgraph_counting}
+    %     \subsection{Termination Criterion for DPO GRS with NAC}
+    %     \input{sections/bottoni_2010_termination_criterion} 
+    \section{Morphisms of Graph Rewriting Systems}
+        \label{sec:morphisms_from_dpo_to_pbpop}
+        \subsection{Morphism from left-injective DPO GRS with injective match to PBPO+}
+        \label{sec:morphism_from_dpo_grs_to_pbpop}
+        \begin{example}[ \cite{overbeek2023pbpo_JLAMP}]
+            In the category of unlabeled directed graphs, there exists a mono-partial morphism classifier $(T,\eta)$ where 
+            \begin{itemize}
+                \item for all unlabeled graph $G=(V,A,s,t)$, we have $T(G) = (V_*,E_*,s_*,t_*)$ where $V_* = V \uplus \{*\}, E_* = E \uplus (V_* \times V_x), s_*(e) = s(e)$ if $e \in E$ and $\pi_1(e)$ otherwise, and $t_*(e) = t(e)$ if $e \in E$ and $\pi_2(e)$ otherwise.
+            \end{itemize}
+            An example is given by 
+            \begin{center}
+                $G \; = $
+                \begin{tikzcd}
+                v \arrow[loop, distance=2em, in=215, out=145] \arrow[rr] &  & w
+                \end{tikzcd}
+                \quad and \quad 
+                $T(G) \; = \hspace{-3mm} $ % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiVpAF9T1Nd9CUAJnJVajFmwDunbiAzY8BIgEZSy0fWatEIADq6ARhBydRMKAHN4RUADMAThAC2SMiBwRX1BhAhoiggDsZLaMcDCiDHQGMAwACryKAiD2WBYAFiZcdo4uiG4eSMrZIA7OXu6eiMIgDFhg2iBQxjjmINQxYFBIALQAzMQlZXk1hYiqtfWNzTit3UO5SKNVNT5+RCFhEd7RsQkK-GypGSbeU2wzczI55ePUYxNr-igAnJsM4ZG78YmHOseZdqTBoXFptBa3ApVNxPALBUihD7bWrffZ8JT-NKAs4gnSXcGyYYVB4dGBdJADHHTMHzQmLO6VCqdbqISnA6mzAk3Eb3aFU0Gc2ncoq8pak8msmHnPE00wcIA
+                \begin{tikzcd}
+                v \arrow[loop, distance=2em, in=215, out=145] \arrow[rr] \arrow[rd, dotted, bend right] \arrow[dotted, loop, distance=4em, in=240, out=140, looseness=3] \arrow[rr, dotted, bend left] &                                                                                                & w \arrow[dotted, loop, distance=2em, in=35, out=325] \arrow[ll, dotted, bend left] \arrow[ld, dotted, bend left] \\
+                                                                                                                                                                  & \star \arrow[ru, dotted] \arrow[dotted, loop, distance=2em, in=305, out=235] \arrow[lu, dotted] &                                                                                                       
+                \end{tikzcd},
+            \end{center}
+        
+            where the dotted edges represent the edges $e \in V_\star \times V_\star$.
+            It can be seen that for any partial homomorphism $\psi: H \to G$ defined on subgraph $H' \subseteq H$, there exists exactly one homomorphism $\psi_\star : H \to T(G)$ such that $\psi_\star(x) = \psi(x)$ for $x \in V_{H'} \cup E_{H'}$ and $\psi_\star(x) \notin V_{G} \cup E_{G}$ for $x \notin V_{H'} \cup E_{H'}$. Equivalently, $\psi_\star$ is the unique morphism $\varphi_{m,f} : H \to T(G)$ making
+                \begin{center}
+                    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbAELdeIDNjwEiZYePrNWiEAEE5fJYKKj11TVJ0AVABTSAlN3EwoAc3hFQAMwBOEALZIoiA4EEgAzNQ4dFgMbAAWEBAA1iDmktogADpZMNEA+rLUDHQARjAMAAr8ykIgWGDYsAYgvgFIZCFhiABMUTFxOokpaRJabIHFZRXVRio6DU2sPN5+gYidoUHp4zpeoyXlVTXGC41YzSuta0h9XRE7ltlZaHQ+AMYlcHDA-lzAXi4B2mxzmdUWF2WFC4QA
+                    \begin{tikzcd}[column sep=15mm]
+                    H' \arrow[d, "m" description, hook] \arrow[r, "f" description] & G \arrow[d, "\eta_G" description, hook] \\
+                    H \arrow[r, "\varphi_{m,f}" description]                    & T(G)                                   
+                    \end{tikzcd}
+                \end{center}
+            a pullback square, where $H \stackrel{m}{\hookleftarrow} H' \stackrel{f}{\to} G$ a partial map span representation of $\psi$, and $\eta_G$ and $m$ are inclusions.
+            
+            The generalization to labeled graphs is straightforward: between any two nodes $u,v \in V_\star$ and for every label $l$, there is one $l$-labeled edge representing an undefined $l$-edge between $u$ and $v$.
+        \end{example}
+        
+        The following theorem is an instance of \cite[Definition 71]{overbeek2023pbpo_JLAMP}.
+        \begin{definition}
+            Let $L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R$ be a DPO graph rewriting rule. The diagram depicted below where the left square a pushout (which is also a pullback) is a $\mathbf{PBPO}^+$ rule, denoted $|\rho|$.
+        \[ 
+        \begin{tikzcd}
+        L \arrow[r, "l"] & K \arrow[r, "r"] & R \\
+        L' \arrow[u, "\eta_L", hook] \arrow[r, "l'"'] & T(K) \arrow[u, "\eta_K"', hook]
+        \end{tikzcd}
+        \]
+        
+        
+        \end{definition} 
+        
+        The following theorem is an instance of \cite[Theorem 72]{overbeek2023pbpo_JLAMP}.
+        \begin{theorem}
+            In $\mathbf{Graph}$.
+            
+            let $\mathrm{DPO}$ be the DPO graph rewriting system with injective matches.
+        
+            For any left-injective DPO rule $\rho$, $|\rho|$ is a well-defined $\mathrm{PBPO}^+$ rule. 
+            
+            For any $G \to^{\rho}_{\mathrm{DPO}} H$, we have $G \to^{|\rho|}_{\mathrm{PBPO}^+} H$.  
+        \end{theorem}
+        \begin{proof}
+            \todo{todo}
+        \end{proof}
+        
+\chapter{Homomorphisms}
+\input{sections/mophism_gls_to_grs_intro}
+    \section{Homomorphism from GLS rewriting relations to DPO graph rewriting relations}
+    \label{sec:morphism_from_gls_to_dpo_grs}
+    \input{chapters/translation_gls_to_dpogrs.tex}
+    \section{Homomorphism from FCGLS rewriting relations to rewriting relations of DPO graph rewriting systems with Negative Application Conditions}
+    \label{sec:morphism_from_pgls_to_nac_dpo_grs}
+    \input{chapters/translation_fcgls_to_dpogrs_with_one_nac.tex}
+    \section{Homomorphism from DPO graph rewriting relations to DPO hypergraph rewriting relations}
+    \label{sec:morphism_from_dpo_grs_to_hypergraph}
+    \input{chapters/translation_hypergraph_transformation_system.tex}
+    % \chapter{Morphism from FCGLS to PBPO+ GRS: todo maybe } 
+    % \input{chapters/translation_gls_to_pbpop}
+
+\part{Termination techniques for DPO graph rewriting systems}
+\chapter{Termination of Graph Rewriting using Weighted Type Graphs over Non-well-founded Semirings}
+\label{part:morphisms_from_gls_to_grs}
+
+  
+\chapter{Termination of Injective DPO Graph Rewriting Systems using Subgraph Counting}
+ \label{part:terminating_injective_dpo_grs}
+ \input{sections/terminating_injective_dpo_grs_intro}
+ \input{subgraph_counting/subgraph_counting}
+
+\part{Termination Tool: LyonParallel}
+
+\part{Conclusion and Futur Works}
+\section{Conclusion}
+\input{sections/conclusion}
+\section{Future Works}
+\input{sections/future_work}
+
+\part{Appendix}
+\chapter{Appendix for Subgraph Counting}
+\section*{Pullback, Adhesive Category and VK-square}
+\input{shared_paragrahs/adhesive}
+% \newpage
+\section*{Auxiliary lemmas}
+\input{subgraph_counting/sections/newproofs}
+% \newpage
+\section*{Proofs of \autoref{lem:decomp_w_u}, \autoref{lem:xlnlmxrnr}, \autoref{lem:w_u_l_not_geq_r_not} and \autoref{lem:w_g_geq_w_h_leq}}
+\label{sec:appendix:a}
+\input{subgraph_counting/sections/appendix_weighing_pushout_object}
+\section*{Additional Examples}
+\input{subgraph_counting/sections/appendix_examples.tex}
+
+
+\printbibliography
+\end{document} 

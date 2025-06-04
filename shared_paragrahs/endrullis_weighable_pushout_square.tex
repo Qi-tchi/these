@@ -1,0 +1,33 @@
+\begin{definition}[Weighable Pushout Square~\text{\cite[\textdef~4.9]{endrullis2024generalized}}]
+    \label{def:weighable}
+    \ \newline
+    \noindent
+    \begin{minipage}{0.7\textwidth}
+        Let  $\mathcal{T} = (T,\mathbb{E}, S, w)$ be a finitary weighted type graph.
+        Consider the pushout square $\delta$ shown on the right. We say that $\delta$ is
+    \end{minipage}
+    \begin{minipage}{0.3\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[node distance=12mm]
+                \node (A) {$A$};
+                \node (B) [right of=A] {$B$};
+                \node (C) [below of=A] {$C$};
+                \node (D) [right of=C] {$D$};
+                \draw [->] (A) to node [above, label] {$\alpha$} (B);
+                \draw [->] (A) to node [left, label] {$\beta$} (C);
+                \draw [->] (B) to node [right, label] {$\beta'$} (D);
+                \draw [->] (C) to node [below, label] {$\alpha'$} (D);
+                \node [at=($(A)!.5!(D)$)] {$\delta$};
+            \end{tikzpicture}
+        \end{center}
+    \end{minipage}
+    \begin{enumerate}[label=(\alph*)]
+        \item \emph{weighable} with $\mathcal{T}$ if the following hold:
+            \begin{enumerate}[label=(\roman*)]
+                \item $dom(\mathbb{E})$ is strongly traceable along $\delta$,
+                \item $\beta'$ is $dom(\mathbb{E})$-monic,
+                \item $\alpha'$ is $dom(\mathbb{E})$-monic outside of $\beta$.
+            \end{enumerate}
+        \item \emph{bounded-above} by $\mathcal{T}$ if $dom(\mathbb{E})$ is traceable along $\delta$.
+    \end{enumerate}
+\end{definition}

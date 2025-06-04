@@ -1,0 +1,30 @@
+    The Knuth-Bendix Order (KBO) is a fundamental concept in the termination analysis of term rewriting systems (TRS), introduced by Donald Knuth and Peter Bendix in their seminal 1983 work Simple Word Problems in Universal Algebras. KBO is a simplification order that allows for the comparison of terms based on a strict ordering of function symbols, coupled with a weight function that assigns values to both function symbols and variables. This order is particularly powerful in ensuring that larger terms dominate their subterms, thereby facilitating the proof of termination for rewriting systems.
+
+    In this section, we detail the formal definition of the Knuth-Bendix Order as presented in \cite{knuth1983simple}. This definition relies on a finite signature, a strict order on the signature, and a weight function mapping symbols and variables to positive real numbers. We then outline the specific conditions under which one term is deemed greater than another, making KBO a valuable tool in the study of term rewriting systems.
+  
+  \begin{definition}[\cite{nipkow1998term}]
+    
+    Let $\Sigma$ be a \textit{finite} signature. A Knuth-Bendix order on $T(\Sigma, \mathcal{X})$ is determined by a strict order $>$ on $\Sigma$ and a \textbf{weight function} $w : \Sigma \cup \mathcal{X} \rightarrow \mathbb{R}^+_0$, where $\mathbb{R}^+_0$ denotes the set of non-negative real numbers. We call such a weight function $w$ \textbf{admissible} for $>$ iff it satisfies the following properties:
+
+\begin{enumerate}
+    \item There exists $w_0 \in \mathbb{R}^+_0 - \{0\}$ such that $w(x) = w_0$ for all variables $x \in \mathcal{X}$ and $w(c) \geq w_0$ for all constants $c \in \Sigma^{(0)}$.
+    \item If $f \in \Sigma^{(1)}$ is a unary function symbol of weight $w(f) = 0$, then $f$ is the greatest element in $\Sigma$, i.e., $f \geq g$ for all $g \in \Sigma$.
+\end{enumerate}
+\end{definition}
+
+    \begin{definition}[Knuth-Bendix Order \cite{nipkow1998term}]
+    Let $\Sigma$ be a finite signature, $>$ be a strict order on $\Sigma$, and $w: \Sigma \cup \mathcal{X} \rightarrow \mathbb{R}^+$ be a weight function. The \textbf{Knuth-Bendix order $>_{kbo}$} on $T(\Sigma,\mathcal{X})$ induced by $>$ and $w$ is defined as follows: for $s, t \in T(\Sigma,\mathcal{X})$, we have \( s >_{kbo} t \) if and only if $\forall x \in \mathcal{X}.\ |s|_x \ge |t|_x$ and
+    \begin{itemize}
+        \item \textbf{(KBO1)} $w(s) > w(t)$, or
+        \item \textbf{(KBO2)} $w(s) = w(t)$, and
+        \begin{itemize}
+            \item \textbf{(KBO2a)} $\exists f \in \Sigma^{(1)}.\ \exists x \in \mathcal{X}.\ \exists n \in \mathbb{N}^*.\ s = f^n(x) \land t = x$, or
+            \item \textbf{(KBO2b)} $\exists f, g \in \Sigma.\ f > g \land s = f(s_1, \ldots, s_m) \land t = g(t_1, \ldots, t_n)$, or
+            \item \textbf{(KBO2c)} $\exists f \in \Sigma.\ \exists 1 \le i \le m.\ s = f(s_1, \ldots, s_m) \land t = f(t_1, \ldots, t_m) \land s_1 = t_1 \land \ldots \land s_{i-1} = t_{i-1} \land s_i >_{kbo} t_i$
+        \end{itemize}
+    \end{itemize}
+    \end{definition}
+    
+\begin{theorem}[\cite{nipkow1998term}]
+Let $>$ be a strict order on $\Sigma$, and $w : \Sigma \cup \mathcal{X} \rightarrow \mathbb{R}^+_0$ be a weight function that is admissible for $>$. Then the Knuth-Bendix order $>_{\text{kbo}}$ on $T(\Sigma, \mathcal{X})$ induced by $>$ and $w$ is a simplification order.
+\end{theorem}

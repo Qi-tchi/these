@@ -1,0 +1,32 @@
+Graphs provide a natural and effective way to model the states of various systems, enabling intuitive modeling of state changes through rule-based modifications. 
+
+In this context, a rule, denoted as \(p = (L, R)\), identifies a matching subgraph \(L\) within a source graph and replaces it with another subgraph \(R\), creating a new target graph. 
+
+This method, commonly referred to as graph rewriting in the literature, offers a unified framework for modeling and analyzing structural transformations. This framework has broad applications across fields such as computer science, engineering, and other scientific disciplines.
+
+\begin{description}
+    \item[note]Graph transformation systems can show two kinds of nondeterminism: first, several productions might be applicable and one of them is chosen arbitrarily; and second, given a certain production, several matches might be possible and one of them has to be chosen. There are techniques available to restrict both kinds of choice. Some kind of control flow on rules can be defined for applying them in a certain order or by using explicit control constructs, priorities, layers, etc. Moreover, the choice of matches can be restricted by specifying partial matches using input parameters.
+\end{description}
+
+ 
+\section{Different Approaches}
+
+From an operational point of view, a graph transformation from G to H, written G $\to$ H, usually contains the following main steps, as shown in Fig. 1.2: 1. Choose a production p : L $\to$ R with a left-hand side L and a right-hand side R, and with an occurrence of L in G. 2. Check the application conditions of the production. 3. Remove from G that part of L which is not part of R. If edges dangle after deletion of L, either the production is not applied or the dangling edges are also deleted. The graph obtained is called D. 4. Glue the right-hand side R to the graph D at the part of L which still has an image in D. The part of R not coming from L is added disjointly to D. The resulting graph is E. 5. If the production p contains an additional embedding relation, then embed the right-hand side R further into the graph E according to this embedding relation. The end result is the graph H.
+
+The primary challenges in graph rewriting involve the removal of \(L\) and the seamless integration of \(R\) into the target graph. Various methods have been developed to address these challenges, each providing a unique approach to graph transformation \cite{handbook_grs_vol1, pb, spo,over,corradini1997algebraic,corradini2006sesqui,ehrig2004adhesive}
+
+The main graph grammar and graph transformation approaches developed in the literature so far are presented in Volume 1 of the Handbook of Graph Grammars and Computing by Graph Transformation [Roz97]: 
+\begin{itemize}
+    \item  The node label replacement approach, developed mainly by Rozenberg, Engelfriet, and Janssens, allows a single node, as the left-hand side L, to be replaced by an arbitrary graph R. The connection of R with the context is determined by an embedding relation depending on node labels. For each removed dangling edge incident with the image of a node n in L, and each node n' in R, a new edge (with the same label) incident with n' is established provided that (n, n') belongs to the embedding relation. 
+    \item The hyperedge replacement approach, developed mainly by Habel, Kreowski, and Drewes, has as the left-hand side L a labeled hyperedge, which is replaced by an arbitrary hypergraph R with designated attachment nodes corresponding to the nodes of L. The gluing of R to the context at the corresponding attachment nodes leads to the target graph without using an additional embedding relation. 
+    \item The algebraic approach is based on pushout and pullback constructions, where pushouts and pullbacks are used to model the gluing of graphs. In fact, there are several variants of the algebraic approach, the double-pushout approach, the single-pushout approach, the pullback approach, the sesquipo approach, the pbpo approach, the pbpo+ approach. The double-pushout approach, developed mainly by Ehrig, Schneider, and the Berlin and Pisa groups, is presented later in \autoref*{part:grs_dpo} in more detail.
+    
+    In both cases, there is no additional embedding relation. 
+    \item The logical approach, developed mainly by Courcelle and Bouderon, allows graph transformation and graph properties to be expressed in monadic second-order logic. 
+    \item The theory of 2-structures was initiated by Rozenberg and Ehrenfeucht, as a framework for the decomposition and transformation of graphs.
+    \item The programmed graph replacement approach of Schurr combines the gluing and embedding aspects of graph transformation. Furthermore, it uses programs in order to control the nondeterministic choice of rule applications.
+    \item graph relabeling approach : todo
+    \item others : to do
+\end{itemize}
+
+This chapter introduces, graph relabeling systems, a graph rewriting framework as discussed in \cite{Litovsky1999gls}.

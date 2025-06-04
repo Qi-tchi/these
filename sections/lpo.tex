@@ -1,0 +1,29 @@
+    The Lexicographic Path Order (LPO) \cite{dershowitz1982orderings} is a simplification order . It is widely used in the analysis of term rewriting systems (TRS) to prove termination by comparing terms lexicographically according to their structure and the strict order of function symbols. LPO is particularly effective in ensuring that more complex terms are considered greater than their subterms, which is essential for termination proofs.
+
+In this section, we provide the formal definition of the Lexicographic Path Order. Using a finite signature and a strict order on that signature, we outline the specific conditions under which one term is considered greater than another. LPO plays a crucial role in the systematic comparison of terms within the framework of TRS termination analysis.
+    
+    \begin{definition}[Lexicographic Path Order \cite{nipkow1998term}]
+    Let $\Sigma$ be a finite signature and $>$ be a strict order on $\Sigma$. The lexicographic path order $>_{lpo}$ on $T(\Sigma,V)$ induced by $>$ is defined as follows: \( s >_{lpo} t \) if and only if
+    \begin{itemize}
+        \item \textbf{(LPO1)} $t \in \mathcal{Var}(s)$ and $s \neq t$, or
+        \item \textbf{(LPO2)} $s = f(s_1, \ldots, s_m)$, $t = g(t_1, \ldots, t_n)$, and
+        \begin{itemize}
+            \item \textbf{(LPO2a)} $\exists i.\ s_i \ge_{lpo} t$, or
+            \item \textbf{(LPO2b)}
+            \begin{itemize}
+                \item $f > g$, and
+                \item $\forall j.\ s >_{lpo} t_j$, or
+            \end{itemize}
+            \item \textbf{(LPO2c)}
+            \begin{itemize}
+                \item $f = g$, and
+                \item $\forall j.\ s >_{lpo} t_j$, and
+                \item $\exists i.\ s_1 = t_1, \ldots, s_{i-1} = t_{i-1} \land s_i >_{lpo} t_i$
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \end{definition}
+    
+\begin{theorem}[\cite{nipkow1998term} Thoeorem 5.4.14]
+    For any strict order $>$ on $\Sigma$, the induced lexicographic path order $>_{\text{lpo}}$ is a simplification order on $T(\Sigma, \mathcal{X})$.
+\end{theorem}

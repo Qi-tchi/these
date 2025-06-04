@@ -1,0 +1,15 @@
+
+\subsection{Rewriting systems with normalization rules on terms with associative commutative symbols (NTRS)}
+
+Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude Marché in \cite{marche1996normalized}, impose specific syntactic constraints on terms before rewriting, enhancing the efficiency and applicability of rewriting techniques. This approach reduces term configurations, improving predictability and efficiency, especially in automated theorem proving and symbolic computation. Normalized TRSs offer advantages in termination and confluence analysis by ensuring consistent normalization, leading to more efficient algorithms and simplified proofs. 
+
+
+\begin{definition}[NTRS rewriting framework]
+  Let $\mathcal{N}$ and $\mathcal{R}$ be sets of TRS rules.
+
+  We define the rewriting framework $\mathfrak{ntrs}(\mathcal{N},\mathcal{R})$ as follows: for all $\rho \in \mathcal{N}$, $\mathfrak{ntrs}(\mathcal{N},\mathcal{R})(\rho)$ is the collection of all ACTRS witnesses of rewriting steps; for all $\rho \in \mathcal{R}$, $\mathfrak{ntrs}(\mathcal{N},\mathcal{R})(\rho)$ is the collection of ACTRS witnesses of rewriting steps $(\rho, s, p, \sigma)$ such that $s$ is in $\to_\mathcal{N}$-normal form.
+
+  Let $M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I}$ be the class of ACTRS matches, the match mechanism, the class of ACTRS witnesses, the witness mechanism and the interpretation function, respectively, defined in \autoref{def:trs:actrs}.
+
+  The rewriting system $(T(\Sigma,\mathcal{X}), \mathcal{R}, M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I}, \mathfrak{ntrs}(\mathcal{N},\mathcal{R}))$ is called a \textbf{NTRS rewriting system}.
+\end{definition}

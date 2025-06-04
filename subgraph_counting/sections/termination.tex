@@ -1,0 +1,31 @@
+Finally, we present a lemma that allows us to overapproximate the change in weight of a graph when a rule is applied, followed by our termination criterion. See \cite[Lemma 41, 42]{qiu2025termination} for the proofs.
+
+\begin{lemma}[Decreasing step]
+    \label{lem:w_g_geq_w_h_leq}
+    Let $\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ be an injective DPO rewriting rule,
+    \( \mathbb{X} \) a set of ruler-graphs,
+    \( s_{\mathbb{X}} \colon \mathbb{X} \to \mathbb{N} \) a weight function,
+    and \( G \Rightarrow_{\rho,\mathfrak{M}} H \) a rewriting step. 
+    If $\rho$ is \( X \)-non-increasing for every ruler-graph \( X \in \mathbb{X} \), then $
+        w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H) 
+        \geq 
+        w_{s_\mathbb{X}}(L) - w_{s_\mathbb{X}}(R)
+    $.
+\end{lemma}
+% \begin{proof}
+%     \iflongversion
+%         See the Appendix, \hyperref[proof:lem:w_g_geq_w_h_leq]{Section C}.
+%     \else
+%         See \cite[Lemma 41]{qiu2025termination}.
+%     \fi 
+% \end{proof} 
+\begin{theorem}[Termination] 
+    \label{thm:termination_grs}
+    Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules, $\mathbb{X}$ a set of ruler-graphs, and $s_\mathbb{X}$ a weight function. If the following hold:
+    \begin{enumerate}
+        \item  for every $\rho \in \mathcal{A} \cup \mathcal{B}$ and for every $X \in \mathbb{X}$, the rule $\rho$ is $X$-non-increasing,
+        \item for every \(\rho \in \mathcal{A}\), we have \( w_{s_\mathbb{X}}(lhs(\rho)) > w_{s_\mathbb{X}}(rhs(\rho)) \),
+        \item for every \(\rho \in \mathcal{B}\), we have \( w_{s_\mathbb{X}}(lhs(\rho)) \geq w_{s_\mathbb{X}}(rhs(\rho)) \).
+    \end{enumerate}
+    Then \(\Rightarrow_{\mathcal{A},\mathcal{M}}\) is terminating relative to \(\Rightarrow_{\mathcal{B},\mathcal{M}}\).
+\end{theorem}

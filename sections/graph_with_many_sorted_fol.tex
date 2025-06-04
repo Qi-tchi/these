@@ -1,0 +1,79 @@
+\begin{definition}[Many sorted (finite) first order language]
+    A \textbf{finite many sorted first order language} 
+    \( \mathcal{L} = (s_1,\dots,s_m,f_1,\dots, f_n, r_1, \dots, r_w ) \)
+    consists of
+    \begin{itemize}
+        \item sorts $s_1,\dots,s_m$ where $m \in \mathbb{N}$ and $m \geq 1$;
+        \item function symbols $f_1,\dots, f_n$ where $n\in \mathbb{N}$. Each function symbol has a signature $s_{i_1} \times s_{i_2} \times \dots \times s_{i_k} \to s$ indicating its $j$-th argument has sort $s_{i_j} \in \mathcal{S}$ and its result has sort $s \in \mathcal{S}$ where $m \in \mathbb{N}$;
+        \item relation symbols $r_1,\dots, r_w$ where $ w\in \mathbb{N}$. Each  relation symbol has a signature $s_{i_1} \times s_{i_2} \times \dots \times s_{i_k}$,where $k \in \mathbb{N}$, indicating its $j$-th argument has sort $s_{i_j} \in \mathcal{S}$.
+    \end{itemize}  
+    For each sort $s \in \mathcal{S}$, there is a countably infinite number of variables $v_1^s, v_2^s, \dots$. The logical symbols are the usual ones: $\neg$, $\vee$, $\wedge$, $\forall$, $\exists$, $=$.
+\end{definition}
+The above definition is adapted from \cite[Def.~29.26]{monk2012mathematical} by restricting to a finite number of function and relation symbols, a simplification that suffices for our purposes.
+
+\begin{definition}[Structure of a Many Sorted Language]\ \\
+    Let \( \mathcal{L} = (s_1, \dots, s_m, f_1, \dots, f_n, r_1, \dots, r_w) \) be a many sorted finite first order language. An \( \mathcal{L} \)-structure $\mathcal{M}$ is a tuple \( \mathfrak{A} = (s_1^\mathcal{M}, \dots, s_m^\mathcal{M}, f_1^\mathcal{M}, \dots, f_n^\mathcal{M}, r_1^\mathcal{M}, \dots, r_w^\mathcal{M}) \) such that:
+    
+    \begin{enumerate}
+        \item[(i)] for $1 \leq i \leq m$, $s_i^\mathcal{M}$ is a nonempty set;
+        
+        \item[(ii)] For each function symbol \( f_j \), \( 1 \leq j \leq n \), with signature \( s_{i_1} \times \dots \times s_{i_k} \to s_{i_{k+1}} \), $1 \leq j \leq n$, \( f_j^\mathcal{M} \) is a function from \( s_{i_1}^\mathcal{M} \times \dots \times s_{i_k}^\mathcal{M} \) to \( s_{i_{k+1}}^\mathcal{M} \);
+        
+        \item[(iii)] For each relation symbol \( r_j \) with signature \( s_{i_1} \times \dots \times s_{i_k} \), \( R_{r_j} \) is a subset of \( s_{i_1}^\mathcal{M} \times \dots \times s_{i_k}^\mathcal{M} \).
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Homomorphism of Many-Sorted Structures]\ \\
+    Let \( \mathcal{L} = (s_1, \dots, s_m, f_1, \dots, f_n, r_1, \dots, r_w) \) be a many-sorted finite first-order language.  
+    Let \( \mathfrak{A} = (s_1^\mathcal{A}, \dots, s_m^\mathcal{A}, f_1^\mathcal{A}, \dots, f_n^\mathcal{A}, r_1^\mathcal{A}, \dots, r_w^\mathcal{A}) \) and \( \mathfrak{B} =  (s_1^\mathcal{B}, \dots, s_m^\mathcal{B}, f_1^\mathcal{B}, \dots, f_n^\mathcal{B}, r_1^\mathcal{B}, \dots, r_w^\mathcal{B}) \) be two \( \mathcal{L} \)-structures, where:
+
+A homomorphism \( h: \mathfrak{A} \to \mathfrak{B} \) of $\mathcal{L}$-structures is a family of functions \( \{h_{s_i} : s_i^\mathcal{A} \to s_i^\mathcal{A}\}_{i=1}^m \) satisfying the following conditions:
+\begin{itemize}
+    \item For every function symbol \( f_j \) with signature \( s_{i_1} \times \dots \times s_{i_k} \to s \), and for all \( a_1 \in s_{i_1}^\mathcal{A}, \dots, a_k \in s_{i_k}^\mathcal{A} \):  
+    \[
+    h_s\left(f_j^\mathfrak{A}(a_1, \dots, a_k)\right) = f_j^\mathfrak{B}\left(h_{s_{i_1}}(a_1), \dots, h_{s_{i_k}}(a_k)\right).
+    \]
+    \item For every relation symbol \( r_j \) with signature \( s_{i_1} \times \dots \times s_{i_k} \), and for all \( a_1 \in s_{i_1}^\mathcal{A}, \dots, a_k \in s_{i_k}^\mathcal{A} \):  
+    \[
+    (a_1, \dots, a_k) \in R_j^\mathfrak{A} \implies \left(h_{s_{i_1}}(a_1),  \dots, h_{s_{i_k}}(a_k)\right) \in R_j^\mathfrak{B}.
+    \]
+\end{itemize}
+\end{definition}
+
+
+
+\begin{definition}[Language of unlabeled directed multigraphs]
+    \label{def:l_ulg}
+    The many sorted first order \textbf{language of unlabeled directed multigraphs} is $\mathcal{L}_\text{ulg} = (N,E,s,t)$ where $N$ is the sort of nodes, $E$ is the sort of edges, $s$ and $t$ are unary function symbols.
+  \end{definition}
+\begin{definition}[Unlabeled directed multigraphs]
+    \label{def:ulg}
+    An unlabeled graph is a $\mathcal{L}_\text{ulg}$-structure. The interpretation of the symbols $s$ and $t$ will be called the domain function and the codomain function, respectively.
+\end{definition}
+An \textbf{unlabeled graph} \( G \) consists of a collection of \textbf{nodes} (also called \textbf{objects}) and a collection of \textbf{edges} equipped with a \textbf{source} (or \textbf{domain}) node and a \textbf{target} (or \textbf{codomain}) node. 
+For an unlabeled graph \( G \), we denote by \( G_0 \) its collection of nodes, \( G_1 \) its collection of edges, \( \operatorname{dom}:G_1{\to}G_0 \) the domain function, and \( \operatorname{cod}:G_1{\to}G_0 \) the codomain function. An unlabeled graph is \textbf{finite} if \( G_0 \) and \( G_1 \) are both finite sets.
+We write \( a: s \to t \) to indicate that \( a \) is a directed edge from \( s \) to \( t \).
+\begin{definition}[Homomorphisms of unlabeled directed multigraphs]
+    \label{def:homomorphism_ulg}
+    A homomorphism of unlabeled directed multigraphs is a homomorphism of $\mathcal{L}_{ulg}$-structures.
+\end{definition}
+Let \( G \) and \( H \) be unlabeled graphs. A \textbf{homomorphism of unlabeled graphs} \( h: G \to H \) is a pair of functions \( h_0: G_0 \to H_0 \) and \( h_1: G_1 \to H_1 \) such that for every edge \( a: s \to t \) in \( G \), we have \( h_1(a) : h_0(s) \to h_0(t) \) in \( H \).
+\begin{definition}[Language of edge-labeled directed multigraphs]
+    \label{def:l_lg}
+    The many sorted first order \textbf{language of edge-labeled directed multigraphs} is $\mathcal{L}_\text{ulg} = (N,E,\Sigma, s,t,l)$ where $N$ is the sort of nodes, $E$ is the sort of edges, $s:E \to N$, $t: E \to N$, $l:E \to \Sigma$ function symbols.
+  \end{definition}
+\begin{definition}[Edge-labeled directed multigraphs]
+    \label{def:lg}
+    A labeled graph is a $\mathcal{L}_\text{lg}$-structure. The interpretation of the symbol $l$ will be called the labeling function.
+\end{definition}
+By $a : s\overset{l}{\rightarrow} t$, we denote the arrow $a$ labeled by $l$ from $s$ to $t$. Unless otherwise specified, the term 'graph' will refer to edge-labeled multigraph.
+\begin{definition}[Homomorphisms of graphs]
+    \label{def:homomorphism_lg}
+    A homomorphism of graphs is a homomorphism of $\mathcal{L}_{lg}$-structures.
+\end{definition}
+% \input{shared_paragrahs/labeled_graph.tex}
+% \input{shared_paragrahs/homomorphism_of_labeled_graph.tex}
+% \input{shared_paragrahs/visual_notation_for_multigraphs.tex}
+% \begin{remark}
+%     Any labeled graph can be transformed into a graph by adding a self-loop labeled by $\alpha$ to each node, where $\alpha$ is a label not in $\Sigma$. For clarity in visualizations, these self-loops will be omitted.
+% \end{remark}

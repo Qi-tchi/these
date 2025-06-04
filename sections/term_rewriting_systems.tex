@@ -1,0 +1,330 @@
+
+\section{Terms}
+Terms on which first order term rewriting systems are defined are terms of a first order language.
+% \begin{definition}[Signature $\Sigma$~\cite{nipkow1998term}]
+%   A \textbf{signature} \( \Sigma \) is a set of function symbols and for each \( f \in \Sigma \) a non-negative integer \( n \) called the arity of \( f \).
+% \end{definition}
+\begin{definition}[First order language~\text{\cite[Def 1.1.1]{marker2006model},\cite[Def 2.1.1]{terese2003term}}]
+  A \textbf{language} \( \mathcal{L} \) is given by specifying the following data:
+  \begin{itemize}
+      \item  a set of function symbols \( \mathcal{F} \) and positive integers \( n_f \) for each \( f \in \mathcal{F} \);
+      \item  a set of relation symbols \( \mathcal{R} \) and positive integers \( n_R \) for each \( R \in \mathcal{R} \);
+      \item  a set of constant symbols \( \mathcal{C} \).
+  \end{itemize}
+\end{definition}
+% \begin{definition}[$\Sigma$-Terms]
+%   Let $\Sigma$ be a signature. The set $T(\Sigma)$ of $\Sigma$-terms is the smallest set such that 
+%   \begin{itemize}
+%     \item for all $n\geq 0$, all function symbols $f$ of arity n, and all $t_1,\hdots, t_n \in T(\Sigma, \mathcal{X})$, we have $f(t_1,...,t_n) \in T(\Sigma, \mathcal{X})$.
+%   \end{itemize}
+% \end{definition}
+
+\begin{definition}[$(\Sigma,\mathcal{X})$-Terms~\text{\cite{nipkow1998term},\cite[Def 2.1.2]{terese2003term}}]
+  Let $\Sigma$ be a first order language and $\mathcal{X}$ be a countably infinite set of variable symbols such that $\Sigma \cap \mathcal{X} = \emptyset$. The set $T(\Sigma,\mathcal{X})$ of $(\Sigma,\mathcal{X})$-terms is the smallest set such that 
+  \begin{itemize}
+  \item $\mathcal{X} \subseteq T(\Sigma,\mathcal{X})$, and
+  \item for all $n\geq 0$, all function symbols $f$ of arity n, and all $t_1,\hdots, t_n \in T(\Sigma, \mathcal{X})$, we have $f(t_1,...,t_n) \in T(\Sigma, \mathcal{X})$.
+  \end{itemize}
+\end{definition}
+
+
+\section{Term Rewriting Systems}
+
+\subsection{TRS}
+A term rewriting system (TRS) is a rewriting system where the objects are $T(\Sigma,\mathcal{X})$-terms where $\Sigma$ is a set of function symbols and $\mathcal{X}$ is a set of variable symbols disjoint from $\Sigma$.
+  
+\begin{definition}[TRS rule~\text{\cite[Def.2.2.1]{terese2003term}}]
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables. A \textbf{TRS rule} is an ordered pair $(l,r) \in T(\Sigma, \mathcal{X})^2$, denoted $l \to r$, such that
+    \begin{itemize}
+      \item $l$ is not a variable, and
+      \item every variable occurring in $r$ also occurs in $l$.
+    \end{itemize}
+  \end{definition}
+  
+  \begin{definition}[Position \cite{nipkow1998term} \cite{urbain2001approche}]
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variable symbols disjoint from $\Sigma$. Let $s \in T(\Sigma, \mathcal{X})$.
+    The set of positions of subterms of $s$ is a set $\operatorname{Pos}(s)$ defined by induction as follows:
+    \begin{itemize}
+      \item if $s \in \mathcal{X}$, then $\operatorname{Pos}(s) = \set{\epsilon}$
+      \item if $s = f(t_1,\hdots,t_n)$, 
+            then $\operatorname{Pos}(s) = \set{\epsilon} \cup \bigcup_{1 \leq k \leq n} \left \{kp\mid p \in \operatorname{Pos}(t_k) \right \}$
+  \end{itemize}
+  A position of a subterm of $s$ is a word on alphabet $\mathbb{N}\setminus\set{0}$. 
+    The concatenation of words $p$ and $q$ will be denoted $pq$.
+  \end{definition}
+  
+  \begin{definition}[Match]
+    \label{def:trs:match}
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variable symbols disjoint from $\Sigma$. Let $ l \to r $ be a TRS rule and $s \in T(\Sigma, \mathcal{X})$.
+
+    A TRS match of $\rho$ in $s$ is a position $p \in \operatorname{Pos}(s)$ such that there exists a substitution $\sigma$ such that $s_{|p} = \sigma(l)$.
+  \end{definition}
+
+  \begin{definition}[Subterm \cite{nipkow1998term} \cite{urbain2001approche}]
+    For $p \in \mathcal{Pos}(s)$, the \textbf{subterm of s at position p}, denoted by $s_{|p}$, is defined by induction on the length of p:
+    \begin{itemize}
+      \item $s_{|\epsilon} := s$, and
+      \item $f(s_1,...,s_n)_{|iq} := \left(s_i\right)_{|q}$.
+    \end{itemize} 
+    
+    Note that, for $p = iq$, $p \in \mathcal{Pos}$ implies that s is of the form $s = f(s_1,...,s_n)$ with $i \le n$
+    
+    For $p \in \mathcal{Pos}(s)$, we denote by $s[t]_p$ the term that is obtained from s by \textbf{replacing the subterm at position p by t}:
+  \begin{itemize}
+    \item $s[t]_\epsilon := t$
+    \item $f(s_1,...,s_n)[t]_{iq} := f(s_1,...,s_i[t]_{q},...,s_n)$
+  \end{itemize}
+  
+  % By $\mathcal{Var}(s)$, we denote the set of \textbf{variables occurring in s}
+  \end{definition}
+  
+  % \begin{definition}[Contexte]
+  %   Let $\square$ be a function symbol of arity $0$, which does not occur in $\Sigma \cup \mathcal{X}$. A context is an element of $t \in T(\Sigma \cup \set{\square}, \mathcal{X})$ with at least one position $p \in \operatorname{Pos}(t)$ such that $t_p = \square$. If $C$ is a context with $\square$ occurrences in $p_1,...,p_k$ (ordered alphabetically) and $t_1,...,t_k \in T(\Sigma, \mathcal{X})$, then $C[t_1,\hdots,t_k]$ is defined as the term in $T(\Sigma, \mathcal{X})$ obtained by replacing in $C$ the subterms in positions $p_1,\hdots, p_k$ by $t_1,\hdots,t_k$ respectively.
+  % \end{definition}
+  
+  \trackedtext{
+  03/22: definition with box is a definition with framework
+  \begin{definition}[Contexte~\text{\cite[\textsection 2.1.1]{terese2003term}}]
+    Let $\square$ be a function symbol of arity $0$, which does not occur in $\Sigma \cup \mathcal{X}$. A context is an element of $t \in T(\Sigma \cup \set{\square}, \mathcal{X})$ with a unique position $p \in \operatorname{Pos}(t)$ such that $t_{|p} = \square$. If $C$ is a context with $\square$ occurrence in $p$ and $t\in T(\Sigma, \mathcal{X})$, then $C[t]\overset{\operatorname{def}}{=}C[t]_p \in T(\Sigma, \mathcal{X})$.
+  \end{definition}
+  }
+  
+  \begin{definition}[Substitution]
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables.
+    A \text{substitution} is a function $\sigma : \mathcal{X} \rightarrow T(\Sigma, \mathcal{X})$ such that $\sigma(x) \not = x$ for only finitely many variables. Any substitution can be extended to a mapping on $T(\Sigma,\mathcal{X})$ by letting $\sigma(f(s_1,...,s_n)) \overset{\operatorname{def}}{=}f(\sigma(s_1),...,\sigma(s_n))$.
+  \end{definition}
+
+   
+  \begin{definition}[TRS rewriting step]
+    \label{def:trs:rewriting_step}
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables. Let $s \in T(\Sigma, \mathcal{X})$ and $\rho = (l \to r)$ be a TRS rule. Let $p$ be a match of $\rho$ in $s$.
+
+    The structure $(s, p, \rho)$ is a \textbf{witness} for the \textbf{TRS rewriting step} $s \to_\mathcal{R} t$ using the rule $\rho$ and match $p$
+     where $s[\sigma(r)]_p$ for the unique substitution $\sigma$ such that $s_{|p} = \sigma(l)$. This rewriting step is denoted by $s \to^p_\rho t$, and when the context makes it clear or the match is not relevant, we write $s \to_\rho t$.
+  \end{definition}
+  
+  \begin{definition}[TRS rewriting system]
+    Let $\mathcal{R}$ be a set of TRS rules. 
+
+    Let M and $\mathfrak{M}$ be the class of TRS matches and match mechanism, respectively, defined in \autoref{def:trs:match}. 
+
+    Let $W$, $\mathfrak{W}$ and $\mathfrak{I}$ be the class of TRS witnesses, the witness mechanism and the interpretation function, respectively, defined in \autoref{def:trs:rewriting_step}.
+
+    The rewriting system $(T(\Sigma,\mathcal{X}), \mathcal{R}, M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I})$ is called a \textbf{TRS}.
+  \end{definition}
+
+  % \begin{definition}[Term Rewriting System]
+  %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+  %   Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$.
+  %   For all $s \in T(\Sigma, \mathcal{X})$ and for all $l \to r \in \mathcal{R}$ we define
+  %   % \begin{flalign*}
+  %   %   \operatorname{Acc}_{trs}(s,l \to r) \overset{\operatorname{def}}{=} 
+  %   %     \left \{ 
+  %   %         s[\sigma(r)]_p \mid p \in \operatorname{Pos}(s) \land \exists \sigma. s|_p = \sigma(l)
+  %   %       \right \}
+  %   % \end{flalign*}
+  %   \begin{flalign*}
+  %     \f{F}_{trs}(l \to r) \overset{\operatorname{def}}{=} 
+  %       \left \{ 
+  %           (s,t) \mid 
+  %             \exists C \in T(\Sigma \cup \set{\square}, \mathcal{X}). \exists \sigma. 
+  %            s = C[\sigma(l)] \land C[\sigma(r)] = t
+  %         \right \}
+  %   \end{flalign*}
+  %   The rewriting system $(T(\Sigma,\mathcal{X}), \to_\mathcal{R})$, generated by $\mathcal{R}$ and $\f{F}_{trs}$ is called a \textbf{term rewriting system}.
+  % \end{definition}
+
+
+\subsection{TRS with Associative-Commutative Symbols (ACTRS)}
+
+\begin{definition}[Match]
+\end{definition}
+
+\begin{definition}[witness]
+\end{definition}
+
+\begin{definition}[ACTRS]
+\end{definition}
+
+\begin{definition}[Term Rewriting System modulo AC]
+  Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+  Let $\Sigma_{ac} \subseteq \Sigma_{c} \subseteq \Sigma$. We define $\mathcal{C}$ and $\mathcal{AC}$ as follows:
+  
+  $$\mathcal{C} \isdef \{f(x,y) \to f(y,x) \mid f \in \Sigma_{c} \}$$
+  
+  $$\mathcal{AC} \isdef 
+           \{f(f(x,y),z) \to f(x,f(y,z)) \mid f \in \Sigma_{ac} \}$$
+
+  Let $(T(\Sigma,\mathcal{X}), \to_\mathcal{AC})$ be the rewriting system induced by $\mathcal{AC} \cup \mathcal{C}$ in the framework $\f{F}_{trs}$.
+
+  Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
+   
+  For all $\rho \in \mathcal{R}$, we define:
+  \begin{flalign*}
+    \f{F}_{actrs}(\rho) \isdef 
+      \left \{ (s,t) \in T(\Sigma,\mathcal{X})^2 \mid 
+          \exists s', t'. 
+          s \to_\mathcal{AC}^* s' \to_\rho t' \to_\mathcal{AC}^* t
+        \right \}
+  \end{flalign*}
+  The rewriting system $(T(\Sigma,\mathcal{X}), \to_{\mathcal{R}/\mathcal{AC}})$, induced by $\mathcal{R}$ in the framework $\f{F}_{actrs}$, is called a \textbf{term rewriting system modulo AC (AC-TRS)}.
+\end{definition}
+
+% \begin{definition}[Stability]
+%   Let $\to$ be a binary relation on $T(\Sigma, V)$. 
+%   \begin{itemize}
+%     \item The relation $\to$ is \emph{stable by substitutions} iff $s \to t$ implies $\sigma(s) \to \sigma(t)$ for all $s, t$ and $\sigma$.
+%     \item The relation $\to$ is \emph{stable by contexts} if $s \to s'$ implies $t[s]_p \to t[s']_p$ for all $\Sigma$-terms $t$ and positions $p \in \mathcal{Pos}(t)$.
+%   \end{itemize}
+% \end{definition}
+
+% \begin{proposition}[\cite{nipkow1998term} 3.1.10]
+%   Let $E$ be a set of $\Sigma$-identities. The binary relation $\rightarrow_E$ is closed under substitutions and compatible with $\Sigma$-operations.
+% \end{proposition}
+
+\subsection{Normalized TRS (NTRS)}
+
+Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude Marché in \cite{marche1996normalized}, impose specific syntactic constraints on terms before rewriting, enhancing the efficiency and applicability of rewriting techniques. This approach reduces term configurations, improving predictability and efficiency, especially in automated theorem proving and symbolic computation. Normalized TRSs offer advantages in termination and confluence analysis by ensuring consistent normalization, leading to more efficient algorithms and simplified proofs. 
+
+\todo{03/22: this definition is a definition with framework}
+\begin{definition}[Normalized Term Rewriting System modulo AC]
+        Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+        Let $\Sigma_{ac} \subseteq \Sigma_{c} \subseteq \Sigma$. 
+        
+        Let $\mathcal{R}\subseteq T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
+
+        Let $(T(\Sigma,\mathcal{X}), \to_\mathcal{S})$ be a terminating term rewriting system.
+
+         For all $\rho \in \mathcal{R}$, let $(T(\Sigma,\mathcal{X}), \to_{\rho/AC})$ be the term rewriting system modulo AC induced by $\{\rho\} \subseteq \mathcal{R}$ in the framework $\f{F}_{actrs}$, we define
+        \begin{flalign*}
+          \f{F}_{nactrs}(\rho) \isdef 
+            \left \{(s,t)\mid 
+                \exists s'.~s \to_\mathcal{S}^!~s'~\to_\mathcal{\rho/AC}~t 
+                % \exists C. \exists p \in Pos(C). \exists \sigma. 
+                % s = C[\sigma(l)]_p \land
+                % t = C[\sigma(r)]_p
+              \right \}
+        \end{flalign*}
+        The rewriting system induced by $\mathcal{R}$ in $\f{F}_{actrs}$, denoted by $(T(\Sigma,\mathcal{X}), \to_{\mathcal{R}\downarrow \mathcal{S}})$, is called an \textbf{normalized term rewriting system modulo AC}.
+      \end{definition}
+
+
+\subsection{Hierachical TRS with Innermost Strategy}
+Hierarchical TRS, proposed by Xavier Urbain \cite{urbain2001approche}, extends the conventional term rewriting framework to better manage complex, structured data by introducing hierarchical layers of rules. This approach allows for more modular and organized rewriting processes, which are particularly useful in fields requiring sophisticated term manipulation and structured data handling. The system also includes advanced techniques to ensure that the rewriting process terminates, which is a critical aspect of its theoretical foundation.
+
+
+\begin{definition}[TRS rewriting framework with innermost strategy]
+  Let $\mathcal{R}$ be a set of TRS rules. 
+
+  We define the TRS rewriting framework with innermost strategy $\mathfrak{F}_{itrs}$ as follows: for all $\rho \in \mathcal{R}$, $\mathfrak{F}_{itrs}(\rho)$ is the class of all witnesses of rewriting steps $s \to_\rho^p t$ using the rule $\rho$ and a match $p$ such that there is no suffix position $p'$ of $p$ such that $s \to_rho^{p'} t'$ for some $t' \in T(\Sigma,\mathcal{X})$.
+\end{definition}
+
+% \begin{definition}[Innermost TRS]
+%     % $s \underset{i}{\rightarrow} t$ if $s = C[\sigma(l)] \rightarrow_{l\rightarrow r}C[\sigma(r)] = t$ for some $l \rightarrow r \in R$, some context $C[.]$ and some substitution $\sigma$ such that no proper subterm of $\sigma(l)$  is reducible. 
+%     Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+%     Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
+%     For all $l \to r \in \mathcal{R}$, we define
+%     \begin{flalign*}
+%       \mathfrak{F}_{itrs}(l \to r) \overset{def}{=} 
+%         \left \{ 
+%             (s, t) \mid
+%             \exists C 
+%             % \in T(\Sigma \cup \set{\square},\mathcal{X})
+%             .
+%              \exists \sigma.
+%             s = C[\sigma(l)] \land C[\sigma(r)] = t \land \not \exists l'. \sigma(l) \to_\mathcal{R} l'
+%               % s = C[\sigma(l)] \rightarrow_{l\rightarrow r}C[\sigma(r)]
+%             % p \in Pos(s) \land \exists \sigma. s|_p = \sigma(l) \land \not \exists p' \in Pos(s). p' > p \land \exists (l'\to r' \in \mathcal{R}). \exists \sigma'. s_p' = \sigma'(l')
+%           \right \}
+%     \end{flalign*}
+%     The rewriting system generated by $\mathcal{R}$ and $\mathfrak{F}_{itrs}$ is called a term rewriting system and will be denoted by $(T(\Sigma,\mathcal{X}), \itrs_\mathcal{R}^*)$. 
+%   \end{definition}
+
+  \begin{definition}[\cite{urbain2001approche}]
+    A TRS rewriting system $\mathcal{R}$ on $T(\Sigma, \mathcal{X})$ is said to be \textbf{hierarchical} if there are $(\Sigma_i, \mathcal{R})_{1 \leq i \leq n}$ equipped with a strict partial order $\prec$, such that:
+    \begin{itemize}
+      \item $\Sigma_i$, $1 \leq i \leq n$, partition $\Sigma$,
+      \item $\mathcal{R}_i$, $1 \leq i \leq n$, partition $\mathcal{R}$,
+      \item for all $1 \leq i \leq n$ and $\rho \in \mathcal{R}_i$, we have $\Lambda(\rho) \in \Sigma_i$ and $\rho$ is a rule on $T(\Sigma', \mathcal{X})$ where 
+      $\Sigma' = \bigcup \{ \Sigma_j | (\Sigma_j, \mathcal{R}) \preceq (\Sigma_i, \mathcal{R}) \}$.
+    \end{itemize}
+  \end{definition}
+
+  % \begin{definition}[Hierarchical Innermost TRS \cite{urbain2001approche}]
+  %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+  %   Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
+  %   Let $\mathfrak{F}$ be a rewriting framework.
+  %   We say that the term rewriting system generated by $\mathcal{R}$ and $\mathfrak{F}$ is hierarchical if there exist $n \in \mathbb{N}$, $\Sigma_1 \subsetneq \Sigma_2 \subsetneq \ldots \subsetneq \Sigma_n = \Sigma$, and $\mathcal{R}_1 \subsetneq \mathcal{R}_2 \subsetneq \ldots \subsetneq \mathcal{R}_n = \mathcal{R}$ such that:
+  %   \begin{itemize}
+  %     \item Rules in $\mathcal{R}_k$ involve only symbols in $\Sigma_k$, for $1 \leq k \leq n$,
+  %     \item For $2 \leq k \leq n$ and for all rules $l \to r \in \mathcal{R}_k$, the left-hand side $l$ contains at least one symbol from $\Sigma_k \setminus \Sigma_{k-1}$.
+  %   \end{itemize}
+  % \end{definition}
+
+  
+  
+  % %ac
+  % \begin{definition}[Innermost AC Term Class Rewriting System]
+  %   $[s] \underset{i}{\rightarrow} [t]$ if $s = C[\sigma(l)]$ and $C[\sigma(r)] = t$ for some $[l] \rightarrow [r] \in R$, some context $C[\cdot]$ and some substitution $\sigma$ such that no proper subterm of $\sigma(l)$  is reducible. 
+  
+  
+  
+  %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+  %   Let $\mathcal{R} \subseteq (T(\Sigma,\mathcal{X})/E)^2$ be a set of term rewriting rules.
+  %   for all $[s] \in T(\Sigma, \mathcal{X})/E$ and for all $[l] \to [r] \in \mathcal{R}$ we define
+  %   \begin{flalign*}
+  %     \operatorname{Acc}_{trs}([s],[l] \to [r]) \overset{def}{=} 
+  %       \left \{ 
+  %           s[\sigma(r)]_p \mid p \in Pos(s) \land \exists \sigma. s|_p = \sigma(l) \land \not \exists p' \in Pos(s). p' > p \land \exists (l'\to r' \in \mathcal{R}). \exists \sigma'. s_p' = \sigma'(l')
+  %         \right \}
+  %   \end{flalign*}
+    
+  %   The rewriting system $(T(\Sigma,\mathcal{X}), \to_\mathcal{R})$, generated by $\mathcal{R}$ and $\operatorname{ACC}_{trs}$ is called a term rewriting system.
+  % \end{definition}
+  
+  %ac
+  % \begin{definition}[Innermost Term Class Rewriting System]
+  %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+  %   Let $\mathcal{R} \subseteq (T(\Sigma,\mathcal{X})/E)^2$ be a set of term rewriting rules.
+  %   for all $s \in T(\Sigma, \mathcal{X})/E$ and for all $l \to r \in \mathcal{R}$ we define
+  %   \begin{flalign*}
+  %     \operatorname{Acc}_{trs/E}(s,l \to r) \overset{def}{=} 
+  %       \left \{ 
+  %           [t] \mid \exists s' \in s. s' \to_i t 
+  %             % p \in Pos(s) \land \exists \sigma. s|_p = \sigma(l) \land \not \exists p' \in Pos(s). p' > p \land \exists (l'\to r' \in \mathcal{R}). \exists \sigma'. s_p' = \sigma'(l')
+  %         \right \}
+  %   \end{flalign*}
+    
+  %   The rewriting system $(T(\Sigma,\mathcal{X}), \to_\mathcal{R})$, generated by $\mathcal{R}$ and $\operatorname{ACC}_{trs/E}$ is called a term class rewriting system.
+  % \end{definition}
+  
+  %ac
+  % \begin{definition}[AC HTRS \cite{urbain2001approche}]
+  %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+  %   Let $\mathcal{R} \subseteq (T(\Sigma,\mathcal{X})/E)^2$ be a set of term rewriting rules. Let $\operatorname{ACC}$ be an accessibility function.
+  %   Let $(T(\Sigma,\mathcal{X}), \to_\mathcal{R})$ be the term rewriting system. generated by $\mathcal{R}$ and $\operatorname{ACC}_{trs/E}$.
+  %   If there are $n \in \mathbb{N}$, $\Sigma_1, \Sigma_2, \hdots, \Sigma_n $, and $\mathcal{R}_1, \mathcal{R}_2, \hdots, \mathcal{R}_n$ such that 
+  %   \begin{itemize}
+  %     \item $\Sigma_1 \subsetneq \Sigma_2 \subsetneq \hdots \subsetneq \Sigma_n = \Sigma$
+  %     \item $\mathcal{R}_1 \subsetneq \mathcal{R}_2 \subsetneq \hdots \subsetneq \mathcal{R}_n = \mathcal{R}$
+  %     \item rules in $\mathcal{R}_{k}$ have only symbols in $\Sigma_k$ for $1 \leq k \leq n$
+  %     \item for $2 \leq k \leq n$ and for all rules $l\to r \in \mathcal{R}_{k}$, for all $l' \in l$, we have $\Lambda(l') \in (\Sigma_k \setminus \Sigma_{i-1})$
+  %   \end{itemize}
+  % \end{definition}
+  
+  % \begin{Plan}
+  %   \begin{itemize}
+  %     \item a trs is a rewriting system on algebraic terms, with a distinguished 
+  %       subset of elements $\rs{R}$, called term rewriting rule, such that the rewriting system can be generated from $\rs{R}$.
+  %     \item def algebraic terms
+  %     \item def rewriting rules
+  %     \item def stable under ontexts
+  %     \item def stable under instantiation
+  %     \item Acc
+  %     \item def trs : smallest binary relation ... 
+  %     \item def ntrs
+  %     \item def htrs
+  %     \item def inner most strategy
+  %     \item reduction relation : morphism to ....
+  %   \end{itemize}
+  % \end{Plan}

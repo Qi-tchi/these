@@ -1,0 +1,35 @@
+\begin{definition}[DPO Rewriting step \cite{endrullis2024generalized}]
+  \label{def:rewriting_step}
+    \ \newline
+    \noindent
+    \begin{minipage}{0.72\textwidth}
+      A DPO diagram $\delta$ is a diagram as shown on the right.
+      This diagram $\delta$ is a witness for the \textbf{rewriting step} from \( G \) to \( H \) using the rule \( \rho \) and \textbf{match} \( m \), denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). We denote $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$ the pushout squares $KLGC$ and $KRHC$, respectively.
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.28\textwidth}
+          % \begin{center}
+          \hfill
+          \resizebox{\textwidth}{!}{
+          \begin{tikzpicture}
+            % [node distance=11mm]
+            \node (I) {$K$};
+            \node (L) [left of=I] {$L$};
+            \node (R) [right of=I] {$R$};
+            \node (G) [below of=L] {$G$};
+            \node (C) [below of=I] {$C$};
+            \node (H) [below of=R] {$H$};
+            \draw [->] (I) to  node [midway,above] {$l$} (L);
+            \draw [->] (I) to  node [midway,above] {$r$} (R);
+            \draw [->] (L) to node [midway,left] {$m$} (G);
+            \draw [->] (I) to (C);
+            \draw [->] (R) to node [midway,right] {$m'$} (H);
+            \draw [->] (C) to node [midway,below] {$l'$} (G);
+            \draw [->] (C) to node [midway,below] {$r'$} (H);
+            \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+            \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+          \end{tikzpicture}
+        % \end{center}
+        }
+        \end{minipage}
+  \end{definition}

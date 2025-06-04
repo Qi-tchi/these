@@ -1,0 +1,114 @@
+
+\begin{itemize}
+    \item context:todo
+    \item Contribution:todo
+    \item Structure of this Thesis:todo
+\end{itemize}
+
+
+\subsubsection*{Distributed Algorithms and the importance for ensuring their correctness}
+
+\begin{itemize}
+    \item Algorithms play a pivotal role in our modern society. For example, they control machines that we use in daily basis such as vacuum cleaners, telephones but also critical systems such as medical devises, trains, airplanes, spaceship.
+    
+    \item In recent years, the complexity and scale of computational tasks have grown significantly, but the increase of  increased performance  leading to the development of distributed algorithms. These algorithms control multiple machines simultaneously to solve complex problems more efficiently than their centralized counterparts.
+
+    \item These distributed systems can more quickly address some problems and are more robust than their centralized counterparts.  
+  
+    \item However, distributed algorithms are error-prone because they deal with multiple processes running at the same time, communication over unreliable networks, and the possibility of individual components failing. They also face challenges like keeping data consistent, handling unpredictable events, and ensuring all parts of the system stay coordinated without a central controller. These complexities make designing and debugging distributed algorithms very difficult.
+    \item Errors in distributed algorithms can have severe consequences, such as the loss of critical data or even the loss of human lives.
+    \item Thus, ensuring the correctness of distributed algorithms is crucial. 
+    \item Nevertheless ensuring the correctness of distributed algorithms is challenging because they are complex. 
+    \item Since algorithms exhibit numerous properties, it is infeasible to study all of them at once, making it necessary to focus on fundamental aspects.
+\end{itemize}
+
+\subsubsection*{Automated Tools for Formal Verification}
+\begin{itemize}
+    \item Formal methods can address this challenge by rigourious mathmatical methods. Among these methods, mechanically verified proofs using proof assistants, designed to help users create formal proofs by providing a framework for defining mathematical theories, writing proofs, and verifying their correctness, are particularly promising.
+    \item These methods can provide a high level of confidence in the correctness of algorithms, but they require a high level of expertise and are often difficult to use.  
+    \item To address this challenge, we propose to develop automation tools that can relieve users from technical or tedious tasks during their formal developments by generating certificats which can be verified by proof assistants.
+\end{itemize}
+
+\subsubsection{Graph Relabeling Systems: A Formalism for Modeling distributed Algorithms}
+\begin{itemize}
+    \item One of the main challenges in developing automated tools for formal verification is to represent distributed algorithms in a mathematical structure that can be encoded in proof assistants and used to reason about their properties.
+    \item Graph relabeling systems are a formalism that can be used to model distributed algorithms. In these systems, computation units are represented by nodes, communication canals are represented by arrows, and the working environment is modeled by a graph. Arrows have labels representing information encoded in computation units and states of communication canals. System behavior expressed by state changes is modeled by rule-based graph relabeling: replacing some labels either on nodes or arrows or both by new labels. 
+    \item The rules describe preconditions and postconditions of single transformation steps. In a pure graph relabeling system, the order of the steps is determined by the causal dependency of actions only, i.e. independent rule applications can be executed in an arbitrary order. The concept of rules in graph relabeling systems provides a clear concept for defining system behavior. In particular, for modeling the intrinsic concurrency of actions, graph rules provide a suitable means, because they explicate all structural interdependencies. If we stick to sequential execution, parallel transformations have to be modeled by interleaving their atomic actions arbitrarily. This interleaving leads to the same result if the atomic actions are independent of each other. Simultaneous execution of actions can be modeled if a parallel rule is composed from the actions.
+    \item Modeling by graph Relabeling is simple, since only labels are modified, and visual, since it is very natural to use a visual representation of graphs. It is also precise, owing to its formal foundation. Thus, graph transformation can be used in formal verification for state-based systems.
+\end{itemize}
+
+\subsubsection*{Focus on Termination}
+\begin{itemize}
+    \item In this thesis, we focus on one fundamental property of algorithms: termination. When we run an algorithm with this property, it will end sooner or later. This property of algorithms is highly desirable in many contexts. For instance, when you ask your calculator to compute 2 times 2, you expect it to complete the calculation promptly and provide you with the correct result.
+    \item Termination is one of the most fundamental and difficult problems in computer science because it is undecidable. This means we can never have a program that can correctly determine for every algorithm whether it terminates.
+    \item thus, we need to define on which class of algorithms we are trying to find an automated termination method. and this thesis focuses mainly on those distributed algorithms that can be modeled by graph relabeling systems. 
+\end{itemize}
+
+\subsubsection*{Approaches to Proving Termination of Graph Relabeling Systems}
+\begin{itemize}
+    % \item all possible configurations (states) that an algorithm can be in during its execution form a set, the state space. Instructions within a program govern the transitions between states. 
+    % \item A graph Relabeling system, capturing this transition relation, is a binary relation. 
+    \item A graph relabeling system is a formalism for modeling distributed algorithms. It consists of a set of rules that describe how and when a graph, representing a state of the system, can evolve to another. Thus, it defines a binary relation on graphs, where each rule represents transitions from one graph to another.
+    \item The main idea behind proving the termination of a graph relabeling system is to show that a graph where no rule can be applied will eventually be reached. This is done by demonstrating that the given graph relabeling system defines a binary relation that can be embedded into a terminating binary relation.
+    \item In this thesis, we consider two classes of terminating binary relations: those established by graph rewriting systems and those established by term rewriting systems.
+\end{itemize}
+
+\subsubsection*{Graph Rewriting Systems: Another Formalism for Modeling Distributed Algorithms with Advanced Automated Termination Technique}
+\begin{itemize} 
+    \item There are many other approaches to model distributed algorithms.
+    \item The main stream approach is called algebraic graph rewriting. This approach is more general because graph rewriting systems modify also the topology of the underlying graph and just labels. 
+    \item[graph rewriting system] graph rewriting system are more general than graph Relabeling systems: nodes can be merge, created or deleted.
+    \item Since graph Relabeling systems are can be seen as special cases of graph rewriting systems, the method, called type graph method, can be applied to prove termination of graph relabeling systems
+\end{itemize}
+
+
+
+\subsubsection*{Type Graph Method: An Advanced Termination Technique for DPO Graph Rewriting Systems}
+
+\begin{itemize}
+    \item ss
+\end{itemize}
+
+\subsubsection*{A New Termination Criterion with Weighted Type Graph Method for Linear DPO Graph Rewriting Systems}
+\begin{itemize}
+    \item[article]
+    \item The type graph method, such as presented in the litterature, can not prove the termination of a graph rewriting system, if there is a rule such that there is an epic morphism $e: R \to L$.
+    \item We proposed a solution in the case of rewriting systems on multigraphs.
+\end{itemize}
+
+\subsubsection*{Type Graph over non Well-founded semirings}
+\begin{itemize}
+    \item The type graph method has a crucial drawback in the practice ....
+    \item we proposed an extension to non well founded semirings, which allows to over this problem in many cases
+\end{itemize}
+
+\subsection*{Term Rewriting Systems: Another Formalism for Modeling Algorithms with advanced automated termination method}
+
+\begin{itemize}
+    \item although termination is a crucial property for any computational formalism, it has not received a lot of attention in the graph transformation community.
+    \item[TRS] term rewriting systems provide a nother approach to model parallel and distributed algorithms. Furthermore, there are many works on termination of term rewriting system and many advanced termination techniques haved been developped.
+    \item[Translation to TRS] since A graph Relabeling system represents a binary relation on graphs and a term rewriting system represents a binary relation on terms, if we can establish a homomorphism between the  graph Relabeling system of interest to a term rewriting system whose termination can be proved by an existing advanced termination method, then the termination of the  graph Relabeling system can be established.
+    
+    \item  Because advanced termination methods are available for term rewriting systems, our initial approach is to translate graph rewriting systems into term rewriting systems. 
+    \item In this translation, each graph in a rewriting rule is replaced by a term that encodes all the graph's information. We prove that this translation preserves termination: the translated system terminates if and only if the original graph rewriting system terminates. 
+    \item Thus, proving the termination of the term rewriting system also proves the termination of the original graph rewriting system. 
+    \item However, it is not always straightforward to represent a distributed algorithm as a term rewriting system.
+
+    \item To address this, we consider priority-based graph rewriting systems, in which rules have a priority order. When rule occurrences overlap, those with lower priority are blocked. We propose a translation that uses rules simulating the original graph rewriting rules. These rules identify possible occurrences of the original rules within the encoded graph and apply them accordingly. However, experiments show that these auxiliary rules complicate termination proofs.
+
+    \item Therefore, we propose translating priority-based graph rewriting systems into hierarchical term rewriting systems. In this approach, rules are partitioned into hierarchical modules, and each module only rewrites subterms whose root symbol corresponds to that module. 
+    \item While we have only proven termination equivalence for the first two translations, we believe that all proposed translations preserve termination.  
+\end{itemize}
+
+ 
+\newpage
+\begin{itemize}
+    \item[fundamental of ...] By analogy with graphs and graph transformations, term rewriting can be considered as a concept in the field of tree transformations. Trees, however, unlike graphs, do not allow sharing of common substructures, which was one of the main reasons for the efficiency problems concerning functional and logical programs. This motivates us to consider graphs rather than trees as the fundamental structures of computing.
+    \item[fundamental of ...]   Modeling by graph transformation is visual, on the one hand, since it is very natural to use a visual representation of graphs; on the other hand, it is precise, owing to its formal foundation. Thus, graph transformation can also be used in formal specification techniques for state-based systems.
+    \item[fundamental of ...] Concurrency and distribution. When graph transformation is used to describe a concurrent system, graphs are usually taken to describe static system structures. System behavior expressed by state changes is modeled by rule-based graph manipulations, i.e. graph transformation. The rules describe preconditions and postconditions of single transformation steps. In a pure graph transformation system, the order of the steps is determined by the causal dependency of actions only, i.e. independent rule applications can be executed in an arbitrary order. The concept of rules in graph transformation provides a clear concept for defining system behavior. In particular, for modeling the intrinsic concurrency of actions, graph rules provide a suitable means, because they explicate all structural interdependencies. If we stick to sequential execution, parallel transformations have to be modeled by interleaving their atomic actions arbitrarily. This interleaving leads to the same result if the atomic actions are independent of each other. Simultaneous execution of actions can be modeled if a parallel rule is composed from the actions.
+    \item[fundamental of ...] Parallel and distributed graph transformation both offer structured rule applications, in both temporal and spatial dimensions. Distributed graphs contain an additional structure on the graphs. Graphs are allowed to be split into local graphs and, after local transformations, local graphs are joined again to one global graph. Parallel graph transformation can be considered as a special case of distributed graph transformation, where the host graph is nondistributed.
+    \item[bruggink2014]  Termination, the absence of infinite computations, is a property that is required in many applications, in particular in model transformation, algorithms and protocol specifications. Many of these applications are naturally modeled by graph transformation systems.
+    \item[bruggink2014] although termination is a basic notion of any computational formalism, it has not received a lot of attention in the graph transformation community.
+    \item[bruggink2014] we consider graph transformation from a theoretical point of view. This has the disadvantage of making results harder to obtain, but the advantage of being more broadly applicable. 
+\end{itemize}
+

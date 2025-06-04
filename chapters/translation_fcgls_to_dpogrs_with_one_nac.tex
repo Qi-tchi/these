@@ -1,0 +1,13 @@
+When a graph relabeling system consists of one rule and the rule has a unique forbidden context, we can transform the graph relabeling system into a DPO graph rewriting system with one negative application condition. For the latter, the termination technique that Bottoni et al.~\cite{bottoni2010atermination} proposed applies. 
+\begin{definition}
+    Let $\rho$ be a graph relabeling rule with a forbidden context $n:\opn{lhs}(\rho) \rightarrowtail N$.
+      We define $|(n,\rho)|$ as the DPO rewriting rule with a negative application condition $(n, |\rho|)$
+    where $|\rho|$ is the DPO rewriting rule defined in \autoref{def:gls_to_dpo}.
+\end{definition}  
+
+\begin{theorem}
+    \label{prop:fcgls_to_dpogrs_with_one_nac}
+   Let $\rho$ be a graph relabeling rule with a forbidden context $n:\opn{lhs}(\rho) \rightarrowtail N$.
+    For any graph relabeling step from $G$ to $H$ using rule $\rho$ with forbidden context $n$, there is a DPO rewriting step with a negative application condition from $G$ to $H$ using the rule $(n, |\rho|)$.
+\end{theorem}
+The proof is straightforward by definition.

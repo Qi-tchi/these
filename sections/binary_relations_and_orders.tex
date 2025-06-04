@@ -1,0 +1,56 @@
+We define binary relations and orders on a collection of objects instead of on a set. This is because later we will define rewriting relations as binary relations, and the collection of objects subject to be rewritten in a rewriting system is not necessarily a set. For example, the collection of finite directed edge-labeled graphs is not a set, but a class.
+
+\begin{notation}
+    Let $C$ and $C'$ be collections of objects. We denote $c \in C$ for~\enquote{$c$ is an element of C}, $C \cup C'$ the smallest collection contains all elements in $C$ and all elements in $C'$, $C \cap C'$ the smallest collection contains all elements in $C$ that are also in $C'$, $C * C'$ the collection of ordered pairs with first element in $C$ and second element in $C'$.  
+  \end{notation} 
+  
+  \begin{definition}[Binary relation]
+    \label{def:binary_relation:binary_relation}
+    Let $D$ be a collection of objects. A mathematical structure \( (D, \mathcal{R}) \) where $\mathcal{R}$ is a collection of objects from $D * D$ is called a \textbf{binary relation} on $D$. 
+    
+    For an object in $\mathcal{R}$ with first element $x \in D$ and second element $y\in D$, we write $x \mathcal{R} y$, $\mathcal{R}(x,y)$ or $(x,y) \in \mathcal{R}$. 
+    
+    When $D$ is irrelevant, we say simply that $\mathcal{R}$ is a binary relation.
+  \end{definition} 
+   
+  \begin{definition}[Reflexivity,
+    %  Antisymmetry, 
+     Transitivity]
+    \label{def:binary_relation:reflexivity_transitivity}
+    A binary relation \( \to \) on \(C\) is said to be \textbf{reflexive} if for every object \(a \in C\), we have \(a \to a\); \textbf{transitive} if for all objects \( a, b, c \in C\), \( a \to b \land (b \to c) \) implies \(a \to c\).
+  %       \item \textbf{antisymmetric} if \(
+  % \forall a, b \in A, \, (a \to b) \land (b \to a) \implies a = b.
+  % \)
+  \end{definition}
+  
+  \begin{definition}[$\mathcal{R}$-sequence]
+    \label{def:binary_relation:sequence}
+    Let \(\mathcal{R}\) be a binary relation on $S$.
+    A \textbf{\( \mathcal{R} \)-sequence} is either a finite sequence \( \left( s_i \right)_{0 \leq i \leq m} \) of elements in $S$ such that \(s_i \mathcal{R} s_{i+1}\) for each \( 0 \leq i \leq m-1\), or an infinite sequence \((s_i)_{i \in \mathbb{N}}\) of elements in $S$ such that \(s_n \mathcal{R} s_{n+1}\) for each \(i \in \mathbb{N}\).
+\end{definition}
+
+\begin{definition}[Well-founded binary relation]
+    \label{def:binary_relation:well_founded}
+    A binary relation $\to$ on a collection $S$ of object is said to be \textbf{well-founded} if there is no infinite $\to$-sequence. 
+    % In other words, there does not exist an infinite sequence of elements $ (s_i)_{i \in \mathbb{N}} $ where $s_i \in S $ such that $s_i \to s_{i+1}$ for $i \in \mathbb{N}$.
+\end{definition}
+
+\begin{definition}[Transitive closure]
+    \label{def:binary_relation:transitive_closure}
+    The \textbf{transitive closure} of a binary relation $\to$, denoted $\to^+$, is the smallest transitive relation that include \( \to \).
+  \end{definition}
+  
+  \begin{definition}[Reflexive-transitive closure]
+    \label{def:binary_relation:reflexive_transitive_closure}
+    The \textbf{reflexive transitive closure} of a binary relation $\to$, denoted $\to^*$, is the smallest reflexive and transitive relation that include \( \to \).
+  \end{definition}
+
+  \begin{definition}[Homomorphisms of binary relations]
+    \label{def:binary_relation:homomorphism}
+    Let $\to_\mathcal{A}$ be a binary relation on a collection $A$ of objects and $\to_\mathcal{B}$ be a binary relation on a collection $B$ of objects. A \textbf{homomorphism} from $\to_\mathcal{A}$ to $\to_\mathcal{B}$ is a function \( h: A \to B \) such that for all \( a, b \in A \), if \( a \to_\mathcal{A} b \) then \( h(a) \to_\mathcal{B} h(b) \).
+  \end{definition}
+  
+\begin{proposition}[Proving well-foundedness]
+  \label{prop:binary_relation:proving_well_foundedness}
+  Let \(\to\) be binary relation and let $\leadsto$ be a well-founded binary relation. If there is a homomorphism from \(\to\) to \(\leadsto\), then \(\to\) is well-founded.
+\end{proposition}

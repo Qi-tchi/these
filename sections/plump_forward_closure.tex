@@ -1,0 +1,81 @@
+Plump \cite{Plump1995} introduced a necessary and sufficient termination condition for left-injective DPO hypergraph rewriting via forward closure, though verifying this condition is undecidable.
+
+
+\begin{definition}[Instance]
+    \todo{rewrite}
+    Consider a finite or infinite derivation
+    
+
+    \begin{tikzpicture}
+      % Nodes
+      \node (pi1) at (0,0) {$\pi_1$};
+      \node (pip1) at (2,0) {$\pi'_1$}; 
+      \node (pi2) at (4,0) {$\pi_2$};
+      \node (pip2) at (6,0) {$\pi'_2$};
+      \node (pi3) at (8,0) {$\pi_3$};
+      \node (pip3) at (10,0) {$\pi'_3$};
+      \node (dots) at (12,0) {$\dots$};
+    
+      % Horizontal arrows in the top row
+      \draw[->] (pi1) -- ++(-2,0);
+      \draw[->] (pip1) -- ++(2,0);
+      \draw[->] (pi2) -- ++(-2,0);
+      \draw[->] (pip2) -- ++(2,0);
+      \draw[->] (pi3) -- ++(-2,0);
+      \draw[->] (pip3) -- ++(2,0);
+    
+      % Vertical arrows
+      \draw[->] (pi1) -- ++(0,-1);
+      \draw[->] (pip1) -- ++(0,-1);
+      \draw[->] (pi2) -- ++(0,-1);
+      \draw[->] (pip2) -- ++(0,-1);
+      \draw[->] (pi3) -- ++(0,-1);
+      \draw[->] (pip3) -- ++(0,-1);
+    
+      % Diagonal arrows
+      \draw[->] (pip1) -- ++(1,-1);
+      \draw[->] (pip2) -- ++(1,-1);
+      \draw[->] (pip3) -- ++(1,-1);
+    
+      % Horizontal arrows in the bottom row
+      \draw[->] (pi1) -- ++(2,0);
+      \draw[->] (pip1) -- ++(-2,0);
+      \draw[->] (pi2) -- ++(2,0);
+      \draw[->] (pip2) -- ++(-2,0);
+      \draw[->] (pi3) -- ++(2,0);
+      \draw[->] (pip3) -- ++(-2,0);
+    \end{tikzpicture}
+    
+    A derivation is an \textit{instance} (or \textit{embedding}) of this derivation if it can be written
+    
+
+    
+    where for each $i \geq 1$, $\phi_i$ and $\phi'_i$ are pushouts with injective vertical morphisms. (So the pushouts constituting the derivation are composed of the pushouts $\pi_i$ and $\phi_i$, respectively $\pi'_i$ and $\phi'_i$.)
+\end{definition}
+
+\begin{definition}[forward closure]
+    Forward closures are inductively defined as follows:
+    \begin{enumerate}
+        \item Every direct derivation $L \Rightarrow_{r,g} R$ with surjective $g$ is a forward closure.
+        \item A derivation $G \Rightarrow^+ H \Rightarrow M$ is a forward closure if $G \Rightarrow^+ H$ is an instance of a forward closure, and $H \Rightarrow M$ is a direct derivation such that
+        \begin{itemize}
+            \item $G \Rightarrow^+ H$ and $H \Rightarrow M$ are dependent,
+            \item $\text{New}(H) \subseteq \text{Redex}(H \Rightarrow M)$.
+        \end{itemize}
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[infinite forward closure]
+    \todo{rewrite}
+    An \textit{infinite forward closure} is an infinite derivation $G_0 \Rightarrow G_1 \Rightarrow G_2 \Rightarrow \dots$ that contains a forward closure as a prefix. That is, there is some $n \geq 1$ such that $G_0 \Rightarrow^+ G_n$ is a forward closure.
+\end{definition}
+
+\begin{definition}[Consumptive System]
+    \todo{rewrite}
+    A graph rewriting system is \textit{consumptive} if each rule $(L \leftarrow K \rightarrow R)$ has a non-surjective morphism $K \to L$.
+\end{definition}
+    
+\begin{theorem}[Main Theorem]
+    \todo{rewrite}
+    A graph rewriting system is terminating if, and only if, it is consumptive and does not admit an infinite forward closure.
+\end{theorem}

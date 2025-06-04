@@ -1,0 +1,70 @@
+\begin{definition}[Rewriting relation]
+  \label{def:ars}
+  Let $D$ be a collection of objects.
+  A \textbf{rewriting relation} $(D, \rightarrow)$ on $D$ is a binary relation.
+   We say that $D$ is the \textbf{domain} of the rewriting relation. For all objects $x,y\in D$, we say that $x$ \textbf{rewrites} to $y$ (or there exists a \textbf{rewriting step} from $x$ to $y$) if $x \rightarrow y$.
+\end{definition}
+ 
+In the litterature, a rewriting relation is also called abstract rewriting systems or abstract reduction systems \cite{nipkow1998term,terese2003term} and is usually defined on a set of objects. We defined it on a collection of objects to cope with rewriting systems on graphs, which form a collection of objects but not a set.
+ 
+\begin{definition}[Rewriting system]
+  \label{def:rewriting_system_no_framework}
+  Let $D$ be a class of objects. 
+  A structure $(D, \mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I})$ where 
+  \begin{itemize}
+    \item $\mathcal{R}$ is a set of objects, called \textbf{rewriting rules}, 
+    \item $M$ is a class of objects, called \textbf{matches}, 
+    \item $W$ is a class of objects, called \textbf{witnesses of rewriting steps},  
+    \item $\mathfrak{M}$ is a function, called \textbf{match mechanism}, which associates to each $(r,d) \in \mathcal{R} \times D$ a set $\mathfrak{M}(r,d)$ of objects in $M$, called \textbf{matches of the rewriting rule $r$ in the object $d$},
+    \item $\mathfrak{W}$ is a function, called \textbf{witness function}, which associates to each rule $r \in R$, 
+        each object $d \in D$ and each match $m \in \mathfrak{M}(r,d)$ 
+        a witness $\mathfrak{W}(r,d,m)$ in $W$, 
+        called \textbf{witness defined by the match $m$ of the rule $r$ in the object $d$},
+    \item $\mathfrak{I}$ is a function, called \textbf{interpretation function},  
+        which associates to each witness $w \in W$, an element 
+        in $D \times D$, called \textbf{rewriting step witnessed by $w$}.
+  \end{itemize}
+   is called a \textbf{rewriting system} on $D$.
+   
+   It induces a \textbf{rewriting relation}, denoted $\rightarrow_\mathcal{R}$, that is defined as follows: for all objects $d_1$ and $d_2$ in $D$, $d_1 \rightarrow d_2$ iff there exists $r \in R$, $m \in \mathfrak{M}(r,d_1)$ and $w \in W$ such that $\mathfrak{W}(r,d_1,m) = w$ and $\mathfrak{I}(w) = (d_1,d_2)$.
+\end{definition}
+
+When defining a rewriting system, one may want to impose additional constraints on the rewriting relation. This can be done by imposing a more restrictive match mechanism. 
+
+However, since rewriting is an intuitive concept, when we talk about a rewriting system on a given domain $D$, we have an intuition of what a match mechanism should be. 
+
+Since it is often more natural to have a bijective $\mathfrak{I}$, one may not want to modifies this function.
+
+As solutions, Endrullis et al. in \cite{endrullis2024generalized}  restricts the classes of witnesses of rewriting steps that a rewriting rule has
+useful?  and Litovsky et al. in  ref ref restricts the classes of witnesses of rewriting steps that a rewriting rule has relative the the set of rewriting rules consered.
+
+\begin{definition}[Rewriting system in a rewriting framework]
+  \label{def:rewriting_system_with_framework}
+  Let $D$ be a class of objects. 
+  A structure $(D, \mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I},\mathfrak{F})$ where 
+  \begin{itemize}
+    \item $(\mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I})$ is a rewriting system on $D$,
+    \item $\mathfrak{F}$ is a function, called \textbf{rewriting framework},  which associates to each rule $r \in R$, 
+       a class of objects in $W$,
+  \end{itemize}
+   is called a \textbf{rewriting system} on $D$ in the framework $\mathfrak{F}$.
+   
+   It induce a \textbf{rewriting relation}, denoted $\rightarrow_{\mathcal{R},\mathfrak{F}}$ or simply $\to_{\mathcal{R}}$ when $\mathfrak{F}$ is irrelevant, that is defined as follows: for all objects $d_1$ and $d_2$ in $D$, there is a rewriting step $d_1 \rightarrow d_2$ iff there exist $r \in R$, $m \in \mathfrak{M}(r,d_1)$ and $w \in W$ such that $\mathfrak{W}(r,d_1,m) = w$, $w \in \mathfrak{F}(r)$ and $\mathfrak{I}(w) = (d_1,d_2)$.
+\end{definition}
+
+% \trackedtext{useful ?? \\
+% The following correspond to the rewriting relation definition by rewriting framework proposed by Endrullis et Overbeek in \cite[Definition 5.2]{endrullis2024generalized}.
+% \begin{proposition}
+%   Let $D$ be a collection of objects.
+%   The structure $(\mathcal{R},\mathfrak{I},\mathfrak{F})$ where
+%   \begin{itemize}
+%     \item $\mathcal{R}$ is a set of objects, called \textbf{rewriting rules}, 
+%     \item $\mathfrak{F}$ is a function, called \textbf{rewriting framework},  which associates to each rule $r \in R$, 
+%        a class of objects,
+%     \item $\mathfrak{I}$ is a function, called \textbf{interpretation function},  
+%     which associates to each object $ w \in \mathcal{F}(r)$ with $r \in R$ an element 
+%     in $D \times D$, called \textbf{rewriting step using rule $r$ witnessed by $w$},
+%   \end{itemize}
+%    defines a rewriting relation $\to$ as follows: $\to = \bigcup_{\rho \in R} \mathfrak{I}(\mathfrak{F}(\rho))$.
+% \end{proposition}
+% }

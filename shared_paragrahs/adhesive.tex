@@ -1,0 +1,42 @@
+\begin{proposition}[\text{\cite[Lemma 13]{lack2004adhesive}}]
+    \label{prop:pb_eq_po}
+    In the category \textbf{Graph}, pushouts along monomorphisms are also pullbacks. 
+\end{proposition}
+
+\begin{definition}[Van Kampen Square \text{\cite[Definition 2]{lack2004adhesive}}]
+    \label{def:vk_square}
+    A \textit{van Kampen (VK) square} (i) is a pushout square which satisfies the following condition: given a commutative cube (ii) of which (i) forms the bottom face and the back faces are pullbacks, the front faces are pullbacks if and only if the top face is a pushout.
+
+    
+    \begin{enumerate}
+        \item[(i)]
+        \begin{tikzcd}
+            & C \arrow[ld, "m"'] \arrow[rd, "f"]  &\\
+            A \arrow[rd,"g"'] & & B \arrow[ld,"n"]\\
+            &D &  
+        \end{tikzcd}
+    
+        \item[(ii)]
+        \begin{tikzcd}
+            A' \arrow[dd, "a" description, near start] \arrow[dr, "g'" description] & & C' \arrow[ll, "m'" description, near start]  \arrow[dd, "c" description, near start] \arrow[dr, "f'" description] & \\
+            & D'  \arrow[dd, "d" description, near start] & & B' \arrow[ll, "n'" description, near start] \arrow[dd, "b" description, near start] \\
+            A  \arrow[dr, "g" description] & & C \arrow[dr, "f" description] \arrow[ll, "m" description, near start] & \\
+            & D  & & B \arrow[ll, "n" description]
+        \end{tikzcd}
+    \end{enumerate}
+\end{definition} 
+
+\begin{definition}[Adhesive category\text{\cite[Definition 5]{lack2004adhesive}}] 
+    \label{def:adhesive_cat}
+    A category $\mathcal{C}$ is said to be \textbf{adhesive} if 
+    \begin{itemize}
+        \item $\mathcal{C}$ has pushouts along  monomorphisms, and
+        \item $\mathcal{C}$ has pullbacks, and
+        \item pushouts along monomorphisms are VK squares.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}[\text{\cite[Proposition 8]{lack2004adhesive}}]
+    \label{prop:graph_adhesive}
+    The category \textbf{Graph} of directed labeled multigraphs is adhesive.
+\end{proposition}

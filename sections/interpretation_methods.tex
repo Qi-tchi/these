@@ -1,0 +1,87 @@
+
+Interpretation methods are a fundamental approach in proving the termination of term rewriting systems (TRS). These methods involve mapping terms into well-founded mathematical structures, ensuring that each rewriting step corresponds to a reduction in size according to a specific order. The significance and effectiveness of interpretation methods in termination analysis have been extensively discussed in the literature, including in the comprehensive survey \cite{dersh1987termination}.
+In this section, we explore key concepts such as 
+$\Sigma$-structures, term interpretations, and homomorphisms. These concepts are crucial for demonstrating that rewriting systems terminate by ensuring that every rewrite leads to a simplification in a well-defined order.
+
+\begin{definition}[$\Sigma$-structure \cite{cori2000mathematical}]
+  A \textit{$\Sigma$-structure}, is any structure $\mathcal{M}$ consisting of:
+  \begin{itemize}
+    \item a non-empty set $M$, called the \textit{underlying set} (or \textit{base set}) of the realization $\mathcal{M}$;
+    \item for each constant symbol $c$ of $\Sigma$, an element $c^{\mathcal{M}}$ of $M$, called the \textit{interpretation} of the symbol $c$ in the realization $\mathcal{M}$;
+    \item for each natural number $k \geq 1$, and for each function symbol $f$ of arity $k$ in $\Sigma$, a function $f^{\mathcal{M}}$ from $M^k$ to $M$, called the \textit{interpretation} of the symbol $f$ in the realization $\mathcal{M}$;
+    % \item for each natural number $k \geq 1$, and for each relation symbol $R$ of arity $k$ in $\Sigma$, a subset $R^{\mathcal{M}}$ of $M^k$ (that is, a $k$-ary relation on the set $M$), called the \textit{interpretation} of the symbol $R$ in the realization $\mathcal{M}$.
+  \end{itemize}
+\end{definition}
+
+\begin{example}[Term Algebra]
+  Give a signature $\Sigma$, the term algebra $(T(\Sigma, \mathcal{X}), \Sigma)$ is a model of $\Sigma$, or $\Sigma$-algebra, where every $f \in \Sigma$ is interpreted by itself.
+\end{example}
+
+\begin{definition}[$\Sigma$-Structure homomorphism \cite{cori2000mathematical}]
+  The function $\varphi$ is a \textit{homomorphism of} $\Sigma$-\textit{structures} from $\mathcal{M}$ to $\mathcal{N}$ if and only if the following conditions are satisfied:
+  \begin{itemize}
+      \item For every constant symbol $c$ of $\Sigma$,
+      \[
+      \varphi(c^{\mathcal{M}}) = c^{\mathcal{N}};
+      \]
+      \item For every natural number $n \geq 1$, for every $n$-ary function symbol $f$ of $\Sigma$, and for all elements $a_1, a_2, \ldots, a_n$ belonging to $M$,
+      \[
+      \varphi(f^{\mathcal{M}}(a_1, a_2, \ldots, a_n)) = f^{\mathcal{N}}(\varphi(a_1), \varphi(a_2), \ldots, \varphi(a_n));
+      \]
+      \item For every natural number $k \geq 1$, for every $k$-ary relation symbol $R$ of $\Sigma$, and for all elements $a_1, a_2, \ldots, a_k$ belonging to $M$,
+      \[
+      \text{if } (a_1, a_2, \ldots, a_k) \in R^{\mathcal{M}}, \text{ then } (\varphi(a_1), \varphi(a_2), \ldots, \varphi(a_k)) \in R^{\mathcal{N}}.
+      \]
+  \end{itemize}
+  \end{definition}
+
+  \begin{definition}[Term Interpretation \cite{cori2000mathematical}]
+    Given a natural number $n$, $n$ variables $X_0, X_1, \ldots, X_{n-1}$ that are distinct from each other, a term $t = t[X_0, X_1, \ldots, X_{n-1}]$ of the language $\Sigma$, an $\Sigma$-structure $\mathcal{M} = \langle M, \ldots \rangle$, and $n$ elements $a_0, a_1, \ldots, a_{n-1}$ of $M$, we call the \textit{interpretation of the term} $t$ in the $\Sigma$-structure $\mathcal{M}$, when the variables $X_0, \ldots, X_{n-1}$ are respectively interpreted by the elements $a_0, a_1, \ldots, a_{n-1}$, the element of $M$ denoted by:
+    \[
+     t^{\mathcal{M}}[X_0 \mapsto a_0, X_1 \mapsto a_1, \ldots, X_{n-1} \mapsto a_{n-1}]
+    \]
+    defined as follows, by induction on $t$:
+    \begin{itemize}
+        \item If $t = X_j$ (where $0 \leq j \leq n-1$),
+        \[
+        t^{\mathcal{M}}[X_0 \mapsto a_0, X_1 \mapsto a_1, \ldots, X_{n-1} \mapsto a_{n-1}] = a_j;
+        \]
+        \item If $t = c$ (a constant symbol of $\Sigma$),
+        \[
+         t^{\mathcal{M}}[X_0 \mapsto a_0, X_1 \mapsto a_1, \ldots, X_{n-1} \mapsto a_{n-1}] =  c^{\mathcal{M}};
+        \]
+        \item If $t = f t_1 t_2 \ldots t_k$ (where $k \in \mathbb{N}^*$, and $f$ is a $k$-ary function symbol of $\Sigma$, and $t_1, t_2, \ldots, t_k$ are terms of $\Sigma$),
+        \[
+          t^{\mathcal{M}}[X_0 \mapsto a_0, X_1 \mapsto a_1, \ldots, X_{n-1} \mapsto a_{n-1}] = f^{\mathcal{M}}(t_1^{\mathcal{M}}[X_0 \mapsto a_0, \ldots, X_{n-1} \mapsto a_{n-1}], \ldots, t_k^{\mathcal{M}}[X_0 \mapsto a_0, \ldots, X_{n-1} \mapsto a_{n-1}]).
+        \]
+    \end{itemize}
+    In practice, we will denote more simply:
+    \[
+    t^{\mathcal{M}}[a_0, a_1, \ldots, a_{n-1}].
+    \]
+    \end{definition}
+    
+
+    \begin{definition}[Monotone Function \cite{nipkow1998term}]
+        Let $>$ be a strict order on a set $A$. A function $F : A^n \rightarrow A$ is said to be \textit{monotone} with respect to $>$ if and only if
+        \[
+        a > b \text{ implies } F(a_1, \ldots, a_{i-1}, a, a_{i+1}, \ldots, a_n) > F(a_1, \ldots, a_{i-1}, b, a_{i+1}, \ldots, a_n)
+        \]
+        for all $i$ where $1 \leq i \leq n$, and for all elements $a, b, a_1, \ldots, a_{i-1}, a_{i+1}, \ldots, a_n$ in $A$.
+    \end{definition}
+
+    \begin{definition}[Interpretation Method \cite{dersh1987termination}]
+        Let $\Sigma$ be the rewriting system. 
+        Let $\mathcal{A}$ be a $\Sigma$-structure such that for all $1 \leq i \leq n$, the function $f^\mathcal{M}$ is monotone w.r.t. $>_A$. Let $>_A$ be a well founed order on the domain $A$.
+
+        Let $\Pi$ be the set of interpretation of $T(\Sigma,\mathcal{X})$ in $A$.
+        Let $B\isdef \{(\pi(t))_{\pi\in \Pi} \mid t \in T(\Sigma,\mathcal{X})\}$, the set of generalized series. 
+
+        Let $>_B$ be the binary relation defined by 
+        $$(\pi(s))_{\pi\in \Pi} > (\pi(t))_{\pi\in \Pi} \text{ iff } \forall \pi \in \Pi. \pi(s) >_A \pi(t)$$
+
+        % Let $>$ be the binary relation defined by 
+        % $$s > t \text{ iff } \forall \pi:T(\Sigma,\mathcal{X}) \to A. \pi(s) >_A \pi(t)$$
+
+        We have $(B, >_B)$ is a terminating rewriting system. Thus, if $h:(T(\Sigma,\mathcal{X}),R) \to (B,>_B)$ defined by $h(t) \isdef (\pi(t))_{\pi\in \Pi}$ is a homomorphism, then $(T(\Sigma,\mathcal{X}), \to_R)$ terminates.
+    \end{definition}

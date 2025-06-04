@@ -1,0 +1,17 @@
+\begin{lemma}[\text{\cite[][lemma 2]{plump2018modular}}]
+    For every pair of direct derivations $G \Rightarrow_{r_1} H \Rightarrow_{r_2} M$ that are not sequentially independent, there exists a critical pair of the form $S \Rightarrow_{r_1} T \Rightarrow_{r_2} U$.
+\end{lemma}
+
+\begin{theorem}[\text{\cite[][theorem 2]{plump2018modular}}]
+    \todo{consistency} Let $\langle \Sigma, \mathcal{R} \rangle$ and $\langle \Sigma, \mathcal{S} \rangle$ be terminating hypergraph transformation systems. If there are no sequential critical pairs of shape $S \xRightarrow{\mathcal{R}} T \xRightarrow{\mathcal{S}} U$, then the combined system $\langle \Sigma, \mathcal{R} \cup \mathcal{S} \rangle$ is terminating.
+\end{theorem}
+ \begin{proof}
+    Let $\langle \Sigma, \mathcal{R} \rangle$ and $\langle \Sigma, \mathcal{S} \rangle$ be terminating hypergraph transformation systems such that there are no critical pairs of shape $S \xRightarrow{\mathcal{R}} T \xRightarrow{\mathcal{S}} U$. We proceed by contradiction. Suppose there exists an infinite derivation
+    \[
+    G_1 \xRightarrow{\mathcal{R} \cup \mathcal{S}} G_2 \xRightarrow{\mathcal{R} \cup \mathcal{S}} G_3 \xRightarrow{\mathcal{R} \cup \mathcal{S}} \cdots
+    \]
+    Because $\xRightarrow{\mathcal{R}}$ and $\xRightarrow{\mathcal{S}}$ are terminating, the derivation must contain infinitely many steps of both kinds. 
+    
+    By Lemma 2, any two steps $G_k \xRightarrow{\mathcal{R}} G_{k+1} \xRightarrow{\mathcal{S}} G_{k+2}$ in the sequence are sequentially independent because there are no critical pairs of shape $S \xRightarrow{\mathcal{R}} T \xRightarrow{\mathcal{S}} U$. By Theorem 1, the steps can be swapped such that $G_k \xRightarrow{\mathcal{S}} G'_{k+1} \xRightarrow{\mathcal{R}} G_{k+2}$. Thus all $\xRightarrow{\mathcal{S}}$-steps can be pushed back to the beginning of the derivation, resulting in an infinite sequence of $\xRightarrow{\mathcal{S}}$-steps. This contradicts the fact that $\langle \Sigma, \mathcal{S} \rangle$ is terminating.
+
+ \end{proof}

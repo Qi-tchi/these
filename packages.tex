@@ -1,0 +1,104 @@
+
+\usepackage[colorinlistoftodos,draft]{todonotes}
+
+\usepackage{marginnote}
+\setlength{\marginparwidth}{2cm}
+
+\usepackage{pgfplots, xcolor,diagbox,colortbl,tikz,graphicx,algorithm2e,cancel,verbatim,
+listings,float,amsmath,amssymb,enumitem,array,subfiles,bussproofs,
+rotating,MnSymbol,mathtools,subcaption,caption}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{automata, positioning,graphs,shapes, arrows, calc}
+\usepackage{csquotes}
+
+
+%%%%%%% careful : order is important begin
+\usepackage{amsthm}
+\usepackage{hyperref}
+\renewcommand{\sectionautorefname}{\textsection}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}[theorem]
+\newtheorem{idea}{Idea}[theorem]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{Plan}{Plan}[section]
+\newtheorem{claim}{Claim}[theorem]
+\newtheorem{notation}[theorem]{Notation} 
+\def\theoremautorefname{Theorem}                % Define autoref name for 'theorem'
+\def\corollaryautorefname{Corollary}            % Define autoref name for 'corollary'
+\def\lemmaautorefname{Lemma}                    % Define autoref name for 'lemma'
+\def\ideaautorefname{Idea}                      % Define autoref name for 'idea'
+\def\definitionautorefname{Definition}          % Define autoref name for 'definition'
+\def\propositionautorefname{Proposition}        % Define autoref name for 'proposition'
+\def\remarkautorefname{Remark}                  % Define autoref name for 'remark'
+\def\exampleautorefname{Example}                % Define autoref name for 'example'
+\def\planautorefname{Plan}                      % Define autoref name for 'plan'
+\def\claimautorefname{Claim}                    % Define autoref name for 'claim'
+\def\notationautorefname{Notation}              % Define autoref name for 'notation'
+%%%%%%% careful : order is important end
+
+
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\graphbox}[8]{
+  \begin{scope}[xshift=#2,yshift=#3]
+    \draw [rounded corners=2mm] (0,0) rectangle (#4,-#5);
+    \node at (0,0mm) [anchor=north west,inner sep=1mm] {#1};
+    \begin{scope}[xshift=#4/2+#6,yshift=#7] 
+    #8
+    \end{scope}
+  \end{scope}
+}
+\newcommand{\card}[1]{|#1|}
+\newcommand{\homset}[2]{\operatorname{Hom}(#1,#2)} 
+
+\newcommand{\isdef}{\overset{\operatorname{def}}{=}}
+\newcommand{\cat}[1]{\mathcal{#1}}
+\newcommand{\f}[1]{\mathfrak{#1}}
+\newcommand{\rs}[1]{\mathcal{#1}}
+\newcommand{\opn}[1]{\operatorname{#1}}
+%arrow
+\newcommand{\itrs}{\overset{i}{\to}} 
+
+\usepackage{tocloft}
+
+% % Customizing the table of contents
+% % \setlength{\cftpartindent}{0pt} %  space before part titles
+\setlength{\cftchapindent}{15pt} %  space before chapter titles
+\setlength{\cftsecindent}{30pt} %  space before sec titles
+\setlength{\cftsubsecindent}{40pt} %  space before subsec titles
+\setlength{\cftsubsubsecindent}{50pt} %  space before subsubsec titles
+
+
+\newcommand{\textdef}{\text{$\operatorname{Def.}$}}
+\setcounter{secnumdepth}{3}
+\newcommand{\pbpop}{$\operatorname{PBPO}^+$}
+\addtolength{\cftbeforechapskip}{-10pt} % Reduce spacing by 10pt
+\addtolength{\cftbeforepartskip}{-20pt} % Reduce spacing by 10pt
+\newif\iflongversion
+\longversiontrue
+\newif\iftrackChange
+\trackChangetrue
+\newcommand{\trackedtext}[1]{%
+    \iftrackChange
+        \textcolor{red}{#1}% Apply red color if trackChange is true
+    \else
+        #1% No color change if trackChange is false
+    \fi
+} 
+
+
+\usepackage[style=alphabetic]{biblatex}
+\addbibresource{bib/these.bib} % Add your bibliography file here
+
+\usepackage{titlesec} 
+ 
+\usepackage{tikz-cd}
+
+\usepackage{pifont}      
+\usepackage{makecell}    
+\usepackage{nicematrix}  
+\usepackage{wrapfig}     
+\usepackage{lipsum}      

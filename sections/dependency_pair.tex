@@ -1,0 +1,61 @@
+
+Dependency pairs \cite{arts2000termination} offer a sophisticated method for analyzing the termination of term rewriting systems (TRS). This technique transforms the termination problem into a more manageable task by focusing on pairs of terms, where the goal is to prove that no infinite chains of these pairs exist. By studying the relationships between these pairs, one can draw conclusions about the termination of the entire system.
+
+In this section, we explore the dependency pair method from a different viewpoint, presenting variations and extensions that provide new insights into its application. We discuss key theorems that establish the equivalence between the termination of a TRS and the termination of certain relations involving dependency pairs.
+
+\begin{theorem}[\cite{arts2000termination} Theorem 6]
+Let $\mathcal{R}$ be a term rewriting system. 
+
+Let $\leadsto_1$ be a binary relation stable under context and substitution on $T(\Sigma,\mathcal{X})^2$ such that $$(s,t) \leadsto (s',t') \text{ iff } t \to_\mathcal{R}^* s'$$
+
+Let $\leadsto_2$ be a binary relation stable under context and substitution on $T(\Sigma,\mathcal{X}) \times T(\Sigma,\mathcal{X})^2$ such that $r \leadsto_2 (s,t)$ iff 
+\begin{itemize}
+    \item $s$ is a subterm of $r$, and
+    \item propre subterms of $s$ are all strongly normalizing.
+\end{itemize}
+
+Let $\leadsto \isdef \leadsto_1 \cup \leadsto_2$.
+The following three assertions are equivalent:
+\begin{itemize}
+    \item $\mathcal{R}$ terminates.
+    \item $((T(\Sigma,\mathcal{X}) \times T(\Sigma,\mathcal{X})^2) \cup T(\Sigma,\mathcal{X})^2, \leadsto)$ terminates.
+    \item $(T(\Sigma,\mathcal{X})^2, \leadsto_2)$ terminates.
+\end{itemize} 
+\end{theorem}
+
+In the literature, instead of taking the union of two sets with different types of elements, many authors add new symbols to $\Sigma$ to consider a domain with a simple type. However, sets with different types of elements are frequently used in computer science; this is essentially a sum type (also known as a disjoint union type, coproduct type, or variant type).
+
+
+\begin{definition}[Defined Symbols and Constructors \cite{arts2000termination}]
+  Let $\mathcal{R}(\mathcal{F}, R)$ be a TRS. The set $D_{\mathcal{R}}$ of \emph{defined symbols} of $\mathcal{R}$ is defined as 
+  \[
+  \{ \text{root}(l) \mid l \to r \in R \}
+  \]
+  and the set $C_{\mathcal{R}}$ of \emph{constructors} of $\mathcal{R}$ is defined as $\mathcal{F} \setminus D_{\mathcal{R}}$.
+\end{definition}
+
+
+\begin{definition}[Dependency Pair \cite{arts2000termination}]
+  Let $\mathcal{R}(D, C, R)$ be a TRS. If 
+  \[
+  f(s_1, \ldots, s_n) \to C[g(t_1, \ldots, t_m)]
+  \]
+  is a rewrite rule of $R$ with $g \in D$, then 
+  \[
+  \langle F(s_1, \ldots, s_n), G(t_1, \ldots, t_m) \rangle
+  \]
+  is called a \emph{dependency pair} of $\mathcal{R}$.
+\end{definition}
+
+
+\begin{theorem}[\cite{arts2000termination} Theorem 7]
+$(T(\Sigma,\mathcal{X})^2, \leadsto_2)$ is terminating if and only if there exists a well-founded, weakly monotonic quasi-ordering $\geq$, where both $\geq$ and $>$ are stable under substitution, such that:
+\begin{itemize}
+    \item \( l \geq r \) for all rules $l \rightarrow r$ in $R$, and
+    \item \( s > t \) for all dependency pairs \( \langle s, t \rangle \).
+\end{itemize} 
+\end{theorem}
+    
+\begin{corollary}
+$\mathcal{R}$ terminates if and only if $DP(R)$ terminates relative to $\mathcal{R}$.
+\end{corollary}

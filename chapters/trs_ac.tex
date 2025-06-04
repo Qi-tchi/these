@@ -1,0 +1,39 @@
+In term rewriting systems, the concept of associativity and commutativity (AC) plays a crucial role in simplifying the rewriting process by allowing terms to be reordered. This section introduces the formal framework for AC-term rewriting systems (AC-TRS), where the rewriting rules are defined modulo associativity and commutativity. 
+
+\todo{03/22: this definition is a definition with framework}
+%ac
+\begin{definition}[Term Rewriting System modulo AC]
+  Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
+  Let $\Sigma_{ac} \subseteq \Sigma_{c} \subseteq \Sigma$. We define $\mathcal{C}$ and $\mathcal{AC}$ as follows:
+  
+  $$\mathcal{C} \isdef \{f(x,y) \to f(y,x) \mid f \in \Sigma_{c} \}$$
+  
+  $$\mathcal{AC} \isdef 
+           \{f(f(x,y),z) \to f(x,f(y,z)) \mid f \in \Sigma_{ac} \}$$
+
+  Let $(T(\Sigma,\mathcal{X}), \to_\mathcal{AC})$ be the rewriting system induced by $\mathcal{AC} \cup \mathcal{C}$ in the framework $\f{F}_{trs}$.
+
+  Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
+   
+  For all $\rho \in \mathcal{R}$, we define:
+  \begin{flalign*}
+    \f{F}_{actrs}(\rho) \isdef 
+      \left \{ (s,t) \in T(\Sigma,\mathcal{X})^2 \mid 
+          \exists s', t'. 
+          s \to_\mathcal{AC}^* s' \to_\rho t' \to_\mathcal{AC}^* t
+        \right \}
+  \end{flalign*}
+  The rewriting system $(T(\Sigma,\mathcal{X}), \to_{\mathcal{R}/\mathcal{AC}})$, induced by $\mathcal{R}$ in the framework $\f{F}_{actrs}$, is called a \textbf{term rewriting system modulo AC (AC-TRS)}.
+\end{definition}
+
+% \begin{definition}[Stability]
+%   Let $\to$ be a binary relation on $T(\Sigma, V)$. 
+%   \begin{itemize}
+%     \item The relation $\to$ is \emph{stable by substitutions} iff $s \to t$ implies $\sigma(s) \to \sigma(t)$ for all $s, t$ and $\sigma$.
+%     \item The relation $\to$ is \emph{stable by contexts} if $s \to s'$ implies $t[s]_p \to t[s']_p$ for all $\Sigma$-terms $t$ and positions $p \in \mathcal{Pos}(t)$.
+%   \end{itemize}
+% \end{definition}
+
+% \begin{proposition}[\cite{nipkow1998term} 3.1.10]
+%   Let $E$ be a set of $\Sigma$-identities. The binary relation $\rightarrow_E$ is closed under substitutions and compatible with $\Sigma$-operations.
+% \end{proposition}
