@@ -5,6 +5,7 @@
 \usepackage{pifont}
 \usepackage{nicefrac}
 \usepackage{csquotes}
+\usepackage{changepage}
 \usepackage{cancel} 
 \newcommand{\crossout}[2][red]{%
   \begin{tikzpicture}[baseline=(texte.base)]
@@ -108,6 +109,82 @@ over Non-well-founded Semirings}
     \item Conclusion
   \end{itemize}
 \end{frame}
+
+\begin{frame}{DPO graph rewriting}
+\begin{adjustwidth}{-1cm}{0cm}
+  \begin{itemize}
+      \item Finite directed multigraphs with edge labels from a finite set $\Sigma$.
+      %   \begin{center}
+      %     \resizebox{0.5\textwidth}{!}{
+      %     \begin{tikzpicture}
+      %         \graphbox{\(\)}{00mm}{-20mm}{35mm}{15mm}{2mm}{-5mm}{ 
+      %             \coordinate (o) at (-2mm,-2mm); 
+      %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+      %             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+      %             \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+      %             \draw[->] (l1) edge[bend right]  node[midway,below] {a} (l3);
+      %             \draw[->] (l1) edge[bend left] node[midway,above] {a}  (l3);
+      %             \draw[->] (l3) -- (l4) node[midway,above] {b};
+      %             % \draw[->] (l4) -- (l2) node[midway,above] {a};
+      %         }   
+      %     \end{tikzpicture} 
+      % }
+      % \end{center}
+      \item Graph morphism $h : G \rightarrow H$ 
+      % : function from graph $K$ to graph $L$ that preserves the structure of the graphs.
+         \begin{center}
+          \resizebox{0.8\textwidth}{!}{
+          \begin{tikzpicture}
+            \graphbox{\( G \)}{00mm}{-20mm}{45mm}{25mm}{2mm}{-10mm}{
+                \coordinate (o) at (-5mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {4};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l4) node[midway,above] {b};
+                \draw[->] (l4) -- (l2) node[midway,above] {a};
+            }  
+            \graphbox{\( H \)}{52mm}{-20mm}{50mm}{25mm}{2mm}{-10mm}{
+                \coordinate (o) at (-5mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-1,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1)+(1.5,0)$) {3\ 4};
+                \draw[->] (l1) edge node[midway,above] {a} (l3);
+                \draw[->] (l3) edge [loop above] node[midway,above] {b} (l3) ;
+                \draw[->] (l3) -- (l2) node[midway,above] {a};
+            }      
+            \node () at (48mm,-30mm) {$\overset{h}{\rightarrow}$};
+        \end{tikzpicture}
+          }
+         \end{center}
+
+      \item Rules $\varphi = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ consist of two graph morphisms $l: K \to L$ and $r: K \to R$.
+      \item Rewriting steps $G \Rightarrow_\varphi H$ are double-pushouts:
+         \begin{center}
+          \resizebox{0.45\textwidth}{!}{
+              \begin{tikzpicture}
+                    \node (I) at (0,0) {$K$};
+                    \node (L) at (-2,0) {$L$};
+                    \node (R) at (2,0) {$R$};
+                    \node (G) at (-2,-2) {$G$};
+                    \node (C) at (0,-2) {$C$};
+                    \node (H) at (2,-2) {$H$};
+                    \draw [->] (I) to  node [midway,above] {$l$} (L);
+                    \draw [->] (I) to  node [midway,above] {$r$} (R);
+                    \draw [->] (L) to node [midway,right] {} (G);
+                    \draw [->] (I) to node [midway,right] { } (C);
+                    \draw [->] (R) to node [midway,left] { } (H);
+                    \draw [->] (C) to node [midway,above] { } (G);
+                    \draw [->] (C) to node [midway,above] { } (H);
+                    \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+                    \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+                  \end{tikzpicture}
+          }
+      \end{center}
+  \end{itemize} 
+\end{adjustwidth}
+\end{frame} 
 
 \begin{frame}{Termination}
   \begin{itemize}
@@ -416,9 +493,10 @@ over Non-well-founded Semirings}
 \section{Type Graph Method}
 
 \begin{frame}{Weight of a morphism $h : L \to T$}
-  \begin{itemize}
-    \item $w_T(h)$ : the product of the weights of the edges of $\opn{Im}(h)$
-    \item Example:
+ $w_T(h)$ : the product of the weights of the edges of $\opn{Im}(h)$
+ \newline 
+ \newline
+ Example:
     
     \resizebox{0.6\textwidth}{!}{
         \begin{tikzpicture}
@@ -443,7 +521,6 @@ over Non-well-founded Semirings}
         }
 
         $ w_T(h) = 1.0 * 1.0 = 1.0$
-  \end{itemize}
 
    
 \end{frame}
