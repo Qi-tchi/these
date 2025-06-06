@@ -111,7 +111,7 @@ over Non-well-founded Semirings}
 \end{frame}
 
 \begin{frame}{DPO graph rewriting}
-\begin{adjustwidth}{-1cm}{0cm}
+\begin{adjustwidth}{-0.5cm}{0cm}
   \begin{itemize}
       \item Finite directed multigraphs with edge labels from a finite set $\Sigma$.
       %   \begin{center}
@@ -399,42 +399,46 @@ over Non-well-founded Semirings}
 \begin{frame}{Type graph method for proving termination of DPO rewriting systems on edge-labeled directed graphs}
     % Parameter : finite graph \( T \) with weights on edges
 
-    Searching a finite graph \( T \) with 
-      \begin{itemize}
-        \item weighted edges
-        \item weights in $\mathbb{N}$ as superscripts of labels
-      \end{itemize} 
+    \begin{itemize}
+      \item Parameter : finite graph \( T \) with weighted edges
+      \item Assigning weights $w_T(G)$ with respect to $T$ to each graphs $G$
+      \item \alert{Terminating} if every step $G \Rightarrow_\mathcal{R} H$ strictly decreases the weight.
+      \item \alert{Existence} of suitable $T$ : \alert{undecidable} in general
+    \end{itemize}
+      % \begin{itemize}
+      %   \item weighted edges
+      %   \item weights in $\mathbb{N}$ as superscripts of labels
+      % \end{itemize} 
 
-    Example for the rule $\alpha$:
-    \begin{center}
-        \begin{tikzpicture}
-            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
-                \node[draw,circle] (1) at (0,0) {};
-                \node[draw,circle] (2) at (2,0) {};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
-                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
-                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
-            }
-        \end{tikzpicture}
-    \end{center}
+    % Example for the rule $\alpha$:
+    % \begin{center}
+    %     \begin{tikzpicture}
+    %         \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+    %             \node[draw,circle] (1) at (0,0) {};
+    %             \node[draw,circle] (2) at (2,0) {};
+    %             \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+    %             \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+    %             \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+    %             \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
+    %         }
+    %     \end{tikzpicture}
+    % \end{center}
     
-    Assigning a weight $w_T(G)$ with respect to $T$ to each graph $G$
+     
 
-    \textcolor{blue}{Terminating} if every step $G \Rightarrow_\mathcal{R} H$ strictly decreases the weight.
+    % \textcolor{blue}{Terminating} if every step $G \Rightarrow_\mathcal{R} H$ strictly decreases the weight.
 
-    Undecidable in general
+    % Undecidable in general
 
 \end{frame}
 \begin{frame}{Type graph method for proving termination of DPO rewriting systems on edge-labeled directed graphs}
 
     In practice
 
-      Searching a weighted finite graph \( T \) with 
+      Searching a graph \( T \) with weighted edges
       \begin{itemize}
         \item $k$ nodes
         \item no parallel edges of the same label from $\Sigma$
-        \item weighted edges
       \end{itemize} 
       
       Existing available tools : 
@@ -492,7 +496,42 @@ over Non-well-founded Semirings}
 
 \section{Type Graph Method}
 
-\begin{frame}{Weight of a morphism $h : L \to T$}
+
+\begin{frame}{Weighted Type Graph over Real Arithmetic Semiring}
+    % \begin{itemize}
+    %     \item $S$ : set 
+    %     \item $\otimes$, $\oplus$ : binary operations on $S$
+    %     \item $0$, $1$ : neutral elements for $\oplus$, $\otimes$
+    %     \item $\prec$: a strict order 
+    %     \item $\preceq$ : a reflexive order
+    %     \item satisfies some conditions
+    % \end{itemize}
+
+    % Natural Arithmetic Semiring: $(\mathbb{N}, +, *, 0, 1, <, \leq)$ 
+
+    Real Arithmetic Semiring $\mathcal{S} = (\mathbb{R}^+, +, *, 0, 1, <, \leq)$:
+    \begin{itemize}
+      \item $\mathbb{R}^+$ : positive real numbers
+      \item the canonical addition $+$ and multiplication $*$
+      \item the canonical orders $<, \leq$
+    \end{itemize}
+
+   Weighted Type Graph $T$ over $\mathcal{S}$:
+   \begin{center}
+        \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+                \node[draw,circle] (1) at (0,0) {};
+                \node[draw,circle] (2) at (2,0) {};
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+            }
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Weight $w_T(h)$ of Morphism $h : L \to T$}
  $w_T(h)$ : the product of the weights of the edges of $\opn{Im}(h)$
  \newline 
  \newline
@@ -524,8 +563,9 @@ over Non-well-founded Semirings}
 
    
 \end{frame}
+ 
 
-\begin{frame}{Weight $w_T$ of a graph $L$}
+\begin{frame}{Weight $w_T$ of Graph $L$}
  $w_T(L)$: the sum of the weights $w_T(h)$ of all morphisms \( h : L \to T \)
 
 Example : 
@@ -741,11 +781,14 @@ Example :
 \end{frame}
 
 
-\begin{frame}{Not every graph $T$ can be a weighted type graph}
+\begin{frame}{Not every graph can be a weighted type graph}
+  $\mathcal{R}$ : rewriting system 
 
-  There must be a morphism $c : L \to T$ such that
+  $T$ : graph  
 
-  For every rewriting step $G \Rightarrow H$, defined by
+  There must be a morphism $\alert{c} : L \to T$ such that
+
+  For every rewriting step $G \Rightarrow_\mathcal{R} H$, defined by
 
       \begin{center}
         \begin{tikzpicture}[rotate=90]
@@ -756,20 +799,20 @@ Example :
           \node (C) [below of=I] {$C$};
           \node (H) [below of=R] {$H$};
           \node (T) [left=of $(L)!0.5!(G)$] {$T$};
-          \draw [->] (L) to  node [label, above] {$c$}  (T);
-          \draw [->] (G) to  node [label, below] {$\alpha$} (T);
+          \draw [->] (L) to  node [label, above,red] {$c$}  (T);
+          \draw [->] (G) to  node [label, below,red] {$\alpha$} (T);
           \draw [->] (I) to node [label, above] {$l$} (L);
           \draw [->] (I) to node [label,above] {$r$} (R);
-          \draw [->] (L) to node [label, right] {$m$} (G);
+          \draw [->] (L) to node [label, right,red] {$m$} (G);
           \draw [->] (I) to (C);
           \draw [->] (R) to (H);
           \draw [->] (C) to (G);
           \draw [->] (C) to (H);
         \end{tikzpicture}
       \end{center}
-  there is a morphism $\alpha : G \to T$ such that $c = \alpha \circ m$.
+  there is a morphism $\alert{\alpha} : G \to T$ such that \alert{$c = \alpha \circ m$}.
 
-  To guarantee: $G$ has a weight and $w(G) \geq 0$, for all $G \Rightarrow H$
+  To \alert{guarantee}: $w(G)$ is defined and $w(G) \geq 0$, for all $G \Rightarrow H$
 \end{frame}
 
 \begin{frame}{Example}
@@ -981,13 +1024,13 @@ Example :
 % It suffices to show
 % \begin{theorem}
   for every $t_K: K \rightarrow T$, 
-    $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
-        w_T(t_L) -  \sum_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
+    $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K =  t_L \circ l }}
+        w_T(t_L) -  \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
             w_T(t_R) \geq 0 $$ 
 
 for some $t_K: K \rightarrow T$,
-$$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
-        w_T(t_L) - \sum_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
+$$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
+        w_T(t_L) - \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
             w_T(t_R) > \delta $$ 
 % \end{theorem}   
 % then 
@@ -1002,7 +1045,7 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
   %         \left ( \sum_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
   %           w_T(t_C - u) \right ) 
   %           \times
-  %         \left (\sum_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
+  %         \left (\sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
   %         w_T(t_L) \right )
   %         \\
   %     w_T(H) 
@@ -1010,7 +1053,7 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
   %         \left ( \sum_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
   %         w_T(t_C - u) \right ) 
   %         \times 
-  %         \left ( \sum_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
+  %         \left ( \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
   %             w_T(t_R) \right ) \\
   % \end{flalign*}
   % }
@@ -1118,7 +1161,7 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
       Therefore, $w_T(G) - w_T(H) \geq 2 - 1 = 1$ for every $G \Rightarrow_\varphi H$
 \end{frame}   
 
-\begin{frame}{Example}
+\begin{frame}{Example : Termination using Weighted Type Graph over Real Arithmetic Semiring}
   % DPO Rewriting Rule on Edge-labeled Directed Graphs: 
   Rule $\varphi$
     \begin{center} 
@@ -1161,8 +1204,8 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
     \begin{center}
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
-                \node[draw,circle] (1) at (0,0) {1};
-                \node[draw,circle] (2) at (2,0) {2};
+                \node[draw,circle] (1) at (0,0) {};
+                \node[draw,circle] (2) at (2,0) {};
                 \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
                 \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
                 \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
@@ -1173,15 +1216,32 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
     \begin{itemize}
       \item edge labels : a, b
       \item edge weights : superscripts of edge labels
-      \item weights satisfy conditions expressed as first-order formulas
+      % \item weights satisfy conditions expressed as first-order formulas
     \end{itemize}
-  Existence of suitable weighted type graphs: \textcolor{red}{undecidable}
+  % Existence of suitable weighted type graphs: \textcolor{red}{undecidable}
   
-  How to find a suitable weighted type graph in practice ?
+  % How to find a suitable weighted type graph in practice ?
 
 \end{frame}
 
-\begin{frame}{Searching a weighted type graph \( T \) in practice}
+\begin{frame}{Concrete Semirings}
+  For each existing well-founded semiring (on the left), we propose a corresponding non-well-founded semiring (on the right):
+
+  \begin{center}
+     Natural Tropical Semiring $\Leftrightarrow$ Real Tropical Semiring
+  \end{center}
+  \begin{center}
+     Natural Arctic Semiring $\Leftrightarrow$ Real Arctic Semiring
+  \end{center}
+  \begin{center}
+    Natural Arithmetic Semiring $\Leftrightarrow$ Real Arithmetic Semiring
+  \end{center}
+
+  natural semirings: semirings on the left,
+  real semirings: semirings on the right.
+\end{frame}
+
+\begin{frame}{Searching Weighted Type Graphs over the natural vs. real semirings}
     % Searching a weighted finite graph  with 
     \begin{itemize}
       \item $k$ nodes
@@ -1220,21 +1280,18 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
       % \end{itemize}
 \end{frame}
 
-\begin{frame}{Experimental Results}
-  \begin{center}
-     Natural Tropical semiring $\Leftrightarrow$ Real Tropical semiring
-  \end{center}
-  \begin{center}
-     Natural Arctic semiring $\Leftrightarrow$ Real Arctic semiring
-  \end{center}
-  \begin{center}
-    Natural Arithmetic semiring $\Leftrightarrow$ Real Arithmetic semiring
-  \end{center}
+\begin{frame}{Implementation, Experimental Results and Analysis}
+  \alert{Implemented} in the tool LyonParallel
+        \begin{itemize}
+          \item supports natural and real semirings
+          \item searches with different semirings in parallel and cooperates between them
+          \item for edge-labeled directed graph rewriting
+        \end{itemize}
 
-  Tested on 13 examples from previous work:
+  \alert{Tested} on examples from previous work:
   \begin{itemize}
-    \item Acceleration with Tropical or Arctic semiring for most cases
-    \item 4 timeouts with Arithmetic semiring
+    \item \alert{Acceleration} with \alert{Real Tropical} or \alert{Arctic Semiring} for most cases
+    \item Many \alert{timeouts} (200 seconds) with \alert{Real Arithmetic Semiring} (double exponential complexity)
   \end{itemize}
 \end{frame}
 
@@ -1248,13 +1305,13 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
          \end{itemize}
     \item It works with \textcolor{red}{non-well-founded} semirings
     \item \textcolor{red}{Complexity reduced}
-    \item In practice: \textcolor{red}{acceleration} with Tropical or Arctic semiring
-    \item Tool: \textcolor{red}{LyonParallel} 
-        \begin{itemize}
-          \item supports well-founded and non-well-founded approaches
-          \item searches with different approaches in parallel and cooperates between them
-          \item for edge-labeled directed graph rewriting
-        \end{itemize}
+    \item In practice: \textcolor{red}{acceleration} only with Real Tropical or Arctic Semiring
+    % \item Tool: \textcolor{red}{LyonParallel} 
+    %     \begin{itemize}
+    %       \item supports well-founded and non-well-founded approaches
+    %       \item searches with different approaches in parallel and cooperates between them
+    %       \item for edge-labeled directed graph rewriting
+    %     \end{itemize}
   \end{itemize}
 \end{frame} 
 
