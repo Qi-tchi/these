@@ -1,0 +1,372 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 1 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Good morning everyone, thank you all for attending my presentation.
+
+My name is Qi. I am a PhD student at the University of Lyon, and my work focuses on the formal verification of distributed algorithms representable by injective DPO graph rewriting systems. My research aims to develop automated techniques to ensure termination of such systems.
+
+It's a great pleasure for me to have this opportunity to present my work in Chambery. 12 years ago, I came in France after reading Jean Jacques Rousseau's <<Confession>>, and my first book in logic << introduction à la logique>> is written by researcher of this laboratory, and I liked the chapter in automated reasoning. 
+
+
+
+1 07
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let's get started with a graph algorithm. 
+
+It takes a graph as input. 
+While possible, it chooses arbitrarily a subgraph, that is isomorphic to graph $L$, depicted at the bottom left of the slide.
+It deletes all edges in the subgraph, then adds two additional nodes and edges as shown in graph R at the bottom right of the slide.
+
+This algorithm terminates because at each iteration the number of nodes pointed by two edges labeled by "s" from two different nodes strictly decreases by 1. 
+
+By no automated techniques on termination of graph algorithm can prove its termination.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+I'm going to show that this algorithm can be modeled as an injective DPO graph rewriting system, and that the termination of the rewriting system can be automatically proven by the number of nodes pointed by two edges labeled by "s" from two different nodes strictly decreases by 1, thereby establishing the termination of the algorithm. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let's begin with the concept of pre-graphs, which are the building blocks for defining injective DPO graph rewriting systems.
+
+A pre-graph consists of 
+    - a finite set of nodes 
+    - a finite set of edges
+    - a source function which maps each edge to its starting node.
+    - a target function which maps each edge to its ending node.
+    - Finally, edges are labeled by a labeling function.
+
+On the slide, there's an example of a pregraph with
+    - two nodes : 1 and 3 (drawn as circle with the identifiers inside)
+    - three edges labeled by "a" and "b" (edge identifiers are omitted for simplicity)
+    - the source or target node of an edge that is not in the pre-graph will be draw as dashed circle.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Graphs are pre-graphs with no dangling edges. 
+
+On the slide, we show a graph and a pre-graph with the same edges, source, target and labeling functions.
+
+In the pre-graph, the dashed node 2 — it represents a missing node, making every edge from and to this node a dangling edge.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Two operations on pre-graphs will be useful :union and relative complement. 
+
+The union of two pre-graphs C and R is a pre-graph whose nodes and edges consist of all nodes and edges in C or R. Edge labels, as well as source and target functions, are preserved."
+
+The relative complement of R in H is a pre-graph. It is obtained by removing all elements of R from H. 
+
+In the example, when we remove R, the result pre-graph contains only nodes 6 and 7, thereby making all edges dangling.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let the graph rewriting rule depicted on the top of the slide be given. Consider the graph G which is depicted on the bottom left of the slide. 
+A graph rewriting step from $G$ can be defined by tranforming the subgraph $L'$ in the graph $G$ using the rule.
+
+To do so, we first construt an equivalent rule with the occurrence that we want to transform $L'$ as left-hand side graph. Then we construct the DPO diagram on the bottom of the slide where all morphisms are inclusions. Note that a rewriting step from $G$ by applying the rule on a occurrence if $C$ is a graph.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+On the top of the slide, the DPO diagram is from the previous slide, it defines a valid rewriting step.
+
+On the bottom, an invalid rewriting step is illustrated. It is invalid, the additional edge in graph $G$ from node 3 to node 6 becomes an dangling in $C'$ when we construct the left square of the diagram.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A rewriting sequence is a sequence of graphs such that every graph can be rewritten to the graph which follows the graph.
+
+As an example, consider the rule illustrated on the top of the slide. An rewriting sequence from a triangle is depicted in middle of the slide. 
+
+Since the first triangle and the last triangle are identical, this rule can be applied infinitely many times. We say that it is not terminating and define the termination of a rewriting rule as the impossibility of any infinite rewriting sequence.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We move on the present our termination technique for injective DPO graph rewriting systems.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+On the top of the slide, we show a DPO diagram which defines a rewriting step from graph $G$ to the graph $G$ using the rewriting rule on the top of the diagram. 
+
+We observe that
+    - the graph L can be considered as the union of a pregraph $L'$ in yellow and the graph $K$ in black. 
+    - the graph R can be considered as the union of a pregraph $R'$ in red and the graph $K$ in black.
+    - the graph C can be considered as the union of a pregraph $C'$ in blue and the graph $K$ in black.
+    - the graph G can be considered as the union of $L',K$ and $C'$
+    - the graph H can be considered as the union of R', K and C'.
+
+This interpretation of the DPO diagram is depicted on the bottom of the slide.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 17
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let a graph $X$ be given.
+
+We can categorize $X$-occurrences in $G$ and $H$ in two three cateogries
+    - an $X$-occurrence which is included in C is called a shared $X$-occurrence, because $C$ is both a part of graph $G$ and $H$, thereby the occurrence in $C$ appears in $G$ and $H$.
+    - an $X$-occurrence which is in $L$ or $R$ is called an explicit $X$-occurrences. This is because for an $X$-occurrence which is in $L$, we know explicitly that it is in $G$, and for a .....
+    - if an $X$-occurrence in $G$ is not in the previous categories, then it is the union of a subgraph of $L$ and a subgraph of $C$. And we say that it is a implicite $X$-occurrence. The same applies for occurrences in $G$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 19
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 21
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Consider our motivating example, consider the graph X with depicted on the slide. Since there is one $X$-occurrence in graph $L$, and 0 $X$-occurrence in graph $R$. To prove its termination, it suffices to show that for every rewriting step, there are more implicit $X$-occurrences in $G$ then in $H$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 22
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let's consider the rewriting step defined by the DPO diagram illustrated on the top of the slide, and consider the graph $H_1$ which is an implicit occurrence of chain aa in the graph $H$.
+
+This implicit occurrence can be decomposed in to a subgraph $C'$ of C, and a subgraph R' of R. The graph R' can be mapped into L while preserving the interface element in K'. Therefore, whenever an implicit occurrence of chain aa is form with the subgraph R'. There is an implicit occurrence of chain aa with its image in L, which is the subgraph with nodes 3 and 2 and the edge between, with the same subgraph in the contex shared by $G$ and $H$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 23
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+To formalize the intuition, we introduce the concept of $X$-non-increasing rule.
+
+intuitive, a rule is $X$-non-increasing rule, if all subgraph of which can form an implicit X-occurrence in some rewriting step can be mapped in to a subgraph of L which the same interface elements such that the four condition listed are satisfied.
+
+The first condition ensures that for every implicit $X$ occurrence in $H$, there is a corresponding implicit $X$ occurrence in $G$. 
+
+The other conditions ensure that two distinct implicit $X$ occurrences in $H$ have distinct implicit $X$ Occurrences in $G$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 24
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Consider our motivating example, there are two subgraphs of $R$ which may form an implicit occurrence of $X$ in the results graph of a rewriting step. It suffices to embed these graphs to $L$ by the indentity function, and all conditions are trivially satisfied. Therefore, the rewriting rule is a $X$-non-increasing rule.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 25
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We have proved a lemma which states that for a $X$-non increasing rule, there are more implicit $X$-occurrences in the host graph, then in the result graph.
+
+Our sufficient condition for termination of a graph rewriting is thus 
+    - the rule must be $X$-non-increasing, and
+    - there are strictly more $X$-occurrences in the lhs graph $L$ in the rhs graph of the rule
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 26
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Our motivating example, is a $X$-non-increasing rule and has strictly more $X$-occurrences in $L$ than in $R$. Therefore, by our theorem, it terminates.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 26
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+To sum up everything we've discussed:
+    firstly, we presented an algorithm whose termination cannot be proven by existing automated techniques; 
+    secondly, we show that it can be modelized as an injective DPO graph rewriting system;
+    third, we show that its termination can be formally proved by counting the occurrences of a specific graph in an arbitrary rewriting step.
+
+This machine checkable termination condition has been implemented in a software called LyonParallel with some other advanced automated techniques.
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let's start with the first part of the presentation.
+We firstly give an informal definition of graphs that we consider, then we present two examples of graph algorithms: the first one shows what is the termination property of a graph algorithm, and the second one is our motivating running example which gives also some intuition about the Subgraph Counting technique.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+They are many kinds of graphs. The graphs that we consider are directed, finite, multi-graphs with edge labels. 
+
+A graph has a finite set of nodes and a finite set of edges. Each edge has a source and a target node, and is labeled.
+
+An example of a graph is shown on the slide. Nodes are represented by circles and edges are represented by arrows from source nodes to target nodes. Edges are labeled by letters "a" or "b". 
+Nodes have natural numbers as identifiers
+
+Quick remark: an undirected graph is an instance of a directed graph by representing each edge as two directed edges in opposite directions. 
+Labels on nodes can be represented by labeled loops. These facts will be used in the following example.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    Let's illustrate the termination property of a graph algorithm using the algorithm which takes a graph as input and
+    , while possible, chooses an edge labeled by 0
+    with one node labeled by "A" and the other labeled by "N", and relabels the edge by 1 and the nodes by "A".
+
+    Now, we apply this algorithm to the graph on the slide.
+    There are two edges satisfying the condition, one is arbitrarily chosen and relabeled. Again, there are two edges satisfying the condition, one is arbitrarily chosen and relabeled. The algorithm repreats this process until there are no edges satisfying the condition.
+
+    We say that this algorithm is terminating because it cannot be applied indefinitely because the number of edges labeled by 0 is strictly decreasing and the input is a finite graph.
+
+    A spanning tree can be obtained with edges labeled by 1.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%page 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Consider a graph algorithm whose termination cannot be proved by edge counting.
+ It, while possible, replaces a chain \tikz[baseline=-0.5ex]{ 
+                        \node (x) at (0,0) {$\bullet$};  
+                        \node (y) at (1,0) {$\bullet$};
+                        \node (z) at (2,0) {$\bullet$};
+                        \draw[->] (x) -- node[midway,above] {a} (y) ;
+                        \draw[->] (y) -- node[midway,above] {a} (z) ;
+                    } whose middle node with no other incident edges with a chain \tikz[baseline=-0.5ex]{ 
+                        \node (x) at (0,0) {$\bullet$};  
+                        \node (y) at (1,0) {$\bullet$};
+                        \node (z) at (2,0) {$\bullet$};
+                        \node (w) at (3,0) {$\bullet$};
+                        \draw[->] (x) -- node[midway,above] {a} (y) ;
+                        \draw[->] (y) -- node[midway,above] {b} (z) ;
+                        \draw[->] (z) -- node[midway,above] {a} (w) ;
+                    }, keeping the endpoints fixed.
+
+    On the slide, we show a graph $G$ with a chain "aa", in blue, whose middle node has no other incident edges. $H$ is the result of replacing the chain "aa" with a chain "aba" in $G$ keeping the endpoints fixed.
+
+        The termination of the algorithm can not be proved by edge counting, because, for every label, the number of edges labeled by the label is increasing.
+
+        For a specific graph and a transformation step, we call an occurrence explicit if it is present in the subgraph which is replaced or in the subgraph which replaces, and implicit otherwise. For example, in the graph $G$, the occurrence of chain "aa" given by nodes $1-3-2$ is explicit, while the occurrence of chain "aa" given by nodes $7-1-3$ is implicit. In the graph $H$, no occurrence of chain "aa" that is explicit, while the occurrence of chain "aa" given by nodes $7-1-4$ is implicit.
+        
+        For every transformation step, there are more explicit occurrences of chain "aa" in the host graph than in the result graph. 
+
+        It suffices to show that there are more explicit occurrences in the host graph than in the result graph for every rewriting step using this rule to conclude that the algorithm terminates. But, how to achieve this goal via a rule analysis ?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    In order to establish a sufficient condition for every transformation step of the algorithm to have more explicit occurrences in the host graph than in the result graph, we model the algorithm as an injective DPO rewriting system.
+    
+    Injective DPO rewriting provides an intuitive and formal framework to model graph algorithms. 
+
+    In this part of the presentation, we introduce firstly some graph operations and the concept of graph homomorphisms. Then we introduce the concepts of pushout and pushout complement. Based on these concepts, we introduce the injective DPO graph rewriting. Finally, we show what is the termination property in the injective DPO graph rewriting.
+
+    We are going to proceed as follows: we first recall some graph operations and the concept of graph homomorphisms. Then we introduce the concepts of pushout and pushout complement. Based on these concepts, we introduce the injective double pushout graph rewriting. Finally, we show what is the termination property in the injective DPO graph rewriting.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    The union of two graphs is the graph whose nodes and edges are the union of the nodes and edges of the two graphs. 
+        
+    Similarly, the intersection of two graphs is the graph whose nodes and edges are the intersection of the nodes and edges of the two graphs.
+        
+    The relative complement of a graph $R$ in a graph $H$ is the graph whose nodes and edges are the nodes and edges of $H$ that are not in $R$.
+    Remark that the relative complement is not always a graph, as illustrated on the slide.
+
+
+          A homomorphism of graphs is a mapping between nodes and edges of two graphs which preserves the source and target nodes of each edge and the label of each edge.
+        To visualize graph homomorphisms, we use the visual representation from the work of Endrullis and Overbeek.
+        As shown on the slide, we attribute natural numbers to nodes of the domain, the nodes of the codomain are marked with natural numbers of all the nodes of the domain that are mapped to them. 
+        Of course, natural numbers are well chosen, so that the homomorphism is uniquely determined.
+        So in the example on the slide, both the node 3 and 4 are mapped to the middle node of the codomain, and the left and right most nodes of domain are mapped to the left and right most nodes of the codomain respectively. We do the same for edges, but it is not needed in this presentation.
+
+        To mark the injectivity of the homomorphism, we use the notation the arrow with a tail.
+
+        Remark that all graphs mentioned in this presentation are up to isomorphism. Which is logic because what is important is the structure of the graph and labels which encode information.
+
+
+
+
+
+         On the slide, we illustrate the pushout of a pair of inclusion functions $\alpha$ and $\beta$ with common domain $K$. Their pushout (unique modulo isomorphism) is the pair of inclusion functions $\alpha'$ and $\beta'$ with common codomain $G$, which is the union of $L$ and $C$.
+
+         In general, if we have pair of injective homomorphisms with a common domain, we can always transform them into a pair of inclusion functions such that their codomains' intersection is their common domain. In this way their pushout can be computed as the example on the slide. The result can be transformed to be a pushout of the original pair of injective homomorphisms.
+
+
+
+
+
+          On the slide, we illustrate the pushout complement of a pair of inclusion functions $\alpha$ and $\beta'$ such that the domain of the latter is the comdomain of the former. Their pushout complement is the pair of inclusion functions $\beta$ and $\alpha'$ with common codomain $C$, which is the union of $K$ and the complement of $L$ in $G$.
+
+        In general, if we have a pair of injective homomorphisms $\alpha$ and $\beta$ such that $\alpha$ is from $K$ to $L$ and $\beta'$ is from $L$ to $G$. We can first transform them into a pair of inclusion functions.
+       
+        In thisway, their pushout complement can be computed as the example on the slide. The result can be transformed to be a pushout complement of the original pair of injective homomorphisms.
+
+
+
+
+
+         Consider the rewriting rule depicted on the top of the Diagram.
+        We can rewrite the graph \( G \) by applying the rewriting rule to the graph \(H\) because the double pushout diagram on the top of the slide can be constructed and \(C\) is a well defined graph.
+
+        However, we cannot rewrite the graph \( G' \) to \(H'\) even though the double pushout diagram can be constructed. The reason is that \(C'\) is not a well defined graph because of the dangling edge in red.
+
+
+
+
+         We say that a rewriting rule is non-terminating if it can be applied infinitely many times to a graph.
+
+            On the slide, we show a non-terminating rewriting rule and a rewriting circle from a graph. 
+
+
+
+            In this section, we first present the main challenges of the subgraph counting method, followed by an analysis of a rewriting step using our running rewriting rule, and finally we present a sufficient condition for the termination of a DPO graph rewriting rule.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%page 16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+            Let's consider the rewriting rule depicted on the top of the slide and two rewriting step with this rule on the middle and bottom of the slide.
+        In the first rewriting step, we can see that there are more occurrences of chain ab in the host graph $G$ than in the result graph $H$: one occurrence in $G$ and two occurrences in $H$.
+        In the second rewriting step, we can see that there are fewer occurrences of chain ab in the host graph $G'$ than in the result graph $H'$: one occurrence in $G'$ and 0 occurrences in $H'$.
+        This shows that the change of the number of occurrences of a subgraph in the host graph is unpredictable in general.
+        Can we find a sufficient condition that make the change of the number of occurrences of a subgraph in a rewriting step using a rule predictable?
+
+
+
+        Let's analyse a rewriting step using our running rewriting rule.
+
+
+        We observe that in the result $H$ there are three occurrences of chain $aa$ that overlap with the right-hand-side graph of the rule $R$ and the context graph $C$ of the rewriting step.
+
+       These three occurrences are depicted and decomposed on the right of the slide. For example, the first occurrence of chain $aa$ in $H$ is given by nodes $5-2-6$ and is composed as a subchain given by nodes $5-2$ in the right-hand-side graph $R$ and a subchain given by nodes $2-6$ in the context graph $C$.
+
+       The same decomposition can be done for the other two occurrences of chain $aa$ in $H$. 
+
+
+        For every occurrence of chain aa, its overlapping with the right-hand-side graph $R$ can be embedded into the left-hand-side graph $L$ with interface elements preserved.
+
+
+
+        distinct $R'_i$ have distinct images in $L$
+
+
+
+        for every implicitly occurrence $H_i$, there is an implicitly occurrences in $G_i$
+
+
+    distinct implicit occurrences $H_i, H_j$ correspond to distinct implicit occurrences in $G_i, G_j$
+
+
+    we deduce a sufficient condition assuring that the number of implicit occurrences in $G$ is greater than in $H$
+
+
+        If there are more implicit occurrences in $G$ than in $H$, it suffices to show that the number of explicit occurrences in $G$ is strictly greater than in $H$ to conclude that the rule can not be applied indefinitely.
+
+
+
+         Finally, we can conclude that our running example terminates, because for any rewriting step using this rule, the number of implicit occurrences in the host is greater than in the result graph. 
+    And there are strictly more explicit occurrences in \( L \) than in \( R \): one occurrence in $L$ and $0$ in $R$.
+
+
+    This example is also terminating by our technique.
+        to do
+
+
+
+         To summarize, we showed that we can prove the termination of a graph algorithm by counting the number of a specific subgraphs in the graph before and after the application of an operation which transforms the graph. This is done by modeling the algorithm as a graph rewriting rule and check if a sufficient condition is satisfied. This sufficient condition assures that there are more implicit occurrences of the subgraph in the host graph than in the result graph for every rewriting step using the rule. Thus, if the condition is satisfied, it suffices to count the numebr of occurrences of the specific subgraph in the left-hand side and the right-hand side graph of the rule. A more generalized version of this method for systems with multiples rules has been accepted for publication in the International Conference on Graph Transformation (ICGT) 2025. The tool LyonParallel is available.
