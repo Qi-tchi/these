@@ -10,7 +10,7 @@
 backend=biber,
 style=alphabetic,
 ]{biblatex} 
-\addbibresource{main.bib}
+\addbibresource{icgt.bib}
 \usepackage{hyperref, xcolor, cmbright,diagbox,colortbl,tikz,graphicx,algorithm2e,cancel,verbatim, graphicx,
 listings,float,amsmath,amssymb,array,subfiles,bussproofs,
 rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
@@ -3403,12 +3403,15 @@ Finite edge-labeled directed multigraphs
 \end{frame}
 
 \begin{frame}{Main Results}
+    Let $\varphi$ be a $X$-non-increasing rule.
     \begin{lemma}[More $X$-occurrences before rewriting]
-        If a rule $\varphi$ is $X$-non-increasing, then, for all $G \Rightarrow_\varphi H$, there are more implicit $X$-occurrences in $G$ than in $H$.
+        % If a rule $\varphi$ is $X$-non-increasing, then, 
+        For all $G \Rightarrow_\varphi H$, there are more implicit $X$-occurrences in $G$ than in $H$.
     \end{lemma}
          
     \begin{theorem}[Sufficient Termination Condition]
-        If a rule $\varphi$ is $X$-non-increasing, then $\varphi$ is terminating if there are strictly more explicit $X$-occurrences in $L$ than in $R$.
+        % If a rule $\varphi$ is $X$-non-increasing, then 
+        $\varphi$ is terminating if there are strictly more explicit $X$-occurrences in $L$ than in $R$.
     \end{theorem}
 
 \end{frame}
@@ -3458,13 +3461,6 @@ Finite edge-labeled directed multigraphs
         }
         \item $X$-non-increasing rule
         \item Strictly more explicit $X$-occurrences in $L$ than in $R$: $1 \mathop{>} 0$.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Relative work:todo}
-    \begin{itemize}
-        \item Type graph method Endrullis
-        \item Subgraph method for PBPO+
     \end{itemize}
 \end{frame}
 
@@ -3703,6 +3699,48 @@ Finite edge-labeled directed multigraphs
 %     \end{itemize}
 % \end{frame}
 
+
+\begin{frame}{Relative work:todo}
+    \begin{itemize}
+    \item Proving termination of PBPO+ rewriting using weighted subgraph counting~\cite{overbeek2024termination_lmcs} 
+      \begin{itemize}
+        \item more general
+        %  than our method
+        \item cannot prove termination of the motivating rule
+      \end{itemize}
+        \item Proving termination of rewriting systems using weighted type graphs
+        % over ordered semirings
+        ~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,qiu2025termination_nwf_v2_acceptedgcm}
+            %  \begin{itemize}
+            %     \item using weighted type graphs over ordered semirings
+            %     \item initialized \cite{zantema2014termination} for cycle rewriting 
+            %     \item generalized \cite{bruggink2014termination} for DPO rewriting with injective matches and rules on edge-labeled directed multigraphs
+            %     \item generalized \cite{bruggink2015proving} for DPO rewriting on edge-labeled directed multigraphs
+            %     \item generalized \cite{endrullis2024generalized_arxiv_v2,endrullis2024generalized_arxiv_v3} for more categories and enhanced for systems with injective matches
+            %     \item extended \cite{qiu2025termination_nwf_v2_acceptedgcm} to non-well-founded semirings for DPO rewriting on edge-labeled directed multigraphs
+            %  \end{itemize} 
+            \begin{itemize}
+                % \item using weighted type graphs over ordered semirings
+                \item more general than our method
+                % DPO rewriting on many categories
+                % \item 
+                \item cannot prove termination of the motivating rule
+             \end{itemize} 
+        \item Forward Closure Method~\cite{plump1995ontermination}
+             \begin{itemize}
+                % \item for DPO hypergraph rewriting with left-injective rules and injective matches
+                \item proves termination of the motivating rule
+                \item difficult to apply: necessary and sufficient termination condition
+             \end{itemize}
+        \item Modular Termination Method~\cite{plump2018modular}
+             \begin{itemize}
+                \item termination of the union of two rule sets
+                % \item for DPO hypergraph rewriting with left-injective rules and injective matches
+                \item our method complements this method
+             \end{itemize}
+    \end{itemize}
+\end{frame}
+
 \section{Conclusion}
 \begin{frame}{Conclusion}
 
@@ -3772,8 +3810,8 @@ Finite edge-labeled directed multigraphs
 % by counting $L$-occurrences which is not subgraph of $R$-occurrences.
 % \end{frame}
 
-\begin{frame}{References}
-    TO DO
+\begin{frame}[allowframebreaks]{References}
+    \printbibliography[heading=none]
 \end{frame}
 
 \end{document}
