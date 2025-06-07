@@ -18,11 +18,11 @@
       (texte.north east) -- (texte.south west); % Ligne diagonale 2
   \end{tikzpicture}%
 }
-\usepackage[ 
+\usepackage[  
 backend=biber,
 style=alphabetic,
 ]{biblatex}
-\addbibresource{main.bib}
+\addbibresource{../../bib/bib.bib}
 \usepackage{hyperref, xcolor, cmbright,diagbox,colortbl,tikz,graphicx,algorithm2e,cancel,verbatim, graphicx,
 listings,float,amsmath,amssymb,array,subfiles,bussproofs,
 rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
@@ -57,15 +57,13 @@ over Non-well-founded Semirings}
 \begin{document}
 % \date{\today}
 \date{}
-
+\author{Qi QIU}
 \institute[VFU] % (optional)
 {
-    Qi QIU \\
 	Supervisor: Xavier URBAIN\\
-	Universite Claude Bernard Lyon 1, CNRS, INSA Lyon,\\ LIRIS, UMR5205, 69622 Villeurbanne, France \\
-    Univ. Grenoble Alpes, CNRS, Grenoble INP,\\
-               LIG, 38000 Grenoble, France\\
-	% Projet SAPPORO
+	Universite Claude Bernard Lyon 1, France \\
+    Univ. Grenoble Alpes, France\\
+	Projet SAPPORO
 }
 
 \maketitle
@@ -456,7 +454,11 @@ over Non-well-founded Semirings}
                   \item with or without multiplication
                 \end{itemize} 
           % \item Complexity : $O(2^{\alert{2}k^2|\Sigma|})$ or \alert{un}decidable
-          \item Complexity : $O(2^{2k^2|\Sigma|})$ or undecidable
+          \item Complexity 
+              \begin{itemize}
+                \item $O(2^{2k^2|\Sigma|})$ if without multiplication
+                \item undecidable otherwise
+              \end{itemize}
       \end{itemize}
 
 
@@ -1161,6 +1163,10 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
       Therefore, $w_T(G) - w_T(H) \geq 2 - 1 = 1$ for every $G \Rightarrow_\varphi H$
 \end{frame}   
 
+\begin{frame}
+  detail pour t k  1 1 
+\end{frame}
+
 \begin{frame}{Example : Termination using Weighted Type Graph over Real Arithmetic Semiring}
   % DPO Rewriting Rule on Edge-labeled Directed Graphs: 
   Rule $\varphi$
@@ -1237,18 +1243,15 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
     Natural Arithmetic Semiring $\Leftrightarrow$ Real Arithmetic Semiring
   \end{center}
 
-  natural semirings: semirings on the left,
-  real semirings: semirings on the right.
+  Natural semirings: semirings on the left
+
+  Real semirings: semirings on the right
 \end{frame}
 
 \begin{frame}{Searching Weighted Type Graphs over the natural vs. real semirings}
-    % Searching a weighted finite graph  with 
-    \begin{itemize}
-      \item $k$ nodes
-      \item no parallel edges of the same label from $\Sigma$
-      \item weighted edges
-    \end{itemize} 
-  In available tools
+    with $k$ nodes and no parallel edges of the same label from $\Sigma$
+
+  Procedure:
 
   \begin{enumerate}
     \item Decide if $s \overset{l}{\to} t$ exists for each pair of nodes \( s, t\) and label \( l\)
@@ -1270,12 +1273,14 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
       \begin{itemize}
         \item $k^2|\Sigma|$ binary variables
         \item $k^2|\Sigma|$ \crossout[red]{integer} real variables
+        \item with or without multiplication
       \end{itemize}
     
     Complexity:
       \begin{itemize}
-        \item \crossout[red]{$O(2^{2k^2|\Sigma|})$} $O(2^{k^2|\Sigma|})$, or 
-        \item \crossout[red]{undecidable} decidable (but double exponential)
+        \item \crossout[red]{$O(2^{2k^2|\Sigma|})$} $O(2^{k^2|\Sigma|})$ if no multiplication,
+         or 
+        \item \crossout[red]{undecidable} decidable (but double exponential) otherwise
       \end{itemize}
       % \end{itemize}
 \end{frame}
@@ -1322,6 +1327,10 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
     \item Graph visualization from Endrullis \& Overbeek (2024).
     \item All concepts are from or adapted from Endrullis \& Overbeek (2024).
   \end{itemize}
+\end{frame}
+
+\begin{frame}{References}
+  \printbibliography
 \end{frame}
 
 \end{document} 
