@@ -184,10 +184,10 @@ over Non-well-founded Semirings}
 \end{adjustwidth}
 \end{frame} 
 
-\begin{frame}{Termination}
+\begin{frame}{Termination~\cite{plump2018modular}}
   \begin{itemize}
-    \item $\mathcal{R}$ : set of DPO graph transformation rules
-    \item Impossible to transform any graph $G_0$ indefinitely
+    \item $\mathcal{R}$ : set of DPO graph rewriting rules
+    \item impossibility of transforming any graph $G_0$ indefinitely
       \begin{center}
         $G_0 \Rightarrow_\mathcal{R} G_1 \Rightarrow_\mathcal{R} G_2 \Rightarrow_\mathcal{R} \cdots$
       \end{center}
@@ -196,7 +196,7 @@ over Non-well-founded Semirings}
               \textcolor{blue}{apply rules as long as possible}
           \end{center}
           returns a result on all inputs
-    \item Corresponds to program termination:
+    \item Corresponds to program termination in conventional programming languages:
           \begin{center}
             \textcolor{blue}{program halts on all inputs}
           \end{center}
@@ -205,10 +205,10 @@ over Non-well-founded Semirings}
 \end{frame}
 
 \begin{frame}{One-rule examples}
-  Rule $\alpha$:  
-  \begin{center}  
-                \resizebox{0.7\textwidth}{!}{
-                \begin{tikzpicture}
+    Rule $a$ : 
+%   \begin{center}  
+\resizebox{0.85\textwidth}{!}{
+                \begin{tikzpicture}[baseline=-3ex]
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
@@ -238,12 +238,14 @@ over Non-well-founded Semirings}
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
                 \end{tikzpicture}
                 }
-            \end{center}  
+            % \end{center}  
 
 \textcolor{blue}{Looping}:
         \begin{center}
-          \resizebox{0.7\textwidth}{!}{
-            \tikz[baseline=-0.5ex]{ 
+          \resizebox{0.85\textwidth}{!}{
+            \tikz
+            [baseline=-0.5ex]
+            { 
                 \node (x) at (0,0) {$\bullet$};  
                 \node (y) at (1,0) {$\bullet$};
                 \node (z) at (0.5,0.86) {$\bullet$};
@@ -271,7 +273,7 @@ over Non-well-founded Semirings}
             }
             $\Rightarrow$ 
             \tikz[baseline=-0.5ex]{ 
-                \node (x) at (0,0) {$\bullet$};  
+                \node (x) at (0,0) {$\bullet$};   
                 \node (y) at (1,0) {$\bullet$};
                 \node (z) at (0.5,0.86) {$\bullet$};
                 \draw[->,red] (x) -- node[midway,below] {a} (y) ;
@@ -281,10 +283,10 @@ over Non-well-founded Semirings}
           }
         \end{center}
 
-          Rule $\beta$:  
-  \begin{center}  
-                \resizebox{0.7\textwidth}{!}{
-                \begin{tikzpicture}
+     Rule $b$:
+%   \begin{center}  
+                \resizebox{0.85\textwidth}{!}{ 
+                \begin{tikzpicture}[baseline=-3ex]
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
@@ -312,11 +314,12 @@ over Non-well-founded Semirings}
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
                 \end{tikzpicture}
                 }
-            \end{center}  
+            % \end{center}  
 
+\vspace{2mm}
 \textcolor{blue}{Terminating}: the number of edges labeled by \enquote{a} strictly decreases.
         \begin{center}
-          \resizebox{0.35\textwidth}{!}{
+          \resizebox{0.4\textwidth}{!}{
             \tikz[baseline=-0.5ex]{ 
                 \node (x) at (0,0) {$\bullet$};  
                 \node (y) at (1,0) {$\bullet$};
@@ -394,7 +397,9 @@ over Non-well-founded Semirings}
 %   for each rewriting step $G \Rightarrow H$, $w(G) - w(H) > 1$.
 % \end{frame}
 
-\begin{frame}{Type graph method for proving termination of DPO rewriting systems on edge-labeled directed graphs}
+\begin{frame}{Type Graph Method: Using Weighted Graphs to Ensure Termination
+  % for proving termination of DPO rewriting systems on edge-labeled directed graphs
+  }
     % Parameter : finite graph \( T \) with weights on edges
 
     \begin{itemize}
@@ -429,13 +434,15 @@ over Non-well-founded Semirings}
     % Undecidable in general
 
 \end{frame}
-\begin{frame}{Type graph method for proving termination of DPO rewriting systems on edge-labeled directed graphs}
+\begin{frame}{Type Graph Search in Practice and its Complexity
+  %  for proving termination of DPO rewriting systems on edge-labeled directed graphs
+   }
 
     In practice
 
-      Searching a graph \( T \) with weighted edges
+      Searching a type graph \( T \) with
       \begin{itemize}
-        \item $k$ nodes
+        \item $k \in \mathbb{N}$ nodes
         \item no parallel edges of the same label from $\Sigma$
       \end{itemize} 
       
@@ -1311,12 +1318,14 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
     \item It works with \textcolor{red}{non-well-founded} semirings
     \item \textcolor{red}{Complexity reduced}
     \item In practice: \textcolor{red}{acceleration} only with Real Tropical or Arctic Semiring
-    % \item Tool: \textcolor{red}{LyonParallel} 
-    %     \begin{itemize}
-    %       \item supports well-founded and non-well-founded approaches
-    %       \item searches with different approaches in parallel and cooperates between them
-    %       \item for edge-labeled directed graph rewriting
-    %     \end{itemize}
+    \item Tool: LyonParallel
+        \begin{itemize}
+          % \item supports well-founded and non-well-founded approaches
+          % \item searches with different approaches in parallel and cooperates between them
+          % \item for edge-labeled directed graph rewriting
+          \item MIT License
+          \item \url{github.com/Qi-tchi/LyonParallel/tree/icgt2025}
+        \end{itemize}
   \end{itemize}
 \end{frame} 
 
