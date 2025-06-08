@@ -440,21 +440,21 @@ over Non-well-founded Semirings}
 
     In practice
 
-      Searching a type graph \( T \) with
+      Searching a weighted type graph \( T \) with
       \begin{itemize}
         \item $k \in \mathbb{N}$ nodes
         \item no parallel edges of the same label from $\Sigma$
       \end{itemize} 
       
-      Existing available tools : 
+      Existing available tools~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}: 
      % Interpretation method
     % Rule : $\varphi$
       \begin{itemize}
           \item weights in $\mathbb{N}$ 
           % \item a graph $G$ is interpreted as $w_T(G) \in \mathbb{N} \cup \{\infty\}$ 
           % \item $w_T(G) \in \mathbb{N}$ for all $G \Rightarrow H$ 
-          \item terminating if $w_T(G) - w_T(H) > 0$ for all $G \Rightarrow H$
-          \item solving an integer program 
+          % \item terminating if $w_T(G) - w_T(H) > 0$ for all $G \Rightarrow H$
+          \item solve an integer program 
                 \begin{itemize}
                   \item $k^2|\Sigma|$ binary variables
                   \item $k^2|\Sigma|$ integer variables
@@ -506,7 +506,7 @@ over Non-well-founded Semirings}
 \section{Type Graph Method}
 
 
-\begin{frame}{Weighted Type Graph over Real Arithmetic Semiring}
+\begin{frame}{Running Example}
     % \begin{itemize}
     %     \item $S$ : set 
     %     \item $\otimes$, $\oplus$ : binary operations on $S$
@@ -517,15 +517,57 @@ over Non-well-founded Semirings}
     % \end{itemize}
 
     % Natural Arithmetic Semiring: $(\mathbb{N}, +, *, 0, 1, <, \leq)$ 
+  Rule $\alpha$:
+\begin{center} 
+      \resizebox{0.9\textwidth}{!}{
+      \begin{tikzpicture}
+          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \draw[->] (l1) -- (l3) node[midway,above] {a};
+              \draw[->] (l3) -- (l2) node[midway,above] {a};
+          }     
+          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+              % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+              % \draw[->] (l1) -- (l3) node[midway,above] {a};
+              % \draw[->] (l3) -- (l2) node[midway,above] {a};
+          }    
+          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \draw[->] (l1) -- (l3) node[midway,above] {a};
+              \draw[->] (l3) -- (l4) node[midway,above] {b};
+              \draw[->] (l4) -- (l2) node[midway,above] {a};
+          }    
+          \node () at (37mm,-8mm) {$\leftarrowtail$};
+          \node () at (67mm,-8mm) {$\rightarrowtail$};
+          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+      \end{tikzpicture}
+      }
+  \end{center}
 
-    Real Arithmetic Semiring $\mathcal{S} = (\mathbb{R}^+, +, *, 0, 1, <, \leq)$:
-    \begin{itemize}
-      \item $\mathbb{R}^+$ : positive real numbers
-      \item the canonical addition $+$ and multiplication $*$
-      \item the canonical orders $<, \leq$
-    \end{itemize}
+    % Real Arithmetic Semiring $\mathcal{S} = (\mathbb{R}^+, +, *, 0, 1, <, \leq)$:
+    % \begin{itemize}
+    %   \item $\mathbb{R}^+$ : positive real numbers
+    %   \item the usual addition $+$ and multiplication $*$
+    %   \item the usual orders $<, \leq$
+    % \end{itemize}
 
-   Weighted Type Graph $T$ over $\mathcal{S}$:
+   Weighted type graph $T$ over positive real numbers:
+    % \begin{itemize}
+    %   \item finite directed graph
+    %   \item edge-labeled
+    %   \item weights are positive real numbers
+    %   \item weights are superscripts
+    % \end{itemize}
    \begin{center}
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
@@ -538,12 +580,29 @@ over Non-well-founded Semirings}
             }
         \end{tikzpicture}
     \end{center}
+
+    We are going to show 
+      \begin{itemize}
+        \item how to use $T$ to prove termination of $\alpha$, and
+        \item the reduced complexity by using real numbers instead of integers.
+      \end{itemize}
 \end{frame}
 
 \begin{frame}{Weight $w_T(h)$ of Morphism $h : L \to T$}
- $w_T(h)$ : the product of the weights of the edges of $\opn{Im}(h)$
- \newline 
- \newline
+
+  Weight function $w : \opn{Edges}(T) \to \mathbb{R}^+$ 
+
+  The weight $ w_T(h) $ is defined as:  
+$$
+w_T(h) \overset{def}{=} \prod_{e \in \opn{Edges}(L)} w(h(e)),
+$$  
+the product of the weights (in $ T $) of the images of the edges of $ L $ under the morphism $ h $.
+
+  % $w_T(h)$: the product of the weights of the edges in \( \opn{Im}(h) \)
+
+  % Example:
+
+
  Example:
     
     \resizebox{0.6\textwidth}{!}{
@@ -574,7 +633,8 @@ over Non-well-founded Semirings}
 \end{frame}
  
 
-\begin{frame}{Weight $w_T$ of Graph $L$}
+\begin{frame}{Weight $w_T$ of Graph $L$} 
+  
  $w_T(L)$: the sum of the weights $w_T(h)$ of all morphisms \( h : L \to T \)
 
 Example : 
@@ -791,13 +851,13 @@ Example :
 
 
 \begin{frame}{Not every graph can be a weighted type graph}
-  $\mathcal{R}$ : rewriting system 
+  $\mathcal{R}$ : a set of rewriting rules  
 
   $T$ : graph  
 
   There must be a morphism $\alert{c} : L \to T$ such that
 
-  For every rewriting step $G \Rightarrow_\mathcal{R} H$, defined by
+  For every rewriting step $G \Rightarrow_\mathcal{R} H$:
 
       \begin{center}
         \begin{tikzpicture}[rotate=90]
@@ -807,9 +867,9 @@ Example :
           \node (G) [below of=L] {$G$};
           \node (C) [below of=I] {$C$};
           \node (H) [below of=R] {$H$};
-          \node (T) [left=of $(L)!0.5!(G)$] {$T$};
-          \draw [->] (L) to  node [label, above,red] {$c$}  (T);
-          \draw [->] (G) to  node [label, below,red] {$\alpha$} (T);
+          % \node (T) [left=of $(L)!0.5!(G)$] {$T$};
+          % \draw [->] (L) to  node [label, above,red] {$c$}  (T);
+          % \draw [->] (G) to  node [label, below,red] {$a$} (T);
           \draw [->] (I) to node [label, above] {$l$} (L);
           \draw [->] (I) to node [label,above] {$r$} (R);
           \draw [->] (L) to node [label, right,red] {$m$} (G);
@@ -819,9 +879,20 @@ Example :
           \draw [->] (C) to (H);
         \end{tikzpicture}
       \end{center}
-  there is a morphism $\alert{\alpha} : G \to T$ such that \alert{$c = \alpha \circ m$}.
+  there is a morphism $\alert{a} : G \to T$ such that \alert{$c = a \circ m$}:
+   \begin{center}
+        \begin{tikzpicture}[rotate=90]
+          \node (I) {}; 
+          \node (L) [left of=I] {$L$};
+          \node (G) [below of=L] {$G$};
+          \node (T) [left=of $(L)!0.5!(G)$] {$T$};
+          \draw [->] (L) to  node [label, above,red] {$c$}  (T);
+          \draw [->] (G) to  node [label, below,red] {$a$} (T);
+          \draw [->] (L) to node [label, right,red] {$m$} (G);
+        \end{tikzpicture}
+      \end{center}
 
-  To \alert{guarantee}: $w(G)$ is defined and $w(G) \geq 0$, for all $G \Rightarrow H$
+  To guarantee: $w_T(G)$ is defined and $w_T(G) \geq 0$, for all $G \Rightarrow H$
 \end{frame}
 
 \begin{frame}{Example}
@@ -946,7 +1017,7 @@ Example :
               \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
               \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
           }
-          \node () at (-10mm,-27mm) {$\textcolor{red}{\alpha} \nwarrow$};
+          \node () at (-10mm,-27mm) {$\textcolor{red}{a} \nwarrow$};
           \node () at (15mm,-18mm) {\( \textcolor{red}{m}\ \downarrowtail \)};
           \node () at (-10mm,-10mm) {\(\textcolor{red}{c}\ \swarrow \)};
       \end{tikzpicture}
@@ -994,7 +1065,7 @@ Example :
 
    \begin{enumerate}
       \item there exists $\delta \in \mathbb{R}$, $\delta > 0$
-      \item $w_T(G) - w_T(H) > \delta$ for every rewriting step $G \Rightarrow_\varphi H$
+      \item $w_T(G) - w_T(H) \geq \delta$ for every rewriting step $G \Rightarrow_\varphi H$
    \end{enumerate} 
   \end{proposition}
 
@@ -1046,7 +1117,7 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
 %   \begin{center}
 %     $w_T(G) - w_T(H) > \delta$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi$
 %   \end{center}
-  by [Endrullis \& Overbeek 24b, Lemma 5.13]
+  by \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}.
   % \resizebox{0.9\textwidth}{!}{
   %   \begin{flalign*}
   %     w_T(G) 
@@ -1159,26 +1230,194 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
             \end{tikzpicture}
             }
       \end{center}
+\end{frame}   
+
+\begin{frame}{Detail for $t_K^{11}$}
+  \begin{center}
+        \resizebox{0.49\textwidth}{!}{
+        \begin{tikzpicture}
+          \graphbox{\( L \)}{-50mm}{0mm}{40mm}{40mm}{2mm}{-6mm}{
+            \coordinate (o) at (0mm,-10mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \draw[] (l1) -- (l3) node[midway,above] {a};
+            \draw[] (l3) -- (l2) node[midway,above] {a};
+        } 
+            \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
+                \node[draw,circle] (1) at (0,0) {$1\ 2$};
+                \node[draw,circle] (2) at (2,0) {3};
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
+                \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
+                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+            }
+            \node () at (-5mm,-15mm) {$\overset{h_{11}^1}{\to}$};
+        \end{tikzpicture}
+        }
+        \resizebox{0.49\textwidth}{!}{
+            \begin{tikzpicture}
+              \graphbox{\(L\)}{-50mm}{0mm}{40mm}{40mm}{2mm}{-10mm}{
+                \coordinate (o) at (0mm,-10mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[] (l1) -- (l3) node[midway,above] {a};
+                \draw[] (l3) -- (l2) node[midway,above] {a};
+            } 
+                \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-20mm}{
+                    \node[draw,circle] (1) at (0,0) {$1\ 2\ 3$};
+                    \node[draw,circle] (2) at (2,0) {};
+                    \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
+                    \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;(1)   ;
+                }
+                \node () at (-5mm,-15mm) {$\overset{h_{11}^2}{\to}$};
+            \end{tikzpicture}
+            }
+      \end{center}
+We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
+        =(1.0 * 1.0) + (1.0 * 1.0)
+        =2.0$
+
+       \begin{center}
+        \resizebox{0.49\textwidth}{!}{
+        \begin{tikzpicture}
+          \graphbox{\( R \)}{-55mm}{0mm}{45mm}{44mm}{1mm}{-22mm}{
+            \coordinate (o) at (-5mm,-3mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+            \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+            \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+            \draw[->] (l1) -- (l3) node[midway,above] {a};
+            \draw[->] (l3) -- (l4) node[midway,above] {b};
+            \draw[->] (l4) -- (l2) node[midway,above] {a};
+        } 
+            \graphbox{$T$}{0mm}{0mm}{40mm}{44mm}{-10mm}{-22mm}{
+                \node[draw,circle] (1) at (0,0) {$1\ 2\ 4\ 5$};
+                \node[draw,circle] (2) at (2,0) {};
+                \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
+                \draw[->,red] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+            }
+            \node () at (-5mm,-19mm) {$\overset{h_{11}^1}{\to}$};
+        \end{tikzpicture}
+        }
+      \end{center}
+    we have $w_\mathcal{T}(h_{11}^3) = 1.0 * 1.0 * 1.0  = 1.0$.
+
+    Therefore, for $t_K^{11}$, we have: $2 - 1 \geq 1$.
+\end{frame}
+
+\begin{frame}{Example}
+  There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \rightarrow T$ as depicted below:
+
+    \begin{center}
+        \resizebox{0.49\textwidth}{!}{
+            \begin{tikzpicture}
+            \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \coordinate (o) at (0mm,-10mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \draw[] (l1) -- (l3) node[midway,above] {a};
+                % \draw[] (l3) -- (l2) node[midway,above] {a};
+            } 
+                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                    \node[draw,circle] (1) at (0,0) {$1\ 2$};
+                    \node[draw,circle] (2) at (2,0) {};
+                    \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
+                    \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
+                }
+                \node () at (-5mm,-15mm) {$\overset{t_K^{11}}{\to}$};
+            \end{tikzpicture}
+            } 
+            \resizebox{0.49\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \coordinate (o) at (0mm,-10mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \draw[] (l1) -- (l3) node[midway,above] {a};
+                % \draw[] (l3) -- (l2) node[midway,above] {a};
+            } 
+                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                    \node[draw,circle] (1) at (0,0) {$1$};
+                    \node[draw,circle] (2) at (2,0) {2};
+                    \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
+                    \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
+                }
+                \node () at (-5mm,-15mm) {$\overset{t_K^{12}}{\to}$};
+            \end{tikzpicture}
+            }
+            \hspace{5mm}
+            
+            \resizebox{0.49\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \coordinate (o) at (0mm,-10mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \draw[] (l1) -- (l3) node[midway,above] {a};
+                % \draw[] (l3) -- (l2) node[midway,above] {a};
+            } 
+                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                    \node[draw,circle] (1) at (0,0) {2};
+                    \node[draw,circle] (2) at (2,0) {1};
+                    \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
+                    \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
+                }
+                \node () at (-5mm,-15mm) {$\overset{t_K^{21}}{\to}$};
+            \end{tikzpicture}
+            }
+            \resizebox{0.49\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \coordinate (o) at (0mm,-10mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \draw[] (l1) -- (l3) node[midway,above] {a};
+                % \draw[] (l3) -- (l2) node[midway,above] {a};
+            } 
+                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                    \node[draw,circle] (1) at (0,0) {};
+                    \node[draw,circle] (2) at (2,0) {$1\ 2$};
+                    \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
+                    \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
+                }
+                \node () at (-5mm,-15mm) {$\overset{t_K^{22}}{\to}$};
+            \end{tikzpicture}
+            }
+      \end{center}
 
       \begin{itemize} 
-        \item $t_K^{11}$ : $2 - 1 = 1 > 0$ 
+        \item $t_K^{11}$ : $2 - 1 = 1 \geq 1 $ 
         \item $t_K^{12}$ : $1 - 1 = 0 \geq 0$
         \item $t_K^{21}$ : $1 - 1 = 0 \geq 0$
         \item $t_K^{22}$ : $1 - 1 = 0 \geq 0$
       \end{itemize}
 
       Therefore, $w_T(G) - w_T(H) \geq 2 - 1 = 1$ for every $G \Rightarrow_\varphi H$
-\end{frame}   
-
-\begin{frame}
-  detail pour t k  1 1 
-\end{frame}
+\end{frame}  
 
 \begin{frame}{Example : Termination using Weighted Type Graph over Real Arithmetic Semiring}
   % DPO Rewriting Rule on Edge-labeled Directed Graphs: 
   Rule $\varphi$
     \begin{center} 
-      \resizebox{0.7\textwidth}{!}{
+      \resizebox{0.9\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -1226,34 +1465,34 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
             }
         \end{tikzpicture}
     \end{center}
-    \begin{itemize}
-      \item edge labels : a, b
-      \item edge weights : superscripts of edge labels
-      % \item weights satisfy conditions expressed as first-order formulas
-    \end{itemize}
+    % \begin{itemize}
+    %   \item edge labels : a, b
+    %   \item edge weights : superscripts of edge labels
+    %   % \item weights satisfy conditions expressed as first-order formulas
+    % \end{itemize}
   % Existence of suitable weighted type graphs: \textcolor{red}{undecidable}
   
   % How to find a suitable weighted type graph in practice ?
 
 \end{frame}
 
-\begin{frame}{Concrete Semirings}
-  For each existing well-founded semiring (on the left), we propose a corresponding non-well-founded semiring (on the right):
+% \begin{frame}{Concrete Semirings}
+%   For each existing semiring over natural numbers (on the left), we propose a corresponding semiring over real numbers (on the right):
 
-  \begin{center}
-     Natural Tropical Semiring $\Leftrightarrow$ Real Tropical Semiring
-  \end{center}
-  \begin{center}
-     Natural Arctic Semiring $\Leftrightarrow$ Real Arctic Semiring
-  \end{center}
-  \begin{center}
-    Natural Arithmetic Semiring $\Leftrightarrow$ Real Arithmetic Semiring
-  \end{center}
+%   \begin{center}
+%      Natural Tropical Semiring $\Leftrightarrow$ Real Tropical Semiring
+%   \end{center}
+%   \begin{center}
+%      Natural Arctic Semiring $\Leftrightarrow$ Real Arctic Semiring
+%   \end{center}
+%   \begin{center}
+%     Natural Arithmetic Semiring $\Leftrightarrow$ Real Arithmetic Semiring
+%   \end{center}
 
-  Natural semirings: semirings on the left
+%   Natural semirings: semirings on the left
 
-  Real semirings: semirings on the right
-\end{frame}
+%   Real semirings: semirings on the right
+% \end{frame}
 
 \begin{frame}{Searching Weighted Type Graphs over the natural vs. real semirings}
     with $k$ nodes and no parallel edges of the same label from $\Sigma$
@@ -1292,18 +1531,21 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
       % \end{itemize}
 \end{frame}
 
-\begin{frame}{Implementation, Experimental Results and Analysis}
+\begin{frame}{Implementation and Experimental Results}
   \alert{Implemented} in the tool LyonParallel
         \begin{itemize}
-          \item supports natural and real semirings
-          \item searches with different semirings in parallel and cooperates between them
-          \item for edge-labeled directed graph rewriting
+          % \item supports natural and real semirings
+          \item supports natural and real numbers
+          \item searches with natural and real numbers in parallel and cooperates between them
+          % \item for edge-labeled directed graph rewriting
         \end{itemize}
 
   \alert{Tested} on examples from previous work:
   \begin{itemize}
-    \item \alert{Acceleration} with \alert{Real Tropical} or \alert{Arctic Semiring} for most cases
-    \item Many \alert{timeouts} (200 seconds) with \alert{Real Arithmetic Semiring} (double exponential complexity)
+    \item \alert{Acceleration} when without multiplication for most cases
+    % with \alert{Tropical} or \alert{Arctic Semiring over real numbers} for most cases
+    \item Many \alert{timeouts} (200 seconds) with multiplication due to double exponential complexity
+    % \alert{Arithmetic Semiring over real numbers} (due to double exponential complexity)
   \end{itemize}
 \end{frame}
 
@@ -1313,11 +1555,15 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
          \begin{itemize}
           \item termination technique
           \item for DPO rewriting systems
-          \item using weighted type graphs over semirings
+          \item using weighted type graphs 
+          % over semirings
          \end{itemize}
-    \item It works with \textcolor{red}{non-well-founded} semirings
-    \item \textcolor{red}{Complexity reduced}
-    \item In practice: \textcolor{red}{acceleration} only with Real Tropical or Arctic Semiring
+    \item Weights can be real numbers
+    %  with real numbers
+    % \textcolor{red}{non-well-founded} semirings
+    \item In theory: complexity reduced
+    \item In practice: acceleration when without multiplication
+    % with Real Tropical or Arctic Semiring
     \item Tool: LyonParallel
         \begin{itemize}
           % \item supports well-founded and non-well-founded approaches
@@ -1331,8 +1577,8 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
 
 \begin{frame}{Acknowledgements}
   \begin{itemize}
-    \item Thanks to the anonymous reviewers.
-    \item Termination section from a presentation by Plump for~\cite{plump2018modular}.
+    \item Thanks to the anonymous reviewers for their valuable comments and suggestions.
+    % \item Termination section from a presentation by Plump for~\cite{plump2018modular}.
     \item Graph visualization from \cite{overbeek2023apbpotutorial}.
     \item All concepts are from or adapted from \cite{endrullis2024generalized_arxiv_v2}.
   \end{itemize}
