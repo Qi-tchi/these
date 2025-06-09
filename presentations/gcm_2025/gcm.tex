@@ -397,14 +397,14 @@ over Non-well-founded Semirings}
 %   for each rewriting step $G \Rightarrow H$, $w(G) - w(H) > 1$.
 % \end{frame}
 
-\begin{frame}{Type Graph Method: Using Weighted Graphs to Ensure Termination
+\begin{frame}{Type Graph Method with Weighted Type Graphs over Well-founded Semirings}
   % for proving termination of DPO rewriting systems on edge-labeled directed graphs
-  }
     % Parameter : finite graph \( T \) with weights on edges
 
     \begin{itemize}
       \item Parameter : finite graph \( T \) with weighted edges
-      \item Assigning weights $w_T(G)$ with respect to $T$ to each graphs $G$
+      \item Assigns weights $w_T(G)$ with respect to $T$ to graphs $G$
+      \item Weights are \alert{Well-founded}
       \item \alert{Terminating} if every step $G \Rightarrow_\mathcal{R} H$ strictly decreases the weight.
       \item \alert{Existence} of suitable $T$ : \alert{undecidable} in general
     \end{itemize}
@@ -437,36 +437,28 @@ over Non-well-founded Semirings}
 \begin{frame}{Type Graph Search in Practice and its Complexity
   %  for proving termination of DPO rewriting systems on edge-labeled directed graphs
    }
-
-    In practice
-
+      Existing available tools~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}: 
       Searching a weighted type graph \( T \) with
       \begin{itemize}
         \item $k \in \mathbb{N}$ nodes
         \item no parallel edges of the same label from $\Sigma$
-      \end{itemize} 
-      
-      Existing available tools~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}: 
-     % Interpretation method
-    % Rule : $\varphi$
-      \begin{itemize}
           \item weights in $\mathbb{N}$ 
           % \item a graph $G$ is interpreted as $w_T(G) \in \mathbb{N} \cup \{\infty\}$ 
           % \item $w_T(G) \in \mathbb{N}$ for all $G \Rightarrow H$ 
           % \item terminating if $w_T(G) - w_T(H) > 0$ for all $G \Rightarrow H$
-          \item solve an integer program 
+      \end{itemize}
+      Porblem reduced to solving an integer program
                 \begin{itemize}
                   \item $k^2|\Sigma|$ binary variables
                   \item $k^2|\Sigma|$ integer variables
                   \item with or without multiplication
                 \end{itemize} 
           % \item Complexity : $O(2^{\alert{2}k^2|\Sigma|})$ or \alert{un}decidable
-          \item Complexity 
+      Complexity 
               \begin{itemize}
                 \item $O(2^{2k^2|\Sigma|})$ if without multiplication
                 \item undecidable otherwise
               \end{itemize}
-      \end{itemize}
 
 
     \textcolor{red}{Can we reduce the complexity?}
@@ -479,6 +471,17 @@ over Non-well-founded Semirings}
     %           \\ \hspace{2.3cm}$w_T(G) - w_T(H) > \delta$ for all $G \Rightarrow H$
     %       \item Complexity : $O(2^{k^2|\Sigma|})$ or  decidable
     %   \end{itemize}
+\end{frame}
+
+\begin{frame}{Plan}
+  \begin{itemize}
+    \item Type graph method with weights from well-founded semirings explained with an example
+    \item Observation
+    \item Extension : type graph method with weights from non-well-founded semirings
+    \item Complexity comparison
+    \item Experimental results and analysis
+    \item Conclusion
+  \end{itemize}
 \end{frame}
 
 
@@ -507,6 +510,10 @@ over Non-well-founded Semirings}
 
 
 \begin{frame}{Running Example}
+  \begin{itemize}
+    \item 
+Natural Arithmetic Semiring: the usual arithmetic on natural numbers
+
     % \begin{itemize}
     %     \item $S$ : set 
     %     \item $\otimes$, $\oplus$ : binary operations on $S$
@@ -517,7 +524,7 @@ over Non-well-founded Semirings}
     % \end{itemize}
 
     % Natural Arithmetic Semiring: $(\mathbb{N}, +, *, 0, 1, <, \leq)$ 
-  Rule $\alpha$:
+  \item Rule $\alpha$:
 \begin{center} 
       \resizebox{0.9\textwidth}{!}{
       \begin{tikzpicture}
@@ -561,7 +568,7 @@ over Non-well-founded Semirings}
     %   \item the usual orders $<, \leq$
     % \end{itemize}
 
-   Weighted type graph $T$ over positive real numbers:
+   \item Termination proved by the following weighted type graph $T$ over Natural Arithmetic Semiring:
     % \begin{itemize}
     %   \item finite directed graph
     %   \item edge-labeled
@@ -573,24 +580,24 @@ over Non-well-founded Semirings}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
                 \node[draw,circle] (1) at (0,0) {};
                 \node[draw,circle] (2) at (2,0) {};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
             }
         \end{tikzpicture}
     \end{center}
-
-    We are going to show 
-      \begin{itemize}
-        \item how to use $T$ to prove termination of $\alpha$, and
-        \item the reduced complexity by using real numbers instead of integers.
-      \end{itemize}
+  \end{itemize}
+    % We are going to show 
+    %   \begin{itemize}
+    %     \item how to use $T$ to prove termination of $\alpha$, and
+    %     \item the reduced complexity by using real numbers instead of integers.
+    %   \end{itemize}
 \end{frame}
 
 \begin{frame}{Weight $w_T(h)$ of Morphism $h : L \to T$}
 
-  Weight function $w : \opn{Edges}(T) \to \mathbb{R}^+$ 
+  Weight function $w : \opn{Edges}(T) \to \mathbb{N}$ 
 
   The weight $ w_T(h) $ is defined as:  
 $$
@@ -618,16 +625,16 @@ the product of the weights (in $ T $) of the images of the edges of $ L $ under 
             \graphbox{$T$}{0mm}{0mm}{40mm}{39mm}{-10mm}{-17mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2$};
                 \node[draw,circle] (2) at (2,0) {3};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1);
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1);
-                \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2);
-                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1);
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1);
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1);
+                \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2);
+                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1}$} (1);
             }
             \node () at (-5mm,-15mm) {$\overset{h}{\to}$};
         \end{tikzpicture}
         }
 
-        $ w_T(h) = 1.0 * 1.0 = 1.0$
+        $ w_T(h) = 1 * 1 = 1$
 
    
 \end{frame}
@@ -656,10 +663,10 @@ Example :
               \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-20mm}{
                   \node[draw,circle] (1) at (0,0) {$1\ 2\ 3$};
                   \node[draw,circle] (2) at (2,0) {};
-                  \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                  \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                  \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                  \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;(1)   ;
+                  \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                  \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                  \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                  \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;(1)   ;
               }
           \end{tikzpicture}
           }
@@ -668,10 +675,10 @@ Example :
             \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2$};
                 \node[draw,circle] (2) at (2,0) {3};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
             }
         \end{tikzpicture}
         }
@@ -680,10 +687,10 @@ Example :
             \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
                 \node[draw,circle] (1) at (0,0) {3};
                 \node[draw,circle] (2) at (2,0) {$1\ 2$};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1);
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1}$} (1);
             }
         \end{tikzpicture}
         }
@@ -692,10 +699,10 @@ Example :
                 \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-20mm}{
                     \node[draw,circle] (1) at (0,0) {$1\ 3$};
                     \node[draw,circle] (2) at (2,0) {$2$};
-                    \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                    \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1);
-                    \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2);
-                    \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1);
+                    \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1);
+                    \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2);
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1);
                 }
             \end{tikzpicture}
             }
@@ -704,10 +711,10 @@ Example :
             \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
                 \node[draw,circle] (1) at (0,0) {$3\ 2$};
                 \node[draw,circle] (2) at (2,0) {$1$};
-                \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1);
+                \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1}$} (1);
             }
         \end{tikzpicture}
         }
@@ -726,10 +733,10 @@ Example :
 %               \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-20mm}{
 %                   \node[draw,circle] (1) at (0,0) {$1\ 2\ 3$};
 %                   \node[draw,circle] (2) at (2,0) {};
-%                   \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-%                   \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-%                   \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-%                   \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;(1)   ;
+%                   \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+%                   \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+%                   \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+%                   \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;(1)   ;
 %               }
 %               \node () at (-5mm,-15mm) {$\overset{h_{11}^1}{\to}$};
 %           \end{tikzpicture}
@@ -747,10 +754,10 @@ Example :
 %             \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
 %                 \node[draw,circle] (1) at (0,0) {$1\ 2$};
 %                 \node[draw,circle] (2) at (2,0) {3};
-%                 \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-%                 \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-%                 \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-%                 \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+%                 \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+%                 \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+%                 \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+%                 \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
 %             }
 %             \node () at (-5mm,-15mm) {$\overset{h_{11}^2}{\to}$};
 %         \end{tikzpicture}
@@ -770,10 +777,10 @@ Example :
 %             \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
 %                 \node[draw,circle] (1) at (0,0) {3};
 %                 \node[draw,circle] (2) at (2,0) {$1\ 2$};
-%                 \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-%                 \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-%                 \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-%                 \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1);
+%                 \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+%                 \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+%                 \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+%                 \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1}$} (1);
 %             }
 %             \node () at (-5mm,-15mm) {$\overset{h_{22}^1}{\to}$};
 %         \end{tikzpicture}
@@ -791,10 +798,10 @@ Example :
 %                 \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-20mm}{
 %                     \node[draw,circle] (1) at (0,0) {$1\ 3$};
 %                     \node[draw,circle] (2) at (2,0) {$2$};
-%                     \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-%                     \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1);
-%                     \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2);
-%                     \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1);
+%                     \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+%                     \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1);
+%                     \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2);
+%                     \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1);
 %                 }
 %                 \node () at (-5mm,-15mm) {$\overset{h_{12}^1}{\to}$};
 %             \end{tikzpicture}
@@ -814,10 +821,10 @@ Example :
 %             \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
 %                 \node[draw,circle] (1) at (0,0) {$3\ 2$};
 %                 \node[draw,circle] (2) at (2,0) {$1$};
-%                 \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-%                 \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-%                 \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-%                 \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1);
+%                 \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+%                 \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+%                 \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+%                 \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1}$} (1);
 %             }
 %             \node () at (-5mm,-15mm) {$\overset{h_{21}^1}{\to}$};
 %         \end{tikzpicture}
@@ -835,10 +842,10 @@ Example :
 %                 \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-20mm}{
 %                     \node[draw,circle] (1) at (0,0) {$1\ 3$};
 %                     \node[draw,circle] (2) at (2,0) {$2$};
-%                     \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-%                     \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1);
-%                     \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2);
-%                     \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1);
+%                     \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+%                     \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1);
+%                     \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2);
+%                     \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1);
 %                 }
 %                 \node () at (-5mm,-15mm) {$\overset{h_{12}^1}{\to}$};
 %               }
@@ -846,7 +853,7 @@ Example :
 %             }
 %       \end{center}
       
-      $w_T(L) = 1.0 + 1.0 + 1.0 + 1.0 + 1.0 = 5.0$
+      $w_T(L) = 1 + 1 + 1 + 1 + 1 = 5$
 \end{frame}
 
 
@@ -1012,10 +1019,10 @@ Example :
               \coordinate (o) at (4mm,-2mm); 
               \node[draw,circle] (1) at ($(o)+(0,0mm)$) {$\substack{1\\2\ 3\\ 6\ 7}$};
               \node[draw,circle] (2) at ($(o)+(2,0)$) {};
-              \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-              \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-              \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-              \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+              \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+              \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+              \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+              \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
           }
           \node () at (-10mm,-27mm) {$\textcolor{red}{a} \nwarrow$};
           \node () at (15mm,-18mm) {\( \textcolor{red}{m}\ \downarrowtail \)};
@@ -1056,25 +1063,6 @@ Example :
 %   % \end{definition}
 %   % Consequence:
 % \end{frame}
-
-\begin{frame}{Sufficient Termination Condition}
-  Since for all $G \Rightarrow H$, $w_T(G) \geq 0$, we have the following
-
-  \begin{proposition}
-  Rule $\varphi$ terminates, if 
-
-   \begin{enumerate}
-      \item there exists $\delta \in \mathbb{R}$, $\delta > 0$
-      \item $w_T(G) - w_T(H) \geq \delta$ for every rewriting step $G \Rightarrow_\varphi H$
-   \end{enumerate} 
-  \end{proposition}
-
-
-   Problem : they are infinitely many rewriting steps.
-
-   How to show the second condition?
-
-\end{frame}
 
 
 \begin{frame}{ $w_T(G) - w_T(H) > \delta$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi$ if}
@@ -1247,10 +1235,10 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
             \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2$};
                 \node[draw,circle] (2) at (2,0) {3};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->,red] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
             }
             \node () at (-5mm,-15mm) {$\overset{h_{11}^1}{\to}$};
         \end{tikzpicture}
@@ -1268,18 +1256,18 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
                 \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-20mm}{
                     \node[draw,circle] (1) at (0,0) {$1\ 2\ 3$};
                     \node[draw,circle] (2) at (2,0) {};
-                    \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                    \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                    \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                    \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;(1)   ;
+                    \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                    \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;(1)   ;
                 }
                 \node () at (-5mm,-15mm) {$\overset{h_{11}^2}{\to}$};
             \end{tikzpicture}
             }
       \end{center}
 We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
-        =(1.0 * 1.0) + (1.0 * 1.0)
-        =2.0$
+        =(1 * 1) + (1 * 1)
+        =2$
 
        \begin{center}
         \resizebox{0.49\textwidth}{!}{
@@ -1297,16 +1285,16 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
             \graphbox{$T$}{0mm}{0mm}{40mm}{44mm}{-10mm}{-22mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2\ 4\ 5$};
                 \node[draw,circle] (2) at (2,0) {};
-                \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                \draw[->,red] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+                \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->,red] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
             }
             \node () at (-5mm,-19mm) {$\overset{h_{11}^1}{\to}$};
         \end{tikzpicture}
         }
       \end{center}
-    we have $w_\mathcal{T}(h_{11}^3) = 1.0 * 1.0 * 1.0  = 1.0$.
+    we have $w_\mathcal{T}(h_{11}^3) = 1 * 1 * 1  = 1$.
 
     Therefore, for $t_K^{11}$, we have: $2 - 1 \geq 1$.
 \end{frame}
@@ -1413,7 +1401,31 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
       Therefore, $w_T(G) - w_T(H) \geq 2 - 1 = 1$ for every $G \Rightarrow_\varphi H$
 \end{frame}  
 
-\begin{frame}{Example : Termination using Weighted Type Graph over Real Arithmetic Semiring}
+
+\begin{frame}{Observation}
+  \begin{itemize}
+    \item weights can be taken from $\mathbb{R}^+$
+    \item $w_T(G) \geq 0$ for all $G \Rightarrow H$ \\ by definition of the type graph method 
+  \end{itemize}
+  \begin{proposition}
+  A set of rewriting rules $\mathcal{R}$ terminates, if 
+
+   \begin{enumerate}
+      \item there exists $\delta \in \mathbb{R}$, $\delta > 0$
+      \item $w_T(G) - w_T(H) \geq \delta$ for every rewriting step $G \Rightarrow_\mathcal{R} H$
+   \end{enumerate} 
+  \end{proposition}
+
+\end{frame}
+
+\begin{frame}{
+  Termination of the running example with a weighted type graph over non-well-founded semiring  }
+
+  \begin{itemize}
+    \item Real Arithmetic Semiring: 
+    \\
+    \hspace{1cm}the usual arithmetic on $\mathbb{R}^+$
+    \item 
   % DPO Rewriting Rule on Edge-labeled Directed Graphs: 
   Rule $\varphi$
     \begin{center} 
@@ -1452,16 +1464,17 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
       }
   \end{center}
 
-  Termination proved by:
+  \item 
+  Termination proved by the weighted type graph over Real Arithmetic Semiring:
     \begin{center}
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
                 \node[draw,circle] (1) at (0,0) {};
                 \node[draw,circle] (2) at (2,0) {};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
             }
         \end{tikzpicture}
     \end{center}
@@ -1473,6 +1486,7 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
   % Existence of suitable weighted type graphs: \textcolor{red}{undecidable}
   
   % How to find a suitable weighted type graph in practice ?
+  \end{itemize}
 
 \end{frame}
 
@@ -1490,13 +1504,14 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
 %   \end{center}
 
 %   Natural semirings: semirings on the left
-
+ 
 %   Real semirings: semirings on the right
 % \end{frame}
 
 \begin{frame}{Searching Weighted Type Graphs over the natural vs. real semirings}
-    with $k$ nodes and no parallel edges of the same label from $\Sigma$
-
+    \begin{itemize}
+      \item $k$ nodes and no parallel edges of the same label from $\Sigma$
+    \end{itemize}
   Procedure:
 
   \begin{enumerate}
