@@ -108,26 +108,10 @@ over Non-well-founded Semirings}
 %   \end{itemize}
 % \end{frame}
 
-\begin{frame}{DPO graph rewriting}
+\begin{frame}{Graph rewriting}
 \begin{adjustwidth}{-0.5cm}{0cm}
   \begin{itemize}
       \item Finite directed multigraphs with edge labels from a finite set $\Sigma$.
-      %   \begin{center}
-      %     \resizebox{0.5\textwidth}{!}{
-      %     \begin{tikzpicture}
-      %         \graphbox{\(\)}{00mm}{-20mm}{35mm}{15mm}{2mm}{-5mm}{ 
-      %             \coordinate (o) at (-2mm,-2mm); 
-      %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-      %             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
-      %             \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
-      %             \draw[->] (l1) edge[bend right]  node[midway,below] {a} (l3);
-      %             \draw[->] (l1) edge[bend left] node[midway,above] {a}  (l3);
-      %             \draw[->] (l3) -- (l4) node[midway,above] {b};
-      %             % \draw[->] (l4) -- (l2) node[midway,above] {a};
-      %         }   
-      %     \end{tikzpicture} 
-      % }
-      % \end{center}
       \item Visualization of graph morphisms:
       % : function from graph $K$ to graph $L$ that preserves the structure of the graphs.
          \begin{center}
@@ -156,6 +140,24 @@ over Non-well-founded Semirings}
         \end{tikzpicture}
           }
          \end{center}
+      \item Double pushout (DPO) graph rewriting
+      %   \begin{center}
+      %     \resizebox{0.5\textwidth}{!}{
+      %     \begin{tikzpicture}
+      %         \graphbox{\(\)}{00mm}{-20mm}{35mm}{15mm}{2mm}{-5mm}{ 
+      %             \coordinate (o) at (-2mm,-2mm); 
+      %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+      %             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+      %             \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+      %             \draw[->] (l1) edge[bend right]  node[midway,below] {a} (l3);
+      %             \draw[->] (l1) edge[bend left] node[midway,above] {a}  (l3);
+      %             \draw[->] (l3) -- (l4) node[midway,above] {b};
+      %             % \draw[->] (l4) -- (l2) node[midway,above] {a};
+      %         }   
+      %     \end{tikzpicture} 
+      % }
+      % \end{center}
+      
 
       \item Rules $\varphi = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ consist of two graph morphisms $l: K \to L$ and $r: K \to R$.
       \item Rewriting steps $G \Rightarrow_\varphi H$ are double-pushouts:
@@ -184,23 +186,25 @@ over Non-well-founded Semirings}
 \end{adjustwidth}
 \end{frame} 
 
-\begin{frame}{Termination~\cite{plump2018modular}}
+\begin{frame}{Termination}
   \begin{itemize}
     \item $\mathcal{R}$ : set of DPO graph rewriting rules
     \item impossibility of transforming any graph $G_0$ indefinitely
       \begin{center}
         $G_0 \Rightarrow_\mathcal{R} G_1 \Rightarrow_\mathcal{R} G_2 \Rightarrow_\mathcal{R} \cdots$
       \end{center}
-    \item Guarantees that the non-deterministic strategy
+      with the non-deterministic strategy
           \begin{center}
-              \textcolor{blue}{apply rules as long as possible}
+              \textcolor{blue}{\enquote{apply rules as long as possible}}
           \end{center}
-          returns a result on all inputs
-    \item Corresponds to program termination in conventional programming languages:
-          \begin{center}
-            \textcolor{blue}{program halts on all inputs}
-          \end{center}
-    \item Undecidable in general
+          % returns a result on all inputs
+    \item Corresponds to program termination on all inputs in conventional programming languages
+          
+    % \item Corresponds to program termination in conventional programming languages:
+    %       \begin{center}
+    %         \textcolor{blue}{\enquote{program halts on all inputs}}
+    %       \end{center}
+    \item Undecidable in general~\cite{plump1998terminationundecidable}
   \end{itemize}
 \end{frame}
 
@@ -402,11 +406,12 @@ over Non-well-founded Semirings}
     % Parameter : finite graph \( T \) with weights on edges
 
     \begin{itemize}
-      \item Parameter : finite graph \( T \) with weighted edges
-      \item Assigns weights $w_T(G)$ with respect to $T$ to graphs $G$
-      \item Weights are \alert{Well-founded}
+      \item Parameter : a finite graph \( T \) with weighted edges
+      % \item Assigns to each graph $G$ a weight $w_T(G)$
+      \item Assigns weights to graphs according to \( T \)
+      \item Weights are \alert{well-founded}
       \item \alert{Terminating} if every step $G \Rightarrow_\mathcal{R} H$ strictly decreases the weight.
-      \item \alert{Existence} of suitable $T$ : \alert{undecidable} in general
+      \item The \alert{existence} of suitable weighted type graphs is \alert{undecidable} in general
     \end{itemize}
       % \begin{itemize}
       %   \item weighted edges
@@ -434,24 +439,24 @@ over Non-well-founded Semirings}
     % Undecidable in general
 
 \end{frame}
-\begin{frame}{Type Graph Search in Practice and its Complexity
+\begin{frame}{Type Graph Search in Practice
   %  for proving termination of DPO rewriting systems on edge-labeled directed graphs
    }
-      Existing available tools~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}: 
-      Searching a weighted type graph \( T \) with
+     Previous work~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving} search for a weighted type graph \( T \) with
       \begin{itemize}
+        \item weights in $\mathbb{N}$
         \item $k \in \mathbb{N}$ nodes
-        \item no parallel edges of the same label from $\Sigma$
-          \item weights in $\mathbb{N}$ 
+        \item no parallel edges of the same label 
+        % from $\Sigma$
           % \item a graph $G$ is interpreted as $w_T(G) \in \mathbb{N} \cup \{\infty\}$ 
           % \item $w_T(G) \in \mathbb{N}$ for all $G \Rightarrow H$ 
           % \item terminating if $w_T(G) - w_T(H) > 0$ for all $G \Rightarrow H$
       \end{itemize}
-      Porblem reduced to solving an integer program
+      Problem reduced to solving an integer program
                 \begin{itemize}
                   \item $k^2|\Sigma|$ binary variables
                   \item $k^2|\Sigma|$ integer variables
-                  \item with or without multiplication
+                  \item with or without multiplication of integer variables
                 \end{itemize} 
           % \item Complexity : $O(2^{\alert{2}k^2|\Sigma|})$ or \alert{un}decidable
       Complexity 
@@ -473,16 +478,16 @@ over Non-well-founded Semirings}
     %   \end{itemize}
 \end{frame}
 
-\begin{frame}{Plan}
-  \begin{itemize}
-    \item Type graph method with weights from well-founded semirings explained with an example
-    \item Observation
-    \item Extension : type graph method with weights from non-well-founded semirings
-    \item Complexity comparison
-    \item Experimental results and analysis
-    \item Conclusion
-  \end{itemize}
-\end{frame}
+% \begin{frame}{Plan}
+%   \begin{itemize}
+%     \item Type graph method with weights from well-founded semirings explained with an example
+%     \item Observation
+%     \item Extension : type graph method with weights from non-well-founded semirings
+%     \item Complexity comparison
+%     \item Experimental results and analysis
+%     \item Conclusion
+%   \end{itemize}
+% \end{frame}
 
 
 % \begin{frame}{Weighted Type Graph over Real Numbers}
@@ -509,10 +514,10 @@ over Non-well-founded Semirings}
 \section{Type Graph Method}
 
 
-\begin{frame}{Running Example}
+\begin{frame}{Type graph method with weighted type graphs over natural numbers with an example}
   \begin{itemize}
-    \item 
-Natural Arithmetic Semiring: the usual arithmetic on natural numbers
+    % \item 
+% Natural Arithmetic Semiring: the usual arithmetic on natural numbers
 
     % \begin{itemize}
     %     \item $S$ : set 
@@ -568,7 +573,9 @@ Natural Arithmetic Semiring: the usual arithmetic on natural numbers
     %   \item the usual orders $<, \leq$
     % \end{itemize}
 
-   \item Termination proved by the following weighted type graph $T$ over Natural Arithmetic Semiring:
+   \item Weighted type graph $T$ over
+    % Natural Arithmetic Semiring:
+    natural numbers:
     % \begin{itemize}
     %   \item finite directed graph
     %   \item edge-labeled
@@ -603,7 +610,7 @@ Natural Arithmetic Semiring: the usual arithmetic on natural numbers
 $$
 w_T(h) \overset{def}{=} \prod_{e \in \opn{Edges}(L)} w(h(e)),
 $$  
-the product of the weights (in $ T $) of the images of the edges of $ L $ under the morphism $ h $.
+the product of the weights of the images of the edges in $L$.
 
   % $w_T(h)$: the product of the weights of the edges in \( \opn{Im}(h) \)
 
@@ -612,7 +619,7 @@ the product of the weights (in $ T $) of the images of the edges of $ L $ under 
 
  Example:
     
-    \resizebox{0.6\textwidth}{!}{
+    \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture}
           \graphbox{\( L \)}{-50mm}{0mm}{40mm}{39mm}{2mm}{-6mm}{
             \coordinate (o) at (0mm,-10mm); 
@@ -857,14 +864,16 @@ Example :
 \end{frame}
 
 
-\begin{frame}{Not every graph can be a weighted type graph}
-  $\mathcal{R}$ : a set of rewriting rules  
+\begin{frame}{Not every weighted graph can be a weighted type graph}
+  % $\mathcal{R}$ : a set of rewriting rules  
 
-  $T$ : graph  
+  % $T$ : graph  
 
-  There must be a morphism $\alert{c} : L \to T$ such that
+For our running example $\alpha$,
 
-  For every rewriting step $G \Rightarrow_\mathcal{R} H$:
+there must be a morphism $\alert{c} : L \to T$ such that
+
+  for all $G \Rightarrow_\alpha H$ defined by:
 
       \begin{center}
         \begin{tikzpicture}[rotate=90]
@@ -899,7 +908,7 @@ Example :
         \end{tikzpicture}
       \end{center}
 
-  To guarantee: $w_T(G)$ is defined and $w_T(G) \geq 0$, for all $G \Rightarrow H$
+  It guarantees: for all $G \Rightarrow_\alpha H$, the weight of $G$ is defined and $w_T(G) \in \mathbb{N}$
 \end{frame}
 
 \begin{frame}{Example}
@@ -1032,6 +1041,10 @@ Example :
   \end{center}
 \end{frame}
 
+\begin{frame}
+  Since for all $G \Rightarrow_\alpha H$, we have $w_T(G) \in \mathbb{N}$, it remains to show that every rewriting step strictly decreases the weight.
+\end{frame}
+
 % \begin{frame}{Condition on Weighted Type Graph: for every rewriting step $G \Rightarrow H$, there exists a morphism $h : G \to T$.}
   
 
@@ -1065,47 +1078,117 @@ Example :
 % \end{frame}
 
 
-\begin{frame}{ $w_T(G) - w_T(H) > \delta$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi$ if}
-  %  For $G \Rightarrow H$ defined by
+% \begin{frame}{ 
+%   every rewriting step strictly decreases the weight if:
+%   % $w_T(G) > w_T(H)$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi = L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ if
+%   }
+%   %  For $G \Rightarrow H$ defined by
 
-  %  \begin{center}
-  %     \resizebox{0.3\textwidth}{!}{
-  %       \begin{tikzpicture}
-  %           \node (I) at (0,0) {$K$};
-  %           \node (L) at (-2,0) {$L$};
-  %           \node (R) at (2,0) {$R$};
-  %           \node (G) at (-2,-2) {$G$};
-  %           \node (C) at (0,-2) {$C$};
-  %           \node (H) at (2,-2) {$H$};
-  %           \draw [->] (I) to  node [midway,below] {$l$} (L);
-  %           \draw [->] (I) to  node [midway,below] {$r$} (R);
-  %           \draw [->] (L) to node [midway,right] {$m$} (G);
-  %           \draw [->] (I) to node [midway,right] {$u$} (C);
-  %           \draw [->] (R) to node [midway,left] {$m'$} (H);
-  %           \draw [->] (C) to node [midway,above] {$l'$} (G);
-  %           \draw [->] (C) to node [midway,above] {$r'$} (H);
-  %           \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-  %           \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-  %         \end{tikzpicture}
-  %       }
-  % \end{center}
-% It suffices to show
-% \begin{theorem}
-  for every $t_K: K \rightarrow T$, 
-    $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K =  t_L \circ l }}
-        w_T(t_L) -  \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
-            w_T(t_R) \geq 0 $$ 
+%   %  \begin{center}
+%   %     \resizebox{0.3\textwidth}{!}{
+%   %       \begin{tikzpicture}
+%   %           \node (I) at (0,0) {$K$};
+%   %           \node (L) at (-2,0) {$L$};
+%   %           \node (R) at (2,0) {$R$};
+%   %           \node (G) at (-2,-2) {$G$};
+%   %           \node (C) at (0,-2) {$C$};
+%   %           \node (H) at (2,-2) {$H$};
+%   %           \draw [->] (I) to  node [midway,below] {$l$} (L);
+%   %           \draw [->] (I) to  node [midway,below] {$r$} (R);
+%   %           \draw [->] (L) to node [midway,right] {$m$} (G);
+%   %           \draw [->] (I) to node [midway,right] {$u$} (C);
+%   %           \draw [->] (R) to node [midway,left] {$m'$} (H);
+%   %           \draw [->] (C) to node [midway,above] {$l'$} (G);
+%   %           \draw [->] (C) to node [midway,above] {$r'$} (H);
+%   %           \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+%   %           \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+%   %         \end{tikzpicture}
+%   %       }
+%   % \end{center}
+% % It suffices to show
+% % \begin{theorem}
+%   for every $t_K: K \rightarrow T$, 
 
-for some $t_K: K \rightarrow T$,
-$$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
-        w_T(t_L) - \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
-            w_T(t_R) > \delta $$ 
+% \begin{flalign*}
+%   &\text{the sum of the weights of the morphisms $t_L$ that extend $t_K$} 
+%   \\
+%   &\mathop{\geq}
+%   \\
+%   &\text{the sum of the weights of the morphisms $t_R$ that extend $t_K$}
+% \end{flalign*}
+
+% %  $$ \sum ( w_T \{t_L :L \to T \mid \text{$t_L$ extends $t_K$}\} )
+% %        -  \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
+% %             w_T(t_R) \geq 0 $$ 
+
+% %     $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K =  t_L \circ l }}
+% %         w_T(t_L) -  \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
+% %             w_T(t_R) \geq 0 $$ 
+
+% % for some $t_K: K \rightarrow T$,
+% % $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
+% %         w_T(t_L) - \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
+% %             w_T(t_R) > \delta $$ 
+% for some $t_K: K \rightarrow T$,
+% \begin{flalign*}
+%   &\text{the sum of the weights of the morphisms $t_L$ that extend $t_K$} 
+%   \\
+%   &\mathop{>}
+%   \\
+%   &\text{the sum of the weights of the morphisms $t_R$ that extend $t_K$}
+% \end{flalign*}
+% % \end{theorem}   
+% % then 
+% %   \begin{center}
+% %     $w_T(G) - w_T(H) > \delta$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi$
+% %   \end{center}
+%   by \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}.
+%   % \resizebox{0.9\textwidth}{!}{
+%   %   \begin{flalign*}
+%   %     w_T(G) 
+%   %         & = \sum_{t_K: K \rightarrow T} 
+%   %         \left ( \sum_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
+%   %           w_T(t_C - u) \right ) 
+%   %           \times
+%   %         \left (\sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
+%   %         w_T(t_L) \right )
+%   %         \\
+%   %     w_T(H) 
+%   %         &  \preceq \sum_{t_K: K \rightarrow T} 
+%   %         \left ( \sum_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
+%   %         w_T(t_C - u) \right ) 
+%   %         \times 
+%   %         \left ( \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
+%   %             w_T(t_R) \right ) \\
+%   % \end{flalign*}
+%   % }
+% \end{frame}
+
+
+\begin{frame}{ 
+  Termination Condition
+  % $w_T(G) > w_T(H)$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi = L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ if
+  }
+
+  For every morphism $t_K: K \rightarrow T$, we define
+\begin{itemize}
+  \item $S(t_k,L)$ : the sum of the weights of the morphisms $t_L$ that extend $t_K$
+  \item $S(t_k,R)$ : the sum of the weights of the morphisms $t_R$ that extend $t_K$
+\end{itemize}
+  
+By \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}, every rewriting step strictly decreases the weight if 
+\begin{itemize}
+  \item for every $t_K: K \rightarrow T$, 
+  $$ S(t_K,L) \mathop{\geq} S(t_K,R) $$.
+   \item for some $t_K: K \rightarrow T$,
+  $$ S(t_K,L) \mathop{>} S(t_K,R) $$.
+\end{itemize} 
 % \end{theorem}   
 % then 
 %   \begin{center}
 %     $w_T(G) - w_T(H) > \delta$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi$
 %   \end{center}
-  by \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}.
+
   % \resizebox{0.9\textwidth}{!}{
   %   \begin{flalign*}
   %     w_T(G) 
@@ -1265,7 +1348,7 @@ $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
             \end{tikzpicture}
             }
       \end{center}
-We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
+We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
         =(1 * 1) + (1 * 1)
         =2$
 
@@ -1294,9 +1377,9 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
         \end{tikzpicture}
         }
       \end{center}
-    we have $w_\mathcal{T}(h_{11}^3) = 1 * 1 * 1  = 1$.
+    we have $S(t_k^{11},R) = w_\mathcal{T}(h_{11}^3) = 1 * 1 * 1  = 1$.
 
-    Therefore, for $t_K^{11}$, we have: $2 - 1 \geq 1$.
+    Therefore, for $t_K^{11}$, we have: $S(t_k^{11},L) = 2 > 1 = S(t_k^{11},R)$.
 \end{frame}
 
 \begin{frame}{Example}
@@ -1390,41 +1473,59 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
             \end{tikzpicture}
             }
       \end{center}
-
       \begin{itemize} 
-        \item $t_K^{11}$ : $2 - 1 = 1 \geq 1 $ 
-        \item $t_K^{12}$ : $1 - 1 = 0 \geq 0$
-        \item $t_K^{21}$ : $1 - 1 = 0 \geq 0$
-        \item $t_K^{22}$ : $1 - 1 = 0 \geq 0$
+        \item $t_K^{11}$ : $2 \mathop{>} 1$ 
+        \item $t_K^{12}$ : $1 \mathop{\geq} 1$
+        \item $t_K^{21}$ : $1 \mathop{\geq} 1$
+        \item $t_K^{22}$ : $1 \mathop{\geq} 1$
       \end{itemize}
-
-      Therefore, $w_T(G) - w_T(H) \geq 2 - 1 = 1$ for every $G \Rightarrow_\varphi H$
+      Therefore, our Running Example is terminating by the weighted type graph $T$ over natural numbers.
 \end{frame}  
 
 
-\begin{frame}{Observation}
-  \begin{itemize}
-    \item weights can be taken from $\mathbb{R}^+$
-    \item $w_T(G) \geq 0$ for all $G \Rightarrow H$ \\ by definition of the type graph method 
-  \end{itemize}
+\begin{frame}{Idea}
+  Since $w_T(G) \geq 0$ for all $G \Rightarrow_\alpha H$ by definition of the type graph method.
+
+  We can replace the condition
+  \begin{center}
+      \enquote{weights are well founded}  
+  \end{center}
+      by 
+  \begin{center}
+      \enquote{each rewriting step decreases the weight by a constant $\delta > 0$}
+  \end{center}
+
   \begin{proposition}
-  A set of rewriting rules $\mathcal{R}$ terminates, if 
+  A rule $\alpha$ terminates, if 
 
    \begin{enumerate}
       \item there exists $\delta \in \mathbb{R}$, $\delta > 0$
-      \item $w_T(G) - w_T(H) \geq \delta$ for every rewriting step $G \Rightarrow_\mathcal{R} H$
+      \item $w_T(G) - w_T(H) \geq \delta$ for every rewriting step $G \Rightarrow_\alpha H$
    \end{enumerate} 
   \end{proposition}
 
 \end{frame}
 
+\begin{frame}{Condition for Termination}
+  
+Every rewriting step strictly decreases the weight if 
+\begin{itemize}
+  \item for every $t_K: K \rightarrow T$, 
+  $$ S(t_K,L) \mathop{\geq} S(t_K,R) $$.
+   \item for some $t_K: K \rightarrow T$,
+  $$ S(t_K,L) \mathop{\geq} S(t_K,R) + \delta$$.
+\end{itemize} 
+\end{frame}
 \begin{frame}{
-  Termination of the running example with a weighted type graph over non-well-founded semiring  }
+  Termination of the running example with a weighted type graph over 
+  % non-well-founded semiring  
+  real numbers
+  }
 
   \begin{itemize}
-    \item Real Arithmetic Semiring: 
-    \\
-    \hspace{1cm}the usual arithmetic on $\mathbb{R}^+$
+    % \item Real Arithmetic Semiring: 
+    % \\
+    % \hspace{1cm}the usual arithmetic on $\mathbb{R}^+$
     \item 
   % DPO Rewriting Rule on Edge-labeled Directed Graphs: 
   Rule $\varphi$
@@ -1465,16 +1566,16 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
   \end{center}
 
   \item 
-  Termination proved by the weighted type graph over Real Arithmetic Semiring:
+  Termination proved by the weighted type graph over real numbers:
     \begin{center}
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
                 \node[draw,circle] (1) at (0,0) {};
                 \node[draw,circle] (2) at (2,0) {};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
-                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
-                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
             }
         \end{tikzpicture}
     \end{center}
@@ -1508,11 +1609,11 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
 %   Real semirings: semirings on the right
 % \end{frame}
 
-\begin{frame}{Searching Weighted Type Graphs over the natural vs. real semirings}
+\begin{frame}{Searching Weighted Type Graphs over the natural vs. real numbers}
     \begin{itemize}
       \item $k$ nodes and no parallel edges of the same label from $\Sigma$
     \end{itemize}
-  Procedure:
+ Weighted type graph searching problem:
 
   \begin{enumerate}
     \item Decide if $s \overset{l}{\to} t$ exists for each pair of nodes \( s, t\) and label \( l\)
@@ -1530,7 +1631,7 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
   %         \item terminating if there is $\delta > 0$ and 
   %             \\ \hspace{2.3cm}$w_T(G) - w_T(H) > \delta$ for all $G \Rightarrow H$
   %         \item 
-    Analyse : 
+    Mixed Integer Program: 
       \begin{itemize}
         \item $k^2|\Sigma|$ binary variables
         \item $k^2|\Sigma|$ \crossout[red]{integer} real variables
@@ -1559,7 +1660,11 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
   \begin{itemize}
     \item \alert{Acceleration} when without multiplication for most cases
     % with \alert{Tropical} or \alert{Arctic Semiring over real numbers} for most cases
-    \item Many \alert{timeouts} (200 seconds) with multiplication due to double exponential complexity
+    \item Many \alert{timeouts} (200 seconds) with multiplication because of 
+         \begin{itemize}
+          \item double exponential complexity 
+          \item impossibility of further reducing the search space by restricting the weights
+         \end{itemize}
     % \alert{Arithmetic Semiring over real numbers} (due to double exponential complexity)
   \end{itemize}
 \end{frame}
@@ -1593,9 +1698,9 @@ We have $w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
 \begin{frame}{Acknowledgements}
   \begin{itemize}
     \item Thanks to the anonymous reviewers for their valuable comments and suggestions.
-    % \item Termination section from a presentation by Plump for~\cite{plump2018modular}.
     \item Graph visualization from \cite{overbeek2023apbpotutorial}.
     \item All concepts are from or adapted from \cite{endrullis2024generalized_arxiv_v2}.
+    \item Termination section inspired by the slide of a presentation by Plump for~\cite{plump2018modular}.
   \end{itemize}
 \end{frame}
 
