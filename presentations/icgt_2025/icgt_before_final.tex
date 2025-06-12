@@ -47,11 +47,11 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
 \author{Qi QIU}
 \institute[VFU] % (optional)
 {
-	Supervisor: Xavier URBAIN\\
+	% Supervisor: Xavier URBAIN\\
 	Universite Claude Bernard Lyon 1, France \\
     Univ. Grenoble Alpes, France\\
-	Projet SAPPORO
-}  
+	% Projet SAPPORO 
+}    
   
 \maketitle
 
@@ -107,7 +107,8 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
                     }
                 \end{center}
     \item 
- Rewriting steps $G \Rightarrow_\varphi H$ are double-pushouts with injective match $m :L' \rightarrowtail G$:
+ Rewriting steps $G \Rightarrow_\varphi H$ are double-pushouts
+%   with injective match $m :L' \rightarrowtail G$:
          \begin{center}
           \resizebox{0.40\textwidth}{!}{
               \begin{tikzpicture}
@@ -133,166 +134,6 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
     %   \item Difference with standard definition: an equivalent rule $\varphi'$ with $\opn{lhs}(\varphi') \subseteq G$ is applied instead of $\varphi$.  
  \end{itemize} 
 \end{frame} 
-
-
-
-
-\begin{frame}{Termination~\cite{plump2018modular}}
-  \begin{itemize}
-    \item $\mathcal{R}$ : set of DPO graph rewriting rules
-    \item impossibility of transforming any graph $G_0$ indefinitely
-      \begin{center}
-        $G_0 \Rightarrow_\mathcal{R} G_1 \Rightarrow_\mathcal{R} G_2 \Rightarrow_\mathcal{R} \cdots$
-      \end{center}
-    \item Guarantees that the non-deterministic strategy
-          \begin{center}
-              \textcolor{blue}{apply rules as long as possible}
-          \end{center}
-          returns a result on all inputs
-    \item Corresponds to program termination in conventional programming languages:
-          \begin{center}
-            \textcolor{blue}{program halts on all inputs}
-          \end{center}
-    \item Undecidable in general
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{One-rule examples}
-    Rule $a$ : 
-%   \begin{center}  
-\resizebox{0.85\textwidth}{!}{
-                \begin{tikzpicture}[baseline=-3ex]
-                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                        \draw[->] (l1) -- (l3) node[midway,above] {a};
-                        \draw[->] (l3) -- (l2) node[midway,above] {b};
-                    } 
-            
-                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    }  
-            
-                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (-5mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
-                        \draw[->] (l1) -- (l3) node[midway,above] {b};
-                        \draw[->] (l3) -- (l4) node[midway,above] {a};
-                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
-                    }    
-                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
-                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
-                \end{tikzpicture}
-                }
-            % \end{center}  
-
-\textcolor{blue}{Looping}:
-        \begin{center}
-          \resizebox{0.85\textwidth}{!}{
-            \tikz
-            [baseline=-0.5ex]
-            { 
-                \node (x) at (0,0) {$\bullet$};  
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (0.5,0.86) {$\bullet$};
-                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
-                \draw[->,red] (y) -- node[midway,right] {b} (z) ;
-                \draw[->] (z) -- node[midway,left] {b} (x) ;
-            } 
-            $\Rightarrow$ 
-            \tikz[baseline=-0.5ex]{ 
-                \node (x) at (0,0) {$\bullet$};  
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (0.5,0.86) {$\bullet$};
-                \draw[->] (x) -- node[midway,below] {b} (y) ;
-                \draw[->,red] (y) -- node[midway,right] {a} (z) ;
-                \draw[->,red] (z) -- node[midway,left] {b} (x) ;
-            }
-            $\Rightarrow$ 
-            \tikz[baseline=-0.5ex]{ 
-                \node (x) at (0,0) {$\bullet$};  
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (0.5,0.86) {$\bullet$};
-                \draw[->,red] (x) -- node[midway,below] {b} (y) ;
-                \draw[->] (y) -- node[midway,right] {b} (z) ;
-                \draw[->,red] (z) -- node[midway,left] {a} (x) ;
-            }
-            $\Rightarrow$ 
-            \tikz[baseline=-0.5ex]{ 
-                \node (x) at (0,0) {$\bullet$};   
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (0.5,0.86) {$\bullet$};
-                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
-                \draw[->,red] (y) -- node[midway,right] {b} (z) ;
-                \draw[->] (z) -- node[midway,left] {b} (x) ;
-            }
-          }
-        \end{center}
-
-     Rule $b$:
-%   \begin{center}  
-                \resizebox{0.85\textwidth}{!}{ 
-                \begin{tikzpicture}[baseline=-3ex]
-                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                        \draw[->] (l1) -- (l2) node[midway,above] {a};
-                    } 
-            
-                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    }  
-            
-                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (-5mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
-                        \draw[->] (l1) -- (l4) node[midway,above] {b};
-                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
-                    }    
-                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
-                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
-                \end{tikzpicture}
-                }
-            % \end{center}  
-
-\vspace{2mm}
-\textcolor{blue}{Terminating}: the number of edges labeled by \enquote{a} strictly decreases.
-        \begin{center}
-          \resizebox{0.4\textwidth}{!}{
-            \tikz[baseline=-0.5ex]{ 
-                \node (x) at (0,0) {$\bullet$};  
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (0.5,0.86) {$\bullet$};
-                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
-                \draw[->] (y) -- node[midway,right] {b} (z) ;
-                \draw[->] (z) -- node[midway,left] {b} (x) ;
-            } 
-            $\Rightarrow$ 
-            \tikz[baseline=-0.5ex]{ 
-                \node (x) at (0,0) {$\bullet$};  
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (0.5,0.86) {$\bullet$};
-                \draw[->] (x) -- node[midway,below] {b} (y) ;
-                \draw[->] (y) -- node[midway,right] {b} (z) ;
-                \draw[->] (z) -- node[midway,left] {b} (x) ;
-            }
-          }
-        \end{center}
-\end{frame}
 
 
 \begin{frame}{Graph}
@@ -380,6 +221,193 @@ Finite edge-labeled directed multigraphs
     % Inclusion : morphism $h: L \rightarrowtail R$ with $L \subseteq R$.
 \end{frame}
 
+
+\begin{frame}{Termination}
+  \begin{itemize}
+    \item $\mathcal{R}$ : set of DPO graph rewriting rules
+    \item impossibility of transforming any graph $G_0$ indefinitely
+      \begin{center}
+        $G_0 \Rightarrow_\mathcal{R} G_1 \Rightarrow_\mathcal{R} G_2 \Rightarrow_\mathcal{R} \cdots$
+      \end{center}
+      with the non-deterministic strategy
+          \begin{center}
+              \textcolor{blue}{\enquote{apply rules as long as possible}}
+          \end{center}
+          % returns a result on all inputs
+    \item Corresponds to program termination on all inputs in conventional programming languages
+          
+    % \item Corresponds to program termination in conventional programming languages:
+    %       \begin{center}
+    %         \textcolor{blue}{\enquote{program halts on all inputs}}
+    %       \end{center}
+    \item Undecidable in general~\cite{plump1998terminationundecidable}
+      % Detlef Plump. 1998. Termination of Graph Rewriting is Undecidable. Fundam. Inf. 33, 2 (April 1998), 201-209.}
+    % \cite{plump1998terminationundecidable}
+
+  \end{itemize}
+\end{frame}
+
+% \begin{frame}{Termination~\cite{plump2018modular}}
+%   \begin{itemize}
+%     \item $\mathcal{R}$ : set of DPO graph rewriting rules
+%     \item impossibility of transforming any graph $G_0$ indefinitely
+%       \begin{center}
+%         $G_0 \Rightarrow_\mathcal{R} G_1 \Rightarrow_\mathcal{R} G_2 \Rightarrow_\mathcal{R} \cdots$
+%       \end{center}
+%     \item Guarantees that the non-deterministic strategy
+%           \begin{center}
+%               \textcolor{blue}{apply rules as long as possible}
+%           \end{center}
+%           returns a result on all inputs
+%     \item Corresponds to program termination in conventional programming languages:
+%           \begin{center}
+%             \textcolor{blue}{program halts on all inputs}
+%           \end{center}
+%     \item Undecidable in general
+%   \end{itemize}
+% \end{frame}
+
+\begin{frame}{One-rule examples}
+    Rule $a$ : 
+
+    \begin{center}
+    \resizebox{0.85\textwidth}{!}{
+                \begin{tikzpicture}[baseline=-3ex]
+                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \draw[->] (l1) -- (l3) node[midway,above] {a};
+                        \draw[->] (l3) -- (l2) node[midway,above] {b};
+                    } 
+            
+                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    }  
+            
+                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (-5mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        \draw[->] (l1) -- (l3) node[midway,above] {b};
+                        \draw[->] (l3) -- (l4) node[midway,above] {a};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    }    
+                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
+                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
+                \end{tikzpicture}
+                }
+            \end{center}  
+
+\textcolor{blue}{Looping}:
+        \begin{center}
+          \resizebox{0.85\textwidth}{!}{
+            \tikz
+            [baseline=-0.5ex]
+            { 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {b} (z) ;
+                \draw[->] (z) -- node[midway,left] {b} (x) ;
+            } 
+            $\Rightarrow$ 
+            \tikz[baseline=-0.5ex]{ 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->] (x) -- node[midway,below] {b} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {a} (z) ;
+                \draw[->,red] (z) -- node[midway,left] {b} (x) ;
+            }
+            $\Rightarrow$ 
+            \tikz[baseline=-0.5ex]{ 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->,red] (x) -- node[midway,below] {b} (y) ;
+                \draw[->] (y) -- node[midway,right] {b} (z) ;
+                \draw[->,red] (z) -- node[midway,left] {a} (x) ;
+            }
+            $\Rightarrow$ 
+            \tikz[baseline=-0.5ex]{ 
+                \node (x) at (0,0) {$\bullet$};   
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {b} (z) ;
+                \draw[->] (z) -- node[midway,left] {b} (x) ;
+            }
+          }
+        \end{center}
+
+     Rule $b$:
+
+    \begin{center}
+     \resizebox{0.85\textwidth}{!}{ 
+                \begin{tikzpicture}[baseline=-3ex]
+                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \draw[->] (l1) -- (l2) node[midway,above] {a};
+                    } 
+            
+                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    }  
+            
+                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (-5mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        \draw[->] (l1) -- (l4) node[midway,above] {b};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    }    
+                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
+                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
+                \end{tikzpicture}
+                }
+            \end{center}  
+
+\vspace{2mm}
+\textcolor{blue}{Terminating}: the number of edges labeled by \enquote{a} strictly decreases.
+        % \begin{center}
+        %   \resizebox{0.4\textwidth}{!}{
+        %     \tikz[baseline=-0.5ex]{ 
+        %         \node (x) at (0,0) {$\bullet$};  
+        %         \node (y) at (1,0) {$\bullet$};
+        %         \node (z) at (0.5,0.86) {$\bullet$};
+        %         \draw[->,red] (x) -- node[midway,below] {a} (y) ;
+        %         \draw[->] (y) -- node[midway,right] {b} (z) ;
+        %         \draw[->] (z) -- node[midway,left] {b} (x) ;
+        %     } 
+        %     $\Rightarrow$ 
+        %     \tikz[baseline=-0.5ex]{ 
+        %         \node (x) at (0,0) {$\bullet$};  
+        %         \node (y) at (1,0) {$\bullet$};
+        %         \node (z) at (0.5,0.86) {$\bullet$};
+        %         \draw[->] (x) -- node[midway,below] {b} (y) ;
+        %         \draw[->] (y) -- node[midway,right] {b} (z) ;
+        %         \draw[->] (z) -- node[midway,left] {b} (x) ;
+        %     }
+        %   }
+        % \end{center}
+\end{frame}
+
+
+
 \begin{frame}{Termination by Subgraph Counting}
     \begin{itemize}
         \item Rule $\varphi$: 
@@ -445,7 +473,7 @@ Finite edge-labeled directed multigraphs
                 \draw[->] (x) -- (y) node[midway, above] {$s$};
                 \draw[->] (z) -- (y) node[midway, above] {$s$};
         }$ strictly decreases
-        \item A machine-checkable condition capturing this intuition is desired.
+        \item Can termination of $\varphi$ be automatically checked?
     \end{itemize}
     
 

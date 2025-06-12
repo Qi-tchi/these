@@ -7,6 +7,9 @@
 \usepackage{csquotes}
 \usepackage{changepage}
 \usepackage{cancel} 
+\makeatletter
+\def\blfootnote{\gdef\@thefnmark{}\@footnotetext}
+\makeatother
 \newcommand{\crossout}[2][red]{%
   \begin{tikzpicture}[baseline=(texte.base)]
     % Nœud pour le texte
@@ -63,7 +66,7 @@ over Non-well-founded Semirings}
 	Supervisor: Xavier URBAIN\\
 	Universite Claude Bernard Lyon 1, France \\
     Univ. Grenoble Alpes, France\\
-	Projet SAPPORO
+	% Projet SAPPORO
 }
 
 \maketitle
@@ -205,6 +208,9 @@ over Non-well-founded Semirings}
     %         \textcolor{blue}{\enquote{program halts on all inputs}}
     %       \end{center}
     \item Undecidable in general~\cite{plump1998terminationundecidable}
+      % Detlef Plump. 1998. Termination of Graph Rewriting is Undecidable. Fundam. Inf. 33, 2 (April 1998), 201-209.}
+    % \cite{plump1998terminationundecidable}
+
   \end{itemize}
 \end{frame}
 
@@ -410,7 +416,9 @@ over Non-well-founded Semirings}
       % \item Assigns to each graph $G$ a weight $w_T(G)$
       \item Assigns weights to graphs according to \( T \)
       \item Weights are \alert{well-founded}
-      \item \alert{Terminating} if every step $G \Rightarrow_\mathcal{R} H$ strictly decreases the weight.
+      \item A rewriting system \alert{terminates} if every rewriting step
+      % $G \Rightarrow_\mathcal{R} H$ 
+      strictly decreases the weight.
       \item The \alert{existence} of suitable weighted type graphs is \alert{undecidable} in general
     \end{itemize}
       % \begin{itemize}
@@ -1611,13 +1619,14 @@ Every rewriting step strictly decreases the weight if
 
 \begin{frame}{Searching Weighted Type Graphs over the natural vs. real numbers}
     \begin{itemize}
-      \item $k$ nodes and no parallel edges of the same label from $\Sigma$
+      \item $k$ nodes
+      \item no parallel edges of the same label from $\Sigma$
     \end{itemize}
  Weighted type graph searching problem:
 
   \begin{enumerate}
-    \item Decide if $s \overset{l}{\to} t$ exists for each pair of nodes \( s, t\) and label \( l\)
-    \item Assign a \crossout[red]{natural} real number as weight for each existing edge
+    \item Decide whether, for each pair of nodes \( s, t\) and label \( l\), the edge $s \overset{l}{\to} t$ exists 
+    \item Assign a \crossout[red]{natural} real number weight to each existing edge
     \item Check if the sufficient condition is satisfied
     % the weighted type graph satisfies the conditions 
     % expressed as first-order formulas in Peano arithmetic
@@ -1635,7 +1644,7 @@ Every rewriting step strictly decreases the weight if
       \begin{itemize}
         \item $k^2|\Sigma|$ binary variables
         \item $k^2|\Sigma|$ \crossout[red]{integer} real variables
-        \item with or without multiplication
+        \item with or without multiplication of real variables
       \end{itemize}
     
     Complexity:
@@ -1684,14 +1693,16 @@ Every rewriting step strictly decreases the weight if
     \item In theory: complexity reduced
     \item In practice: acceleration when without multiplication
     % with Real Tropical or Arctic Semiring
-    \item Tool: LyonParallel
-        \begin{itemize}
-          % \item supports well-founded and non-well-founded approaches
-          % \item searches with different approaches in parallel and cooperates between them
-          % \item for edge-labeled directed graph rewriting
-          \item MIT License
-          \item \url{github.com/Qi-tchi/LyonParallel/tree/icgt2025}
-        \end{itemize}
+    \item Tool: LyonParallel~\footnote{
+    \url{github.com/Qi-tchi/LyonParallel/tree/icgt2025},  
+    MIT License}
+    % \footcite{\url{github.com/Qi-tchi/LyonParallel/tree/icgt2025}}
+        % \begin{itemize}
+        %   % \item supports well-founded and non-well-founded approaches
+        %   % \item searches with different approaches in parallel and cooperates between them
+        %   % \item for edge-labeled directed graph rewriting
+        %   \item MIT License
+        % \end{itemize}
   \end{itemize}
 \end{frame} 
 
@@ -1700,7 +1711,7 @@ Every rewriting step strictly decreases the weight if
     \item Thanks to the anonymous reviewers for their valuable comments and suggestions.
     \item Graph visualization from \cite{overbeek2023apbpotutorial}.
     \item All concepts are from or adapted from \cite{endrullis2024generalized_arxiv_v2}.
-    \item Termination section inspired by the slide of a presentation by Plump for~\cite{plump2018modular}.
+    \item Termination section inspired by the slides of a presentation by Plump for~\cite{plump2018modular}.
   \end{itemize}
 \end{frame}
 
