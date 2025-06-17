@@ -1,0 +1,77 @@
+\begin{definition}[Rewriting rule and match~\cite{corradini1997algebraic}]
+  \label{def:grs:dpo_rule}
+A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}, \( L \) is the \textbf{left-hand-side graph}, denoted \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side graph}, denoted \( \operatorname{rhs}(\rho) \). The rule is \textbf{monic} if $l$ and $r$ are both monic.
+A match of the rule in an graph \( G \) is a morphism \( m: L \rightarrow G \).   
+\end{definition}
+   In this paper, we use examples from the category \textbf{Graph} of edge-labeled directed multigraphs (see~\cite{konig2018atutorial}) to illustrate the discussed concepts. To facilitate this, we introduce the following notation for visualizing graph homomorphisms.
+\begin{notation}[\cite{qiu2025termination}]
+    We use the notation from~\cite[Notation 1]{overbeek2023apbpotutorial} to visualize edge-labeled graph homomorphisms. Labeled graphs are enclosed in boxes with their names displayed in the top-left corner. Nodes and edges are assigned subsets of \(\mathbb{N}\) as identifiers, and these identifiers are chosen such that: (i) Each node or edge \( y \) in the codomain graph is assigned the union of the identifiers of all nodes or edges in the domain graph that are mapped to \( y \); (ii) The graph homomorphism is uniquely determined by this assignment. To further improve readability, we represent sets by listing their elements. Additionally, we omit identifiers when doing so does not cause confusion. This is illustrated in the following representation of a homomorphism \( h: G \to H \).
+    
+   \begin{center}
+        \resizebox{0.5\textwidth}{!}{
+        \begin{tikzpicture}
+            \graphbox{\( G \)}{00mm}{-20mm}{45mm}{25mm}{2mm}{-10mm}{
+                \coordinate (o) at (-5mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {4};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l4) node[midway,above] {b};
+                \draw[->] (l4) -- (l2) node[midway,above] {a};
+            }  
+            \graphbox{\( H \)}{52mm}{-20mm}{50mm}{25mm}{2mm}{-10mm}{
+                \coordinate (o) at (-5mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-1,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1)+(1.5,0)$) {3\ 4};
+                \draw[->] (l1) edge node[midway,above] {a} (l3);
+                \draw[->] (l3) edge [loop above] node[midway,above] {b} (l3) ;
+                \draw[->] (l3) -- (l2) node[midway,above] {a};
+            }      
+            \node () at (48mm,-30mm) {$\rightarrow$};
+        \end{tikzpicture}
+    }
+    \end{center}  
+    In this example, the sets \(\{1\}\), \(\{2\}\), \(\{3\}\), \(\{4\}\), and \(\{3,4\}\) are represented as \(1\), \(2\), \(3\), \(4\), and \(3\ 4\), respectively. Edge identifiers are omitted.
+\end{notation}
+\begin{example}
+  \label{ex:grsaa}
+  The injective DPO rule from \cite[Example 6]{bruggink2014termination} will be used to illustrate the concepts discussed throughout this paper.
+  The rule can be visualized as follows:
+  \begin{center} 
+      \resizebox{0.7\textwidth}{!}{
+      \begin{tikzpicture}
+          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \draw[->] (l1) -- (l3) node[midway,above] {a};
+              \draw[->] (l3) -- (l2) node[midway,above] {a};
+          }     
+          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+              % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+              % \draw[->] (l1) -- (l3) node[midway,above] {a};
+              % \draw[->] (l3) -- (l2) node[midway,above] {a};
+          }    
+          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \draw[->] (l1) -- (l3) node[midway,above] {a};
+              \draw[->] (l3) -- (l4) node[midway,above] {b};
+              \draw[->] (l4) -- (l2) node[midway,above] {a};
+          }    
+          \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
+          \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
+          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+      \end{tikzpicture}
+      }
+  \end{center}
+\end{example}

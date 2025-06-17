@@ -1,0 +1,22 @@
+\begin{definition}[Unlabeled graph~\cite{barr1990category}]
+    \label{def:graph:unlabeled}
+    An \textbf{unlabeled graph} \( G \) consists of a collection of \textbf{nodes} (also called \textbf{objects}) and a collection of \textbf{edges} equipped with a \textbf{source} (or \textbf{domain}) node and a \textbf{target} (or \textbf{codomain}) node. 
+    
+    For an unlabeled graph \( G \), we denote by \( G_0 \) its collection of nodes, \( G_1 \) its collection of edges, \( \operatorname{dom}:G_1{\to}G_0 \) the domain function, and \( \operatorname{cod}:G_1{\to}G_0 \) the codomain function. An unlabeled graph is \textbf{finite} if \( G_0 \) and \( G_1 \) are both finite sets.
+    We write \( a: s \to t \) to indicate that \( a \) is a directed edge from \( s \) to \( t \).
+\end{definition}   
+A homomorphism of unlabeled graphs is a mapping between the nodes and edges of two graphs that preserves the graph structure.
+\begin{definition}[Homomorphism of unlabeled graphs]
+    \label{def:unlabeled_graph:homomorphism}
+    Let \( G \) and \( H \) be unlabeled graphs. A \textbf{homomorphism of unlabeled graphs} \( h: G \to H \) is a pair of functions \( h_0: G_0 \to H_0 \) and \( h_1: G_1 \to H_1 \) such that for every edge \( a: s \to t \) in \( G \), we have \( h_1(a) : h_0(s) \to h_0(t) \) in \( H \).
+\end{definition}
+\begin{definition}[Labeled graph \cite{konig2018tutorial}]
+    \label{def:graph}
+    Let \(\Sigma\) be a finite set of labels. A labeled graph is an ordered pair \((G,\lambda)\) where \( G \) is an unlabeled graph and \( \lambda : G_1 \rightarrow \Sigma\) is an edge-labeling function. 
+    It is called \textbf{finite} if its underlying unlabeled graph is finite.  
+\end{definition}
+By $a : s\overset{l}{\rightarrow} t$, we denote the arrow $a$ labeled by $l$ from $s$ to $t$. Unless otherwise specified, the term \enquote{graph} will refer to finite labeled graphs. Note that unlabeled graphs can be regarded as labeled graphs. A homomorphism of labeled graphs is a homomorphism of unlabeled graphs that preserves the labels assigned to the edges.
+\begin{definition}[Homomorphism of labeled graphs~\cite{konig2018tutorial}]
+    \label{def:graph:homomorphism}
+    Let \( (G,\lambda) \) and \( (H,\lambda') \) be labeled graphs. A \textbf{homomorphism of labeled graphs} \( h:(G,\lambda) \rightarrow (H,\lambda') \) is a homomorphism of unlabeled graphs such that for each edge \( a \) in \( G \), we have \( \lambda = \lambda' \circ h_1 \).
+\end{definition}

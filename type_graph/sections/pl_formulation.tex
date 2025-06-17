@@ -1,0 +1,115 @@
+Let $\mathcal{R}$ be a rewriting systems. Let $\Sigma$ be the finite set of arrow labels. We look for a type graph $T$ in the all $\Sigma$ labeled simple graph 
+of size $n$. Let $\delta \in \mathbb{R}^+$
+
+\subsection{Decision Variables}
+We define decision variables
+\begin{flalign*}
+        x_a &\in \set{0,1}, \text{for all arrows $a \in E(T)$}\\
+        y_a &\in \mathbb{R}^+, \text{for all arrows $a \in E(T)$}\\
+        z_\rho & \in \set{0,1}, \text{for all rules $\rho \in \mathcal{R}$}
+\end{flalign*} 
+with constraints
+\begin{flalign*}
+        0 &\leq y_a < 1,\text{if $x_a = 1$ for all arrows $a \in E(T)$}\\
+        y_a &= M,\text{if $x_a = 0$ for all arrows $a \in E(T)$} \\
+        \sum_{\rho \in \mathcal{R}} z_\rho &\geq 1
+\end{flalign*}
+
+% \subsubsection{impl}
+% Big-M Constraints to ensure $y=M$ when $x = 0$:
+% \begin{itemize}
+%     \item $y \leq M + M * x = M + 0 = M$
+%     \item $y \geq M - M * x = M - 0 = M$
+% \end{itemize}
+% when $x = 1$:
+% \begin{itemize}
+%     \item $y \leq M + M * x = M + M = 2*M$
+%     \item $y \geq M - M * x = M - M = 0$
+% \end{itemize}
+% Big-M Constraints to ensure $0 \leq y \leq 1$ when $x = 1$:
+% \begin{itemize}
+%     \item $y < x + (1 - x) * M = 1 + 0 * M = 1$
+% \end{itemize}
+
+\subsection{Auxiliary Variables} 
+For every rule $(L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \in \mathcal{R}$, for every $h \in Hom(L, T) \cup Hom(R,T)$, we define 
+        \begin{flalign*}
+            H(h) &\in \set{0,1}\\
+            H'(h) &\in \mathbb{R}^+\\
+        \end{flalign*}
+with onstraints
+        \begin{flalign*}
+            H(h) &= \operatorname{and}(\set{x_{h(a)} \mid~ a \in \operatorname{E}(\operatorname{dom}(h))})\\
+            % H'(h) &= \operatorname{sum}(\set{y_{h(a)} \mid~ a \in \operatorname{E}(\operatorname{dom}(h))})\\
+            H(h) &= 0 \rightarrow H'(h) = M \\
+            H(h) &= 1 \rightarrow H'(h) = \sum_{b \in E(T)}\sum_{\substack{a \in \operatorname{E}(\operatorname{dom}(h))\\
+            h(a) = b}} y_b
+        \end{flalign*}
+
+For every rule $\rho =(L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)\in \mathcal{R}$,
+for every $t_K \in Hom(K,T)$,  
+for every $f \in \set{l,r}$, 
+% we define $K(\rho,t_K,f)$ be a binary auxiliary variable and $K'(\rho,t_K,f)$, $\delta'(\rho,t_K)$ be continuous auxiliary variables such that 
+we define variables 
+\begin{flalign*}
+    \delta'(\rho,t_K) &\in \mathbb{R}^+\\
+    K(t_K,f) &\in \set{0,1}\\
+    K'(t_K,f) &\in \mathbb{R}^+\\
+\end{flalign*}
+with constraints
+        \begin{flalign*}
+            \delta'(\rho,t_K) &\geq \delta\\
+            K(t_K,f) &= \operatorname{or}(\set{H(h) \mid~h \in \set{f \star - = t_K}}) \\
+            K'(t_K,f) &= \min(M, \set{H'(h) \mid~h \in \set{f \star - = t_K}})
+        \end{flalign*}
+
+
+ 
+Let $\operatorname{complete}(G)$ be the graph obtained from $G$ by adding an arrow $s \overset{l}{\to} t$, for all nodes $s,t$ and all labels $l$ if $s \overset{l}{\to} t \notin G$.
+
+For every rule $\rho =(L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)\in \mathcal{R}$, 
+let $L' = L \cup \operatorname{complete}(\operatorname{Im}(l)) $,
+for all morphisms $t_{L'} : L' \to T$,
+we define 
+\begin{flalign*}
+    C(t_{L'}) \in \set{0,1}
+\end{flalign*}
+with constraints
+\begin{flalign*}
+    C(t_{L'}) &=\operatorname{and}(\set{x_{t_{L'}(a)} \mid~ a \in \operatorname{E}(\operatorname{dom}(t_{L'}))}) \\
+    % C(\rho,t_{L'}) &= \operatorname{and}(\set{x_a \mid~ e \in \operatorname{E}(\operatorname{Im}(t_{L'}))})\\
+\end{flalign*}
+
+\subsection{Constraints: all rules decrease}
+For all rules $\rho =(L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \in \mathcal{R}$,
+for all morphisms $t_K \in Hom(K,T)$, we add the following constraint 
+        % \begin{flalign*}
+        %     K'(\rho,t_K,l) &\geq K'(\rho,t_K,r) 
+        % \end{flalign*}
+        \begin{flalign*}
+            K(t_K,l) &= 1 \rightarrow K(t_K,r) = 1\\
+            K(t_K,l)&= 1 \rightarrow K'(t_K,l) \geq K'(t_K,r)
+        \end{flalign*}
+\subsection{Constraints: some rules uniformly decrease}
+For all rules $\rho =(L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$,
+for all morphisms $t_K \in Hom(K,T)$,
+        \begin{flalign*}
+            % and(z_ K(t_K,l)) &= 1 \rightarrow K(t_K,r) = 1\\
+            and(z_\rho, K(t_K,l)) &= 1 \rightarrow K'(t_K,l) \geq K'(t_K,r) + \delta'
+        \end{flalign*}
+
+For every rule $\rho =(L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$, let $L' = L \cup \operatorname{complete}(\operatorname{Im}(l)) $, 
+if we use a fromework $\mathfrak{F}$ with monic matching, 
+then we add the following constraint
+\begin{flalign*}
+    z_\rho = 1 \to \sum_{
+    \set{t_{L'}:L' \to T \mid~ 
+                    l' \star t_{L'} \text{monic}} 
+    } C(t_{L'}) \geq 1\\
+\end{flalign*}
+otherwise, we add 
+\begin{flalign*}
+    z_\rho = 1 \to \sum_{
+    t_{L'}:L' \to T 
+    } C(t_{L'}) \geq 1\\
+\end{flalign*}
