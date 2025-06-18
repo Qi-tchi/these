@@ -9,10 +9,26 @@
     % \( C \) is called the \textbf{underlying graph} of the category \( \mathcal{C} \).
 \end{definition} 
 
+\begin{example}
+    The following unlabeled graph is a category with two nodes and four arrows with loops at each node as the identities and the recheability as the composition:
+           \begin{center}
+        \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+                \node[draw,circle] (1) at (0,0) {1};
+                \node[draw,circle] (2) at (2,0) {2};
+                \draw[->] (1) edge[loop above] node[midway, above] { } (1) ;
+                % \draw[->] (1) edge[loop below] node[midway, below] {} (1) ;
+                \draw[->] (2) edge[loop above] node[midway, above] { } (2) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {} (1)   ;
+            }
+        \end{tikzpicture}
+    \end{center}
+\end{example}
+
 % cat notation * 
 \begin{notation}
-    The composition of morphisms \( f : X \to Y \) and \( g : Y \to Z \) is written in diagrammatic order as \( f \star g \), rather than in functional order \( g \circ f \). 
-    % The advantage is that, when reading from left to right, the morphisms appear in the same order as in the corresponding diagram, making the notation more intuitive for visual reasoning.
+    The composition of morphisms \( f : X \to Y \) and \( g : Y \to Z \) is written in diagrammatic order as \( f \star g \), rather than in functional order \( g \circ f \) as is common in litterature. The advantage is that, when reading from left to right, the morphisms appear in the same order as in the corresponding diagram, making the reasoning accompanying diagrams more intuitive. 
 \end{notation}  
 
 \begin{definition}[Monomorphism \cite{pierce1991basic,barr1990category}]
@@ -27,19 +43,73 @@
 % \begin{definition}[Span \cite{lowe2010graph}]
 %     A pair \( (\alpha : A \to B,~\beta : A \to C) \) of morphisms with a common domain is called a \textbf{span}, denoted by \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \).
 % \end{definition}
-
+ 
 % \begin{definition}[Cospan]
 %     A pair \( (\beta' : B \to D,~\alpha' : C \to D) \) of morphisms with a common codomain is called a \textbf{cospan}, denoted by \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \). 
 % \end{definition} 
 
-In category theory, a ordered pair \((\alpha : A \to B,\, \beta : A \to C)\) of morphisms with a common domain is called a \textbf{span} \cite{lowe2010graph}, denoted by
+In category theory, an ordered pair \((\alpha : A \to B,\, \beta : A \to C)\) of morphisms with a common domain is called a \textbf{span} \cite{lowe2010graph}, denoted by
 \(
-B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C.
-\)
+B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C
+\). An example of a span $(\alpha, \beta)$ is shown the following diagram.
 Likewise, an ordered pair \((\beta' : B \to D,\, \alpha' : C \to D)\) of morphisms with a common codomain is called a \textbf{cospan}, denoted by
 \(
-B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C.
-\)
+B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
+\). An example of a cospan $(\beta', \alpha')$ is shown in the following diagram.
+
+ \begin{center}  
+        \resizebox{0.7\textwidth}{!}{
+        \begin{tikzpicture} 
+            \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+            } 
+    
+            \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+            \graphbox{\(G = L \cup C \)}{90mm}{5mm}{34mm}{27mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+                \draw[->,blue] (l2) -- (l4) node[midway,right] {a};
+                \node[draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+                \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }   
+     
+            \graphbox{\( C \)}{40mm}{-20mm}{34mm}{27mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \draw[->,blue] (l2) -- (l4) node[midway,right] {a};
+                \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[ draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+            }      
+            % K to L
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            % C to G
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            % K to C
+            \draw[>->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            % L to G
+            \draw[>->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            % \node () at (57mm,-6mm) {$PO$};
+        \end{tikzpicture}
+        }
+    \end{center}
 
 \begin{definition}[Diagram \cite{barr1990category}]
     \label{def:cat:diagram}
@@ -79,6 +149,65 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C.
     the equality \( h(s_1) \star h(s_2) \star \dots  \star h(s_{n-1}) = h(t_1) \star h(t_2) \star \dots  \star h(t_{m-1}) \) holds.
 \end{definition}
 
+\begin{example}
+    The following diagram is a commutative diagram in the category \textbf{Graph} of edge-labeled directed multigraphs. A symbol $\mathop{=}$ in the center of the diagram
+    is used to indicate that the two paths from node 1 to node 2 are equal.
+ 
+    \begin{center}  
+        \resizebox{0.7\textwidth}{!}{
+        \begin{tikzpicture} 
+            \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+            } 
+    
+            \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+            \graphbox{\(G = L \cup C \)}{90mm}{5mm}{34mm}{27mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+                \draw[->,blue] (l2) -- (l4) node[midway,right] {a};
+                \node[draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+                \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }   
+     
+            \graphbox{\( C \)}{40mm}{-20mm}{34mm}{27mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \draw[->,blue] (l2) -- (l4) node[midway,right] {a};
+                \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[ draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+            }      
+            % K to L
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            % C to G
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            % K to C
+            \draw[>->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            % L to G
+            \draw[>->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \node () at (57mm,-6mm) {$\mathop{=}$};
+        \end{tikzpicture}
+        }
+    \end{center} 
+\end{example}
+
 \begin{definition}[Pushout \cite{barr1990category}]
     \label{def:cat:po}
     \ \newline
@@ -109,6 +238,123 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C.
 \end{minipage}
 The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \textbf{pushout square}, with \(D\) as the \textbf{pushout object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pushout}.
 \end{definition} 
+
+\begin{example}
+    The following diagram is a pushout square in the category \textbf{Graph} of edge-labeled directed multigraphs. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
+    \begin{center}  
+        \resizebox{0.7\textwidth}{!}{
+        \begin{tikzpicture} 
+            \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+            } 
+    
+            \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+            \graphbox{\(G  \)}{90mm}{5mm}{34mm}{27mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+                \draw[->,blue] (l2) -- (l4) node[midway,right] {a};
+                \node[draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+                \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }   
+     
+            \graphbox{\( C \)}{40mm}{-20mm}{34mm}{27mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \draw[->,blue] (l2) -- (l4) node[midway,right] {a};
+                \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[ draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+            }      
+            % K to L
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            % C to G
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            % K to C
+            \draw[>->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            % L to G
+            \draw[>->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \node () at (57mm,-6mm) {$PO$};
+        \end{tikzpicture}
+        }
+    \end{center} 
+\end{example}
+
+\begin{example}
+    The following diagram is a pushout square in the category \textbf{Graph} of edge-labeled directed multigraphs. In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
+    \begin{center}  
+        \resizebox{0.7\textwidth}{!}{
+        \begin{tikzpicture} 
+            \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+            } 
+    
+            \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+            \graphbox{\(G  \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-20mm); 
+                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
+                % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
+                \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \draw[->,red] (l1) edge[bend left] node[midway,left] {a} (l3);
+                \draw[->,red] (l3) edge[bend left] node[midway,right] {a} (l1);
+                \draw[->,blue] (l1) edge  node[midway,right] {a} (l4);
+                \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \draw[<-,blue] (l1) edge node[midway,left] {a} (l6) ;
+                % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }   
+     
+            \graphbox{\( C \)}{40mm}{-20mm}{34mm}{35mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-14mm); 
+                \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \draw[->,blue] (l1) -- (l4) node[midway,right] {a};
+                % \draw[->,blue] (l1) edge[loop above] node[midway, above] {a} (l1) ;
+                \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+            }
+            % K to L  
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            % C to G
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            % K to C
+            \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            % L to G
+            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \node () at (57mm,-6mm) {$PO$};
+        \end{tikzpicture}
+        }
+    \end{center} 
+\end{example}
 
 \begin{definition}[Pullback \cite{pierce1991basic}]
     \label{def:cat:pb}
@@ -141,10 +387,276 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
 The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \textbf{pullback square}, with \(A\) as the \textbf{pullback object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pullback}.
 \end{definition} 
 
+
+\begin{example}
+    The following diagram is a pullback square in the category \textbf{Graph} of edge-labeled directed multigraphs. 
+    \begin{center}  
+        \resizebox{0.7\textwidth}{!}{
+        \begin{tikzpicture} 
+            \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+            } 
+    
+            \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+            \graphbox{\(G  \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-20mm); 
+                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
+                % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
+                \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \draw[->,red] (l1) edge[bend left] node[midway,left] {a} (l3);
+                \draw[->,red] (l3) edge[bend left] node[midway,right] {a} (l1);
+                \draw[->,blue] (l1) edge  node[midway,right] {a} (l4);
+                \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \draw[<-,blue] (l1) edge node[midway,left] {a} (l6) ;
+                % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }   
+     
+            \graphbox{\( C \)}{40mm}{-20mm}{34mm}{35mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-14mm); 
+                \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \draw[->,blue] (l1) -- (l4) node[midway,right] {a};
+                % \draw[->,blue] (l1) edge[loop above] node[midway, above] {a} (l1) ;
+                \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+            }
+            % K to L  
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            % C to G
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            % K to C
+            \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            % L to G
+            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \node () at (57mm,-6mm) {$PB$};
+        \end{tikzpicture}
+        }
+    \end{center} 
+    In fact, there are three possible spans \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) such that \(\gamma' \star \beta' = \gamma \star \alpha'\) holds, and for each of them, there exists a unique morphism \(\delta: E \to A\) such that $\gamma' = \delta \star \alpha$ and $\gamma = \delta \star \beta$, as shown in the following three diagrams:
+
+    \begin{center}  
+        \resizebox{0.9\textwidth}{!}{
+        \begin{tikzpicture} 
+            \graphbox{\( E_1 \)}{-50mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+            \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+            } 
+    
+            \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+
+             \graphbox{\( C \)}{40mm}{-20mm}{34mm}{35mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-14mm); 
+                \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \draw[->,blue] (l1) -- (l4) node[midway,right] {a};
+                % \draw[->,blue] (l1) edge[loop above] node[midway, above] {a} (l1) ;
+                \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+            }
+
+            \graphbox{\(G  \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-20mm); 
+                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
+                % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
+                \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \draw[->,red] (l1) edge[bend left] node[midway,left] {a} (l3);
+                \draw[->,red] (l3) edge[bend left] node[midway,right] {a} (l1);
+                \draw[->,blue] (l1) edge  node[midway,right] {a} (l4);
+                \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \draw[<-,blue] (l1) edge node[midway,left] {a} (l6) ;
+                % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }   
+            % E to K
+            \draw[>->] (-15mm,-6mm) -- node[above] {$\delta_1$} (-1mm,-6mm);
+            % E to L
+            \draw[>->] (-33mm,5mm) -- node[above] {$\gamma'_1$} (33mm,15mm);
+            % K to L  
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            % C to G
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            % K to C
+            \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+             % E to C
+            \draw[->] (-33mm,-17mm) -- node[below] {$\gamma_1$} (33mm,-28mm);
+            % L to G
+            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            % \node () at (57mm,-6mm) {$PB$};
+        \end{tikzpicture}
+        }
+    \end{center} 
+
+    \begin{center}  
+        \resizebox{0.9\textwidth}{!}{
+        \begin{tikzpicture} 
+            \graphbox{\( E_2 \)}{-50mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+            \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+            } 
+    
+            \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+
+             \graphbox{\( C \)}{40mm}{-20mm}{34mm}{35mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-14mm); 
+                \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \draw[->,blue] (l1) -- (l4) node[midway,right] {a};
+                % \draw[->,blue] (l1) edge[loop above] node[midway, above] {a} (l1) ;
+                \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+            }
+
+            \graphbox{\(G  \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-20mm); 
+                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
+                % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
+                \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \draw[->,red] (l1) edge[bend left] node[midway,left] {a} (l3);
+                \draw[->,red] (l3) edge[bend left] node[midway,right] {a} (l1);
+                \draw[->,blue] (l1) edge  node[midway,right] {a} (l4);
+                \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \draw[<-,blue] (l1) edge node[midway,left] {a} (l6) ;
+                % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }   
+            % E to K
+            \draw[>->] (-15mm,-6mm) -- node[above] {$\delta_2$} (-1mm,-6mm);
+            % E to L
+            \draw[>->] (-33mm,5mm) -- node[above] {$\gamma'_2$} (33mm,15mm);
+            % K to L  
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            % C to G
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            % K to C
+            \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            % E to C
+            \draw[->] (-33mm,-17mm) -- node[below] {$\gamma_2$} (33mm,-28mm);
+            % L to G
+            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            % \node () at (57mm,-6mm) {$PB$};
+        \end{tikzpicture}
+        }
+    \end{center} 
+
+    \begin{center}  
+        \resizebox{0.9\textwidth}{!}{
+        \begin{tikzpicture} 
+            \graphbox{\( E_3 \)}{-50mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(o)+(10mm,0mm)$) {2};
+            }  
+            \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {a};
+            } 
+    
+            \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+
+             \graphbox{\( C \)}{40mm}{-20mm}{34mm}{35mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-14mm); 
+                \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \draw[->,blue] (l1) -- (l4) node[midway,right] {a};
+                % \draw[->,blue] (l1) edge[loop above] node[midway, above] {a} (l1) ;
+                \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
+            }
+
+            \graphbox{\(G  \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-20mm); 
+                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
+                % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
+                \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \draw[->,red] (l1) edge[bend left] node[midway,left] {a} (l3);
+                \draw[->,red] (l3) edge[bend left] node[midway,right] {a} (l1);
+                \draw[->,blue] (l1) edge  node[midway,right] {a} (l4);
+                \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \draw[<-,blue] (l1) edge node[midway,left] {a} (l6) ;
+                % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }   
+            % E to K
+            \draw[>->] (-15mm,-6mm) -- node[above] {$\delta_3$} (-1mm,-6mm);
+            % E to L
+            \draw[>->] (-33mm,5mm) -- node[above] {$\gamma'_3$} (33mm,15mm);
+            % K to L  
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            % C to G
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            % K to C
+            \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+             % E to C
+            \draw[->] (-33mm,-17mm) -- node[below] {$\gamma_3$} (33mm,-28mm);
+            % L to G
+            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            % \node () at (57mm,-6mm) {$=$};
+        \end{tikzpicture}
+        }
+    \end{center} 
+\end{example}
+
 \begin{notation}
     When the context makes it clear, a morphism \( h : A \to B \) will be denoted by \( h_{AB} \), and diagrams will be referred to by their nodes, as is standard in geometry. For example, the diagram involving morphisms \( ( \alpha, \beta, \alpha', \beta' ) \) in \autoref{def:cat:po} will be denoted by \( ACDB \) or \( ABDC \).
 \end{notation}   
 
-\begin{remark}
-    We work within the category \textbf{Graph}. The terms homomorphism and morphism will be used interchangeably; the same applies to monic and injective, and to injective homomorphism and monomorphism.
-\end{remark}

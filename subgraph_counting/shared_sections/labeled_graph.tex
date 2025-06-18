@@ -3,4 +3,19 @@
     Let \(\Sigma\) be a finite set of labels. A \textbf{labeled graph} is an ordered pair \((G,\lambda)\) where \( G \) is an unlabeled graph and \( \lambda : G_1 \rightarrow \Sigma\) is an edge-labeling function. 
     It is called \textbf{finite} if its underlying unlabeled graph is finite.  
 \end{definition}
-By $a : s\overset{l}{\rightarrow} t$, we denote the arrow $a$ labeled by $l$ from $s$ to $t$. Unless otherwise specified, the term \enquote{graph} refers to the graphs finite. Note that unlabeled graphs can be regarded as labeled graphs. A homomorphism of labeled graphs is a homomorphism of unlabeled graphs that preserves the labels assigned to the edges.
+By $a : s\overset{l}{\rightarrow} t$, we denote the arrow $a$ labeled by $l$ from $s$ to $t$. Unless otherwise specified, the term \enquote{graph} refers to \enquote{finite graph}. Note that unlabeled graphs can be regarded as labeled graphs. A homomorphism of labeled graphs is a homomorphism of unlabeled graphs that preserves the labels assigned to the edges.
+\begin{example}
+    Edges of a labeled graph are directed and labeled by elements of a finite set of labels. Between any two nodes, there can be multiple edges, and loops are allowed. The following is an example of a labeled graph:
+        \begin{center}
+        \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+                \node[draw,circle] (1) at (0,0) {1};
+                \node[draw,circle] (2) at (2,0) {2};
+                \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
+            }
+        \end{tikzpicture}
+    \end{center}
+\end{example}
