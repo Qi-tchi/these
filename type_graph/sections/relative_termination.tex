@@ -1,4 +1,165 @@
+\begin{definition}[Rewriting sequence]
+    Let \(\mathcal{R}\) be a set of rewriting rules. Let $\mathfrak{F}$ be a DPO rewriting framework.
+    A \textbf{$(\mathcal{R},\mathfrak{F})$-rewriting sequence} is a finite sequence \(s_0,s_1,\hdots, s_m\) of objects such that \(s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\) for each \( 0 \leq n \leq m-1\), or an infinite sequence \(s_0,s_1,\hdots\) of objects such that \(s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\) for each \(n \in \mathbb{N}\).
+    A $(\mathcal{R},\mathfrak{F})$-rewriting sequence from \( s_0 \) will be denoted as:
+    \(
+    s_0 \Rightarrow_{\mathcal{R},\mathfrak{F}} s_1 \Rightarrow_{\mathcal{R},\mathfrak{F}} s_2 \Rightarrow_{\mathcal{R},\mathfrak{F}} \cdots 
+    \)
+\end{definition}
+
+\begin{example}
+    Consider the following rewriting rules:
+    \begin{center}
+    \resizebox{0.85\textwidth}{!}{
+                \begin{tikzpicture}[baseline=-3ex]
+                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \draw[->] (l1) -- (l3) node[midway,above] {a};
+                        \draw[->] (l3) -- (l2) node[midway,above] {b};
+                    } 
+            
+                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    }  
+            
+                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (-5mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        \draw[->] (l1) -- (l3) node[midway,above] {b};
+                        \draw[->] (l3) -- (l4) node[midway,above] {a};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    }    
+                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
+                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
+                \end{tikzpicture}
+                }
+            \end{center}  
+    Below is a rewriting sequence using the rule:
+
+        \begin{center}
+          \resizebox{0.85\textwidth}{!}{
+            \tikz
+            [baseline=-0.5ex]
+            { 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {b} (z) ;
+                \draw[->] (z) -- node[midway,left] {b} (x) ;
+            } 
+            $\Rightarrow$ 
+            \tikz[baseline=-0.5ex]{ 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->] (x) -- node[midway,below] {b} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {a} (z) ;
+                \draw[->,red] (z) -- node[midway,left] {b} (x) ;
+            }
+            $\Rightarrow$ 
+            \tikz[baseline=-0.5ex]{ 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->,red] (x) -- node[midway,below] {b} (y) ;
+                \draw[->] (y) -- node[midway,right] {b} (z) ;
+                \draw[->,red] (z) -- node[midway,left] {a} (x) ;
+            }
+            $\Rightarrow$ 
+            \tikz[baseline=-0.5ex]{ 
+                \node (x) at (0,0) {$\bullet$};   
+                \node (y) at (1,0) {$\bullet$};
+                \node (z) at (0.5,0.86) {$\bullet$};
+                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {b} (z) ;
+                \draw[->] (z) -- node[midway,left] {b} (x) ;
+            }
+          }
+        \end{center}
+\end{example}
+
 \begin{definition}[Relative termination \cite{klop1987term,geser1990relative}]
     \label{termination:def:relative_termination}
      Let $\mathcal{A}$ and $\mathcal{B}$ be sets of rewriting rules. Let $\mathfrak{F}$ be a DPO rewriting framework. We say that $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{terminating relative to} $\Rightarrow_{\mathcal{B}, \mathfrak{F}}$ if any infinite $(\mathcal{A} \cup \mathcal{B},\mathfrak{F})$-rewriting sequence has only a finite number of rewriting steps with rules in $\mathcal{A}$.
 \end{definition}
+
+\begin{example}
+    Consider the rewriting system with two rules.
+     Rule $\alpha$:
+
+    \begin{center}
+     \resizebox{0.85\textwidth}{!}{ 
+                \begin{tikzpicture}[baseline=-3ex]
+                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \draw[->] (l1) -- (l2) node[midway,above] {a};
+                    } 
+            
+                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    }  
+            
+                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (-5mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        \draw[->] (l1) -- (l4) node[midway,above] {b};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    }    
+                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
+                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
+                \end{tikzpicture}
+                }
+            \end{center}  
+
+    Rule $\beta$:
+
+    \begin{center}
+     \resizebox{0.85\textwidth}{!}{ 
+                \begin{tikzpicture}[baseline=-3ex]
+                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \draw[->] (l1) -- (l2) node[midway,above] {a};
+                    } 
+            
+                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    }  
+            
+                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (-5mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        \draw[->] (l1) -- (l4) node[midway,above] {a};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    }    
+                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
+                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
+                \end{tikzpicture}
+                }
+            \end{center}  
+    The rewriting system is not terminating because of the rule $\beta$, but the rule $\alpha$ is terminating relative to $\beta$ because it can only be applied finitely many times in any rewriting sequence that uses $\alpha$ and $\beta$.
+\end{example}

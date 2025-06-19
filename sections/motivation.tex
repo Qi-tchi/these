@@ -1,0 +1,37 @@
+
+\paragraph{Distributed algorithms} Distributed algorithms play an important role in our modern society. For example, they control machines that we use in daily basis such as smart phone but also critical systems such as medical devises, trains, airplanes, spaceship. Errors in distributed algorithms can have severe consequences, such as the loss of critical data or even the loss of human lives. 
+
+
+\paragraph{Challenges in verifying distributed algorithms}
+Due to the limitations of single machine or the need of robustness, distributed algorithms, which are algorithms that run on multiple machines, are often preferred over centralized ones. However, distributed algorithms are more difficult to design and verify the correctness than their centralized counterparts. 
+
+\paragraph{Formal methods for verifying distributed algorithms}
+Formal methods can address this challenge by rigorous mathematical methods. Among these methods, mechanically verified proofs using proof assistants can provide a high level of assurance in the correctness of distributed algorithms.
+However, this approach is too demanding for most users, as they require a high level of expertise and are often time consuming.  
+
+\paragraph{Automation tools for verifying distributed algorithms}
+Automation tools that can verify some specific properties of distributed algorithms and can generate certificates that can be checked by proof assistants alleviate this problem. 
+ They can be used by users who are not experts in formal methods, and they can also speed up the verification process for experts.
+
+ \paragraph{Graph transformation systems on edge-labeled directed multigraphs
+ for modeling distributed algorithms}
+ One of the main challenges in developing automated tools for formal verification is to represent distributed algorithms in a mathematical structure. Graph transformation systems provide an intuitive way to model distributed algorithms: computation units are represented by nodes; communication canals are represented by arrows; the working environment is modeled by a graph; arrows have labels representing information encoded in computation units and states of communication canals; system behavior expressed by state changes is modeled by replacing subgraphs in the graph by other subgraphs. 
+
+ The main stream approach is called algebraic graph rewriting. One of the advantages of algebraic graph rewriting is that it is defined up to isomorphism, which simplifies reasoning. 
+  To transform a host graph $G$ using a rule which replaces an occurrence of a graph $L$ in $G$ by a graph $R$, one needs to decompose the graph $G$ into $C$ and $L$, remove $L$ and then connect $R$ to $C$ to form the result graph. Difference approaches of removing $L$ and connecting $R$ to $C$ lead to different graph rewriting systems: DPO, SPO, SqPO, Agree, PBPO, PBPO+, and so on.
+
+ \paragraph{DPO rewriting systems for edge-labeled directed multigraphs}
+DPO rewriting systems are the most popular graph rewriting systems. It is very strict in the sense that no implicit edge deletion is allowed and it does not allow to duplicate nodes (to double check). While it has its limite in expressiveness, it is still powerful enough to model many distributed algorithms and provide a simple formalism easier to develop termination techniques.
+
+Different from the philosphy of Overbeek and Endrullis, we focus on 
+developping specific termination techniques for DPO graph rewriting systems on
+edge-labeled directed multigraphs, which are graphs with directed edges that can have multiple edges between two nodes and edges can have labels. These techniques cannot be applied to other categories in general, for some of them, they can be applied with some minor modifications. This choice is motivated by the fact that developping termination techniques is a difficult task, we want more arguments specific to DPO graph rewriting systems on edge-labeled directed multigraphs be available in the process of developing termination techniques. Another reason is that we want our techniques easy to be understood: to understand our techniques, only undergraduate knowledge in graph theory and some basic knowledge in category theory are required. The second reason is important because in our opinion, automated tools are not only for experts, and non experts should be able to easily understand the techniques and are not supposed to be experts in category theory.
+
+\paragraph{Termination of DPO graph rewriting systems}
+Termination is the property that we focus. It is a fundamental property of algorithms because many other properties are based on it. For example, there is no point to talk about the correctness of the result of an algorithm if the algorithm does not terminate. In the context of graph rewriting, termination means that any graph can not be transformed indefinitely by applying rewriting rules. Plump has shown that termination of DPO graph rewriting systems is undecidable in general~\cite{plump1998terminationundecidable}.
+There are not many techniques available.
+
+\paragraph{Contribution 1 : an extension of Type Graph Method to non-well-founded semirings}
+Type Graph Method: An Advanced Termination Technique for DPO Graph Rewriting Systems
+ 
+\paragraph{Contribution 2 : a termination technique for injective DPO graph rewriting systems on edge labeled directed multigraphs using subgraph counting}
