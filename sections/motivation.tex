@@ -12,6 +12,9 @@
 % \paragraph{Automated tools that check specific properties of distributed algorithms can alleviate the problem}
 % Automated tools that check specific properties of distributed algorithms and can generate certificates that can be checked by proof assistants alleviate this problem: they can be used by users who are not experts in formal methods, and they can also speed up the verification process for experts. 
 
+
+%   type graph method for edge-labeled directed multigraph transforms and the subgraph counting technique in a unified tool, called, together with the existing type graph method by Endrullis and Overbeek~\cite{overbeek2024termination_lmcs} for edge-labeled directed multigraph transforms.
+
 \paragraph{Distributed algorithms and their correctness}
 Distributed systems play a crucial role in improving performance, 
 scalability, and efficiency in modern computing.
@@ -24,25 +27,82 @@ it requires proficiency in proof assistants and can be
 time-consuming. Automated methods that check specific properties of distributed algorithms and can generate certificates that can be checked by proof assistants provide a practical alternative~\cite{contejean2011automated,giesl2014proving}: while they can only be applied to specific properties for some classes of distributed algorithms, they can be used by users who are not experts in formal methods, and they can also speed up the verification process for experts. To develop such automated methods, distributed algorithms need to be modeled in a formal way enabling rigorous analysis and automated verification of their properties.
 
 
- \paragraph{Graph transformation systems}
- Graph transformation systems provide an intuitive yet formal way to model distributed algorithms: computation units are represented by nodes; communication canals are represented by arrows; the working environment is modeled by a graph; arrows have labels representing information encoded in computation units and states of communication canals; system behavior expressed by state changes is modeled by replacing subgraphs in the graph by other subgraphs.
+ \paragraph{Graph transformation}
+ Graph transformation provide an intuitive yet formal way to model distributed systems: computation units are represented by nodes; communication canals are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computation units and states of communication canals; state changes of the system is modeled by replacing subgraphs in the graph by other subgraphs according to transformation rules.
 
- The main stream approach is called algebraic graph rewriting. One of the advantages of algebraic graph rewriting is that it is defined up to isomorphism, which simplifies reasoning. 
-  To transform a host graph $G$ using a rule which replaces an occurrence of a graph $L$ in $G$ by a graph $R$, one needs to decompose the graph $G$ into $C$ and $L$, remove $L$ and then connect $R$ to $C$ to form the result graph. Difference approaches to remove $L$ and connect $R$ to $C$ lead to different graph rewriting systems. 
-  
-  The most popular graph rewriting systems are:
-   DPO, SPO, SqPO, Agree, PBPO, PBPO+. (to do develop)
+ A predominant school of thought in this area is called algebraic graph rewriting which uses concepts from category theory to define the transformation of graphs. One advantage of this approach is that the language of category theory abstract away from the details of the different notions of graphs, provided that the notion of graph satisfies some properties. In fact, different notions of graphs have been proposed in the literature for different applications, such as edge-labeled directed multigraphs (todo ref), single graphs (todo ref), hypergraphs (todo ref), attributed graphs (todo ref), etc. Another advantage is that transformation is defined up to isomorphism, which simplifies reasoning about graph transformation.
 
-we focus on DPO graph rewriting systems (to do why)
-DPO rewriting systems are the most popular graph rewriting systems. It is very strict in the sense that no implicit edge deletion is allowed and it does not allow to duplicate nodes (to double check). While it has its limite in expressiveness, it is still powerful enough to model many distributed algorithms and provide a simple formalism easier to develop termination techniques.
+  To transform a host graph $G$ using a rule which replaces an occurrence of a graph $L$ in $G$ by the occurrence of another graph $R$, one firstly needs to decompose the host graph $G$ into a context $C$ and an occurrence of $L$, then remove some nodes and edges of the occurrence of $L$ and finally adds some fresh nodes and edges to form the result graph. For example, if we consider a graph transformation rule which identifies an occurrence of the following graph, then removes the middle node and edges of the occurrence
 
-\paragraph{Relative Termination of DPO graph rewriting systems}
-We focus on relative termination of DPO graph rewriting systems. Given two rule sets \( \mathcal{A} \) and \( \mathcal{B} \), relative termination ensures that, for any graph finite graph $G$,
-rules in $\mathcal{A}$ can only be applied finitely many times in any sequence of rule applications from $\mathcal{A} \cup \mathcal{B}$. 
+    \begin{tikzpicture}
+           \graphbox{\( \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l2) node[midway,above] {a};
+            } 
+    \end{tikzpicture}
+
+  The graph $G$, illustrated below, can be transformed into the graph $H$, illustrated below, by applying the rule.
+
+  \begin{tikzpicture}
+     \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+              \draw[] (l1) -- (l3) node[midway,above] {a};
+              \draw[] (l3) -- (l2) node[midway,above] {a};
+              \draw[ ] (l2) -- (l4) node[midway,right] {b};
+              \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+              \draw[] (l1) -- (l6) node[midway,left] {b};
+          }    
+          \graphbox{\( H \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+              \draw[ ] (l2) -- (l4) node[midway,right] {b};
+              \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+              \draw[ ] (l1) -- (l6) node[midway,left] {b};
+          }    
+  \end{tikzpicture}
+
+  There are different algebraic graph transformation systems according to whether the rule mentioned above can be applied to the following graph $G'$:
+
+  \begin{tikzpicture}
+    \graphbox{\( G' \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \draw[->,red] (l3) -- (l4) node[midway,above] {a};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l2) node[midway,above] {a};
+                \draw[->] (l2) -- (l4) node[midway,right] {b};
+                \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-] (l1) -- (l6) node[midway,left] {b};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }   
+  \end{tikzpicture}
+
+   The most studied algebraic graph transformation systems are double-pushout (DPO) graph rewriting systems~\cite{corradini1997algebraic}. It does not allow this kind of transformation because when the node 3 is removed, the edge from node 3 to node 6 becomes dangling. Single pushout (SPO) graph rewriting system~\cite{corradini1997algebraic} allows the application of the rule to transform the graph $G'$ and remove all dangling edges. PBPO and PBPO+ graph rewriting systems avoid implicit edge deletion by providing a mechanism for each rule to impose restrictions on the context $C$. (to do SqPO and Agree)
+
+   We focus on DPO graph rewriting systems in this thesis, because it is the most studied and the easier in the sense that its definition uses only the concept of pushout as one of the algebraic graph rewriting's problem is that it is not easy to understand the definition of a graph rewriting system. DPO graph rewriting systems are also powerful enough to model many distributed algorithms and provide a simple formalism easier to develop termination techniques because it does not allow implicit edge deletion and creation.
+
+\textcolor{red}{
+    \paragraph{Relative Termination of DPO graph rewriting systems}
+    We focus on relative termination of DPO graph rewriting systems. Given two rule sets \( \mathcal{A} \) and \( \mathcal{B} \), relative termination ensures that, for any graph finite graph $G$,
+    rules in $\mathcal{A}$ can only be applied finitely many times in any sequence of rule applications from $\mathcal{A} \cup \mathcal{B}$. 
+}
 
 
 \paragraph{DPO graph rewriting systems on edge-labeled directed multigraphs}
-We focus on DPO graph rewriting systems on edge-labeled directed multigraphs.
+ While termination techniques can be developed for DPO graph rewriting systems on categories satisfying certain properties using the language of category theory, we focus on developping termination technique for DPO graph rewriting systems on edge-labeled directed multigraphs because we want our technique be easy to understand even for non-experts of termination or graph rewriting systems. By this choice, we hope that our automated techniques can be adopt with more confidence by non-experts in other fields. As a result of our choice, the new termination technique presented in \autoref{chap:subgraph_counting} can be understood with basic knowledge in graph theory and some basic knowledge in category theory and the most part of the reasoning uses the language of graph theory.
 
 \paragraph{Existing techniques for termination of DPO graph rewriting systems}
 (to do to do)
