@@ -13,12 +13,20 @@
 \newpage      
   
 \chapter{Introduction}
-Graph transformation systems are a formalism for modeling distributed algorithms as sets of graph rewriting rules. A graph rewriting system 
-\( \mathcal{A} \) is said to be terminating relative another graph rewriting \( \mathcal{B} \), if for any graph finite graph $G$,
-rules in $\mathcal{A}$ can only be applied finitely many times in any sequence of rule applications from $\mathcal{A} \cup \mathcal{B}$. 
-We study relative termination property of graph transformation systems that uses the concept of double-pushout (DPO)\textemdash a concept from the category theory\textemdash to define the transformation of graphs.
+% Graph transformation systems are a formalism for modeling distributed algorithms as sets of graph rewriting rules. A graph rewriting system 
+% \( \mathcal{A} \) is said to be terminating relative another graph rewriting \( \mathcal{B} \), if for any graph finite graph $G$,
+% rules in $\mathcal{A}$ can only be applied finitely many times in any sequence of rule applications from $\mathcal{A} \cup \mathcal{B}$. 
+% We study relative termination property of graph transformation systems that uses the concept of double-pushout (DPO)\textemdash a concept from the category theory\textemdash to define the transformation of graphs.
+%  The contribution of this thesis is threefold. 
+%  Firstly, we \textbf{extend an existing technique} that proves relative termination of such systems, known as the type graph method. Our extension enables more efficient implementation of the method. Secondly, we \textbf{develop a new machine-checkable sufficient condition} for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs based on the idea of counting specific subgraphs in the graph before and after transformation. Thirdly, we \textbf{implement a termination tool}~\textbf{LyonParallel} including the existing approaches of type graph method and our extension and our termination criterion for edge-labeled directed multigraph transform. In the remainder of this chapter, we give more details on the motivation, the contributions, the structure of the thesis, and introduce the necessary background.
+In this thesis, we study automated techniques for proving the transformation of any graph according to a given set of graph transformation rules cannot last indefinitely.
  The contribution of this thesis is threefold. 
- Firstly, we \textbf{extend an existing technique} that proves relative termination of such systems, known as the type graph method. Our extension enables more efficient implementation of the method. Secondly, we \textbf{develop a new machine-checkable sufficient condition} for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs based on the idea of counting specific subgraphs in the graph before and after transformation. Thirdly, we \textbf{implement a termination tool}~\textbf{LyonParallel} including the existing approaches of type graph method and our extension and our termination criterion for edge-labeled directed multigraph transform. In the remainder of this chapter, we give more details on the motivation, the contributions, the structure of the thesis, and introduce the necessary background.
+ Firstly, we extend an existing technique, called the type graph method.
+   Secondly, we develop a new machine-checkable sufficient condition 
+   for injective DPO graph rewriting systems on edge-labeled directed multigraphs based on the idea that if the number of a specific subgraph in the graph strictly decreases every time a transformation is performed, then the transformation cannot last indefinitely.
+    Thirdly, we implement a termination tool, called LyonParallel, including the existing 
+    type graph method and our extension for edge-labeled directed multigraph transformation, and our techniques. In the remainder of this chapter, we give more details on the motivation, the contributions, the structure of the thesis, and introduce the necessary background.
+
 \section{Motivation, Contributions, and Structure of the Thesis} 
 \input{sections/motivation}
 \section{Graphs}

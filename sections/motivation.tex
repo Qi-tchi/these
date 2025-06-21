@@ -94,19 +94,24 @@ time-consuming. Automated methods that check specific properties of distributed 
 
    We focus on DPO graph rewriting systems in this thesis, because it is the most studied and the easier in the sense that its definition uses only the concept of pushout as one of the algebraic graph rewriting's problem is that it is not easy to understand the definition of a graph rewriting system. DPO graph rewriting systems are also powerful enough to model many distributed algorithms and provide a simple formalism easier to develop termination techniques because it does not allow implicit edge deletion and creation.
 
-\textcolor{red}{
-    \paragraph{Relative Termination of DPO graph rewriting systems}
-    We focus on relative termination of DPO graph rewriting systems. Given two rule sets \( \mathcal{A} \) and \( \mathcal{B} \), relative termination ensures that, for any graph finite graph $G$,
-    rules in $\mathcal{A}$ can only be applied finitely many times in any sequence of rule applications from $\mathcal{A} \cup \mathcal{B}$. 
-}
 
 
 \paragraph{DPO graph rewriting systems on edge-labeled directed multigraphs}
- While termination techniques can be developed for DPO graph rewriting systems on categories satisfying certain properties using the language of category theory, we focus on developping termination technique for DPO graph rewriting systems on edge-labeled directed multigraphs because we want our technique be easy to understand even for non-experts of termination or graph rewriting systems. By this choice, we hope that our automated techniques can be adopt with more confidence by non-experts in other fields. As a result of our choice, the new termination technique presented in \autoref{chap:subgraph_counting} can be understood with basic knowledge in graph theory and some basic knowledge in category theory and the most part of the reasoning uses the language of graph theory.
+ While termination techniques can be developed for DPO graph rewriting systems using different notions of graphs that satisfy certain properties, we focus on developing termination technique for DPO graph rewriting systems on edge-labeled directed multigraphs.
+ There are two main reasons for this choice.
+ Firstly, we want our technique to be easy to check by software engineers who are not experts in category theory and graph rewriting.  
+ By this choice, we hope that our automated techniques can be adopt with the real confidence.
+ For example, consider the new automated technique presented in \autoref{chap:subgraph_counting}, its proofs using the language of category theory are long and detailed but can be understood with very basic knowledge in graph theory and very basic knowledge in category theory.
+Secondly, edge-labeled directed multigraphs are a powerful and elegant notion of graphs that can be used to model many distributed algorithms.
 
-\paragraph{Existing techniques for termination of DPO graph rewriting systems}
-(to do to do)
-There are not many techniques available.
+
+\paragraph{Relative Termination}
+We focus on relative termination property. Given two rule sets \( \mathcal{A} \) and \( \mathcal{B} \), relative termination ensures that, for any graph finite graph $G$,
+rules in $\mathcal{A}$ can only be applied finitely many times in any sequence of rule applications from $\mathcal{A} \cup \mathcal{B}$. 
+
+
+\paragraph{Existing techniques}
+There are not many techniques for proving relative termination of DPO graph rewriting systems. Below, we list some of the existing techniques.
  
 \begin{itemize}
     \item Overbeek and Endrullis have developed a termination technique for PBPO+ graph rewriting systems~\cite{overbeek2024termination_lmcs}. This technique counts counts the number of occurrences of certain subgraphs before and after a rewriting steps. This technique can be applied to PBPO+ graph rewriting systems on many categories including edge-labeled directed multigraphs. It can also be applied to left-injective DPO graph rewriting systems.
@@ -121,22 +126,37 @@ There are not many techniques available.
 
 \textcolor{red}{todo :adapt section related work in \autoref{chap:nwf_type_graph} and \autoref{chap:subgraph_counting}}
 
-\paragraph{Position of our work}
-\begin{description}
-    \item[general introduction] We extend the type graph method to non-well-founded semirings and develop a termination technique for injective DPO graph rewriting systems on edge-labeled directed multigraphs using subgraph counting.
-    \item[our general philosphy] Different from the philosphy of Overbeek and Endrullis, we focus on 
-developping specific termination techniques for DPO graph rewriting systems on
-edge-labeled directed multigraphs, which are graphs with directed edges that can have multiple edges between two nodes and edges can have labels. These techniques cannot be applied to other categories in general, for some of them, they can be applied with some minor modifications. This choice is motivated by the fact that developping termination techniques is a difficult task, we want more arguments specific to DPO graph rewriting systems on edge-labeled directed multigraphs be available in the process of developing termination techniques. Another reason is that we want our techniques easy to be understood: to understand our techniques, only undergraduate knowledge in graph theory and some basic knowledge in category theory are required. The second reason is important because in our opinion, automated tools are not only for experts, and non experts should be able to easily understand the techniques and are not supposed to be experts in category theory. 
-\end{description}
+% \paragraph{Position of our work}
+% \begin{description}
+%     \item[general introduction] We extend the type graph method to non-well-founded semirings and develop a termination technique for injective DPO graph rewriting systems on edge-labeled directed multigraphs using subgraph counting.
+%     \item[our general philosphy] Different from the philosphy of Overbeek and Endrullis, we focus on 
+% developping specific termination techniques for DPO graph rewriting systems on
+% edge-labeled directed multigraphs, which are graphs with directed edges that can have multiple edges between two nodes and edges can have labels. These techniques cannot be applied to other categories in general, for some of them, they can be applied with some minor modifications. This choice is motivated by the fact that developping termination techniques is a difficult task, we want more arguments specific to DPO graph rewriting systems on edge-labeled directed multigraphs be available in the process of developing termination techniques. Another reason is that we want our techniques easy to be understood: to understand our techniques, only undergraduate knowledge in graph theory and some basic knowledge in category theory are required. The second reason is important because in our opinion, automated tools are not only for experts, and non experts should be able to easily understand the techniques and are not supposed to be experts in category theory. 
+% \end{description}
 
-
-\paragraph{Contribution 1 : an extension of Type Graph Method to non-well-founded semirings} While the type graph method is a powerful termination technique for DPO graph rewriting systems, previous approaches use weighted type graphs over well-founded semirings, which have practical limitations when applied to edge-labeled directed multigraph rewriting. In \autoref{chap:nwf_type_graph}, we investigate the use of non-well-founded semirings to overcome these limitations. This is a step towards a more practical termination technique.
+\paragraph{Contribution 1 : Termination of Graph Rewriting using Weighted Type Graphs over Non-well-founded Semirings} 
+While the type graph method is a powerful termination technique for DPO graph rewriting systems, previous approaches use weighted type graphs over well-founded semirings, which have practical limitations when applied to edge-labeled directed multigraph rewriting. In \autoref{chap:nwf_type_graph}, we investigate the use of non-well-founded semirings to overcome these limitations. This is a step towards a more practical termination tool.
 We have implemented both our method and the prior approach by Endrullis and Overbeek~\cite{overbeek2024termination_lmcs} for edge-labeled graph rewriting within a unified tool.
 
+While the weighted type graph method is a powerful technique for proving termination of double-pushout (DPO) graph rewriting systems. 
+Existing approaches use weighted type graphs over well-founded semirings, but these have practical limitations when applied to edge-labeled directed multigraph rewriting.
+We investigate the use of non-well-founded semirings to overcome these limitations.
+We have implemented both our method and a prior approach for edge-labeled graph rewriting within a unified tool.
+
 \autoref{chap:nwf_type_graph} is based on the following paper:
-\textcolor{red}{ref}
+\begin{itemize}
+    \item Qi Qiu. Termination of Graph Rewriting using Weighted Type Graphs over Non-well-founded Semirings. 16th International Workshop on Graph Computation Models, Jun 2025, Koblenz, Germany. 2025. ⟨hal-04954960v3⟩
+\end{itemize}
  
-\paragraph{Contribution 2 : a termination technique for injective DPO graph rewriting systems on edge labeled directed multigraphs using subgraph counting}
+\paragraph{Contribution 2 : Termination of Injective DPO Graph Rewriting Systems using Subgraph Counting} 
+
+\autoref{chap:subgraph_counting} presents a machine-checkable sufficient condition for relative termination of double-pushout (DPO) graph rewriting systems with injective rules on edge-labeled multigraphs. 
+the method defines a graph's weight as the sum of weights of occurrences of a set of graphs within it. By ensuring 
+(1) every rewriting step using rules in a set A strictly decreases the host graph's weight, and 
+(2) every rewriting step using rules in a set B never increases it, we guarantee that rules in the set A can be applied only finitely many times in any rewriting sequence with rules in the union of A and B.  
+The method resolves termination cases that prior interpretation-based methods cannot. 
+We also propose an implementation of our technique.
+
 \autoref{chap:subgraph_counting} is based on the following paper:
 \begin{itemize}
     \item Qiu, Q. (2025). Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting. In: Endrullis, J., Tichy, M. (eds) Graph Transformation. ICGT 2025. Lecture Notes in Computer Science, vol 15720. Springer, Cham. \url{https://doi.org/10.1007/978-3-031-94706-3_1}
