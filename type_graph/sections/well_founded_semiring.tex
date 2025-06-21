@@ -1,0 +1,110 @@
+
+\begin{definition}[Monoid]
+    A \textbf{monoid} $(S, *, e)$ is a set $S$ equipped with a binary operation $* : S \times S \rightarrow S$ and having a spacial element $e$ such that:
+    \begin{itemize}
+        \item {$*$ is associative:} $ (x * y) \cdot z = x * (y * z)$
+        \item {$e$ is an identity element:} $  e * x = x = x * e$
+    \end{itemize}
+    A \textbf{commutative monoid} is a monoid where $*$ is commutative: $x * y = y * x$.
+\end{definition}
+
+\begin{definition}[Semiring]
+    \label{def_semiring}
+        A \textbf{semiring} is a 5-tuple $(S,\bigoplus,\bigotimes,0,1)$ satisfying the following conditions:
+         \begin{itemize}
+            \item {$(S,\bigoplus,0)$ is a commutative monoid} 
+            \item {$(S,\bigotimes,1)$ is a monoid} 
+            \item {$\bigotimes$ is distributive over $\bigoplus$:}
+            \begin{itemize}
+                \item $a \bigotimes ( b \bigoplus c) = (a \bigotimes b) \bigoplus (a \bigotimes c)$ 
+                \item $(b \bigoplus c) \bigotimes a = (b \bigotimes a) \bigoplus (c \bigotimes a)$
+            \end{itemize} 
+            \item {0 is an annihilator for $\bigotimes$:} $x \bigotimes 0= 0 =  0 \bigotimes x $
+        \end{itemize}
+        A \textbf{commutative semiring} is a semiring where $\bigotimes$ is commutative.
+\end{definition}
+
+\begin{definition}[Well-founded Semiring]
+    \label{def:well_founded_semiring}
+    A \textbf{well-founded semiring} $(S, \oplus, \odot, 0, 1,\prec, \leq)$ consists of
+    \begin{itemize}
+        \item A semiring $(S, \oplus, \odot, 0, 1)$,
+        \item non-empty orders $\prec, \leq \subseteq S \times S$,
+    \end{itemize}
+    such that the equivalent class $\prec / \leq$ is well-founded, $0 \neq 1$ and for all $x,y,z,w \in S$, for all $\delta \in \mathbb{R}_{\geq 0}$, we have
+        \begin{align*}
+            x \preceq x' \land y \preceq y' 
+            &\Rightarrow
+            x \oplus y \preceq x' \oplus y'
+            &\tag{S1} \label{wfs:ax:s1} 
+            \\   
+            % x < y  
+            % &\Rightarrow
+            % x \oplus z \leq y \oplus z 
+            % \tag{S1} \label{eq:ordered_semiring_plus_monotonic} 
+            % \\ w
+            x \prec x' \land y \prec y'  
+            &\Rightarrow
+            x \oplus y \prec x' \oplus y'
+            &\tag{S2} \label{wfs:ax:s2} 
+            \\
+            x \preceq x' \land 1 \leq y
+            &\Rightarrow 
+            x \odot y \preceq x' \odot y \land y \odot x \preceq y \odot x' 
+            &\tag{S3} \label{wfs:ax:s3} 
+            \\
+            x \prec x' \land 1 \leq y \neq 0 
+            &\Rightarrow
+            x \odot y \prec x' \odot y \land y \odot x \prec y \odot x'
+            &\tag{S4} \label{wfs:ax:s4}
+        \end{align*}
+      The semiring is \textbf{strictly monotonic} if it additionally satisfies 
+      \begin{center}
+        \begin{flalign*}
+                x \prec x'  \land y \leq y'
+                &\Rightarrow
+                x \oplus y \prec x' \oplus y 
+                &\tag{S8} \label{ax:s5} 
+        \end{flalign*}
+      \end{center}
+
+\end{definition}
+\begin{example} 
+    \label{example:real_semirings}
+    The natural tropical semiring: $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min,+,+\infty, 0, <, \leq)$
+    and the natural arctic semiring: $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+,-\infty, 0,<, \leq)$ are strongly monotonic semirings.
+    The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0,1,<, \leq)$ is a strictly monotonic semiring.
+\end{example}
+\begin{example}
+    The natural tropical semiring $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min,+,+\infty, 0, <, \leq)$ has domain $\mathbb{N} \cup \{+\infty\}$, the binary function symbol $\oplus$ interpreted by $\min$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $+\infty$ and $0_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N} \cup \{+\infty\}$. It is a strongly monotonic semiring. It is not strictly monotonic measurable because $2 < 3$ but $2 \oplus 2 = \min(2,2) = 2 \not < 2 = \min(3,2) = 3 \oplus 2$.
+\end{example}
+    
+\begin{example}
+    The natural arctic semiring $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+,-\infty, 0,<,\leq)$ has domain $\mathbb{N} \cup \{-\infty\}$, the binary function symbol $\oplus$ interpreted by $\max$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $-\infty$ and $0_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N} \cup \{-\infty\}$. It is a strongly monotonic semiring. It is not strictly monotonic measurable because $2 < 3$ but $2 \oplus 3 = \max(2,3) = 3 \not < 3 = \max(3,3) = 3 \oplus 3$.
+\end{example}
+
+\begin{example}
+    The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0,1,<,\leq)$ has domain $\mathbb{N}$, the binary function symbol $\oplus$ interpreted by $+$ and the binary function symbol $\odot$ interpreted by $*$, the constant symbols $0_s$ and $1_s$ interpreted by $0_\mathbb{N}$ and $1_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N}$. It is a strictly monotonic semiring.
+\end{example}
+
+\begin{notation} 
+    \label{def:bigodot}
+Let $(S, \oplus, \odot, 0_s, 1_s)$ be a semiring. We extend naturally the binary operations $\oplus$ and $\odot$ to finite sets $E \subseteq S$ by letting
+    \begin{itemize}
+        \item $\bigodot \emptyset \overset{\operatorname{def}}{=} 1_s$ and $\bigodot \left( E \cup \{x\} \right) \overset{\operatorname{def}}{=} \left( \bigodot E \right) \odot x$;
+        \item $\bigoplus \emptyset \overset{\operatorname{def}}{=} 0_s$ and $\bigoplus \left( E \cup \{x\} \right) \overset{\operatorname{def}}{=} \left( \bigoplus E \right) \oplus x$.
+    \end{itemize}
+%  \begin{flalign*}
+%     \bigodot \emptyset &\overset{\operatorname{def}}{=} 1_s
+% \\
+%     \bigodot \left( E \cup \{x\} \right) &\overset{\operatorname{def}}{=} \left( \bigodot E \right) \odot x
+%     \\
+%     \bigoplus \emptyset &\overset{\operatorname{def}}{=} 0_s
+%     \\
+%         \bigoplus \left( E \cup \{x\} \right) &\overset{\operatorname{def}}{=} \left( \bigoplus E \right) \oplus x
+% \end{flalign*}
+\end{notation}
+
+% \begin{notation}
+%     Let $S$ be a strongly monotonic measurable semiring. We write $0_s$, $1_s$ and $\mu_s$ to denote the additive and multiplicative neutral elements of $S$ and the homomorphism, respectively.
+% \end{notation}

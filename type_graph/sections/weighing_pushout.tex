@@ -1,29 +1,8 @@
-Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let \(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) be a weighted type graph over the strongly monotonic measurable semiring $\mathcal{S}$. A proof of the following proposition can be found in \cite[Proposition 36]{qiu2025termination_nwf_v2_acceptedgcm}.
+Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let \(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) be a weighted type graph over the strongly monotonic semiring $\mathcal{S}$ such that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. By \autoref{rem:wf:weight_of_object_geq_1}, for all objects \( G \) subject to rewriting, \(w_\mathcal{T}(G) \geq 1_\mathcal{S} \).
 
-\begin{proposition}  
-    % Let $\mathcal{S} = (S, \oplus, \odot, 0_\mathcal{S}, 1_\mathcal{S}, \prec, \mu)$ be a strongly monotonic measurable semiring. We have 
-    For all $x,y$ in $\mathcal{S}$:
-    \begin{align*}
-        0_\mathcal{S} \neq x \land 0_\mathcal{S} \neq y 
-        &\Rightarrow 0_\mathcal{S} \neq x \odot y 
-        \\
-        1_\mathcal{S} \preceq x \land 1_\mathcal{S} \preceq y \land 0_\mathcal{S} \neq x \land 0_\mathcal{S} \neq y  
-        &\Rightarrow
-         1_\mathcal{S} \preceq x \odot y 
-         \\
-         0_\mathcal{S} \neq x \land 0_\mathcal{S} \neq y   
-         &\Rightarrow 0_\mathcal{S} \neq x \oplus y
-    \end{align*}
-\end{proposition}
+The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( w_\mathcal{T}(G) > w_\mathcal{T}(H)\), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \geq w_\mathcal{T}(H) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
-    Suppose that (1) $w(e) \succeq 1_\mathcal{S}$ for all $e \in \mathbb{E}$, and (2) for all $x \in \mathcal{S}$, if $ 1_\mathcal{S} \preceq x \neq 0_\mathcal{S}$ then $\mu(x) \geq \mu(1_\mathcal{S})$ and $\mu(x) \in \mathbb{R}$. 
-    By definition of a weighted type graph, $w(e)\neq 0_\mathcal{S}$ for all $e\in\mathbb{E}$.
-    Therefore, by the proposition above, Hypothesis (1) and the definition of the weight of a morphism (\autoref{def:weight_of_a_morphism_relative_to_a_type_graph}), for all morphisms \( h \) from a finite graph $G$ to $\mathcal{T}$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(h) \succeq 1_\mathcal{S} \). 
-    By the above proposition, Axiom \eqref{ax:s0} and the definition of the weight of an object (\autoref{def:weight_of_an_object_relative_to_a_type_graph}), we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( 0_\mathcal{S} \neq w_\mathcal{T}(G) \succeq 1_\mathcal{S} \). By Hypothesis (2), we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( \mu(w_\mathcal{T}(G)) \geq \mu(1_\mathcal{S}) = 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and \( \mu(w_\mathcal{T}(G)) \geq 1 \) if $\mathcal{S}$ is the arithmetic semiring.
-
-Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) > \mu(w_\mathcal{T}(H)) + \delta \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \geq \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
- 
-In this section, we recall the concepts of traceability of objects (Definition \ref{def:traceability}) and relative monicity of morphisms (\autoref{def:relative_monicity}), which are used to define the notion of weighable pushout squares (\autoref{def:weighable}). Using the notion of a weighable pushout square, we can bound the weight of the pushout object as explained below.  
+In this section, we recall the concepts of traceability of objects (Definition \ref{def:traceability}) and relative monicity of morphisms (\autoref{def:relative_monicity}), which are used to define the notion of weighable pushout squares (\autoref{def:weighable}). Using the notion of a weighable pushout square, we can bound the weight of the pushout object as explained below.
 
 \noindent
 \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}

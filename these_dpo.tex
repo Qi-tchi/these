@@ -39,29 +39,75 @@ In this thesis, we study automated techniques for proving the transformation of 
 \input{type_graph/sections/relative_termination.tex}
 
 
-\chapter{Termination of Graph Rewriting
-using Weighted Type Graphs
-over Non-Well-Founded Semirings} 
-\label{chap:nwf_type_graph}
+\section{Well-Founded Semirings} 
+\label{sec:well_founded_semiring}
+\input{type_graph/sections/well_founded_semiring.tex}
+\section{Weighted Type Graph} 
+\label{sec:weighted_type_graph}
+\input{type_graph/sections/weighted_type_graph.tex}
+
+% \section{Preliminaries}
+% \label{sec:type_graph:preliminaries}
+% \input{type_graph/sections/preliminaries.tex} 
+\section{Measuring objects by counting morphisms}
+\label{sec:type_graph:measuring_graphs}
+\input{type_graph/sections/measuring_graphs.tex}
+
+
+% \section{Weighing Morphisms and Objects}   
+% \label{sec:weigh_morphisms_and_objects}
+% \input{sections/type_graph_graph_weight} 
+  
+\section{Estimating weights of pushout objects} 
+\label{sec:type_graph:weighing_pushout} 
+\input{type_graph/sections/weighing_pushout}  
+
+\section{Termination using Weighted Type Graphs}
+\label{sec:type_graph:termination}
+\input{type_graph/sections/termination}   
+  
+% \section{Examples} 
+% \label{sec:examples}
+% \input{sections/examples.tex}
+
+\section{Implementation}
+\label{sec:type_graph:implementation}
+\input{type_graph/sections/implementation_new} 
+
+
+% \section{Implementation}
+% \label{sec:implementation}
+% \input{sections/implementation} 
+
+\section{Empirical Results}
+\label{sec:type_graph:result}
+\input{type_graph/sections/result.tex} 
+
+\section{Discussion}
+\label{sec:type_graph:related_work}
+\input{type_graph/sections/related_work.tex}
+
+\section{Conclusion}
+\label{sec:type_graph:conclusion}
+\input{type_graph/sections/conclusion}
+
+% \chapter{Termination of Graph Rewriting
+% using Weighted Type Graphs
+% over Non-Well-Founded Semirings} 
+% \label{chap:nwf_type_graph}
 
 % \section{to be integrated}
 % \begin{remark}
 %     We work within the category \textbf{Graph}. The terms homomorphism and morphism will be used interchangeably; the same applies to monic and injective, and to injective homomorphism and monomorphism.
 % \end{remark} 
-
-% \section{abstract}
-% The weighted type graph method is a technique for proving termination of double-pushout (DPO) graph rewriting systems. 
-% Existing approaches use weighted type graphs over well-founded semirings, but these have practical limitations when applied to edge-labeled directed multigraph rewriting.
-% We investigate the use of non-well-founded semirings to overcome these limitations.
-% We have implemented both our method and a prior approach for edge-labeled graph rewriting within a unified tool.
 % \section{Introduction}
 
 % \label{sec:type_graph:introduction}
 % \input{type_graph/sections/introduction}
  
-% \section{Preliminaries}
-% \label{sec:type_graph:preliminaries}
-% \input{type_graph/sections/preliminaries.tex} 
+% % \section{Preliminaries}
+% % \label{sec:type_graph:preliminaries}
+% % \input{type_graph/sections/preliminaries.tex} 
 % \section{Measuring objects by counting morphisms}
 % \label{sec:type_graph:measuring_graphs}
 % \input{type_graph/sections/measuring_graphs.tex}
@@ -106,36 +152,27 @@ over Non-Well-Founded Semirings}
 % \label{sec:type_graph:conclusion}
 % \input{type_graph/sections/conclusion}
  
-% % \begin{credits}
-% %     \ifanonymous   
-% %     \else
-% %       \subsubsection{\ackname} This study was partially funded by the project SAPPORO, ANR, 2019-CE25-0005.  
-% %       \fi
-% %   \end{credits} 
- 
-% % \bibliographystyle{eptcs}[2]
-% % \bibliographystyle{eptcsalpha}
 
 
-% % \iflongversion
-% % \newpage 
-% % \section{Appendix}
-% % \input{type_graph/sections/appendix.tex}
-% % \subsection{Graphs}
-% % \label{preliminaries:graphs} 
-% % \input{sections/graphs.tex}
-% % \subsection{Pushout}
-% % \label{preliminaries:pushout}
-% % \input{sections/category.tex}
-% % \input{sections/category_my_composition_notation.tex}
-% % \input{sections/monomorphism.tex}
-% % \input{sections/span.tex}
-% % \input{sections/cospan.tex}
-% % \input{sections/commutative_diagram.tex}
-% % \input{sections/pushout.tex}
-% % \input{sections/notation_morphism.tex}
-% % \else
-% % \fi  
+% \iflongversion
+% \newpage 
+% \section{Appendix}
+% \input{type_graph/sections/appendix.tex}
+% \subsection{Graphs}
+% \label{preliminaries:graphs} 
+% \input{sections/graphs.tex}
+% \subsection{Pushout}
+% \label{preliminaries:pushout}
+% \input{sections/category.tex}
+% \input{sections/category_my_composition_notation.tex}
+% \input{sections/monomorphism.tex}
+% \input{sections/span.tex}
+% \input{sections/cospan.tex}
+% \input{sections/commutative_diagram.tex}
+% \input{sections/pushout.tex}
+% \input{sections/notation_morphism.tex}
+% \else
+% \fi  
 
 
 
@@ -146,19 +183,11 @@ over Non-Well-Founded Semirings}
 \chapter{Termination of Injective DPO Graph Rewriting
 Systems using Subgraph Counting}
 \label{chap:subgraph_counting}
-% \section{abstract}
-% We present a machine-checkable sufficient condition for relative termination of double-pushout graph rewriting systems with injective rules on edge-labeled multigraphs. 
-% Our method defines a graph's weight as the sum of weights of occurrences of a set of graphs within it. By ensuring 
-% (1) every rewriting step using rules in a set A strictly decreases the host graph's weight, and 
-% (2) every rewriting step using rules in a set B never increases it, we guarantee that rules in the set A can be applied only finitely many times in any rewriting sequence with rules in the union of A and B.  
-% Our method resolves termination cases that prior interpretation-based methods cannot. 
-% We also propose an implementation of our technique.
-
-% \section{Introduction}
-% \label{sec:intro}
-% \input{subgraph_counting/sections/intro}
-% \section{Preliminaries:to do //modification needed<=content deleted} 
-% \label{sec:pre} 
+\section{Introduction}
+\label{sec:intro}
+\input{subgraph_counting/sections/intro}
+\section{Preliminaries:to do //modification needed<=content deleted} 
+\label{sec:pre} 
 % \input{subgraph_counting/sections/priliminaries_intro}
 
 % \subsection{DPO rewriting} 
@@ -167,46 +196,46 @@ Systems using Subgraph Counting}
 % \subsection{Relative termination}
 % \input{subgraph_counting/sections/relative_termination}
    
-% \section{A Termination Criterion} 
-% \label{sec:termination_criterion}
-% \input{subgraph_counting/sections/weighing_pushouts} 
+\section{A Termination Criterion} 
+\label{sec:termination_criterion}
+\input{subgraph_counting/sections/weighing_pushouts} 
  
-% \subsection{Termination criterion}
-% \label{sec:termination} 
-% \input{subgraph_counting/sections/termination}
-% \input{subgraph_counting/sections/extension} 
+\subsection{Termination criterion}
+\label{sec:termination} 
+\input{subgraph_counting/sections/termination}
+\input{subgraph_counting/sections/extension} 
 
-% \section{Examples}
-% \label{sec:examples}
-% \input{subgraph_counting/sections/examples}
+\section{Examples}
+\label{sec:examples}
+\input{subgraph_counting/sections/examples}
 
   
-% \section{Related work}
-% \label{sec:related_work} 
-% \input{subgraph_counting/sections/related_work_simplified}
+\section{Related work}
+\label{sec:related_work} 
+\input{subgraph_counting/sections/related_work_simplified}
 
-% \section{Conclusion and future work}
-% \label{sec:conclusion} 
-% \input{subgraph_counting/sections/conclusion}
+\section{Conclusion and future work}
+\label{sec:conclusion} 
+\input{subgraph_counting/sections/conclusion}
 
-% % \chapter{Conclusion and Futur Works}
-% % \section{Conclusion}
-% % \input{sections/conclusion}
-% % \section{Future Works} 
-% % \input{sections/future_work}
+% \chapter{Conclusion and Futur Works}
+% \section{Conclusion}
+% \input{sections/conclusion}
+% \section{Future Works} 
+% \input{sections/future_work}
 
-% \chapter{Appendix for Subgraph Counting}
-% \section*{Pullback, Adhesive Category and VK-square}
-% \input{shared_paragrahs/adhesive}
-% \newpage
-% \section*{Auxiliary lemmas}
-% \input{subgraph_counting/sections/newproofs}
-% \newpage
-% \section{Proofs of \autoref{lem:decomp_w_u}, \autoref{lem:xlnlmxrnr}, \autoref{lem:w_u_l_not_geq_r_not} and \autoref{lem:w_g_geq_w_h_leq}}
-% \label{sec:appendix:a}
-% \input{subgraph_counting/sections/appendix_weighing_pushout_object}
-% \section{Additional Examples}
-% \input{subgraph_counting/sections/appendix_examples}
+\chapter{Appendix for Subgraph Counting}
+\section*{Pullback, Adhesive Category and VK-square}
+\input{shared_paragrahs/adhesive}
+\newpage
+\section*{Auxiliary lemmas}
+\input{subgraph_counting/sections/newproofs}
+\newpage
+\section{Proofs of \autoref{lem:decomp_w_u}, \autoref{lem:xlnlmxrnr}, \autoref{lem:w_u_l_not_geq_r_not} and \autoref{lem:w_g_geq_w_h_leq}}
+\label{sec:appendix:a}
+\input{subgraph_counting/sections/appendix_weighing_pushout_object}
+\section{Additional Examples}
+\input{subgraph_counting/sections/appendix_examples}
  
 
 \printbibliography

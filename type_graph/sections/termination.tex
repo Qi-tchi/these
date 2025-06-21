@@ -60,10 +60,10 @@ This issue is addressed by the existence of a context closure.
             \coordinate (o) at (2mm,-3mm); 
             \node[draw,circle] (1) at ($(o)+(0,0mm)$) {$1\ 2\ 3$};
             \node[draw,circle] (2) at ($(o)+(2,0)$) {};
-            \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-            \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-            \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-            \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+            \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+            \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+            \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+            \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
         }
         \node () at (-5mm,-15mm) {$\overset{c}{\to}$};
     \end{tikzpicture}
@@ -77,39 +77,38 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
 
 \begin{definition}[Decreasing Rules]
     \label{def:decreasing_rule}
-    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule, and $\delta \in \mathbb{R}_{>0}$. 
+    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule.
 
     \noindent
     The rule $\rho$ is \textbf{weakly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if 
             for every $t_K : K \to T$,
                 $$ 
-                  w_\mathcal{T}(\{l \star - = t_K\}) \succeq w_\mathcal{T}(\{r\star - = t_K\})$$
+                  w_\mathcal{T}(\{l \star - = t_K\}) \geq w_\mathcal{T}(\{r\star - = t_K\})$$
            
     \noindent
-    The rule $\rho$ is \textbf{$\delta$-uniformly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
+    The rule $\rho$ is \textbf{uniformly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
         \begin{itemize}
             \item[]- there exists a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$, 
             \item[]- for every $t_K : K \to T$,
             \begin{itemize}
                 \item[] $\bullet$ $\{l \star - = t_K\} = \emptyset = \{r \star - = t_K\}$, or
-                \item[] $\bullet$ $\mu(w_\mathcal{T}(\{l \star - = t_K\}))  >   \mu(w_\mathcal{T}(\{r \star - = t_K\})) + \delta$.
+                \item[] $\bullet$ $w_\mathcal{T}(\{l \star - = t_K\}) >   w_\mathcal{T}(\{r \star - = t_K\}) $.
             \end{itemize}
         \end{itemize}  
          
     \noindent
-    The rule $\rho$ is
-            \textbf{$\delta$-closure decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
+   If $S$ is moreover strictly monotonic, we say the rule $\rho$ is
+            \textbf{closure decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
             \begin{itemize}
-                \item[]- $S$ is strictly monotonic measurable semiring,
                 \item[]- $\rho$ is weakly decreasing,
                 \item[]- there exists a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$,
-                \item[]- $ \mu(w_\mathcal{T}(\{l \star - = t_K\}))  >  \mu(w_\mathcal{T}(\{r \star - = t_K\}))  + \delta$ for $t_K = l \star c_\rho$.
+                \item[]- $w_\mathcal{T}(\{l \star - = t_K\})  >  w_\mathcal{T}(\{r \star - = t_K\})$ for $t_K = l \star c_\rho$.
             \end{itemize}
 \end{definition}
 
 \begin{example}
     \label{example:decreasing_rule}
-    Consider the DPO rule in \autoref{ex:grsaa} and the weighted type graph in \autoref{example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \rightarrow T$ as depicted below:
+    Consider the DPO rule in \autoref{ex:grsaa} and the weighted type graph in \autoref{example:wft:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0_\mathbb{N},1_\mathbb{N},<,\leq)$. There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \rightarrow T$ as depicted below:
 
     \begin{center}
         \resizebox{0.49\textwidth}{!}{
@@ -214,10 +213,10 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
             \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2$};
                 \node[draw,circle] (2) at (2,0) {3};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
             }
             \node () at (-5mm,-15mm) {$\overset{h_{11}^1}{\to}$};
         \end{tikzpicture}
@@ -235,10 +234,10 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
                 \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-20mm}{
                     \node[draw,circle] (1) at (0,0) {$1\ 2\ 3$};
                     \node[draw,circle] (2) at (2,0) {};
-                    \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                    \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                    \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                    \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;(1)   ;
+                    \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                    \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;(1)   ;
                 }
                 \node () at (-5mm,-15mm) {$\overset{h_{11}^2}{\to}$};
             \end{tikzpicture}
@@ -248,8 +247,8 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
         w_\mathcal{T}(\{l \star - = t_K^{11}\})
         =&w_\mathcal{T}(\{h_{11}^1, h_{11}^2\})\\
         \overset{\mathrm{def}}{=}&w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2) \\
-        =&(1.0^1 * 1.0^1) + (1.0^1 * 1.0^1)\\
-        =&2.0
+        =&(1^1 * 1^1) + (1^1 * 1^1)\\
+        =&2
     \end{flalign*}
     The set $\{r \star - = t_K^{11}\}$ has one morphism $h_{11}^3$ as illustrated below:
     \begin{center}
@@ -268,23 +267,44 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
             \graphbox{$T$}{0mm}{0mm}{40mm}{44mm}{-10mm}{-22mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2\ 4\ 5$};
                 \node[draw,circle] (2) at (2,0) {};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
             }
             \node () at (-5mm,-19mm) {$\overset{h_{11}^3}{\to}$};
         \end{tikzpicture}
         }
       \end{center}
-    Therefore, we have: $w_\mathcal{T}(\{r \star - = t_K^{11}\}) = w_\mathcal{T}(h_{11}^3) = 1.0^1 * 1.0^1 * 1.0 ^ 1 = 1.0$. Thus, we have $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$.
+    Therefore, we have: $w_\mathcal{T}(\{r \star - = t_K^{11}\}) = w_\mathcal{T}(h_{11}^3) = 1^1 * 1^1 * 1 ^ 1 = 1$. Thus, we have $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$.
 
-    Similarly, we can check that $w_\mathcal{T}(\{l \star - = t_K^{12}\}) = 1.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{12}\})$,  $w_\mathcal{T}(\{l \star - = t_K^{21}\}) = 1.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{21}\})$, and $w_\mathcal{T}(\{l \star - = t_K^{22}\}) = 1.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{22}\})$. The rule is therefore weakly decreasing.
+    Similarly, we can check that $w_\mathcal{T}(\{l \star - = t_K^{12}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{12}\})$,  $w_\mathcal{T}(\{l \star - = t_K^{21}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{21}\})$, and $w_\mathcal{T}(\{l \star - = t_K^{22}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{22}\})$. The rule is therefore weakly decreasing.
 
     There exists a context closure $c$ for the DPO rule in the weighted type graph, as shown in \autoref{example:context_closure}.
-    Since we have additionally $t_K^{11} = l \star c$ and $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2.0 > 1.0 + \delta = w_\mathcal{T}(\{r \star - = t_K^{11}\}) + \delta$ for $0 < \delta < 1.0$, the rule is $\delta$-closure decreasing with $0 < \delta < 1.0$ since the semiring is strictly monotonic measurable.
+    Since we have additionally $t_K^{11} = l \star c$ and $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 > 1 + \delta = w_\mathcal{T}(\{r \star - = t_K^{11}\}) + \delta$ for $0 < \delta < 1$, the rule is $\delta$-closure decreasing with $0 < \delta < 1$ since the semiring is strictly monotonic measurable.
 \end{example} 
+\begin{theorem}[Termination of DPO rewriting system] 
+    \label{thm:wf:termination_grs}
+    Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules, $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \leq), w)$ a finitary weighted type graph and $\mathfrak{F}$ a DPO rewriting framework such that
 
+        \begin{itemize}
+            \item \(\operatorname{left}(\Delta)\) is weighable with \(\mathcal{T}\),
+            \item \(\operatorname{right}(\Delta)\) is bounded above by \(\mathcal{T}\). 
+        \end{itemize}
+    for every rule $\rho \in (\mathcal{A }\cup \mathcal{B })$ and every double pushout diagram  
+        $\Delta \in \mathfrak{F}(\rho)$. If the following conditions hold:
+    \begin{enumerate}
+        \item either every $\rho \in \mathcal{A}$ is uniformly decreasing or every $\rho \in \mathcal{A}$ is closure decreasing, and
+        \item every rule $\rho \in \mathcal{B}$ is weakly decreasing,
+    \end{enumerate}
+    then $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{terminating} relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
+\end{theorem} 
+\begin{example}
+    \label{example:wf:termination}
+    Termination of the DPO rule in \autoref{ex:grsaa} can be established using \autoref{thm:termination_grs} together with the weighted type graph in \autoref{example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta = 0.5$ by \autoref{example:decreasing_rule}.
+\end{example}
+\newpage
+\newpage
 The following proposition ensures that every morphism to a type graph $(T,S,\mathbb{E}, w)$ has a weight different from $0_S$. Additionally, if every T-valued element has a weight greater than $1_S$, then the weight of a morphism to a type graph is greater than $1_S$ too. This lemma will be used in \autoref{lem_4d13}.
 \begin{proposition}  
     \label{prop_endrullis_2d7}
@@ -727,6 +747,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
     By \autoref{lem:decreasing_step}, every rewriting step with rules in $\mathcal{A}$ strictly decreases the weight by at least $\delta$ and no rewriting step with rules in $\mathcal{B}$ increases the weight.
     Consequently, there is no infinite rewriting sequence with an infinite rewriting steps with rules in $\mathcal{A}$ from $G$.
 \end{proof}
+
 \begin{example}
     \label{example:termination}
     Termination of the DPO rule in \autoref{ex:grsaa} can be established using \autoref{thm:termination_grs} together with the weighted type graph in \autoref{example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta = 0.5$ by \autoref{example:decreasing_rule}.
