@@ -1,4 +1,4 @@
-It is crucial to ensure that the weight of any object subject to rewriting is not $0_S$, because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +)\), \(0_S\) is the smallest element \(-\infty\).
+It is crucial to ensure that the weight of any object subject to rewriting is not $0_S$, because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +, +\infty, 0_S, <, \leq)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +, -\infty, 0_S, <, \leq)\), \(0_S\) is the smallest element \(-\infty\).
 This issue is addressed by the existence of a context closure. 
 
 \subsection{Context Closure}
@@ -12,7 +12,7 @@ This issue is addressed by the existence of a context closure.
     \label{def:context_closure}  
     \ \newline 
 \begin{minipage}{0.65\textwidth}
-    Let $\mathcal{T} = (T,\mathbb{E}, S, w)$ be a type graph, \(\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R ) \) a DPO rewriting rule and $\mathfrak{F}$ a rewriting framework. 
+    Let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a finitary weighted type graph, \(\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R ) \) a DPO rewriting rule and $\mathfrak{F}$ a rewriting framework. 
     A \textbf{context closure} for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$ is a morphism $c:L \rightarrow T$ such that for every DPO diagram in $\mathfrak{F}(\rho)$ (shown on the right) 
     there exists $\alpha : G \rightarrow T$ such that $m \star \alpha = c$.
 \end{minipage}
@@ -42,7 +42,7 @@ This issue is addressed by the existence of a context closure.
 \begin{example}
     \label{example:context_closure}
     Let the set of edge labels be $\Sigma = \{a,b\}$.
-    Consider the DPO rule in \autoref{ex:grsaa}, the weighted type graph in \autoref{example:weighted_type_graph}.
+    Consider the DPO rule in \autoref{ex:grsaa}, the weighted type graph in \autoref{example:wft:weighted_type_graph}, 
    and the morphism $c$ illustrated below. Since for every match $m : L \to G$, there exists a morphism $\alpha : G \to T$ such that $m \star \alpha = c$, the morphism $c$ is a context closure for the DPO rule in the type graph.
   \begin{center}
     \begin{tikzpicture}
@@ -77,7 +77,7 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
 
 \begin{definition}[Decreasing Rules]
     \label{def:decreasing_rule}
-    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule.
+    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \leq),w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule.
 
     \noindent
     The rule $\rho$ is \textbf{weakly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if 
@@ -281,7 +281,7 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
     Similarly, we can check that $w_\mathcal{T}(\{l \star - = t_K^{12}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{12}\})$,  $w_\mathcal{T}(\{l \star - = t_K^{21}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{21}\})$, and $w_\mathcal{T}(\{l \star - = t_K^{22}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{22}\})$. The rule is therefore weakly decreasing.
 
     There exists a context closure $c$ for the DPO rule in the weighted type graph, as shown in \autoref{example:context_closure}.
-    Since we have additionally $t_K^{11} = l \star c$ and $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 > 1 + \delta = w_\mathcal{T}(\{r \star - = t_K^{11}\}) + \delta$ for $0 < \delta < 1$, the rule is $\delta$-closure decreasing with $0 < \delta < 1$ since the semiring is strictly monotonic measurable.
+    Since we have additionally $t_K^{11} = l \star c$ and $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 > 1 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$, the rule is closure decreasing since the semiring is strictly monotonic.
 \end{example} 
 \begin{theorem}[Termination of DPO rewriting system] 
     \label{thm:wf:termination_grs}
@@ -299,9 +299,9 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
     \end{enumerate}
     then $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{terminating} relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
 \end{theorem} 
-\begin{example}
+\begin{example} 
     \label{example:wf:termination}
-    Termination of the DPO rule in \autoref{ex:grsaa} can be established using \autoref{thm:termination_grs} together with the weighted type graph in \autoref{example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta = 0.5$ by \autoref{example:decreasing_rule}.
+    Termination of the DPO rule in \autoref{ex:grsaa} can be established using \autoref{thm:termination_grs} together with the weighted type graph in \autoref{example:wft:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0_\mathbb{R},1_\mathbb{N},<,\leq)$. It is closure decreasing by \autoref{example:decreasing_rule}.
 \end{example}
 \newpage
 \newpage
