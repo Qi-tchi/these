@@ -89,7 +89,9 @@
 \subsection{Estimating weights of pushout objects}
 Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let \(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) be a weighted type graph over the strongly monotonic measurable semiring $\mathcal{S}$.
 
-The following proposition ensures that every morphism to a type graph $(T,S,\mathbb{E}, w)$ has a weight different from $0_S$. Additionally, if every T-valued element has a weight greater than $1_S$, then the weight of a morphism to a type graph is greater than $1_S$ too. This lemma will be used in \autoref{lem_4d13}.
+The following proposition ensures that every morphism to a type graph $(T,S,\mathbb{E}, w)$ has a weight different from $0_S$ and greater than or equal to $1_S$.
+%  then the weight of a morphism to a type graph is greater than $1_S$ too. 
+This lemma will be used in \autoref{thm:termination_grs}.
 \begin{proposition}  
     \label{prop_endrullis_2d7}
     Let $(S, \oplus, \odot, 0_S, 1_S, \prec, \mu)$ be a strongly monotonic measurable semiring. We have for all $x,y\in S$:
@@ -250,7 +252,7 @@ Suppose additionally that for every graph $G$ subject to rewriting, we have $\op
          \left ( \bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
             w_\mathcal{T}(t_R) \right ) \\
 \end{flalign*}
-According to these results, a termination criterion will be established in \autoref{sec:nwf:termination} by comparing the weights 
+According to these results, a termination criterion will be established by comparing the weights 
 $\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
         w_\mathcal{T}(t_L)$ and 
 $\bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}} 
@@ -471,6 +473,45 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
     Since we have additionally $t_K^{11} = l \star c$ and $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2.0 > 1.0 + \delta = w_\mathcal{T}(\{r \star - = t_K^{11}\}) + \delta$ for $0 < \delta < 1.0$, the rule is $\delta$-closure decreasing with $0 < \delta < 1.0$ since the semiring is strictly monotonic measurable.
 \end{example} 
 
+The following lemma guaranteeing that, under certain constraints: exact weights of host graphs can be computed, and upper bounds for result-graph weights can be derived. 
+\begin{lemma}[\cite{endrullis2024generalized_arxiv_v2}]
+    \label{lem_4d13}
+\ \newline
+\begin{minipage}{0.7\textwidth}
+    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph. Consider the pushout square $\delta$ illustrated on the right. We define
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+    \begin{center}{\normalfont
+        \begin{tikzpicture}[node distance=12mm]
+            \node (A) {$A$};
+            \node (B) [right of=A] {$B$};
+            \node (C) [below of=A] {$C$};
+            \node (D) [right of=C] {$D$};
+            
+            \draw [->] (A) to node [above, label] {$\alpha$} (B);
+            \draw [->] (A) to node [left, label] {$\beta$} (C);
+            \draw [->] (B) to node [right, label] {$\beta'$} (D);
+            \draw [->] (C) to node [below, label] {$\alpha'$} (D);
+            
+            \node [at=($(A)!.5!(D)$)] {$\delta$};
+        \end{tikzpicture}
+    }\end{center}
+\end{minipage}
+     \[k = \underset{t_A:A \rightarrow T}{\bigoplus}
+            \left ( 
+                \underset{\substack{t_C:C \rightarrow T\\
+                                            t_A = \beta \star t_C }}{\bigoplus}
+                        w_\mathcal{T}(t_C - \beta)     
+                 \right ) 
+            \odot 
+                w_\mathcal{T}(\set{\alpha \star - = t_A})
+    \]
+    The following conditions hold
+    \begin{enumerate}[label=(\Alph*)]
+        \item  $w_\mathcal{T}(D)=k$ if $\delta$ is weighable with $\mathcal{T}$.
+        \item  $w_\mathcal{T}(D)\preceq k$ if $\delta$ is bounded above by $\mathcal{T}$  and \(w(e) \succeq 1_S\) for all $e \in \mathbb{E}$.
+    \end{enumerate}
+\end{lemma}
 
 Adapted from \cite[Theorem C.3]{endrullis2024generalized_arxiv_v2}, the lemma below relates decreasing rules to weight reduction under specific constraints. 
 \begin{lemma}[Decreasing steps]

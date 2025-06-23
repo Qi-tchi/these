@@ -1,5 +1,6 @@
-It is crucial to ensure that the weight of any object subject to rewriting is not $0_S$, because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +, +\infty, 0_S, <, \leq)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +, -\infty, 0_S, <, \leq)\), \(0_S\) is the smallest element \(-\infty\).
-This issue is addressed by the existence of a context closure. 
+It is crucial to ensure that the weight of any object subject to rewriting is greater than or equal to $1_\mathcal{S}$.
+% not $0_S$, because \(0_S\) behaves unpredictably in well-founded semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +, +\infty, 0_S, <, \leq)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +, -\infty, 0_S, <, \leq)\), \(0_S\) is the smallest element \(-\infty\).
+This issue is addressed by the existence of a context closure. Specifically, it ensures that every graph that can be rewritten using that rule admits some morphism into the weighted type graph, and thus the weight of the morphism, which is the sum of the weights of the morphisms into the type graph, is greater than or equal to \(1_S\) by \autoref{lem:wf:morphism_weight_geq_1_neq_0}.
 
 \subsection{Context Closure}
 \label{sec:context_closure}
@@ -72,10 +73,9 @@ This issue is addressed by the existence of a context closure.
 
 \subsection{Decreasing rules}
 \label{sec:decreasing_rules}
-The definition below adapts the concept of decreasing rules from~\cite{endrullis2024generalized_arxiv_v2}. The difference lies in the treatment of weight comparisons for uniformly decreasing and closure decreasing rules: instead of directly comparing weights, we evaluate the difference between weights relative to the homomorphism $\mu$ of the strongly monotonic measurable semirings.
 %  This difference must exceed a fixed positive constant $\delta \in \mathbb{R}_{>0}$.
 
-\begin{definition}[Decreasing Rules]
+\begin{definition}[Decreasing Rules~\cite{endrullis2024generalized_arxiv_v2}]
     \label{def:decreasing_rule}
     Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \leq),w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule.
 
@@ -303,43 +303,3 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
     \label{example:wf:termination}
     Termination of the DPO rule in \autoref{ex:grsaa} can be established using \autoref{thm:termination_grs} together with the weighted type graph in \autoref{example:wft:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0_\mathbb{R},1_\mathbb{N},<,\leq)$. It is closure decreasing by \autoref{example:decreasing_rule}.
 \end{example}
-
-The following lemma guaranteeing that, under certain constraints: exact weights of host graphs can be computed, and upper bounds for result-graph weights can be derived. 
-\begin{lemma}[\cite{endrullis2024generalized_arxiv_v2}]
-    \label{lem_4d13}
-\ \newline
-\begin{minipage}{0.7\textwidth}
-    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph. Consider the pushout square $\delta$ illustrated on the right. We define
-\end{minipage}
-\begin{minipage}{0.3\textwidth}
-    \begin{center}{\normalfont
-        \begin{tikzpicture}[node distance=12mm]
-            \node (A) {$A$};
-            \node (B) [right of=A] {$B$};
-            \node (C) [below of=A] {$C$};
-            \node (D) [right of=C] {$D$};
-            
-            \draw [->] (A) to node [above, label] {$\alpha$} (B);
-            \draw [->] (A) to node [left, label] {$\beta$} (C);
-            \draw [->] (B) to node [right, label] {$\beta'$} (D);
-            \draw [->] (C) to node [below, label] {$\alpha'$} (D);
-            
-            \node [at=($(A)!.5!(D)$)] {$\delta$};
-        \end{tikzpicture}
-    }\end{center}
-\end{minipage}
-     \[k = \underset{t_A:A \rightarrow T}{\bigoplus}
-            \left ( 
-                \underset{\substack{t_C:C \rightarrow T\\
-                                            t_A = \beta \star t_C }}{\bigoplus}
-                        w_\mathcal{T}(t_C - \beta)     
-                 \right ) 
-            \odot 
-                w_\mathcal{T}(\set{\alpha \star - = t_A})
-    \]
-    The following conditions hold
-    \begin{enumerate}[label=(\Alph*)]
-        \item  $w_\mathcal{T}(D)=k$ if $\delta$ is weighable with $\mathcal{T}$.
-        \item  $w_\mathcal{T}(D)\preceq k$ if $\delta$ is bounded above by $\mathcal{T}$  and \(w(e) \succeq 1_S\) for all $e \in \mathbb{E}$.
-    \end{enumerate}
-\end{lemma}
