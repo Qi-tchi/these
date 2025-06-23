@@ -1,7 +1,7 @@
 
-In this chap, we present an new automated method for relative termination~\cite{geser1990relative} of double-pushout (DPO) graph rewriting systems with injective rules~\cite{corradini1997algebraic,habel2001double,konig2018atutorial}.
+In this chap, we present an new automated method for relative termination~\cite{geser1990relative} of double-pushout (DPO) graph rewriting systems with injective rules~\cite{corradini1997algebraic,habel2001double,konig2018atutorial}. 
 
-The method works as follows. Let \( \mathbb{X} \) denote a set of graphs. We assign weights (natural numbers) to occurrences of graphs in \( \mathbb{X} \), and the weight of a graph $G$ is defined as the sum of the weights of all occurrences of graphs in \( \mathbb{X} \) within $G$. Let $\mathcal{A}$ and $\mathcal{B}$ be sets of injective DPO rewriting rules. Our technique requires that, for every graph $X$ in $\mathbb{X}$, and for every rewriting step $G \Rightarrow H$ using a rule from $\mathcal{A}$ or $\mathcal{B}$, there exists an injective mapping from the set of \( X \)-occurrences in the result graph $H$
+The method based on the interpretation method framework~\cite{nipkow1998term} works as follows. Let \( \mathbb{X} \) denote a set of graphs. We assign weights (natural numbers) to occurrences of graphs in \( \mathbb{X} \), and the weight of a graph $G$ is defined as the sum of the weights of all occurrences of graphs in \( \mathbb{X} \) within $G$. Let $\mathcal{A}$ and $\mathcal{B}$ be sets of injective DPO rewriting rules. Our technique requires that, for every graph $X$ in $\mathbb{X}$, and for every rewriting step $G \Rightarrow H$ using a rule from $\mathcal{A}$ or $\mathcal{B}$, there exists an injective mapping from the set of \( X \)-occurrences in the result graph $H$
 (those neither fully included in the right-hand side graph nor fully included in the context)
  to the set of \( X \)-occurrences in the host graph $G$ (those neither fully included in the left-hand side graph nor fully included in the context).   
 
@@ -15,8 +15,9 @@ overbeek2024termination_lmcs} cannot handle.
 We also provide an implementation of our technique~\footnote{The source code is available at \url{https://github.com/Qi-tchi/LyonParallel/tree/icgt2025}}.  
    
 The remainder of this chapter is organized as follows.
-\autoref{sec:pre} recalls some essential preliminary definitions. 
-\autoref{sec:termination_criterion} presents a sufficient condition for termination of DPO graph rewriting systems.
+We first define the weight of a graph in \autoref{sec:interpretation}. 
+Using this definition, we outline the general approach and identify the key challenge in \autoref{sec:general_idea}, and introduce the concept of non-increasing rules in \autoref{sec:non-increasing}. 
+A solution to the challenge is then proposed in \autoref{sec:solution_to_the_key_challenge}, culminating in our termination criterion in \autoref{sec:termination}.
 \autoref{sec:examples} illustrates the method with some examples.
 \autoref{sec:related_work} compares our approach with some existing methods.
 Finally, \autoref{sec:conclusion} concludes with remarks and future research directions. The missing proofs are available in 
