@@ -1,13 +1,24 @@
 \documentclass{report}
+\usepackage[T1]{fontenc}
+\usepackage[french,english]{babel}
 \input{packages}
 \begin{document}  
-  
+   
 \input{chapters/title_page}  
- 
+
+\newpage
+\section*{Abstract}
+\input{sections/abstract}
+
+\newpage
+\section*{Resumé}
+\input{sections/resume} 
+
+\newpage
 \section*{Acknowledgements}
 \input{sections/acknowledgements}
 \newpage       
-
+ 
  
 \tableofcontents  
 \newpage      
@@ -19,15 +30,9 @@
 % We study relative termination property of graph transformation systems that uses the concept of double-pushout (DPO)\textemdash a concept from the category theory\textemdash to define the transformation of graphs.
 %  The contribution of this thesis is threefold. 
 %  Firstly, we \textbf{extend an existing technique} that proves relative termination of such systems, known as the type graph method. Our extension enables more efficient implementation of the method. Secondly, we \textbf{develop a new machine-checkable sufficient condition} for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs based on the idea of counting specific subgraphs in the graph before and after transformation. Thirdly, we \textbf{implement a termination tool}~\textbf{LyonParallel} including the existing approaches of type graph method and our extension and our termination criterion for edge-labeled directed multigraph transform. In the remainder of this chapter, we give more details on the motivation, the contributions, the structure of the thesis, and introduce the necessary background.
-We study automated techniques for proving the transformation of any graph according to a given set of graph transformation rules cannot last indefinitely.
- The contribution of this thesis is threefold. 
- Firstly, we extend an existing technique, called the type graph method.
-   Secondly, we develop a new machine-checkable sufficient condition 
-   for injective DPO graph rewriting systems on edge-labeled directed multigraphs based on the idea that if the number of a specific subgraph in the graph strictly decreases every time a transformation is performed, then the transformation cannot last indefinitely.
-    Thirdly, we implement a termination tool, called LyonParallel, including the existing 
-    type graph method and our extension for edge-labeled directed multigraph transformation, and our techniques. In the remainder of this chapter, we give more details on the motivation, the contributions, the structure of the thesis, and introduce the necessary background.
 
-\section{Motivation, Contributions, and Structure of the Thesis} 
+
+% \section{Motivation, Contributions, and Structure of the Thesis} 
 \input{sections/motivation}
 \section{Graphs}
 \input{subgraph_counting/sections/graph} 
@@ -48,79 +53,37 @@ We study automated techniques for proving the transformation of any graph accord
 \input{type_graph/sections/introduction.tex}
 
 \section{Preliminaries}
+
 \subsection{Well-Founded Semirings} 
 \label{sec:well_founded_semiring}
 \input{type_graph/sections/well_founded_semiring.tex}
+ 
 \subsection{Weighted Type Graph} 
 \label{sec:weighted_type_graph}
 \input{type_graph/sections/weighted_type_graph.tex}
-% \section{Preliminaries}
-% \label{sec:type_graph:preliminaries}
-% \input{type_graph/sections/preliminaries.tex} 
-\subsection{Measuring objects by counting morphisms}
-\label{sec:type_graph:measuring_graphs}
-\input{type_graph/sections/measuring_graphs.tex}
 
-% \section{Weighing Morphisms and Objects}   
-% \label{sec:weigh_morphisms_and_objects}
-% \input{sections/type_graph_graph_weight} 
+\subsection{Measuring objects by counting morphisms}
+\label{sec:type_graph:wf:measuring_graphs}
+\input{type_graph/sections/measuring_graphs.tex}
   
 \subsection{Estimating weights of pushout objects} 
-\label{sec:type_graph:weighing_pushout} 
-\input{type_graph/sections/weighing_pushout}  
+\label{sec:type_graph:wf:weighing_pushout} 
+\input{type_graph/sections/weighing_pushout}   
 
-
-\subsection{Termination using Weighted Type Graphs over Well-Founded Semirings}
-\label{sec:type_graph:termination}
-\input{type_graph/sections/termination}   
+\input{type_graph/sections/termination}    
   
 \section{Extension of the method to Non-Well-Founded Semirings}
-
-% \chapter{Termination of Graph Rewriting
-% using Weighted Type Graphs
-% over Non-Well-Founded Semirings} 
-% \label{chap:nwf_type_graph}
 
 % \section{to be integrated}
 % \begin{remark}
 %     We work within the category \textbf{Graph}. The terms homomorphism and morphism will be used interchangeably; the same applies to monic and injective, and to injective homomorphism and monomorphism.
 % \end{remark}  
-% \section{Introduction}
 
-% \label{sec:type_graph:introduction}
-% \input{type_graph/sections/introduction}
- 
-% \subsection{Non-Well-Founded Semirings}
-% \label{sec:type_graph:preliminaries}
 \input{type_graph/sections/extension.tex} 
-% \subsection{Weighted Type Graph} 
-% \label{sec:weighted_type_graph}
-% \input{sections/weighted_type_graph}
-
-% \subsection{Weighing Morphisms and Objects}   
-% \label{sec:weigh_morphisms_and_objects}
-% \input{sections/type_graph_graph_weight} 
-  
-% \subsection{Estimating weights of pushout objects} 
-% \label{sec:type_graph:nwf:weighing_pushout} 
-% \input{type_graph/sections/weighing_pushout}  
-
-% \subsection{A Termination Criterion}
-% \label{sec:type_graph:nwf:termination}
-% \input{type_graph/sections/termination}   
-  
-% % \section{Examples} 
-% % \label{sec:examples}
-% % \input{sections/examples.tex}
 
 \subsection{Implementation}
 \label{sec:type_graph:implementation}
 \input{type_graph/sections/implementation_new} 
-
-
-% % \section{Implementation}
-% % \label{sec:implementation}
-% % \input{sections/implementation} 
 
 \subsection{Empirical Results}
 \label{sec:type_graph:result}
@@ -140,24 +103,18 @@ We study automated techniques for proving the transformation of any graph accord
 \chapter{Termination of Injective DPO Graph Rewriting
 Systems using Subgraph Counting}
 \label{chap:subgraph_counting}
+
 \section{Introduction}
 \label{sec:intro}
 \input{subgraph_counting/sections/intro}
+
 \section{Preliminaries} 
 \label{sec:pre} 
 \input{subgraph_counting/sections/priliminaries_intro}
 
-% \subsection{DPO rewriting} 
-% \input{subgraph_counting/sections/dpo_rewriting}
-
-% \subsection{Relative termination}
-% \input{subgraph_counting/sections/relative_termination}
-   
-\section{A Termination Criterion} 
-\label{sec:termination_criterion}
 \input{subgraph_counting/sections/weighing_pushouts} 
  
-\subsection{Termination criterion}
+\section{Termination criterion}
 \label{sec:termination} 
 \input{subgraph_counting/sections/termination}
 \input{subgraph_counting/sections/extension} 
@@ -178,17 +135,19 @@ Systems using Subgraph Counting}
 \section{Appendix}
 \subsection{Pullback, Adhesive Category and VK-square}
 \input{shared_paragrahs/adhesive}
+
 \subsection{Auxiliary lemmas}
 \input{subgraph_counting/sections/newproofs}
+
 \subsection{Proofs of \autoref{lem:decomp_w_u}, \autoref{lem:xlnlmxrnr}, \autoref{lem:w_u_l_not_geq_r_not} and \autoref{lem:w_g_geq_w_h_leq}}
 \label{sec:appendix:a}
 \input{subgraph_counting/sections/appendix_weighing_pushout_object}
 
-% \chapter{Conclusion and Futur Works}
-% \section{Conclusion}
-% \input{sections/conclusion}
-% \section{Future Works} 
-% \input{sections/future_work}
+\chapter{Conclusion and Futur Works}
+\section{Conclusion}
+\input{sections/conclusion}
+\section{Future Works} 
+\input{sections/future_work}
 
 % \section{Additional Examples}
 % \input{subgraph_counting/sections/appendix_examples}
@@ -201,13 +160,16 @@ A new machine-checkable sufficient condition for proving relative termination of
 The implementation of the type graph method and our extension, along with the new termination criterion, was integrated into a unified tool called LyonParallel for DPO graph rewriting systems on edge-labeled directed multigraphs.
 
 \paragraph{Future Work}
-Confluence is another important property of graph rewriting systems, which ensures that the final result of a sequence of rewriting steps is independent of the order in which the rules are applied. Future work could explore automated techniques for proving confluence of graph rewriting systems.
+Confluence is another important property of graph rewriting systems, which ensures that the final result of a sequence of rewriting steps is independent  of the order in which the rules are applied. Future work could explore automated techniques for proving confluence of graph rewriting systems.
+
+Extending the subgraph counting technique to counting subgraph that does not include in a specific subgraph is another interesting direction. This could lead to a more powerful termination criterion that can handle more complex graph rewriting systems.
 
 Another interesting direction is to extend the subgraph counting technique to graph rewriting systems with negative application conditions (NACs). NACs are conditions that must not be satisfied in the context of a rule application.
 
-It is also worth investigating whether the idea of our subgraph counting technique can be used to improve the subgraph counting method for PBPO+ graph rewriting systems proposed by Overbeek and Endrullis which is based on the idea of counting specific subgraphs in the graph before and after transformation but suffer from discrete interfaces.
+It is also worth investigating the difference of our subgraph counting technique with
+ the technique based on the same idea and with the same name developed for PBPO+ graph rewriting systems proposed by Overbeek and Endrullis.
 
-The implementation of the modular termination technique proposed by Plump which complements the type graph method and the subgraph counting technique could be another interesting but more practical direction. This could lead to a more powerful termination tool for DPO graph rewriting systems.
+The implementation of the modular termination technique proposed by Plump which complements the type graph method and the subgraph counting technique could be another interesting but more practical direction. This could lead to a more powerful termination tool.
 
 Finally, extending the type graph method to other algebraic graph rewriting formalisms, such as PBPO+, could be a promising direction.
 

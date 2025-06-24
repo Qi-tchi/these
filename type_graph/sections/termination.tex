@@ -1,8 +1,7 @@
+\subsection{Context Closure}
 It is crucial to ensure that the weight of any object subject to rewriting is greater than or equal to $1_\mathcal{S}$.
 % not $0_S$, because \(0_S\) behaves unpredictably in well-founded semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +, +\infty, 0_S, <, \leq)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +, -\infty, 0_S, <, \leq)\), \(0_S\) is the smallest element \(-\infty\).
 This issue is addressed by the existence of a context closure. Specifically, it ensures that every graph that can be rewritten using that rule admits some morphism into the weighted type graph, and thus the weight of the morphism, which is the sum of the weights of the morphisms into the type graph, is greater than or equal to \(1_S\) by \autoref{lem:wf:morphism_weight_geq_1_neq_0}.
-
-\subsection{Context Closure}
 \label{sec:context_closure}
 % \begin{remark} 
 %   \label{remark:semiring_0_unpredictable}
@@ -19,19 +18,17 @@ This issue is addressed by the existence of a context closure. Specifically, it 
 \end{minipage}
 \begin{minipage}{0.35\textwidth}
     \begin{center}
-        \begin{tikzpicture}[rotate=90]
-          \node (I) {$K$}; 
-          \node (L) [left of=I] {$L$};
-          \node (R) [right of=I] {$R$};
-          \node (G) [below of=L] {$G$};
-          \node (C) [below of=I] {$C$};
-          \node (H) [below of=R] {$H$};
-          \node (T) [left=of $(L)!0.5!(G)$] {$T$};
-          \draw [->] (L) to  node [label, above] {$c$}  (T);
-          \draw [->] (G) to  node [label, below] {$\alpha$} (T);
+        \begin{tikzpicture}[node distance=11mm]
+          \node (I) at (0,0) {$K$};
+          \node (L) at (-1,0) {$L$};
+          \node (R) at (1,0) {$R$};
+          \node (G) at (-1,-1) {$G$};
+          \node (C) at (0,-1) {$C$};
+          \node (H) at (1,-1) {$H$};
           \draw [->] (I) to node [label, above] {$l$} (L);
           \draw [->] (I) to node [label,above] {$r$} (R);
-          \draw [->] (L) to node [label, right] {$m$} (G);
+        %   \draw [->] (L) to node [label, right] {$m$} (G);
+        \draw [->] (L) to node [label, right] {} (G);
           \draw [->] (I) to (C);
           \draw [->] (R) to (H);
           \draw [->] (C) to (G);
@@ -283,6 +280,8 @@ This issue is addressed by the existence of a context closure. Specifically, it 
     There exists a context closure $c$ for the DPO rule in the weighted type graph, as shown in \autoref{example:context_closure}.
     Since we have additionally $t_K^{11} = l \star c$ and $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 > 1 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$, the rule is closure decreasing since the semiring is strictly monotonic.
 \end{example} 
+ 
+\subsection{Termination Criterion}
 \begin{theorem}[Termination of DPO rewriting system] 
     \label{thm:wf:termination_grs}
     Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules, $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \leq), w)$ a finitary weighted type graph and $\mathfrak{F}$ a DPO rewriting framework such that
