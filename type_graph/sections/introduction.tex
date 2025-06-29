@@ -1,13 +1,13 @@
-This chapter extends the weighted type graph method to non-well-founded semirings, which allows for more efficient searching for weighted type graphs that witness relative termination of DPO rewriting systems on edge-labeled directed multigraphs.
+This chapter extends the weighted type graph method to non-well-founded semirings. This extension allows for more efficient searching for weighted type graphs that witness relative termination of DPO rewriting systems on edge-labeled directed multigraphs.
 
-The method was first introduced in~\cite{zantema2014termination} for cycle rewriting. Subsequent work generalized it for DPO rewriting on edge-labeled directed multigraphs with injective rules and injective matches~\cite{bruggink2014termination}, later extending it to general DPO rewriting on edge-labeled multigraphs~\cite{bruggink2015proving} and adapting it to broader categories and DPO variants~\cite{endrullis2024generalized_icgt}.
-The method assigns weights to morphisms targeting a weighted type graph over a well-founded semiring, and the weight of a graph is defined
+The method was first introduced in~\cite{zantema2014termination} for cycle rewriting. Subsequent work generalized it for DPO rewriting on edge-labeled directed multigraphs with injective rules and injective matches~\cite{bruggink2014termination}; later, it was extended to general DPO rewriting on edge-labeled multigraphs~\cite{bruggink2015proving}; and it was adapted to broader categories and DPO variants~\cite{endrullis2024generalized_icgt}.
+The method assigns weights to morphisms targeting a weighted type graph over a well-founded semiring. The weight of a graph is defined
  as the sum of the weights of all morphisms from that graph to the type graph. Relative termination of $\mathcal{A}$ with respect to $\mathcal{B}$ is proven by ensuring that rewriting steps using rules in \( \mathcal{A} \) strictly decrease the weights of the host graphs, while rewriting steps using rules in \( \mathcal{B} \) do not increase them.
     
     In the previous work~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}, three concrete semirings on natural numbers were proposed: the natural tropical semiring $\mathfrak{T}$, the natural arctic semiring $\mathfrak{A}$, and the natural arithmetic semiring $\mathfrak{N}$.
     However, constructing weighted type graphs over these concrete semirings for DPO rewriting on edge-labeled directed multigraphs is undecidable in general. This is because it requires quantifying over all edge-labeled directed multigraphs with weighted edges over $\mathbb{N}$. 
 
-    In response to this challenge, the authors in \cite{zantema2014termination,bruggink2014termination,bruggink2015proving} proposed reducing the search space by fixing the number of nodes \( k \in \mathbb{N} \) and the maximum weight of edges of the weighted type graph, and then constructing a weighted type graph as follows: (1) construct a graph with \( k \) nodes, with a directed edge per ordered pair of nodes and label from the finite set of edge labels $\Sigma$ of the rewriting system; (2) for each edge, decide if it exists in the weighted type graph; (3) if an edge exists, assign a weight (a natural number) to it; (4) check if the weighted type graph satisfies the required conditions.
+    In response to this challenge,~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving} proposed reducing the search space by fixing the number of nodes \( k \in \mathbb{N} \) and the maximum weight of edges of the weighted type graph, and then constructing a weighted type graph as follows: (1) construct a graph with \( k \) nodes, with a directed edge per ordered pair of nodes and label from the finite set of edge labels $\Sigma$ of the rewriting system; (2) for each edge, decide if it exists in the weighted type graph; (3) if an edge exists, assign a weight (a natural number) to it; (4) check if the weighted type graph satisfies the required conditions.
     
     Despite these constraints, searching for weighted type graphs that witness termination of a DPO rewriting system on edge-labeled directed multigraphs
     remains challenging. 
@@ -25,7 +25,7 @@ The method assigns weights to morphisms targeting a weighted type graph over a w
 
     In spite of the theoretical power of the weighted type graph method, its practical applicability is limited by the high computational complexity of searching for suitable weighted type graphs over well-founded semirings on 
     natural numbers. In fact, to reduce the search space, users of the above-mentioned tools are required
-     to fix the size of the weighted type graph, as well as the maximum weight of edges in the weighted type graph, which are challenging tasks if not impossible to determine a priori even for experts in the field. 
+     to fix the size of the weighted type graph, as well as the maximum weight of edges in the weighted type graph. These are challenging tasks if not impossible to determine a priori even for experts in the field. 
     Furthermore, our experiments with the two publicly available ones \texttt{TORPAcyc} and \texttt{Grez} show that when the number of edge labels is 2, they struggle to search for weighted type graphs with 4 nodes and maximum edge weight of 2, or to search for weighted type graphs with 3 nodes when the maximum edge weight is larger than 3. 
     This article addresses this limitation to make the weighted type graph method more accessible to non-expert users and to enhance its practical applicability.
 
@@ -41,10 +41,9 @@ For a weighted type graph over the real arithmetic semiring $\mathfrak{N}'$, the
 an existential non-linear real arithmetic formula\textemdash a task that is decidable~\cite{collins1974quantifier,z3realarithmetic}.
 
 
-We have implemented both our approach and the approach proposed by Endrullis et al. \cite{endrullis2024generalized_arxiv_v2} for DPO rewriting on edge-labeled directed multigraphs in a unified tool~\footnote{The source code can be accessed at \url{https://github.com/Qi-tchi/LyonParallel/tree/icgt2025}} written in OCaml and employs Z3~\cite{de2008z3} to solve the constraint systems.
+We have implemented both our approach and the approach proposed by Endrullis et al.~\cite{endrullis2024generalized_arxiv_v2} for DPO rewriting on edge-labeled directed multigraphs in a unified tool~\footnote{The source code can be accessed at \url{https://github.com/Qi-tchi/LyonParallel/tree/icgt2025}}, written in OCaml, and employs Z3~\cite{de2008z3} to solve the constraint systems.
 
-In the remainder of this chapter, we will first introduce the type graph method presented in~\cite{endrullis2024generalized_arxiv_v2}
- then we will present our extension of the type graph method to non-well-founded semirings.
+In the remainder of this chapter, we will first introduce the type graph method presented in~\cite{endrullis2024generalized_arxiv_v2}, then we will present our extension of the type graph method to non-well-founded semirings.
 % this paper is structured as follows.  
 % \autoref{sec:type_graph:preliminaries} reviews essential preliminary definitions. 
 % \autoref{sec:strongly_monotonic_measurable_semiring} introduces the non-well-founded semirings. 

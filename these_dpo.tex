@@ -13,7 +13,7 @@
 \newpage
 \section*{Resumé}
 \input{sections/resume} 
-
+ 
 \newpage
 \section*{Acknowledgements}
 \input{sections/acknowledgements}
@@ -22,7 +22,7 @@
  
 \tableofcontents  
 \newpage      
-  
+
 \chapter{Introduction}
 % Graph transformation systems are a formalism for modeling distributed algorithms as sets of graph rewriting rules. A graph rewriting system 
 % \( \mathcal{A} \) is said to be terminating relative another graph rewriting \( \mathcal{B} \), if for any graph finite graph $G$,
@@ -72,7 +72,7 @@
 
 \input{type_graph/sections/termination}    
   
-\section{Extension of the method to Non-Well-Founded Semirings}
+\section{Extension to Non-Well-Founded Semirings}
 
 % \section{to be integrated}
 % \begin{remark}
@@ -104,7 +104,6 @@
 Systems using Subgraph Counting}
 \label{chap:subgraph_counting}
 
-\section{Introduction}
 \label{sec:intro}
 \input{subgraph_counting/sections/intro}
 
@@ -139,39 +138,48 @@ Systems using Subgraph Counting}
 \subsection{Auxiliary lemmas}
 \input{subgraph_counting/sections/newproofs}
 
-\subsection{Proofs of \autoref{lem:decomp_w_u}, \autoref{lem:xlnlmxrnr}, \autoref{lem:w_u_l_not_geq_r_not} and \autoref{lem:w_g_geq_w_h_leq}}
+\subsection{Proofs of~\autoref{lem:decomp_w_u},~\autoref{lem:xlnlmxrnr},~\autoref{lem:w_u_l_not_geq_r_not} and~\autoref{lem:w_g_geq_w_h_leq}}
 \label{sec:appendix:a}
 \input{subgraph_counting/sections/appendix_weighing_pushout_object}
 
-\chapter{Conclusion and Futur Works}
-\section{Conclusion}
-\input{sections/conclusion}
-\section{Future Works} 
-\input{sections/future_work}
+% \chapter{Conclusion and Futur Works}
+% \section{Conclusion}
+% \input{sections/conclusion} 
+% \section{Future Works} 
+% \input{sections/future_work}
 
 % \section{Additional Examples}
 % \input{subgraph_counting/sections/appendix_examples}
  
+\chapter{Termination of Injective DPO Graph Rewriting
+Systems using Subgraph Counting with antipatterns}
+
+
 \chapter{Conclusion and Future Work}
 \paragraph{Conclusion}
-This dissertation focused on automated techniques for proving the termination of graph rewriting systems, specifically those based on double-pushout (DPO).
-An existing technique, the type graph method, was extended to non-well-founded semirings, enabling more efficient implementation of the method. 
-A new machine-checkable sufficient condition for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs was developed, which is based on counting specific subgraphs in the graph before and after transformation. This technique can handle cases that existing interpretation-based approaches cannot, such as the one in \autoref{ex_contrib_variant}.
-The implementation of the type graph method and our extension, along with the new termination criterion, was integrated into a unified tool called LyonParallel for DPO graph rewriting systems on edge-labeled directed multigraphs.
-
+This dissertation focused on automated techniques for proving the termination of DPO graph rewriting systems.
+An existing technique, the type graph method, was extended to non-well-founded semirings, enabling more efficient implementation of the method in some cases.
+We developed a new machine-checkable sufficient condition, called subgraph counting, for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs, based on counting specific subgraphs in the graph before and after transformation. This technique can handle cases that existing interpretation-based approaches cannot, such as the one in~\autoref{ex_contrib_variant}.
+The implementation of the type graph method and our extension, along with our subgraph counting technique, was integrated into a unified tool, called LyonParallel, for DPO graph rewriting systems on edge-labeled directed multigraphs.
+ 
 \paragraph{Future Work}
-Confluence is another important property of graph rewriting systems, which ensures that the final result of a sequence of rewriting steps is independent  of the order in which the rules are applied. Future work could explore automated techniques for proving confluence of graph rewriting systems.
+Confluence is another important property of graph rewriting systems, which ensures that the final result of a sequence of rewriting steps is independent of the order in which the rules are applied. Future work could explore automated techniques for proving confluence of graph rewriting systems.
 
-Extending the subgraph counting technique to counting subgraph that does not include in a specific subgraph is another interesting direction. This could lead to a more powerful termination criterion that can handle more complex graph rewriting systems.
+Extending the subgraph counting technique to count subgraphs that are not included in specific subgraphs is another interesting direction, which allows the technique to handle~\autoref{rem:d3_limitation}.
 
-Another interesting direction is to extend the subgraph counting technique to graph rewriting systems with negative application conditions (NACs). NACs are conditions that must not be satisfied in the context of a rule application.
+Another interesting direction is to extend the subgraph counting technique to graph rewriting systems with negative application conditions (NACs). NACs are conditions that must not be satisfied in the context of a rule application. This could lead to a more practical termination tool, as NACs are often used in graph rewriting systems to express constraints on the application of rules.
 
-It is also worth investigating the difference of our subgraph counting technique with
- the technique based on the same idea and with the same name developed for PBPO+ graph rewriting systems proposed by Overbeek and Endrullis.
+It is also worth investigating the difference between our subgraph counting technique and
+ the technique by Overbeek and Endrullis based on the same idea and with the same name developed for PBPO+ graph rewriting systems.
 
-The implementation of the modular termination technique proposed by Plump which complements the type graph method and the subgraph counting technique could be another interesting but more practical direction. This could lead to a more powerful termination tool.
+The implementation of the modular termination technique proposed by Plump, which complements the type graph method and the subgraph counting technique, could be another interesting but more practical direction. This could lead to a more powerful termination tool.
 
 Finally, extending the type graph method to other algebraic graph rewriting formalisms, such as PBPO+, could be a promising direction.
+
+\chapter{maybe useful ??? to do}
+\begin{description}
+    \item[security protocol] The design of security protocols is notoriously error-prone. This point can be illustrated by attacks found against many published protocols. For instance, a famous attack was discovered by Lowe, 1996 against the Needham-Schroeder public-key protocol (Needham and Schroeder, 1978) 17 years after its publication. Attacks are also found against many protocols used in practice. Important examples are SSL (Secure Sockets Layer) and its successor TLS (Transport Layer Security), which are used for https:// connexions. The first version dates back to 1994, and since then many attacks were discovered, fixed versions were developed, and new attacks are still regularly discovered (Beurdouche et al., 2015; Adrian et al., 2015).   <<Modeling and Verifying Security Protocols with the Applied Pi Calculus and ProVerif>> Bruno Blanchet1
+\end{description}  
 
 \printbibliography
 \end{document}  

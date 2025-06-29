@@ -176,24 +176,50 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
 \end{minipage}%
 \begin{minipage}{0.29\textwidth}
     \hfill
-    \begin{tikzpicture}
-        % [node distance=15mm]
-        \node (I) {$K$};
-        \node (L) [left of=I] {$L$};
-        \node (R) [right of=I] {$R$};
-        \node (G) [below of=L] {$G$};
-        \node (C) [below of=I] {$C$};
-        \node (H) [below of=R] {$H$};
-        \draw [>->] (I) to  node [midway,below] {$l$} (L);
-        \draw [>->] (I) to  node [midway,below] {$r$} (R);
-        \draw [>->] (L) to node [midway,right] {$m$} (G);
-        \draw [>->] (I) to  node [midway,right] {} (C);
-        \draw [>->] (R) to  node [midway,right] {$m'$} (H);
-        \draw [>->] (C) to node [midway,above] {$l'$} (G);
-        \draw [>->] (C) to node [midway,above] {$r'$} (H);
-        % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-        % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-      \end{tikzpicture}
+    % \begin{tikzpicture}
+    %     % [node distance=15mm]
+    %     \node (I) {$K$};
+    %     \node (L) [left of=I] {$L$};
+    %     \node (R) [right of=I] {$R$};
+    %     \node (G) [below of=L] {$G$};
+    %     \node (C) [below of=I] {$C$};
+    %     \node (H) [below of=R] {$H$};
+    %     \draw [>->] (I) to  node [midway,below] {$l$} (L);
+    %     \draw [>->] (I) to  node [midway,below] {$r$} (R);
+    %     \draw [>->] (L) to node [midway,right] {$m$} (G);
+    %     \draw [>->] (I) to  node [midway,right] {} (C);
+    %     \draw [>->] (R) to  node [midway,right] {$m'$} (H);
+    %     \draw [>->] (C) to node [midway,above] {$l'$} (G);
+    %     \draw [>->] (C) to node [midway,above] {$r'$} (H);
+    %     % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+    %     % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+    %   \end{tikzpicture}
+    \resizebox{0.9\textwidth}{!}{
+     \begin{tikzpicture}
+            % [node distance=15mm]
+            \node (I) at (0,0) {$K$};
+            \node (L)  at (-2,0) {$L$};
+            \node (R)  at (2,0) {$R$};
+            \node (G)  at (-2,-2) {$G$};
+            \node (C)  at (0,-2) {$C$};
+            \node (H)  at (2,-2) {$H$};
+            \draw [>->] (I) to  node [midway,below] {$l$} (L);
+            \draw [>->] (I) to  node [midway,below] {$r$} (R);
+            \draw [>->] (L) to node [midway,right] {$m$} (G);
+            \draw [>->] (I) to  node [midway,right] 
+            % {$u$}
+            {} (C);
+            \draw [>->] (R) to  node [midway,right] 
+            {$m'$}
+            (H);
+            \draw [>->] (C) to node [midway,above] {$l'$} (G);
+            \draw [>->] (C) to node [midway,above] 
+            {$r'$} 
+            (H);
+            % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+            % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+        \end{tikzpicture}
+    }
 \end{minipage}
 
 
