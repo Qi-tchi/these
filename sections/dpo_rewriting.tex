@@ -1,8 +1,8 @@
 \begin{definition}[Rewriting rule and match~\cite{corradini1997algebraic}]
   \label{def:grs:dpo_rule}
-A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}, \( L \) is the \textbf{left-hand-side graph}, denoted \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side graph}, denoted \( \operatorname{rhs}(\rho) \). The rule is \textbf{left monic} if \( l \) is monic, and \textbf{right monic} if \( r \) is monic. 
+A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}, \( L \) is the \textbf{left-hand-side graph}, denoted \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side graph}, denoted \( \operatorname{rhs}(\rho) \). We denote $\rho^{-1}$ as the rule $(R \overset{r}{\leftarrow} K \overset{l}{\rightarrow} L)$. The rule is \textbf{left monic} if \( l \) is monic, and \textbf{right monic} if \( r \) is monic. 
 The rule is \textbf{monic} if $l$ and $r$ are both monic.
-A \textbf{match} of the rule in an graph \( G \) is a morphism \( m: L \rightarrow G \).   
+A \textbf{match} of the rule in an graph \( G \) is a morphism \( m: L \rightarrow G \).
 \end{definition}
 In the case of the category \textbf{Graph} of edge-labeled directed multigraphs, the rule is left monic if the morphism \( l \) is injective, and right monic if the morphism \( r \) is injective. The rule is monic if both \( l \) and \( r \) are injective.
 
@@ -358,8 +358,8 @@ To give an intuition on the second condition, suppose that there is a graph C an
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
             }  
-            \graphbox{\(E \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
-                \coordinate (o) at (0mm,-20mm); 
+            \graphbox{\(E \)}{110mm}{5mm}{45mm}{40mm}{2mm}{-3mm}{
+                \coordinate (o) at (-10mm,-20mm); 
                  \node[draw,circle] (l1) at ($(o)+(0,0)$) {1};
                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -398,3 +398,64 @@ To give an intuition on the second condition, suppose that there is a graph C an
         }
     \end{center} 
     However, there does not exist a morphism \(\delta : G \to E\) such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \), which contradicts the universal property of the pushout. Therefore, there do not exist a graph \( C \) and morphisms \( \beta \) and \( \alpha' \) such that the diagram in the assumption is a pushout square.
+
+    \begin{definition}[Rewriting framework \cite{endrullis2024generalized_arxiv_v2}]
+  \label{def:rewriting_framework}
+    A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to collections of DPO diagrams. Specifically, for every rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \), the collection $\mathfrak{F}(\rho)$ consists of DPO diagrams of the form shown below.
+ \begin{center}
+      \resizebox{0.4\textwidth}{!}{
+      \begin{tikzpicture}
+            \node (I) at (0,0) {$K$};
+            \node (L)  at (-2,0) {$L$};
+            \node (R)  at (2,0) {$R$};
+            \node (G)  at (-2,-2) {$G$};
+            \node (C)  at (0,-2) {$C$};
+            \node (H)  at (2,-2) {$H$};
+            \draw [->] (I) to  node [midway,below] {$l$} (L);
+            \draw [->] (I) to  node [midway,below] {$r$} (R);
+            \draw [->] (L) to node [midway,right] {} (G);
+            \draw [->] (I) to  node [midway,right] 
+            % {$u$}
+            {} (C); 
+            \draw [->] (R) to  node [midway,right] 
+            {}
+            (H);
+            \draw [->] (C) to node [midway,above] {} (G);
+            \draw [->] (C) to node [midway,above] 
+            {} 
+            (H);
+        \end{tikzpicture}
+        }
+    \end{center}
+    The \textbf{DPO rewriting relation $\Rightarrow_{\rho,\mathfrak{F}}$ induced by a DPO rewriting rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \Rightarrow_{\rho,\mathfrak{F}} H$ iff $G \Rightarrow_\rho^\delta H$ for some $\delta \in \mathfrak{F}(\rho)$. 
+     The \textbf{DPO rewriting relation $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \Rightarrow_{\mathcal{R},\mathfrak{F}} H$ iff $G \Rightarrow_{\rho,\mathfrak{F}} H$ for some $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
+    suppress $\mathfrak{F}$ and 
+    write $\Rightarrow_{\rho}$ and $\Rightarrow_{\mathcal{R}}$.
+  \end{definition}
+Let \(\mathfrak{F}\) denote the DPO rewriting framework that associates each rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) with the collection of all DPO diagrams of the form shown in~\autoref{def:rewriting_framework}.
+Let \(\mathfrak{M}\) denote the DPO rewriting framework that associates each rule with the collection of all DPO diagrams of the following form with monic match $m$.  
+\begin{center}
+           \resizebox{0.4\textwidth}{!}{
+      \begin{tikzpicture}
+            \node (I) at (0,0) {$K$};
+            \node (L)  at (-2,0) {$L$};
+            \node (R)  at (2,0) {$R$};
+            \node (G)  at (-2,-2) {$G$};
+            \node (C)  at (0,-2) {$C$};
+            \node (H)  at (2,-2) {$H$};
+            \draw [->] (I) to  node [midway,below] {$l$} (L);
+            \draw [->] (I) to  node [midway,below] {$r$} (R);
+            \draw [>->] (L) to node [midway,right] {$m$} (G);
+            \draw [>->] (I) to  node [midway,right] 
+            % {$u$}
+            {} (C);
+            \draw [>->] (R) to  node [midway,right] 
+            {}
+            (H);
+            \draw [->] (C) to node [midway,above] {} (G);
+            \draw [->] (C) to node [midway,above] 
+            {} 
+            (H);
+        \end{tikzpicture}
+        }
+    \end{center} 
