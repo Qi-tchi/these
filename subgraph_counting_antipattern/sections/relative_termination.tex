@@ -1,0 +1,18 @@
+% \begin{definition}[Rewriting sequence]
+%     % Let \(\Rightarrow\) be rewriting relation.
+%     % A \textbf{\(\Rightarrow\)-sequence} is a finite sequence \(s_0,s_1,\hdots, s_m\) of objects such that \(s_n \Rightarrow s_{n+1}\) for each \( 0 \leq n \leq m-1\), or an infinite sequence \(s_0,s_1,\hdots\) of objects such that \(s_n \Rightarrow s_{n+1}\) for each \(n \in \mathbb{N}\).
+%  Let $\Rightarrow$ denote a rewriting relation. A $\Rightarrow$-sequence is defined as either a sequence $(s_i)_{0 \leq i \leq m}$ where $m \in \mathbb{N}\cup \{+\infty\}$ and for all $0 \leq i \leq m-1$, $s_i \Rightarrow s_{i+1}$.
+% %  , or an infinite sequence $s_0, s_1, \dots$ of objects such that $s_n \Rightarrow s_{n+1}$ for all $n \in \mathbb{N}$.
+% \end{definition}
+\begin{definition}[Rewriting sequence]  
+Given a set of rewriting rules $\mathcal{R}$ and a DPO rewriting framework $\mathfrak{F}$, a \textbf{$(\mathcal{R}, \mathfrak{F})$-rewriting sequence} is a finite or infinite sequence of objects. In the finite case, it takes the form $s_0, s_1, \dots, s_m$ such that each consecutive pair satisfies $s_n \Rightarrow_{\mathcal{R}, \mathfrak{F}} s_{n+1}$ for all integers $n$ with $0 \leq n < m$. In the infinite case, it takes the form $s_0, s_1, s_2, \dots$ such that each consecutive pair satisfies $s_n \Rightarrow_{\mathcal{R}, \mathfrak{F}} s_{n+1}$ for all natural numbers $n$. Such a sequence beginning at $s_0$ is denoted by the chained relation:  
+\[
+s_0 \Rightarrow_{\mathcal{R}, \mathfrak{F}} s_1 \Rightarrow_{\mathcal{R}, \mathfrak{F}} s_2 \Rightarrow_{\mathcal{R}, \mathfrak{F}} \cdots
+\]   
+\end{definition}  
+We adapt the concept of relative termination~\cite{klop1987term,geser1990relative} to DPO rewriting.
+\begin{definition}[Relative termination]  
+\label{termination:def:relative_termination}  
+In a DPO rewriting framework $\mathfrak{F}$, let $\mathcal{A}$ and $\mathcal{B}$ denote two sets of rewriting rules. The rewriting relation $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is said to be \textbf{terminating with respect to} $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if every infinite rewriting sequence constructed using rules from $\mathcal{A} \cup \mathcal{B}$ involves only finitely many rewriting steps using rules from $\mathcal{A}$.  
+\end{definition}  
+

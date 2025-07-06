@@ -117,7 +117,7 @@
 %  \end{table}
  
 
-\begin{example} 
+\begin{example}
   \label{ex:endrullis2024_6d2}  
   Consider the following rewriting rule presented in~\cite[Example 6.2]{endrullis2024generalized_arxiv_v2}. 
 
@@ -162,8 +162,7 @@
             \node[draw,circle]  (x) at (0mm,0mm) {1 2};
             \draw[->]  (x) edge [loop right] (x);
           }  
-    \end{tikzpicture}  
-
+    \end{tikzpicture}   
     The termination of this rule is not in the scope of our method due to its non-node-injective right-hand side morphism. It can be proved using the method proposed by Overbeek et al. in~\cite{overbeek2024termination_lmcs}.
 \end{example}
 
@@ -277,8 +276,8 @@
   \label{ex:overbeek_5d6_bis} 
   Consider the DPO rewriting system with monic matches presented in~\cite[Example 5.6]{overbeek2024termination_lmcs} with $\rho$ replaced by $\rho'$ as depicted by the span 
   \begin{center}
-    $\rho' = $\scalebox{0.9} { \input{subgraph_counting/tikz/OE_ex5d6_rho_bis.tex}}
-  \end{center} 
+    $\rho' = $\scalebox{0.9} { \input{tikz/OE_ex5d6_rho_bis.tex}}
+  \end{center}
 
   Its termination is not in the scope of our method due to its non-node-injective left-hand side morphism. 
 \end{example}
@@ -420,7 +419,7 @@
 
   Thus, this rewriting systems terminates by~\autoref{thm:termination_grs}.
 \end{example}
-
+  
 \begin{example}
   \label{ex:plump_ex4}
   Our method cannot prove the termination of the DPO rewriting system with monic matches presented in~\cite[Example 4]{plump2018modular}. The rewriting rules are depicted below
@@ -621,51 +620,176 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
   Its termination can be proved by our method.
 \end{example}  
 
+\begin{example}
+  \label{ex_endrullis_6d3_endrullis_5d8}
+  Consider the rule presented in~\cite[Example 6.3]{endrullis2024generalized_arxiv_v2} illustrated in the bottom span of the following diagram:
+  % \begin{figure}[H] 
+  %     \center
+  \begin{center}
+      \resizebox{0.6\textwidth}{!}{
+          \begin{tikzpicture}
+              \graphbox{$L$}{0mm}{0mm}{35mm}{25mm}{2mm}{-8mm}{
+                  \coordinate (delta) at (0,-18mm);
+                  \node[draw,circle] (x) at (-6mm,-10mm) {x};
+                  \node[draw,circle] (y) at (6mm,-10mm) {y};
+                  \node[draw,circle]  (z) at (6mm,0mm) {z};
+                  \draw[->]  (x) to (y);
+                  \draw[->] (y) to[bend right=20] (z);
+                  \draw[->]  (z) to[bend right=20] (y);
+              }
+              \graphbox{$K$}{40mm}{0mm}{35mm}{25mm}{2mm}{-8mm}{
+                  \node[draw,circle]  (x) at (-6mm,-10mm) {x};
+                  \node[draw,circle]  (y) at (6mm,-10mm) {y};
+              }
+              \graphbox{$R$}{80mm}{0mm}{35mm}{25mm}{2mm}{-8mm}{
+                  \node[draw,circle]  (x) at (-6mm,-10mm) {x};
+                      \node[draw,circle]  (y) at (6mm,-10mm) {y};
+                      \node[draw,circle]  (z) at (0mm,0mm) {w};
+                      \draw[->]  (x) to (y);
+                      \draw[->]  (y) to [bend left=0] (z);
+                      \draw[->]  (z) to [bend left=0] (x);
+              }
+              \graphbox{$R_x$}{40mm}{20mm}{35mm}{15mm}{2mm}{2mm}{
+                  \node[draw,circle]  (x) at (-6mm,-10mm) {x};
+                  \node[draw,circle]  (y) at (6mm,-10mm) {y};
+                  \draw[->]  (x) to (y);
+              }
+              \node () at (37mm,-12mm) {$\leftarrowtail$};
+              \node () at (78mm,-12mm) {$\rightarrowtail$};
+              \node () at (57mm,2mm) {$\uparrowtail$};
+              \node () at (38mm,2mm) {$\swarrowtail$};
+              \node () at (79mm,2mm) {$\searrowtail$};
+          \end{tikzpicture}
+      }
+  \end{center}
 
-% \begin{example}
-%   \label{ex:termination:grsaa}
-%   Consider the rewriting rule in~\autoref{ex:grsaa_rx}. Let $X$ be the graph \tikz[baseline=-0.5ex]{
-%       \node (x) at (0,0) {$\bullet$};
-%       \node (y) at (1,0) {$\bullet$ }; 
-%       \node (z) at (2,0) { $\bullet$};
-%       \draw[->] (x) -- (y) node[midway, above] {$a$};
-%       \draw[<-] (z) -- (y) node[midway, above] {$a$};
-%   } with weight $1$ and $\mathbb{X} = \{X\}$. The rule is $X$-non-increasing by~\autoref{example:grs_aa:has_more_left}. 
-%   % Let $s_\mathbb{X}$ be the weight function which associates the weight of $1$ to $X$. 
-%   % Since \(w_{s_\mathbb{X}}(L) = 1 > 0 = w_{s_\mathbb{X}}(R)\), 
-%   Since \(w(L) = 1 > 0 = w(R)\),
-%   it terminates by~\autoref{thm:termination_grs}.
-% \end{example}
+  Let $X$ be the graph 
+  \tikz[baseline=-0.5ex]{
+      \node (x) at (0,0) {$\bullet$};
+      \node (y) at (1,0) {$\bullet$};
+      \draw[->] (x) to[bend right=20] (y);
+      \draw[->] (y) to[bend right=20] (x); 
+  } and $\mathbb{X} = \{X\}$. Let $s_\mathbb{X}$ be the weight function associating the weight of $1$ to $X$. There is only one element 
+  \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+          \node [draw,circle] (x) at (0,0) {x};
+          \node[draw,circle] (y) at (1,0) {y};
+          \draw[->] (x) -- (y) node[midway, above] {};
+      }}
+  in $D(X, R)$. 
+   Since $w_{s_\mathbb{X}}(L) = 1 > 0 = w_{s_\mathbb{X}}(R)
+      $, the rule terminates by~\autoref{thm:termination_grs}.
+\end{example}
 
-% We present an example where $\mathbb{X}$ is not a singleton.
-% \begin{example} 
-%   \label{ex:overbeek_5d6}
-%   Consider the rewriting rules presented in~\cite[Example 5.6]{overbeek2024termination_lmcs} illustrated below:
-%   \begin{center}
-%     $\rho = $\scalebox{0.7} { \input{subgraph_counting/tikz/OE_ex5d6_rho.tex}}
-%   \end{center}
-%   \begin{center}
-%   $\tau = $\scalebox{0.7}{ \input{subgraph_counting/tikz/OE_ex5d6_tau.tex}
-%   }
-%   \end{center}
-%   Let $X$ be 
-%   \tikz[baseline=-0.5ex]{
-%       \node (x) at (0,0) {$\bullet$};
-%       \draw[->] (x) edge [loop right] node {a} (x);
-%   } with weight $5$, let $Y$ be
-%   \tikz[baseline=-0.5ex]{
-%       \node (x) at (0,0) {$\bullet$};
-%       \draw[->] (x) edge [loop right] node {b} (x);
-%   } with weight $3$ and $\mathbb{X} = \{X, Y\}$.
-%   The rules $\rho$ and $\tau$ are both $X$- and $Y$-non-increasing with $D(rhs(\rho), X) = D(rhs(\rho), Y) = D(rhs(\tau), X) = D(rhs(\tau), Y) = \emptyset$.   
-%   % Let $s_\mathbb{X}$ be the weight function associating the weight of $5$ to $X$ and the weight of $3$ to $Y$.
-%   % We have $
-%   %     w_{s_\mathbb{X}}(\operatorname{lhs}(\rho)) = 10 > 9 = w_{s_\mathbb{X}}(\operatorname{rhs}(\rho))
-%   %     $ and $
-%   %     w_{s_\mathbb{X}}(\operatorname{lhs}(\tau)) = 6 > 5 = w_{s_\mathbb{X}}(\operatorname{rhs}(\tau))$.
-%   We have $
-%   w(\operatorname{lhs}(\rho)) = 10 > 9 = w(\operatorname{rhs}(\rho))
-%   $ and $
-%   w(\operatorname{lhs}(\tau)) = 6 > 5 = w(\operatorname{rhs}(\tau))$.
-%   Thus, this rewriting systems terminates by~\autoref{thm:termination_grs}.
-% \end{example}
+
+\begin{example}[Limitation]
+  \label{ex:plump95_4d1}
+ Consider a rule presented in~\cite[Example 4.1]{plump1995ontermination}:
+
+  \begin{center}
+      \resizebox{0.7\textwidth}{!}{
+    $\rho = $  \begin{tikzpicture}[baseline=-20mm]
+      \graphbox{$L$}{0mm}{0}{32mm}{40mm}{0}{0}{
+          \node[draw,circle]  (n1) at (0,-6mm) {1};
+          \node[draw,circle]   (n2) at (0mm,-26mm) {2};
+          \node[draw,circle]   (n3) at (-10mm,-26mm) {3};
+          \node[draw,circle]   (n4) at (10mm,-26mm) {4};
+          \draw[->]  (n2) edge [loop below] node  {a} (n2);
+          \draw[->]  (n3) edge [loop below] node  {b} (n3);
+          \draw[->]  (n1) to node [right] {f} (n2) ;
+          \draw[->]  (n1) to node [right] {f}  (n3);
+          \draw[->]  (n1) to node [right] {f}  (n4);
+        }
+        \graphbox{$K$}{33mm}{0}{32mm}{40mm}{0}{-0}{
+          \node[draw,circle]  (n1) at (0,-6mm) {1};
+          \node[draw,circle]   (n2) at (0mm,-26mm) {2};
+          \node[draw,circle]   (n3) at (-10mm,-26mm) {3};
+          \node[draw,circle]   (n4) at (10mm,-26mm) {4};
+          \draw[->]  (n2) edge [loop below] node  {a} (n2);
+          \draw[->]  (n3) edge [loop below] node  {b} (n3);
+        }
+        \graphbox{$R$}{66mm}{0}{32mm}{40mm}{0}{-0}{
+          \node[draw,circle]  (n1) at (0,-6mm) {1};
+          \node[draw,circle]   (n2) at (0mm,-26mm) {2};
+          \node[draw,circle]   (n3) at (-10mm,-26mm) {3};
+          \node[draw,circle]   (n4) at (10mm,-26mm) {4};
+          \draw[->]  (n2) edge [loop below] node  {a} (n2);
+          \draw[->]  (n3) edge [loop below] node  {b} (n3);
+          \draw[->]  (n1) edge [bend left] node [right] {f} (n4) ;
+          \draw[->]  (n1) edge [bend right] node [left] {f}  (n4);
+          \draw[->]  (n1) to node [right] {f}  (n4);
+        }   
+  \end{tikzpicture}
+      }
+\end{center}
+\noindent
+\begin{minipage}{0.7\textwidth}
+  To prove its termination with our method, a ruler-graph $X$ containing an edge labeled by $f$ must be used, because the number of occurrences of every graph containing only edges labeled by $a$ and $b$ does not change by any rewriting step using $\rho$. But in this case, condition~\eqref{def:non_increasing_rule_img_edges_distinct} of~\autoref{def:creates_more_x_on_the_left} cannot be satisfied.
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+  \hfill
+\begin{center}
+  \begin{tikzpicture} 
+      \graphbox{}{0}{0}{30mm}{20mm}{-10mm}{-10mm}{
+          \node[draw,circle]  (n1) at (0,0mm) {1};
+          % \node[draw,circle]   (n2) at (0mm,-26mm) {2};
+          % \node[draw,circle]   (n3) at (-10mm,-26mm) {3};
+          \node[draw,circle]   (n4) at (20mm,0mm) {4};
+          % \draw[->]  (n2) edge [loop below] node  {a} (n2);
+          % \draw[->]  (n3) edge [loop below] node  {b} (n3);
+          \draw[->]  (n1) edge [bend left] node [above] {f} (n4) ;
+          \draw[->]  (n1) edge [bend right] node [below] {f}  (n4);
+          \draw[->]  (n1) to node {f}  (n4);
+        }  
+  \end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\end{example}
+
+\begin{example}
+  \label{ex:termination:grsaa}
+  Consider the rewriting rule in~\autoref{ex:grsaa_rx}. Let $X$ be the graph \tikz[baseline=-0.5ex]{
+      \node (x) at (0,0) {$\bullet$};
+      \node (y) at (1,0) {$\bullet$ }; 
+      \node (z) at (2,0) { $\bullet$};
+      \draw[->] (x) -- (y) node[midway, above] {$a$};
+      \draw[<-] (z) -- (y) node[midway, above] {$a$};
+  } with weight $1$ and $\mathbb{X} = \{X\}$. The rule is $X$-non-increasing by~\autoref{example:grs_aa:has_more_left}. 
+  % Let $s_\mathbb{X}$ be the weight function which associates the weight of $1$ to $X$. 
+  % Since \(w_{s_\mathbb{X}}(L) = 1 > 0 = w_{s_\mathbb{X}}(R)\), 
+  Since \(w(L) = 1 > 0 = w(R)\),
+  it terminates by~\autoref{thm:termination_grs}.
+\end{example}
+
+We present an example where $\mathbb{X}$ is not a singleton.
+\begin{example} 
+  \label{ex:overbeek_5d6}
+  Consider the rewriting rules presented in~\cite[Example 5.6]{overbeek2024termination_lmcs} illustrated below:
+  \begin{center}
+    $\rho = $\scalebox{0.7} { \input{tikz/OE_ex5d6_rho.tex}}
+  \end{center}
+  \begin{center}
+  $\tau = $\scalebox{0.7}{ \input{tikz/OE_ex5d6_tau.tex}
+  }
+  \end{center}
+  Let $X$ be 
+  \tikz[baseline=-0.5ex]{
+      \node (x) at (0,0) {$\bullet$};
+      \draw[->] (x) edge [loop right] node {a} (x);
+  } with weight $5$, let $Y$ be
+  \tikz[baseline=-0.5ex]{
+      \node (x) at (0,0) {$\bullet$};
+      \draw[->] (x) edge [loop right] node {b} (x);
+  } with weight $3$ and $\mathbb{X} = \{X, Y\}$.
+  The rules $\rho$ and $\tau$ are both $X$- and $Y$-non-increasing with $D(rhs(\rho), X) = D(rhs(\rho), Y) = D(rhs(\tau), X) = D(rhs(\tau), Y) = \emptyset$.   
+  % Let $s_\mathbb{X}$ be the weight function associating the weight of $5$ to $X$ and the weight of $3$ to $Y$.
+  % We have $
+  %     w_{s_\mathbb{X}}(\operatorname{lhs}(\rho)) = 10 > 9 = w_{s_\mathbb{X}}(\operatorname{rhs}(\rho))
+  %     $ and $
+  %     w_{s_\mathbb{X}}(\operatorname{lhs}(\tau)) = 6 > 5 = w_{s_\mathbb{X}}(\operatorname{rhs}(\tau))$.
+  We have $
+  w(\operatorname{lhs}(\rho)) = 10 > 9 = w(\operatorname{rhs}(\rho))
+  $ and $
+  w(\operatorname{lhs}(\tau)) = 6 > 5 = w(\operatorname{rhs}(\tau))$.
+  Thus, this rewriting systems terminates by~\autoref{thm:termination_grs}.
+\end{example}

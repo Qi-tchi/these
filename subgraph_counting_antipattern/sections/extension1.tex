@@ -1,0 +1,178 @@
+\begin{remark}[Notation]
+    Let $X$ and $G$ be graphs. Let $\mathbb{F}$ be a finite set of monomorphisms with $dom(f) = X$ for all $f \in \mathbb{F}$. We define
+    \begin{align*}
+        \operatorname{Mono}(X-\mathbb{F},G) = \{ \iota \in \operatorname{Mono}(X,G) \ | \ \forall f \in \mathbb{F}. \nexists \beta \in \operatorname{Mono}(codom(f),G).~\iota = f \star \beta \} 
+        \\
+        \operatorname{Mono}(X,G,\alpha) = \{ \iota \in \operatorname{Mono}(X,G) \ | \ \exists \beta : X \to A.~\iota = \beta \star \alpha \} 
+        \\
+        \operatorname{Mono}(X,G,\lnot \alpha) = \{ \iota \in \operatorname{Mono}(X,G) \ | \ \nexists \beta : X \to A.  ~\iota = \beta \star \alpha \} 
+        \\
+        \operatorname{Mono}(X,G, \lnot \alpha, \beta) = \{ 
+            \iota \in  \operatorname{Mono}(X,G) \ | \ (\nexists \zeta. ~\iota = \zeta \star \beta') \land (\exists \zeta.~\iota = \zeta \star \alpha')
+        \}
+        \\
+        \operatorname{Mono}(X,G,\lnot \alpha, \lnot \beta) = \{ 
+            \iota \in \operatorname{Mono}(X,G) \ | \ (\nexists \zeta. ~\iota = \zeta \star \beta') \land (\nexists \zeta.~\iota = \zeta \star \alpha')
+        \}
+        \end{align*}
+\end{remark}
+
+\begin{definition}[Non-decreasing Rule]
+    Let $X$ be a graph and $L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R$ a linear DPO rewriting rule. We say that the rule is $X$-non-decreasing if the rule 
+    $R \overset{r}{\leftarrowtail} K \overset{l}{\rightarrowtail} L$ is $X$-non-increasing. 
+\end{definition}
+
+\begin{theorem}
+    \label{thm:termination_grs_ext1} 
+    Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of linear DPO rewriting rules. If there is a graph \(X\) and a monomorphism $h: X \rightarrowtail F$ such that
+    \begin{itemize}
+        \item for every rule $\rho \in \mathcal{A} \cup \mathcal{B}$, the rule $\rho$ is $X$-non-increasing,
+        \item for every rule $\rho \in \mathcal{A} \cup \mathcal{B}$, the rule $\rho^{-1}$ is $X$-non-increasing,
+        \item for every rule \(\rho \in \mathcal{A} \cup \mathcal{B}\), the rule $\rho^{-1}$ is $F$-non-increasing,
+        \item for all subgraph $K'$ of $K$, if there is an occurrence of $F$ in $G$ around $K'$, then there is an occurrence of $F$ in $H$ around $K'$,
+        \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \in \mathcal{A}\), we have \(|\operatorname{Mono}(X-F,L)| > |\operatorname{Mono}(X-F,R)|\),
+        \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \in \mathcal{B}\), we have \(|\operatorname{Mono}(X-F,L)| \geq |\operatorname{Mono}(X-F,R)|\),
+    
+    \end{itemize}
+    then \(\Rightarrow_{\mathcal{A},\mathcal{M}}\) is terminating relative to \(\Rightarrow_{\mathcal{B},\mathcal{M}}\).
+\end{theorem}
+
+
+
+\begin{flalign*}
+    &\card{Mono(X- F, G)} - \card{Mono(X- F, H)} \\
+   =&\card{Mono(X- F, G, l') \uplus Mono(X- F, G, \lnot l', m) \uplus Mono(X- F, G, \lnot l', \lnot m)} - \\ 
+      &\card{Mono(X- F, H, r') \uplus Mono(X- F, G, \lnot r', m') \uplus Mono(X- F, H, \lnot r', \lnot m')} \\
+   =&\left( | Mono(X- F, G, l')| + |Mono(X- F, G, \lnot l', m)|+ |Mono(X- F, G, \lnot l', \lnot m)|\right) - \\ 
+    &\left(|Mono(X- F, H, r')| + |Mono(X- F, H, \lnot r', m')| + |Mono(X- F, H, \lnot r', \lnot m')|\right)\\
+    = &\left( | Mono(X- F, G, l')| - |Mono(X- F, H, r')| \right) + \\
+    &\left( |Mono(X- F, G, \lnot l', m)| - |Mono(X- F, G, \lnot l', \lnot m)|\right) + \\ 
+    &\left( |Mono(X- F, H, \lnot r', \lnot m')| - |Mono(X- F, H, \lnot r', m')|\right) \\
+    & \text{because $| Mono(X- F, G, l')| = |Mono(X- F, H, r')|$} \\
+    = &\left( | Mono(X- F, G, l')| - |Mono(X- F, H, r')| \right) + \\
+    &\left( |Mono(X- F, G, \lnot l', m)| - |Mono(X- F, G, \lnot l', \lnot m)|\right) + \\ 
+    &\left( |Mono(X- F, H, \lnot r', \lnot m')| - |Mono(X- F, H, \lnot r', m')|\right)
+\end{flalign*}
+
+\begin{proposition}
+    $| Mono(X- F, G, l')| - |Mono(X- F, H, r')| \geq 0$
+\end{proposition}
+\begin{proof}
+    \begin{flalign}
+        &|Mono(X- F, G, l')| - |Mono(X- F, H, r')| \\
+        =&(|Mono(X, G, l')| - | Mono(X + F, G, l')|)-\\
+        & (|Mono(X, H, r')| - |Mono(X+ F, H, r')|) \\
+        =&(|Mono(X, G, l')| - | Mono(X, H, r')|) + (|Mono(X+ F, H, r')| - |Mono(X+ F, G, l')|) \\
+        \geq &(|Mono(X+ F, H, r')| - |Mono(X+ F, G, l')|) 
+        \\
+        &\text{because $|Mono(X, G, l')| \geq | Mono(X, H, r')| by hyps$} \\
+    \end{flalign}
+    $|Mono(X+ F, H, r')| \geq |Mono(X+ F, G, l')|$ :
+    $Mono(X, H, r')= Mono(X, G, l')$ and if $h \in Mono(X+ F, G, l')$ then there are two cases:
+        \begin{itemize}
+            \item if $F$ is in $C$ then $h \in Mono(X+ F, H, r')$
+            \item if $F$ is in $L$ then there exists an occurrence of $F$ in $R$ around the same interface elements, thus $h \in Mono(X+ F, H, r')$
+            \item otherwise, $F$ is created, since $\rho^{-1}$ is $F$-non-increasing, an occurrence of $F$ is created in $H$ around the same sub-interface, thus $h \in Mono(X+ F, H, r')$
+         \end{itemize}
+    \todo{debug: les occurrences not around interface elements}
+\end{proof}
+
+\begin{proposition}
+    $|Mono(X- F, H, \lnot r', \lnot m')| \geq |Mono(X- F, H, \lnot r', m')|$
+\end{proposition}
+\begin{proof}
+    \begin{flalign}
+        &|Mono(X- F, G, \lnot l', \lnot m)| - |Mono(X- F, H, \lnot r', \lnot m')| \\
+        =&(|Mono(X, G, \lnot l', \lnot m)| - | Mono(X + F, G, \lnot l', \lnot m)|)-\\
+        & (|Mono(X, H, \lnot r', \lnot m')| - |Mono(X+ F, H, \lnot r', \lnot m')|) \\
+        =&(|Mono(X, G, \lnot l', \lnot m)| - | Mono(X, H, \lnot r', \lnot m')|) + \\
+        &(|Mono(X+ F, H, \lnot r', \lnot m')| - |Mono(X+ F, G, \lnot l', \lnot m)|) \\
+        \geq &(|Mono(X+ F, H, \lnot r', \lnot m')| - |Mono(X+ F, G, \lnot l', \lnot m)|) 
+        \\
+        &\text{because $|Mono(X, G, \lnot l', \lnot m)| \geq | Mono(X, H, \lnot r', \lnot m')| by lem$} \\
+    \end{flalign}
+\end{proof}
+
+\begin{proposition}
+    $|Mono(X- F, G, \lnot l', m)| ???? |Mono(X- F, G, \lnot l', \lnot m)|$
+\end{proposition}
+\begin{proof}
+    \begin{flalign}
+        &|Mono(X- F, G, \lnot l', m)| - |Mono(X- F, H, \lnot r', m')| \\
+        =&(|Mono(X, G, \lnot l', m)| - | Mono(X + F, G, \lnot l', m)|)-\\
+        & (|Mono(X, H, \lnot r', m')| - |Mono(X+ F, H, \lnot r', m')|) \\
+        =&(|Mono(X, G, \lnot l', m)| - | Mono(X, H, \lnot r', m')|) + \\
+            &(|Mono(X+ F, H, \lnot r', m')| - |Mono(X+ F, G, \lnot l', m)|) \\
+        =&(|Mono(X, L)| - | Mono(X, R)|) + \\
+        &(|Mono(X+ F, H, \lnot r', m')| - |Mono(X+ F, G, \lnot l', m)|) \\
+        &\text{by~\autoref{lem:decomp_w_u} and~\autoref{lem:xlnlmxrnr} } \\
+    \end{flalign}
+    let $h \in Mono(X+ F, G, \lnot l', m)$, then 
+    \begin{itemize}
+        \item if $F$ is in $C$ then $h \in Mono(X+ F, H, \lnot r', m')$
+        \item if $F$ is in $L$ then there exists an occurrence of $F$ in $R$ with ... , thus $h \in Mono(X+ F, H, \lnot r', m')$ \todo{if $F$ is in $L$ then there exists an occurrence of $F$ in $R$ with ... }
+        \item otherwise $F$ is created, since $\rho^{-1}$ is $F$-non-increasing, an occurrence of $F$ is created in $H$ around the same sub-interface, thus $h \in Mono(X+ F, H, \lnot r', m')$ \todo{$\rho^{-1}$ is $F$-non-increasing}
+    \end{itemize}
+\end{proof}
+====================================================================================================
+
+\begin{flalign*}
+    &\card{Mono(X- \mathbb{F}, G)} - \card{Mono(X- \mathbb{F}, H)} \\
+   =&\card{Mono(X- \mathbb{F}, G, l') \uplus Mono(X- \mathbb{F}, G, \lnot l', m) \uplus Mono(X- \mathbb{F}, G, \lnot l', \lnot m)} - \\ 
+      &\card{Mono(X- \mathbb{F}, H, r') \uplus Mono(X- \mathbb{F}, G, \lnot r', m') \uplus Mono(X- \mathbb{F}, H, \lnot r', \lnot m')} \\
+   =&\left( | Mono(X- \mathbb{F}, G, l')| + |Mono(X- \mathbb{F}, G, \lnot l', m)|+ |Mono(X- \mathbb{F}, G, \lnot l', \lnot m)|\right) - \\ 
+    &\left(|Mono(X- \mathbb{F}, H, r')| + |Mono(X- \mathbb{F}, H, \lnot r', m')| + |Mono(X- \mathbb{F}, H, \lnot r', \lnot m')|\right)\\
+    = &\left( |Mono(X- \mathbb{F}, G, \lnot l', m)|+ |Mono(X- \mathbb{F}, G, \lnot l', \lnot m)|\right) - \\ 
+    &\left(|Mono(X- \mathbb{F}, H, \lnot r', m')| + |Mono(X- \mathbb{F}, H, \lnot r', \lnot m')|\right) \\
+    & \text{because $| Mono(X- \mathbb{F}, G, l')| = |Mono(X- \mathbb{F}, H, r')|$} \\
+    = &\left( |Mono(X- \mathbb{F}, L)|+ |Mono(X- \mathbb{F}, G, \lnot l', \lnot m)|\right) - \\ 
+    &\left(|Mono(X- \mathbb{F}, G, \lnot r', m')| + |Mono(X- \mathbb{F}, H, \lnot r', \lnot m')|\right) \\
+    & \text{TODO TODO because $|Mono(X- \mathbb{F}, G, \lnot l', m)| = |Mono(X- \mathbb{F}, L)|$ and $|Mono(X- \mathbb{F}, H, \lnot r', m')| = |Mono(X- \mathbb{F}, R)|$}\\
+    \geq &\left( |Mono(X- \mathbb{F}, L)|+ |Mono(X- \mathbb{F}, G, \lnot l', \lnot m)|\right)\\
+    & \text{TODO TODO because $|Mono(X- \mathbb{F}, G, \lnot r', m')| \geq |Mono(X- \mathbb{F}, H, \lnot r', \lnot m')|$}
+\end{flalign*}
+
+
+====================================================================================================
+\begin{flalign*}
+    &\card{Mono(X- \mathbb{F}, G)} - \card{Mono(X- \mathbb{F}, H)} \\
+   =&\card{Mono(X, G)\setminus Mono(X+ \mathbb{F}, G)} - \card{Mono(X, H)\setminus Mono(X+ \mathbb{F}, H)} \\
+   =&(\card{Mono(X, G)} - \card{Mono(X+ \mathbb{F}, G)}) - (\card{Mono(X, H)} - \card{Mono(X+ \mathbb{F}, H)}) \\
+   =&\card{Mono(X, G)} - \card{Mono(X+ \mathbb{F}, G)} - \card{Mono(X, H)} + \card{Mono(X+ \mathbb{F}, H)} \\
+   =&(\card{Mono(X, G)} - \card{Mono(X, H)}) + (\card{Mono(X+ \mathbb{F}, H)} - \card{Mono(X+ \mathbb{F}, G)}) \\
+   \geq & (\card{Mono(X, L)} - \card{Mono(X, R)}) + (\card{Mono(X+ \mathbb{F}, H)} - \card{Mono(X+ \mathbb{F}, G)}) & \text{by~\autoref{lem:w_g_geq_w_h_leq}}\\
+\end{flalign*}
+
+It suffices, in order to have an approximation of $\card{Mono(X- \mathbb{F}, G)} - \card{Mono(X- \mathbb{F}, H)} $ by analysing $\rho$, to establish a sufficient condition for 
+\[\card{Mono(X+ \mathbb{F}, H)} - \card{Mono(X+ \mathbb{F}, G)} \geq 0\]
+
+We have 
+\begin{flalign*}
+   &\card{Mono(X+ \mathbb{F}, H)} - \card{Mono(X+ \mathbb{F}, G)} 
+   \\
+   =&\card{Mono(X+ \mathbb{F}, H, r') \uplus Mono(X+ \mathbb{F}, H, \lnot r', m') \uplus  Mono(X+ \mathbb{F}, H, \lnot r', \lnot m') }  - 
+   \\ 
+   &\card{Mono(X+ \mathbb{F}, G, l') \uplus Mono(X+ \mathbb{F}, G, \lnot l', m) \uplus  Mono(X+ \mathbb{F}, G, \lnot l', \lnot m) } \\
+   =&(\card{Mono(X+ \mathbb{F}, H, r')} + \card{Mono(X+ \mathbb{F}, H, \lnot r', m')} + \card{Mono(X+ \mathbb{F}, H, \lnot r', \lnot m') }) - 
+   \\  
+   &(\card{Mono(X+ \mathbb{F}, G, l')} + \card{Mono(X+ \mathbb{F}, G, \lnot l', m)} + \card{  Mono(X+ \mathbb{F}, G, \lnot l', \lnot m) })
+\end{flalign*}
+
+Since $Mono(X+ \mathbb{F}, H, r') = Mono(X+ \mathbb{F}, G, l')$, we have 
+\begin{flalign*}
+   &\card{Mono(X+ \mathbb{F}, H)} - \card{Mono(X+ \mathbb{F}, G)} \\
+   =(&\card{Mono(X+ \mathbb{F}, H, \lnot r', m')} + \card{Mono(X+ \mathbb{F}, H, \lnot r', \lnot m') }) 
+   - \\  
+   &(\card{Mono(X+ \mathbb{F}, G, \lnot l', m)} + \card{  Mono(X+ \mathbb{F}, G, \lnot l', \lnot m) }) \\
+   =&\card{Mono(X+ \mathbb{F}, H, \lnot r', m')} + \card{Mono(X+ \mathbb{F}, H, \lnot r', \lnot m') } 
+   - \\  
+   &\card{Mono(X+ \mathbb{F}, G, \lnot l', m)} - \card{  Mono(X+ \mathbb{F}, G, \lnot l', \lnot m) } \\ 
+   =&(\card{Mono(X+ \mathbb{F}, H, \lnot r', m')} 
+    - \card{Mono(X+ \mathbb{F}, G, \lnot l', m)})
+    + \\ &(\card{Mono(X+ \mathbb{F}, H, \lnot r', \lnot m') } 
+    - \card{  Mono(X+ \mathbb{F}, G, \lnot l', \lnot m) })
+\end{flalign*}
+If $\card{Mono(X+ \mathbb{F}, H, \lnot r', m')} 
+- \card{Mono(X+ \mathbb{F}, G, \lnot l', m)} \geq 0$, which can be calculated precisely, then it suffices to establish a sufficient condition for  \[\card{Mono(X+ \mathbb{F}, H, \lnot r', \lnot m') } 
+- \card{  Mono(X+ \mathbb{F}, G, \lnot l', \lnot m) } \geq 0\]
+Whic is true by~\autoref{lem:non_decreasing}, if the property defined in~\autoref{def:non_decreasing}.~\autoref{def:lx} will be needed.

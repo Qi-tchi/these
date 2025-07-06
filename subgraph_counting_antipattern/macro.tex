@@ -1,0 +1,63 @@
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\card}[1]{|#1|}
+\newcommand{\homset}[2]{\operatorname{Hom}(#1,#2)}
+% \newcommand{\vertex}[2]{%
+%   \begin{tikzpicture}[baseline=-1ex]%
+%     \node [rectangle,rounded corners=2mm,inner sep=0.5mm,fill=#2] {$#1$};%
+%   \end{tikzpicture}%
+% }
+\newcommand{\graphbox}[8]{
+  \begin{scope}[xshift=#2,yshift=#3]
+    \draw [rounded corners=2mm] (0,0) rectangle (#4,-#5);
+    \node at (0,0mm) [anchor=north west,inner sep=1mm] {#1};
+    \begin{scope}[xshift=#4/2+#6,yshift=#7] 
+    #8
+    \end{scope}
+  \end{scope}
+}
+\hyphenation{ma-chine-check-a-ble}
+\hyphenation{dou-ble-push-out}
+
+% \newcommand{\nodeGraph}{
+% 	\,\begin{tikzpicture}[baseline=-.6ex]
+% 		\node (x) [circle,inner sep=0,outer sep=1mm,minimum size=0.7mm,fill=black] {};
+% 	\end{tikzpicture}\,
+% }
+
+
+% \newcommand{\edgeGraph}[1]{
+% 	\,\begin{tikzpicture}[baseline=-.6ex]
+% 		\node (x) [circle,inner sep=0,outer sep=1mm,minimum size=0.7mm,fill=black] {};
+% 		\node (y) [circle,inner sep=0,outer sep=1mm,minimum size=0.7mm,fill=black, right of=x, xshift=-3mm] {};
+% 		\draw [->] (x) -- node[midway,above] {$#1$} (y) ;
+% 	\end{tikzpicture}\,
+% }
+
+%%% end endrullis   
+\newcommand{\nearrowtail}{\mathrel{\rotatebox{-45}{$\leftarrowtail$}}}
+\newcommand{\swarrowtail}{\mathrel{\rotatebox{45}{$\leftarrowtail$}}}
+\newcommand{\searrowtail}{\mathrel{\rotatebox{135}{$\leftarrowtail$}}}
+\newcommand{\uparrowtail}{\mathrel{\rotatebox{-90}{$\leftarrowtail$}}}
+\newcommand{\downarrowtail}{\mathrel{\rotatebox{90}{$\leftarrowtail$}}}
+% qq arrows end
+
+\newcounter{axiom} 
+\setcounter{axiom}{0} 
+
+\newif\ifanonymous
+\anonymousfalse
+\newif\iflongversion
+\longversiontrue
+\newif\iftrackChange
+\trackChangetrue
+\newcommand{\trackedtext}[1]{%
+    \iftrackChange
+        \textcolor{red}{#1}% Apply red color if trackChange is true
+    \else
+        #1% No color change if trackChange is false
+    \fi
+}
+\newtheorem{notation}[theorem]{Notation}
+\renewcommand{\sectionautorefname}{\textsection}
+% \renewcommand{\subsectionautorefname}{\textsection}
+\renewcommand{\subsectionautorefname}{\textsection} % Change name

@@ -1,0 +1,287 @@
+The technique has been implemented in a tool, called Lyon, for automatically proving termination of graph rewriting systems. The tool is written in OCaml.
+
+\begin{table}
+    \center
+    \begin{tabular}{|c|c|}
+    \hline
+    \hline 
+    \;\;\autoref{def:grs_aa}\;\;  & \;\;0.160\;\; \\
+    \;\;\autoref{ex_contrib}\;\;  & \;\;0.487\;\; \\
+    \;\;\autoref{ex_contrib_variant}\;\;  & \;\;0.447\;\; \\
+    \;\;\autoref{ex_overbeek}\;\; &\;\; 0.032\;\; \\
+    % \;\;\cite[Example 6.2]{endrullis2023generalized}\;\; &\;\; 0.001\;\; \\
+     \hline
+    \end{tabular}%
+\end{table}
+
+The table above presents benchmarks conducted on a laptop equipped with an i5-1038NG7 CPU, which features 4 cores, a base clock speed of 2 GHz, and a boost speed of 3.8 GHz. The column lists runtimes in seconds (s).
+
+% \begin{example}
+%     The graph rewriting system in~\autoref{def:grs_aa}
+    
+%     \begin{tikzpicture}
+%         \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+%             \coordinate (o) at (0mm,-3mm); 
+%             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+%             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%             \draw[->] (l1) -- (l3) node[midway,above] {a};
+%             \draw[->] (l3) -- (l2) node[midway,above] {a};
+%         }    
+%         \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+%             \coordinate (o) at (5mm,-3mm); 
+%             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%             \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+%             % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+%             % \draw[->] (l1) -- (l3) node[midway,above] {a};
+%             % \draw[->] (l3) -- (l2) node[midway,above] {a};
+%         }    
+%         \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+%             \coordinate (o) at (-5mm,-3mm); 
+%             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+%             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+%             \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%             \draw[->] (l1) -- (l3) node[midway,above] {a};
+%             \draw[->] (l3) -- (l4) node[midway,above] {b};
+%             \draw[->] (l4) -- (l2) node[midway,above] {a};
+%         }      
+%         \node () at (37mm,-8mm) {$\leftarrowtail$};
+%         \node () at (67mm,-8mm) {$\rightarrowtail$};
+%         % \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+%         %     \node[draw,circle] (g1) at ($(gorigin) + (-1,0)$) {1};
+%         %     \node[draw,circle] (g2) at ($(gorigin) + (1,0)$) {2};
+%         %     \node[draw,circle] (g3) at ($(gorigin) + (0,0)$) {3 4};
+%         %     \node[draw,circle] (g4) at ($(gorigin) + (1,-1)$) {};
+%         %     \node[draw,circle] (g5) at ($(gorigin) + (0,-1)$) {};
+%         %     \draw[->] (g4) -- (g5) node[midway,above] {a};
+%         %     \draw[->] (g1) -- (g3) node[midway,above] {a};
+%         %     \draw[->] (g3) -- (g2) node[midway,above] {a};
+%         %     \draw[->] (g2) -- (g4) node[midway,right] {a};
+%         % }
+%         \graphbox{\( G \)}{0mm}{-20mm}{34mm}{25mm}{2mm}{-5mm}{
+%             \coordinate (o) at (0mm,-3mm); 
+%             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+%             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%             \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+%             \node[draw,circle] (l5) at ($(l4) + (-1,0)$) {7};
+%             \draw[->] (l1) -- (l3) node[midway,above] {a};
+%             \draw[->] (l3) -- (l2) node[midway,above] {a};
+%             \draw[->] (l2) -- (l4) node[midway,right] {a};
+%             \draw[->] (l4) -- (l5) node[midway,above] {a};
+%         }    
+%         \node () at (17mm,-18mm) {$\downarrowtail$};
+%         \graphbox{$C$}{40mm}{-20mm}{24mm}{25mm}{2mm}{-5mm}{
+%             \coordinate (o) at (5mm,-3mm); 
+%             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%             \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+%             \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+%             \node[draw,circle] (l5) at ($(l4) + (-1,0)$) {7};
+%             \draw[->] (l2) -- (l4) node[midway,right] {a};
+%             \draw[->] (l4) -- (l5) node[midway,above] {a};
+%         }    
+%         \graphbox{$H$}{70mm}{-20mm}{45mm}{25mm}{2mm}{-5mm}{
+%             \coordinate (o) at (-5mm,-3mm); 
+%             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+%             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+%             \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%             \node[draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
+%             \node[draw,circle] (l6) at ($(l5) + (-1,0)$) {7};
+%             \draw[->] (l1) -- (l3) node[midway,above] {a};
+%             \draw[->] (l3) -- (l4) node[midway,above] {b};
+%             \draw[->] (l4) -- (l2) node[midway,above] {a};
+%             \draw[->] (l2) -- (l5) node[midway,right] {a};
+%             \draw[->] (l5) -- (l6) node[midway,above] {a};
+%         }    
+%         \node () at (52mm,-18mm) {$\downarrowtail$};
+%         \node () at (92mm,-18mm) {$\downarrowtail$};
+%         \node () at (67mm,-33mm) {$\rightarrowtail$};
+%         \node () at (37mm,-33mm) {$\leftarrowtail$};
+%     \end{tikzpicture}
+
+%     \noindent In the double pushout diagram, there are three kinds of occurrences of $L$ in the pushout graphs \( G \) and $H$:
+%         \begin{itemize}
+%             \item[(i)] occurrences which are also in the context $C$ and hence shared by pushout graphs \( G \) and $H$:
+            
+%             \begin{tikzpicture}
+%                 \node[draw,circle] (h2') at ($  (1.5,0)$) {2};
+%                 \node[draw,circle] (h5') at ($  (1.5,-1)$) {6};
+%                 \node[draw,circle] (h6') at ($ (0.5,-1)$) {7};
+%                 \draw[->] (h5') -- (h6') node[midway,above] {a};
+%                 \draw[->] (h2') -- (h5') node[midway,right] {a};
+%             \end{tikzpicture} 
+
+%             \item[(ii)] occurrences which are in the left-hand-side graph $L$ or the right-hand-side graphs $R$ of rewriting rule:
+            
+%             \begin{tikzpicture}
+%                     \coordinate (o) at (0mm,-3mm); 
+%                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                     \draw[->] (l1) -- (l3) node[midway,above] {a};
+%                     \draw[->] (l3) -- (l2) node[midway,above] {a};
+%             \end{tikzpicture}
+
+%             The presence of this kind of occurrences in the pushout graphs is predictable:
+
+%             \item[(iii)] occurrences created by pushouts:
+            
+%             \begin{tikzpicture}
+%                 \node[draw,circle] (h4') at ($ (0.5,0)$) {3};
+%                 \node[draw,circle] (h2') at ($ (1.5,0)$) {2};
+%                 \node[draw,circle] (h5') at ($ (1.5,-1)$) {6};
+%                 \draw[->] (h4') -- (h2') node[midway,above] {a};
+%                 \draw[->] (h2') -- (h5') node[midway,right] {a};
+%             \end{tikzpicture}
+%             \begin{tikzpicture}
+%                 \node[draw,circle] (h4') at ($ (0.5,0)$) {5};
+%                 \node[draw,circle] (h2') at ($ (1.5,0)$) {2};
+%                 \node[draw,circle] (h5') at ($ (1.5,-1)$) {6};
+%                 \draw[->] (h4') -- (h2') node[midway,above] {a};
+%                 \draw[->] (h2') -- (h5') node[midway,right] {a};
+%             \end{tikzpicture}
+
+%             These occurrences are made up of subgraphs the context graph $C$, and subgraphs of \( G \) and $L$:
+
+%             \begin{tikzpicture}
+%                 \node[draw,circle] (h4') at ($ (1,0)$) {3};
+%                 \node[draw,circle] (h2') at ($ (3,0)$) {2};
+%                 \node[draw,circle] (h5') at ($ (3,-2)$) {6};
+%                 \draw[->] (h4') -- (h2') node[midway,above] {a};
+%                 \draw[->] (h2') -- (h5') node[midway,right] {a};
+%                 \draw[dashed,blue] ($(2.5,1.5)$) rectangle (5,-0.5);
+%                 \node () at (4.5,1.3) {K'};
+%                 \draw[red,dashed] ($(2.4,0.5)$) rectangle (4.5,-2.5);
+%                 \node () at (4,-2) {C'};
+%                 \draw[green,dashed] ($(0.5,1.2)$) rectangle (3.5,-0.6);
+%                 \node () at (1,1) {R'};
+%             \end{tikzpicture}
+%             \begin{tikzpicture}
+%                 \node[draw,circle] (h4') at ($ (1,0)$) {5};
+%                 \node[draw,circle] (h2') at ($ (3,0)$) {2};
+%                 \node[draw,circle] (h5') at ($ (3,-2)$) {6};
+%                 \draw[->] (h4') -- (h2') node[midway,above] {a};
+%                 \draw[->] (h2') -- (h5') node[midway,right] {a};
+%                 \draw[dashed,blue] ($(2.5,1.5)$) rectangle (5,-0.5);
+%                 \node () at (4.5,1.3) {K'};
+%                 \draw[red,dashed] ($(2.4,0.5)$) rectangle (4.5,-2.5);
+%                 \node () at (4,-2) {C'};
+%                 \draw[green,dashed] ($(0.5,1.2)$) rectangle (3.5,-0.6);
+%                 \node () at (1,1) {L'};
+%             \end{tikzpicture}
+%         \end{itemize}
+% \noindent
+    
+%     % These occurrences of $L$ do not cause problems when we want to prove the termination of the rewriting system, because $C$ and $K$ are shared by \( G \) and $H$, and $R'$ can be seen as a substitute of $L'$ which means the occurrence in $H$ can be seen as a substitute of the occurrence in \( G \).
+%  \end{example}   
+% Consider an arbitrary witnessing DPO diagram $(\delta_1, \delta_2)$ of rewriting step $G \Rightarrow H$ with rewriting rule $(l:K \rightarrowtail L, r: K \rightarrowtail R)$ and morphisms to $T$ as depicted in the following commutative diagram:
+
+% \begin{tikzpicture}
+%     \node (k) at (0,1) {K};
+%     \node (l) at (-2,1) {L};
+%     \node (r) at (2,1) {R};
+%     \node (c) at (0,-2) {C};
+%     \node (g) at (-2,-2) {G};
+%     \node (h) at (2,-2) {H};
+%     \node (t) at (0,-4) {T};
+%     \node () at (-1,-1) {$\delta_1$};
+%     \node () at (1,-1) {$\delta_2$};
+%     % \node (h') at (1.5,-1.5) {$H'$};
+%     % \draw[>->]  (h') -- (t) node [midway] {!};
+%     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%     % \draw[>->]  (c) -- (h') node [midway,above] {};
+%     \draw[<-<]  (l) -- (k) node [midway,above] {};
+%     \draw[>->]  (k) -- (r) node [midway,above] {};
+%     \draw[>->] (c) -- (g) node [midway, below] {};
+%     \draw[>->] (c) -- (h) node [midway,below] {};
+%     \draw[>->] (l) -- (g) node[midway, left] {};
+%     \draw[>->] (r) -- (h) node[midway, right] {};
+%     \draw[>->] (k) -- (c) node[midway, left] {};
+%     % \draw[>->] (rb) to (r);
+%     % \draw[>->] (rb) to (l);
+%     % \draw[<-<] (rb) to (k);
+%     % \draw [->]  (rb) to
+%     % (t) ;
+%     \draw [->]  (g) -- (t)  ;
+%     \draw [->]  (h) -- (t) node [midway] {}  ;
+%     % \draw [->]  (l) to [out=-140, in=180] (t) ;
+%     % \draw [->]  (r) to [out=-50, in=0] (t) ; 
+%     % \draw [->] (c) to (t);
+% \end{tikzpicture}
+
+
+%~\autoref{lem:decomp_w_u} show that the precise weight of the morphisms $h_{GT}$ relative to $\mathbb{E}$, utilizing the weights of morphisms $h_{CD}\star h_{DT}$ and $h_{BD} \star h_{DT}$, when the pushout square have all morphisms monic. 
+
+% \noindent This diagram is commutative by definition.
+% $h_{CD}\star h_{DT}$ is shared the by 
+%~\autoref{endrullis_lem_4d12} from~\cite{bruggink2015proving} shows $DT$ can be uniquely determined by a couple of morphism, one from $C$ to the the type graph and another from $B$ to the type graph.
+  
+%~\autoref{lem:w_u_l_not_geq_r_not} states that, under certain conditions, for arbitrary rewrite step $G \Rightarrow_\rho H$, we can lower bound the weight of \( G \) relative to $\mathbb{E}$ and upper bound the weight of $H$ relative to $\mathbb{E}$. $R_x$ are identical, then we can compare their weights.
+% \todo{definition with set theory}
+
+% \begin{remark}
+%     % The string rewriting system described in~\autoref{ex_grs_aa}, as detailed in~\cite{bruggink2014termination}, can be shown to terminate using the original type graph method, albeit with non-trivial resolution. However, with our enhanced version, resolving this system becomes straightforward.
+% \end{remark}
+   
+
+
+% \begin{example}
+%     The termination of the graph rewriting system in~\autoref{def:grs_aa} is trivial by~\autoref{thm:termination_grs}.
+% \end{example}
+
+
+ 
+% \begin{example}
+%     \label{ex_contrib}
+%     The rewriting system in Example 6 of~\cite{plump_ex6} with unrestricted matching has two rewriting rules: \textit{eval} and \textit{copy}. The rewriting ul \textit{eval}~\cite{endrullis2023generalized} has shown that the \textit{eval} rule can be eliminated by applying the original type graph method, leaving the \textit{copy} rule untreated. The graph rewriting rule \textit{copy} creates more $L$ occurrences on the left as shown in the following commutative diagram
+    
+%     \begin{tikzpicture}
+%         \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+%             \coordinate (delta) at (0,-18mm);
+%             \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {1};
+%             \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {2};
+%             \node[draw,circle] (l3) at ($(delta) + (0,0)$) {3};
+%             \draw[->] (l1) -- (l3) node[midway,left] {s};
+%             \draw[->] (l2) -- (l3) node[midway,right] {s};
+%             \draw[->] (l3) edge [loop below] node {0} (l3);
+%         }
+%         \graphbox{$K$}{40mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+%             \coordinate (delta) at (0,-18mm);
+%             \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
+%             \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {1};
+%             \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {2};
+%             \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
+%             \draw[->] (r1) -- (r3) node[midway,left] {s};
+%             \draw[->] (r3) edge [loop below] node {0} (r3);
+%         }
+%         \graphbox{$R$}{80mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+%             \coordinate (delta) at (0,-18mm);
+%             \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
+%             \node[draw,circle] (r2) at ($(delta) + (0.5,1.5)$) {2};
+%             \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
+%             \node[draw,circle] (r4) at ($(delta) + (1,0)$) {};
+%             \draw[->] (r1) -- (r3) node[midway,left] {s};
+%             \draw[->] (r2) -- (r4) node[midway,right] {s};
+%             \draw[->] (r4) edge [loop below] node {0} (r4);
+%             \draw[->] (r3) edge [loop below] node {0} (r3);
+%         }
+%         \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
+%             \coordinate (delta) at (0,-18mm);
+%             \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
+%             \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
+%             \node[draw,circle] (r2) at ($(delta) +  (0.5,1.5)$) {2};
+%             \node[draw,circle] (r3) at ($(delta) +  (0,0)$) {3};
+%             \draw[->] (r1) -- (r3) node[midway,left] {s};
+%             \draw[->] (r3) edge [loop below] node {0} (r3);
+%         }
+%         \node () at (37mm,-18mm) {$\leftarrowtail$};
+%         \node () at (78mm,-18mm) {$\rightarrowtail$};
+%         \node () at (57mm,2mm) {$\uparrowtail$};
+%         \node () at (38mm,2mm) {$\swarrowtail$};
+%         \node () at (79mm,2mm) {$\searrowtail$};
+%     \end{tikzpicture}
+
+%     Since it has strictly more occurrences of $L$ on the left, it terminates by~\autoref{thm:termination_grs}
+% \end{example} 

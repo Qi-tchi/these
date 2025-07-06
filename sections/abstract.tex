@@ -1,11 +1,13 @@
-Graph rewriting systems are formal models that describe how graphs can be transformed by applying a set of rules. The field of automated termination analysis of graph rewriting systems studies techniques for proving that a graph rewriting system terminates, meaning that, for any graph, the application of its transformation rules cannot last indefinitely. 
+Graph rewriting systems are formal models that describe how graphs can be transformed by applying a set of rules. The field of automated termination analysis of graph rewriting systems studies techniques for proving that a graph rewriting system terminates, meaning that, for any graph, the application of its transformation rules cannot last indefinitely. The contribution of this thesis is fourfold.
 
-The contribution of this thesis is threefold.
 Firstly, we extend an existing technique, called the type graph method, for graph rewriting systems based on the double-pushout (DPO) approach. The type graph method assigns weights to morphisms targeting a weighted type graph over a semiring, and the weight of a graph is defined as the sum of the weights of all morphisms from that graph to the type graph. The termination property is then proved by showing that the weight of the graph strictly decreases with each application of a transformation rule if the set of weights is well-founded. However, requiring the weights to be well-founded can have practical limitations because the complexity of searching for a suitable type graph is extremely high.
 Our extension reduces the complexity of searching for a suitable type graph by allowing the use of weights from non-well-founded semirings. This enables more efficient implementation of the method in practice in some cases.
 
-Secondly, we develop a new machine-checkable sufficient condition, called subgraph counting, for injective DPO graph rewriting systems on edge-labeled directed multigraphs. It is based on the idea that the transformation cannot last indefinitely if the number of a specific subgraph in the graph strictly decreases every time a transformation is performed.
-Thirdly, we implement an automated termination tool, called LyonParallel, for edge-labeled directed multigraph transformation, including both the existing
+Secondly, we develop a new machine-checkable sufficient condition, called subgraph counting method, for injective DPO graph rewriting systems on edge-labeled directed multigraphs. It is based on the idea that the transformation cannot last indefinitely if the number of a specific subgraph in the graph strictly decreases every time a transformation is performed.
+
+Thirdly, we extend our subgraph counting method. The extension is able to establish the termination property of a graph rewriting system by analyzing a decrease in the number of occurrences of specific subgraphs that are not embedded within forbidden contexts. 
+
+Finally, we implement an automated termination tool, called LyonParallel, for edge-labeled directed multigraph transformation, including both the existing
 type graph method and our extension, as well as our subgraph counting technique. 
 
 

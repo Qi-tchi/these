@@ -987,17 +987,25 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
 We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\rho$ is $X$-non-increasing, then for any rewriting step using $\rho$, there exists an injective mapping from the set of \( X \)-occurrences implicitly created by the step to the set of \( X \)-occurrences implicitly destroyed by the step. This will be proved in \autoref{lem:w_u_l_not_geq_r_not}.
 \begin{definition}[Non-increasing rule]
     \label{def:creates_more_x_on_the_left}
-    Let \(\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a ruler-graph. 
-    Rule \( \rho \) is \emph{\( X \)-non-increasing} if the following four conditions hold:
+    Let \(\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a graph. 
+    Let \( \Psi \) be a function associating $R' \in D(R,X)$ to a homomorphism in $\operatorname{Mono}(R',L)$.
+    We say that \textbf{the number of occurrences of $X$ is non-increasing from left to right in any $\rho$-rewriting step under the mapping \(\Psi\)}
+    (or that $\rho$ is $X$-\textbf{non-increasing} under $\Psi$. When $\Psi$ is clear from context or irrelevant to the discussion, we may simply say that $\rho$ is $X$-\textbf{non-increasing}.)
+    % (or simply $\rho$ is $X$-non-increasing under \(\Psi\), or $\rho$ is $X$-non-increasing when \(\Psi\) is clear from the context or irrelevant to the discussion)
+    if the following four conditions hold:
     \newline
     \vspace{1mm}
     \noindent
     \begin{minipage}{0.64\textwidth} 
     \begin{enumerate}
-        \item For all $R' \in D(R,X)$, there exists a morphism \(h_{R'L}: R' \rightarrowtail L \) such that both squares in the diagram shown on the right are pullbacks, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions, 
-        \item \label{def:non_increasing:non_clapse} For all $R' \in D(R,X)$, for all node or edge $r'$ in $R'$, if $ r' \notin \operatorname{Im}(r)$ then $h_{R'L}(r') \notin \operatorname{Im}(l)$,
-        \item \label{def:non_increasing_rule_img_edges_distinct} For all $R',R'' \in D(R,X)$, for all edges $x \in R'$ and $y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$,
-        \item If $X$ has isolated nodes, then for all $R',R'' \in D(R,X)$ and nodes $x \in R', y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$.
+        \item 
+        For all $R' \in D(R,X)$, in the diagram shown on the right, where $h_{R'R}$ is the inclusion function, both squares are pullbacks,
+        % For all $R' \in D(R,X)$, there exists a morphism \(h_{R'L}: R' \rightarrowtail L \) such that \trackedtext{both squares in the diagram shown on the right are pullbacks}, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions,
+        \item \label{def:non_increasing:non_clapse} For all $R' \in D(R,X)$, for all nodes and edges $x$ in $R'$, if $ x \notin \operatorname{Im}(r)$ then 
+        $\Psi(R')(x) \notin \operatorname{Im}(l)$,
+        % $h_{R'L}(r') \notin \operatorname{Im}(l)$,
+        \item \label{def:non_increasing_rule_img_edges_distinct} For all $R',R'' \in D(R,X)$, for all edges $x$ in $R'$ and $y$ in $R''$, if $x \neq y$, then $\Psi(R')(x) \neq \Psi(R'')(y)$
+        \item If $X$ has isolated nodes, then for all $R',R'' \in D(R,X)$ and nodes $x$ and $y$ in $R'$ and $R''$ respectively, if $x \neq y$, then $\Psi(R')(x) \neq \Psi(R'')(y)$.
     \end{enumerate} 
     \end{minipage}
     \hfill
@@ -1035,26 +1043,84 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
                     \draw[>->]  (rb') -- (r);
                     \draw[>->]  (k') -- (rb);
                     \draw[>->]  (k') -- (k);
-                    \draw[>->]  (rb) -- (l) node [midway,above] {$h_{R'L}$};
+                    \draw[>->]  (rb) -- (l) node [midway,above] {$\Psi(R')$};
                     \node () [at=($(k)!0.5!(rb)$)] {PB};
-                    \node () [at=($(k)!0.5!(rb')$)] {PB};
+                    \node () [at=($(k)!0.5!(rb')$)] {PB}; 
                 \end{tikzpicture}
             % }
         \end{center}
     \end{minipage}
-
-    %  \begin{enumerate}
-    %     % \item[(2)] \label{def:non_increasing:non_clapse} For all node or arrow $r'$ in $R'$, if $ r' \notin \operatorname{Im}(r)$ then $h_{R'L}(r') \notin \operatorname{Im}(l)$,
-    %     % \item there exists a morphism $h_{R_XL}$ such that
-    %     %     \( h_{R'R_X} \star h_{R_XL} = h_{R'L} \) for all $R' \in D(R,X)$;
-    %     % \item[(3)] \label{def:non_increasing:edge_injective} For all $R',R'' \in D(R,X)$, for all edges $x \in R'$ and $y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$,
-    %     %  \item $h$  is edge-injective 
-    %     % \item $\bigcup_{R' \in D(R,X)} h_{R'L}$ is an edge-injective morphism from $R_X$ to $L$;
-    %     % \item[(4)] \label{def:non_increasing:isolated_nodes} If $X$ has isolated nodes, then for all $R',R'' \in D(R,X)$ and nodes $x \in R', y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$.
-    %     % \item $h$ is node-injective if $X$ has isolated nodes;
-    %  \end{enumerate}
-    %  \todo{est il util d'avoir "or arrow?" c'est une partie de edge injective, non ?}
 \end{definition}
+% \begin{definition}[Non-increasing rule]
+%     \label{def:creates_more_x_on_the_left}
+%     Let \(\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a ruler-graph. 
+%     Rule \( \rho \) is \emph{\( X \)-non-increasing} if the following four conditions hold:
+%     \newline
+%     \vspace{1mm}
+%     \noindent
+%     \begin{minipage}{0.64\textwidth} 
+%     \begin{enumerate}
+%         \item For all $R' \in D(R,X)$, there exists a morphism \(h_{R'L}: R' \rightarrowtail L \) such that both squares in the diagram shown on the right are pullbacks, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions, 
+%         \item \label{def:non_increasing:non_clapse} For all $R' \in D(R,X)$, for all node or edge $r'$ in $R'$, if $ r' \notin \operatorname{Im}(r)$ then $h_{R'L}(r') \notin \operatorname{Im}(l)$,
+%         \item \label{def:non_increasing_rule_img_edges_distinct} For all $R',R'' \in D(R,X)$, for all edges $x \in R'$ and $y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$,
+%         \item If $X$ has isolated nodes, then for all $R',R'' \in D(R,X)$ and nodes $x \in R', y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$.
+%     \end{enumerate} 
+%     \end{minipage}
+%     \hfill
+%     \begin{minipage}{0.4\textwidth}
+%         % \hfill
+%         \begin{center}
+%             % \resizebox{0.9\textwidth}{!}{ 
+%                 % \begin{tikzpicture}[rotate=90]
+%                 %     \node (k) {K}; 
+%                 %     \node (k') [above=of k] {$K'$};
+%                 %     \node (l) [left=of k] {$L$};
+%                 %     \node (rb) [above=of l] {$R'$};
+%                 %     \node (r) [right=of k] {$R$};
+%                 %     \node (rb') [above=of r] {$R'$};
+%                 %     \draw[<-<]  (l) -- (k) node [midway,below] {l};
+%                 %     \draw[<-<]  (r) -- (k) node [midway,below] {r};
+%                 %     \draw[>->]  (k') -- (rb');
+%                 %     \draw[>->]  (rb') -- (r);
+%                 %     \draw[>->]  (k') -- (rb);
+%                 %     \draw[>->]  (k') -- (k);
+%                 %     \draw[>->]  (rb) -- (l) node [midway,above,sloped] {$h_{R'L}$};
+%                 %     \node () [at=($(k)!0.5!(rb)$)] {PB};
+%                 %     \node () [at=($(k)!0.5!(rb')$)] {PB};
+%                 % \end{tikzpicture}
+%                 \begin{tikzpicture} 
+%                     \node (k) {K}; 
+%                     \node (k') [left=of k] {$K'$};
+%                     \node (l) [above=of k] {$L$};
+%                     \node (rb) [left=of l] {$R'$};
+%                     \node (r) [below=of k] {$R$};
+%                     \node (rb') [left=of r] {$R'$};
+%                     \draw[<-<]  (l) -- (k) node [midway,right] {l};
+%                     \draw[<-<]  (r) -- (k) node [midway,right] {r};
+%                     \draw[>->]  (k') -- (rb');
+%                     \draw[>->]  (rb') -- (r);
+%                     \draw[>->]  (k') -- (rb);
+%                     \draw[>->]  (k') -- (k);
+%                     \draw[>->]  (rb) -- (l) node [midway,above] {$h_{R'L}$};
+%                     \node () [at=($(k)!0.5!(rb)$)] {PB};
+%                     \node () [at=($(k)!0.5!(rb')$)] {PB};
+%                 \end{tikzpicture}
+%             % }
+%         \end{center}
+%     \end{minipage}
+
+%     %  \begin{enumerate}
+%     %     % \item[(2)] \label{def:non_increasing:non_clapse} For all node or arrow $r'$ in $R'$, if $ r' \notin \operatorname{Im}(r)$ then $h_{R'L}(r') \notin \operatorname{Im}(l)$,
+%     %     % \item there exists a morphism $h_{R_XL}$ such that
+%     %     %     \( h_{R'R_X} \star h_{R_XL} = h_{R'L} \) for all $R' \in D(R,X)$;
+%     %     % \item[(3)] \label{def:non_increasing:edge_injective} For all $R',R'' \in D(R,X)$, for all edges $x \in R'$ and $y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$,
+%     %     %  \item $h$  is edge-injective 
+%     %     % \item $\bigcup_{R' \in D(R,X)} h_{R'L}$ is an edge-injective morphism from $R_X$ to $L$;
+%     %     % \item[(4)] \label{def:non_increasing:isolated_nodes} If $X$ has isolated nodes, then for all $R',R'' \in D(R,X)$ and nodes $x \in R', y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$.
+%     %     % \item $h$ is node-injective if $X$ has isolated nodes;
+%     %  \end{enumerate}
+%     %  \todo{est il util d'avoir "or arrow?" c'est une partie de edge injective, non ?}
+% \end{definition}
 The first condition ensures that whenever $R' \in D(R,X)$ forms an $X$-occurrence in the result graph $H$, this occurrence has a corresponding $X$-occurrence relative to the morphism $h_{R'L}$ (as defined in \autoref{def:corresponding_occurrence}) in the host graph $G$.
 The second condition guarantees that any $X$-occurrence implicitly created by the rewriting step has its corresponding $X$-occurrence not included in the context (Consequently, its corresponding $X$-occurrence is implicitly destroyed by the rewriting step). Counterexamples are provided in \autoref{ex:cond_2_necessaire} and \autoref{ex:cond_2_necessaire2}.
 The third and fourth conditions ensure that distinct $X$-occurrences created implicitly have distinct corresponding $X$-occurrences.

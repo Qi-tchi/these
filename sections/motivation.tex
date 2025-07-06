@@ -75,25 +75,29 @@ The problem arises when it comes to whether the rule mentioned above can be appl
   \end{tikzpicture}
 \end{center}
 Different approaches to this problem exist in the literature and lead to different algebraic graph rewriting systems.   
-The most studied algebraic graph transformation systems are double-pushout (DPO) graph rewriting systems~\cite{corradini1997algebraic}. It does not allow this kind of transformation because when the node 3 is removed, the edge from node 3 to node 6 becomes dangling. Some formalisms, such as single pushout (SPO) graph rewriting system~\cite{ehrig1997algebraic}, allow the application of the rule to transform the graph $G'$ and remove all dangling edges. Others such as PBPO and PBPO+ graph rewriting systems avoid implicit edge deletion by providing a mechanism for each rule to impose restrictions on the context $C$. 
+The most studied algebraic graph transformation systems are double-pushout (DPO) graph rewriting systems~\cite{corradini1997algebraic}. It does not allow this kind of transformation because when the node 3 is removed, the edge from node 3 to node 6 becomes dangling. Some formalisms, such as single pushout (SPO) graph rewriting system~\cite{ehrig1997algebraic}, allow the application of the rule to transform the graph $G'$ and remove implicitly all dangling edges. Others such as PBPO~\cite{corradini2019thepbpo} and PBPO+~\cite{overbeek2023graph} graph rewriting systems provides a mechanism for each rule to impose restrictions on the context $C$. 
 % (to do SqPO and Agree maybe)
 
-   We focused on DPO graph rewriting systems~\cite{corradini1997algebraic} in this thesis for three reasons. First, it is the most studied algebraic graph rewriting formalism. 
-   Second, its relative simplicity stems from relying solely on the concept of pushouts~\cite{pierce1991basic} which minimizes the categorical prerequisites required to understand it. This is important because the abstract nature of category theory is often seen as a barrier to entry for newcomers~\cite{overbeekthesis}.
+   We focused on DPO graph rewriting systems in this thesis for three reasons. First, it is the most studied algebraic graph rewriting formalism. 
+   Second, its relative simplicity stems from relying solely on the concept of pushouts~\cite{pierce1991basic} which minimizes the categorical prerequisites required to understand it. This is interesting because the abstract nature of category theory is often seen as a barrier to entry for newcomers~\cite{overbeekthesis}.
     Furthermore, despite its conceptual simplicity, DPO graph rewriting systems remain sufficiently expressive to model many distributed algorithms.
 
 
 
 \paragraph{Edge-labeled directed multigraphs}
- While termination techniques can be developed for DPO graph rewriting systems using different notions of graphs that satisfy certain properties, we focus on developing termination technique for DPO graph rewriting systems on finite edge-labeled directed multigraphs to avoid overly abstract reasoning.
+ While, using the language of category theory, termination techniques can be developed for DPO graph rewriting systems for different notions of graphs that satisfy certain properties, we focus on developing termination technique for DPO graph rewriting systems on finite edge-labeled directed multigraphs to avoid overly abstract reasoning.
  By this choice, the correctness of our technique can be checked easily by users who are not experts in category theory and graph rewriting, and thus can be adopted with the real confidence. For example, consider the new automated technique presented in~\autoref{chap:subgraph_counting}, its proofs use only very basic knowledge in graph theory and in category theory. We believe that automated tools should be easy to understand, and users should be able to understand the techniques without spending too much time. Otherwise, they can only trust the author of the tool or not use the tool at all.
- Finally, properties that are specific to edge-labeled directed multigraphs can be exploited, which may lead to more efficient termination techniques.
+ Finally, properties that are specific to edge-labeled directed multigraphs can be exploited, which may lead to more efficient termination techniques. 
+%  In this sense, we are in the oposite side of~\cite{overbeek2024termination_lmcs,overbeekthesis} which develop general method applicable to different DPO graph rewriting systems.
 
 \paragraph{Relative Termination}
 The uniform termination property of a DPO graph rewriting system ensures that no graph can be transformed indefinitely under its rules. This problem is undecidable in general~\cite{plump1998terminationundecidable}.
 We focus on relative termination property~\cite{klop1987term,geser1990relative} which generalizes the uniform termination.
  Given two rule sets \( \mathcal{A} \) and \( \mathcal{B} \), relative termination ensures that, for any finite graph $G$,
-rules in $\mathcal{A}$ can only be applied finitely many times in any sequence of rule applications from $\mathcal{A} \cup \mathcal{B}$. Intuitively, this property corresponds to the phenomenon that while some distributed systems do not halt for every input, some of their operations can only be applied finitely many times in any execution. Therefore, these operations do not need to be considered when reasoning about the termination of the system. The problem to be analyzed can thus be simplified by safely ignoring these operations.
+rules in $\mathcal{A}$ can only be applied finitely many times in any sequence of rule applications from $\mathcal{A} \cup \mathcal{B}$. Intuitively, this property corresponds to the phenomenon that while some distributed systems do not halt for every input, some of their operations can only be applied finitely many times in any execution. 
+Therefore, these operations do not need to be considered when reasoning about the termination of the system. The problem to be analyzed can thus be simplified by safely ignoring these operations.
+For example, consider a graph rewriting system consisting of two rules: one that deletes an arbitrary edge and another that introduces a fresh node. This system does not uniformly terminate, as the node-adding rule can be applied infinitely often, leading to unbounded growth. However, the edge-deletion rule can be applied only finitely many times in any rewriting sequence. This is because the initial graph contains only finitely many edges, and neither rule increases the number of edges in the graph. Thus, the edge-deletion rule terminates relative to the node-addition rule.
+Although the system as a whole does not terminate (since the node-adding rule never terminates), relative termination allows us to say that the edge-deletion rule does not contribute to non-termination (it can only be triggered a finite number of times).
 
 \paragraph{Existing techniques}
 Few techniques for proving (relative) termination of DPO graph rewriting systems exist. Below, we list some of the existing techniques.
@@ -104,9 +108,9 @@ Few techniques for proving (relative) termination of DPO graph rewriting systems
     This method has since been generalized to edge-labeled multigraphs by Bruggink et al.~\cite{bruggink2014termination} for DPO rewriting with monic matches and injective rules, later extended to DPO rewriting in general by Bruggink et al.~\cite{bruggink2015proving}, and further adapted to more categories and different DPO variants by Endrullis et al.~\cite{endrullis2024generalized_arxiv_v2}. 
     \item Plump~\cite{plump1995ontermination} introduced a necessary and sufficient termination condition for left-injective DPO hypergraph rewriting via forward closure, though verifying this condition is undecidable. 
     \item Plump~\cite{plump2018modular} later proposed a modular critical pair-based strategy for left-injective DPO hypergraph rewriting with monic matches. It allows to deduce termination of the union of two systems from the termination of their sub-systems.
-    \item Levendovszky et al.~\cite{levendovszky2007termination} propose a termination criterion for DPO rewriting (monic matches, injective rules, negative application condition), though automated verification is hard as explained in~\cite[\textsection 6]{levendovszky2007termination}. 
-    \item Bottoni et al.~\cite{bottoni2005termination} propose a termination criterion for DPO/SPO rewriting on high-level replacement units. Their method imposes a strongly constrained measuring function and the only concretes measuring function proposed are node-counting and edge-counting.
-    \item Bottoni et al.~\cite{bottoni2010atermination} present a criterion for termination of DPO rewriting with monic matches, injective rules and negative application conditions, based on the construction of a labeled transition system. 
+    % \item Levendovszky et al.~\cite{levendovszky2007termination} propose a termination criterion for DPO rewriting (monic matches, injective rules, negative application condition), though automated verification is hard as explained in~\cite[\textsection 6]{levendovszky2007termination}. 
+    % \item Bottoni et al.~\cite{bottoni2005termination} propose a termination criterion for DPO/SPO rewriting on high-level replacement units. Their method imposes a strongly constrained measuring function and the only concretes measuring function proposed are node-counting and edge-counting.
+    % \item Bottoni et al.~\cite{bottoni2010atermination} present a criterion for termination of DPO rewriting with monic matches, injective rules and negative application conditions, based on the construction of a labeled transition system. 
 \end{itemize}
 
 \paragraph{Contribution 1: Termination of Graph Rewriting Using Weighted Type Graphs over Non-well-founded Semirings}
@@ -126,7 +130,48 @@ The method defines a graph's weight as the sum of weights of occurrences of a se
     \item Qiu, Q. (2025). Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting. In: Endrullis, J., Tichy, M. (eds) Graph Transformation. ICGT 2025. Lecture Notes in Computer Science, vol 15720. Springer, Cham. \url{https://doi.org/10.1007/978-3-031-94706-3_1}
 \end{itemize}
 
-\paragraph{Contribution 3: LyonParallel}
-We developed a termination tool for DPO edge-labeled multigraph rewriting that integrates the existing type graph method, our extension, and our subgraph counting technique.
+\paragraph{Contribution 3: Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting with Antipattern}
+The termination property of a graph rewriting system can sometimes be established by analyzing a decrease in the number of occurrences of specific subgraphs that are not embedded within forbidden contexts. For example, consider the following DPO graph rewriting rule:
+ 
+\begin{tikzpicture}
+      \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
+          \coordinate (o) at (0mm,-3mm); 
+          \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+          \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+          \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+          \draw[->] (l1) -- (l3) node[midway,above] {a};
+          \draw[->] (l3) -- (l2) node[midway,above] {a};
+      }     
+      \graphbox{$K$}{40mm}{0mm}{24mm}{20mm}{2mm}{-5mm}{
+          \coordinate (o) at (5mm,-3mm); 
+          \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+          \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+          % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+          % \draw[->] (l1) -- (l3) node[midway,above] {a};
+          % \draw[->] (l3) -- (l2) node[midway,above] {a};
+      }    
+      \graphbox{$R$}{70mm}{0mm}{45mm}{20mm}{2mm}{-5mm}{
+        \coordinate (o) at (0mm,-3mm); 
+        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+        \draw[->] (l1) -- (l3) node[midway,above] {a};
+        \draw[->] (l3) -- (l2) node[midway,above] {a};
+        \draw[->] (l3) edge [loop below] node {$c$} (l3);
+      }    
+
+      \node () at (37mm,-10mm) {$\leftarrowtail$};
+      \node () at (67mm,-10mm) {$\rightarrowtail$};
+
+      % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+  \end{tikzpicture}
+
+Each application of this rule reduces the number of occurrences of the left-hand side graph $L$ that are not included in any occurrence of the right-hand side graph $ R $. While this variant suggests termination, existing subgraph counting methods (e.g., those in~\autoref{chap:subgraph_counting} and~\cite{overbeek2024termination_lmcs}) cannot exploit such relationships to infer termination. In this chapter, we extend the subgraph counting framework introduced in~\autoref{chap:subgraph_counting} to address systems of this kind.
+
+The extension successfully proves termination for systems like the ones presented 
+in~\autoref{ex:grs_aca} and~\autoref{rem:d3_limitation}, which prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and the subgraph counting method presented in~\autoref{chap:subgraph_counting} fail to handle. 
+
+\paragraph{Contribution 4: LyonParallel}
+We developed a termination tool for DPO edge-labeled multigraph rewriting that integrates the existing type graph method, our extension, and our subgraph counting technique and its extension.
 
 In the remainder of this chapter, we recall some definitions related to the double-pushout approach to edge-labeled multigraph rewriting and relative termination. For more detailed information, we refer the reader to~\cite{konig2018atutorial,corradini1997algebraic} for the double-pushout approach to edge-labeled multigraph rewriting,~\cite{pierce1991basic,barr1990category} for category theory concepts, and~\cite{geser1990relative} for relative termination. 

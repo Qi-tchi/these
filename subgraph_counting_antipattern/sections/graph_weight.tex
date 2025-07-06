@@ -1,0 +1,41 @@
+% Like using rulers to measure physical objects, we use ruler-graphs (special reference structures) to measure graphs.
+% Each ruler-graph in a set $\mathbb{X}$ provides a measure for a graph
+% G, and the total weight of G is determined by a weighted linear
+% combination of these measures.
+% \todo{explain the difference the concept of ruler-graph presented in this paper and the one in the paper of \cite{qiu2025termination_icgt}.}
+
+We use a definition of ruler-graph more general than the one in~\autoref{chap:subgraph_counting}.
+
+\begin{definition}[Ruler-graph]
+    A \textbf{ruler-graph} is either $(X)$ or \( (X, f) \) where $X$ is a graph, called \textbf{underlying graph}, and $f$ is a graph monomorphism with $\operatorname{dom}(f) = X$, called the \textbf{forbidden context}.
+\end{definition}
+For $\mathcal{X} = (X, f:X \rightarrowtail F)$, we will also called $F$ the forbidden context.
+
+% \begin{notation}
+%     $\operatorname{MonoNF}((X,F_X), G) = $
+% \end{notation}
+\begin{definition}[Measurement]
+    % \textcolor{red}{
+    Let \( \mathcal{X}\) be a ruler-graph and \( G \) a graph. The \textbf{measurement} of \( G \) with respect to \( \mathcal{X}\), denoted \( m_\mathcal{X}(G) \), is defined as 
+    \[
+        m_\mathcal{X}(G) =
+        \begin{cases}
+            \card{\{h \in \operatorname{Mono}(X,G) \mid \nexists g.\,f \star g = h \}}, & \text{if } \mathcal{X} = (X, f), \\
+            \card{\operatorname{Mono}(X,G)}, & \text{if } \mathcal{X} = (X).
+        \end{cases}
+    \]
+\end{definition}
+The novelty over~\autoref{chap:subgraph_counting} is that, for a given ruler-graph, the occurrences of the underlying graph that overlap with its forbidden context are excluded. The definitions of weight function and graph weights do not change.
+% \begin{definition}[Weight function]
+%     \label{def:weight_function}
+%     A \textbf{weight function} for a set of ruler-graphs \( \mathbb{X} \) is a map \( s_{\mathbb{X}} \colon \mathbb{X} \to \mathbb{N} \).
+%     %  assigning a weight in $\mathbb{N}$ to each ruler-graph.
+% \end{definition}
+% \begin{definition}[Graph weight]
+%     \label{def:subgraph_counting_antipattern:graph_weight}  
+%     Given a set of ruler-graphs \( \mathbb{X} \), 
+%     a weight function \( s_{\mathbb{X}} \), and a graph \( G \), the \textbf{weight of graph} \( G \) relative to \( s_{\mathbb{X}} \), written \( w_{s_{\mathbb{X}}}(G) \), is: 
+%     \[
+%         w_{s_{\mathbb{X}}}(G) = \sum_{\mathcal{X} \in \mathbb{X}} s_{\mathbb{X}}(\mathcal{X}) \cdot m_\mathcal{X}(G)  
+%     \]   
+% \end{definition}
