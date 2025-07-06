@@ -1,158 +1,345 @@
+% \begin{table}[hbtp]
+%    \centering
+% \small % Reduce font size
+% % \setlength{\tabcolsep}{4pt} % Reduce horizontal padding
+%    \begin{NiceTabular}{cccccccc}[vlines] % <-- 9 columns now (was 7)
+%     \Hline
+%     \diagbox{\enskip \textbf{Examples}}{\textbf{Techniques}} &
+%     \RowStyle{\rotate}
+%      \makecell{Forward closure~\cite{plump1995ontermination}} % NEW column #1
+%     & \RowStyle{\rotate}
+%      \makecell{Modular criterion~\cite{plump2018modular}} % NEW column #2
+%     & \RowStyle{\rotate}
+%      \makecell{Type graph~\cite{bruggink2014termination}}  
+%     & \RowStyle{\rotate}
+%      \makecell{Type graph~\cite{bruggink2015proving}} 
+%     & \RowStyle{\rotate}
+%      \makecell{Type graph~\cite{endrullis2024generalized_arxiv_v2}} 
+%     & \RowStyle{\rotate}
+%      \makecell{Subgraph counting~\cite{overbeek2024termination_lmcs}} 
+% %     & \RowStyle{\rotate}
+% %      \makecell{Subgraph counting~\autoref{chap:subgraph_counting}}
+%      & \RowStyle{\rotate}
+%      \makecell{Our extension} \\
+%     \Hline
+%     \Hline
+%     % not ok examples
+%    ~\cite{plump1995ontermination}~\hyperref[ex:plump95_4d1]{Example 4.1} & \ding{51} & -- & -- & -- & -- & 
+%               \ding{51}
+              
+%               & \ding{55}\\  
+%    \Hline
+%   ~\cite{plump2018modular}~\hyperref[ex:plump_ex4]{Example 4} &  -- &  \ding{51} &  -- & -- & -- & 
+%                --
+%                & \ding{55}\\ 
+%    \Hline
+
+%   ~\cite{bruggink2014termination} Routing Protocol
+%        & -- & -- & \ding{51} & -- & -- & 
+%            --
+%            &  \ding{55}\\ \Hline
+
+%   ~\cite{bruggink2014termination}\hyperref[ex:plump_ex4]{Example 5}
+%    & -- & -- & \ding{51} & -- & -- & -- &  \ding{55}\\ 
+% \Hline
+
+%   ~\cite{bruggink2015proving}~\hyperref[ex:bruggink2015_ex5]{Example 5}
+%    & -- & -- & -- & \ding{51} & -- &  
+%    -- &  \ding{55}\\
+%    \Hline
+
+%   ~\cite{bruggink2015proving}~\hyperref[ex:bruggink2015_ex6_endrullis2024_d2]{Example 6} 
+%    & -- & -- & -- & \ding{51} & -- &  
+%    --&  \ding{55}\\ 
+%    \Hline
+
+%   ~\cite{endrullis2024generalized_arxiv_v2}~\hyperref[ex:bruggink2015_ex6_endrullis2024_d2]{Example D.2} 
+%    & -- & -- & -- & -- & \ding{51} & -- & \ding{55}\\ 
+%    \Hline
+
+%       % not supported examples  
+%      ~\cite{plump2018modular}~\hyperref[ex:plump2018_ex6_endrullis_d4]{Example 6} &  -- & \ding{51} & -- & -- & -- & 
+%       --
+%           & -- \\
+%       \Hline
+
+%      ~\cite{endrullis2024generalized_arxiv_v2} Example 6.4  
+%       & -- & -- & -- & -- & \ding{51} & -- & -- \\ \Hline
+
+%  ~\cite{endrullis2024generalized_arxiv_v2} Example 6.5  
+%       & -- & -- & -- & -- &  \ding{51} & -- & -- \\ \Hline
+
+%      ~\cite{endrullis2024generalized_arxiv_v2}~\hyperref[ex:plump2018_ex6_endrullis_d4]{Example D.4} 
+%       & -- & -- & -- & -- & \ding{51} & -- & --\\ \Hline
+
+%    % ----- from overbeek2024termination_lmcs -----
+%  ~\cite{overbeek2024termination_lmcs} Example 5.2
+%       & -- & -- & -- & -- & -- & \ding{51} & -- \\ \Hline
+
+%      ~\cite{overbeek2024termination_lmcs} Example 5.7 
+%       & -- & -- & -- & -- & -- & \ding{51} & -- \\ \Hline
+      
+%  ~\cite{overbeek2024termination_lmcs} Example 5.9 
+%       & -- & -- & -- & -- & -- & \ding{51} & --\\ \Hline
+ 
+%       % ok examples
+
+%    ~\cite{plump1995ontermination}~\hyperref[ex:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8]{Example 3.8}
+%                   & \ding{51} & -- & -- & -- & -- &
+%                --
+%                   & \ding{51}\\ 
+%      \hline
+     
+%     ~\cite{plump2018modular}~\hyperref[ex:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8]{Example 3} 
+%                & -- & \ding{51} &  -- & -- & -- & 
+%                --
+%                & \ding{51}\\ 
+
+%     \Hline
+%    ~\cite{plump2018modular} Example 5 &  -- &  \ding{51} &   -- & -- & -- &  
+%                  --
+%                & \ding{51}\\ 
+%     \Hline
+
+%   ~\cite{bruggink2014termination} Example 1 
+%        & -- & -- & \ding{51} & -- & -- & 
+%                      \ding{55}
+%                    &  \ding{51}\\ 
+%    \Hline
+
+%   ~\cite{bruggink2014termination}~\hyperref[ex:termination:grsaa]{Example 4 and 6}  
+%        & -- & -- & \ding{51} & -- & -- & 
+%                  --
+%                & \ding{51} \\ \Hline
+
+%   ~\cite{bruggink2015proving}~\hyperref[ex:termination:grsaa]{Example 2}  
+%        & -- & -- & -- & \ding{51} & -- & 
+%        -- &  \ding{51}\\ \Hline
+       
+%   ~\cite{bruggink2015proving} Example 4 
+%        & -- & -- & -- & \ding{51} & -- & 
+%        --& \ding{51} \\ \Hline
+
+
+%     % ----- from endrullis2024generalized_arxiv_v2 -----
+%    ~\cite{endrullis2024generalized_arxiv_v2}~\hyperref[ex:endrullis2024_6d2]{Example 6.2}  
+%        & -- & -- & -- & -- & \ding{51} & -- & \ding{51}\\ \Hline
+
+%   ~\cite{endrullis2024generalized_arxiv_v2}~\hyperref[ex_endrullis_6d3_endrullis_5d8]{Example 6.3}
+%        & -- & -- & -- & -- & \ding{51} &% \ding{55} 
+%        \ding{55} & \ding{51}\\ \Hline
+
+%   ~\cite{endrullis2024generalized_arxiv_v2}\hyperref[ex:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8]{Example D.1}
+%        & -- & -- & -- & -- & \ding{51} & -- & \ding{51}\\ \Hline
+
+%   ~\cite{endrullis2024generalized_arxiv_v2}\hyperref[rem:d3_limitation]{Example D.3}
+%        & -- & -- & -- & -- & \ding{51} & \ding{55} & \ding{51}\\ \Hline
+
+%   ~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d3]{Example 5.3}
+%        & -- & -- & -- & -- & -- & \ding{51} & \ding{51}\\ \Hline
+
+%    %~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d3]{Example 5.3 monic matches}
+%    %     & -- & -- & -- & -- & -- & \ding{51} & \ding{51}\\ \Hline
+%  ~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d5]{Example 5.5} 
+%        & -- & -- & -- & -- & -- & \ding{51} & \ding{51}\\ \Hline
+
+%   ~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d6]{Example 5.6}
+%        & -- & -- & -- & -- & -- & \ding{51} & \ding{51} \\ \Hline
+
+%    %~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d6]{Example 5.6 bis}
+%    %     & -- & -- & -- & -- & -- & \ding{51} & -- \\ \Hline
+
+
+%   ~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8]{Example 5.8}
+%        & -- & -- & -- & -- & -- & \ding{51} & \ding{51}\\ \Hline
+
+% \autoref{ex_contrib_variant}
+%        & \ding{51} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} \\ \Hline
+%   \end{NiceTabular}
+%   \caption{Applicability of termination techniques to DPO rewriting examples.
+%    The symbol \ding{51} indicates termination can be proved by the technique,
+%    \ding{55} indicates it cannot be proved, and 
+%    $-$ denotes irrelevance or out-of-scope cases.
+%          }
+%   \label{tab:antipattern:comparison}
+%   \end{table}
 \begin{table}[hbtp]
    \centering
 \small % Reduce font size
 % \setlength{\tabcolsep}{4pt} % Reduce horizontal padding
-   \begin{NiceTabular}{cccccccc}[vlines] % <-- 9 columns now (was 7)
+   \begin{NiceTabular}{ccccccccc}[vlines] %
     \Hline
     \diagbox{\enskip \textbf{Examples}}{\textbf{Techniques}} &
     \RowStyle{\rotate}
-     \makecell{Forward\\ closure \\~\cite{Plump1995}} % NEW column #1
+     \makecell{Forward closure~\cite{plump1995ontermination}} % NEW column #1
     & \RowStyle{\rotate}
-     \makecell{Modular \\ criterion \\~\cite{plump2018modular}} % NEW column #2
+     \makecell{Modular criterion~\cite{plump2018modular}} % NEW column #2
     & \RowStyle{\rotate}
-     \makecell{Type graph \\~\cite{bruggink2014termination}}  
+     \makecell{Type graph~\cite{bruggink2014termination}}  
     & \RowStyle{\rotate}
-     \makecell{Type graph \\~\cite{bruggink2015proving}} 
+     \makecell{Type graph~\cite{bruggink2015proving}} 
     & \RowStyle{\rotate}
-     \makecell{Type graph \\~\cite{endrullis2024generalized_arxiv_v2}} 
+     \makecell{Type graph~\cite{endrullis2024generalized_arxiv_v2}} 
     & \RowStyle{\rotate}
-     \makecell{Subgraph \\counting \\~\cite{overbeek2024termination_lmcs}} 
+     \makecell{Subgraph counting~\cite{overbeek2024termination_lmcs}} 
     & \RowStyle{\rotate}
-     \makecell{Our method} \\
+     \makecell{Subgraph counting(\autoref{chap:subgraph_counting})}
+     & \RowStyle{\rotate}
+     \makecell{Our extension} \\
     \Hline
     \Hline
     % not ok examples
    ~\cite{plump1995ontermination}~\hyperref[ex:plump95_4d1]{Example 4.1} & \ding{51} & -- & -- & -- & -- & 
               \ding{51}
               
-              & \ding{55}\\ 
+              & \ding{55}& \ding{55}\\  
    \Hline
   ~\cite{plump2018modular}~\hyperref[ex:plump_ex4]{Example 4} &  -- &  \ding{51} &  -- & -- & -- & 
                --
-               & \ding{55}\\ 
+               & \ding{55}& \ding{55}\\ 
    \Hline
 
   ~\cite{bruggink2014termination} Routing Protocol
        & -- & -- & \ding{51} & -- & -- & 
            --
-           &  \ding{55}\\ \Hline
+          & \ding{55} &  \ding{55}\\ \Hline
 
   ~\cite{bruggink2014termination}\hyperref[ex:plump_ex4]{Example 5}
-   & -- & -- & \ding{51} & -- & -- & -- &  \ding{55}\\ 
+   & -- & -- & \ding{51} & -- & -- & -- 
+   & \ding{55} &  \ding{55}\\ 
 \Hline
 
   ~\cite{bruggink2015proving}~\hyperref[ex:bruggink2015_ex5]{Example 5}
    & -- & -- & -- & \ding{51} & -- &  
-   -- &  \ding{55}\\
+   --
+   & \ding{55} &  \ding{55}\\
    \Hline
 
   ~\cite{bruggink2015proving}~\hyperref[ex:bruggink2015_ex6_endrullis2024_d2]{Example 6} 
    & -- & -- & -- & \ding{51} & -- &  
-   --&  \ding{55}\\ 
+   --
+   & \ding{55} &  \ding{55}\\ 
    \Hline
 
   ~\cite{endrullis2024generalized_arxiv_v2}~\hyperref[ex:bruggink2015_ex6_endrullis2024_d2]{Example D.2} 
-   & -- & -- & -- & -- & \ding{51} & -- & \ding{55}\\ 
+   & -- & -- & -- & -- & \ding{51} & -- 
+   & \ding{55} & \ding{55}\\ 
    \Hline
 
       % not supported examples  
      ~\cite{plump2018modular}~\hyperref[ex:plump2018_ex6_endrullis_d4]{Example 6} &  -- & \ding{51} & -- & -- & -- & 
       --
-          & -- \\
+          & -- & -- \\
       \Hline
 
      ~\cite{endrullis2024generalized_arxiv_v2} Example 6.4  
-      & -- & -- & -- & -- & \ding{51} & -- & -- \\ \Hline
+      & -- & -- & -- & -- & \ding{51} & -- 
+       & -- & -- \\ \Hline
 
  ~\cite{endrullis2024generalized_arxiv_v2} Example 6.5  
-      & -- & -- & -- & -- &  \ding{51} & -- & -- \\ \Hline
+      & -- & -- & -- & -- &  \ding{51} & --
+       & -- & -- \\ \Hline
 
      ~\cite{endrullis2024generalized_arxiv_v2}~\hyperref[ex:plump2018_ex6_endrullis_d4]{Example D.4} 
-      & -- & -- & -- & -- & \ding{51} & -- & --\\ \Hline
+      & -- & -- & -- & -- & \ding{51} & -- 
+       & -- & --\\ \Hline
 
    % ----- from overbeek2024termination_lmcs -----
  ~\cite{overbeek2024termination_lmcs} Example 5.2
-      & -- & -- & -- & -- & -- & \ding{51} & -- \\ \Hline
+      & -- & -- & -- & -- & -- & \ding{51} 
+       & -- & -- \\ \Hline
 
      ~\cite{overbeek2024termination_lmcs} Example 5.7 
-      & -- & -- & -- & -- & -- & \ding{51} & -- \\ \Hline
+      & -- & -- & -- & -- & -- & \ding{51} 
+       & -- & -- \\ \Hline
       
  ~\cite{overbeek2024termination_lmcs} Example 5.9 
-      & -- & -- & -- & -- & -- & \ding{51} & --\\ \Hline
+      & -- & -- & -- & -- & -- & \ding{51} 
+       & -- & --\\ \Hline
  
       % ok examples
 
    ~\cite{plump1995ontermination}~\hyperref[ex:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8]{Example 3.8}
                   & \ding{51} & -- & -- & -- & -- &
                --
-                  & \ding{51}\\ 
+                 & \ding{51}  & \ding{51}\\ 
      \hline
      
     ~\cite{plump2018modular}~\hyperref[ex:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8]{Example 3} 
                & -- & \ding{51} &  -- & -- & -- & 
                --
-               & \ding{51}\\ 
+                & \ding{51} & \ding{51}\\ 
 
     \Hline
-   ~\cite{plump2018modular} Example 5 &  -- &  \ding{51} &   -- & -- & -- &  
+   ~\cite[Example 5]{plump2018modular}  &  -- &  \ding{51} &   -- & -- & -- &  
                  --
-               & \ding{51}\\ 
+               & \ding{51} & \ding{51}\\ 
     \Hline
 
-  ~\cite{bruggink2014termination} Example 1 
+  ~\cite[Example 1]{bruggink2014termination} 
        & -- & -- & \ding{51} & -- & -- & 
                      \ding{55}
-                   &  \ding{51}\\ 
+                  & \ding{55}  &  \ding{51}\\ 
    \Hline
 
   ~\cite{bruggink2014termination}~\hyperref[ex:termination:grsaa]{Example 4 and 6}  
        & -- & -- & \ding{51} & -- & -- & 
                  --
-               & \ding{51} \\ \Hline
+               & \ding{51} & \ding{51} \\ \Hline
 
   ~\cite{bruggink2015proving}~\hyperref[ex:termination:grsaa]{Example 2}  
        & -- & -- & -- & \ding{51} & -- & 
-       -- &  \ding{51}\\ \Hline
+       -- 
+        & \ding{51} &  \ding{51}\\ \Hline
        
   ~\cite{bruggink2015proving} Example 4 
        & -- & -- & -- & \ding{51} & -- & 
-       --& \ding{51} \\ \Hline
+       --
+        & \ding{51} & \ding{51} \\ \Hline
 
 
     % ----- from endrullis2024generalized_arxiv_v2 -----
    ~\cite{endrullis2024generalized_arxiv_v2}~\hyperref[ex:endrullis2024_6d2]{Example 6.2}  
-       & -- & -- & -- & -- & \ding{51} & -- & \ding{51}\\ \Hline
+       & -- & -- & -- & -- & \ding{51} & -- & \ding{51}& \ding{51}\\ \Hline
 
   ~\cite{endrullis2024generalized_arxiv_v2}~\hyperref[ex_endrullis_6d3_endrullis_5d8]{Example 6.3}
        & -- & -- & -- & -- & \ding{51} &% \ding{55} 
-       \ding{55} & \ding{51}\\ \Hline
+       \ding{55} 
+        & \ding{51} & \ding{51}\\ \Hline
 
   ~\cite{endrullis2024generalized_arxiv_v2}\hyperref[ex:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8]{Example D.1}
-       & -- & -- & -- & -- & \ding{51} & -- & \ding{51}\\ \Hline
+       & -- & -- & -- & -- & \ding{51} & --
+        & \ding{51} & \ding{51}\\ \Hline
 
   ~\cite{endrullis2024generalized_arxiv_v2}\hyperref[rem:d3_limitation]{Example D.3}
-       & -- & -- & -- & -- & \ding{51} & \ding{55} & \ding{51}\\ \Hline
+       & -- & -- & -- & -- & \ding{51} & \ding{55} 
+        & \ding{55} & \ding{51}\\ \Hline
 
   ~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d3]{Example 5.3}
-       & -- & -- & -- & -- & -- & \ding{51} & \ding{51}\\ \Hline
+       & -- & -- & -- & -- & -- & \ding{51} 
+        & \ding{51} & \ding{51}\\ \Hline
 
    %~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d3]{Example 5.3 monic matches}
    %     & -- & -- & -- & -- & -- & \ding{51} & \ding{51}\\ \Hline
  ~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d5]{Example 5.5} 
-       & -- & -- & -- & -- & -- & \ding{51} & \ding{51}\\ \Hline
+       & -- & -- & -- & -- & -- & \ding{51} 
+        & \ding{51} & \ding{51}\\ \Hline
 
   ~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d6]{Example 5.6}
-       & -- & -- & -- & -- & -- & \ding{51} & \ding{51} \\ \Hline
+       & -- & -- & -- & -- & -- & \ding{51} 
+        & \ding{51} & \ding{51} \\ \Hline
 
    %~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d6]{Example 5.6 bis}
    %     & -- & -- & -- & -- & -- & \ding{51} & -- \\ \Hline
 
 
   ~\cite{overbeek2024termination_lmcs}~\hyperref[ex:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8]{Example 5.8}
-       & -- & -- & -- & -- & -- & \ding{51} & \ding{51}\\ \Hline
+       & -- & -- & -- & -- & -- & \ding{51} 
+        & \ding{51} & \ding{51}\\ \Hline
 
-    Current paper~\autoref{ex_contrib_variant}
-       & \ding{51} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{51} \\ \Hline
+\autoref{ex_contrib_variant}
+       & \ding{51} & \ding{55} & \ding{55} & \ding{55} & \ding{55} & \ding{55} 
+        & \ding{51} & \ding{51} \\ \Hline
   \end{NiceTabular}
   \caption{Applicability of termination techniques to DPO rewriting examples.
    The symbol \ding{51} indicates termination can be proved by the technique,
@@ -161,7 +348,6 @@
          }
   \label{tab:antipattern:comparison}
   \end{table}
- 
 % The subgraph-counting method in~\cite{overbeek2024termination_lmcs} by Overbeek and Endrullis is designed for the PBPO+~\cite{overbeek2023graph}—a rewriting formalism capable of simulating left-injective DPO rewriting. It can prove termination for systems like~\cite[Examples 5.2, 5.7, 5.9]{overbeek2024termination_lmcs} and~\cite[Example 6]{plump2018modular}, which lie beyond  the scope of our technique. Additionally, this method can be applied to many categories.
  
 % In the setting where they are both defined, it is closely related to our work: both methods assign weight to objects by summing weighted morphisms targeting them.
@@ -191,6 +377,6 @@
 % Bottoni et al.~\cite{bottoni2010atermination} presents a criterion for termination of DPO rewriting with monic matches, injective rules and negative application conditions, based on the construction of a labeled transition system. 
 
 A comparative analysis of termination techniques for DPO graph rewriting systems, drawn from prior work~\cite{plump1995ontermination,plump2018modular,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,
-overbeek2024termination_lmcs}, is summarized in~\autoref{tab:antipattern:comparison}. 
-% Our tool successfully proves termination for 16 of these systems.
+overbeek2024termination_lmcs} and~\autoref{chap:subgraph_counting}, is summarized in~\autoref{tab:antipattern:comparison}. 
+Our tool successfully proves termination for 16 systems, including~\cite[Example D.3]{endrullis2024generalized_arxiv_v2} and~\cite[Example 1]{bruggink2014termination}. These cases could not be handled by the subgraph counting methods introduced in~\cite{overbeek2024termination_lmcs} and~\autoref{chap:subgraph_counting}, but are now provable using our extension.
  
