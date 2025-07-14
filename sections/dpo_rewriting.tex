@@ -6,31 +6,6 @@ A \textbf{match} of the rule in a graph \( G \) is a morphism \( m: L \rightarro
 \end{definition}
 In the case of the category \textbf{Graph} of edge-labeled directed multigraphs, the rule is left monic if the morphism \( l \) is injective, and right monic if the morphism \( r \) is injective. The rule is monic if both \( l \) and \( r \) are injective.
 
-Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an object $G$, we need to find a match $m:L \to G$. The rule is then applied by constructing completing the diagram with double pushout below and onece the pushout squares are constructed, one says that the object $G$ can be rewritten to $H$ using the rule $\rho$ and the match $m$. (to double check)
-\begin{center}
-     \resizebox{0.4\textwidth}{!}{
-          \begin{tikzpicture}
-            % [node distance=11mm]
-            \node (I) at (0,0) {$K$};
-            \node (L) at (-2,0) {$L$};
-            \node (R) at (2,0) {$R$};
-            \node (G) at (-2,-2) {$G$};
-            \node (C) at (0,-2) {$C$};
-            \node (H) at (2,-2) {$H$};
-            \draw [->] (I) to  node [midway,below] {$l$} (L);
-            \draw [->] (I) to  node [midway,below] {$r$} (R);
-            \draw [->] (L) to node [midway,right] {$m$} (G);
-            \draw [->] (I) to node [midway,right] {$u$} (C);
-            \draw [->] (R) to node [midway,left] {$m'$} (H);
-            \draw [->] (C) to node [midway,above] {$l'$} (G);
-            \draw [->] (C) to node [midway,above] {$r'$} (H);
-            \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-            \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-          \end{tikzpicture}
-        % \end{center}
-        }
-\end{center}
-
 \begin{example}
   \label{ex:grsaa}
   The follwing DPO rewriting rule on edge-labeled directed multigraphs is from \cite[Example 6]{bruggink2014termination}:
@@ -71,6 +46,33 @@ Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an obje
   \end{center}
   This rule has a discrete interface \( K \). It is monic (or injective). It replaces a chain \enquote{aa} whose middle node has no other incident edges by a chain \enquote{aba} with the same endpoints and all other nodes and edges are fresh. 
 \end{example}
+
+
+Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an object $G$, we need to find a match $m:L \to G$. The rule is then applied by constructing the diagram with double pushout shown in \autoref{def:rewriting_step} and once the pushout squares are constructed, one says that the object $G$ rewrites to $H$ using the rule $\rho$ and the match $m$. 
+
+% \begin{center}
+%      \resizebox{0.4\textwidth}{!}{
+%           \begin{tikzpicture}
+%             % [node distance=11mm]
+%             \node (I) at (0,0) {$K$};
+%             \node (L) at (-2,0) {$L$};
+%             \node (R) at (2,0) {$R$};
+%             \node (G) at (-2,-2) {$G$};
+%             \node (C) at (0,-2) {$C$};
+%             \node (H) at (2,-2) {$H$};
+%             \draw [->] (I) to  node [midway,below] {$l$} (L);
+%             \draw [->] (I) to  node [midway,below] {$r$} (R);
+%             \draw [->] (L) to node [midway,right] {$m$} (G);
+%             \draw [->] (I) to node [midway,right] {$u$} (C);
+%             \draw [->] (R) to node [midway,left] {$m'$} (H);
+%             \draw [->] (C) to node [midway,above] {$l'$} (G);
+%             \draw [->] (C) to node [midway,above] {$r'$} (H);
+%             \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+%             \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+%           \end{tikzpicture}
+%         % \end{center}
+%         }
+% \end{center}
 
 \begin{definition}[DPO Rewriting step~\cite{endrullis2024generalized_arxiv_v2}]
   \label{def:rewriting_step}
@@ -186,13 +188,30 @@ Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an obje
 In category \textbf{Graph}, the pushout of two arrows always exsits~\cite[p.188]{corradini1997algebraic}. Therefore, once the first pushout square is constructed, the second pushout square can always be constructed and is unique up to isomorphism because of the universal property. However, the first pushout square cannot always be constructed.
 
 \begin{proposition}[Existence of pushout complements~\cite{corradini1997algebraic}]
-    Let $b: A\rightarrow B$ and $g : B \rightarrow D$ be two morphisms in the category \textbf{Graph}. There exists a pushout complement $A \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} D$ of $A \overset{l}{\rightarrow} C \overset{m}{\rightarrow} D$ if and only if the following conditions are satisfied:
+    Let $A \overset{l}{\rightarrow} B \overset{m}{\rightarrow} D$ be two morphisms in the category \textbf{Graph}. There exist two morphisms $A \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} D$ such that $A \overset{l}{\rightarrow} B \overset{m}{\rightarrow} D$ and $A \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} D$ form a pushout square as shown below
+
+    \begin{center}
+        \resizebox{0.2\textwidth}{!}{
+            \begin{tikzpicture}
+                \node (I) at (0,0) {$K$};
+                \node (L) at (-2,0) {$L$};
+                \node (G) at (-2,-2) {$G$};
+                \node (C) at (0,-2) {$C$};
+                \draw [->] (I) to  node [midway,below] {$l$} (L);
+                \draw [->] (L) to node [midway,right] {$m$} (G);
+                \draw [->] (I) to node [midway,right] {$u$} (C);
+                \draw [->] (C) to node [midway,above] {$l'$} (G);
+                \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+            \end{tikzpicture}
+        }
+    \end{center}
+    if and only if the following conditions are satisfied:
     \begin{itemize}
-        \item{[Dangling edge condition]} No edge $e \in G_1 \setminus m(L_1)$ is incident to any node in $m(L_0 \setminus l(K_0))$
-        \item{[Identification condition]} There is no $x,y \in L_0 \cup L_1$ such that $x \not = y$, $m(x) = m(y)$ and $y \notin l(K_0 \cup K_1)$.
-    \end{itemize}
+        \item{[Dangling edge condition]} No edge of $E(G) \setminus m(E(L))$ is incident to any node in $m(E(L) \setminus l(E(K)))$ are the edge-sets of $G,L,K$,
+        \item{[Identification condition]} There is no $x,y \in V(L) \cup E(L)$ such that $x \not = y$, $m(x) = m(y)$ and $y \notin l(V(K) \cup E(K))$ where 
+    \end{itemize} 
 \end{proposition}
-Intuitively, an edge $e$ in $G_1 \setminus m(L_1)$ is an edge which is not in the image of the match $m$. If such an edge $e$ is incident to a node in $m(L_0 \setminus l(K_0))$ which are nodes that will be removed in the rewriting step and thus neither contained in $C$ nor in $H$, the edge $e$ will be dangling in $H$ after the rewriting step. A match which does not satisfy the dangling edge condition is shown below. In this example, when node 3 is removed, the edge from node 3 to node 6 will be dangling. (to double check)
+Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in the image of the match $m$. If such an edge $e$ is incident to a node in $m(V(L) \setminus l(V(K)))$ which are nodes that will be removed in the rewriting step and thus neither contained in $C$ nor in $H$, the edge $e$ will be dangling in $H$ after the rewriting step. A match which does not satisfy the dangling edge condition is shown below. In this example, when node 3 is removed, the edge from node 3 to node 6 will be dangling. (to double check)
     \begin{center}
         \resizebox{0.9\textwidth}{!}{
         \begin{tikzpicture}
@@ -315,18 +334,8 @@ To give an intuition on the second condition, suppose that there is a graph C an
                 % \draw[<-,blue] (l1) edge node[midway,left] {a} (l6) ;
                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
             }   
-     
-            \node () at (50mm,-28mm) {C};
-            % \graphbox{\( C \)}{40mm}{-20mm}{34mm}{35mm}{2mm}{-3mm}{
-            %     \coordinate (o) at (0mm,-14mm); 
-            %     \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
-            %     % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            %     \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
-            %     \draw[->,blue] (l1) -- (l4) node[midway,right] {a};
-            %     % \draw[->,blue] (l1) edge[loop above] node[midway, above] {a} (l1) ;
-            %     \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
-            %     \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
-            % }
+            \graphbox{\( C \)}{50mm}{-28mm}{20mm}{10mm}{2mm}{-3mm}{
+            }
             % K to L  
             \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
@@ -374,17 +383,9 @@ To give an intuition on the second condition, suppose that there is a graph C an
                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
             }   
      
-            \node () at (50mm,-28mm) {C};
-            % \graphbox{\( C \)}{40mm}{-20mm}{34mm}{35mm}{2mm}{-3mm}{
-            %     \coordinate (o) at (0mm,-14mm); 
-            %     \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
-            %     % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            %     \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
-            %     \draw[->,blue] (l1) -- (l4) node[midway,right] {a};
-            %     % \draw[->,blue] (l1) edge[loop above] node[midway, above] {a} (l1) ;
-            %     \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
-            %     \draw[<-,blue] (l1) -- (l6) node[midway,left] {a};
-            % }
+            % \node () at (50mm,-28mm) {C};
+            \graphbox{\( C \)}{50mm}{-28mm}{20mm}{10mm}{2mm}{-3mm}{
+            }
             % K to L  
             \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G

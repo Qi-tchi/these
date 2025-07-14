@@ -1,21 +1,21 @@
 \begin{definition}[Category \cite{pierce1991basic, barr1990category}]
     \label{def:cat}
-    A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : C_0 \to C_1 \) and a partial function \( \star: C_1 \times C_1 \to C_1 \) such that 
+    A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : V(C) \to E(C) \) and a partial function \( \star: E(C) \times E(C) \to E(C) \) such that 
         (i) for all edges \( f:X \to Y \) and \( g:Y \to Z \), the edge \( f \star g :X \to Z \) is defined; 
         (ii) for every node \( X \), \( u(X) \) is an edge from \( X \) to \( X \);
         (iii) for every \( f:X \to Y \), we have \(u(X) \star f = f = f \star u(Y)\);
         (iv) for all edges \( f \), \( g \) and \(h\), we have \( (f \star g) \star h = f \star (g \star h) \) whenever either side is defined.
-    Edges are called \textbf{morphisms}. The function $\star$ is called \textbf{composition}. For all \( X \in C_0 \), the edge \( u(X) \) is denoted \( \operatorname{id}_X \) and is called the \textbf{identity} of the object \( X \).
+    Edges are called \textbf{morphisms}. The function $\star$ is called \textbf{composition}. For all \( X \in V(C) \), the edge \( u(X) \) is denoted \( \operatorname{id}_X \) and is called the \textbf{identity} of the object \( X \).
     % \( C \) is called the \textbf{underlying graph} of the category \( \mathcal{C} \).
 \end{definition} 
 
 \begin{example}
-    The following unlabeled graph is a category with two nodes and four arrows with loops at each node as the identities and the recheability as the arrows.
+    The following unlabeled graph is a category with two nodes and the recheability as the arrows.
            \begin{center}
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
-                \node[draw,circle] (1) at (0,0) {1};
-                \node[draw,circle] (2) at (2,0) {2};
+                \node[draw,circle] (1) at (0,0) {};
+                \node[draw,circle] (2) at (2,0) {};
                 \draw[->] (1) edge[loop above] node[midway, above] { } (1) ;
                 % \draw[->] (1) edge[loop below] node[midway, below] {} (1) ;
                 \draw[->] (2) edge[loop above] node[midway, above] { } (2) ;
@@ -33,10 +33,10 @@
 
 \begin{definition}[Monomorphism \cite{pierce1991basic,barr1990category}]
     \label{def:cat:homo}
-    A morphism \( f : X \to Y \) is \textbf{monic} (or a \textbf{monomorphism}) if for all morphisms \( g \) and \( h \), if \( g \star f = h \star f \), then \( g = h \). A monomorphism is denoted by \( f : X \rightarrowtail Y \).
+    A morphism \( f : X \to Y \) is \textbf{monic} (or a \textbf{monomorphism}) if for all morphisms \( g \) and \( h \), if \( g \star f = h \star f \), then \( g = h \). A monomorphism is denoted by \( f : X \rightarrowtail Y \). The set of monomorphisms from $X$ to $Y$ is denoted $\opn{Mono}(X,Y)$.
 \end{definition} 
 
-\begin{example}
+\begin{example} 
     Finite edge-labeled directed multigraphs and their homomorphisms form a category, hereafter denoted \textbf{Graph}. Its objects are labeled graphs, its morphisms are graph homomorphisms, and the monomorphisms are injective homomorphisms.
 \end{example}
 
