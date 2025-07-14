@@ -99,7 +99,7 @@
 \input{type_graph/sections/conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%   Chapter : Subgraph Counting   %%%%%%%%%%%%%%
+%%%%%   Chapter : morphism counting   %%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Termination of Injective DPO Graph Rewriting
 Systems using Morphism Counting}
@@ -156,7 +156,7 @@ Systems using Morphism Counting}
 
 
 \chapter{Termination of Injective DPO Graph Rewriting
-Systems using Subgraph Counting with antipatterns}
+Systems using Morphism Counting with antipatterns}
 \input{subgraph_counting_antipattern/antipattern} 
 
  
@@ -165,25 +165,25 @@ Systems using Subgraph Counting with antipatterns}
 \paragraph{Conclusion}
 This dissertation focused on automated techniques for proving the termination of DPO graph rewriting systems.
 We first extended an existing technique, the type graph method, to non-well-founded semirings, enabling more efficient implementation of the method in some cases.
-We then developed a new machine-checkable sufficient condition, called subgraph counting, for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs, based on counting specific subgraphs in the graph before and after transformation. This technique can handle cases that existing interpretation-based approaches cannot, such as the one in~\autoref{ex_contrib_variant}.
-Finally, we extended our subgraph counting method to count specific subgraphs that are not included in forbidden contexts.
+We then developed a new machine-checkable sufficient condition, called morphism counting, for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs, based on counting specific subgraphs in the graph before and after transformation. This technique can handle cases that existing interpretation-based approaches cannot, such as the one in~\autoref{ex_contrib_variant}.
+Finally, we extended our morphism counting method to count specific subgraphs that are not included in forbidden contexts.
 
 This extension successfully proves termination for systems like the ones presented 
-in~\autoref{ex:grs_aca} and~\autoref{rem:d3_limitation}, which prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and the subgraph counting method presented in~\autoref{chap:subgraph_counting} fail to handle. 
+in~\autoref{ex:grs_aca} and~\autoref{rem:d3_limitation}, which prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and the morphism counting method presented in~\autoref{chap:subgraph_counting} fail to handle. 
 
-The implementation of the type graph method and our extension, along with our subgraph counting technique and its extension, was integrated into a unified tool, called LyonParallel, for DPO graph rewriting systems on edge-labeled directed multigraphs.
+The implementation of the type graph method and our extension, along with our morphism counting technique and its extension, was integrated into a unified tool, called LyonParallel, for DPO graph rewriting systems on edge-labeled directed multigraphs.
  
 \paragraph{Future Work}
 
 Extending the type graph method to other algebraic graph rewriting formalisms, such as PBPO+, could be a promising direction.
-% Extending the subgraph counting technique to count subgraphs that are not included in specific subgraphs is another interesting direction, which allows the technique to handle~\autoref{rem:d3_limitation}.
+% Extending the morphism counting technique to count subgraphs that are not included in specific subgraphs is another interesting direction, which allows the technique to handle~\autoref{rem:d3_limitation}.
 
-Another interesting direction is to extend the subgraph counting technique to graph rewriting systems with negative application conditions. Negative application conditions are conditions that must not be satisfied in the context of a rule application. This could lead to a more practical termination tool, as negative application conditions are often used in graph rewriting systems to express constraints on the application of rules.
+Another interesting direction is to extend the morphism counting technique to graph rewriting systems with negative application conditions. Negative application conditions are conditions that must not be satisfied in the context of a rule application. This could lead to a more practical termination tool, as negative application conditions are often used in graph rewriting systems to express constraints on the application of rules.
 
-It is also worth investigating the difference between our subgraph counting technique and
- the subgraph counting technique developed by Overbeek and Endrullis for PBPO+. 
+It is also worth investigating the difference between our morphism counting technique and
+ the morphism counting technique developed by Overbeek and Endrullis for PBPO+. 
  
-The implementation of the modular termination technique~\cite{plump2018modular} which complements the type graph method and the subgraph counting technique, could be another interesting but more practical direction. This could lead to a more powerful termination tool.
+The implementation of the modular termination technique~\cite{plump2018modular} which complements the type graph method and the morphism counting technique, could be another interesting but more practical direction. This could lead to a more powerful termination tool.
   
 Finally, confluence is another important property of graph rewriting systems, which ensures that the final result of a sequence of rewriting steps is independent of the order in which the rules are applied. Future work could explore automated techniques for proving confluence of graph rewriting systems.
 
