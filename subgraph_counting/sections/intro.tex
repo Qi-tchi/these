@@ -1,14 +1,14 @@
 
 In this chap, we present an new automated method for relative termination~\cite{geser1990relative} of double-pushout (DPO) graph rewriting systems with injective rules~\cite{corradini1997algebraic,habel2001double,konig2018atutorial}. 
 
-The method based on the interpretation method framework~\cite{nipkow1998term} works as follows. Let \( \mathbb{X} \) denote a set of graphs. We assign weights (natural numbers) to occurrences of graphs in \( \mathbb{X} \), and the weight of a graph $G$ is defined as the sum of the weights of all occurrences of graphs in \( \mathbb{X} \) within $G$. Let $\mathcal{A}$ and $\mathcal{B}$ be sets of injective DPO rewriting rules. Our technique requires that, for every graph $X$ in $\mathbb{X}$, and for every rewriting step $G \Rightarrow H$ using a rule from $\mathcal{A}$ or $\mathcal{B}$, there exists an injective mapping from the set of \( X \)-occurrences in the result graph $H$
+The method based on the interpretation method framework~\cite{nipkow1998term} works as follows. Let \( \mathbb{X} \) denote a set of graphs. We assign weights (natural numbers) to monomorphisms from graphs in \( \mathbb{X} \), and the weight of a graph $G$ is defined as the sum of the weights of all monomorphisms from graphs in \( \mathbb{X} \) within $G$. Let $\mathcal{A}$ and $\mathcal{B}$ be sets of injective DPO rewriting rules. Our technique requires that, for every graph $X$ in $\mathbb{X}$, and for every rewriting step $G \Rightarrow H$ using a rule from $\mathcal{A}$ or $\mathcal{B}$, there exists an injective mapping from the set of monomorphisms from $X$ in the result graph $H$
 (those neither fully included in the right-hand side graph nor fully included in the context)
- to the set of \( X \)-occurrences in the host graph $G$ (those neither fully included in the left-hand side graph nor fully included in the context).   
+ to the set of monomorphisms from $X$ in the host graph $G$ (those neither fully included in the left-hand side graph nor fully included in the context).   
 
 Suppose the following conditions hold: (i) For every rule in \( \mathcal{A} \), the left-hand side graph's weight is strictly greater than the right-hand side graph's weight; (ii) For every rule in \( \mathcal{B} \), the left-hand side graph's weight is greater than or equal to the right-hand side graph's weight. 
 Under these conditions, rewriting steps using rules in \( \mathcal{A} \) strictly decrease the weights of the host graphs, while rewriting steps using rules in \( \mathcal{B} \) do not increase them.
 Consequently, the rewriting rules in \( \mathcal{A} \) can only be applied finitely many times, since the weight of a finite graph is a natural number and strictly decreases with each rewriting step using a rule in \( \mathcal{A} \), the process must terminate after finitely many iterations.  
-
+ 
 Our method proves termination for systems such as the one in \autoref{ex_contrib_variant}, which prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,
 endrullis2024generalized_arxiv_v2,
 overbeek2024termination_lmcs} cannot handle. 
