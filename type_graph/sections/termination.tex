@@ -38,11 +38,60 @@ This issue is addressed by the existence of a context closure. Specifically, it 
 \end{minipage}
 \end{definition}
 \begin{example}
-    \label{example:context_closure}
+    \label{wf:example:context_closure}
     Let the set of edge labels be $\Sigma = \{a,b\}$.
-    Consider the DPO rule in \autoref{ex:grsaa}, the weighted type graph in \autoref{example:wft:weighted_type_graph}, 
-   and the morphism $c$ illustrated below. Since for every match $m : L \to G$, there exists a morphism $\alpha : G \to T$ such that $m \star \alpha = c$, the morphism $c$ is a context closure for the DPO rule in the type graph.
+    Consider the DPO rule in~\autoref{ex:grsaa} shown below
+    \begin{center} 
+      \resizebox{0.7\textwidth}{!}{
+      \begin{tikzpicture}
+          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \draw[->] (l1) -- (l3) node[midway,above] {a};
+              \draw[->] (l3) -- (l2) node[midway,above] {a};
+          }     
+          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+              % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+              % \draw[->] (l1) -- (l3) node[midway,above] {a};
+              % \draw[->] (l3) -- (l2) node[midway,above] {a};
+          }    
+          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \draw[->] (l1) -- (l3) node[midway,above] {a};
+              \draw[->] (l3) -- (l4) node[midway,above] {b};
+              \draw[->] (l4) -- (l2) node[midway,above] {a};
+          }    
+          \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
+          \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
+          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+      \end{tikzpicture}
+      }
+  \end{center}
+   and the weighted type graph in \autoref{wf:example:weighted_type_graph} shown below
   \begin{center}
+        \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+                \node[draw,circle] (1) at (0,0) {1};
+                \node[draw,circle] (2) at (2,0) {2};
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
+            }
+        \end{tikzpicture}
+    \end{center}
+   Let $c$ be the morphism shown below. Since for every match $m : L \to G$, there exists a morphism $\alpha : G \to T$ such that $m \star \alpha = c$, the morphism $c$ is a context closure for the DPO rule in the type graph.
+  \begin{center}
+    \resizebox{0.6\textwidth}{!}{
     \begin{tikzpicture}
       \graphbox{\( L \)}{-50mm}{0mm}{40mm}{40mm}{2mm}{-8mm}{
         \coordinate (o) at (0mm,-10mm); 
@@ -65,6 +114,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
         }
         \node () at (-5mm,-15mm) {$\overset{c}{\to}$};
     \end{tikzpicture}
+    }
   \end{center}
 \end{example} 
 
@@ -73,7 +123,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
 %  This difference must exceed a fixed positive constant $\delta \in \mathbb{R}_{>0}$.
 
 \begin{definition}[Decreasing Rules~\cite{endrullis2024generalized_arxiv_v2}]
-    \label{def:decreasing_rule}
+    \label{wf:def:decreasing_rule}
     Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \leq),w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule.
 
     \noindent
@@ -104,8 +154,57 @@ This issue is addressed by the existence of a context closure. Specifically, it 
 \end{definition}
 
 \begin{example}
-    \label{example:decreasing_rule}
-    Consider the DPO rule in \autoref{ex:grsaa} and the weighted type graph in \autoref{example:wft:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0_\mathbb{N},1_\mathbb{N},<,\leq)$. There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \rightarrow T$ as depicted below:
+    \label{wf:example:decreasing_rule}
+    Consider the DPO rule in~\autoref{ex:grsaa} shown below
+    \begin{center} 
+      \resizebox{0.7\textwidth}{!}{
+      \begin{tikzpicture}
+          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \draw[->] (l1) -- (l3) node[midway,above] {a};
+              \draw[->] (l3) -- (l2) node[midway,above] {a};
+          }     
+          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+              % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+              % \draw[->] (l1) -- (l3) node[midway,above] {a};
+              % \draw[->] (l3) -- (l2) node[midway,above] {a};
+          }    
+          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \draw[->] (l1) -- (l3) node[midway,above] {a};
+              \draw[->] (l3) -- (l4) node[midway,above] {b};
+              \draw[->] (l4) -- (l2) node[midway,above] {a};
+          }    
+          \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
+          \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
+          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+      \end{tikzpicture}
+      }
+  \end{center} 
+  and the weighted type graph in~\autoref{wf:example:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0_\mathbb{N},1_\mathbb{N},<,\leq)$ shown below
+  \begin{center}
+        \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+                \node[draw,circle] (1) at (0,0) {};
+                \node[draw,circle] (2) at (2,0) {};
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
+            }
+        \end{tikzpicture}
+    \end{center}
+     There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \rightarrow T$ as depicted below:
 
     \begin{center}
         \resizebox{0.49\textwidth}{!}{
@@ -277,13 +376,14 @@ This issue is addressed by the existence of a context closure. Specifically, it 
 
     Similarly, we can check that $w_\mathcal{T}(\{l \star - = t_K^{12}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{12}\})$,  $w_\mathcal{T}(\{l \star - = t_K^{21}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{21}\})$, and $w_\mathcal{T}(\{l \star - = t_K^{22}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{22}\})$. The rule is therefore weakly decreasing.
 
-    There exists a context closure $c$ for the DPO rule in the weighted type graph, as shown in \autoref{example:context_closure}.
+    There exists a context closure $c$ for the DPO rule in the weighted type graph, as shown in \autoref{wf:example:context_closure}.
     Since we have additionally $t_K^{11} = l \star c$ and $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 > 1 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$, the rule is closure decreasing since the semiring is strictly monotonic.
 \end{example} 
  
 \subsection{Termination Criterion}
-\begin{theorem}[Termination of DPO rewriting system] 
-    \label{thm:wf:termination_grs}
+\label{wf:sec:termination}
+\begin{theorem}[Termination of DPO rewriting system~\cite{endrullis2024generalized_icgt}] 
+    \label{wf:thm:termination_grs}
     Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules, $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \leq), w)$ a finitary weighted type graph and $\mathfrak{F}$ a DPO rewriting framework such that
 
         \begin{itemize}
@@ -299,6 +399,6 @@ This issue is addressed by the existence of a context closure. Specifically, it 
     then $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{terminating} relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
 \end{theorem} 
 \begin{example} 
-    \label{example:wf:termination}
-    Termination of the DPO rule in \autoref{ex:grsaa} can be established using \autoref{thm:termination_grs} together with the weighted type graph in \autoref{example:wft:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0_\mathbb{R},1_\mathbb{N},<,\leq)$. It is closure decreasing by \autoref{example:decreasing_rule}.
+    \label{wf:example:termination}
+    Termination of the DPO rule in \autoref{ex:grsaa} can be established using \autoref{wf:thm:termination_grs} together with the weighted type graph in \autoref{wf:example:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0_\mathbb{R},1_\mathbb{N},<,\leq)$. It is closure decreasing by \autoref{wf:example:decreasing_rule}.
 \end{example}

@@ -5,39 +5,6 @@
 \end{definition}
 
 
-\begin{notation}
-    We use the notation from~\cite[Notation 1]{overbeek2023apbpotutorial} to visualize edge-labeled graph homomorphisms. Labeled graphs are enclosed in boxes with their names displayed in the top-left corner. Nodes
-     and edges are assigned subsets of \(\mathbb{N}\) which are chosen such that: (i) each node or edge \( y \) in the codomain graph is assigned the union of subsets of all nodes or edges in the domain graph that are mapped to \( y \); (ii) the graph homomorphism is uniquely determined by this assignment. To further improve readability, we represent sets by listing their elements. Additionally, we omit identifiers when doing so does not cause confusion. This is illustrated in the following representation of a homomorphism \( h: G \to H \).
-    
-   \begin{center}
-        \resizebox{0.5\textwidth}{!}{
-        \begin{tikzpicture}
-            \graphbox{\( G \)}{00mm}{-20mm}{45mm}{25mm}{2mm}{-10mm}{
-                \coordinate (o) at (-5mm,-8mm); 
-                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {4};
-                \draw[->] (l1) -- (l3) node[midway,above] {};
-                \draw[->] (l3) -- (l4) node[midway,above] {};
-                \draw[->] (l4) -- (l2) node[midway,above] {};
-            }  
-            \graphbox{\( H \)}{52mm}{-20mm}{50mm}{25mm}{2mm}{-10mm}{
-                \coordinate (o) at (-5mm,-8mm); 
-                \node[draw,circle] (l1) at ($(o)+(-1,0mm)$) {1};
-                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1)+(1.5,0)$) {3\ 4};
-                \draw[->] (l1) edge node[midway,above] {} (l3);
-                \draw[->] (l3) edge [loop above] node[midway,above] {} (l3) ;
-                \draw[->] (l3) -- (l2) node[midway,above] {};
-            }      
-            \node () at (48mm,-30mm) {$\overset{h}{\rightarrow}$};
-        \end{tikzpicture}
-    }
-    \end{center}  
-    In this example, the sets \(\{1\}\), \(\{2\}\), \(\{3\}\), \(\{4\}\), and \(\{3,4\}\) are represented as \(1\), \(2\), \(3\), \(4\), and \(3\ 4\), respectively. Edge identifiers are omitted.
-\end{notation}
-
 \begin{definition}
     \label{def:graph:composition}
     Let $f: (G,\lambda) \to (G',\lambda')$ and $g: (G',\lambda') \to (G'',\lambda'')$ be two homomorphisms of unlabeled graphs. Their composition, denoted $g \circ f$, is defined as the pair of functions $g_V \circ f_V$ and $g_E \circ f_E$.

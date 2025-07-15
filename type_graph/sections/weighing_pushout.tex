@@ -81,7 +81,7 @@ In this section, we recall the concepts of traceability of objects (Definition \
          \left ( \bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
             w_\mathcal{T}(t_R) \right ) \\
 \end{flalign*}
-According to these results, a termination criterion will be established in \autoref{sec:termination} by comparing the weights 
+According to these results, a termination criterion will be established in~\textsection~\ref{wf:sec:termination} by comparing the weights 
 $\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
         w_\mathcal{T}(t_L)$ and 
 $\bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}} 
@@ -145,7 +145,79 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
 \end{remark}
 
 \begin{example}
-    For the DPO diagram in \autoref{ex:rewriting_step_grs_aa}. The graph \tikz[baseline=-0.5ex]{
+    For the DPO diagram shown below
+    \begin{center} 
+      \resizebox{0.7\textwidth}{!}{
+      \begin{tikzpicture}
+          \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
+              \coordinate (o) at (0mm,-8mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \draw[] (l1) -- (l3) node[midway,above] {a};
+              \draw[] (l3) -- (l2) node[midway,above] {a};
+          } 
+          \graphbox{\( K \)}{40mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
+              \coordinate (o) at (0mm,-8mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+          }  
+          \graphbox{\( R \)}{80mm}{-3mm}{45mm}{12mm}{2mm}{2mm}{
+              \coordinate (o) at (-5mm,-8mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \draw[ ] (l1) -- (l3) node[midway,above] {a};
+              \draw[ ] (l3) -- (l4) node[midway,above] {b};
+              \draw[ ] (l4) -- (l2) node[midway,above] {a};
+          }    
+          \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+              \draw[] (l1) -- (l3) node[midway,above] {a};
+              \draw[] (l3) -- (l2) node[midway,above] {a};
+              \draw[ ] (l2) -- (l4) node[midway,right] {a};
+              \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+              \draw[] (l1) -- (l6) node[midway,left] {a};
+          }    
+          \graphbox{\( C  \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+              \draw[ ] (l2) -- (l4) node[midway,right] {a};
+              \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+              \draw[ ] (l1) -- (l6) node[midway,left] {a};
+          }    
+          \graphbox{\( H \)}{80mm}{-22mm}{45mm}{22mm}{2mm}{-3mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
+              \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+              \draw[ ] (l1) -- (l6) node[midway,left] {a};
+              \draw[] (l1) -- (l3) node[midway,above] {a};
+              \draw[] (l3) -- (l4) node[midway,above] {b};
+              \draw[ ] (l4) -- (l2) node[midway,above] {a};
+              \draw[ ] (l2) -- (l5) node[midway,right] {a};
+          }    
+          \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
+          \node () at (77mm,-8mm) {\( \rightarrowtail \)}; % K -> R
+          \node () at (15mm,-18mm) {\( m\ \downarrowtail \)};
+          \node () at (37mm,-33mm) {\( \leftarrowtail \)};
+          \node () at (58mm,-18mm) {\( u\downarrowtail \)};
+          \node () at (102mm,-18mm) {\( \downarrowtail \)};
+          \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
+      \end{tikzpicture}
+      }
+  \end{center}
+   The graph \tikz[baseline=-0.5ex]{
         \node (x) at (0,0) {$\bullet$};
         \node (y) at (1,0) {$\bullet$};
         \node (z) at (2,0) {$\bullet$};

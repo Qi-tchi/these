@@ -1,10 +1,10 @@
-\subsection{DPO rewriting with injective rules and matches}
-We focus on DPO rewriting with injective rules and matches. While \autoref{def:rewriting_inclusion} of injective rewriting rules and rewriting steps may appear more restrictive, they are equivalent to those introduced in \autoref{sec:dpo}. This equivalence arises because algebraic graph rewriting via double pushouts is defined up to isomorphism. Our preference for these definitions stems from their practical advantage: they provide a clearer view of how the number of monomorphisms from specific graphs changes before and after a rewriting step.
+\subsection{DPO rewriting with injective rules and matches} 
+We focus on DPO rewriting with injective rules and matches. While~\autoref{def:rewriting_inclusion} of injective rewriting rules and rewriting steps may appear more restrictive, they are equivalent to those introduced in \textsection~\ref{sec:dpo}. This equivalence arises because algebraic graph rewriting via double pushouts is defined up to isomorphism. Our preference for these definitions stems from their practical advantage: they provide a clearer view of how the number of monomorphisms from specific graphs changes before and after a rewriting step.
  
 \begin{definition}
     \label{def:rewriting_inclusion}
-    A rewriting rule $\varphi = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ consist of two \textbf{inclusions} $l$ and $r$.  
-    Two rules $\varphi' = (L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ and $\varphi$ are \textbf{equivalent} if there exist isomorphisms $a,b,c$ such that:
+    A rewriting rule $\varphi = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ consists of two \textbf{inclusions} $l$ and $r$.  
+    Two rules $\varphi' = (L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ and $\varphi$ are \textbf{equivalent} if there exist isomorphisms $a,b,c$ such that the following commutative diagram can be constructed:
             \begin{center}
                     \resizebox{0.40\textwidth}{!}{
                         \begin{tikzpicture}
@@ -26,7 +26,7 @@ We focus on DPO rewriting with injective rules and matches. While \autoref{def:r
                             \end{tikzpicture}
                     }
                 \end{center}
-    A rewriting step $G \Rightarrow_\varphi H$ is a double-pushout
+    A rewriting step $G \Rightarrow_\varphi H$ is a double-pushout shown below
 %   with injective match $m :L' \rightarrowtail G$:
          \begin{center}
           \resizebox{0.40\textwidth}{!}{
@@ -53,7 +53,7 @@ We focus on DPO rewriting with injective rules and matches. While \autoref{def:r
 \end{definition}
 
 \subsection{Pre-graphs}
-Double-pushouts defining rewriting steps in \textbf{Graph} can be considered as double-pushouts in the category of pre-graphs. Intuitively, a pre-graph models a finite directed multigraph with edge labels that may contain dangling edges.
+Graphs in double-pushouts that define rewriting steps in \textbf{Graph} can be decomposed into unions of pre-graphs. Pre-graphs model finite directed edge-labeled multigraphs that may contain dangling edges.
 \begin{definition}
     \label{def:pre-graph}
     A pre-graph $G$ consists of
@@ -61,8 +61,8 @@ Double-pushouts defining rewriting steps in \textbf{Graph} can be considered as 
         \item a finite set of nodes, denoted $V(G)$,
         \item a subset $V_{\not \exists}(G) \subseteq V(G)$ of missing nodes
         \item a finite set of edges, denoted $E(G)$,
-        \item a source function \( \textbf{src} \) (resp. a target function \( \textbf{dst} \)) that assigns to each edge an existing or missing node,
-        \item an edge-labeling function \( l \) that assigns labels to edges.
+        \item a source function, denoted \( \textbf{src}_G \), (resp. a target function, denoted \( \textbf{dst}_G \)) that assigns to each edge an existing or missing node,
+        \item an edge-labeling function, denoted $l_G$, that assigns labels to edges.
     \end{itemize}
 \end{definition} 
 The set of existing nodes, $V(G) \setminus V_{\not \exists}(G)$, is denoted $V_\exists(G)$.
@@ -89,7 +89,7 @@ The set of existing nodes, $V(G) \setminus V_{\not \exists}(G)$, is denoted $V_\
     \end{center}
  \end{example}
  
- A homomorphism of pregraphs is a mapping between two pregraphs that preserves structure and respects missing/existing nodes.
+ A homomorphism of pregraphs is a mapping between two pregraphs that preserves structure and respects missing and existing nodes.
  \begin{definition}[Homomorphism of pre-graphs]
     \label{def:pregraph:homomorphism}
     Let \( G \) and \( H \) be pre-graphs. A \textbf{homomorphism of pre-graphs} $h: G \to H$ consists a pair of functions $h_V: V(G) \to V(H) $ and $h_E: E(G) \to E(H)$ such that
@@ -291,87 +291,8 @@ An example is shown below:
 
  
 \subsection{$X$-occurrences}
-Consider a rewriting step illustrated by the left diagram in \autoref{def:x_occurrence}.
-Since all arrows are inclusions, by \autoref{def:rewriting_inclusion}, graphs can be decomposed as unions of pre-graphs. This decomposition yields a double pushout diagram, as shown in the right diagram of \autoref{def:x_occurrence}, where $K, L', R',C'$ are pre-graphs and $L = L' \cup K$, $R = R' \cup K$, $C = C' \cup K$, $G = L' \cup K \cup C'$, $H = R' \cup K \cup C'$.
-The decomposition of a rewriting step using the rule in \autoref{ex:grsaa} is illustrated below, with distinct pre-graphs highlighted in different colors.
-\begin{center}
-    \resizebox{0.8\textwidth}{!}{
-      \begin{tikzpicture}
-              \graphbox{\( L = L' \cup K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
-                  \coordinate (o) at (0mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[orange,draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                  \draw[orange,->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[orange,->] (l3) -- (l2) node[midway,above] {a};
-              } 
-
-              \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
-                  \coordinate (o) at (0mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              }  
-
-              \graphbox{\( R = R' \cup K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
-                  \coordinate (o) at (-5mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[red,draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                  \node[red,draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                  \draw[red,->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[red,->] (l3) -- (l4) node[midway,above] {b};
-                  \draw[red,->] (l4) -- (l2) node[midway,above] {a};
-              }    
-
-              \graphbox{\( G = L' \cup K \cup C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
-                  \coordinate (o) at (0mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[draw,circle,orange] (l3) at ($(l1) + (1,0)$) {3};
-                  \node[blue, draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-                  \draw[orange,->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[orange,->] (l3) -- (l2) node[midway,above] {a};
-                  \draw[blue,->] (l2) -- (l4) node[midway,right] {a};
-                %   \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {a};
-              }    
-
-              \graphbox{\( C = K \cup C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
-                  \coordinate (o) at (0mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-                  \draw[blue,->] (l2) -- (l4) node[midway,right] {a};
-                %   \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {a};
-              }    
-
-              \graphbox{\( H = R' \cup K \cup C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
-                  \coordinate (o) at (-5mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {4};
-                  \node[draw,circle,red] (l4) at ($(l1) + (2,0)$) {5};
-                  \node[blue,draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                %   \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {a};
-                  \draw[red,->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[red,->] (l3) -- (l4) node[midway,above] {b};
-                  \draw[red,->] (l4) -- (l2) node[midway,above] {a};
-                  \draw[blue,->] (l2) -- (l5) node[midway,right] {a};
-              }    
-
-              \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
-              \node () at (77mm,-8mm) {\( \rightarrowtail \)}; % K -> R
-              \node () at (17mm,-18mm) {\( m\ \downarrowtail \)};
-              \node () at (37mm,-33mm) {\( \leftarrowtail \)};
-              \node () at (52mm,-18mm) {\( \downarrowtail \)};
-              \node () at (92mm,-18mm) {\( \downarrowtail \)};
-              \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
-      \end{tikzpicture}
-      }
-   \end{center}
-
+Consider a rewriting step illustrated by the left diagram in~\autoref{def:x_occurrence}.
+Since all arrows are inclusions, by~\autoref{def:rewriting_inclusion}, graphs can be decomposed as unions of pre-graphs. This decomposition yields the the right diagram of~\autoref{def:x_occurrence}, where $K, L', R',C'$ are pre-graphs and $L = L' \cup K$, $R = R' \cup K$, $C = C' \cup K$, $G = L' \cup K \cup C'$, $H = R' \cup K \cup C'$.
    \begin{definition}
     \label{def:x_occurrence}
     Consider a rewriting step and its decomposition shown below 
@@ -500,7 +421,8 @@ The decomposition of a rewriting step using the rule in \autoref{ex:grsaa} is il
         \item \textbf{shared} if its image is included in $C$,
         \item \textbf{explicit} if its image is included in $R$,
         \item \textbf{implicit} if its image has elements in both $C'$ and $R'$.
-    \end{itemize}  
+    \end{itemize} 
+
     Intuitively, the rewriting step implicitly creates the implicit $X$-occurrences in $H$ and implicitly destroys implicit $X$-occurrences in $G$. Given an implicit $X$-occurrence $x$ in $H$, its image can be decomposed as the union $R_x \cup C_x$, where $R_x = \opn{Im}(x) \cap R$ (the part of the image overlapping the right-hand side R ), and $C_x = \opn{Im}(x) \cap C$ (the part overlapping the context C ). For every graph monomorphism $h : R_x \rightarrowtail L$ that preserves interface elements (i.e., \( h(k) = k \) for all \( k \in K \)), we define the \textbf{corresponding $X$-occurrence of $x$ relative to $h$} as the $X$-occurrence $y$ in $G$ given by:
         $$
         y(z) = 
@@ -511,6 +433,8 @@ The decomposition of a rewriting step using the rule in \autoref{ex:grsaa} is il
         $$
    \end{definition} 
 
+
+
 % \begin{definition}
 %     \label{def:corresponding_occurrence}
 %      An \textbf{$X$-occurrence} in $G$ is a subgraph of $G$ isomorphic to $X$. An \textbf{$X$-occurrence $x$ implicitly created by the rewriting step} is an \( X \)-occurrence in $H$ which is included neither in \( R \) nor in $C$. 
@@ -520,24 +444,61 @@ The decomposition of a rewriting step using the rule in \autoref{ex:grsaa} is il
 
 
 \begin{example}
-Consider the occurrences of the graph
+    Let $X$ be the graph
 \tikz[baseline=-0.5ex]{ 
         \node (x) at (0,0) {$\bullet$};  
         \node (y) at (1,0) {$\bullet$};
         \node (z) at (2,0) {$\bullet$};
         \draw[->] (x) -- node[midway,below] {a} (y) ;
         \draw[->] (y) -- node[midway,below] {a} (z) ;
-    } in
-   \begin{center}
-    \resizebox{0.9\textwidth}{!}{
+}.
+Consider the $X$-occurrences in the decomposition of a rewriting step using the rule in~\autoref{ex:grsaa} shown below
+    \begin{center} 
+      \resizebox{0.7\textwidth}{!}{
+      \begin{tikzpicture}
+          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \draw[->] (l1) -- (l3) node[midway,above] {a};
+              \draw[->] (l3) -- (l2) node[midway,above] {a};
+          }     
+          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+              % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+              % \draw[->] (l1) -- (l3) node[midway,above] {a};
+              % \draw[->] (l3) -- (l2) node[midway,above] {a};
+          }    
+          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \draw[->] (l1) -- (l3) node[midway,above] {a};
+              \draw[->] (l3) -- (l4) node[midway,above] {b};
+              \draw[->] (l4) -- (l2) node[midway,above] {a};
+          }    
+          \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
+          \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
+          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+      \end{tikzpicture}
+      }
+  \end{center}
+    This decomposition is illustrated below using the visual notation for graph homomorphisms introduced in~\autoref{notation:graph_homomorphism}, with distinct pre-graphs highlighted in different colors.
+\begin{center}
+    \resizebox{0.8\textwidth}{!}{
       \begin{tikzpicture}
               \graphbox{\( L = L' \cup K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (0mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                  \draw[->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[->] (l3) -- (l2) node[midway,above] {a};
+                  \node[orange,draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                  \draw[orange,->] (l1) -- (l3) node[midway,above] {a};
+                  \draw[orange,->] (l3) -- (l2) node[midway,above] {a};
               } 
 
               \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
@@ -550,60 +511,60 @@ Consider the occurrences of the graph
                   \coordinate (o) at (-5mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                  \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                  \draw[->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[->] (l3) -- (l4) node[midway,above] {b};
-                  \draw[->] (l4) -- (l2) node[midway,above] {a};
+                  \node[red,draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                  \node[red,draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                  \draw[red,->] (l1) -- (l3) node[midway,above] {a};
+                  \draw[red,->] (l3) -- (l4) node[midway,above] {b};
+                  \draw[red,->] (l4) -- (l2) node[midway,above] {a};
               }    
 
-              \graphbox{\( G = L' \cup K \cup C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{  
+              \graphbox{\( G = L' \cup K \cup C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (0mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                  \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-                    \node[draw,circle] (l7) at ($(l4) + (-1,0)$) {7};
-                  \draw[->] (l4) -- (l7) node[midway,below] {a};
-                  \draw[->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[->] (l3) -- (l2) node[midway,above] {a};
-                  \draw[->] (l2) -- (l4) node[midway,right] {a};
+                  \node[draw,circle,orange] (l3) at ($(l1) + (1,0)$) {3};
+                  \node[blue, draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                  \draw[orange,->] (l1) -- (l3) node[midway,above] {a};
+                  \draw[orange,->] (l3) -- (l2) node[midway,above] {a};
+                  \draw[blue,->] (l2) -- (l4) node[midway,right] {a};
                 %   \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                %   \draw[blue] (l1) -- (l6) node[midway,left] {a};
+                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {a};
+                \node[blue,draw,circle] (l7) at ($(l4) + (-1,0)$) {7};
+                  \draw[blue,->] (l4) -- (l7) node[midway,below] {a};
               }    
 
               \graphbox{\( C = K \cup C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (0mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-                  \node[draw,circle] (l7) at ($(l4) + (-1,0)$) {7};
-                  \draw[->] (l4) -- (l7) node[midway,below] {a};
-                  \draw[->] (l2) -- (l4) node[midway,right] {a};
+                  \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                  \draw[blue,->] (l2) -- (l4) node[midway,right] {a};
                 %   \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                %   \draw[blue] (l1) -- (l6) node[midway,left] {a};
+                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {a};
+                    \node[blue,draw,circle] (l7) at ($(l4) + (-1,0)$) {7};
+                  \draw[blue,->] (l4) -- (l7) node[midway,below] {a};
               }    
 
-              \graphbox{\( H = R' \cup K \cap C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
+              \graphbox{\( H = R' \cup K \cup C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (-5mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                  \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                  \node[draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                    \node[draw,circle] (l7) at ($(l5) + (-1,0)$) {7};
-                  \draw[->] (l5) -- (l7) node[midway,below] {a};
+                  \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {4};
+                  \node[draw,circle,red] (l4) at ($(l1) + (2,0)$) {5};
+                  \node[blue,draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
                 %   \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                %   \draw[blue] (l1) -- (l6) node[midway,left] {a};
-                  \draw[->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[->] (l3) -- (l4) node[midway,above] {b};
-                  \draw[->] (l4) -- (l2) node[midway,above] {a};
-                  \draw[->] (l2) -- (l5) node[midway,right] {a};
+                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {a};
+                  \draw[red,->] (l1) -- (l3) node[midway,above] {a};
+                  \draw[red,->] (l3) -- (l4) node[midway,above] {b};
+                  \draw[red,->] (l4) -- (l2) node[midway,above] {a};
+                  \draw[blue,->] (l2) -- (l5) node[midway,right] {a};
+                        \node[blue,draw,circle] (l7) at ($(l5) + (-1,0)$) {7};
+                  \draw[blue,->] (l5) -- (l7) node[midway,below] {a};
               }    
 
               \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
               \node () at (77mm,-8mm) {\( \rightarrowtail \)}; % K -> R
-              \node () at (17mm,-18mm) {\( \downarrowtail \)};
+              \node () at (17mm,-18mm) {\( m\ \downarrowtail \)};
               \node () at (37mm,-33mm) {\( \leftarrowtail \)};
               \node () at (52mm,-18mm) {\( \downarrowtail \)};
               \node () at (92mm,-18mm) {\( \downarrowtail \)};
@@ -611,16 +572,15 @@ Consider the occurrences of the graph
       \end{tikzpicture}
       }
    \end{center}
+   There are 
 \begin{itemize}
-    \item 1 occurrence shared by $G$ and $H$: $2 \to 6 \to 7$,
-    \item 1 explicit occurrence in $G$: $1\to 3 \to 2$,
+    \item 1 occurrence shared by $G$ and $H$: $2\textcolor{blue}{ \to 6 \to 7}$,
+    \item 1 explicit occurrence in $G$: $1\textcolor{orange}{ \to 3 \to }2$,
     \item 1 implicit occurrences in $G$: 
-        % 7-1-3, 
-        $3 \to 2 \to 6$,
+        $\textcolor{orange}{3 \to }2\textcolor{blue}{ \to 6}$,
     \item 0 explicit occurrence in $H$,
     \item 1 implicit occurrences in $H$: 
-        % 7-1-4, 
-        $5 \to 2 \to 6$.
+        $\textcolor{red}{5 \to }2\textcolor{blue}{ \to 6}$.
 \end{itemize}
-    The corresponding X-occurrence of the implicit occurrences $5 \to 2 \to 6$ in $H$ relative to the unique monomorphism from $5 \to 2$ to $3 \to 2$ is the implicit occurrences $3 \to 2 \to 6$ in $G$.
+    The corresponding X-occurrence of the implicit occurrences $\textcolor{red}{5 \to }2\textcolor{blue}{ \to 6}$ in $H$ relative to the unique monomorphism from $\textcolor{red}{5 \to }2$ to $\textcolor{orange}{3 \to }2$ is the implicit occurrences $\textcolor{orange}{3 \to }2\textcolor{blue}{ \to 6}$ in $G$.
 \end{example}

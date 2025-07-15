@@ -1,8 +1,8 @@
 While the type graph method~\cite{bruggink2014termination, bruggink2015proving,endrullis2024generalized_arxiv_v2} can prove termination for this example, it requires constructing an appropriate weighted type graph, a task that is difficult in general~\cite[\textsection 6]{bruggink2015proving}. 
 In contrast, our criterion only requires checking simpler conditions.
 \begin{example}
-    \label{ex:termination:grsaa}
-    Consider the rewriting rule $\rho$ in~\autoref{ex:grsaa_rx}, let $X$ be the graph \tikz[baseline=-0.5ex]{
+    \label{subgraph_counting:ex:termination:grsaa}
+    Consider the rewriting rule $\rho$ in~\autoref{subgraph_counting:ex:grsaa_rx}, let $X$ be the graph \tikz[baseline=-0.5ex]{
         \node (x) at (0,0) {$\bullet$};
         \node (y) at (1,0) {$\bullet$ }; 
         \node (z) at (2,0) { $\bullet$};
@@ -10,11 +10,11 @@ In contrast, our criterion only requires checking simpler conditions.
         \draw[<-] (z) -- (y) node[midway, above] {$a$};
     }, $\mathbb{X} = \{X\}$ and $s_\mathbb{X}(X) = 1$. The rule is $X$-non-increasing as shown in~\autoref{example:grs_aa:has_more_left}. 
     Since \(w_{s_\mathbb{X}}(\operatorname{lhs}(\rho)) = 1 > 0 = w_{s_\mathbb{X}}(\operatorname{rhs}(\rho)) \),
-    it terminates by~\autoref{thm:termination_grs}.
+    it terminates by~\autoref{subgraph_counting:thm:termination_grs}.
 \end{example}
 We consider an example for which the techniques from \cite{bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,plump2018modular,overbeek2024termination_lmcs} fail.
 \begin{example} 
-    \label{ex_contrib_variant}
+    \label{subgraph_counting:ex_contrib_variant}
     The rewriting rule below is a variant of a rule presented in \cite[Example 6]{plump2018modular}, obtained by removing all edges in the interface:
      
     % \begin{figure}[hbt] 
@@ -98,10 +98,11 @@ We consider an example for which the techniques from \cite{bruggink2014terminati
             \draw[->] (x) -- (y) node[midway, above] {$s$};
         }}}. 
         Each \( R'_i \) admits a unique monomorphism \( h_{R'_i L} \colon R'_i \rightarrowtail L \) preserving interface elements. 
-        Therefore, the rule is $X$-non-increasing under $h_{R'_1L}$ and $h_{R'_2L}$. This is because all conditions in~\autoref{def:creates_more_x_on_the_left} are satisfied.
+        Therefore, the rule is $X$-non-increasing under $h_{R'_1L}$ and $h_{R'_2L}$. This is because all conditions in~\autoref{subgraph_counting:def:creates_more_x_on_the_left} are satisfied.
         Since \(w_{s_\mathbb{X}}(L) = 1 > 0 = w_{s_\mathbb{X}}(R)\).
-        It follows that the system terminates by~\autoref{thm:termination_grs}.
+        It follows that the system terminates by~\autoref{subgraph_counting:thm:termination_grs}.
 \end{example}
+
 The following example demonstrates the usefulness of a weight function that assigns distinct weight to measurements from different ruler-graphs.
 \begin{example} 
     \label{ex:overbeek_5d6}
@@ -122,18 +123,18 @@ The following example demonstrates the usefulness of a weight function that assi
         \node (x) at (0,0) {$\bullet$};
         \draw[->] (x) edge [loop right] node {b} (x);
     } and $\mathbb{X} = \{X, Y\}$.
-    The sets $D(R_\rho, X)$, $D(R_\rho, Y)$, $D(R_\tau, X)$ and $D(R_\tau, Y)$ are all empty. Therefore, both rules $\rho$ and $\tau$ are $X$- and $Y$-non-increasing as all conditions in~\autoref{def:creates_more_x_on_the_left} are met.
+    The sets $D(R_\rho, X)$, $D(R_\rho, Y)$, $D(R_\tau, X)$ and $D(R_\tau, Y)$ are all empty. Therefore, both rules $\rho$ and $\tau$ are $X$- and $Y$-non-increasing as all conditions in~\autoref{subgraph_counting:def:creates_more_x_on_the_left} are met.
     
     For $s_\mathbb{X}(X) = 5$ and $s_\mathbb{X}(Y) = 3$, we have $
     w_{s_\mathbb{X}}(L_\rho) = 10 > 9 = w_{s_\mathbb{X}}(R_\rho)
     $ and $
     w_{s_\mathbb{X}}(L_\tau) = 6 > 5 = w_{s_\mathbb{X}}(R_\tau)$.
-    Therefore, the system terminates by~\autoref{thm:termination_grs}.
+    Therefore, the system terminates by~\autoref{subgraph_counting:thm:termination_grs}.
 
   However, for $s_\mathbb{X}'(X) = 1$ and $s_\mathbb{X}'(Y) = 1$, we have
     \(
         w_{s_\mathbb{X}'}(L_\rho) = 2 \not > 3 = w_{s_\mathbb{X}'}(R_\rho)
-    \) which prevents us from applying~\autoref{thm:termination_grs} to prove termination of the rewriting system.
+    \) which prevents us from applying~\autoref{subgraph_counting:thm:termination_grs} to prove termination of the rewriting system.
     
 \end{example}
 
@@ -261,7 +262,7 @@ The following example demonstrates the usefulness of a weight function that assi
       }}
   in $D(X, R)$. 
    Since $w_{s_\mathbb{X}}(L) = 1 > 0 = w_{s_\mathbb{X}}(R)
-      $, the rule terminates by~\autoref{thm:termination_grs}.
+      $, the rule terminates by~\autoref{subgraph_counting:thm:termination_grs}.
 \end{example}
 
 
@@ -520,8 +521,8 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
       \node (y) at (1,0) {$\bullet$ };
       \draw[->] (x) -- (y) node[midway, above] {$c$};
   }. We have $D(R_\tau,Y) = \emptyset$. Therefore, $\tau$ is $Y$-non-increasing. Moreover, we have $|\operatorname{Mono}(Y,L)| = 1 > 0 = |\operatorname{Mono}(Y,R)|$.
-  Thus, this rewriting systems terminates by~\autoref{thm:termination_grs}.
-\end{example}
+  Thus, this rewriting systems terminates by~\autoref{subgraph_counting:thm:termination_grs}.
+\end{example} 
 
 
 \begin{example}
@@ -573,7 +574,7 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
       \node (x) at (0,0) {$\bullet$};
       \node (y) at (1,0) {$\bullet$};
       \draw[->] (x) to (y);
-  }. Both rules are $X$-non-increasing, and $|\operatorname{Mono}(X,L)| = 1 > 0 = |\operatorname{Mono}(X,R)|$ holds for both rules. Thus, this rewriting system terminates by~\autoref{thm:termination_grs}.
+  }. Both rules are $X$-non-increasing, and $|\operatorname{Mono}(X,L)| = 1 > 0 = |\operatorname{Mono}(X,R)|$ holds for both rules. Thus, this rewriting system terminates by~\autoref{subgraph_counting:thm:termination_grs}.
 \end{example}
 
 \begin{example} 
@@ -598,7 +599,7 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
        }    
  \end{tikzpicture}  
 
- Our method can prove its termination with the ruler-graph  \tikz[baseline=-0.5ex]{
+ Our method can prove its termination with the ruler-graph \tikz[baseline=-0.5ex]{
   \node (x) at (0,0) {$\bullet$};
   \draw[->] (x) edge[loop above] node  {} (x);
 } of weight $1$.
@@ -646,7 +647,7 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
 \end{center}
 \noindent
 \begin{minipage}{0.7\textwidth}
-  To prove its termination with our method, a ruler-graph $X$ containing an edge labeled by $f$ must be used, because the number of occurrences of every graph containing only edges labeled by $a$ and $b$ does not change by any rewriting step using $\rho$. But in this case, condition~\eqref{def:non_increasing_rule_img_edges_distinct} of~\autoref{def:creates_more_x_on_the_left} cannot be satisfied.
+  To prove its termination with our method, a ruler-graph $X$ containing an edge labeled by $f$ must be used, because the number of occurrences of every graph containing only edges labeled by $a$ and $b$ does not change by any rewriting step using $\rho$. But in this case, condition~\eqref{def:non_increasing_rule_img_edges_distinct} of~\autoref{subgraph_counting:def:creates_more_x_on_the_left} cannot be satisfied.
 \end{minipage}
 \begin{minipage}{0.3\textwidth}
   \hfill
@@ -670,7 +671,7 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
 \end{example}
 
 \begin{example}[Limitation]
-    \label{rem:d3_limitation}  
+    \label{ex:endrullis:d3:limitation}  
     Our method fails to prove termination for the rewriting rule in \cite[Example D.3]{endrullis2024generalized_arxiv_v2}.
     % because our approach cannot take into account antipatterns(see~\cite[Remark 6.2]{overbeek2024termination_lmcs}).
     This occurs because, for any system $\mathcal{R}$, rewriting step $G \Rightarrow_{\mathcal{R},\mathfrak{M}} H$, set of ruler-graphs $\mathbb{X}$, and weight function $s_\mathbb{X}$, we have $w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H)$ because there exists an injective graph homomorphism from $G$ to $H$.
@@ -696,6 +697,7 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
   \end{example} 
 
 \begin{example}[Limitation]
+    \label{ex:overbeek:5d2:limitation}
     Consider a rewriting rule given by Overbeek and Endrullis in~\cite[Example 5.2]{overbeek2024termination_lmcs} depicted in the bottom span of the following diagram
 
     \begin{tikzpicture}
@@ -719,7 +721,7 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
 \end{example}
  
 \begin{example}[Limitation]
-  \label{ex:overbeek_5d6_bis} 
+  \label{ex:overbeek:5d6_bis:limitation} 
   Consider the DPO rewriting system with monic matches presented in~\cite[Example 5.6]{overbeek2024termination_lmcs} with $\rho$ replaced by $\rho'$ as depicted by the span 
   \begin{center}
     $\rho' = $\scalebox{0.9} { \input{subgraph_counting/tikz/OE_ex5d6_rho_bis.tex}}

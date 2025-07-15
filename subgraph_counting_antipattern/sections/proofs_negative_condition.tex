@@ -1,5 +1,5 @@
 \begin{lemma}
-    \label{lem:leq_gamma_mono_x_l}
+    \label{antipattern:lem:leq_gamma_mono_x_l}
         $  \{
              h_{XL} \in \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
              \exists h_{FG}. h_{XL} \star m = h_{XF} \star h_{FG}
@@ -9,12 +9,12 @@
             $ 
 \end{lemma}
 \begin{proof}
-    By~\autoref{def:gamma_l_rho_x} of $\Gamma$.
+    By~\autoref{antipattern:def:gamma_l_rho_x} of $\Gamma$.
 \end{proof}
 
-\todo{what assumption does \autoref{lem:xgm_xhmp_xl_xr} need?}
+\todo{what assumption does \autoref{antipattern:lem:xgm_xhmp_xl_xr} need?}
 \noindent
-\begin*{\textbf{\autoref{lem:xgm_xhmp_xl_xr}}}
+\begin*{\textbf{\autoref{antipattern:lem:xgm_xhmp_xl_xr}}}
     \newline
     \noindent
 \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
@@ -54,7 +54,7 @@ We have
 \end*{}
 
 \begin{proof}
-    \label{proof:lem:xgm_xhmp_xl_xr}
+    \label{antipattern:proof:lem:xgm_xhmp_xl_xr}
     There are two cases to consider: either $\mathcal{X}=(X)$ or $\mathcal{X}=(X,f:X \rightarrowtail F)$. For the first case, the inequality is equivalent to the following:
     \begin{flalign*}
         \card{\operatorname{Mono}(\mathcal{X},G,m)} - 
@@ -136,7 +136,7 @@ We have
         \Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})
         }      
     %   )  
-        \text{\hspace{1cm}by~\autoref{lem:leq_gamma_mono_x_l}}
+        \text{\hspace{1cm}by~\autoref{antipattern:lem:leq_gamma_mono_x_l}}
       \\
       \mathop{=}& 
       \card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
@@ -149,7 +149,7 @@ We have
 \end{proof}
 
 \begin{lemma}
-    \label{lem:xh_decomp}
+    \label{antipattern:lem:xh_decomp}
      Consider the following pushout diagram in the category \textbf{Graph}:
      \begin{center}
         \begin{tikzpicture}
@@ -256,9 +256,9 @@ We have
             h_{K'C'} \star h_{C'C} \star h_{CH} =h_{K'R'} \star h_{R'R} \star h_{R'R}
         \), there exists a unique morphism$h_{K'K}:K' \rightarrowtail K$ such that 
         \begin{flalign}
-            h_{K'C'} \star h_{C'C} &= h_{K'K} \star h_{KC} \label{kpcpcpckpkkc}
+            h_{K'C'} \star h_{C'C} &= h_{K'K} \star h_{KC} \label{antipattern:kpcpcpckpkkc}
             \\
-            h_{K'R'} \star h_{R'R} &= h_{K'K} \star h_{KR} \label{kprprprkpk}
+            h_{K'R'} \star h_{R'R} &= h_{K'K} \star h_{KR} \label{antipattern:kprprprkpk}
         \end{flalign} 
         
         The square $K'KCC'$ and $K'R'RK$ are pullbacks, by~\autoref{kpcpck_pullback}. Hence, the following commutative diagram holds
@@ -321,6 +321,7 @@ We have
 \begin*{\textbf{\autoref{lem:xglnotmlp_xhlnotmrp}}}
     \newline
     \noindent
+    \vspace{2mm}
     \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
         Let $\mathcal{X}$ be a ruler-graph with underlying graph $X$ and \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. 
         % Suppose that the number of $X$-occurrences not included in any occurrences of forbidden context $F \in F_x$ in a $\rho$-rewriting step is predictable. 
@@ -354,7 +355,7 @@ We have
         \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{NF}}}$$
 \end*{}
 \begin{proof}
-    \label{proof:lem:xglnotmlp_xhlnotmrp}
+    \label{antipattern:proof:lem:xglnotmlp_xhlnotmrp}
     There are two cases to consider: either $\mathcal{X} = (X)$ or $\mathcal{X} = (X, f:X \rightarrowtail F)$. 
     
     In the first case, the inequality is equivalent to $
@@ -376,7 +377,7 @@ We have
             = & (\card{\operatorname{Mono}(X,C,\lnot u)} - \card{\operatorname{Mono}(X,C,\lnot u)}) + 
             (\card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{F}}} - \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}})
             \\
-            &\text{By~\autoref{lem:decomp_w_u}}
+            &\text{By~\autoref{subgraph_counting:lem:decomp_w_u}}
             \\
             = & \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{F}}} - \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}}
         \end{flalign*}
@@ -445,7 +446,7 @@ We have
 
     By the universal property of pullback, there exists a unique morphism $h_{XK}:X \rightarrowtail K$, which is injective because $h_{XR}$ is injective, such that $h_{XK} \star r = h_{XR}$ and 
     \begin{flalign}
-        h_{XK} \star u = h_{XC} \label{eq:hxk_u}
+        h_{XK} \star u = h_{XC} \label{antipattern:eq:hxk_u}
     \end{flalign} Therefore, the following commutative diagram holds:
 
      \begin{tikzpicture}
@@ -480,7 +481,7 @@ We have
    
     Thus, we have \begin{flalign*}
         h_{XG} &= h_{XC} \star h_{CG} \\
-        &= h_{XK} \star u \star h_{CG} &\text{by~\eqref{eq:hxk_u}}\\
+        &= h_{XK} \star u \star h_{CG} &\text{by Equation~\ref{antipattern:eq:hxk_u}}\\
         &= h_{XK} \star h_{KL} \star m
     \end{flalign*}
     Which is a contradiction because $h_{XG}$ is an element of $\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}$ and, by definition, cannot be factorized by $m$. Thus, $\phi(h_{XG})$ cannot be factorized by $m'$.
@@ -552,7 +553,7 @@ We have
 
     \item Case 3 : there does not exist $h_{FL}: F \rightarrow L$ such that $h_{FG} = h_{FL} \star m$,
     and there does not exist $h_{FC}:F \rightarrow C$ such that $h_{FG} = h_{FC} \star l'$.
-     By~\autoref{lem:xh_decomp}, we can construct the following commutative diagram:
+     By~\autoref{antipattern:lem:xh_decomp}, we can construct the following commutative diagram:
 
     \begin{center}
         \resizebox{0.3\textwidth}{!}{
@@ -674,6 +675,7 @@ We have
 \begin*{\textbf{\autoref{lem:xglnotmlnotlp_xhlnotmrnotrp}}}
     \newline
     \noindent
+    \vspace{2mm}
     \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
         Let $\mathcal{X}$ be a ruler-graph with underlying graph $X$ and \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. Suppose that $\rho$ and $\rho^{-1}$ are $X$-non-increasing.
         Consider the DPO diagram illustrated on the right. We have 
@@ -705,15 +707,15 @@ We have
     $$
 \end*{}
 \begin{proof} 
-      \label{proof:lem:xglnotmlnotlp_xhlnotmrnotrp}
+      \label{antipattern:proof:lem:xglnotmlnotlp_xhlnotmrnotrp}
     There are two cases to consider: the ruler-graph is $(X)$ or $(X,f:X \rightarrowtail F)$. For the first case, the inequality is equivalent to 
  $
         \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')} \geq
         \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')}
     $
-    , and the result follows from~\autoref{lem:w_u_l_not_geq_r_not}. 
+    , and the result follows from~\autoref{subgraph_counting:lem:w_u_l_not_geq_r_not}. 
     Let us now consider the second case.
-     \todo{assumption for~\autoref{lem:w_u_l_not_geq_r_not}: $\rho$ is $X$-non-increasing} The following holds:
+     \todo{assumption for~\autoref{subgraph_counting:lem:w_u_l_not_geq_r_not}: $\rho$ is $X$-non-increasing} The following holds:
     \begin{flalign*}
         & \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{NF}}} - 
         \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')_{\operatorname{NF}}} 
@@ -733,7 +735,7 @@ We have
             - 
             \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}}}
         \\
-        & \text{by~\autoref{lem:w_u_l_not_geq_r_not}}
+        & \text{by~\autoref{subgraph_counting:lem:w_u_l_not_geq_r_not}}
     \end{flalign*}    
 
     % We prove this lemma by show that the function $\phi: \operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}} \rightarrowtail \operatorname{Mono}(X,H,\lnot r', \lnot r')_{\operatorname{NF}}$
@@ -744,9 +746,9 @@ We have
 
     Let $h_{XG} \in \operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}}$. By definition, the following holds:
     \begin{flalign}
-        h_{XG} = f \star h_{FG} \label{eq:xxxhxg}
+        h_{XG} = f \star h_{FG} \label{antipattern:eq:xxxhxg}
     \end{flalign}
-    By~\autoref{lem:xh_decomp}, we can construct the following commutative diagram:
+    By~\autoref{antipattern:lem:xh_decomp}, we can construct the following commutative diagram:
 
     \begin{center}
         \resizebox{0.3\textwidth}{!}{
@@ -1011,7 +1013,7 @@ We have
     \begin{flalign*}
         h_{L'L} \star m &= h_{L'X} \star h_{XG} \\
                         &= h_{L'X} \star h_{XF} \star h_{FG}
-                        &\text{by~\eqref{eq:xxxhxg}}
+                        &\text{by Equation~\eqref{antipattern:eq:xxxhxg}}
     \end{flalign*} 
     Analogously, there exist $h_{C'C''}:C' \rightarrowtail C''$ such that $h_{C'C} = h_{C'C''} \star h_{C''C}$ 
     and $h_{K'K''}:K' \rightarrowtail K''$ such that $h_{K'K} = h_{K'K''} \star h_{K''K}$.
@@ -1098,7 +1100,6 @@ We have
             \\ = & h_{L'L''} \star (h_{L''R} \star h_{RH})
         \end{flalign*}
         This concludes our proof.
-        \qed
 \end{proof}
 
 
@@ -1322,21 +1323,21 @@ We have
 
 
 \noindent
-\begin*{\textbf{\autoref{thm:termination_grs}}}(Termination)
+\begin*{\textbf{\autoref{antipattern:thm:termination_grs}}}(Termination)
 
 Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules, $\mathbb{X}$ a set of ruler-graphs and $s_\mathbb{X}$ a weight function. If the following hold:
 \begin{enumerate}
-    \item\label{thm:termination_grs:assump:1}  for every $\rho \in \mathcal{A} \cup \mathcal{B}$ and for every \( \mathcal{X} \in \mathbb{X} \) with underlying graph $X$, 
+    \item\label{antipattern:thm:termination_grs:assump:1}  for every $\rho \in \mathcal{A} \cup \mathcal{B}$ and for every \( \mathcal{X} \in \mathbb{X} \) with underlying graph $X$, 
         % the number of $X$-occurrences that are not included in any occurrences of the forbidden context $F \in F_x$ in a $\rho$-rewriting step is predictable,
         $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f:X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing,
         % $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X}= (X,f:X \rightarrowtail F)$ and, $\rho$ and $\rho^{-1}$ are $X$-non-increasing
-    \item\label{thm:termination_grs:assump:2}  for every \(\rho \in \mathcal{A}\), 
+    \item\label{antipattern:thm:termination_grs:assump:2}  for every \(\rho \in \mathcal{A}\), 
     % \( w_{s_\mathbb{X}}(lhs(\rho)) > w_{s_\mathbb{X}}(rhs(\rho)) \),
     \( \sum_{\mathcal{X} \in \mathbb{X}}^{}s_\mathbb{X}(X) * \left( 
         \card{\operatorname{Mono}(X,L)} -
         \card{\operatorname{Mono}(X,R)}
         \right) > 0 \),
-    \item\label{thm:termination_grs:assump:3}  for every \(\rho \in \mathcal{B}\),  
+    \item\label{antipattern:thm:termination_grs:assump:3}  for every \(\rho \in \mathcal{B}\),  
     % \( w_{s_\mathbb{X}}(lhs(\rho)) \geq w_{s_\mathbb{X}}(rhs(\rho)) \).
     \( \sum_{\mathcal{X} \in \mathbb{X}}^{}s_\mathbb{X}(X) * \left( 
         \card{\operatorname{Mono}(X,L)} -
@@ -1365,10 +1366,10 @@ Then \(\Rightarrow_{\mathcal{A},\mathcal{M}}\) is terminating relative to \(\Rig
 %     \end{enumerate}
 %     Then \(\Rightarrow_{\mathcal{A},\mathcal{M}}\) is terminating relative to \(\Rightarrow_{\mathcal{B},\mathcal{M}}\).
 
-\begin{proof}
-    \label{proof:thm:termination_grs}
+\begin{proof} 
+    \label{antipattern:proof:thm:termination_grs}
     
-    By assumption~\eqref{thm:termination_grs:assump:1} and ~\autoref{lem:w_g_geq_w_h_leq}, the inequality \(
+    By Assumption~\eqref{antipattern:thm:termination_grs:assump:1} and~\autoref{antipattern:lem:w_g_geq_w_h_leq}, the inequality \(
         w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H) 
         \geq 
         \sum_{\mathcal{X} \in \mathbb{X}}^{}s_\mathbb{X}(X) * \left( 
@@ -1377,7 +1378,7 @@ Then \(\Rightarrow_{\mathcal{A},\mathcal{M}}\) is terminating relative to \(\Rig
             \right)
     \) holds for all rewriting steps $G \Rightarrow_{\rho, \mathcal{M}} H$  with $\rho \in \mathcal{A} \cup \mathcal{B}$.
     
-    \noindent From assumptions~\eqref{thm:termination_grs:assump:2} and~\eqref{thm:termination_grs:assump:3}, we deduce 
+    \noindent From Assumption~\eqref{antipattern:thm:termination_grs:assump:2} and Assumption~\eqref{antipattern:thm:termination_grs:assump:3}, we deduce 
     \begin{itemize}
         \item \( w_{s_\mathbb{X}}(G) > w_{s_\mathbb{X}}(H) \) for every rule \(\rho \in \mathcal{A}\);
         \item  \( w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H) \) for every rule \(\rho \in \mathcal{B}\).

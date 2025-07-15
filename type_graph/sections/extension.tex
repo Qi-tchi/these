@@ -4,8 +4,8 @@
 \input{type_graph/sections/strongly_monotonic_measurable_semiring.tex}
 \subsection{Measuring objects by counting morphisms}
 \begin{example}
-    \label{example:weighted_type_graph}
-     In \textbf{Graph}, the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ with $\mathcal{S}$ as the real arithmetic semiring $(\mathbb{R}^+, +, *, 0_\mathbb{R}, 1_\mathbb{R}, <, \operatorname{id}_{\mathbb{R}^+})$,
+    \label{nwf:example:weighted_type_graph}
+     In \textbf{Graph}, the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ where $\mathcal{S}$ is the real arithmetic semiring $(\mathbb{R}^+, +, *, 0_\mathbb{R}, 1_\mathbb{R}, <, \operatorname{id}_{\mathbb{R}^+})$,
      $T$ as the graph illustrated below (without superscripts), $\mathbb{E}=\{e_{11a},e_{12a},e_{21a},e_{11b}\}$ as the set of morphism-rulers where 
      $e_{uvl}$ has domain 
      \tikz[baseline=-0.5ex]{
@@ -34,7 +34,7 @@
 \end{example}
 
 \begin{example}
-    Consider the following morphisms and the weighted type graph $\mathcal{T}$ from \autoref{example:weighted_type_graph}:
+    Consider the following morphisms and the weighted type graph $\mathcal{T}$ from \autoref{nwf:example:weighted_type_graph}:
     \begin{center}
         \resizebox{0.49\textwidth}{!}{
         \begin{tikzpicture}
@@ -99,7 +99,7 @@ Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting r
 
 The following proposition ensures that every morphism to a type graph $(T,S,\mathbb{E}, w)$ has a weight different from $0_S$ and greater than or equal to $1_S$.
 %  then the weight of a morphism to a type graph is greater than $1_S$ too. 
-This lemma will be used in \autoref{thm:termination_grs}.
+This will be used in \autoref{nwf:thm:termination_grs}.
 \begin{proposition}  
     \label{prop_endrullis_2d7}
     Let $(S, \oplus, \odot, 0_S, 1_S, \prec, \mu)$ be a strongly monotonic measurable semiring. We have for all $x,y\in S$:
@@ -131,7 +131,7 @@ This lemma will be used in \autoref{thm:termination_grs}.
              0_S &= a \odot 0_S & \text{$0_S$ is annihilator for $\odot$}\\
                  &= a \odot (x \odot y) &\text{by assumption on $x \odot y$}\\ 
                  &= a \odot x \odot y &\text{by associativity} \\
-                 &\prec b \odot x \odot y &\text{by \eqref{ax:s4} and $x,y\neq 0_S$}\\
+                 &\prec b \odot x \odot y &\text{by Axiom~\eqref{ax:s4} and $x,y\neq 0_S$}\\
                  &= b \odot (x \odot y)  &\text{by associativity}  \\
                  &= b \odot 0_S &\text{by assumption on $x \odot y$} \\
                  &= 0_S
@@ -147,12 +147,12 @@ This lemma will be used in \autoref{thm:termination_grs}.
           \end{flalign*}
           If $1_S \prec x$ then $
         %   1_S \preceq y = 
-          1_S \odot y \prec x \odot y$ by \eqref{ax:s4} since $y \neq 0$ by assumption.
+          1_S \odot y \prec x \odot y$ by Axiom~\eqref{ax:s4} since $y \neq 0$ by assumption.
         \item \ref*{eq:prop_neq0_plus_neq0}:  
-        By \eqref{ax:s4}, we have $a \odot x \prec b \odot x$ and $a\odot y \prec b \odot y $. 
+        By Axiom~\eqref{ax:s4}, we have $a \odot x \prec b \odot x$ and $a\odot y \prec b \odot y $. 
         \begin{flalign*}
             a \odot \left(x  \oplus y \right) &= \left( a \odot x \right)  \oplus \big(a \odot y \big)  & \text{by distributivity}\\
-            & \prec \left(b \odot x \right)   \oplus \left( b \odot y \right)  & \text{by \eqref{ax:s2}\newline}\\
+            & \prec \left(b \odot x \right)   \oplus \left( b \odot y \right)  & \text{by Axiom~\eqref{ax:s2}}\\
             & = b \odot \left(x  \oplus y \right) & \text{by distributivity}
         \end{flalign*} 
         if $x  \oplus y = 0_S$ then we have $0_S = a \odot 0_S = a \odot \left(x  \oplus y\right) \prec b \odot \left(x  \oplus y\right) = b \odot 0_S = 0_S$ which contradicts the irreflexivity of $\prec$. 
@@ -282,10 +282,10 @@ $\bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
 
 
 \subsection{Termination Criterion}
-\label{sec:nwf:proving_termination}
+\label{nwf:sec:proving_termination}
 Finally, we formulate a termination criterion leveraging type graphs weighted over non-well-founded semirings. 
 \begin{theorem}[Termination of DPO rewriting system] 
-    \label{thm:termination_grs}
+    \label{nwf:thm:termination_grs}
     Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules, $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ a finitary weighted type graph and $\mathfrak{F}$ a DPO rewriting framework such that
 
      \begin{enumerate}[label=\roman*)]
@@ -313,10 +313,10 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
 % \end{proof}
 
 \begin{proof} 
-    \label{proof_termination_grs}
+    \label{nwf:proof_termination_grs}
     From the definition of weighted type graph, we have 
     $$\text{for all}~e\in\mathbb{E}, w(e) \neq 0_S$$ 
-    From ssumption \eqref{thm1:hyp3}, we have 
+    From Asumption~\ref{thm1:hyp3}, we have 
     $$\text{for all}~e\in\mathbb{E},1_S \preceq w(e)$$
     Therefore, we have 
     \begin{flalign}
@@ -334,7 +334,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
             \right)
             \right )\\
     \end{flalign*} 
-    By \autoref{thm_eq_we_neq0_geq1}, \autoref{prop_endrullis_2d7}, {def:bigodot} and $1_S \neq 0_S$, for every $h \in \operatorname{Hom}(G,T)$, we have
+    By Equation~\eqref{thm_eq_we_neq0_geq1},~\autoref{prop_endrullis_2d7},~\autoref{def:bigodot} and $1_S \neq 0_S$, for every $h \in \operatorname{Hom}(G,T)$, we have
     \begin{flalign}
         1_S \preceq 
         \underset{e \in \mathbb{E}}{\bigodot} 
@@ -343,20 +343,20 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
                 \right) 
         \neq 0_S
     \end{flalign}
-    Since $G$ be a graph admitting a match of a DPO rewriting rule, by \autoref{prop_endrullis_2d7} and \eqref{ax:s0}, we have $$1_S \preceq w_\mathcal{T}(G) \neq 0_S$$
+    Since $G$ be a graph admitting a match of a DPO rewriting rule, by~\autoref{prop_endrullis_2d7} and~\autoref{def:real_strongly_monotonic_semiring}\eqref{ax:s0}, we have $$1_S \preceq w_\mathcal{T}(G) \neq 0_S$$
     % By \autoref{prop_endrullis_2d7} and \eqref{ax:s0}, we have 
     % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \Rightarrow_\mathcal{R} H) \rightarrow (1_S \preceq w_\mathcal{T}(G) \neq 0_S)$$
-    By Assumption \eqref{thm1:hyp4}, we have 
+    By Assumption~\ref{thm1:hyp4}, we have 
     % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \Rightarrow_\mathcal{R} H) \rightarrow (\mu(w_\mathcal{T}(G)) \geq \mu(1_S))$$
       $$\mu(w_\mathcal{T}(G)) \geq \mu(1_S)$$
  
     % Let $G \in \mathcal{C}_0$ be an object. By Assumption \ref{thm1:hyp4}, we have $\mu(w_\mathcal{T}(G)) \in \mathbb{R}$ and $\mu(w_\mathcal{T}(G)) \geq \mu(1_S)$.
 
-    By \autoref{lem:decreasing_step}, every rewriting step with rules in $\mathcal{A}$ strictly decreases the weight by at least $\delta$ and no rewriting step with rules in $\mathcal{B}$ increases the weight.
+    By~\autoref{nwf:lem:decreasing_step}, every rewriting step with rules in $\mathcal{A}$ strictly decreases the weight by at least $\delta$ and no rewriting step with rules in $\mathcal{B}$ increases the weight.
     Consequently, there is no infinite rewriting sequence with an infinite rewriting steps with rules in $\mathcal{A}$ from $G$.
 \end{proof}
 \begin{example}
-    \label{example:termination}
-    Termination of the DPO rule in \autoref{ex:grsaa} can be established using \autoref{thm:termination_grs} together with the weighted type graph in \autoref{example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta = 0.5$ by \autoref{example:decreasing_rule}.
+    \label{nwf:example:termination}
+    Termination of the DPO rule in \autoref{ex:grsaa} can be established using \autoref{nwf:thm:termination_grs} together with the weighted type graph in \autoref{nwf:example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta = 0.5$ by \autoref{nwf:example:decreasing_rule}.
 \end{example}
 
