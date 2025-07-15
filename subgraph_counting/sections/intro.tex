@@ -1,11 +1,43 @@
 
-In this chap, we present an new automated method for relative termination~\cite{geser1990relative} of double-pushout (DPO) graph rewriting systems with injective rules~\cite{corradini1997algebraic,habel2001double,konig2018atutorial}. 
+In this chap, we present an new automated method for relative termination~\cite{geser1990relative} of double-pushout (DPO) graph rewriting systems with injective rules~\cite{corradini1997algebraic,habel2001double,konig2018atutorial}. The method, based on the interpretation method framework~\cite{nipkow1998term}, works as follows. Let \( \mathbb{X} \) denote a fixed set of graphs. We assign weights (natural numbers) to monomorphisms from graphs in \( \mathbb{X} \), and define the weight of a graph $G$ as the sum of the weights of all monomorphisms from graphs in \( \mathbb{X} \) to $G$. 
 
-The method based on the interpretation method framework~\cite{nipkow1998term} works as follows. Let \( \mathbb{X} \) denote a set of graphs. We assign weights (natural numbers) to monomorphisms from graphs in \( \mathbb{X} \), and the weight of a graph $G$ is defined as the sum of the weights of all monomorphisms from graphs in \( \mathbb{X} \) within $G$. Let $\mathcal{A}$ and $\mathcal{B}$ be sets of injective DPO rewriting rules. Our technique requires that, for every graph $X$ in $\mathbb{X}$, and for every rewriting step $G \Rightarrow H$ using a rule from $\mathcal{A}$ or $\mathcal{B}$, there exists an injective mapping from the set of monomorphisms from $X$ in the result graph $H$
-(those neither fully included in the right-hand side graph nor fully included in the context)
- to the set of monomorphisms from $X$ in the host graph $G$ (those neither fully included in the left-hand side graph nor fully included in the context).   
+Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \in \mathbb{X}$ and $G \Rightarrow H$ be a rewriting step defined by the following double-pushouts diagram.
+\begin{center}
+ \resizebox{0.4\textwidth}{!}{
+     \begin{tikzpicture}
+            % [node distance=15mm]
+            \node (I) at (0,0) {$K$};
+            \node (L)  at (-2,0) {$L$};
+            \node (R)  at (2,0) {$R$};
+            \node (G)  at (-2,-2) {$G$};
+            \node (C)  at (0,-2) {$C$};
+            \node (H)  at (2,-2) {$H$};
+            \draw [>->] (I) to  node [midway,below] {$l$} (L);
+            \draw [>->] (I) to  node [midway,below] {$r$} (R);
+            \draw [>->] (L) to node [midway,right] {$m$} (G);
+            \draw [>->] (I) to  node [midway,right] 
+            % {$u$}
+            {} (C);
+            \draw [>->] (R) to  node [midway,right] 
+            {$m'$}
+            (H);
+            \draw [>->] (C) to node [midway,above] {$l'$} (G);
+            \draw [>->] (C) to node [midway,above] 
+            {$r'$} 
+            (H);
+            % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+            % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+        \end{tikzpicture}
+    }
+\end{center}
 
-Suppose the following conditions hold: (i) For every rule in \( \mathcal{A} \), the left-hand side graph's weight is strictly greater than the right-hand side graph's weight; (ii) For every rule in \( \mathcal{B} \), the left-hand side graph's weight is greater than or equal to the right-hand side graph's weight. 
+For a monomorphism from $X$ to $G$, its image falls into exactly one of the following three mutually exclusive cases. First, the image may be fully included in $m(L)$. Second, the image may be fully included in $l'(C)$; Third, the image may be neither fully included in $m(L)$ nor fully included in $l'(C)$. Similary, for a monomorphism from $X$ to $H$, its image falls into exactly one of the following three mutually exclusive cases. First, the image may be fully included in $m'(R)$. Second, the image may be fully included in $r'(C)$; Third, the image may be neither fully included in $m'(R)$ nor fully included in $r'(C)$. The number of monomorphisms from $X$ to $G$ whose image is fully included in $m(L)$ can be precisely calculated, as can the number of monomorphisms from $X$ to $H$ whose image is fully included in $m'(R)$. Moreover, the number of monomorphisms from $X$ to $G$ equals to the that of monomorphisms to $H$. 
+
+To estimate the change in weight when applying a rewriting rule, we focus on 
+the monomorphisms in the third case. Specifically, our technique requires that, for every graph $X$ in $\mathbb{X}$ and every rewriting step $G \Rightarrow H$ using a rule from $\mathcal{A}$ or $\mathcal{B}$, there exists an injective mapping from the set of monomorphisms $x : X \to H$ (where $\opn{Im}(x)$ is neither fully included in the right-hand side graph nor fully included in the context) to the set of monomorphisms from $y : X \to G$ (where $\opn{Im}(y)$ is neither fully included in the left-hand side graph nor fully included in the context). 
+
+Suppose, additionally, that the following conditions hold: (i) For every rule in \( \mathcal{A} \), the left-hand side graph's weight is strictly greater than the right-hand side graph's weight; (ii) For every rule in \( \mathcal{B} \), the left-hand side graph's weight is greater than or equal to the right-hand side graph's weight. 
+
 Under these conditions, rewriting steps using rules in \( \mathcal{A} \) strictly decrease the weights of the host graphs, while rewriting steps using rules in \( \mathcal{B} \) do not increase them.
 Consequently, the rewriting rules in \( \mathcal{A} \) can only be applied finitely many times, since the weight of a finite graph is a natural number and strictly decreases with each rewriting step using a rule in \( \mathcal{A} \), the process must terminate after finitely many iterations.  
  
