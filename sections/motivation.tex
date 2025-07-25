@@ -1,18 +1,22 @@
 
 \paragraph{Distributed algorithms and their correctness}
-Distributed systems play a crucial role in improving performance, 
-scalability, and efficiency in modern computing.
-For example, they control machines that we use on a daily basis such as smartphones, but also critical systems such as medical devices, trains, airplanes, and spaceships. Errors in distributed algorithms can have severe consequences, such as the loss of critical data or even the loss of human life. Ensuring their correctness is vital but challenging due to the inherent complexity of these systems~\cite{heiser2010theroad, lamport2019thebyzantine}. While interactive theorem proving~\cite{harrison2014history} offers a promising approach to formally verifying properties of distributed systems~\cite{plump2024formalisingDPO,potop2019formal,courtieu2016certified},  
-it requires proficiency in proof assistants and can be
-time-consuming.
+Distributed systems play a crucial role in modern computing.
+For example, they control machines that we use on a daily basis such as smartphones, but also critical systems such as medical devices, trains, airplanes, and spaceships. Errors in distributed algorithms can have severe consequences, such as the loss of critical data or even the loss of human life. Ensuring their correctness is vital but challenging due to the inherent complexity of these systems~\cite{heiser2010theroad, lamport2019thebyzantine}. 
+
+% While interactive theorem proving~\cite{harrison2014history}\textemdash a method where humans guide specialized softwares, called proof assistants, to construct formal mathematical proofs step-by-step\textemdash offers a promising approach to formally verifying properties of distributed systems~\cite{plump2024formalisingDPO,potop2019formal,courtieu2016certified},  
+% it requires proficiency in proof assistants and can be
+% time-consuming.
+
+Interactive theorem proving (ITP) offers a rigorous approach to address these challenges. In ITP, humans collaborate with proof assistants~\cite{nipkow2002isabelle, bertot2004coq, moura2021lean4}—specialized software tools—to construct formal mathematical proofs step-by-step~\cite{harrison2014history}.
+This method has shown promise for verifying critical properties of distributed systems~\cite{plump2024formalisingDPO,potop2019formal,courtieu2016certified}, but it demands expertise in proof assistants and can be labor-intensive.
 
 \paragraph{Automated methods for verifying distributed algorithms}
  Automated methods that check specific properties of distributed algorithms and can generate certificates that can be checked by proof assistants provide a practical alternative~\cite{contejean2011automated,giesl2014proving}. While they can only be applied to specific properties for some classes of distributed algorithms, they can be used by users who are not experts in formal methods, and they can also speed up the verification process for experts. To develop such automated methods, distributed algorithms need to be modeled in a formal way enabling rigorous analysis and automated verification of their properties.
 
 
  \paragraph{Graph transformation}
- Graph transformation provides an intuitive yet formal way to model distributed systems: computation units are represented by nodes; communication canals are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computation units and states of communication canals; state changes of the system are modeled by replacing subgraphs in the graph by other subgraphs according to transformation rules.
-
+ Rule based graph transformation provides an intuitive yet formal way to model distributed systems: computation units are represented by nodes; communication canals are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computation units and states of communication canals; state changes of the system are modeled by replacing subgraphs in the graph by other subgraphs according to transformation rules. Graph transformation has many applications~\cite{ehrig1999handbook2, ehrig2006fundamentals}, such as geometric modeling~\cite{pascale2022Geometric_modeling}, DNA computing~\cite{harju2004tutorial_dna_computation}, and software engineers~\cite{heckel2020software_engineers}.
+ 
  A predominant school of thought in this area is called algebraic graph rewriting which uses concepts from category theory to define the transformation of graphs. The language of category theory abstract away from the details of the different notions of graphs, provided that the notion of graph satisfies some properties~\cite{lack2004adhesive,overbeek2023graph}. 
  In fact, different notions of graphs have been proposed in the literature for different applications, such as edge-labeled multigraphs~\cite{konig2018atutorial,corradini1997algebraic}, hypergraphs~\cite{plump1993hypergraph}, attributed graphs~\cite{ehrig2006fundamentals}, etc. Another advantage is that transformation is defined up to isomorphism, which leads to a more elegant definition of graph transformation.
 
