@@ -4,17 +4,13 @@
 % combination of these measures.
 % \todo{explain the difference the concept of ruler-graph presented in this paper and the one in the paper of \cite{qiu2025termination_icgt}.}
 
-We use a definition of ruler-graph more general than the one in Chapter~\ref{chap:subgraph_counting}.
+We use a definition of ruler-graph slightly more general than the one in Chapter~\ref{chap:subgraph_counting}.
 
 \begin{definition}[Ruler-graph]
     \label{antipattern:def:ruler_graph}
     A \textbf{ruler-graph} is either $(X)$ or \( (X, f) \) where $X$ is a graph, called \textbf{underlying graph}, and $f$ is a graph monomorphism with $\operatorname{dom}(f) = X$, called the \textbf{forbidden context}.
 \end{definition}
-For $\mathcal{X} = (X, f:X \rightarrowtail F)$, we will also called $F$ the forbidden context.
-
-% \begin{notation}
-%     $\operatorname{MonoNF}((X,F_X), G) = $
-% \end{notation}
+For $\mathcal{X} = (X, f:X \rightarrowtail F)$, we will also called $F$ the forbidden context. The definition of measurement need some modifications to take into consideration the forbidden context. When the ruler-graph is just $(X)$, the measurement is the same as the one defined~\autoref{subgraph_counting:def:measurement} in Chapter~\ref{chap:subgraph_counting}. When it is $(X, f:X \rightarrowtail F)$, we exclude those monomorphisms whose images overlap with the forbidden context. These excluded monomorphisms are those that can be extended to a morphism $g: F \rightarrowtail G$. This leads us to the following slightly more general definition of measurement.
 \begin{definition}[Measurement]
     \label{antipattern:def:measurement}
     Let \( \mathcal{X}\) be a ruler-graph and \( G \) a graph. The \textbf{measurement} of \( G \) with respect to \( \mathcal{X}\), denoted \( m_\mathcal{X}(G) \), is defined as 
@@ -26,17 +22,4 @@ For $\mathcal{X} = (X, f:X \rightarrowtail F)$, we will also called $F$ the forb
         \end{cases}
     \]
 \end{definition}
-The novelty over Chapter~\ref{chap:subgraph_counting} is that, for a given ruler-graph, the occurrences of the underlying graph that overlap with its forbidden context are excluded. The definitions of weight function and graph weights do not change.
-% \begin{definition}[Weight function]
-%     \label{def:weight_function}
-%     A \textbf{weight function} for a set of ruler-graphs \( \mathbb{X} \) is a map \( s_{\mathbb{X}} \colon \mathbb{X} \to \mathbb{N} \).
-%     %  assigning a weight in $\mathbb{N}$ to each ruler-graph.
-% \end{definition}
-% \begin{definition}[Graph weight]
-%     \label{def:subgraph_counting_antipattern:graph_weight}  
-%     Given a set of ruler-graphs \( \mathbb{X} \), 
-%     a weight function \( s_{\mathbb{X}} \), and a graph \( G \), the \textbf{weight of graph} \( G \) relative to \( s_{\mathbb{X}} \), written \( w_{s_{\mathbb{X}}}(G) \), is: 
-%     \[
-%         w_{s_{\mathbb{X}}}(G) = \sum_{\mathcal{X} \in \mathbb{X}} s_{\mathbb{X}}(\mathcal{X}) \cdot m_\mathcal{X}(G)  
-%     \]   
-% \end{definition}
+The definitions of weight function and graph weights are identical to the ones defined in~\autoref{subgraph_counting:def:weight_function} and~\autoref{subgraph_counting:def:graph_weight} in Chapter~\ref{chap:subgraph_counting}, respectively, except that we use the new definition of measurement.

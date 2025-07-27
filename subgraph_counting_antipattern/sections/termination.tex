@@ -1,26 +1,35 @@
-% The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{M}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{M}}$ if the following hold: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) > w_{s_\mathbb{X}}(H) \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H) \). However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
-% Thus, we aim to provide a rule-based sufficient condition for termination.
-% \begin{remark}
-
+We define the following sets of monomorphisms from $X$ to $G$ to facilitate the discussion of the termination criterion. They are almost identical to the ones defined in~\autoref{subgraph_counting:notation:mono_sets}. The only difference is that the first parameter is a ruler-graph $\mathcal{X}=(X,f)$ defined in~\autoref{antipattern:def:ruler_graph} instead of the underlying graph $X$.
 \begin{notation}
-    % \noindent
-    % \begin{minipage}{0.6\textwidth}\setlength{\parindent}{1em}
-     Let \( \mathcal{X}\) be a ruler-graph with underlying graph $X$. Let \( A, B, G \) be graphs. Let \( \alpha \colon A \to G \) and \( \beta \colon B \to G \) be morphisms. 
-    We define the following sets of monomorphisms of $X$ in $G$: 
-        %  the set $\operatorname{Mono}(X,G,\alpha)$ of occurrences which is fully included in $A$; the set $\operatorname{Mono}(X,G,\lnot \alpha)$ of occurrences which is not fully included in $A$; the set $\operatorname{Mono}(X,G,\lnot \alpha, \beta)$ of occurrences which is not fully included in $A$ but fully includedin $B$; the set $\operatorname{Mono}(X,G,\lnot \alpha, \lnot \beta)$ of occurrences which is neither fully included in $A$ nor fully includedin $B$. Formally:
-    % \end{minipage}%
-    % \begin{minipage}{0.38\textwidth}
-    %     \hfill
-    %     \begin{tikzpicture}[scale=0.9]
-    %         \node (X) at (-0.5,0) {$X$};
-    %         \node (G) at (1,0) {$G$}; 
-    %         \node (A) at (3,0.2) {$A$}; 
-    %         \node (B) at (3,-0.2) {$B$}; 
-    %         \draw [>->] (X) to (G);
-    %         \draw [>->] (A) to node [above,label,pos=0.5] {$\alpha$} (G);
-    %         \draw [>->] (B) to node [below,label,pos=0.5] {$\beta$} (G);
-    %     \end{tikzpicture}
-    % \end{minipage}%
+     \ \newline
+\noindent
+\begin{minipage}{0.69\textwidth}
+\vspace{2mm}
+\noindent 
+  Let \( \mathcal{X}\) be a ruler-graph with underlying graph $X$. The disjoint union of two sets \( S \) and \( S' \) will be denoted by \( S \uplus S' \). Let \( X, A, B, G \) be graphs, and let \( \alpha \colon A \to G \) and \( \beta \colon B \to G \) be morphisms as illustrated on the right. We define the following sets of monomorphisms from $X$ in $G$ based on their interaction with $\alpha$ and $\beta$:    
+\end{minipage}% 
+\begin{minipage}{0.30\textwidth}
+    \hfill
+        \resizebox{0.9\textwidth}{!}{
+        % \begin{tikzpicture}
+        %     \node (B) at (2,0) {$A$}; 
+        %     \node (C) at (0,2) {$B$}; 
+        %     \node (D) at (0,0) {$G$}; 
+        %     \draw [>->] (B) to node [below,label,pos=0.45] {$\alpha$} (D); 
+        %     \draw [>->] (C) to node [left,label,pos=0.45] {$\beta$} (D);
+        % \end{tikzpicture}
+            \begin{tikzpicture}
+            \node (X) at (-1.5,-1) {$X$};
+            \node (B) at (2,0) {$A$}; 
+            \node (C) at (0,2) {$B$}; 
+            \node (D) at (0,0) {$G$}; 
+            \draw [>->] (B) to node [above,label,pos=0.45] {$\alpha$} (D); 
+            \draw [>->] (C) to node [right,label,pos=0.45] {$\beta$} (D);
+            \draw [>->,dashed] (X) to node [above,label,pos=0.45] {$\iota$} (D);
+            \draw [>->,dashed] (X) to node [below,label,pos=0.45] {$\zeta$} (B);
+            \draw [>->,dashed] (X) to node [above,label,pos=0.45] {$\eta$} (C);
+        \end{tikzpicture}
+        }
+\end{minipage} 
     \begin{align*}
         \operatorname{Mono}(\mathcal{X},G,\alpha) &= \left\{ \iota \colon X \rightarrowtail G \;\middle|\; \exists \beta \colon X \rightarrowtail A.\, \iota = \beta \star \alpha \right\}, 
         \\
@@ -42,114 +51,11 @@
                 \end{aligned}
         \right\}.
     \end{align*}
-    For a set $\operatorname{Mono}(\mathcal{X},\dots)$, we define $\operatorname{Mono}(\mathcal{X},\dots)_{\operatorname{NF}}$ as the subset of \( X \)-occurrences that are not included in any occurrence of its forbidden context if exists, and  $\operatorname{Mono}(\mathcal{X},\dots)_{\operatorname{F}}$ as the subset of \( X \)-occurrences that are included in some occurrences of its forbidden context if exists.
+    For a set $\operatorname{Mono}(\mathcal{X},\dots)$, we define $\operatorname{Mono}(\mathcal{X},\dots)_{\operatorname{NF}}$ as the subset of \( X \)-occurrences whose images are not included in any occurrence of its forbidden context if exists, and  $\operatorname{Mono}(\mathcal{X},\dots)_{\operatorname{F}}$ as the subset of \( X \)-occurrences whose images are included in some occurrences of its forbidden context if exists. 
 \end{notation}
-
-% \trackedtext{
-%     \begin{itemize}
-%         % \item explicit $X$-occurrences in $L$ or $R$ that are included in some occurrences of its forbidden context in $L$ or $R$: we do not need to consider these $X$-occurrences
-%         \item explicit $X$-occurrences in implicit $F$-occurrences: \\
-%          explicit $X$-occurrences in $L$ or $R$ that are not included in some occurrences of its forbidden context in $L$ or $R$
-%             \begin{itemize}
-%                 \item These $X$-occurrences may be included in some occurrences of its forbidden context 
-%             \end{itemize}
-%         \item implicit $X$-occurrences in implicit $F$-occurrences : \\
-%             \begin{itemize}
-%                 \item $\rho$ should be $X$-non increasing : all elements in $D(R,X)$ has corresponding subgraphs with the same interface elements in $D(L,X)$
-%                 \item $\rho^{-1}$ should be $F$-non increasing: all elements in $D(L,F)$ has corresponding subgraphs with the same interface elements in $D(R,F)$
-%                 \item 
-%             \end{itemize}
-%         \item implicit $X$-occurrences in explicit $F$-occurrences
-%     \end{itemize}
-% }
-% \textcolor{blue}{
-% \begin{definition}
-%     \label{def:predictable}
-%     Let $\mathcal{X}$ be a ruler-graph with underlying graph $X$ and let \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. 
-%     Let \( M_X: \operatorname{Mono}(\mathcal{X}, L)_F \to \operatorname{Mono}(\mathcal{X}, R)_F \) and $M_F: \operatorname{Mono}(F,L) \rightarrow \operatorname{Mono}(F,R)$ be injections and $\Psi$ be a function associating $L' \in D(L,F)$ to a homomorphism in $\operatorname{Mono}(L',R)$. 
-%     We say that \textbf{the number of $X$-occurrences that are not included in any occurrences of its forbidden context in any $\rho$-rewriting step is predictable relative to $(M_X,M_F,\Psi)$} if either $\mathcal{X} = (X)$ and $\rho$ is $X$-non-increasing,
-%     or $\mathcal{X} = (X,f:X \rightarrowtail F)$ the following conditions hold:
-%     \begin{enumerate} 
-%         \item \label{hyp:rho_x_non_increasing}
-%         % The number of occurrences of $X$ is non-increasing from left to right in a rewriting step using $\rho^{-1}$ or $\rho$.
-%                 $\rho$ is $X$-non-increasing, \todo{used in~\autoref{lem:xglnotmlnotlp_xhlnotmrnotrp}}
-%         \item \label{hyp:rho_rev_x_non_increasing} $\rho^{-1}$ is $X$-non-increasing, \todo{used in~\autoref{lem:xglnotmlnotlp_xhlnotmrnotrp}}
-%         \item \label{hyp:f_non_increasing}
-%         % The number of occurrences of $F$ is non-increasing from left to right in a rewriting step using $\rho^{-1}$ under $\Psi$.
-%         $\rho^{-1}$ is $F$-non-increasing under $\Psi$, \todo{used in~\autoref{lem:xglnotmlp_xhlnotmrp}}
-%         \item \label{hyp:inj_mono_x_l_to_r}
-%         for every \( h_{XL} \in \operatorname{Mono}(\mathcal{X}, L)_F \),  we can construct the diagram below (intuitively, the images of $h_{XL}$ and $M_X(h_{XL})$ share the same interface elements):
-%         \begin{center}
-%             \resizebox{0.3\textwidth}{!}{
-%                 \begin{tikzpicture}
-%                     \node (k) {K}; 
-%                     \node (k') [above=of k] {$K'$};
-%                     \node (l) [left=of k] {$L$};
-%                     \node (rb) [above=of l] {$X$};
-%                     \node (r) [right=of k] {$R$};
-%                     \node (rb') [above=of r] {$X$};
-%                     \draw[<-<]  (l) -- (k) node [midway,above] {l};
-%                     \draw[<-<]  (r) -- (k) node [midway,above] {r};
-%                     \draw[>->]  (k') -- (rb') node [midway,above] {};
-%                     \draw[>->]  (rb') -- (r) node [midway,right] {$M_X(h_{XL})$};
-%                     \draw[>->]  (k') -- (rb) node [midway, right] {};
-%                     \draw[>->]  (k') -- (k);
-%                     \draw[>->]  (rb) -- (l) node [midway,below] {};
-%                     \node () [at=($(k)!0.5!(rb)$)] {PB};
-%                     \node () [at=($(k)!0.5!(rb')$)] {PB};
-%                 \end{tikzpicture}
-%             }
-%         \end{center}
-%         \todo{where do we need this assumption?}
-%         \item \label{hyp:inj_mono_f_l_to_r} for every $h_{FL} \in \operatorname{Mono}(F,L)$, we can construct the diagram below (intuitively, the images of $h_{FL}$ and $M_F(h_{FL})$ have the same interface elements):
-%             \begin{center}
-%                 \resizebox{0.3\textwidth}{!}{
-%                     \begin{tikzpicture}
-%                         \node (k) {K}; 
-%                         \node (k') [above=of k] {$K'$};
-%                         \node (l) [left=of k] {$L$};
-%                         \node (rb) [above=of l] {$F$};
-%                         \node (r) [right=of k] {$R$};
-%                         \node (rb') [above=of r] {$F$};
-%                         \draw[<-<]  (l) -- (k) node [midway,above] {l};
-%                         \draw[<-<]  (r) -- (k) node [midway,above] {r};
-%                         \draw[>->]  (k') -- (rb') node [midway,above] {};
-%                         \draw[>->]  (rb') -- (r) node [midway,right] {$M_F(h_{FL})$};
-%                         \draw[>->]  (k') -- (rb) node [midway, right] {};
-%                         \draw[>->]  (k') -- (k);
-%                         \draw[>->]  (rb) -- (l) node [midway,below] {};
-%                         \node () [at=($(k)!0.5!(rb)$)] {PB};
-%                         \node () [at=($(k)!0.5!(rb')$)] {PB};
-%                     \end{tikzpicture}
-%                 }
-%             \end{center} 
-%             \item \label{hyp:inj_mono_f_l_to_r_} for every $h_{FL} \in \operatorname{Mono}(F,L)$, for every \( h_{XL} \in \operatorname{Mono}(\mathcal{X}, L)_F \), if $h_{XL} = h_{XF} \star h_{FL}$ then $M_X(h_{XL}) = h_{XF} \star M_F(h_{FL})$.
-%              \todo{where do we need this assumption?}
-%         \item \label{hyp:f_implicitly_destroyed} for every $L' \in D(L,F)$ and every $h_{XL'}:X \rightarrowtail L'$, \todo{problem!! we can not apply $M_X$} we have $M_X(h_{XL'} \star h_{L'L}) = h_{XL'} \star \Psi(L')$ where $h_{L'L}$ is the inclusion function from $L'$ to $L$.
-%          \todo{where do we need this assumption?}
-%     \end{enumerate}
-% \end{definition}
-% }
-% \trackedtext{Intuitively, the first condition ensures in every rewriting step using $\rho$, there are as many implicit $X$-occurrences in $H$ as in $G$.
-% \\
-% The second condition ensures that for every implicit $F$-occurrence in $G$, there is a corresponding implicit $F$-occurrence in $H$ with the same interface elements.
-% \\
-% The third condition ensures that every $X$-occurrence that is included in an $X$-occurrence in $L$ is mapped to an $X$-occurrence in $R$ with the same interface elements by $M_X$. 
-% \\
-% % The third condition ensures that every explicit $X$-occurrence that is included in an explicit $X$-occurrence in $G$ is mapped to an explicit $X$-occurrence in $H$ with the same interface elements by $M_X$. 
-% The fourth condition ensures that every $F$-occurrence in $L$ is mapped to an $F$-occurrence in $R$ with the same interface elements by $M_F$.
-% \\
-% The fifth condition ensures that for every $X$-occurrence that is included in an $F$-occurrence in $L$, the corresponding $X$-occurrence in $R$ by $M_X$ is also included in an $F$-occurrence in $R$ by $M_F$.
-% \\
-% The last condition ensures that every $X$-occurrence that is included in a subgraph $L'$ of $L$ that can form an occurrence of $F$ with a subgraph of the context graph is mapped to a distinguished subgraph of $R$ by $\Psi$, and the mapping preserves the implicit $X$-occurrences.
-% }
-
-
 \noindent
 \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
     Let $\mathcal{X}$ be a ruler-graph with underlying graph $X$ and \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. 
-    Suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X}= (X,f:X \rightarrowtail F)$ and, $\rho$ and $\rho^{-1}$ are $X$-non-increasing.
-    % Suppose that the number of $X$-occurrences that are not included in any occurrences of the forbidden context in a $\rho$-rewriting step is predictable (\autoref{def:predictable}). 
     Consider the DPO diagram illustrated on the right. 
 \end{minipage}%
 \begin{minipage}{0.29\textwidth}
@@ -209,26 +115,26 @@ $$
     \operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')_{\operatorname{NF}}
 $$
 Thus, we have 
-\begin{flalign*}
+\begin{flalign}
     &\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} - 
-    \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}} 
+    \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}} \nonumber
     \\=
     &(\card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} 
         -  
     \card{\operatorname{Mono}(\mathcal{X},H,m')_{\operatorname{NF}}}) 
-    + 
+    +  \nonumber
     \\
     &(
         \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{NF}}}
              - 
-        \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{NF}}}) + \\
+        \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{NF}}}) +  \nonumber \\ 
     &(
         \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{NF}}} 
             - 
-        \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')_{\operatorname{NF}}}
+        \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')_{\operatorname{NF}}} \nonumber
     )
-\end{flalign*}
-To estimate $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} - 
+\end{flalign}
+In the remainder of this section, we suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X}= (X,f:X \rightarrowtail F)$ and, $\rho$ and $\rho^{-1}$ are $X$-non-increasing. To estimate $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} - 
     \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}}$, we establish the following lemmas.
 % The following lemmas can be used to approximate $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} - 
 %     \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}}$
@@ -240,9 +146,7 @@ To estimate $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} -
     $$\card{\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{NF}}} \geq
         \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{NF}}}$$
 \end{lemma} 
-\begin{proof} 
-    See~\textsection~\ref{antipattern:proof:lem:xglnotmlp_xhlnotmrp}.
- \end{proof}
+See~\textsection~\ref{antipattern:proof:lem:xglnotmlp_xhlnotmrp} for the proof of this lemma.
 \begin{lemma}
     \label{lem:xglnotmlnotlp_xhlnotmrnotrp}
         Let $\mathcal{X}$ be a ruler-graph with underlying graph $X$ and \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. Suppose that $\rho$ and $\rho^{-1}$ are $X$-non-increasing. We have
@@ -251,11 +155,8 @@ To estimate $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} -
         \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')_{\operatorname{NF}}}
     $$
 \end{lemma}
-\begin{proof}
-    See~\textsection~\ref{antipattern:proof:lem:xglnotmlnotlp_xhlnotmrnotrp}.
- \end{proof}
-
-The following inequality follows.
+See~\textsection~\ref{antipattern:proof:lem:xglnotmlnotlp_xhlnotmrnotrp} for the proof of this lemma.
+Under the assumptions of the above two lemmas, we can estimate the following inequality.
  \begin{flalign*}
      \card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} - 
      \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}} 
@@ -267,18 +168,40 @@ The following inequality follows.
     \label{antipattern:def:gamma_l_rho_x}
     Let $\mathcal{X}$ be a ruler-graph with underlying graph $X$. 
     Let \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule.
-    Define $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ as the set of $X$-occurrences in $L$ that are not included in any occurrence of the forbidden context in $L$, but, in some rewriting step $G \Rightarrow_\rho^m H$, it may possibly be included in some occurrence of the forbidden context in the host graph $G$. 
+    Define $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ as the set of $X$-occurrences in $L$ whose images are not included in any occurrence of the forbidden context in $L$,
+    but, in some rewriting step $G \Rightarrow_\rho^m H$, their images may possibly be included in some occurrence of the forbidden context in the host graph $G$.
     Formally,  $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}) = \emptyset$ if $\mathcal{X} = (X)$, and if $\mathcal{X} = (X, f:X \rightarrowtail F)$, then a monomorphism $h_{XL}:X \rightarrowtail L$ is in $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ iff the following hold:
     \begin{itemize}
-        \item then there does not exist $h_{FL}:F \rightarrowtail L$ such that $f \star h_{FL} = h_{XL}$,
-         \item there exists a graph $C$ and a monomorphism $h_{KC}:K \rightarrowtail C$ such that, let $L \overset{m}{\rightarrowtail} G \overset{l'}{\leftarrow} C$ be the pushout of the span $L \overset{l}{\leftarrowtail} K \overset{u}{\rightarrowtail} C$, there exist a monomorphism $h_{FG} : F \rightarrowtail G$ such that $h_{XL} \star h_{LG} = h_{XF} \star h_{FG}$. \todo{A diagram}
+        \item there does not exist $h_{FL}:F \rightarrowtail L$ such that $f \star h_{FL} = h_{XL}$,
+         \item there exists a graph $C$ and a monomorphism $h_{KC}:K \overset{u}{\rightarrowtail} C$ such that, let $L \overset{m}{\rightarrowtail} G \overset{l'}{\leftarrowtail} C$ be the pushout of the span $L \overset{l}{\leftarrowtail} K \overset{u}{\rightarrowtail} C$, as illustrated below,
+         there exist a monomorphism $h_{FG} : F \rightarrowtail G$ such that $h_{XL} \star h_{LG} = h_{XF} \star h_{FG}$. 
+
+         \resizebox{0.3\textwidth}{!}{
+            \begin{tikzpicture}
+                    \node (k) at (0,1) {K};
+                    \node (l) at (-2,1) {L};
+                    \node (c) at (0,-1) {C};
+                    \node (g) at (-2,-1) {G};
+                    \node (x) at (-4,-2) {X};
+                    \node (f) at (-2,-2) {F};
+                    \draw[<-<]  (l) -- (k) node [midway,below] {l};
+                    \draw[>->] (c) -- (g) node [midway, above] {l'};
+                    \draw[>->] (l) -- (g) node[midway, right] {m};
+                    \draw[>->] (k) -- (c) node[midway, left] {u};
+                    \draw[>->] (x) -- (l) node[midway, left] {$h_{XL}$};
+                    \draw[>->] (x) -- (f) node[midway, above] {$f$};
+                    \draw[>->] (f) -- (g) node[midway, right] {$h_{FG}$};
+                    \node () [at=($(l)!0.5!(c)$)] {PO};
+                \end{tikzpicture}
+         }
     \end{itemize}
-    Define $\Lambda(\mathcal{X},\rho) \overset{\operatorname{def}}{=} (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
+    Furthermore, we define $\Lambda(\mathcal{X},\rho) \overset{\operatorname{def}}{=} (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
     \card{\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})}) -
-   \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}$. 
+   \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}$ to improve the readability of the following discussion.
 %    \trackedtext{Intuitively, $\Lambda(\mathcal{X},\rho)$ is the number of $X$-occurrences in $L$ ...}
 \end{definition}
-Note that since $X$ and the forbidden context (if exists) are finite graphs, $\Lambda(\mathcal{X},\rho)$ can be precisely computed. It provides an approximation of the change of the number of $X$-occurrences in a rewriting step using $\rho$.
+Note that in category \textbf{Graph}, the pushout of two arrows always exists~\cite[p.188]{corradini1997algebraic}. Which justifies the existence of the pushout square in the second condition of the above definition.
+Furthermore, since $X$ and the forbidden context (if exists) are finite graphs, $\Lambda(\mathcal{X},\rho)$ can be precisely computed. Consequently, it provides a lower bound for the change in the number of $X$-occurrences in a rewriting step using $\rho$, as shown in the following lemma whose proof is given in~\textsection~\ref{antipattern:proof:lem:xgm_xhmp_xl_xr}.
 
 % \begin{lemma}
 %     \label{lem:decomp_w_u}
@@ -339,10 +262,7 @@ Note that since $X$ and the forbidden context (if exists) are finite graphs, $\L
         \Lambda(\mathcal{X},\rho)
     \end{flalign*}
 \end{lemma}
-\begin{proof}
-    See~\textsection~\ref{antipattern:proof:lem:xgm_xhmp_xl_xr}.
- \end{proof}
- Thus, we have the following inequality:
+ Thus, by the unnumbered equation preceding~\autoref{antipattern:def:gamma_l_rho_x},  we can conclude that
  \begin{flalign}
          \card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} - 
      \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}} 
@@ -371,7 +291,7 @@ Consequently, we have
 %     \\
 %     \overset{\operatorname{def}}{=}& w_{s_\mathbb{X}}(L) - w_{s_\mathbb{X}}(R)
 \end{flalign*} 
-The following lemma captures the above reasoning.
+Which proves the following key lemma of this section.
 \begin{lemma}[Decreasing step]
     \label{antipattern:lem:w_g_geq_w_h_leq}
     Let $\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ be an injective DPO rewriting rule,
@@ -380,16 +300,14 @@ The following lemma captures the above reasoning.
     and \( G \Rightarrow_{\rho,\mathfrak{M}} H \) a rewriting step. 
     Suppose that for every \( \mathcal{X} \in \mathbb{X} \) with underlying graph $X$, 
     % the number of $X$-occurrences that are not included in any occurrences of forbidden context $F \in F_x$ in a $\rho$-rewriting step is predictable,
-    $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f:X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing.
-     
-    The following holds:
+    $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f:X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing. We have
      $$
         w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H) 
         \geq 
         \sum_{\mathcal{X} \in \mathbb{X}}^{}s_\mathbb{X}(X) * \Lambda(\mathcal{X},\rho)
     $$
 \end{lemma}
-Finally, we state our main result.
+Finally, our main result follows.
 \begin{theorem}[Termination] 
     \label{antipattern:thm:termination_grs} 
     Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules, $\mathbb{X}$ a set of ruler-graphs and $s_\mathbb{X}$ a weight function. If the following hold:
