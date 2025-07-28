@@ -14,76 +14,75 @@
 \section*{Resumé}
 \input{sections/resume} 
  
-\newpage
+\newpage 
 \section*{Acknowledgements}
 \input{sections/acknowledgements}
 \newpage       
  
   
-\tableofcontents  
+\tableofcontents   
 \newpage      
 
-\chapter{Introduction}
-% \section{Motivation, Contributions, and Structure of the Thesis} 
-\input{sections/motivation}
-\section{Graphs}
-\input{subgraph_counting/sections/graph} 
-\section{Pushout and pullback}  
-\input{subgraph_counting/sections/pushout}
-\section{Double-Pushout Rewriting}
-\label{sec:dpo}
-\input{sections/dpo_rewriting} 
-\section{Relative Termination}
-\input{type_graph/sections/relative_termination.tex}
+% \chapter{Introduction}  
+% \input{sections/motivation}
+% \section{Graphs}
+% \input{subgraph_counting/sections/graph} 
+% \section{Pushout and pullback}  
+% \input{subgraph_counting/sections/pushout}
+% \section{Double-Pushout Rewriting}
+% \label{sec:dpo}
+% \input{sections/dpo_rewriting} 
+% \section{Relative Termination}
+% \input{type_graph/sections/relative_termination.tex}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%   Chapter : Non-Well-Founded Semirings   %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Termination of Graph Rewriting using Weighted Type Graphs over Non-Well-Founded Semirings} 
-\label{chap:nwf}
+% \chapter{Termination of Graph Rewriting using Weighted Type Graphs over Non-Well-Founded Semirings} 
+% \label{chap:nwf}
 
-\input{type_graph/sections/introduction.tex}
+% \input{type_graph/sections/introduction.tex}
 
-\section{Preliminaries}
+% \section{Preliminaries}
 
-\subsection{Well-Founded Semirings} 
-\label{sec:well_founded_semiring}
-\input{type_graph/sections/well_founded_semiring.tex}
+% \subsection{Well-Founded Semirings} 
+% \label{sec:well_founded_semiring}
+% \input{type_graph/sections/well_founded_semiring.tex}
  
-\subsection{Weighted Type Graph} 
-\label{sec:weighted_type_graph}
-\input{type_graph/sections/weighted_type_graph.tex}
+% \subsection{Weighted Type Graph} 
+% \label{sec:weighted_type_graph}
+% \input{type_graph/sections/weighted_type_graph.tex}
 
-\subsection{Measuring objects by counting morphisms}
-\label{sec:type_graph:wf:measuring_graphs}
-\input{type_graph/sections/measuring_graphs.tex}
+% \subsection{Measuring objects by counting morphisms}
+% \label{sec:type_graph:wf:measuring_graphs}
+% \input{type_graph/sections/measuring_graphs.tex}
   
-\subsection{Estimating weights of pushout objects} 
-\label{sec:type_graph:wf:weighing_pushout} 
-\input{type_graph/sections/weighing_pushout}   
+% \subsection{Estimating weights of pushout objects} 
+% \label{sec:type_graph:wf:weighing_pushout} 
+% \input{type_graph/sections/weighing_pushout}   
 
-\input{type_graph/sections/termination}    
+% \input{type_graph/sections/termination}    
   
-\section{Extension to Non-Well-Founded Semirings}
+% \section{Extension to Non-Well-Founded Semirings}
 
-\input{type_graph/sections/extension.tex} 
+% \input{type_graph/sections/extension.tex} 
 
-\subsection{Implementation}
-\label{nwf:sec:type_graph:implementation}
-\input{type_graph/sections/implementation_new} 
+% \subsection{Implementation}
+% \label{nwf:sec:type_graph:implementation}
+% \input{type_graph/sections/implementation_new} 
 
-\subsection{Empirical Results}
-\label{nwf:sec:type_graph:result}
-\input{type_graph/sections/result.tex} 
+% \subsection{Empirical Results}
+% \label{nwf:sec:type_graph:result}
+% \input{type_graph/sections/result.tex} 
 
-\subsection{Discussion}
-\label{nwf:sec:type_graph:related_work}
-\input{type_graph/sections/related_work.tex}
+% \subsection{Discussion}
+% \label{nwf:sec:type_graph:related_work}
+% \input{type_graph/sections/related_work.tex}
 
-\section{Conclusion}
-\label{nwf:sec:type_graph:conclusion}
-\input{type_graph/sections/conclusion}
+% \section{Conclusion}
+% \label{nwf:sec:type_graph:conclusion}
+% \input{type_graph/sections/conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%   Chapter : morphism counting   %%%%%%%%%%%%%%
@@ -141,15 +140,14 @@ Systems using Morphism Counting with antipatterns}
  
 \chapter{Conclusion and Future Work}
 \paragraph{Conclusion}
-This dissertation focused on automated techniques for proving the termination of DPO graph rewriting systems.
+This dissertation focused on automated techniques for proving the relative termination of DPO graph rewriting systems on edge-labeled directed multigraphs.
+
 We first extended an existing technique, the type graph method, to non-well-founded semirings, enabling more efficient implementation of the method in some cases.
-We then developed a new machine-checkable sufficient condition, called morphism counting, for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs, based on counting specific subgraphs in the graph before and after transformation. This technique can handle cases that existing interpretation-based approaches cannot, such as~\autoref{subgraph_counting:ex_contrib_variant}.
-Finally, we extended our morphism counting method to count specific subgraphs that are not included in forbidden contexts.
+We then developed a new machine-checkable sufficient condition, called morphism counting, for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs, based on counting monomorphisms from specific subgraphs to the graph before and after transformation. This technique can handle cases, such as~\autoref{subgraph_counting:ex_contrib_variant}, that existing interpretation-based approaches cannot.
+Finally, we extended our morphism counting method to count specific subgraphs that are not included in forbidden contexts. This extension successfully proves termination for systems like the ones presented
+in~\autoref{antipattern:ex:grs_aca} and~\autoref{antipattern:ex:endrullis:d3:termination} which prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and the morphism counting method presented in Chapter~\ref{chap:subgraph_counting} fail to handle.
 
-This extension successfully proves termination for systems like the ones presented 
-in~\autoref{antipattern:ex:grs_aca} and~\autoref{antipattern:ex:endrullis:d3:termination} which prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and the morphism counting method presented in Chapter~\ref{chap:subgraph_counting} fail to handle. 
-
-The implementation of the type graph method and our extension, along with our morphism counting technique and its extension, was integrated into a unified tool, called LyonParallel, for DPO graph rewriting systems on edge-labeled directed multigraphs.
+The implementation of the type graph method and our extension, along with our morphism counting technique and its extension, was integrated into a unified tool, called LyonParallel~\footnote{LyonParallel is available at \url{https://github.com/Qi-tchi/LyonParallel/tree/icgt2025}}.
  
 \paragraph{Future Work}
 

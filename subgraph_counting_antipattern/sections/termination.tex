@@ -1,5 +1,6 @@
 We define the following sets of monomorphisms from $X$ to $G$ to facilitate the discussion of the termination criterion. They are almost identical to the ones defined in~\autoref{subgraph_counting:notation:mono_sets}. The only difference is that the first parameter is a ruler-graph $\mathcal{X}=(X,f)$ defined in~\autoref{antipattern:def:ruler_graph} instead of the underlying graph $X$.
 \begin{notation}
+    \label{antipattern:notation:mono_sets}
      \ \newline
 \noindent
 \begin{minipage}{0.69\textwidth}
@@ -31,15 +32,21 @@ We define the following sets of monomorphisms from $X$ to $G$ to facilitate the 
         }
 \end{minipage} 
     \begin{align*}
-        \operatorname{Mono}(\mathcal{X},G,\alpha) &= \left\{ \iota \colon X \rightarrowtail G \;\middle|\; \exists \beta \colon X \rightarrowtail A.\, \iota = \beta \star \alpha \right\}, 
+        \operatorname{Mono}(\mathcal{X},G) &= \operatorname{Mono}(X,G), 
         \\
-        \operatorname{Mono}(\mathcal{X},G,\lnot \alpha) &= \left\{ \iota \colon X \rightarrowtail G \;\middle|\; \nexists \beta \colon X \rightarrowtail A.\, \iota = \beta \star \alpha \right\}, 
+        \operatorname{Mono}(\mathcal{X},G,\alpha) &= \left\{ \iota \colon X \rightarrowtail G 
+        \;\middle|\; 
+        \exists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha \right\}, 
+        \\
+        \operatorname{Mono}(\mathcal{X},G,\lnot \alpha) &= \left\{ \iota \colon X \rightarrowtail G 
+        \;\middle|\; 
+        \nexists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha \right\}, 
         \\
         \operatorname{Mono}(\mathcal{X},G,\lnot \alpha, \beta) &= \left\{ 
             \iota \colon X \rightarrowtail G \;\middle|\; 
                 \begin{aligned}  
                     &(\nexists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha) \\ 
-                    &\land (\exists \zeta \colon X \rightarrowtail B.\, \iota = \zeta \star \beta)
+                    &\land (\exists \eta \colon X \rightarrowtail B.\, \iota = \eta \star \beta)
                 \end{aligned}
         \right\},
         \\
@@ -47,7 +54,7 @@ We define the following sets of monomorphisms from $X$ to $G$ to facilitate the 
             \iota \colon X \rightarrowtail G \;\middle|\; 
                 \begin{aligned}
                     &(\nexists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha) \\
-                    &\land (\nexists \zeta \colon X \rightarrowtail B.\, \iota = \zeta \star \beta)
+                    &\land (\nexists \eta \colon X \rightarrowtail B.\, \iota = \eta \star \beta)
                 \end{aligned}
         \right\}.
     \end{align*}
@@ -168,13 +175,15 @@ Under the assumptions of the above two lemmas, we can estimate the following ine
     \label{antipattern:def:gamma_l_rho_x}
     Let $\mathcal{X}$ be a ruler-graph with underlying graph $X$. 
     Let \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule.
-    Define $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ as the set of $X$-occurrences in $L$ whose images are not included in any occurrence of the forbidden context in $L$,
+    Define $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ as the subset of $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}$ consisting of $X$-occurrences whose images are not included in any occurrence of the forbidden context in $L$,
     but, in some rewriting step $G \Rightarrow_\rho^m H$, their images may possibly be included in some occurrence of the forbidden context in the host graph $G$.
     Formally,  $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}) = \emptyset$ if $\mathcal{X} = (X)$, and if $\mathcal{X} = (X, f:X \rightarrowtail F)$, then a monomorphism $h_{XL}:X \rightarrowtail L$ is in $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ iff the following hold:
     \begin{itemize}
         \item there does not exist $h_{FL}:F \rightarrowtail L$ such that $f \star h_{FL} = h_{XL}$,
          \item there exists a graph $C$ and a monomorphism $h_{KC}:K \overset{u}{\rightarrowtail} C$ such that, let $L \overset{m}{\rightarrowtail} G \overset{l'}{\leftarrowtail} C$ be the pushout of the span $L \overset{l}{\leftarrowtail} K \overset{u}{\rightarrowtail} C$, as illustrated below,
-         there exist a monomorphism $h_{FG} : F \rightarrowtail G$ such that $h_{XL} \star h_{LG} = h_{XF} \star h_{FG}$. 
+         there exist a monomorphism $h_{FG} : F \rightarrowtail G$ such that 
+        %  $h_{XL} \star h_{LG} = h_{XF} \star h_{FG}$
+         $h_{XL} \star m = h_{XF} \star h_{FG}$. 
 
          \resizebox{0.3\textwidth}{!}{
             \begin{tikzpicture}
