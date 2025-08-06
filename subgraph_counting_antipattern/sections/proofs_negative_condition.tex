@@ -312,7 +312,7 @@ We have
     $\{
                 h_{XL} \in \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
                 \exists h_{FG}. h_{XL} \star m = h_{XF} \star h_{FG}
-            \}$ is the set of $X$-occurrences in $L$ that are not included in any occurrences of its forbidden context in $L$ but included in an occurrence of its forbidden context in $G$, and, analyogously, $\{
+            \}$ is the set of $X$-occurrences in $L$ that are not included in any occurrences of its forbidden context in $L$ but included in an occurrence of its forbidden context in $G$, and, analogously, $\{
                 h_{XR} \in \operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}} \mid 
                 \exists h_{FH}. h_{XR} \star m' = h_{XF} \star h_{FH}
             \}$ is the set of $X$-occurrences in $R$ that are not included in any occurrences of its forbidden context in $R$ but included in an occurrence of its forbidden context in $H$.
@@ -543,7 +543,7 @@ We have
 \end{proof}
 
 \noindent
-\begin*{\textbf{\autoref{lem:xglnotmlp_xhlnotmrp}}}
+\begin*{\textbf{\autoref{antipattern:lem:xglnotmlp_xhlnotmrp}}}
     \newline
     \noindent
     \vspace{2mm}
@@ -1062,7 +1062,7 @@ We have
 \end{proof} 
 
 \noindent
-\begin*{\textbf{\autoref{lem:xglnotmlnotlp_xhlnotmrnotrp}}}
+\begin*{\textbf{\autoref{antipattern:lem:xglnotmlnotlp_xhlnotmrnotrp}}}
     \newline
     \noindent
     \vspace{2mm}
@@ -1326,18 +1326,18 @@ We have
             \resizebox{0.3\textwidth}{!}{
                 \begin{tikzpicture}
                     \node (k) at (0,0) {K};
-                    \node (r) at (4,0) {R};
+                    \node (r) at (4,0) {L};
                     \node (c) at (0,-3) {C};
                     \node (x) at (2,-2) {X};
-                    \node (h) at (4,-3) {H};
+                    \node (h) at (4,-3) {G};
                     \node (f) at (3,-2.5) {F};
                     % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
                     % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
                     % \draw[>->]  (c) -- (h') node [midway,above] {};
                     \draw[<-<]  (r) -- (k) node [midway,above] {};
-                    \draw[>->] (c) -- (h) node [midway, below] {$r'$};
-                    \draw[>->] (r) -- (h) node[midway, left] {$m'$};
+                    \draw[>->] (c) -- (h) node [midway, below] {$l'$};
+                    \draw[>->] (r) -- (h) node[midway, right] {$m$};
                     \draw[>->] (k) -- (c) node[midway, left] {};
                     % \draw[->] (rb) to (l);
                     % \draw[<-<] (rb) to (k);
@@ -1370,23 +1370,25 @@ We have
                 \end{tikzpicture}
             }
             \end{center} 
-    We can now construct the following commutative diagram where $L''RHF$ and $C''CHF$ are pullbacks: \todo{do we need more details?}
+
+
+    Since we work in \textbf{Graph}, we can construct the following commutative diagram where $L''LGF$ and $C''CGF$ are pullbacks: \todo{do we need more details?}
      \begin{center}
             \resizebox{0.3\textwidth}{!}{
                 \begin{tikzpicture}
                     \node (k) at (0,0) {K};
-                    \node (r) at (4,0) {R};
+                    \node (r) at (4,0) {L};
                     \node (c) at (0,-3) {C};
                     \node (x) at (2,-2) {X};
-                    \node (h) at (4,-3) {H};
+                    \node (h) at (4,-3) {G};
                     \node (f) at (3,-2.5) {F};
                     % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
                     % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
                     % \draw[>->]  (c) -- (h') node [midway,above] {};
                     \draw[<-<]  (r) -- (k) node [midway,above] {};
-                    \draw[>->] (c) -- (h) node [midway, below] {$r'$};
-                    \draw[>->] (r) -- (h) node[midway, left] {$m'$};
+                    \draw[>->] (c) -- (h) node [midway, below] {$l'$};
+                    \draw[>->] (r) -- (h) node[midway, right] {$m$};
                     \draw[>->] (k) -- (c) node[midway, left] {};
                     % \draw[->] (rb) to (l);
                     % \draw[<-<] (rb) to (k);
@@ -1424,98 +1426,47 @@ We have
             }
             \end{center} 
 
-    Since $L''RHF$ and $C''CHF$ are pullbacks, and $L'XFHR$ and $C'CHFX$ are commutative diagrams, by the universal property of pullbacks, there are unique morphisms $h_{L'L''}:L' \rightarrowtail L''$ and $h_{C'C''}:C' \rightarrowtail C''$ such that $L'L''R$, $L'L''FX$, $C'C''FX$, and $C'CC''$ are commutative diagrams. Thus, the following diagram holds: 
+   Since $L''LGF$ is pullback and $h_{L'X} \star h_{XF} \star h_{FG} = h_{L'L''} \star h_{L''L} \star h_{LG}$, by the universal property of pullback, there is a unique morphism $h_{L'L''}:L' \rightarrowtail L''$ such that 
+   \begin{flalign}
+         h_{L'L''} \star h_{L''L} &= h_{L'L} \label{antipattern:lplpplppllpl} \\
+         h_{L'X} \star h_{XF} & = h_{L'L''} \star h_{L''F} 
+         \nonumber
+        %  \label{antipattern:hlpxhxfhlplpplppf}
+   \end{flalign}
+   $L'L''L$ and $L'L''FX$ are commutative diagrams. Analogously, since $C''CGF$ is pullback and $C'CHFX$ is a commutative diagram, there is a unique morphism $h_{C'C''}:C' \rightarrowtail C''$ such that 
+   \begin{flalign}
+            h_{C'C''} \star h_{C''C} &= h_{C'C} \label{antipattern:cpcppc}\\
+            h_{C'C''} \star h_{C''F} &= h_{C'X} \star h_{XF}
+            \nonumber 
+            %  \label{antipattern:cpxf}
+   \end{flalign}
+   Thus, the following diagram holds:  
     \begin{center}
             \resizebox{0.5\textwidth}{!}{
                 \begin{tikzpicture}
                     \node (k) at (-2,0) {K};
-                    \node (r) at (4,0) {R};
+                    \node (r) at (4,0) {L};
                     \node (x) at (2,-2) {X};
-                    \node (h) at (4,-3) {H};
+                    \node (h) at (4,-3) {G};
                     \node (f) at (3,-2.5) {F};
                     \node (k') at (1,-1) {K'};
                     \node (r') at (2,-1) {L'};
                     \node (c) at (-2,-3) {C};
                     \node (c') at (1,-2) {C'};
                     \node (c'') at (-0.5,-2.5) {$C''$};
-                    \node () at (1.5,-1.5) {PO};
-                    \node () at (2.5,-1.5) {PB};
-                    \node () at (3.5,-1.5) {PB};
-                    \node () at (1.5,-2.3) {PB};
-                    \node () at (1.5,-2.8) {PB};
+                    % \node () at (1.5,-1.5) {PO};
+                    % \node () at (2.5,-1.5) {PB};
+                    % \node () at (3.5,-1.5) {PB};
+                    % \node () at (1.5,-2.3) {PB};
+                    % \node () at (1.5,-2.8) {PB};
                     \node (l'') at (3,-0.5) {$L''$};
                     % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
                     % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
                     % \draw[>->]  (c) -- (h') node [midway,above] {};
                     \draw[<-<]  (r) -- (k) node [midway,above] {};
-                    \draw[>->] (c) -- (h) node [midway, below] {$r'$};
-                    \draw[>->] (r) -- (h) node[midway, right] {$m'$};
-                    \draw[>->] (k) -- (c) node[midway, left] {};
-                    % \draw[->] (rb) to (l);
-                    % \draw[<-<] (rb) to (k);
-                    \draw[>->] (c'') -- (c);
-                    \draw[>->] (c'') --(f);
-                    \draw[>->] (l'') --(f);
-                    \draw[>->] (l'') --(r);
-                    \node () at (1.5,-0.5) {PB};
-                    \node () at (-0.5,-1.5) {PB};
-                    % \draw [->] (x) -- (h') node[midway] {!};
-                    \draw [>->] (c') -- (x);
-                    \draw [>->] (r') -- (x);
-                    \draw [>->] (k') -- (r');
-                    \draw [>->] (k') -- (c');
-                    \draw [>->] (c') -- (c'');
-                    % \draw [->] (h') -- (h);
-                    \draw[>->] (r') -- (l'') node[midway,below] {};
-                    \draw[>->] (x) -- (f) node[midway,right] {};
-                    \draw[>->] (f) -- (h) node[midway,right] {};
-                    % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
-                    % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
-                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                    % \draw[>->]  (c) -- (h') node [midway,above] {};
-                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                    % \draw[>->] (rb) to (r);
-                    % \draw[<-<] (rb) to (k);
-                    \draw[>->] (k') -- (k) ;
-                \end{tikzpicture}
-            }
-            \end{center} 
-
-    Similarly, we can construct the following commutative diagram where $C''CKK''$ is pullback:
-\begin{center}
-            \resizebox{0.5\textwidth}{!}{
-                \begin{tikzpicture}
-                    \node (k) at (-2,0) {K};
-                    \node (r) at (4,0) {R};
-                    \node (x) at (2,-2) {X};
-                    \node (h) at (4,-3) {H};
-                    \node (f) at (3,-2.5) {F};
-                    \node (k') at (1,-1) {K'};
-                    \node (r') at (2,-1) {L'};
-                    \node (c) at (-2,-3) {C};
-                    \node (c') at (1,-2) {C'};
-                    \node (c'') at (-0.5,-2.5) {$C''$};
-                    \node () at (1.5,-1.5) {PO};
-                                     \node () at (2.5,-1.5) {PB};
-                    \node () at (3.5,-1.5) {PB};
-                    \node () at (1.5,-2.3) {PB};
-                    \node () at (1.5,-2.8) {PB};
-                    \node (l'') at (3,-0.5) {$L''$};
-                    \node (k'') at (-0.5,-0.5) {$K''$};
-                    % \node (k3) at (0,-0.66) {$K^3$};
-                    \draw[>->]  (k') -- (k'') node [midway,above] {};
-                    % \draw[>->]  (k3) -- (k2) node [midway,above] {};
-                    \draw[>->]  (k'') -- (k) node [midway,above] {};
-                    \draw[>->]  (k'') -- (c'') node [midway,above] {};
-                    \draw[>->]  (k'') -- (l'') node [midway,above] {};
-                    % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
-                    % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
-                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                    % \draw[>->]  (c) -- (h') node [midway,above] {};
-                    \draw[<-<]  (r) -- (k) node [midway,above] {};
-                    \draw[>->] (c) -- (h) node [midway, below] {$r'$};
-                    \draw[>->] (r) -- (h) node[midway, right] {$m'$};
+                    \draw[>->] (c) -- (h) node [midway, below] {$l'$};
+                    \draw[>->] (r) -- (h) node[midway, right] {$m$};
                     \draw[>->] (k) -- (c) node[midway, left] {};
                     % \draw[->] (rb) to (l);
                     % \draw[<-<] (rb) to (k);
@@ -1542,129 +1493,358 @@ We have
                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
                     % \draw[>->] (rb) to (r);
                     % \draw[<-<] (rb) to (k);
-                    % \draw[>->] (k') -- (k) ;
+                    \draw[>->] (k') -- (k) ;
+                \end{tikzpicture}
+            } 
+            \end{center} 
+
+   Since we work in \textbf{Graph}, we can construct $C'' \leftarrowtail K'' \rightarrowtail L''$ the pullback of $C'' \rightarrowtail F \leftarrowtail L''$, and the following commutative diagram holds:
+    \begin{center}
+            \resizebox{0.5\textwidth}{!}{
+                \begin{tikzpicture}
+                    \node (k) at (-2,0) {K};
+                    \node (r) at (4,0) {L};
+                    \node (x) at (2,-2) {X};
+                    \node (h) at (4,-3) {G};
+                    \node (f) at (3,-2.5) {F};
+                    \node (k') at (1,-1) {K'};
+                    \node (r') at (2,-1) {L'};
+                    \node (c) at (-2,-3) {C};
+                    \node (c') at (1,-2) {C'};
+                    \node (c'') at (-0.5,-2.5) {$C''$};
+                    \node (k'') at (-0.7,-0.8) {$K''$};
+                    % \node () at (1.5,-1.5) {PO};
+                    % \node () at (2.5,-1.5) {PB};
+                    % \node () at (3.5,-1.5) {PB};
+                    % \node () at (1.5,-2.3) {PB};
+                    % \node () at (1.5,-2.8) {PB};
+                    % \node () at (1.5,-0.5) {PB};
+                    % \node () at (-0.5,-1.5) {PB};
+                    \node (l'') at (3,-0.5) {$L''$};
+                    % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
+                    % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->]  (c) -- (h') node [midway,above] {};
+                    % \draw[>->] (k'') -- (k) node[midway,above] {};
+                    % \draw[>->] (k') -- (k'') node[midway,above] {};
+                    \draw[>->] (k'') -- (c'') node[midway,above] {};
+                    \draw[>->] (k'') -- (l'') node[midway,above] {};
+                    \draw[<-<]  (r) -- (k) node [midway,above] {};
+                    \draw[>->] (c) -- (h) node [midway, below] {$l'$};
+                    \draw[>->] (r) -- (h) node[midway, right] {$m$};
+                    \draw[>->] (k) -- (c) node[midway, left] {};
+                    % \draw[->] (rb) to (l);
+                    % \draw[<-<] (rb) to (k);
+                    \draw[>->] (c'') -- (c);
+                    \draw[>->] (c'') --(f);
+                    \draw[>->] (l'') --(f);
+                    \draw[>->] (l'') --(r);
+
+                    % \draw [->] (x) -- (h') node[midway] {!};
+                    \draw [>->] (c') -- (x);
+                    \draw [>->] (r') -- (x);
+                    \draw [>->] (k') -- (r');
+                    \draw [>->] (k') -- (c');
+                    \draw [>->] (c') -- (c'');
+                    % \draw [->] (h') -- (h);
+                    \draw[>->] (r') -- (l'') node[midway,below] {};
+                    \draw[>->] (x) -- (f) node[midway,right] {};
+                    \draw[>->] (f) -- (h) node[midway,right] {};
+                    % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
+                    % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->]  (c) -- (h') node [midway,above] {};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->] (rb) to (r);
+                    % \draw[<-<] (rb) to (k);
+                    \draw[>->] (k') -- (k) ;
                 \end{tikzpicture}
             }
             \end{center} 
 
-   
+            Since $K''C''FL''$ is pullback and $K'C'C''FL''L'$ is a commutative diagram, by the universal property of pullback, there exist unique morphisms $h_{K'K''}:K' \rightarrowtail K''$ such that $K'C'C''K''$, $K'L'L''K''$ in the following diagram are commutative:
+            \begin{center}
+            \resizebox{0.5\textwidth}{!}{
+                \begin{tikzpicture}
+                    \node (k) at (-2,0) {K};
+                    \node (r) at (4,0) {L};
+                    \node (x) at (2,-2) {X};
+                    \node (h) at (4,-3) {G};
+                    \node (f) at (3,-2.5) {F};
+                    \node (k') at (1,-1) {K'};
+                    \node (r') at (2,-1) {L'};
+                    \node (c) at (-2,-3) {C};
+                    \node (c') at (1,-2) {C'};
+                    \node (c'') at (-0.5,-2.5) {$C''$};
+                    \node (k'') at (-0.7,-0.8) {$K''$};
+                    % \node () at (1.5,-1.5) {PO};
+                    % \node () at (2.5,-1.5) {PB};
+                    % \node () at (3.5,-1.5) {PB};
+                    % \node () at (1.5,-2.3) {PB};
+                    % \node () at (1.5,-2.8) {PB};
+                    % \node () at (1.5,-0.5) {PB};
+                    % \node () at (-0.5,-1.5) {PB};
+                    \node (l'') at (3,-0.5) {$L''$};
+                    % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
+                    % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->]  (c) -- (h') node [midway,above] {};
+                    % \draw[>->] (k'') -- (k) node[midway,above] {};
+                    % \draw[>->] (k') -- (k'') node[midway,above] {};
+                    \draw[>->] (k'') -- (c'') node[midway,above] {};
+                    \draw[>->] (k'') -- (l'') node[midway,above] {};
+                    \draw[<-<]  (r) -- (k) node [midway,above] {};
+                    \draw[>->] (c) -- (h) node [midway, below] {$l'$};
+                    \draw[>->] (r) -- (h) node[midway, right] {$m$};
+                    \draw[>->] (k) -- (c) node[midway, left] {};
+                    \draw[>->] (k') -- (k'') node[midway, left] {};
+                    % \draw[>->] (k'') -- (k) node[midway, left] {};
+                    % \draw[->] (rb) to (l);
+                    % \draw[<-<] (rb) to (k);
+                    \draw[>->] (c'') -- (c);
+                    \draw[>->] (c'') --(f);
+                    \draw[>->] (l'') --(f);
+                    \draw[>->] (l'') --(r);
+
+                    % \draw [->] (x) -- (h') node[midway] {!};
+                    \draw [>->] (c') -- (x);
+                    \draw [>->] (r') -- (x);
+                    \draw [>->] (k') -- (r');
+                    \draw [>->] (k') -- (c');
+                    \draw [>->] (c') -- (c'');
+                    % \draw [->] (h') -- (h);
+                    \draw[>->] (r') -- (l'') node[midway,below] {};
+                    \draw[>->] (x) -- (f) node[midway,right] {};
+                    \draw[>->] (f) -- (h) node[midway,right] {};
+                    % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
+                    % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->]  (c) -- (h') node [midway,above] {};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->] (rb) to (r);
+                    % \draw[<-<] (rb) to (k);
+                    \draw[>->] (k') -- (k) ;
+                \end{tikzpicture}
+            }
+            \end{center} 
+
+          Similarly, since $KCGL$ is pullback and $K''C''CGLL''$ is a commutative diagram, by the universal property of pullback, there exist unique morphisms $h_{K''K}:K'' \rightarrowtail K$ such that $K''C''CK$, $K''L''LK$ in the following diagram are commutative:
+ \begin{center}
+            \resizebox{0.5\textwidth}{!}{
+                \begin{tikzpicture}
+                    \node (k) at (-2,0) {K};
+                    \node (r) at (4,0) {L};
+                    \node (x) at (2,-2) {X};
+                    \node (h) at (4,-3) {G};
+                    \node (f) at (3,-2.5) {F};
+                    \node (k') at (1,-1) {K'};
+                    \node (r') at (2,-1) {L'};
+                    \node (c) at (-2,-3) {C};
+                    \node (c') at (1,-2) {C'};
+                    \node (c'') at (-0.5,-2.5) {$C''$};
+                    \node (k'') at (-0.7,-0.8) {$K''$};
+                    % \node () at (1.5,-1.5) {PO};
+                    % \node () at (2.5,-1.5) {PB};
+                    % \node () at (3.5,-1.5) {PB};
+                    % \node () at (1.5,-2.3) {PB};
+                    % \node () at (1.5,-2.8) {PB};
+                    % \node () at (1.5,-0.5) {PB};
+                    % \node () at (-0.5,-1.5) {PB};
+                    \node (l'') at (3,-0.5) {$L''$};
+                    % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
+                    % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->]  (c) -- (h') node [midway,above] {};
+                    \draw[>->] (k'') -- (k) node[midway,above] {};
+                    % \draw[>->] (k') -- (k'') node[midway,above] {};
+                    \draw[>->] (k'') -- (c'') node[midway,above] {};
+                    \draw[>->] (k'') -- (l'') node[midway,above] {};
+                    \draw[<-<]  (r) -- (k) node [midway,above] {};
+                    \draw[>->] (c) -- (h) node [midway, below] {$l'$};
+                    \draw[>->] (r) -- (h) node[midway, right] {$m$};
+                    \draw[>->] (k) -- (c) node[midway, left] {};
+                    \draw[>->] (k') -- (k'') node[midway, left] {};
+                    % \draw[>->] (k'') -- (k) node[midway, left] {};
+                    % \draw[->] (rb) to (l);
+                    % \draw[<-<] (rb) to (k);
+                    \draw[>->] (c'') -- (c);
+                    \draw[>->] (c'') --(f);
+                    \draw[>->] (l'') --(f);
+                    \draw[>->] (l'') --(r);
+
+                    % \draw [->] (x) -- (h') node[midway] {!};
+                    \draw [>->] (c') -- (x);
+                    \draw [>->] (r') -- (x);
+                    \draw [>->] (k') -- (r');
+                    \draw [>->] (k') -- (c');
+                    \draw [>->] (c') -- (c'');
+                    % \draw [->] (h') -- (h);
+                    \draw[>->] (r') -- (l'') node[midway,below] {};
+                    \draw[>->] (x) -- (f) node[midway,right] {};
+                    \draw[>->] (f) -- (h) node[midway,right] {};
+                    % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
+                    % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->]  (c) -- (h') node [midway,above] {};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->] (rb) to (r);
+                    % \draw[<-<] (rb) to (k);
+                    \draw[>->] (k') -- (k) ;
+                \end{tikzpicture}
+            }
+            \end{center} 
+
+        There is a monomorphism $h_{L''R}:L'' \rightarrowtail R$ such that $K''L''RK$ is pullback, because $\rho^{-1}$ is $X$-non-increasing by assump.\todo{$\rho^{-1}$ is $X$-non-increasing} We have, thus, the following commutative diagram:
+
+\begin{center}
+            \resizebox{0.5\textwidth}{!}{
+                \begin{tikzpicture}
+                    \node (k) at (-2,0) {K};
+                    \node (r) at (4,0) {R};
+                    \node (x) at (2,-2) {X};
+                    \node (h) at (4,-3) {H};
+                    \node (f) at (3,-2.5) {F};
+                    \node (k') at (1,-1) {K'};
+                    \node (r') at (2,-1) {L'};
+                    \node (c) at (-2,-3) {C};
+                    \node (c') at (1,-2) {C'};
+                    \node (c'') at (-0.5,-2.5) {$C''$};
+                    \node (k'') at (-0.5,-0.5) {$K''$};
+                    % \node () at (1.5,-1.5) {PO};
+                    % \node () at (2.5,-1.5) {PB};
+                    % \node () at (3.5,-1.5) {PB};
+                    % \node () at (1.5,-2.3) {PB};
+                    % \node () at (1.5,-2.8) {PB};
+                    % \node () at (1.5,-0.5) {PB};
+                    % \node () at (-0.5,-1.5) {PB};
+                    \node (l'') at (3,-0.5) {$L''$};
+                    % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
+                    % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->]  (c) -- (h') node [midway,above] {};
+                    % \draw[>->] (k'') -- (k) node[midway,above] {};
+                    % \draw[>->] (k') -- (k'') node[midway,above] {};
+                    \draw[>->] (k'') -- (c'') node[midway,above] {};
+                    \draw[>->] (k'') -- (l'') node[midway,above] {};
+                    \draw[<-<]  (r) -- (k) node [midway,above] {};
+                    \draw[>->] (c) -- (h) node [midway, below] {$r'$};
+                    \draw[>->] (r) -- (h) node[midway, right] {$m'$};
+                    \draw[>->] (k) -- (c) node[midway, left] {};
+                    \draw[>->] (k') -- (k'') node[midway, left] {};
+                    \draw[>->] (k'') -- (k) node[midway, left] {};
+                    % \draw[->] (rb) to (l);
+                    % \draw[<-<] (rb) to (k);
+                    \draw[>->] (c'') -- (c);
+                    \draw[>->] (c'') --(f);
+                    \draw[>->] (l'') --(f);
+                    \draw[>->] (l'') --(r);
+
+                    % \draw [->] (x) -- (h') node[midway] {!};
+                    \draw [>->] (c') -- (x);
+                    \draw [>->] (r') -- (x);
+                    \draw [>->] (k') -- (r');
+                    \draw [>->] (k') -- (c');
+                    \draw [>->] (c') -- (c'');
+                    % \draw [->] (h') -- (h);
+                    \draw[>->] (r') -- (l'') node[midway,below] {};
+                    \draw[>->] (x) -- (f) node[midway,right] {};
+                    % \draw[>->] (f) -- (h) node[midway,right] {};
+                    % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
+                    % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->]  (c) -- (h') node [midway,above] {};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->] (rb) to (r);
+                    % \draw[<-<] (rb) to (k);
+                \end{tikzpicture}
+            }
+            \end{center} 
+            
+    The square $K''C''FL''$ is pushout because it is pullback, by~\autoref{prop:pb_eq_po}. Furthermore, we have 
+    \begin{flalign*}
+         &(h_{K''C''} \star h_{C''C}) \star h_{CH} \\
+        =&(h_{K''K} \star h_{KC}) \star h_{CH} \\
+        = &h_{K''K} \star (h_{KR} \star h_{RH}) \\
+        = &h_{K''L''} \star h_{L''R} \star h_{RH}
+    \end{flalign*}
+    Therefore, by the universal property of pushout, 
+     there is a unique morphism $h_{FH}$ such that $L''FHR$ and $C''FHC$ are commutative diagrams. Thus, we have the following commutative diagram:
 
 
-    % There exists $h_{L'L''}:L' \rightarrowtail L''$ such that $h_{L'L} = h_{L'L''} \star h_{L''L}$ 
-    % because $L''LGF$ is a pullback, and the following diagram holds:
+\begin{center}
+            \resizebox{0.5\textwidth}{!}{
+                \begin{tikzpicture}
+                    \node (k) at (-2,0) {K};
+                    \node (r) at (4,0) {R};
+                    \node (x) at (2,-2) {X};
+                    \node (h) at (4,-3) {H};
+                    \node (f) at (3,-2.5) {F};
+                    \node (k') at (1,-1) {K'};
+                    \node (r') at (2,-1) {L'};
+                    \node (c) at (-2,-3) {C};
+                    \node (c') at (1,-2) {C'};
+                    \node (c'') at (-0.5,-2.5) {$C''$};
+                    \node (k'') at (-0.5,-0.5) {$K''$};
+                    % \node () at (1.5,-1.5) {PO};
+                    % \node () at (2.5,-1.5) {PB};
+                    % \node () at (3.5,-1.5) {PB};
+                    % \node () at (1.5,-2.3) {PB};
+                    % \node () at (1.5,-2.8) {PB};
+                    % \node () at (1.5,-0.5) {PB};
+                    % \node () at (-0.5,-1.5) {PB};
+                    \node (l'') at (3,-0.5) {$L''$};
+                    % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
+                    % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->]  (c) -- (h') node [midway,above] {};
+                    % \draw[>->] (k'') -- (k) node[midway,above] {};
+                    % \draw[>->] (k') -- (k'') node[midway,above] {};
+                    \draw[>->] (k'') -- (c'') node[midway,above] {};
+                    \draw[>->] (k'') -- (l'') node[midway,above] {};
+                    \draw[<-<]  (r) -- (k) node [midway,above] {};
+                    \draw[>->] (c) -- (h) node [midway, below] {$r'$};
+                    \draw[>->] (r) -- (h) node[midway, right] {$m'$};
+                    \draw[>->] (k) -- (c) node[midway, left] {};
+                    \draw[>->] (k') -- (k'') node[midway, left] {};
+                    \draw[>->] (k'') -- (k) node[midway, left] {};
+                    % \draw[->] (rb) to (l);
+                    % \draw[<-<] (rb) to (k);
+                    \draw[>->] (c'') -- (c);
+                    \draw[>->] (c'') --(f);
+                    \draw[>->] (l'') --(f);
+                    \draw[>->] (l'') --(r);
 
-
-
-    % \begin{center}
-    %     \resizebox{0.3\textwidth}{!}{
-    %         \begin{tikzpicture}
-    %             \node (k) at (0,0) {K};
-    %             \node (r) at (4,0) {L};
-    %             \node (c) at (0,-3) {C};
-    %             \node (h) at (4,-3) {G};
-    %             \draw[<-<]  (r) -- (k) node [midway,above] {};
-    %             \draw[>->] (c) -- (h) node [midway, below] {};
-    %             \draw[>->] (r) -- (h) node[midway, left] {m};
-    %             \draw[>->] (k) -- (c) node[midway, left] {};
-    %             \node (k') at (1,-1) {K'};
-    %             \node (r') at (2,-1) {L'};
-    %             \node (c') at (1,-2) {C'};
-    %             \node () at (1.5,-1.5) {PO};
-    %             \node () at (3,-1.5) {PB};
-    %             \node () at (1.5,-2.5) {PB};
-    %             \node () at (1.5,-0.5) {PB};
-    %             \node () at (0.5,-1.5) {PB};
-    %             \node (x) at (2,-2) {X};
-    %             \draw [>->] (c') -- (x);
-    %             \draw [>->] (r') -- (x);
-    %             \draw [>->] (k') -- (r');
-    %             \draw [>->] (k') -- (c');
-    %             \draw [>->] (c') -- (c);
-    %             \draw[>->] (r') -- (r);
-    %             \draw[>->] (x) -- (h) node[midway,right] {};
-    %             \draw[>->] (k') -- (k) ;
-    %         \end{tikzpicture}
-    %     }
-    %     \end{center} 
-    % where
-    % \begin{flalign*}
-    %     h_{L'L} \star m &= h_{L'X} \star h_{XG} \\
-    %                     &= h_{L'X} \star h_{XF} \star h_{FG}
-    %                     &\text{by~\eqref{antipattern:eq:xxxhxg}}
-    % \end{flalign*} 
-    % Analogously, there exist $h_{C'C''}:C' \rightarrowtail C''$ such that $h_{C'C} = h_{C'C''} \star h_{C''C}$ 
-    % and $h_{K'K''}:K' \rightarrowtail K''$ such that $h_{K'K} = h_{K'K''} \star h_{K''K}$.
-    
-     \todo{details}We can show that the following diagram holds:
-
-    \begin{center}
-        \resizebox{0.3\textwidth}{!}{
-            \begin{tikzpicture}
-                \node (kk) at (-1,1) {K};
-                \node (rr) at (5,1) {R};
-                \node (cc) at (-1,-4) {C};
-                \node (hh) at (5,-4) {H};
-                \node (k) at (0,0) {K''};
-                \node (r) at (4,0) {L''};
-                \node (c) at (0,-3) {C''};
-                \node (h) at (4,-3) {F};
-                \draw[>->]  (k) -- (kk) node [midway,above] {};
-                \draw[>->]  (c) -- (cc) node [midway,above] {};
-                \draw[>->]  (h) -- (hh) node [midway,above] {};
-                \draw[>->]  (r) -- (rr) node [midway,above] {};
-                \draw[>->]  (cc) -- (hh) node [midway,below] {$r'$};
-                \draw[>->]  (kk) -- (cc) node [midway,left] {$u$};
-                \draw[>->]  (kk) -- (rr) node [midway,above] {$r$};
-                \draw[>->]  (rr) -- (hh) node [midway,right] {$m'$};
-                % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
-                % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->]  (c) -- (h') node [midway,above] {};
-                \draw[<-<]  (r) -- (k) node [midway,above] {};
-                \draw[>->] (c) -- (h) node [midway, below] {};
-                \draw[>->] (r) -- (h) node[midway, left] {};
-                \draw[>->] (k) -- (c) node[midway, left] {};
-                % \draw[->] (rb) to (l);
-                % \draw[<-<] (rb) to (k);
-                \node (k') at (1,-1) {K'};
-                \node (r') at (2,-1) {L'};
-                \node (c') at (1,-2) {C'};
-                \node () at (1.5,-1.5) {PO};
-                \node () at (3,-1.5) {PB};
-                \node () at (1.5,-2.5) {PB};
-                \node () at (1.5,-0.5) {PB};
-                \node () at (0.5,-1.5) {PB};
-                \node () [at=($(cc)!0.5!(h)$)] {PB};
-                \node () [at=($(cc)!0.5!(k)$)] {PB};
-                \node () [at=($(rr)!0.5!(k)$)] {PB};
-                \node () [at=($(rr)!0.5!(h)$)] {PB};
-                \node (x) at (2,-2) {X};
-                % \draw [->] (x) -- (h') node[midway] {!};
-                \draw [>->] (c') -- (x);
-                \draw [>->] (r') -- (x);
-                \draw [>->] (k') -- (r');
-                \draw [>->] (k') -- (c');
-                \draw [>->] (c') -- (c);
-                % \draw [->] (r') -- (rb);
-                % \draw [->] (r') -- (rb);
-                % \draw [->] (h') -- (h);
-                \draw[>->] (r') -- (r) node[midway,below] {};
-                \draw[>->] (x) -- (h) node[midway,right] {};
-                % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
-                % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->]  (c) -- (h') node [midway,above] {};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->] (rb) to (r);
-                % \draw[<-<] (rb) to (k);
-                \draw[>->] (k') -- (k) ;
-            \end{tikzpicture}
-        }
-        \end{center} 
-        % Hyp ?? $h_{L'R} = Id_{L'L''} \star h_{L''R}$ !!\\
-        We have $h_{XH} = h_{XF} \star h_{FH}$ because $K'C'XL'$ is a pushout and $h_{XH}$ 
-        is the unique morphism such that $H_{C'X} \star h_{XH} = h_{C'C} \star h_{CH} =  h_{C'C''} \star h_{C''C} \star h_{CH}$ and 
-        $h_{L'X} \star h_{XH} = h_{L'R} \star h_{RH} = h_{L'L''} \star h_{L''R} \star h_{RH}$, but we have 
+                    % \draw [->] (x) -- (h') node[midway] {!};
+                    \draw [>->] (c') -- (x);
+                    \draw [>->] (r') -- (x);
+                    \draw [>->] (k') -- (r');
+                    \draw [>->] (k') -- (c');
+                    \draw [>->] (c') -- (c'');
+                    % \draw [->] (h') -- (h);
+                    \draw[>->] (r') -- (l'') node[midway,below] {};
+                    \draw[>->] (x) -- (f) node[midway,right] {};
+                    \draw[>->] (f) -- (h) node[midway,right] {};
+                    % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
+                    % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->]  (c) -- (h') node [midway,above] {};
+                    % \draw[>->]  (rb) -- (h') node [midway,above] {};
+                    % \draw[>->] (rb) to (r);
+                    % \draw[<-<] (rb) to (k);
+                \end{tikzpicture}
+            }
+            \end{center} 
+    We have $h_{XH} = h_{XF} \star h_{FH}$ because $K'C'XL'$ is a pushout and $h_{XH}$ 
+        is the unique morphism such that 
+        \begin{flalign}
+           H_{C'X} \star h_{XH} &= h_{C'C} \star h_{CH} \\
+           &=  h_{C'C''} \star h_{C''C} \star h_{CH} \hspace{2cm} \text{by~\eqref{antipattern:cpcppc}}
+        \end{flalign} and 
+        \begin{flalign}
+        h_{L'X} \star h_{XH} &= h_{L'R} \star h_{RH} \\
+        &= h_{L'L''} \star h_{L''R} \star h_{RH} \hspace{2cm} \text{by~\eqref{antipattern:lplpplppllpl}}
+        \end{flalign}
+         but we have 
         \begin{flalign*}
             &h_{C'X} \star (h_{XF} \star h_{FH}) 
             \\= & (h_{C'C''} \star h_{C''F}) \star h_{FH} 
@@ -1677,6 +1857,369 @@ We have
             \\ = & h_{L'L''} \star (h_{L''R} \star h_{RH})
         \end{flalign*}
         This concludes our proof.
+
+%     \color{red}
+
+%         \begin{center}
+%             \resizebox{0.3\textwidth}{!}{
+%                 \begin{tikzpicture}
+%                     \node (k) at (0,0) {K};
+%                     \node (r) at (4,0) {R};
+%                     \node (c) at (0,-3) {C};
+%                     \node (x) at (2,-2) {X};
+%                     \node (h) at (4,-3) {H};
+%                     \node (f) at (3,-2.5) {F};
+%                     % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
+%                     % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (c) -- (h') node [midway,above] {};
+%                     \draw[<-<]  (r) -- (k) node [midway,above] {};
+%                     \draw[>->] (c) -- (h) node [midway, below] {$r'$};
+%                     \draw[>->] (r) -- (h) node[midway, left] {$m'$};
+%                     \draw[>->] (k) -- (c) node[midway, left] {};
+%                     % \draw[->] (rb) to (l);
+%                     % \draw[<-<] (rb) to (k);
+%                     \node (k') at (1,-1) {K'};
+%                     \node (r') at (2,-1) {L'};
+%                     \node (c') at (1,-2) {C'};
+%                     \node () at (1.5,-1.5) {PO};
+%                     \node () at (3,-1.5) {PB};
+%                     \node () at (1.5,-2.5) {PB};
+%                     \node () at (1.5,-0.5) {PB};
+%                     \node () at (0.5,-1.5) {PB};
+%                     % \draw [->] (x) -- (h') node[midway] {!};
+%                     \draw [>->] (c') -- (x);
+%                     \draw [>->] (r') -- (x);
+%                     \draw [>->] (k') -- (r');
+%                     \draw [>->] (k') -- (c');
+%                     \draw [>->] (c') -- (c);
+%                     % \draw [->] (h') -- (h);
+%                     \draw[>->] (r') -- (r) node[midway,below] {};
+%                     \draw[>->] (x) -- (f) node[midway,right] {};
+%                     \draw[>->] (f) -- (h) node[midway,right] {};
+%                     % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
+%                     % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (c) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->] (rb) to (r);
+%                     % \draw[<-<] (rb) to (k);
+%                     \draw[>->] (k') -- (k) ;
+%                 \end{tikzpicture}
+%             }
+%             \end{center} 
+
+%     We can now construct the following commutative diagram where $L''RHF$ and $C''CHF$ are pullbacks: \todo{do we need more details?}
+%      \begin{center}
+%             \resizebox{0.3\textwidth}{!}{
+%                 \begin{tikzpicture}
+%                     \node (k) at (0,0) {K};
+%                     \node (r) at (4,0) {R};
+%                     \node (c) at (0,-3) {C};
+%                     \node (x) at (2,-2) {X};
+%                     \node (h) at (4,-3) {H};
+%                     \node (f) at (3,-2.5) {F};
+%                     % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
+%                     % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (c) -- (h') node [midway,above] {};
+%                     \draw[<-<]  (r) -- (k) node [midway,above] {};
+%                     \draw[>->] (c) -- (h) node [midway, below] {$r'$};
+%                     \draw[>->] (r) -- (h) node[midway, left] {$m'$};
+%                     \draw[>->] (k) -- (c) node[midway, left] {};
+%                     % \draw[->] (rb) to (l);
+%                     % \draw[<-<] (rb) to (k);
+%                     \node (k') at (1,-1) {K'};
+%                     \node (r') at (2,-1) {L'};
+%                     \node (c') at (1,-2) {C'};
+%                     \node () at (1.5,-1.5) {PO};
+%                     \node (l'') at (3,-1.5) {$L''$};
+%                     \node (c'') at (1.5,-2.5) {$C''$};
+%                     \draw[>->] (c'') -- (c);
+%                     \draw[>->] (c'') --(f);
+%                     \draw[>->] (l'') --(f);
+%                     \draw[>->] (l'') --(r);
+%                     \node () at (1.5,-0.5) {PB};
+%                     \node () at (0.5,-1.5) {PB};
+%                     % \draw [->] (x) -- (h') node[midway] {!};
+%                     \draw [>->] (c') -- (x);
+%                     \draw [>->] (r') -- (x);
+%                     \draw [>->] (k') -- (r');
+%                     \draw [>->] (k') -- (c');
+%                     \draw [>->] (c') -- (c);
+%                     % \draw [->] (h') -- (h);
+%                     \draw[>->] (r') -- (r) node[midway,below] {};
+%                     \draw[>->] (x) -- (f) node[midway,right] {};
+%                     \draw[>->] (f) -- (h) node[midway,right] {};
+%                     % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
+%                     % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (c) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->] (rb) to (r);
+%                     % \draw[<-<] (rb) to (k);
+%                     \draw[>->] (k') -- (k) ;
+%                 \end{tikzpicture}
+%             }
+%             \end{center} 
+
+%     Since $L''RHF$ and $C''CHF$ are pullbacks, and $L'XFHR$ and $C'CHFX$ are commutative diagrams, by the universal property of pullbacks, there are unique morphisms $h_{L'L''}:L' \rightarrowtail L''$ and $h_{C'C''}:C' \rightarrowtail C''$ such that $L'L''R$, $L'L''FX$, $C'C''FX$, and $C'CC''$ are commutative diagrams. Thus, the following diagram holds: 
+%     \begin{center}
+%             \resizebox{0.5\textwidth}{!}{
+%                 \begin{tikzpicture}
+%                     \node (k) at (-2,0) {K};
+%                     \node (r) at (4,0) {R};
+%                     \node (x) at (2,-2) {X};
+%                     \node (h) at (4,-3) {H};
+%                     \node (f) at (3,-2.5) {F};
+%                     \node (k') at (1,-1) {K'};
+%                     \node (r') at (2,-1) {L'};
+%                     \node (c) at (-2,-3) {C};
+%                     \node (c') at (1,-2) {C'};
+%                     \node (c'') at (-0.5,-2.5) {$C''$};
+%                     \node () at (1.5,-1.5) {PO};
+%                     \node () at (2.5,-1.5) {PB};
+%                     \node () at (3.5,-1.5) {PB};
+%                     \node () at (1.5,-2.3) {PB};
+%                     \node () at (1.5,-2.8) {PB};
+%                     \node (l'') at (3,-0.5) {$L''$};
+%                     % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
+%                     % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (c) -- (h') node [midway,above] {};
+%                     \draw[<-<]  (r) -- (k) node [midway,above] {};
+%                     \draw[>->] (c) -- (h) node [midway, below] {$r'$};
+%                     \draw[>->] (r) -- (h) node[midway, right] {$m'$};
+%                     \draw[>->] (k) -- (c) node[midway, left] {};
+%                     % \draw[->] (rb) to (l);
+%                     % \draw[<-<] (rb) to (k);
+%                     \draw[>->] (c'') -- (c);
+%                     \draw[>->] (c'') --(f);
+%                     \draw[>->] (l'') --(f);
+%                     \draw[>->] (l'') --(r);
+%                     \node () at (1.5,-0.5) {PB};
+%                     \node () at (-0.5,-1.5) {PB};
+%                     % \draw [->] (x) -- (h') node[midway] {!};
+%                     \draw [>->] (c') -- (x);
+%                     \draw [>->] (r') -- (x);
+%                     \draw [>->] (k') -- (r');
+%                     \draw [>->] (k') -- (c');
+%                     \draw [>->] (c') -- (c'');
+%                     % \draw [->] (h') -- (h);
+%                     \draw[>->] (r') -- (l'') node[midway,below] {};
+%                     \draw[>->] (x) -- (f) node[midway,right] {};
+%                     \draw[>->] (f) -- (h) node[midway,right] {};
+%                     % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
+%                     % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (c) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->] (rb) to (r);
+%                     % \draw[<-<] (rb) to (k);
+%                     \draw[>->] (k') -- (k) ;
+%                 \end{tikzpicture}
+%             }
+%             \end{center} 
+
+%     Similarly, we can construct the following commutative diagram where $C''CKK''$ is pullback:
+% \begin{center}
+%             \resizebox{0.5\textwidth}{!}{
+%                 \begin{tikzpicture}
+%                     \node (k) at (-2,0) {K};
+%                     \node (r) at (4,0) {R};
+%                     \node (x) at (2,-2) {X};
+%                     \node (h) at (4,-3) {H};
+%                     \node (f) at (3,-2.5) {F};
+%                     \node (k') at (1,-1) {K'};
+%                     \node (r') at (2,-1) {L'};
+%                     \node (c) at (-2,-3) {C};
+%                     \node (c') at (1,-2) {C'};
+%                     \node (c'') at (-0.5,-2.5) {$C''$};
+%                     \node () at (1.5,-1.5) {PO};
+%                                      \node () at (2.5,-1.5) {PB};
+%                     \node () at (3.5,-1.5) {PB};
+%                     \node () at (1.5,-2.3) {PB};
+%                     \node () at (1.5,-2.8) {PB};
+%                     \node (l'') at (3,-0.5) {$L''$};
+%                     \node (k'') at (-0.5,-0.5) {$K''$};
+%                     % \node (k3) at (0,-0.66) {$K^3$};
+%                     \draw[>->]  (k') -- (k'') node [midway,above] {};
+%                     % \draw[>->]  (k3) -- (k2) node [midway,above] {};
+%                     \draw[>->]  (k'') -- (k) node [midway,above] {};
+%                     \draw[>->]  (k'') -- (c'') node [midway,above] {};
+%                     % \draw[>->]  (k'') -- (l'') node [midway,above] {};
+%                     % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
+%                     % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (c) -- (h') node [midway,above] {};
+%                     \draw[<-<]  (r) -- (k) node [midway,above] {};
+%                     \draw[>->] (c) -- (h) node [midway, below] {$r'$};
+%                     \draw[>->] (r) -- (h) node[midway, right] {$m'$};
+%                     \draw[>->] (k) -- (c) node[midway, left] {};
+%                     % \draw[->] (rb) to (l);
+%                     % \draw[<-<] (rb) to (k);
+%                     \draw[>->] (c'') -- (c);
+%                     \draw[>->] (c'') --(f);
+%                     \draw[>->] (l'') --(f);
+%                     \draw[>->] (l'') --(r);
+%                     % \node () at (1.5,-0.5) {PB};
+%                     % \node () at (-0.5,-1.5) {PB};
+%                     % \draw [->] (x) -- (h') node[midway] {!};
+%                     \draw [>->] (c') -- (x);
+%                     \draw [>->] (r') -- (x);
+%                     \draw [>->] (k') -- (r');
+%                     \draw [>->] (k') -- (c');
+%                     \draw [>->] (c') -- (c'');
+%                     % \draw [->] (h') -- (h);
+%                     \draw[>->] (r') -- (l'') node[midway,below] {};
+%                     \draw[>->] (x) -- (f) node[midway,right] {};
+%                     \draw[>->] (f) -- (h) node[midway,right] {};
+%                     % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
+%                     % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (c) -- (h') node [midway,above] {};
+%                     % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                     % \draw[>->] (rb) to (r);
+%                     % \draw[<-<] (rb) to (k);
+%                     % \draw[>->] (k') -- (k) ;
+%                 \end{tikzpicture}
+%             }
+%             \end{center} 
+
+   
+
+
+%     % There exists $h_{L'L''}:L' \rightarrowtail L''$ such that $h_{L'L} = h_{L'L''} \star h_{L''L}$ 
+%     % because $L''LGF$ is a pullback, and the following diagram holds:
+
+
+
+%     % \begin{center}
+%     %     \resizebox{0.3\textwidth}{!}{
+%     %         \begin{tikzpicture}
+%     %             \node (k) at (0,0) {K};
+%     %             \node (r) at (4,0) {L};
+%     %             \node (c) at (0,-3) {C};
+%     %             \node (h) at (4,-3) {G};
+%     %             \draw[<-<]  (r) -- (k) node [midway,above] {};
+%     %             \draw[>->] (c) -- (h) node [midway, below] {};
+%     %             \draw[>->] (r) -- (h) node[midway, left] {m};
+%     %             \draw[>->] (k) -- (c) node[midway, left] {};
+%     %             \node (k') at (1,-1) {K'};
+%     %             \node (r') at (2,-1) {L'};
+%     %             \node (c') at (1,-2) {C'};
+%     %             \node () at (1.5,-1.5) {PO};
+%     %             \node () at (3,-1.5) {PB};
+%     %             \node () at (1.5,-2.5) {PB};
+%     %             \node () at (1.5,-0.5) {PB};
+%     %             \node () at (0.5,-1.5) {PB};
+%     %             \node (x) at (2,-2) {X};
+%     %             \draw [>->] (c') -- (x);
+%     %             \draw [>->] (r') -- (x);
+%     %             \draw [>->] (k') -- (r');
+%     %             \draw [>->] (k') -- (c');
+%     %             \draw [>->] (c') -- (c);
+%     %             \draw[>->] (r') -- (r);
+%     %             \draw[>->] (x) -- (h) node[midway,right] {};
+%     %             \draw[>->] (k') -- (k) ;
+%     %         \end{tikzpicture}
+%     %     }
+%     %     \end{center} 
+%     % where
+%     % \begin{flalign*}
+%     %     h_{L'L} \star m &= h_{L'X} \star h_{XG} \\
+%     %                     &= h_{L'X} \star h_{XF} \star h_{FG}
+%     %                     &\text{by~\eqref{antipattern:eq:xxxhxg}}
+%     % \end{flalign*} 
+%     % Analogously, there exist $h_{C'C''}:C' \rightarrowtail C''$ such that $h_{C'C} = h_{C'C''} \star h_{C''C}$ 
+%     % and $h_{K'K''}:K' \rightarrowtail K''$ such that $h_{K'K} = h_{K'K''} \star h_{K''K}$.
+    
+%      \todo{details}We can show that the following diagram holds:
+
+%     \begin{center}
+%         \resizebox{0.3\textwidth}{!}{
+%             \begin{tikzpicture}
+%                 \node (kk) at (-1,1) {K};
+%                 \node (rr) at (5,1) {R};
+%                 \node (cc) at (-1,-4) {C};
+%                 \node (hh) at (5,-4) {H};
+%                 \node (k) at (0,0) {K''};
+%                 \node (r) at (4,0) {L''};
+%                 \node (c) at (0,-3) {C''};
+%                 \node (h) at (4,-3) {F};
+%                 \draw[>->]  (k) -- (kk) node [midway,above] {};
+%                 \draw[>->]  (c) -- (cc) node [midway,above] {};
+%                 \draw[>->]  (h) -- (hh) node [midway,above] {};
+%                 \draw[>->]  (r) -- (rr) node [midway,above] {};
+%                 \draw[>->]  (cc) -- (hh) node [midway,below] {$r'$};
+%                 \draw[>->]  (kk) -- (cc) node [midway,left] {$u$};
+%                 \draw[>->]  (kk) -- (rr) node [midway,above] {$r$};
+%                 \draw[>->]  (rr) -- (hh) node [midway,right] {$m'$};
+%                 % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
+%                 % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
+%                 % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                 % \draw[>->]  (c) -- (h') node [midway,above] {};
+%                 \draw[<-<]  (r) -- (k) node [midway,above] {};
+%                 \draw[>->] (c) -- (h) node [midway, below] {};
+%                 \draw[>->] (r) -- (h) node[midway, left] {};
+%                 \draw[>->] (k) -- (c) node[midway, left] {};
+%                 % \draw[->] (rb) to (l);
+%                 % \draw[<-<] (rb) to (k);
+%                 \node (k') at (1,-1) {K'};
+%                 \node (r') at (2,-1) {L'};
+%                 \node (c') at (1,-2) {C'};
+%                 \node () at (1.5,-1.5) {PO};
+%                 \node () at (3,-1.5) {PB};
+%                 \node () at (1.5,-2.5) {PB};
+%                 \node () at (1.5,-0.5) {PB};
+%                 \node () at (0.5,-1.5) {PB};
+%                 \node () [at=($(cc)!0.5!(h)$)] {PB};
+%                 \node () [at=($(cc)!0.5!(k)$)] {PB};
+%                 \node () [at=($(rr)!0.5!(k)$)] {PB};
+%                 \node () [at=($(rr)!0.5!(h)$)] {PB};
+%                 \node (x) at (2,-2) {X};
+%                 % \draw [->] (x) -- (h') node[midway] {!};
+%                 \draw [>->] (c') -- (x);
+%                 \draw [>->] (r') -- (x);
+%                 \draw [>->] (k') -- (r');
+%                 \draw [>->] (k') -- (c');
+%                 \draw [>->] (c') -- (c);
+%                 % \draw [->] (r') -- (rb);
+%                 % \draw [->] (r') -- (rb);
+%                 % \draw [->] (h') -- (h);
+%                 \draw[>->] (r') -- (r) node[midway,below] {};
+%                 \draw[>->] (x) -- (h) node[midway,right] {};
+%                 % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
+%                 % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
+%                 % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                 % \draw[>->]  (c) -- (h') node [midway,above] {};
+%                 % \draw[>->]  (rb) -- (h') node [midway,above] {};
+%                 % \draw[>->] (rb) to (r);
+%                 % \draw[<-<] (rb) to (k);
+%                 \draw[>->] (k') -- (k) ;
+%             \end{tikzpicture}
+%         }
+%         \end{center} 
+%         % Hyp ?? $h_{L'R} = Id_{L'L''} \star h_{L''R}$ !!\\
+
+
+
+%         We have $h_{XH} = h_{XF} \star h_{FH}$ because $K'C'XL'$ is a pushout and $h_{XH}$ 
+%         is the unique morphism such that $H_{C'X} \star h_{XH} = h_{C'C} \star h_{CH} =  h_{C'C''} \star h_{C''C} \star h_{CH}$ and 
+%         $h_{L'X} \star h_{XH} = h_{L'R} \star h_{RH} = h_{L'L''} \star h_{L''R} \star h_{RH}$, but we have 
+%         \begin{flalign*}
+%             &h_{C'X} \star (h_{XF} \star h_{FH}) 
+%             \\= & (h_{C'C''} \star h_{C''F}) \star h_{FH} 
+%             \\= & h_{C'C''} \star (h_{C''C} \star h_{CH})
+%         \end{flalign*}
+%         and 
+%         \begin{flalign*}
+%             &h_{L'X} \star (h_{XF} \star h_{FH})
+%             \\ = & (h_{L'L''} \star h_{L''F}) \star h_{FH}
+%             \\ = & h_{L'L''} \star (h_{L''R} \star h_{RH})
+%         \end{flalign*}
+%         This concludes our proof.
+%                 \color{black}
 \end{proof}
 
 
@@ -1959,5 +2502,5 @@ Then \(\Rightarrow_{\mathcal{A},\mathcal{M}}\) is terminating relative to \(\Rig
         \item \( w_{s_\mathbb{X}}(G) > w_{s_\mathbb{X}}(H) \) for every rule \(\rho \in \mathcal{A}\);
         \item  \( w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H) \) for every rule \(\rho \in \mathcal{B}\).
     \end{itemize}
-    Since $w_{s_\mathbb{X}}(G) \in \mathbb{N}$ for all graph $G$. Every rewriting sequence can only have a finite number of rewriting steps using rules in $\mathcal{A}$.
+    Since $w_{s_\mathbb{X}}(G) \in \mathbb{N}$ for all graph $G$. Every rewriting sequence can only have a finite number of rewriting steps using rules from $\mathcal{A}$.
 \end{proof} 
