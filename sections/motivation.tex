@@ -24,8 +24,264 @@ However, ITP presents significant challenges: it demands expertise in proof assi
 
 \paragraph{Automated methods} that check specific properties of distributed algorithms and can generate certificates that can be checked by proof assistants provide a practical alternative~\cite{contejean2011automated,giesl2014proving}. While they can only be applied to specific properties for some classes of distributed algorithms, they can be used by users who are not experts in formal methods, and they can also speed up the verification process for experts. To develop such automated methods, distributed algorithms need to be modeled in a formal way enabling rigorous analysis and automated verification of their properties. In this thesis, we focus on modeling distributed algorithms using graph transformation.
 
+ \paragraph{Rule-based graph transformation} provides an intuitive yet formal way to model distributed systems: computation units are represented by nodes; communication canals are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computation units and states of communication canals; state changes of the system are modeled by replacing subgraphs in the graph by other subgraphs according to transformation rules. For example, consider the graph in~\autoref{fig:graph_modeling_state_network} which models a distributed network with six computation units. Each node represents a computation unit, with labels indicating their states: one unit is active ("A") while the remaining five are neutral ("N"). Edges represent communication canals, all initially in state "0". Consider a distributed spanning tree construction algorithm: when an active unit ("A") detects a neutral neighbor ("N") via a canal in state "0", it activates the neighbor and updates the canal to state "1". Its behavior can be captured by a graph transformation rule, which replaces the subgraph \tikz[baseline=0ex]{ 
+            \node (x) at (0,0) {$\bullet$};  
+            \node (y) at (1,0) {$\bullet$};
+            \draw[-] (x) -- node[midway,above] {0} (y) ;
+            \node () at (0,0.3) {$A$};  
+            \node () at (1,0.3) {$N$};
+     } by \tikz[baseline=0ex]{ 
+                \node (x) at (0,0) {$\bullet$};  
+                \node (y) at (1,0) {$\bullet$};
+                \draw[-] (x) -- node[midway,above] {1} (y) ;
+                \node () at (0,0.3) {$A$};  
+                \node () at (1,0.3) {$A$};
+     }. 
+A sample execution sequence starting from the configuration in~\autoref{fig:graph_modeling_state_network} is shown in~\autoref{fig:intro_sequence_of_transformation}. Upon termination, a spanning tree can be constructed using edges labeled by "1".
+ \begin{figure}
+        \centering
+        \resizebox{0.3\textwidth}{!}{
+                \begin{tikzpicture}
+                    \node[draw, circle] (n1) at (0,0) {};
+                    \node[draw, circle] (n2) at (1,1) {};
+                    \node[draw, circle] (n4) at (1,-1) {};
+                    \node[draw, circle] (n3) at (2,0) {};
+                    \node[draw, circle] (n5) at (3,-1){};
+                    \node[draw, circle] (n6) at (3,1){};
+                    \draw[-] (n1)--(n2)--(n3)--(n4);
+                    \draw[-] (n4)--(n1);
+                    \draw[-] (n3)--(n6)--(n5)--(n3);
+                    \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
+                    \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;   
+                    \draw(-0.1,0) node[left] {A};
+                    \draw(1,1.1) node[above] {N};
+                    \draw(1,-1.1) node[below] {N};
+                    \draw(2,0.1) node[above] {N};
+                    \draw(3,1.1) node[above] {N};
+                    \draw(3,-1.1) node[below] {N};
+                    % edge labels
+                    \draw(1.35,0.7) node[right] {0};
+                    \draw(1.35,-0.7) node[right] {0};
+                    \draw(0.5,0.5) node[left] {0};
+                    \draw(0.5,-0.5) node[left] {0};
+                    \draw(2.6,0.6) node[left] {0};
+                    \draw(2.6,-0.6) node[left] {0};
+                    \draw(3,0) node[right] {0};
+                \end{tikzpicture}
+    }
+    \caption{A graph modeling a network configuration}
+    
+    \label{fig:graph_modeling_state_network}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \resizebox{0.3\textwidth}{!}{
+                \begin{tikzpicture}
+                    \node[draw, circle] (n1) at (0,0) {};
+                    \node[draw, circle] (n2) at (1,1) {};
+                    \node[draw, circle] (n4) at (1,-1) {};
+                    \node[draw, circle] (n3) at (2,0) {};
+                    \node[draw, circle] (n5) at (3,-1){};
+                    \node[draw, circle] (n6) at (3,1){};
+                    \draw[-] (n1)--(n2)--(n3)--(n4);
+                    \draw[-] (n4)--(n1);
+                    \draw[-] (n3)--(n6)--(n5)--(n3);
+                    \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
+                    \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;   
+    
+                    \draw(-0.1,0) node[left] {A};
+                    \draw(1,1.1) node[above] {N};
+                    \draw(1,-1.1) node[below] {N};
+                    \draw(2,0.1) node[above] {N};
+                    \draw(3,1.1) node[above] {N};
+                    \draw(3,-1.1) node[below] {N};
+    
+                    % edge labels
+                    \draw(1.35,0.7) node[right] {0};
+                    \draw(1.35,-0.7) node[right] {0};
+                    \draw(0.5,0.5) node[left] {0};
+                    \draw(0.5,-0.5) node[left] {0};
+                    \draw(2.6,0.6) node[left] {0};
+                    \draw(2.6,-0.6) node[left] {0};
+                    \draw(3,0) node[right] {0};
+                \end{tikzpicture}
+    }
+  \resizebox{0.3\textwidth}{!}{
+                \begin{tikzpicture}
+                    \node[draw, circle] (n1) at (0,0) {};
+                    \node[draw, circle] (n2) at (1,1) {};
+                    \node[draw, circle] (n4) at (1,-1) {};
+                    \node[draw, circle] (n3) at (2,0) {};
+                    
+                    \node[draw, circle] (n5) at (3,-1){};
+                    \node[draw, circle] (n6) at (3,1){};
+        
+                    \draw[-] (n1)--(n2)--(n3)--(n4);
+                    \draw[-] (n4)--(n1);
+                    \draw[-] (n3)--(n6)--(n5)--(n3);
+        
+                    \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
+                    \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
+    
+                    \draw(-0.1,0) node[left] {\textcolor{red}{A}};
+                    \draw(1,1.1) node[above] {\textcolor{red}{A}};
+                    \draw(1,-1.1) node[below] {N};
+                    \draw(2,0.1) node[above] {N};
+                    \draw(3,1.1) node[above] {N};
+                    \draw(3,-1.1) node[below] {N};
+    
+                    % edge labels
+                    \draw(1.35,0.7) node[right] {0};
+                    \draw(1.35,-0.7) node[right] {0};
+                    \draw(0.5,0.5) node[left] {\textcolor{red}{1}};
+                    \draw(0.5,-0.5) node[left] {0};
+                    \draw(2.6,0.6) node[left] {0};
+                    \draw(2.6,-0.6) node[left] {0};
+                    \draw(3,0) node[right] {0};
+                \end{tikzpicture}
+}
+\resizebox{0.3\textwidth}{!}{
+                    \begin{tikzpicture}
+                        \node[draw, circle] (n1) at (0,0) {};
+                        \node[draw, circle] (n2) at (1,1) {};
+                        \node[draw, circle] (n4) at (1,-1) {};
+                        \node[draw, circle] (n3) at (2,0) {};
+                        
+                        \node[draw, circle] (n5) at (3,-1){};
+                        \node[draw, circle] (n6) at (3,1){};
+            
+                        \draw[-] (n1)--(n2)--(n3)--(n4);
+                        \draw[-] (n4)--(n1);
+                        \draw[-] (n3)--(n6)--(n5)--(n3);
+            
+                        \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
+                        \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
+    
+                        \draw(-0.1,0) node[left] {\textcolor{red}{A}};
+                        \draw(1,1.1) node[above] {\textcolor{red}{A}};
+                        \draw(1,-1.1) node[below] {N};
+                        \draw(2,0.1) node[above] {\textcolor{red}{A}};
+                        \draw(3,1.1) node[above] {N};
+                        \draw(3,-1.1) node[below] {N};
+    
+                        % edge labels
+                        \draw(1.35,0.7) node[right] {\textcolor{red}{1}};
+                        \draw(1.35,-0.7) node[right] {0};
+                        \draw(0.5,0.5) node[left] {\textcolor{red}{1}};
+                        \draw(0.5,-0.5) node[left] {0};
+                        \draw(2.6,0.6) node[left] {0};
+                        \draw(2.6,-0.6) node[left] {0};
+                        \draw(3,0) node[right] {0};
+                    \end{tikzpicture}
+}
 
- \paragraph{Rule-based graph transformation} provides an intuitive yet formal way to model distributed systems: computation units are represented by nodes; communication canals are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computation units and states of communication canals; state changes of the system are modeled by replacing subgraphs in the graph by other subgraphs according to transformation rules. Graph transformation has many applications, such as topology-based geometric modeling~\cite{poudret2007topology, belhaouari2014jerboa, bellet2017geometric, pascale2022Geometric_modeling}, DNA computing~\cite{harju2004tutorial_dna_computation}, and software engineers~\cite{heckel2020software_engineers}.
+
+\resizebox{0.3\textwidth}{!}{
+                    \begin{tikzpicture}
+                        \node[draw, circle] (n1) at (0,0) {};
+                        \node[draw, circle] (n2) at (1,1) {};
+                        \node[draw, circle] (n4) at (1,-1) {};
+                        \node[draw, circle] (n3) at (2,0) {};
+                        
+                        \node[draw, circle] (n5) at (3,-1){};
+                        \node[draw, circle] (n6) at (3,1){};
+            
+                        \draw[-] (n1)--(n2)--(n3)--(n4);
+                        \draw[-] (n4)--(n1);
+                        \draw[-] (n3)--(n6)--(n5)--(n3);
+            
+                        \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
+                        \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
+    
+                        \draw(-0.1,0) node[left] {\textcolor{red}{A}};
+                        \draw(1,1.1) node[above] {\textcolor{red}{A}};
+                        \draw(1,-1.1) node[below] {\textcolor{red}{A}};
+                        \draw(2,0.1) node[above] {\textcolor{red}{A}};
+                        \draw(3,1.1) node[above] {N};
+                        \draw(3,-1.1) node[below] {N};
+    
+                        % edge labels
+                        \draw(1.35,0.7) node[right] {\textcolor{red}{1}};
+                        \draw(1.35,-0.7) node[right] {0};
+                        \draw(0.5,0.5) node[left] {\textcolor{red}{1}};
+                        \draw(0.5,-0.5) node[left] {\textcolor{red}{1}};
+                        \draw(2.6,0.6) node[left] {0};
+                        \draw(2.6,-0.6) node[left] {0};
+                        \draw(3,0) node[right] {0};
+                    \end{tikzpicture}
+}
+\resizebox{0.3\textwidth}{!}{
+                    \begin{tikzpicture}
+                        \node[draw, circle] (n1) at (0,0) {};
+                        \node[draw, circle] (n2) at (1,1) {};
+                        \node[draw, circle] (n4) at (1,-1) {};
+                        \node[draw, circle] (n3) at (2,0) {};
+                        
+                        \node[draw, circle] (n5) at (3,-1){};
+                        \node[draw, circle] (n6) at (3,1){};
+            
+                        \draw[-] (n1)--(n2)--(n3)--(n4);
+                        \draw[-] (n4)--(n1);
+                        \draw[-] (n3)--(n6)--(n5)--(n3);
+            
+                        \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
+                        \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
+              
+                        \draw(-0.1,0) node[left] {\textcolor{red}{A}};
+                        \draw(1,1.1) node[above] {\textcolor{red}{A}};
+                        \draw(1,-1.1) node[below] {\textcolor{red}{A}};
+                        \draw(2,0.1) node[above] {\textcolor{red}{A}};
+                        \draw(3,1.1) node[above] {N};
+                        \draw(3,-1.1) node[below] {\textcolor{red}{A}};
+    
+                        % edge labels
+                        \draw(1.35,0.7) node[right] {\textcolor{red}{1}};
+                        \draw(1.35,-0.7) node[right] {0};
+                        \draw(0.5,0.5) node[left] {\textcolor{red}{1}};
+                        \draw(0.5,-0.5) node[left] {\textcolor{red}{1}};
+                        \draw(2.6,0.6) node[left] {0};
+                        \draw(2.6,-0.6) node[left] {\textcolor{red}{1}};
+                        \draw(3,0) node[right] {0};
+                    \end{tikzpicture}
+}
+\resizebox{0.3\textwidth}{!}{
+                    \begin{tikzpicture}
+                        \node[draw, circle] (n1) at (0,0) {};
+                        \node[draw, circle] (n2) at (1,1) {};
+                        \node[draw, circle] (n4) at (1,-1) {};
+                        \node[draw, circle] (n3) at (2,0) {};
+                        
+                        \node[draw, circle] (n5) at (3,-1){};
+                        \node[draw, circle] (n6) at (3,1){};
+            
+                        \draw[-] (n1)--(n2)--(n3)--(n4);
+                        \draw[-] (n4)--(n1);
+                        \draw[-] (n3)--(n6)--(n5)--(n3);
+            
+                        \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
+                        \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
+                        \draw(-0.1,0) node[left] {\textcolor{red}{A}};
+                        \draw(1,1.1) node[above] {\textcolor{red}{A}};
+                        \draw(1,-1.1) node[below] {\textcolor{red}{A}};
+                        \draw(2,0.1) node[above] {\textcolor{red}{A}};
+                        \draw(3,1.1) node[above] {\textcolor{red}{A}};
+                        \draw(3,-1.1) node[below] {\textcolor{red}{A}};
+    
+                        % edge labels
+                        \draw(1.35,0.7) node[right] {\textcolor{red}{1}};
+                        \draw(1.35,-0.7) node[right] {0};
+                        \draw(0.5,0.5) node[left] {\textcolor{red}{1}};
+                        \draw(0.5,-0.5) node[left] {\textcolor{red}{1}};
+                        \draw(2.6,0.6) node[left] {0};
+                        \draw(2.6,-0.6) node[left] {\textcolor{red}{1}};
+                        \draw(3,0) node[right] {\textcolor{red}{1}};
+                    \end{tikzpicture}
+}
+        \caption{A possible sequence of graph transformation}
+        \label{fig:intro_sequence_of_transformation}
+    \end{figure}
+
+ Graph transformation has many applications, such as topology-based geometric modeling~\cite{poudret2007topology, belhaouari2014jerboa, bellet2017geometric, pascale2022Geometric_modeling}, DNA computing~\cite{harju2004tutorial_dna_computation}, and software engineers~\cite{heckel2020software_engineers}.
  
  A predominant school of thought in this area is called algebraic graph rewriting~\cite{ehrig1997handbook1,ehrig1999handbook2,ehrig1999handbook3} which uses concepts from category theory~\cite{pierce1991basic,barr1990category,maclane2013categories} to define the transformation of graphs. The language of category theory abstract away from the details of the different notions of graphs, provided that the notion of graph satisfies some properties~\cite{lack2004adhesive,overbeek2023graph}. 
  In fact, different notions of graphs have been proposed in the literature for different applications, such as edge-labeled multigraphs~\cite{konig2018atutorial,corradini1997algebraic}, hypergraphs~\cite{plump1993hypergraph}, attributed graphs~\cite{ehrig2006fundamentals}, etc. Another advantage is that transformation is defined up to isomorphism, which leads to a more elegant definition of graph transformation.
