@@ -3,34 +3,34 @@
 are algorithms that are designed to run on multiple processors, without centralized control. They play a crucial role in modern computing.
 For example, they control machines that we use on a daily basis such as smartphones, but also critical systems such as medical devices, trains, airplanes, and spaceships. Errors in distributed algorithms can have severe consequences, such as the loss of critical data or even the loss of human life. Ensuring their correctness is vital but challenging due to the inherent complexity of these systems~\cite{heiser2010theroad, lamport2019thebyzantine}. For example, the Needham Schroeder public key protocol~\cite{needham1978using}, which is intended to provide mutual authentication between two parties communicating on a network, has been shown to have vulnerabilities that can be exploited by attackers~\cite{lowe1996breaking}, 17 years after the publication of the original paper~\cite{cortier2014formal}.
 
-% While interactive theorem proving~\cite{harrison2014history}\textemdash a method where humans guide specialized softwares, called proof assistants, to construct formal mathematical proofs step-by-step\textemdash offers a promising approach to formally verifying properties of distributed systems~\cite{plump2024formalisingDPO,potop2019formal,courtieu2016certified},  
-% it requires proficiency in proof assistants and can be
-% time-consuming.
-
-% \paragraph{Interactive theorem proving (ITP)}~\cite{harrison2014history,itp2016}
-% offers a rigorous approach to address these challenges~\cite{courtieu2022swarms}. 
-% In ITP, humans collaborate with proof assistants~\cite{nipkow2002isabelle, bertot2004coq, moura2021lean4}—specialized software tools—to construct formal mathematical proofs step-by-step. 
-% Specifically, objects such as distributed algorithms can be modeled as mathematical objects, and properties of these objects can be expressed as mathematical statements.
-% We guide proof assistants to construct formal proofs of these statements by providing reasoning steps to the proof assistants, and proof assistants check the correctness of these steps.
-
 \paragraph{Interactive theorem proving (ITP)}
-% ~\cite{harrison2014history,itp2016} 
-provides a rigorous framework for formal verification through human-guided collaboration with proof assistants~\cite{nipkow2002isabelle,bertot2004coq,moura2021lean4}. In this paradigm, distributed algorithms are formally modeled as mathematical structures, with their properties expressed as logical statements. The verification process involves guiding proof assistants through a sequence of inference steps, with the system rigorously checking each transition for correctness.
+provides a rigorous framework for formal verification through human-guided collaboration with proof assistants~\cite{nipkow2002isabelle,bertot2004coq,moura2021lean4}. In this paradigm, distributed algorithms are formally modeled as mathematical structures, with their properties expressed as logical statements. The verification process involves guiding proof assistants through a sequence of inference steps, with the system rigorously checking each transition for correctness. This approach has proven effective for verifying critical properties of distributed systems~\cite{potop2019formal,courtieu2016certified}.
 
-This approach has proven effective for verifying critical properties of distributed systems~\cite{plump2024formalisingDPO,potop2019formal,courtieu2016certified}.
-However, ITP presents significant challenges: it demands expertise in proof assistants because it requires a deep understanding of both the system being verified and the proof assistant being used, and the proof construction process remains inherently labor-intensive because the proof assistant must be guided through each step of the reasoning process and every possible case must be considered in detail.
- While modern proof assistants incorporate increasingly sophisticated automation for specific proof patterns, fundamental limitations arise from the undecidability of the underlying logics required for expressiveness.
- Consequently, complete automation of proof construction for non-trivial distributed systems remains theoretically impossible—though strategic advances in proof engineering and domain-specific tactics continue to reduce the human effort required for verification.
+However, ITP presents two challenges. Firstly, it demands a deep understanding of both the system being verified and the proof assistant being used. Secondly, the proof construction process remains inherently labor-intensive because the proof assistant must be guided through each step of the reasoning process and every possible case must be considered in detail.
+While modern proof assistants incorporate increasingly sophisticated automation for specific proof patterns, fundamental limitations arise from the undecidability of the underlying logics required for expressiveness.
+Consequently, complete automation of proof construction for non-trivial distributed systems remains theoretically impossible. Automated techniques can alleviate these challenges.
 
-\paragraph{Automated methods} that check specific properties of distributed algorithms and can generate certificates that can be checked by proof assistants provide a practical alternative~\cite{contejean2011automated,giesl2014proving}. While they can only be applied to specific properties for some classes of distributed algorithms, they can be used by users who are not experts in formal methods, and they can also speed up the verification process for experts. To develop such automated methods, distributed algorithms need to be modeled in a formal way enabling rigorous analysis and automated verification of their properties. In this thesis, we focus on modeling distributed algorithms using graph transformation.
 
- \paragraph{Rule-based graph transformation} provides an intuitive yet formal way to model distributed systems: computation units are represented by nodes; communication canals are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computation units and states of communication canals; state changes of the system are modeled by replacing subgraphs in the graph by other subgraphs according to transformation rules. For example, consider the graph in~\autoref{fig:graph_modeling_state_network} which models a distributed network with six computation units. Each node represents a computation unit, with labels indicating their states: one unit is active ("A") while the remaining five are neutral ("N"). Edges represent communication canals, all initially in state "0". Consider a distributed spanning tree construction algorithm: when an active unit ("A") detects a neutral neighbor ("N") via a canal in state "0", it activates the neighbor and updates the canal to state "1". Its behavior can be captured by a graph transformation rule, which replaces the subgraph \tikz[baseline=0ex]{ 
+\paragraph{Automated techniques} are developed for verifying specific properties of systems~\cite{contejean2011automated,giesl2014proving}. They automatically check conditions that imply the properties of interest, where these conditions are often easy to verify.
+Similar to checking the derivative $f'(x) = 2x$ is non-negative for all $x \in \mathbb{N}$, to ensure the monotonic increase of the function $f(x) = x^2$ for all $x \in \mathbb{N}$.
+
+These techniques are typically implemented as tools accessible to non-experts in formal methods while also accelerating verification for experts. Some tools can generate certificates that can be checked by proof assistants to ensure the correctness of the result obtained by the tool.
+These techniques provide a practical alternative to interactive theorem proving. 
+To develop such automated methods, distributed algorithms need to be modeled
+using a formalism that enables rigorous analysis
+and automated verification of their properties. 
+In this thesis, we focus on modeling distributed algorithms using graph transformation.
+
+\paragraph{Finite edge-labeled directed multigraphs} are the formalism we use in this thesis to model distributed algorithms. This notion of graph is a generalization of that of directed graphs, where multiple edges between two nodes are allowed, and edges can have labels. 
+
+\paragraph{Graph transformation} provides an intuitive yet formal way to model distributed systems: computation units are represented by nodes; communication canals are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computation units and states of communication canals; state changes of the system are modeled by replacing subgraphs in the graph by other subgraphs according to transformation rules. 
+For example, consider the graph in~\autoref{fig:graph_modeling_state_network} which models a distributed network with six computation units. Each node represents a computation unit, with labels indicating their states: one unit is active ("A") while the remaining five are neutral ("N"). Edges represent communication canals, all initially in state "0". Consider a distributed spanning tree construction algorithm: when an active unit ("A") detects a neutral neighbor ("N") via a canal in state "0", it activates the neighbor and updates the canal to state "1". Its behavior can be captured by a graph transformation rule, which identifies an occurrence of the graph \tikz[baseline=0ex]{ 
             \node (x) at (0,0) {$\bullet$};  
             \node (y) at (1,0) {$\bullet$};
             \draw[-] (x) -- node[midway,above] {0} (y) ;
             \node () at (0,0.3) {$A$};  
             \node () at (1,0.3) {$N$};
-     } by \tikz[baseline=0ex]{ 
+ } then modifies its labels to obtain an occurrence of the graph \tikz[baseline=0ex]{ 
                 \node (x) at (0,0) {$\bullet$};  
                 \node (y) at (1,0) {$\bullet$};
                 \draw[-] (x) -- node[midway,above] {1} (y) ;
@@ -70,10 +70,9 @@ A sample execution sequence starting from the configuration in~\autoref{fig:grap
                 \end{tikzpicture}
     }
     \caption{A graph modeling a network configuration}
-    
     \label{fig:graph_modeling_state_network}
-    \end{figure}
-    \begin{figure}
+\end{figure}
+    \begin{figure}[htbp]
         \centering
         \resizebox{0.3\textwidth}{!}{
                 \begin{tikzpicture}
@@ -280,27 +279,62 @@ A sample execution sequence starting from the configuration in~\autoref{fig:grap
         \caption{A possible sequence of graph transformation}
         \label{fig:intro_sequence_of_transformation}
     \end{figure}
-
  Graph transformation has many applications, such as topology-based geometric modeling~\cite{poudret2007topology, belhaouari2014jerboa, bellet2017geometric, pascale2022Geometric_modeling}, DNA computing~\cite{harju2004tutorial_dna_computation}, and software engineers~\cite{heckel2020software_engineers}.
  
- A predominant school of thought in this area is called algebraic graph rewriting~\cite{ehrig1997handbook1,ehrig1999handbook2,ehrig1999handbook3} which uses concepts from category theory~\cite{pierce1991basic,barr1990category,maclane2013categories} to define the transformation of graphs. The language of category theory abstract away from the details of the different notions of graphs, provided that the notion of graph satisfies some properties~\cite{lack2004adhesive,overbeek2023graph}. 
- In fact, different notions of graphs have been proposed in the literature for different applications, such as edge-labeled multigraphs~\cite{konig2018atutorial,corradini1997algebraic}, hypergraphs~\cite{plump1993hypergraph}, attributed graphs~\cite{ehrig2006fundamentals}, etc. Another advantage is that transformation is defined up to isomorphism, which leads to a more elegant definition of graph transformation.
+ A predominant school of thought in this area is called algebraic graph rewriting~\cite{ehrig1997handbook1,ehrig1999handbook2,ehrig1999handbook3} which uses concepts from category theory~\cite{pierce1991basic,barr1990category,maclane2013categories} to define the transformation of graphs. The language of category theory abstracts away from the details of the different notions of graphs, provided that the notion of graph satisfies some properties~\cite{lack2004adhesive,overbeek2023graph}. 
+ In fact, different notions of graphs have been proposed in the literature for different applications, such as edge-labeled multigraphs~\cite{konig2018atutorial,corradini1997algebraic}, hypergraphs~\cite{plump1993hypergraph}, attributed graphs~\cite{ehrig2006fundamentals}, etc. Another advantage is that transformation is defined up to isomorphism, which leads to an elegant definition of graph transformation.
 
-  To transform a host graph $G$ using a rule which replaces an occurrence of a graph $L$ in $G$ by the occurrence of another graph $R$, one firstly needs to decompose the host graph $G$ into a context $C$ and an occurrence of $L$, then removes some nodes and edges of the occurrence of $L$ and finally adds some fresh nodes and edges to form the result graph. For example, if we consider a graph transformation rule which identifies an occurrence of the following graph, then removes the middle node and edges of the occurrence and adds no fresh nodes and edges:
-\begin{center}
+  To transform a host graph,
+   one firstly needs to decompose it into an occurrence of a graph $L$ with a subgraph of the occurrence called the interface, and a context $C$ (i.e. other parts of the graph),
+   then modifies the occurrence of $L$ (removes some nodes and edges, and then adds some fresh nodes and edges)
+   to obtain an occurrence of $R$ while keeping the interface unchanged,
+    and finally glues the modified occurrence of $R$ with the context $C$ 
+   to form the result graph. For example, if we consider a graph transformation rule which identifies an occurrence of the graph \tikz[baseline=-0.5ex]{ 
+        \node (x) at (0,0) {$\bullet$};  
+        \node (y) at (1,0) {$\bullet$};
+        \node (z) at (2,0) {$\bullet$};
+        \draw[->] (x) -- node[midway,below] {a} (y) ;
+        \draw[->] (y) -- node[midway,below] {a} (z) ;
+   } with the two extreme nodes as the interface, then removes the middle node and edges of the occurrence and adds no fresh nodes and edges.
+% \begin{center}
+%     \begin{tikzpicture}
+%            \graphbox{\( \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
+%                 \coordinate (o) at (0mm,-8mm); 
+%                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+%                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                 \draw[->] (l1) -- (l3) node[midway,above] {a};
+%                 \draw[->] (l3) -- (l2) node[midway,above] {a};
+%             } 
+%     \end{tikzpicture}
+% \end{center}
+We denote this rule by the graph in~\autoref{fig:intro:graph_transformation_rule} where the graph is in a box with it name on the top left corner, numbers inside nodes are used to identify them.
+\begin{figure}[htbp]
+    \centering
     \begin{tikzpicture}
-           \graphbox{\( \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
-                \coordinate (o) at (0mm,-8mm); 
-                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                \draw[->] (l1) -- (l3) node[midway,above] {a};
-                \draw[->] (l3) -- (l2) node[midway,above] {a};
-            } 
-    \end{tikzpicture}
-\end{center}
-The graph $G$, illustrated below, can be transformed into the graph $H$, illustrated below, by applying the rule.
-\begin{center}
+                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \draw[->] (l1) -- (l3) node[midway,above] {a};
+                        \draw[->] (l3) -- (l2) node[midway,above] {b};
+                    } 
+                    \graphbox{\( R \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    }  
+                    \node () at (37mm,-10mm) {\( \rightarrowtail \)}; % K -> L
+                \end{tikzpicture}
+    \caption{A graph transformation rule}
+    \label{fig:intro:graph_transformation_rule}
+\end{figure}
+The graph $G$ in~\autoref{fig:intro:graph_G} can be transformed into the graph $H$ in~\autoref{fig:intro:graph_H} by applying the rule. Specifically, the graph $G$ can be decomposed into an occurrence of the graph $L$ (elements in orange and black) with the interface consisting of the two extreme nodes (in black), and a context $C$ comprising the remaining parts of the graph (in blue). The rule removes elements in orange and adds no fresh elements, resulting in the graph $H$ which is obtained by gluing the modified occurrence of $L$, which are the two extreme nodes, and the context $C$ (in blue).
+\begin{figure}[htbp]
+    \centering
+\begin{subfigure}{0.3\textwidth}
+   \centering
   \begin{tikzpicture}
      \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -313,7 +347,14 @@ The graph $G$, illustrated below, can be transformed into the graph $H$, illustr
               \draw[ ] (l2) -- (l4) node[midway,right] {b};
               \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
               \draw[] (l1) -- (l6) node[midway,left] {b};
-          }    
+          }  
+  \end{tikzpicture}
+  \caption{graph $G$}
+  \label{fig:intro:graph_G}
+\end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+   \centering  
+   \begin{tikzpicture}
           \graphbox{\( H \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
@@ -324,9 +365,33 @@ The graph $G$, illustrated below, can be transformed into the graph $H$, illustr
               \draw[ ] (l1) -- (l6) node[midway,left] {b};
           }    
   \end{tikzpicture}
-\end{center}
-The problem arises when it comes to whether the rule mentioned above can be applied to the following graph $G'$ because of the edge in red:
-\begin{center}
+  \caption{graph $H$}
+  \label{fig:intro:graph_H}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+   \centering
+  \begin{tikzpicture}
+     \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[orange,draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+              \draw[orange] (l1) -- (l3) node[midway,above] {a};
+              \draw[orange] (l3) -- (l2) node[midway,above] {a};
+              \draw[blue] (l2) -- (l4) node[midway,right] {b};
+              \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+              \draw[blue] (l1) -- (l6) node[midway,left] {b};
+          }  
+  \end{tikzpicture}
+  \caption{Decomposition of $G$}
+  \label{fig:intro:decomposition_of_G}
+\end{subfigure}
+
+\end{figure}
+The problem arises when it comes to whether the rule mentioned above can be applied to the graph $G'$ in~\autoref{fig:intro:dangling_edge} because of the edge in red.
+\begin{figure}[htbp]
+   \centering
   \begin{tikzpicture}
     \graphbox{\( G' \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-3mm); 
@@ -343,9 +408,12 @@ The problem arises when it comes to whether the rule mentioned above can be appl
                 \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
             }   
   \end{tikzpicture}
-\end{center}
+  \caption{}
+  \label{fig:intro:dangling_edge}
+\end{figure}
+
 Different approaches to this problem exist in the literature and lead to different algebraic graph rewriting systems.   
-The most studied algebraic graph transformation systems are double-pushout (DPO) graph rewriting systems~\cite{corradini1997algebraic,habel2001double}. It does not allow this kind of transformation because when the node 3 is removed, the edge from node 3 to node 6 becomes dangling. Some formalisms, such as single pushout (SPO) graph rewriting system~\cite{ehrig1997algebraic}, allow the application of the rule to transform the graph $G'$ and remove implicitly all dangling edges. Others such as PBPO~\cite{corradini2019thepbpo} and PBPO+~\cite{overbeek2023graph} graph rewriting systems provides a mechanism for each rule to impose restrictions on the context $C$. 
+The most studied algebraic graph transformation systems are double-pushout (DPO) graph rewriting systems~\cite{corradini1997algebraic,habel2001double}. They do not allow the transformation because when the node 3 is removed, the edge from node 3 to node 6 becomes dangling. Some formalisms, such as single pushout (SPO) graph rewriting systems~\cite{ehrig1997algebraic}, allow the application of the rule to transform the graph $G'$ and remove implicitly all dangling edges. Others such as PBPO~\cite{corradini2019thepbpo} and PBPO+~\cite{overbeek2023graph} graph rewriting systems provides a mechanism for each rule to impose restrictions on the context. 
 % (to do SqPO and Agree maybe)
 
    We focused on DPO graph rewriting systems in this thesis for three reasons.
@@ -353,25 +421,94 @@ The most studied algebraic graph transformation systems are double-pushout (DPO)
    Secondly, its relative simplicity stems from relying solely on the concept of pushouts~\cite{pierce1991basic} which minimizes the categorical prerequisites required to understand it. This is interesting because the abstract nature of category theory is often seen as a barrier to entry for newcomers~\cite{overbeekthesis}.
     Finally, despite its conceptual simplicity, DPO graph rewriting systems remain sufficiently expressive to model many distributed algorithms.
 
-\todo{DPO rules}
+    The transformation rule mentioned above can be expressed as a DPO graph transformation rule. Since graph transformation rules in a system are applied repeatedly and nondeterministically, they can lead to infinite sequences of graph transformations. 
+    Consequently, the termination property of DPO graph rewriting systems is an important aspect to consider when reasoning about the correctness of distributed algorithms using DPO graph rewriting systems, and this is the focus of this thesis.
 
-    This thesis focuses on the relative termination property of DPO graph rewriting systems on edge-labeled directed multigraphs.
+\paragraph{Termination} is a property of DPO graph rewriting systems. It ensures that no graph can be transformed indefinitely under a given set of rewriting rules. For example, the transformation rule in~\autoref{fig:intro:graph_transformation_rule} terminates because it reduces the number of nodes in a graph by one at each application. 
+Many termination techniques exist for term rewriting systems~\cite{nipkow1998term, dershowitz1982orderings, middeldorp1997simple, arts2000termination}. 
+% ,dick1990automating,giesl1995generating,zantema1994termination,bellegarde1990termination,zantema1995termination
+% These techniques prove the termination of a rewriting system by embedding the binary relations defined by a term rewriting system onto a well-founded order. This is done either explicitly or implicitly. 
+% In the cases, for example , one defines explicitly a well-founded order on terms, and then proves that terms can be interpreted as elements of the well-founded order, and that the application of a rule transforms a term into another term that is smaller than the original term in the well-founded order~\cite{.
+% In the latter case, one defines a well-founded order on terms, and then proves that the application of a rule transforms a term into another term that is smaller than the original term in the well-founded order. In this case,
+% the technique is classified as \enquote{techniques by interpretation} in the literature, and in the latter case, they are classified as \enquote{syntactic techniques}, \enquote{techniques by dependencies pairs}, \enquote{semantic labelling}, \enquote{hierarchical termination}, etc. \todo{references and explanation}
+ Most of them exploit the tree structure of terms, which does not exist in graphs in general, thus they cannot be directly adapted to DPO graph rewriting systems.
 
-\paragraph{Termination} is a property of a DPO graph rewriting system. It ensures that no graph can be transformed indefinitely under its rules. This problem is undecidable in general~\cite{plump1998terminationundecidable}.
-We focus on relative termination property~\cite{klop1987term,geser1990relative} which generalizes the uniform termination.
- Given two rule sets \( \mathcal{A} \) and \( \mathcal{B} \), relative termination ensures that, for any finite graph $G$,
-rules in $\mathcal{A}$ can only be applied finitely many times in any sequence of rule applications from $\mathcal{A} \cup \mathcal{B}$. Intuitively, this property corresponds to the phenomenon that while some distributed systems do not halt for every input, some of their operations can only be applied finitely many times in any execution. 
-Therefore, these operations do not need to be considered when reasoning about the termination of the system. The problem to be analyzed can thus be simplified by safely ignoring these operations.
-For example, consider a graph rewriting system consisting of two rules: one that deletes an arbitrary edge and another that introduces a fresh node. This system does not uniformly terminate, as the node-adding rule can be applied infinitely often, leading to unbounded growth. However, the edge-deletion rule can be applied only finitely many times in any rewriting sequence. This is because the initial graph contains only finitely many edges, and neither rule increases the number of edges in the graph. Thus, the edge-deletion rule terminates relative to the node-addition rule.
-Although the system as a whole does not terminate (since the node-adding rule never terminates), relative termination allows us to say that the edge-deletion rule does not contribute to non-termination (it can only be triggered a finite number of times).
+Developing termination techniques for DPO graph rewriting systems is difficult, because a system may have many rules, and, therefore, many constraints on the behavior of the rules must be satisfied. A more interesting approach is to prove that the system in question can be separated into two disjoint subsets of rules, one of which can be applied only finitely many times in any sequence of rule applications from the union of the two sets, thus the termination of the system can be reduced to the termination of the other set of rules. This leads to the concept of relative termination.
 
-% \paragraph{Edge-labeled directed multigraphs}
-%  While, using the language of category theory, termination techniques can be developed for DPO graph rewriting systems for different notions of graphs that satisfy certain properties, we focus on developing termination technique for DPO graph rewriting systems on finite edge-labeled directed multigraphs to avoid overly abstract reasoning.
+\paragraph{Relative termination} is a concept introduced in~\cite{klop1987term,geser1990relative}. It generalizes the termination property.
+ Given two rule sets \( \mathcal{A} \) and \( \mathcal{B} \), relative termination of \( \mathcal{A} \) with respect to \( \mathcal{B} \) ensures that, for any finite graph $G$,
+rules in $\mathcal{A}$ can only be applied finitely many times in any sequence of rule applications from $\mathcal{A} \cup \mathcal{B}$.
+% Intuitively, this property corresponds to the phenomenon that while some distributed systems do not halt for every input, some of their operations can only be applied finitely many times in any execution. 
+% Therefore, these operations do not need to be considered when reasoning about the termination of the system. The problem to be analyzed can thus be simplified by safely ignoring these operations.
+  
+Consider the graph transformation system with two rules illustrated in~\autoref{fig:intro:edge_deletion_and_node_addition_rule}: rule $\alpha$ deletes an arbitrary edge labeled by \enquote{a} and rule $\beta$ introduces a fresh node.
+  \begin{figure}[htbp]
+        \centering
+%   \begin{subfigure}{0.3\textwidth}
+%         % \centering
+        $\alpha$ = {
+            \begin{tikzpicture}
+                        \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                            \coordinate (o) at (0mm,-11mm); 
+                            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                            \draw[->] (l1) -- (l2) node[midway,above] {a};
+                        } 
+                        \graphbox{\( R \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                            \coordinate (o) at (0mm,-11mm); 
+                            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        }  
+                        \node () at (37mm,-10mm) {\( \rightarrowtail \)}; % K -> L
+                    \end{tikzpicture}
+                    }
+    %     \caption{A graph transformation rule for edge deletion}
+    % \label{fig:intro:edge_deletion_rule}
+    % \end{subfigure}
+    
+    % \begin{subfigure}{0.3\textwidth}
+    %     % \centering
 
-\paragraph{DPO graph rewriting systems on finite edge-labeled directed multigraphs} are what we focus on in this thesis, while, using the language of category theory, termination techniques can be developed for DPO graph rewriting systems for different notions of graphs that satisfy certain properties.
- By this choice, the correctness of our technique can be checked easily by users who are not experts in category theory and graph rewriting, and thus can be adopted with the real confidence. For example, consider the automated technique presented in Chapter~\ref{chap:subgraph_counting}, its proofs employ only basic knowledge in graph theory and in category theory.
- Finally, properties that are specific to edge-labeled directed multigraphs can be exploited, which may lead to more efficient termination techniques.
- 
+        $\beta$ ={
+            \begin{tikzpicture}
+                        \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+
+                        } 
+                        \graphbox{\( R \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                            \coordinate (o) at (0mm,-11mm); 
+                            \node[draw,circle] (l1) at ($(o)+(5mm,0mm)$) {};
+                        }  
+                        \node () at (37mm,-10mm) {\( \rightarrowtail \)}; % K -> L
+                    \end{tikzpicture}
+                    }
+    %     \caption{A graph transformation rule for node addition}
+    %     \label{fig:intro:node_addition_rule}
+    % \end{subfigure}
+    \caption{Edge-deletion rule and node-addition rule}
+    \label{fig:intro:edge_deletion_and_node_addition_rule}
+  \end{figure}
+  This system does not terminate, as the node-adding rule can be applied infinitely often. However, the relative termination of the edge-deletion rule with respect to the node-adding rule can be established, because the initial graph is finite, and neither rule increases the number of edges in the graph.
+  Thus the termination of the system can be reduced to a simpler problem:the termination of the node-adding rule.
+
+  This approach has several advantages.
+  Firstly, it allows us to reduce the size of the system to be analyzed. Secondly, different techniques can cooperate in a straightforward way, leveraging the strengths of each technique. 
+  Thirdly, combined with the modular termination technique for DPO graph rewriting systems developed by Plump~\cite{plump2018modular} which allows us to prove termination of a systems by establishing the termination of two set of rules that partion the rules of the system, the termination analysis of DPO graph rewriting systems can be much easier.
+
+\paragraph{Termination of DPO graph rewriting systems on edge-labeled directed multigraphs} is the focus of this thesis.
+Even though, using the language of category theory, it is possible to develop termination techniques for DPO rewriting systems on different graph notions that satisfy certain properties. There are several reasons for this choice.
+
+First of all, edge-labeled directed multigraphs are simple and intuitive: they are just directed graphs with multiple edges between two nodes allowed, and each edge is labeled by a symbol from a finite alphabet. This notion of graph is widely used in the literature, such as in the work introducing the DPO graph rewriting~\cite{ehrig1973graph}, in previous work on the method that we extend in~Chapter~\ref{chap:nwf}~\cite{bruggink2014termination,bruggink2015proving,zantema2014termination}, and in illustrative examples of previous works which are closely related to our work~\cite{overbeek2024termination_lmcs,endrullis2024generalized_icgt}.
+
+ Secondly, by focusing on this notion of graph, we want to avoid overly abstract reasoning and can develop techniques that are easier to understand than that using an abstract notion of graph, such as adhesive categories~\cite{lack2004adhesive}.
+ As a consequence, the correctness of our technique in Chapter~\ref{chap:subgraph_counting} and Chapter~\ref{chap:antipattern} can be checked easily by users with basic knowledge in graph theory and in category theory, and thus users can adopt it with real confidence.
+ We believe that automated tools should be easy
+to understand by users without
+spending too much time. Otherwise, they can only trust the author of the tool
+or not use the tool at all\textemdash either of which is in conflict with the very essence of verification.  
+
+Finally, by sticking to a specific notion of graph, we can exploit the properties that are specific to that notion of graph. This leads to more powerful termination techniques. Since termination of DPO graph rewriting systems is undecidable in general~\cite{plump1998terminationundecidable}. 
+It is important to push as far as possible the boundaries of what can be achieved with termination techniques for DPO graph rewriting systems.
+
 \paragraph{Existing techniques}
 Few techniques for proving (relative) termination of DPO graph rewriting systems exist. Below, we list some of the existing techniques.
 
@@ -387,21 +524,22 @@ Few techniques for proving (relative) termination of DPO graph rewriting systems
 \end{itemize}
 
 \paragraph{Contribution 1: Termination of Graph Rewriting Using Weighted Type Graphs over Non-well-founded Semirings}
-While the weighted type graph method is a powerful technique for proving termination of double-pushout (DPO) graph rewriting systems, existing approaches require weighted type graphs to have weights over well-founded semirings. This approach has practical limitations when applied to edge-labeled directed multigraph rewriting. Chapter~\ref{chap:nwf} investigates the use of non-well-founded semirings to overcome these limitations. Chapter~\ref{chap:nwf} is based on the following paper:
-\begin{itemize}
-    \item Qi Qiu. Termination of Graph Rewriting using Weighted Type Graphs over Non-well-founded Semirings. 16th International Workshop on Graph Computation Models, Jun 2025, Koblenz, Germany. 2025. ⟨hal-04954960v3⟩
-\end{itemize}
+While the weighted type graph method is a powerful technique for proving termination of double-pushout (DPO) graph rewriting systems, existing approaches require weighted type graphs to have weights over well-founded semirings. This approach has practical limitations when applied to edge-labeled directed multigraph rewriting. Chapter~\ref{chap:nwf} investigates the use of non-well-founded semirings to overcome these limitations. 
+% Chapter~\ref{chap:nwf} is based on the following paper:
+% \begin{itemize}
+%     \item Qi Qiu. Termination of Graph Rewriting using Weighted Type Graphs over Non-well-founded Semirings. 16th International Workshop on Graph Computation Models, Jun 2025, Koblenz, Germany. 2025. ⟨hal-04954960v3⟩
+% \end{itemize}
  
 \paragraph{Contribution 2: Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting} 
-To resolve cases that prior interpretation-based methods cannot handle, Chapter~\ref{chap:subgraph_counting} presents a new machine-checkable sufficient condition for relative termination of DPO graph rewriting systems with injective rules on edge-labeled multigraphs. 
+To resolve some cases that prior interpretation-based methods cannot handle, Chapter~\ref{chap:subgraph_counting} presents a new machine-checkable sufficient condition for relative termination of DPO graph rewriting systems with injective rules on edge-labeled multigraphs. 
 It is based on the idea that if the number of a specific subgraph in the graph strictly decreases every time a transformation is performed, then the transformation cannot last indefinitely.
 The method defines a graph's weight as the sum of weights of occurrences of a set of graphs within it. Given two rule sets A and B, by ensuring 
 (1) every rewriting step using rules in A strictly decreases the host graph's weight and 
 (2) every rewriting step using rules in B never increases it, we guarantee that rules in A can be applied only finitely many times in any rewriting sequence using rules from the union of A and B. 
-Chapter~\ref{chap:subgraph_counting} is based on the following paper:
-\begin{itemize}
-    \item Qiu, Q. (2025). Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting. In: Endrullis, J., Tichy, M. (eds) Graph Transformation. ICGT 2025. Lecture Notes in Computer Science, vol 15720. Springer, Cham. \url{https://doi.org/10.1007/978-3-031-94706-3_1}
-\end{itemize}
+% Chapter~\ref{chap:subgraph_counting} is based on the following paper:
+% \begin{itemize}
+%     \item Qiu, Q. (2025). Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting. In: Endrullis, J., Tichy, M. (eds) Graph Transformation. ICGT 2025. Lecture Notes in Computer Science, vol 15720. Springer, Cham. \url{https://doi.org/10.1007/978-3-031-94706-3_1}
+% \end{itemize}
 
 \paragraph{Contribution 3: Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting with Antipattern}
 The termination property of a graph rewriting system can sometimes be established by analyzing a decrease in the number of occurrences of specific subgraphs that are not embedded within forbidden contexts. For example, consider the following DPO graph rewriting rule:
@@ -419,9 +557,6 @@ The termination property of a graph rewriting system can sometimes be establishe
           \coordinate (o) at (5mm,-3mm); 
           \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
           \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-          % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-          % \draw[->] (l1) -- (l3) node[midway,above] {a};
-          % \draw[->] (l3) -- (l2) node[midway,above] {a};
       }    
       \graphbox{$R$}{70mm}{0mm}{45mm}{20mm}{2mm}{-5mm}{
         \coordinate (o) at (0mm,-3mm); 
@@ -435,8 +570,6 @@ The termination property of a graph rewriting system can sometimes be establishe
 
       \node () at (37mm,-10mm) {$\leftarrowtail$};
       \node () at (67mm,-10mm) {$\rightarrowtail$};
-
-      % \draw[>->] (51mm,2mm) -- (52mm,3mm);
   \end{tikzpicture}
  
 Each application of this rule reduces the number of occurrences of the left-hand side graph $L$ that are not included in any occurrence of the right-hand side graph $ R $. While this variant suggests termination, existing subgraph counting methods (e.g., those in Chapter~\ref{chap:subgraph_counting} and~\cite{overbeek2024termination_lmcs}) cannot exploit such relationships to infer termination. In this chapter, we extend the subgraph counting framework introduced in Chapter~\ref{chap:subgraph_counting} to address systems of this kind.

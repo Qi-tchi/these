@@ -10,8 +10,9 @@
 \end{definition} 
 
 \begin{example}
-    The following unlabeled graph is a category with two nodes and the recheability as the arrows.
-           \begin{center}
+    A category with two objects and the recheability as the morphism is illustrated in~\autoref{fig:preliminaries:category}.
+    \begin{figure}[hbtp]
+        \centering
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
                 \node[draw,circle] (1) at (0,0) {};
@@ -23,7 +24,9 @@
                 \draw[->] (2) edge[bend left] node[midway, below] {} (1)   ;
             }
         \end{tikzpicture}
-    \end{center}
+        \caption{A category with two objects and the recheability as the morphisms}
+        \label{fig:preliminaries:category}
+    \end{figure}
 \end{example}
 
 % cat notation * 
@@ -51,13 +54,16 @@
 In category theory, an ordered pair \((\alpha : A \to B,\, \beta : A \to C)\) of morphisms with a common domain is called a \textbf{span} \cite{lowe2010graph}, denoted by
 \(
 B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C
-\). An example of a span $(\alpha, \beta)$ is shown below.
+\). 
+% An example of a span $(\alpha, \beta)$ is shown below.
 Likewise, an ordered pair \((\beta' : B \to D,\, \alpha' : C \to D)\) of morphisms with a common codomain is called a \textbf{cospan}, denoted by
 \(
 B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
-\). An example of a cospan $(\beta', \alpha')$ is shown below.
-
- \begin{center}  
+\). 
+% An example of a cospan $(\beta', \alpha')$ is shown below.
+A span and a cospan are illustrated in~\autoref{fig:preliminaries:span_cospan}.
+\begin{figure}
+   \centering
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
@@ -109,7 +115,9 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
             % \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
-    \end{center}
+        \caption{Span and Cospan}
+        \label{fig:preliminaries:span_cospan}
+\end{figure}
 
 \begin{definition}[Diagram \cite{barr1990category}]
     \label{def:cat:diagram}
@@ -150,10 +158,11 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
 \end{definition}
 
 \begin{example}
-    The following diagram is a commutative diagram in the category \textbf{Graph} of edge-labeled directed multigraphs. The symbol $\mathop{=}$ in the center of the diagram
+    A commutative diagram in the category \textbf{Graph} of edge-labeled directed multigraphs is illustrated in~\autoref{fig:preliminaries:commutative_diagram}. The symbol $\mathop{=}$ in the center of the diagram
     is used to indicate that the two paths from node 1 to node 2 are equal.
  
-    \begin{center}  
+    \begin{figure}
+        \centering
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
@@ -205,7 +214,9 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
             \node () at (57mm,-6mm) {$\mathop{=}$};
         \end{tikzpicture}
         }
-    \end{center} 
+        \caption{A commutative diagram}
+        \label{fig:preliminaries:commutative_diagram}
+    \end{figure}
 \end{example}
 The pushout is a construction in category theory that can often be thought of as the construction of a new structure from two given structures by gluing them along a common interface structure.
 \begin{definition}[Pushout \cite{barr1990category}]
@@ -240,8 +251,9 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
 \end{definition} 
 
 \begin{example}
-    The following diagram is a pushout square in the category \textbf{Graph} of edge-labeled directed multigraphs. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
-    \begin{center}  
+    The diagram in~\autoref{fig:preliminaries:pushout_injective} is a pushout square in the category \textbf{Graph} of edge-labeled directed multigraphs. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
+    \begin{figure}[hbtp]
+        \centering
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
@@ -293,12 +305,16 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
             \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
-    \end{center} 
+        \caption{A pushout square with injective morphisms}
+        \label{fig:preliminaries:pushout_injective}
+    \end{figure}
 \end{example}
 
 \begin{example}
-    The following diagram is a pushout square in the category \textbf{Graph} of edge-labeled directed multigraphs. In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
-    \begin{center}  
+    The diagram in~\autoref{fig:preliminaries:pushout_non_injective} is a pushout square in the category \textbf{Graph} of edge-labeled directed multigraphs. In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
+
+    \begin{figure}[hbtp]
+        \centering 
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
@@ -353,7 +369,9 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
             \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
-    \end{center} 
+        \caption{A pushout square with a non-injective morphism}
+        \label{fig:preliminaries:pushout_non_injective}
+    \end{figure} 
 \end{example}
 The pullback is the dual construction of the pushout in category theory, and it can be thought of as construction of the interface structure along which two structures are glued together. (to double check)
 \begin{definition}[Pullback \cite{pierce1991basic}]
