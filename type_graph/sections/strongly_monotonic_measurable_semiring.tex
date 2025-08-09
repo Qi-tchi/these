@@ -81,20 +81,118 @@ Throughout the remainder of this article, $<$ and $\leq$ denote the canonical ir
     \end{flalign*}
 \end{definition} 
 \begin{example} 
-    The real tropical semiring $\mathfrak{T}' = (\mathbb{R} \cup \{+\infty\}, \min,+,+\infty, 0_\mathbb{R},<,\operatorname{id}_{\mathbb{R} \cup \{+\infty\}})$ has domain $\mathbb{R} \cup \{+\infty\}$, the binary function symbol $\oplus$ interpreted by $\min$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $+\infty$ and $0_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R} \cup \{+\infty\}$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R} \cup \{+\infty\}$. The real tropical semiring is a strongly monotonic measurable semiring. It is not strictly monotonic measurable because $2 < 3$ but $2 \oplus 2 = \min(2,2) = 2 \not < 2 = \min(3,2) = 3 \oplus 2$.
+    % The real tropical semiring $\mathfrak{T}' = (\mathbb{R} \cup \{+\infty\}, \min,+,+\infty, 0_\mathbb{R},<,\operatorname{id}_{\mathbb{R} \cup \{+\infty\}})$ has domain $\mathbb{R} \cup \{+\infty\}$, the binary function symbol $\oplus$ interpreted by $\min$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $+\infty$ and $0_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R} \cup \{+\infty\}$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R} \cup \{+\infty\}$. The real tropical semiring is a strongly monotonic measurable semiring. It is not strictly monotonic measurable because $2 < 3$ but $2 \oplus 2 = \min(2,2) = 2 \not < 2 = \min(3,2) = 3 \oplus 2$.
+
+     The real tropical semiring $\mathfrak{T}' = (\mathbb{R} \cup \{+\infty\}, \min,+_\mathbb{R},+\infty, 0_\mathbb{R},<_\mathbb{R},\operatorname{id}_{\mathbb{R} \cup \{+\infty\}})$ is an instance of the strongly monotonic measurable semiring where
+     \begin{flalign*}
+         S & \mapsto \mathbb{R} \cup \{+\infty\}
+         \\
+         \oplus & \mapsto \min
+         \\
+         \odot & \mapsto +_\mathbb{R}
+         \\
+         0_s & \mapsto +\infty
+         \\
+         1_s & \mapsto 0_\mathbb{R}
+         \\
+         \prec & \mapsto <_\mathbb{R}
+         \\
+         \mu & \mapsto \operatorname{id}_{\mathbb{R} \cup \{+\infty\}}
+     \end{flalign*}
+
+    It is a strongly monotonic measurable semiring but not strictly monotonic measurable, because we have $2 <_\mathbb{R} 3$ but $2 \oplus 2 = \min(2,2) = 2 \not <_\mathbb{R} 2 = \min(3,2) = 3 \oplus 2$.
 \end{example}
 \begin{example}
-    The real arctic semiring $\mathfrak{A}' = (\mathbb{R} \cup \{-\infty\},\max,+,-\infty, 0_\mathbb{R},<,\operatorname{id}_{\mathbb{R} \cup \{-\infty\}})$ has domain $\mathbb{R} \cup \{-\infty\}$, the binary function symbol $\oplus$ interpreted by $\max$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $-\infty$ and $0_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R} \cup \{-\infty\}$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R} \cup \{-\infty\}$. The real arctic semiring is a strongly monotonic measurable semiring. It is not strictly monotonic measurable because $2 < 3$ but $2 \oplus 3 = \max(2,3) = 3 \not < 3 = \max(3,3) = 3 \oplus 3$.
+    % The real arctic semiring $\mathfrak{A}' = (\mathbb{R} \cup \{-\infty\},\max,+,-\infty, 0_\mathbb{R},<,\operatorname{id}_{\mathbb{R} \cup \{-\infty\}})$ has domain $\mathbb{R} \cup \{-\infty\}$, the binary function symbol $\oplus$ interpreted by $\max$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $-\infty$ and $0_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R} \cup \{-\infty\}$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R} \cup \{-\infty\}$. The real arctic semiring is a strongly monotonic measurable semiring. It is not strictly monotonic measurable because $2 < 3$ but $2 \oplus 3 = \max(2,3) = 3 \not < 3 = \max(3,3) = 3 \oplus 3$.
+    The real arctic semiring $\mathfrak{A}' = (\mathbb{R} \cup \{-\infty\},\max,+_\mathbb{R},-\infty, 0_\mathbb{R},<_\mathbb{R},\operatorname{id}_{\mathbb{R} \cup \{-\infty\}})$ is an instance of the strongly monotonic measurable semiring where
+    \begin{flalign*}
+        S & \mapsto \mathbb{R} \cup \{-\infty\}
+        \\
+        \oplus & \mapsto \max
+        \\
+        \odot & \mapsto +_\mathbb{R}
+        \\
+        0_s & \mapsto -\infty
+        \\
+        1_s & \mapsto 0_\mathbb{R}
+        \\
+        \prec & \mapsto <_\mathbb{R}
+        \\
+        \mu & \mapsto \operatorname{id}_{\mathbb{R} \cup \{-\infty\}}
+    \end{flalign*}
+    It is a strongly monotonic measurable semiring but not strictly monotonic measurable, because $2 <_\mathbb{R} 3$ but $2 \oplus 3 = \max(2,3) = 3 \not <_\mathbb{R} 3 = \max(3,3) = 3 \oplus 3$.
 %    The real arctic semiring: $\mathfrak{A}' = (\mathbb{R} \cup \{-\infty\},\max,+,-\infty, 0,<,\operatorname{id}_{\mathbb{R} \cup \{-\infty\}})$.
 \end{example}
 \begin{example}
-    The real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$ has as domain the set $\mathbb{R}^+$ of positive real numbers, the binary function symbol $\oplus$ interpreted by $+$ and the binary function symbol $\odot$ interpreted by $*$, the constant symbols $0_s$ and $1_s$ interpreted by $0_\mathbb{R}$ and $1_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R}^+$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R}^+$. The real arithmetic semiring is a strictly monotonic measurable semiring. 
+    The real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+_\mathbb{R},*_\mathbb{R},0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$ is an instance of the strongly monotonic measurable semiring where
+    \begin{flalign*}
+        S & \mapsto \mathbb{R}^+
+        \\
+        \oplus & \mapsto +_\mathbb{R}
+        \\
+        \odot & \mapsto *_\mathbb{R}
+        \\
+        0_s & \mapsto 0_\mathbb{R}
+        \\
+        1_s & \mapsto 1_\mathbb{R}
+        \\
+        \prec & \mapsto <_\mathbb{R}
+        \\
+        \mu & \mapsto \operatorname{id}_{\mathbb{R}^+}
+    \end{flalign*}
+    It is a strictly monotonic measurable semiring. 
+    % The real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$ has as domain the set $\mathbb{R}^+$ of positive real numbers, the binary function symbol $\oplus$ interpreted by $+$ and the binary function symbol $\odot$ interpreted by $*$, the constant symbols $0_s$ and $1_s$ interpreted by $0_\mathbb{R}$ and $1_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R}^+$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R}^+$. The real arithmetic semiring is a strictly monotonic measurable semiring. 
 \end{example}
 \begin{example} 
     \label{example:real_semirings}
-    The natural tropical semiring: $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min,+,+\infty, 0, < , \operatorname{id}_{\mathbb{N} \cup \{+\infty\}})$
-    and the natural arctic semiring: $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+,-\infty, 0,<, \operatorname{id}_{\mathbb{N} \cup \{-\infty\}})$ are strongly monotonic measurable semirings.
-    The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0,1,<,\operatorname{id}_\mathbb{N})$ is a strictly monotonic measurable semiring.
+    The natural tropical semiring $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min,+_{\mathbb{N}},+\infty, 0_\mathbb{N}, <_{\mathbb{N}} , \operatorname{id}_{\mathbb{N} \cup \{+\infty\}})$ is an instance of the strongly monotonic measurable semiring where
+    \begin{flalign*}
+        S & \mapsto \mathbb{N} \cup \{+\infty\}
+        \\
+        \oplus & \mapsto \min
+        \\
+        \odot & \mapsto +_\mathbb{N}
+        \\
+        0_s & \mapsto +\infty
+        \\
+        1_s & \mapsto 0_\mathbb{N}
+        \\
+        \prec & \mapsto <_\mathbb{N}
+        \\
+        \mu & \mapsto \operatorname{id}_{\mathbb{N} \cup \{+\infty\}}
+    \end{flalign*}
+    The natural arctic semiring $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+_{\mathbb{N}},-\infty, 0_\mathbb{N},<_{\mathbb{N}}, \operatorname{id}_{\mathbb{N} \cup \{-\infty\}})$ is an instance of the strongly monotonic measurable semiring where
+    \begin{flalign*}
+        S & \mapsto \mathbb{N} \cup \{-\infty\}
+        \\
+        \oplus & \mapsto \max
+        \\
+        \odot & \mapsto +_\mathbb{N}
+        \\
+        0_s & \mapsto -\infty
+        \\
+        1_s & \mapsto 0_\mathbb{N}
+        \\
+        \prec & \mapsto <_\mathbb{N}
+        \\
+        \mu & \mapsto \operatorname{id}_{\mathbb{N} \cup \{-\infty\}}
+    \end{flalign*}  
+    The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+_\mathbb{N},*,0_\mathbb{N},1_\mathbb{N},<_\mathbb{N},\operatorname{id}_\mathbb{N})$ is an instance of the strictly monotonic measurable semiring where
+    \begin{flalign*}
+        S & \mapsto \mathbb{N}
+        \\
+        \oplus & \mapsto +_\mathbb{N}
+        \\
+        \odot & \mapsto *_\mathbb{N}
+        \\
+        0_s & \mapsto 0_\mathbb{N}
+        \\
+        1_s & \mapsto 1_\mathbb{N}
+        \\
+        \prec & \mapsto <_\mathbb{N}
+        \\
+        \mu & \mapsto \operatorname{id}_\mathbb{N}
+    \end{flalign*}
 \end{example}
 
 % \begin{notation} 

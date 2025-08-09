@@ -1,27 +1,27 @@
 
 \begin{definition}[Monoid]
-    A \textbf{monoid} $(S, *, e)$ is a set $S$ equipped with a binary operation $* : S \times S \rightarrow S$ and having a spacial element $e$ such that:
+    A \textbf{monoid} $(S, \cdot, e)$ is a set $S$ equipped with a binary operation $\cdot : S \times S \rightarrow S$ and having a spacial element $e$ such that:
     \begin{itemize}
-        \item {$*$ is associative:} $ (x * y) * z = x * (y * z)$
-        \item {$e$ is an identity element:} $  e * x = x = x * e$
+        \item {$\cdot$ is associative:} $ (x \cdot y) \cdot z = x \cdot (y \cdot z)$
+        \item {$e$ is an identity element:} $  e \cdot x = x = x \cdot e$
     \end{itemize}
-    A \textbf{commutative monoid} is a monoid where $*$ is commutative: $x * y = y * x$.
+    A \textbf{commutative monoid} is a monoid where $\cdot$ is commutative: $x \cdot y = y \cdot x$.
 \end{definition}
 
 \begin{definition}[Semiring]
     \label{def_semiring}
-        A \textbf{semiring} is a 5-tuple $(S,\bigoplus,\bigotimes,0,1)$ satisfying the following conditions:
+        A \textbf{semiring} is a 5-tuple $(S,\oplus,\odot,0,1)$ satisfying the following conditions:
          \begin{itemize}
-            \item {$(S,\bigoplus,0)$ is a commutative monoid} 
-            \item {$(S,\bigotimes,1)$ is a monoid} 
-            \item {$\bigotimes$ is distributive over $\bigoplus$:}
+            \item {$(S,\oplus,0)$ is a commutative monoid} 
+            \item {$(S,\odot,1)$ is a monoid} 
+            \item {$\odot$ is distributive over $\oplus$:}
             \begin{itemize}
-                \item $a \bigotimes ( b \bigoplus c) = (a \bigotimes b) \bigoplus (a \bigotimes c)$ 
-                \item $(b \bigoplus c) \bigotimes a = (b \bigotimes a) \bigoplus (c \bigotimes a)$
+                \item $a \odot ( b \oplus c) = (a \odot b) \oplus (a \odot c)$ 
+                \item $(b \oplus c) \odot a = (b \odot a) \oplus (c \odot a)$
             \end{itemize} 
-            \item {0 is an annihilator for $\bigotimes$:} $x \bigotimes 0= 0 =  0 \bigotimes x $
+            \item {0 is an annihilator for $\odot$:} $x \odot 0= 0 =  0 \odot x $
         \end{itemize}
-        A \textbf{commutative semiring} is a semiring where $\bigotimes$ is commutative.
+        A \textbf{commutative semiring} is a semiring where $\odot$ is commutative.
 \end{definition}
 
 \begin{definition}[Well-founded Semiring~\cite{endrullis2024generalized_icgt}]
@@ -63,9 +63,10 @@
                 \hspace{5cm}x \prec x'  \land y \leq y'
                 &\Rightarrow
                 x \oplus y \prec x' \oplus y 
-                &\tag{S8} \label{ax:s5} 
+                &\tag{S5} \label{wfs:ax:s5} 
         \end{flalign*}
 \end{definition}
+\autoref{ax:s5}
 % \begin{example} 
 %     \label{example:real_semirings}
 %     The natural tropical semiring: $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min,+,+\infty, 0, <, \leq)$
@@ -73,15 +74,68 @@
 %     The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0,1,<, \leq)$ is a strictly monotonic.
 % \end{example}
 \begin{example}
-    The natural tropical semiring $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min,+,+\infty, 0, <, \leq)$ has domain $\mathbb{N} \cup \{+\infty\}$, the binary function symbol $\oplus$ interpreted by $\min$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $+\infty$ and $0_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N} \cup \{+\infty\}$. It is a well-founded semiring. It is not strictly monotonic because $2 < 3$ but $2 \oplus 2 = \min(2,2) = 2 \not < 2 = \min(3,2) = 3 \oplus 2$.
+    % The natural tropical semiring $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min,+,+\infty, 0, <, \leq)$ has domain $\mathbb{N} \cup \{+\infty\}$, the binary function symbol $\oplus$ interpreted by $\min$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $+\infty$ and $0_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N} \cup \{+\infty\}$. It is a well-founded semiring. It is not strictly monotonic because $2 < 3$ but $2 \oplus 2 = \min(2,2) = 2 \not < 2 = \min(3,2) = 3 \oplus 2$.
+
+    The natural tropical semiring $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min, \mathop{+_\mathbb{N}}, +\infty, 0_\mathbb{N}, <_\mathbb{N}, \leq_\mathbb{N})$ is an instance of the well-founded semiring where
+    \begin{flalign*}
+        S & \mapsto \mathbb{N} \cup \{+\infty\}
+        \\
+        \mathop{\oplus} & \mapsto \mathop{\min}
+        \\
+        \mathop{\odot} & \mapsto \mathop{+_\mathbb{N}}
+        \\
+        0_s & \mapsto \mathop{+\infty}
+        \\
+        1_s & \mapsto 0_\mathbb{N}
+        \\
+        \mathop{\prec} & \mapsto \mathop{<_\mathbb{N}}
+        \\
+        \mathop{\leq} & \mapsto \mathop{\leq_\mathbb{N}}
+    \end{flalign*}
+    It is a well-founded semiring but not strictly monotonic because $2 <_\mathbb{N} 3$ but $2 \oplus 2 = \min(2,2) = 2 \not <_\mathbb{N} 2 = \min(3,2) = 3 \oplus 2$.
 \end{example}
     
 \begin{example}
-    The natural arctic semiring $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+,-\infty, 0,<,\leq)$ has domain $\mathbb{N} \cup \{-\infty\}$, the binary function symbol $\oplus$ interpreted by $\max$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $-\infty$ and $0_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N} \cup \{-\infty\}$. It is a well-founded semiring. It is not strictly monotonic because $2 < 3$ but $2 \oplus 3 = \max(2,3) = 3 \not < 3 = \max(3,3) = 3 \oplus 3$.
+    % The natural arctic semiring $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+,-\infty, 0,<,\leq)$ has domain $\mathbb{N} \cup \{-\infty\}$, the binary function symbol $\oplus$ interpreted by $\max$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $-\infty$ and $0_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N} \cup \{-\infty\}$. It is a well-founded semiring. It is not strictly monotonic because $2 < 3$ but $2 \oplus 3 = \max(2,3) = 3 \not < 3 = \max(3,3) = 3 \oplus 3$.
+
+    The natural arctic semiring $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+_\mathbb{N},-\infty, 0_\mathbb{N},<_\mathbb{N},\leq_\mathbb{N})$ is an instance of the well-founded semiring where
+    \begin{flalign*}
+        S & \mapsto \mathbb{N} \cup \{-\infty\}
+        \\
+        \oplus & \mapsto \mathop{\max}
+        \\
+        \odot & \mapsto \mathop{+_\mathbb{N}}
+        \\
+        0_s & \mapsto \mathop{-\infty}
+        \\
+        1_s & \mapsto 0_\mathbb{N}
+        \\
+        \prec & \mapsto \mathop{<_\mathbb{N}}
+        \\
+        \leq & \mapsto \mathop{\leq_\mathbb{N}}
+    \end{flalign*}
+    It is a well-founded semiring but not strictly monotonic because $2 <_\mathbb{N} 3$ but $2 \oplus 3 = \max(2,3) = 3 \not <_\mathbb{N} 3 = \max(3,3) = 3 \oplus 3$.
 \end{example}
 
 \begin{example}
-    The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0,1,<,\leq)$ has domain $\mathbb{N}$, the binary function symbol $\oplus$ interpreted by $+$ and the binary function symbol $\odot$ interpreted by $*$, the constant symbols $0_s$ and $1_s$ interpreted by $0_\mathbb{N}$ and $1_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N}$. It is a strictly monotonic semiring.
+    % The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0,1,<,\leq)$ has domain $\mathbb{N}$, the binary function symbol $\oplus$ interpreted by $+$ and the binary function symbol $\odot$ interpreted by $*$, the constant symbols $0_s$ and $1_s$ interpreted by $0_\mathbb{N}$ and $1_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N}$. It is a strictly monotonic semiring.
+    The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+_\mathbb{N},*_\mathbb{N},0_\mathbb{N},1_\mathbb{N},<_\mathbb{N},\leq_\mathbb{N}) $ is an instance of the strictly monotonic semiring where
+    \begin{flalign*}
+        S & \mapsto \mathbb{N}
+        \\
+        \oplus & \mapsto \mathop{+_\mathbb{N}}
+        \\
+        \odot & \mapsto \mathop{*_\mathbb{N}}
+        \\
+        0_s & \mapsto 0_\mathbb{N}
+        \\
+        1_s & \mapsto 1_\mathbb{N}
+        \\
+        \prec & \mapsto \mathop{<_\mathbb{N}}
+        \\
+        \leq & \mapsto \mathop{\leq_\mathbb{N}}
+    \end{flalign*}
+    It is a strictly monotonic semiring.
 \end{example}
 
 \begin{notation} 
