@@ -1,7 +1,8 @@
 \begin{example}
   \label{antipattern:example:contrib_variant}
-  The rewriting rule illustrated below modifies a rule from~\cite[Example 6]{plump2018modular} by removing all interface edges and adding a node with identifier $5$ and three self-loops labeled $0$.
-  \begin{center}
+  The rewriting rule illustrated in~\autoref{fig:antipattern:def:contrib_variant} modifies a rule from~\cite[Example 6]{plump2018modular} by removing all interface edges and adding a node with identifier $5$ and three self-loops labeled $0$.
+  \begin{figure}[!htbp]
+        \centering
       \resizebox{0.6\textwidth}{!}{
           \begin{tikzpicture}
               \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
@@ -39,7 +40,9 @@
               \node () at (77mm,-18mm) {$\rightarrowtail$};
           \end{tikzpicture}
           }
-  \end{center}
+        \caption{}
+        \label{fig:antipattern:def:contrib_variant}
+  \end{figure}
  
       Consider the ruler-graph $\mathcal{X} = (X)$ where $X$ is the graph
       \tikz[baseline=-0.5ex]{ 
@@ -61,8 +64,9 @@
 \end{example}
 \begin{example}
   \label{antipattern:ex:grs_aca}
-  Consider the following rule $\rho$ from~\cite[Example 1]{bruggink2014termination}:
-  \begin{center} 
+  Consider the rule $\rho$ shown in~\autoref{fig:antipattern:grs_aca} from~\cite[Example 1]{bruggink2014termination}.
+  \begin{figure}[!htbp]
+    \centering
   \resizebox{0.7\textwidth}{!}{
   \begin{tikzpicture}
       \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
@@ -97,7 +101,9 @@
       % \draw[>->] (51mm,2mm) -- (52mm,3mm);
   \end{tikzpicture}
   }
-\end{center}
+  \caption{}
+  \label{fig:antipattern:grs_aca}
+\end{figure}
 Consider the ruler-graph $\mathcal{X} = (L, f)$ where the underlying graph is $L$ and $f:L \rightarrowtail R$ is the inclusion function.
 % The number of $L$-occurrences not included in any occurrences of the forbidden context $R$ in any rewriting step using this rule is predictable:
 % the condition~\ref{hyp:inj_mono_x_l_to_r} is satisfied because $Mono(L,L)_F = \emptyset$; the condition~\ref{hyp:inj_mono_f_l_to_r} is satisfied because $Mono(R,L) = \emptyset$; the conditions~\ref{hyp:x_non_increasing} and~\ref{hyp:f_non_increasing} are satisfied under identity function; the condition~\ref{hyp:f_non_increasing} is satisfied because for the condition~\ref{hyp:f_non_increasing} we employ identity function. 
@@ -112,8 +118,9 @@ Since we have additionally $\card{\operatorname{Mono}(X,L)_{\operatorname{NF}}} 
 % Finally, we present a limitation of our approach.
 \begin{example}
     \label{antipattern:ex:endrullis:d3:termination}  
-    Our method can prove termination of the rewriting rule $\rho$ from~\cite[Example D.3]{endrullis2024generalized_arxiv_v2}:
-    \begin{center}
+    Our method can prove termination of the rewriting rule $\rho$ shown in~\autoref{fig:antipattern:ex_endrullis_d3} from~\cite[Example D.3]{endrullis2024generalized_arxiv_v2}.
+    \begin{figure}[!htbp]
+        \centering
         \resizebox{0.7\textwidth}{!}{
     \begin{tikzpicture}  
        \graphbox{$L$}{0mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{  
@@ -130,7 +137,9 @@ Since we have additionally $\card{\operatorname{Mono}(X,L)_{\operatorname{NF}}} 
          }    
    \end{tikzpicture}
         }  
-    \end{center}
+        \caption{}
+        \label{fig:antipattern:ex_endrullis_d3}
+    \end{figure}
     Let $\mathcal{X} = (L,f)$ be the ruler-graph where $f:L \rightarrowtail R$ is the unique interface preserving monomorphism from $L$ to $R$. 
     % The number of $X$-occurrences not included in any occurrences of the forbidden context $R$ in any $\rho$-rewriting step is predictable. 
     $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f:X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing. \todo{more details?}

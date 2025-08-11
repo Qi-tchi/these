@@ -18,8 +18,9 @@
         \node[draw, circle] (y) at (1,0) {$\mathrm{v}$};
         \draw[->]  (x) -- (y) node [midway,above] {$l$};
     \end{tikzpicture} in the graph $T$,
-    and $w(e) = 1.0$ for all $e \in \mathbb{E}$, can be visualized as follows:
-    \begin{center}
+    and $w(e) = 1.0$ for all $e \in \mathbb{E}$, is visualized in~\autoref{fig:nwf:weighted_type_graph_sss}.
+    \begin{figure}[!htbp] 
+        \centering
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
                 \node[draw,circle] (1) at (0,0) {1};
@@ -30,12 +31,15 @@
                 \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
             }
         \end{tikzpicture}
-    \end{center}
+        \caption{}
+        \label{fig:nwf:weighted_type_graph_sss}
+    \end{figure}
 \end{example}
 
 \begin{example}
-    Consider the following morphisms and the weighted type graph $\mathcal{T}$ from \autoref{nwf:example:weighted_type_graph}:
-    \begin{center}
+    Consider the morphisms shown in~\autoref{fig:nwf:rewriting_step_tracsdfdsaf} and the weighted type graph $\mathcal{T}$ from \autoref{nwf:example:weighted_type_graph}.
+    \begin{figure}[!htbp]
+        \centering
         \resizebox{0.49\textwidth}{!}{
         \begin{tikzpicture}
           \graphbox{\( L \)}{-50mm}{0mm}{40mm}{39mm}{2mm}{-6mm}{
@@ -78,7 +82,9 @@
                 \node () at (-5mm,-15mm) {$\overset{h_{11}^2}{\to}$};
             \end{tikzpicture}
             }
-      \end{center}
+        \caption{}
+        \label{fig:nwf:rewriting_step_tracsdfdsaf}
+      \end{figure}
     We have $ w_\mathcal{T}(h_{11}^1) = w(e_{13a})^{m_{e_{13a}}(h_{11}^1)} \odot w(e_{31a})^{m_{e_{31a}}(h_{11}^1)} =
      1.0^1 * 1.0^1 = 1.0$ and $
         w_\mathcal{T}(h_{11}^2) 
@@ -96,7 +102,6 @@
 
 \subsection{Estimating weights of pushout objects}
 Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let \(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) be a weighted type graph over the strongly monotonic measurable semiring $\mathcal{S}$.
-
 The following proposition ensures that every morphism to a type graph $(T,S,\mathbb{E}, w)$ has a weight different from $0_S$ and greater than or equal to $1_S$.
 %  then the weight of a morphism to a type graph is greater than $1_S$ too. 
 This will be used in \autoref{nwf:thm:termination_grs}.

@@ -1,8 +1,9 @@
 
 In this chap, we present an new automated method for relative termination~\cite{geser1990relative} of double-pushout (DPO) graph rewriting systems with injective rules~\cite{corradini1997algebraic,habel2001double,konig2018atutorial}. The method, based on the interpretation method framework~\cite{nipkow1998term}, works as follows. Let \( \mathbb{X} \) denote a fixed set of graphs. We assign weights (natural numbers) to monomorphisms from graphs in \( \mathbb{X} \), and define the weight of a graph $G$ as the sum of the weights of all monomorphisms from graphs in \( \mathbb{X} \) to $G$. 
 
-Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \in \mathbb{X}$ and $G \Rightarrow H$ be a rewriting step defined by the following double-pushouts diagram.
-\begin{center}
+Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \in \mathbb{X}$ and $G \Rightarrow H$ be a rewriting step defined by the double-pushouts diagram in~\autoref{fig:subgraph_counting:general_rewriting_step_sdfsl}.
+\begin{figure}[!htbp]
+    \centering
  \resizebox{0.4\textwidth}{!}{
      \begin{tikzpicture}
             % [node distance=15mm]
@@ -29,7 +30,9 @@ Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \in \
             % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
         \end{tikzpicture}
     }
-\end{center}
+    \caption{}
+    \label{fig:subgraph_counting:general_rewriting_step_sdfsl}
+\end{figure}
 
 For a monomorphism from $X$ to $G$, its image falls into exactly one of the following three mutually exclusive cases. First, the image may be fully included in $m(L)$. Second, the image may be fully included in $l'(C)$; Third, the image may be neither fully included in $m(L)$ nor fully included in $l'(C)$. Similary, for a monomorphism from $X$ to $H$, its image falls into exactly one of the following three mutually exclusive cases. First, the image may be fully included in $m'(R)$. Second, the image may be fully included in $r'(C)$; Third, the image may be neither fully included in $m'(R)$ nor fully included in $r'(C)$. The number of monomorphisms from $X$ to $G$ whose image is fully included in $m(L)$ can be precisely calculated, as can the number of monomorphisms from $X$ to $H$ whose image is fully included in $m'(R)$. Moreover, the number of monomorphisms from $X$ to $G$ equals to the that of monomorphisms to $H$. 
 
