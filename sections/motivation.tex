@@ -24,7 +24,7 @@ and automated verification of their properties.
 % In this thesis, we focus on modeling distributed algorithms using graph transformation.
 
 \paragraph{Finite edge-labeled directed multigraphs} model distributed algorithms in this thesis. This formalism extends directed graphs by allowing multiple edges between nodes and labeled edges. Computation units are represented by nodes; communication channels are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computation units and states of communication channels. For example, consider the graph in~\autoref{fig:graph_modeling_state_network} which models a distributed network with six computation units.
- \begin{figure}[hbtp]
+ \begin{figure}[!htbp]
         \centering
         \resizebox{0.3\textwidth}{!}{
                 \begin{tikzpicture}
@@ -76,7 +76,7 @@ As an example, consider a distributed spanning tree construction algorithm: when
                 \node () at (0,0.3) {$A$};  
                 \node () at (1,0.3) {$A$};
  }. It can be illustrated as~\autoref{fig:intro:graph_transformation_rule_0} where numbers inside nodes are their identifiers.
- \begin{figure}[hbtp]
+ \begin{figure}[!htbp]
     \centering
        \begin{tikzpicture}
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{-8mm}{-9mm}{
@@ -99,7 +99,7 @@ As an example, consider a distributed spanning tree construction algorithm: when
     \label{fig:intro:graph_transformation_rule_0}
 \end{figure}
 A sample execution sequence starting from the configuration in~\autoref{fig:graph_modeling_state_network} is shown in~\autoref{fig:intro_sequence_of_transformation}. Upon termination, a spanning tree can be constructed using edges labeled by "1".
-    \begin{figure}[hbtp]
+    \begin{figure}[!htbp]
         \centering
         \resizebox{0.3\textwidth}{!}{
                 \begin{tikzpicture}
@@ -443,7 +443,7 @@ Double-pushout (DPO) graph rewriting systems~\cite{corradini1997algebraic,habel2
    Firstly, it is among the most studied algebraic graph rewriting formalisms.
    Secondly, its relative simplicity stems from relying solely on the concept of pushouts~\cite{pierce1991basic} which minimizes the categorical prerequisites required to understand it. This is interesting because the abstract nature of category theory is often seen as a barrier to entry for newcomers~\cite{overbeekthesis}.
     Finally, despite its conceptual simplicity, DPO graph rewriting systems remain sufficiently expressive to model many distributed algorithms. For example, the transformation rules in~\autoref{fig:intro:graph_transformation_rule} and~\autoref{fig:intro:graph_transformation_rule_0} can be expressed as DPO graph transformation rules as in~\autoref{fig:intro:graph_transformation_rule_dpo} and~\autoref{fig:intro:graph_transformation_rule_0_dpo} respectively.
-    \begin{figure}[htbp]
+    \begin{figure}[!htbp]
     \centering
     \begin{tikzpicture}
                     \graphbox{\( L \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -470,7 +470,7 @@ Double-pushout (DPO) graph rewriting systems~\cite{corradini1997algebraic,habel2
     \caption{}
     \label{fig:intro:graph_transformation_rule_dpo}
 \end{figure}
-     \begin{figure}[hbtp]
+     \begin{figure}[!htbp]
     \centering
        \begin{tikzpicture} 
                     \graphbox{\( L \)}{-40mm}{-3mm}{34mm}{15mm}{-8mm}{-9mm}{
@@ -511,7 +511,7 @@ Since graph transformation rules in a system are applied repeatedly and nondeter
         \draw[->] (x) -- node[midway,below] {b} (y) ;
         \draw[->] (y) -- node[midway,below] {a} (z) ;
 } while keeping the extreme nodes unchanged.
-    \begin{figure}[hbtp]
+    \begin{figure}[!htbp]
         \centering
             \resizebox{0.85\textwidth}{!}{
                 \begin{tikzpicture}[baseline=-3ex]
@@ -549,7 +549,7 @@ Since graph transformation rules in a system are applied repeatedly and nondeter
     \end{figure}
     A looping rewriting sequence using the rule in~\autoref{fig:intro:graph_transformation_rule_nonterminating}, where the graph is in a box with it name on the top left corner, numbers inside nodes are used to identify them, can be visualized as in~\autoref{fig:intro:sequence_of_transformation_infinite} with matches in red.
 
-        \begin{figure}[hbtp]
+        \begin{figure}[!htbp]
             \centering
           \resizebox{0.85\textwidth}{!}{
             \tikz
@@ -612,7 +612,7 @@ rules in $\mathcal{A}$ can only be applied finitely many times in any sequence o
 % Therefore, these operations do not need to be considered when reasoning about the termination of the system. The problem to be analyzed can thus be simplified by safely ignoring these operations.
   
 Consider the graph transformation system with two rules illustrated in~\autoref{fig:intro:edge_deletion_and_node_addition_rule}: rule $\alpha$ deletes an arbitrary edge labeled by \enquote{a} and rule $\beta$ introduces a fresh node.
-  \begin{figure}[hbtp]
+  \begin{figure}[!htbp]
         \centering
 %   \begin{subfigure}{0.3\textwidth}
 %         % \centering
@@ -654,7 +654,7 @@ Consider the graph transformation system with two rules illustrated in~\autoref{
     %     \caption{A graph transformation rule for node addition}
     %     \label{fig:intro:node_addition_rule}
     % \end{subfigure}
-    \caption{Edge-deletion rule and node-addition rule}
+    \caption{A rewriting system}
     \label{fig:intro:edge_deletion_and_node_addition_rule}
   \end{figure}
   This system does not terminate, as the node-adding rule $\beta$ can be applied indefinitely. However, the relative termination of the edge-deletion rule $\alpha$ with respect to the node-adding rule $\beta$ can be established, because the initial graph is finite, and neither rule increases the number of edges in the graph.
@@ -713,7 +713,7 @@ The method defines a graph's weight as the sum of weights of occurrences of a se
 
 \paragraph{Contribution 3: Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting with Antipattern}
 The termination property of a graph rewriting system can sometimes be established by analyzing a decrease in the number of occurrences of specific subgraphs that are not embedded within forbidden contexts. For example, consider the DPO graph rewriting rule in~\autoref{fig:intro:graph_transformation_rule_anti_pattern}.
- \begin{figure}
+ \begin{figure}[!htbp]
     \centering
 \begin{tikzpicture}
       \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{

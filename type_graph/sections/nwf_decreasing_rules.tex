@@ -22,7 +22,7 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
             \item[]- for every $t_K : K \to T$,
             \begin{itemize}
                 \item[] $\bullet$ $\{l \star - = t_K\} = \emptyset = \{r \star - = t_K\}$, or
-                \item[] $\bullet$ $\mu(w_\mathcal{T}(\{l \star - = t_K\}))  >   \mu(w_\mathcal{T}(\{r \star - = t_K\})) + \delta$.
+                \item[] $\bullet$ $\mu(w_\mathcal{T}(\{l \star - = t_K\}))  >_{\mathbb{R}^+}   \mu(w_\mathcal{T}(\{r \star - = t_K\})) + \delta$.
             \end{itemize}
         \end{itemize}  
          
@@ -33,7 +33,7 @@ The definition below adapts the concept of decreasing rules from~\cite{endrullis
                 \item[]- $S$ is strictly monotonic measurable semiring,
                 \item[]- $\rho$ is weakly decreasing,
                 \item[]- there exists a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$,
-                \item[]- $ \mu(w_\mathcal{T}(\{l \star - = t_K\}))  >  \mu(w_\mathcal{T}(\{r \star - = t_K\}))  + \delta$ for $t_K = l \star c_\rho$.
+                \item[]- $ \mu(w_\mathcal{T}(\{l \star - = t_K\}))  >_{\mathbb{R}^+}  \mu(w_\mathcal{T}(\{r \star - = t_K\}))  + \delta$ for $t_K = l \star c_\rho$.
             \end{itemize}
 \end{definition}
 
@@ -370,7 +370,7 @@ Adapted from \cite[Theorem C.3]{endrullis2024generalized_arxiv_v2}, the lemma be
   We have:
    \begin{itemize}
        \item $\mu(w_\mathcal{T}(G)) \succeq \mu(w_\mathcal{T}(H))$ if $\rho$ is weakly decreasing,
-       \item $\mu(w_\mathcal{T}(G)) > \mu(w_\mathcal{T}(H)) + \delta$ if $\rho$ is $\delta$-uniformly or $\delta$-closure decreasing for some $\delta >0$ and $w(e) \succeq 1_S$ for all $e \in \mathbb{E}$.
+       \item $\mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta$ if $\rho$ is $\delta$-uniformly or $\delta$-closure decreasing for some $\delta >_{\mathbb{R}^+} 0$ and $w(e) \succeq 1_S$ for all $e \in \mathbb{E}$.
    \end{itemize}
 \end{lemma} 
 
@@ -435,7 +435,7 @@ $.
         % \\ by Axiom \eqref{ax:s3}. \todo{to delete: inutile}
          
         \item \label{claim:st} if there exists $t_C$ with $t_K = h_{KC} \star t_C$ then
-        $$ \mu(Y) > \mu(X) + \delta  \implies \mu(Y \odot S_{t_K}) > \mu(X \odot S_{t_K})$$
+        $$ \mu(Y) >_{\mathbb{R}^+} \mu(X) + \delta  \implies \mu(Y \odot S_{t_K}) >_{\mathbb{R}^+} \mu(X \odot S_{t_K})$$
                 % $$\left (\exists \alpha \geq \delta.~\mu(Y) > \mu(X) + \alpha \right ) \implies (\mu(Y \odot S_{t_K}) > \mu(X \odot S_{t_K}))$$
         \begin{proof}
            Suppose that there is $t_C$ with $t_K = h_{KC} \star t_C$. We have $S_{t_K} \neq 0_S$ by Claim~\ref{s_nz}, and we conclude by~\autoref{def:real_strongly_monotonic_semiring}\eqref{ax:s4''}.
@@ -444,7 +444,7 @@ $.
         \item \label{claim:sh_{DT}elta} 
         if there exists $t_C$ with $t_K = h_{KC} \star t_C$, and  $w_\mathcal{T}(e) \succeq 1_S$ for all $e \in \mathbb{E}$ then
         % $$\left (\exists \alpha \geq \delta.~\mu(Y) > \mu(X) +  \alpha \right ) \implies (\exists \beta \geq \delta. \mu(Y \odot S_{t_K}) > \mu(X \odot S_{t_K})  + \beta)$$
-        $$\mu(Y) > \mu(X) +  \delta \implies \mu(Y \odot S_{t_K}) > \mu(X \odot S_{t_K})  + \delta $$
+        $$\mu(Y) >_{\mathbb{R}^+} \mu(X) +  \delta \implies \mu(Y \odot S_{t_K}) >_{\mathbb{R}^+} \mu(X \odot S_{t_K})  + \delta $$
         \begin{proof}
             Suppose that there is $t_C$ with $t_K = h_{KC} \star t_C$. We have $1_S \preceq S_{t_K} \neq 0_S$ by Claim~\ref{s_nz} and Claim~\ref{s_ge1}, and we conclude by~\autoref{def:real_strongly_monotonic_semiring}\eqref{ax:s4'}. 
         \end{proof}
@@ -455,7 +455,7 @@ $.
     
         \item \label{claim:exist_st} 
         If there is a context closure $t_L$ for $\rho$ and $T$ in $\mathfrak{F}$ , then, let $t_K = l \star t_L$, we have
-        $$ \mu(Y) > \mu(X) + \delta \implies \mu(Y \odot S_{t_K}) > \mu(X \odot S_{t_K})$$
+        $$ \mu(Y) >_{\mathbb{R}^+} \mu(X) + \delta \implies \mu(Y \odot S_{t_K}) >_{\mathbb{R}^+} \mu(X \odot S_{t_K})$$
         \begin{proof}
             
        By \autoref{def:context_closure} of context closure, there exists $t_G : G \rightarrow T$ such that 
@@ -501,7 +501,7 @@ $.
         \item \label{claim:exist_sh_{DT}elta} 
         If there is a context closure $t_L$ for $\rho$ and $T$ in $\mathfrak{F}$, and $w_\mathcal{T}(e) \succeq 1_S$ for all $e \in \mathbb{E}$ then, let $t_K = l \star t_L$, we have 
             % $$\left (\exists \alpha \geq \delta. Y \succ X +  \alpha \right ) \implies (\exists \beta \geq \delta. Y \odot S_{t_K} \succ X \odot S_{t_K}  + \beta)$$
-        $$Y \succ X + \delta \implies Y \odot S_{t_K} \succ X \odot S_{t_K}  + \delta$$ 
+        $$\mu(Y) >_{\mathbb{R}^+} \mu(X) + \delta \implies \mu(Y \odot  S_{t_K}) \succ_{\mathbb{R}^+} \mu(X \odot  S_{t_K})  + \delta$$ 
         \begin{proof}
             The proof is analogous to the proof of Claim~\ref{claim:exist_st} but with Claim~\ref{claim:sh_{DT}elta} instead of Claim~\ref{claim:st} in the end.
         \end{proof} 
@@ -526,7 +526,7 @@ $.
 
     \noindent We complete the proof with a analysis by cases:
     \begin{enumerate}
-        \item  If $\rho$ is weakly decreasing, then, by \autoref{nwf:def:decreasing_rule} of weakly decreasing rule, we have $\Lambda_{t_K} \geq \Omega_{t_K}$
+        \item  If $\rho$ is weakly decreasing, then, by \autoref{nwf:def:decreasing_rule} of weakly decreasing rule, we have $\Lambda_{t_K} \succeq \Omega_{t_K}$
         for every $t_K: K \rightarrow T$. 
         By~\autoref{def:real_strongly_monotonic_semiring}\eqref{ax:s3}, for every  $ t_K : K \rightarrow T$, we have 
                 \begin{flalign*} 
@@ -549,10 +549,10 @@ $.
         %     it suffices to show that we have case~\ref{it:strict} for some $t_K : K \to T$.
         %     This follows from \ref{claim:exist_st} since we have a context closure for $\rho$ and $\mathcal{T}$, by assumption.
         \item  
-            Suppose that $\rho$ is $\delta$-uniformly decreasing for $\delta \in \mathbb{R}_{>0}$, and $w_\mathcal{T}(e) \succeq 1$ for all $e \in \mathbb{E}$. By \autoref{nwf:def:decreasing_rule} of $\delta$-uniformly decreasing rule,
+            Suppose that $\rho$ is $\delta$-uniformly decreasing for $\delta \in \mathbb{R}_{>0}$, and $w_\mathcal{T}(e) \succeq 1_S$ for all $e \in \mathbb{E}$. By \autoref{nwf:def:decreasing_rule} of $\delta$-uniformly decreasing rule,
             for all $t_K : K \to T$, we have  
                             \begin{itemize}                                
-                                \item $\mu(\Lambda_{t_K}) > \mu(\Omega_{t_K}) + \delta$,
+                                \item $\mu(\Lambda_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K}) + \delta$,
                                 % $\exists \alpha \geq \delta  .~\mu(\Lambda_{t_K}) > \mu(\Omega_{t_K}) + \alpha$, 
                                  or
                                 \item $\{l \star - = t_K\} = \emptyset = \{r \star - = t_K\}$
@@ -560,10 +560,10 @@ $.
             From Claim~\ref{claim:sh_{DT}elta} and Claim~\ref{claim:0}, for every \( t_K: K \rightarrow T \), we obtain
             \begin{enumerate}[label=(\roman*)]
                 \item $S_{t_K} \odot \Lambda_{t_K} = 0_S =  S_{t_K} \odot \Omega_{t_K}$, or
-                \item  \label{it:strich_{DT}elta}  $\mu(\Lambda_{t_K} \odot S_{t_K}) > \mu(\Omega_{t_K} \odot S_{t_K}) + \delta$
+                \item  \label{it:strich_{DT}elta}  $\mu(\Lambda_{t_K} \odot S_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K} \odot S_{t_K}) + \delta$
                 % $\exists \beta \geq \delta  .\  \mu(\Lambda_{t_K} \odot S_{t_K}) > \mu(\Omega_{t_K} \odot S_{t_K}) + \beta$
             \end{enumerate}
-            To establish $ \mu(w_\mathcal{T}(G)) > \mu(w_\mathcal{T}(H)) + \delta$, using~\autoref{def:real_strongly_monotonic_semiring}\eqref{ax:s2'}, 
+            To establish $ \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta$, using~\autoref{def:real_strongly_monotonic_semiring}\eqref{ax:s2'}, 
             it suffices to show that we have Case~\ref{it:strich_{DT}elta} for some $t_K : K \to T$.
             This follows from Claim~\ref{claim:exist_sh_{DT}elta} since we have a context closure for $\rho$ and $\mathcal{T}$ by assumption.
             % \item
@@ -580,19 +580,19 @@ $.
             % $\mu(\Lambda_{t_K}) > \mu(\Omega_{t_K}) + \delta$
             % for $t_K = l \star t_L$. Thus, we obtain ~\eqref{steps:weightC:gt} by~\ref{claim:exist_st}.
         \item
-            If $\rho$ is $\delta$-closure decreasing, and $w_\mathcal{T}(e) \succeq 1$ for all $e \in \mathbb{E}$ then it is also weakly decreasing and we obtain Equation~\eqref{steps:weightC:ge} for every $t_K : K \to T$.
+            If $\rho$ is $\delta$-closure decreasing, and $w_\mathcal{T}(e) \succeq 1_S$ for all $e \in \mathbb{E}$ then it is also weakly decreasing and we obtain Equation~\eqref{steps:weightC:ge} for every $t_K : K \to T$.
             Since the semiring is a strictly monotonic museurable semiring,  by~\autoref{def:real_strongly_monotonic_semiring}\eqref{ax:s2'} and~\autoref{def:real_strongly_monotonic_semiring}\eqref{ax:s5'}, it suffices to show that there exists some $t_K : K \to T$ such that 
             \begin{align}
                 % \exists \alpha \geq \delta.~
-                \mu(S_{t_K} \odot \Lambda_{t_K}) > \mu(S_{t_K} \odot \Omega_{t_K}) + 
+                \mu(S_{t_K} \odot \Lambda_{t_K}) >_{\mathbb{R}^+} \mu(S_{t_K} \odot \Omega_{t_K}) + 
                 \delta
                 % \alpha
               \tag{$\star\star$}\label{steps:weightC:gh_{DT}elta}
             \end{align}
-            in order to conclude $ \mu(w_\mathcal{T}(G)) > \mu(w_\mathcal{T}(H)) + \delta$.
+            in order to conclude $ \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta$.
             There is a context closure $t_L$ for $\rho$ and $T$, and
-            $\mu(\Lambda_{t_K}) > \mu(\Omega_{t_K}) + \delta$
+            $\mu(\Lambda_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K}) + \delta$
             % $\exists \delta' \geq \delta  .\  \Lambda_{t_K} > \Omega_{t_K} + \delta'$
             for $t_K = l \star t_L$. Thus, we obtain Equation~\eqref{steps:weightC:gh_{DT}elta} by Claim~\ref{claim:exist_sh_{DT}elta}.
     \end{enumerate}
-\end{proof} 
+\end{proof}  

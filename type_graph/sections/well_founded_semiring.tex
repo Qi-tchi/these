@@ -26,12 +26,12 @@
 
 \begin{definition}[Well-founded Semiring~\cite{endrullis2024generalized_icgt}]
     \label{def:well_founded_semiring}
-    A \textbf{well-founded semiring} $(S, \oplus, \odot, 0, 1,\prec, \leq)$ consists of
+    A \textbf{well-founded semiring} $(S, \oplus, \odot, 0, 1,\prec, \preceq)$ consists of
     \begin{itemize}
         \item A semiring $(S, \oplus, \odot, 0, 1)$,
-        \item non-empty orders $\prec, \leq \subseteq S \times S$,
+        \item non-empty orders $\prec, \preceq \subseteq S \times S$,
     \end{itemize}
-    such that the equivalent class $\prec / \leq$ is well-founded, $0 \neq 1$ and for all $x,y,z,w \in S$ we have
+    such that the equivalent class $\prec / \preceq$ is well-founded, $0 \neq 1$ and for all $x,y,z,w \in S$ we have
         \begin{align*}
             x \preceq x' \land y \preceq y' 
             &\Rightarrow
@@ -40,7 +40,7 @@
             \\   
             % x < y  
             % &\Rightarrow
-            % x \oplus z \leq y \oplus z 
+            % x \oplus z \preceq y \oplus z 
             % \tag{S1} \label{eq:ordered_semiring_plus_monotonic} 
             % \\ w
             x \prec x' \land y \prec y'  
@@ -48,25 +48,25 @@
             x \oplus y \prec x' \oplus y'
             &\tag{S2} \label{wfs:ax:s2} 
             \\
-            x \preceq x' \land 1 \leq y
+            x \preceq x' \land 1 \preceq y
             &\Rightarrow 
             x \odot y \preceq x' \odot y \land y \odot x \preceq y \odot x' 
             &\tag{S3} \label{wfs:ax:s3} 
             \\
-            x \prec x' \land 1 \leq y \neq 0 
+            x \prec x' \land 1 \preceq y \neq 0 
             &\Rightarrow
             x \odot y \prec x' \odot y \land y \odot x \prec y \odot x'
             &\tag{S4} \label{wfs:ax:s4}
         \end{align*}
       The semiring is \textbf{strictly monotonic} if it additionally satisfies 
         \begin{flalign*}
-                \hspace{5cm}x \prec x'  \land y \leq y'
+                \hspace{5cm}x \prec x'  \land y \preceq y'
                 &\Rightarrow
                 x \oplus y \prec x' \oplus y 
                 &\tag{S5} \label{wfs:ax:s5} 
         \end{flalign*}
 \end{definition}
-\autoref{ax:s5}
+ to do to do : delete the follow test \autoref{ax:s5}
 % \begin{example} 
 %     \label{example:real_semirings}
 %     The natural tropical semiring: $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min,+,+\infty, 0, <, \leq)$
@@ -78,82 +78,73 @@
 
     The natural tropical semiring $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min, \mathop{+_\mathbb{N}}, +\infty, 0_\mathbb{N}, <_\mathbb{N}, \leq_\mathbb{N})$ is an instance of the well-founded semiring where
     \begin{flalign*}
-        S & \mapsto \mathbb{N} \cup \{+\infty\}
+        S & \longmapsto \mathbb{N} \cup \{+\infty\}
         \\
-        \mathop{\oplus} & \mapsto \mathop{\min}
+        \mathop{\oplus} & \longmapsto \mathop{\min}
         \\
-        \mathop{\odot} & \mapsto \mathop{+_\mathbb{N}}
+        \mathop{\odot} & \longmapsto \mathop{+_\mathbb{N}}
         \\
-        0_s & \mapsto \mathop{+\infty}
+        0_s & \longmapsto \mathop{+\infty}
         \\
-        1_s & \mapsto 0_\mathbb{N}
+        1_s & \longmapsto 0_\mathbb{N}
         \\
-        \mathop{\prec} & \mapsto \mathop{<_\mathbb{N}}
+        \mathop{\prec} & \longmapsto \mathop{<_\mathbb{N}}
         \\
-        \mathop{\leq} & \mapsto \mathop{\leq_\mathbb{N}}
+        \mathop{\preceq} & \longmapsto \mathop{\leq_\mathbb{N}}
     \end{flalign*}
-    It is a well-founded semiring but not strictly monotonic because $2 <_\mathbb{N} 3$ but $2 \oplus 2 = \min(2,2) = 2 \not <_\mathbb{N} 2 = \min(3,2) = 3 \oplus 2$.
+    It is a well-founded semiring but not strictly monotonic because $2 <_\mathbb{N} 3$ but $2 \oplus 2 \isdef \min(2,2) = 2 \not <_\mathbb{N} 2 = \min(3,2) \isdef 3 \oplus 2$.
 \end{example}
     
 \begin{example}
-    % The natural arctic semiring $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+,-\infty, 0,<,\leq)$ has domain $\mathbb{N} \cup \{-\infty\}$, the binary function symbol $\oplus$ interpreted by $\max$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $-\infty$ and $0_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N} \cup \{-\infty\}$. It is a well-founded semiring. It is not strictly monotonic because $2 < 3$ but $2 \oplus 3 = \max(2,3) = 3 \not < 3 = \max(3,3) = 3 \oplus 3$.
+    % The natural arctic semiring $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+,-\infty, 0,<,\preceq)$ has domain $\mathbb{N} \cup \{-\infty\}$, the binary function symbol $\oplus$ interpreted by $\max$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $-\infty$ and $0_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\preceq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N} \cup \{-\infty\}$. It is a well-founded semiring. It is not strictly monotonic because $2 < 3$ but $2 \oplus 3 = \max(2,3) = 3 \not < 3 = \max(3,3) = 3 \oplus 3$.
 
     The natural arctic semiring $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+_\mathbb{N},-\infty, 0_\mathbb{N},<_\mathbb{N},\leq_\mathbb{N})$ is an instance of the well-founded semiring where
     \begin{flalign*}
-        S & \mapsto \mathbb{N} \cup \{-\infty\}
+        S & \longmapsto \mathbb{N} \cup \{-\infty\}
         \\
-        \oplus & \mapsto \mathop{\max}
+        \oplus & \longmapsto \mathop{\max}
         \\
-        \odot & \mapsto \mathop{+_\mathbb{N}}
+        \odot & \longmapsto \mathop{+_\mathbb{N}}
         \\
-        0_s & \mapsto \mathop{-\infty}
+        0_s & \longmapsto \mathop{-\infty}
         \\
-        1_s & \mapsto 0_\mathbb{N}
+        1_s & \longmapsto 0_\mathbb{N}
         \\
-        \prec & \mapsto \mathop{<_\mathbb{N}}
+        \prec & \longmapsto \mathop{<_\mathbb{N}}
         \\
-        \leq & \mapsto \mathop{\leq_\mathbb{N}}
+        \preceq & \longmapsto \mathop{\leq_\mathbb{N}}
     \end{flalign*}
-    It is a well-founded semiring but not strictly monotonic because $2 <_\mathbb{N} 3$ but $2 \oplus 3 = \max(2,3) = 3 \not <_\mathbb{N} 3 = \max(3,3) = 3 \oplus 3$.
+    It is a well-founded semiring but not strictly monotonic because $2 <_\mathbb{N} 3$ but $2 \oplus 3 \isdef \max(2,3) = 3 \not <_\mathbb{N} 3 = \max(3,3) \isdef 3 \oplus 3$.
 \end{example}
 
 \begin{example}
     % The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0,1,<,\leq)$ has domain $\mathbb{N}$, the binary function symbol $\oplus$ interpreted by $+$ and the binary function symbol $\odot$ interpreted by $*$, the constant symbols $0_s$ and $1_s$ interpreted by $0_\mathbb{N}$ and $1_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N}$. It is a strictly monotonic semiring.
     The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+_\mathbb{N},*_\mathbb{N},0_\mathbb{N},1_\mathbb{N},<_\mathbb{N},\leq_\mathbb{N}) $ is an instance of the strictly monotonic semiring where
     \begin{flalign*}
-        S & \mapsto \mathbb{N}
+        S & \longmapsto \mathbb{N}
         \\
-        \oplus & \mapsto \mathop{+_\mathbb{N}}
+        \oplus & \longmapsto \mathop{+_\mathbb{N}}
         \\
-        \odot & \mapsto \mathop{*_\mathbb{N}}
+        \odot & \longmapsto \mathop{*_\mathbb{N}}
         \\
-        0_s & \mapsto 0_\mathbb{N}
+        0_s & \longmapsto 0_\mathbb{N}
         \\
-        1_s & \mapsto 1_\mathbb{N}
+        1_s & \longmapsto 1_\mathbb{N}
         \\
-        \prec & \mapsto \mathop{<_\mathbb{N}}
+        \prec & \longmapsto \mathop{<_\mathbb{N}}
         \\
-        \leq & \mapsto \mathop{\leq_\mathbb{N}}
+        \preceq & \longmapsto \mathop{\leq_\mathbb{N}}
     \end{flalign*}
     It is a strictly monotonic semiring.
 \end{example}
 
-\begin{notation} 
+\begin{notation}[Extended semiring operations]
     \label{def:bigodot}
-Let $(S, \oplus, \odot, 0_s, 1_s)$ be a semiring. We extend naturally the binary operations $\oplus$ and $\odot$ to finite sets $E \subseteq S$ by letting
+Let $(S, \oplus, \odot, 0, 1)$ be a semiring. We extend naturally the binary operations $\oplus$ and $\odot$ to finite sets $E \subseteq S$ by letting
     \begin{itemize}
-        \item $\bigodot \emptyset \overset{\operatorname{def}}{=} 1_s$ and $\bigodot \left( E \cup \{x\} \right) \overset{\operatorname{def}}{=} \left( \bigodot E \right) \odot x$;
-        \item $\bigoplus \emptyset \overset{\operatorname{def}}{=} 0_s$ and $\bigoplus \left( E \cup \{x\} \right) \overset{\operatorname{def}}{=} \left( \bigoplus E \right) \oplus x$.
+        \item $\bigodot \emptyset \isdef 1$ and $\bigodot \left( E \cup \{x\} \right) \isdef \left( \bigodot E \right) \odot x$;
+        \item $\bigoplus \emptyset \isdef 0$ and $\bigoplus \left( E \cup \{x\} \right) \isdef \left( \bigoplus E \right) \oplus x$.
     \end{itemize}
-%  \begin{flalign*}
-%     \bigodot \emptyset &\overset{\operatorname{def}}{=} 1_s
-% \\
-%     \bigodot \left( E \cup \{x\} \right) &\overset{\operatorname{def}}{=} \left( \bigodot E \right) \odot x
-%     \\
-%     \bigoplus \emptyset &\overset{\operatorname{def}}{=} 0_s
-%     \\
-%         \bigoplus \left( E \cup \{x\} \right) &\overset{\operatorname{def}}{=} \left( \bigoplus E \right) \oplus x
-% \end{flalign*}
 \end{notation}
 
 % \begin{notation}

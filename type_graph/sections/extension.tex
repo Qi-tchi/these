@@ -5,7 +5,7 @@
 \subsection{Measuring objects by counting morphisms}
 \begin{example}
     \label{nwf:example:weighted_type_graph}
-     In \textbf{Graph}, the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ where $\mathcal{S}$ is the real arithmetic semiring $(\mathbb{R}^+, +, *, 0_\mathbb{R}, 1_\mathbb{R}, <, \operatorname{id}_{\mathbb{R}^+})$,
+     In \textbf{Graph}, the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ where $\mathcal{S}$ is the real arithmetic semiring $(\mathbb{R}^+, +, *, 0_{\mathbb{R}^+}, 1_{\mathbb{R}^+}, <, \operatorname{id}_{\mathbb{R}^+})$,
      $T$ as the graph illustrated below (without superscripts), $\mathbb{E}=\{e_{11a},e_{12a},e_{21a},e_{11b}\}$ as the set of morphism-rulers where 
      $e_{uvl}$ has domain 
      \tikz[baseline=-0.5ex]{
@@ -123,7 +123,7 @@ This will be used in \autoref{nwf:thm:termination_grs}.
     \label{proof_prop_endrullis_2d7}
     Let $x,y \in S$ such that $x, y \neq 0_S$. By definition, $\prec$ is not empty, therefore there exist $a, b \in S$ such that $a \prec b$.
     \begin{itemize}
-        \item $\prec$ is irreflexive, because $\mu: (S, \prec) \to (\overline{\mathbb{R}}, <)$ is a homomorphism.
+        \item $\prec$ is irreflexive, because $\mu: (S, \prec) \to (\overline{\mathbb{R}}, <_{\overline{\mathbb{R}}})$ is a homomorphism.
         \item \ref*{eq:prop_neq0_mul_neq0}:  
         Suppose $(x \odot y)=0_S$. 
         We have 
@@ -175,12 +175,12 @@ This will be used in \autoref{nwf:thm:termination_grs}.
 %     \end{align*}
 % \end{proposition}
 
-    Suppose that for all $x \in \mathcal{S}$, if $ 1_\mathcal{S} \preceq x \neq 0_\mathcal{S}$ then $\mu(x) \geq \mu(1_\mathcal{S})$ and $\mu(x) \in \mathbb{R}$. 
+    Suppose that for all $x \in \mathcal{S}$, if $ 1_\mathcal{S} \preceq x \neq 0_\mathcal{S}$ then $\mu(x) \geq_{\mathbb{R}^+} \mu(1_\mathcal{S})$ and $\mu(x) \in \mathbb{R}$. 
     By definition of a weighted type graph, $1_\mathcal{S} \leq w(e)\neq 0_\mathcal{S}$ for all $e\in\mathbb{E}$.
     Therefore, by the proposition above and the definition of the weight of a morphism (\autoref{def:weight_of_a_morphism_relative_to_a_type_graph}), for all morphisms \( h \) from a finite graph $G$ to $\mathcal{T}$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(h) \succeq 1_\mathcal{S} \). 
-    By the above proposition, Axiom \eqref{ax:s0} and the definition of the weight of an object (\autoref{def:weight_of_an_object_relative_to_a_type_graph}), we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( 0_\mathcal{S} \neq w_\mathcal{T}(G) \succeq 1_\mathcal{S} \). By assumption, we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( \mu(w_\mathcal{T}(G)) \geq \mu(1_\mathcal{S}) = 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and \( \mu(w_\mathcal{T}(G)) \geq 1 \) if $\mathcal{S}$ is the arithmetic semiring.
+    By the above proposition, Axiom \eqref{ax:s0} and the definition of the weight of an object (\autoref{def:weight_of_an_object_relative_to_a_type_graph}), we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( 0_\mathcal{S} \neq w_\mathcal{T}(G) \succeq 1_\mathcal{S} \). By assumption, we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} \mu(1_\mathcal{S}) = 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} 1 \) if $\mathcal{S}$ is the arithmetic semiring.
 
-Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) > \mu(w_\mathcal{T}(H)) + \delta \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \geq \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
+Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \geq \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
 
 \noindent
@@ -303,7 +303,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
 
     \noindent If the following conditions hold:
     \begin{enumerate}
-        \item there exists $\delta >0$ such that either every $\rho \in \mathcal{A}$ is $\delta$-uniformly decreasing, or every $\rho \in \mathcal{A}$ is $\delta$-closure decreasing, and
+        \item there exists $\delta >_{\mathbb{R}^+} 0$ such that either every $\rho \in \mathcal{A}$ is $\delta$-uniformly decreasing, or every $\rho \in \mathcal{A}$ is $\delta$-closure decreasing, and
         \item every rule $\rho \in \mathcal{B}$ is weakly decreasing,
     \end{enumerate}
     then $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{terminating} relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
@@ -348,7 +348,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
     % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \Rightarrow_\mathcal{R} H) \rightarrow (1_S \preceq w_\mathcal{T}(G) \neq 0_S)$$
     By Assumption~\ref{thm1:hyp4}, we have 
     % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \Rightarrow_\mathcal{R} H) \rightarrow (\mu(w_\mathcal{T}(G)) \geq \mu(1_S))$$
-      $$\mu(w_\mathcal{T}(G)) \geq \mu(1_S)$$
+      $$\mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} \mu(1_S)$$
  
     % Let $G \in \mathcal{C}_0$ be an object. By Assumption \ref{thm1:hyp4}, we have $\mu(w_\mathcal{T}(G)) \in \mathbb{R}$ and $\mu(w_\mathcal{T}(G)) \geq \mu(1_S)$.
 

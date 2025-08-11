@@ -3,9 +3,9 @@
     A \textbf{weighted type graph}~\(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) consists of:
     \begin{itemize} 
         \item an object \(T\) in $\mathcal{C}$, called \textbf{type graph},
-        \item a commutative semiring \(\mathcal{S}=(S, \oplus, \odot, 0_\mathcal{S}, 1_\mathcal{S})\),
+        \item a commutative semiring \(\mathcal{S}=(S, \oplus, \odot, 0, 1)\),
         \item a set \(\mathbb{E}\) of morphisms with codomain $T$ in $\mathcal{C}$, called \textbf{morphism-rulers}
-        \item a weight function \(w : \mathbb{E} \to S \setminus \{0_\mathcal{S}\}\) such that for all $e \in \mathbb{E}, w(e) \geq 1_\mathcal{S}$.
+        \item a weight function \(w : \mathbb{E} \to S \setminus \{0\}\) such that for all $e \in \mathbb{E}, w(e) \geq 1$.
     \end{itemize}
     \(\mathcal{T}\) is \textbf{finitary} if for every \( (e :X \to T) \in \mathbb{E}\) and every object \(G\), the sets \(\operatorname{Hom}(X, G)\) and \(\operatorname{Hom}(G, T)\) are finite.
 \end{definition}
@@ -14,9 +14,9 @@
     \label{wf:example:weighted_type_graph}
      In \textbf{Graph}, a weighted type graph 
      whose $\operatorname{dom}(\mathbb{E})$ consists of graphs with two vertices and one labeled edge between them
-     can be visualized as a graph with weighted labels and weights given as superscripts. For example, the finitary weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ with $\mathcal{S}$ as the natural arithmetic semiring $(\mathbb{N}, +, *, 0_\mathbb{N}, 1_\mathbb{N}, <,\leq)$,
+     can be visualized as a graph with weighted labels and weights given as superscripts. For example, the finitary weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ with $\mathcal{S}$ as the natural arithmetic semiring $(\mathbb{N}, +_\mathbb{N}, *_\mathbb{N}, 0_\mathbb{N}, 1_\mathbb{N}, <_\mathbb{N},\leq_\mathbb{N})$ defined in~\autoref{def:weight_of_an_object_relative_to_a_type_graph},
      $T$ as the graph illustrated below (without superscripts), $\mathbb{E}=\{e_{11a},e_{12a},e_{21a},e_{11b}\}$ as the set of morphism-rulers where 
-     $e_{uvl}$ has domain 
+     $e_{uvl}$, for all edge from $u$ to $v$ labeled by $l$, has domain 
      \tikz[baseline=-0.5ex]{
         \node (x) at (0,0) {$\bullet$};
         \node (y) at (1,0) {$\bullet$};
@@ -27,8 +27,8 @@
         \node[draw, circle] (y) at (1,0) {$\mathrm{v}$};
         \draw[->]  (x) -- (y) node [midway,above] {$l$};
     \end{tikzpicture} in the graph $T$,
-    and $w(e) = 1$ for all $e \in \mathbb{E}$, is visualized in~\autoref{fig:weighted_type_graph_instance}.
-    \begin{figure}[hbtp]
+    and $w(e) = 1_\mathbb{N}$ for all $e \in \mathbb{E}$, is visualized in~\autoref{fig:weighted_type_graph_instance}. To improve readability, we omit the subscripts.
+    \begin{figure}[!htbp]
         \centering
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
@@ -40,7 +40,7 @@
                 \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
             }
         \end{tikzpicture}
-        \caption{}
+        \caption{Weighted type graph instance}
         \label{fig:weighted_type_graph_instance}
     \end{figure}
 \end{example}

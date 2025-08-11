@@ -124,13 +124,13 @@ This issue is addressed by the existence of a context closure. Specifically, it 
 
 \begin{definition}[Decreasing Rules~\cite{endrullis2024generalized_arxiv_v2}]
     \label{wf:def:decreasing_rule}
-    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \leq),w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule.
+    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \preceq),w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule.
 
     \noindent
     The rule $\rho$ is \textbf{weakly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if 
             for every $t_K : K \to T$,
                 $$ 
-                  w_\mathcal{T}(\{l \star - = t_K\}) \geq w_\mathcal{T}(\{r\star - = t_K\})$$
+                  w_\mathcal{T}(\{l \star - = t_K\}) \succeq w_\mathcal{T}(\{r\star - = t_K\})$$
            
     \noindent
     The rule $\rho$ is \textbf{uniformly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
@@ -139,7 +139,8 @@ This issue is addressed by the existence of a context closure. Specifically, it 
             \item[]- for every $t_K : K \to T$,
             \begin{itemize}
                 \item[] $\bullet$ $\{l \star - = t_K\} = \emptyset = \{r \star - = t_K\}$, or
-                \item[] $\bullet$ $w_\mathcal{T}(\{l \star - = t_K\}) >   w_\mathcal{T}(\{r \star - = t_K\}) $.
+                \item[] $\bullet$ $w_\mathcal{T}(\{l \star - = t_K\}) 
+                        \succ   w_\mathcal{T}(\{r \star - = t_K\}) $.
             \end{itemize}
         \end{itemize}  
          
@@ -149,7 +150,8 @@ This issue is addressed by the existence of a context closure. Specifically, it 
             \begin{itemize}
                 \item[]- $\rho$ is weakly decreasing,
                 \item[]- there exists a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$,
-                \item[]- $w_\mathcal{T}(\{l \star - = t_K\})  >  w_\mathcal{T}(\{r \star - = t_K\})$ for $t_K = l \star c_\rho$.
+                \item[]- $w_\mathcal{T}(\{l \star - = t_K\})  
+                \succ  w_\mathcal{T}(\{r \star - = t_K\})$ for $t_K = l \star c_\rho$.
             \end{itemize}
 \end{definition}
 
@@ -191,7 +193,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
       \end{tikzpicture}
       }
   \end{center} 
-  and the weighted type graph in~\autoref{wf:example:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0_\mathbb{N},1_\mathbb{N},<,\leq)$ shown below
+  and the weighted type graph in~\autoref{wf:example:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0,1,<,\leq)$ shown below
   \begin{center}
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
