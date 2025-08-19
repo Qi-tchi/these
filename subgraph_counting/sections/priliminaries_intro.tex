@@ -5,7 +5,7 @@ We focus on DPO rewriting with injective rules and matches. While~\autoref{def:r
     \label{def:rewriting_inclusion}
     A rewriting rule $\varphi = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ consists of two \textbf{inclusions} $l$ and $r$.  
     Two rules $\varphi' = (L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ and $\varphi$ are \textbf{equivalent} if there exist isomorphisms $a,b,c$ such that the commutative diagram illustrated in~\autoref{fig:subgraph_counting:general_rewriting_step_sdfsl_sdfjlsdkjfl} can be constructed:
-            \begin{figure}[!htbp]
+            \begin{figure}[!ht]
                 \centering
                     \resizebox{0.40\textwidth}{!}{
                         \begin{tikzpicture}
@@ -31,7 +31,7 @@ We focus on DPO rewriting with injective rules and matches. While~\autoref{def:r
                 \end{figure}
     A rewriting step $G \Rightarrow_\varphi H$ is a double-pushout shown in~\autoref{fig:subgraph_counting:gedfadsdsfdsfds}
 %   with injective match $m :L' \rightarrowtail G$:
-         \begin{figure}[!htbp]
+         \begin{figure}[!ht]
             \centering
           \resizebox{0.40\textwidth}{!}{
               \begin{tikzpicture}
@@ -64,18 +64,18 @@ Graphs in double-pushouts that define rewriting steps in \textbf{Graph} can be d
     A pre-graph $G$ consists of
     \begin{itemize}
         \item a finite set of nodes, denoted $V(G)$,
-        \item a subset $V_{\not \exists}(G) \subseteq V(G)$ of missing nodes
+        \item a subset $V_{\nexists}(G) \subseteq V(G)$ of missing nodes
         \item a finite set of edges, denoted $E(G)$,
         \item a source function, denoted \( \textbf{src}_G \), (resp. a target function, denoted \( \textbf{dst}_G \)) that assigns to each edge an existing or missing node,
         \item an edge-labeling function, denoted $l_G$, that assigns labels to edges.
     \end{itemize}
 \end{definition} 
-The set of existing nodes, $V(G) \setminus V_{\not \exists}(G)$, is denoted $V_\exists(G)$.
+The set of existing nodes, $V(G) \setminus V_{\nexists}(G)$, is denoted $V_\exists(G)$.
 
  \begin{example}
     \label{def:pregraph}
      A pre-graph with node-set $\{1,3\}$, a missing node $2$, and 3 dangling edges is illustrated in~\autoref{fig:subgraph_counting:gedfdfssf}.
-     \begin{figure}[!htbp]
+     \begin{figure}[!ht]
         \centering
         \resizebox{0.5\textwidth}{!}{
         \begin{tikzpicture}
@@ -103,7 +103,7 @@ The set of existing nodes, $V(G) \setminus V_{\not \exists}(G)$, is denoted $V_\
     Let \( G \) and \( H \) be pre-graphs. A \textbf{homomorphism of pre-graphs} $h: G \to H$ consists a pair of functions $h_V: V(G) \to V(H) $ and $h_E: E(G) \to E(H)$ such that
     \begin{itemize}
         \item for every edge \( a \colon s \to t \) in \( G \), the edge \( h_E(a) \) in $H$ has source \( h_V(s) \) and target \( h_V(t) \),
-        \item for all $s \in V_{\not \exists}(G)$, we have $h_V(s) \in V_{\not \exists}(H)$,
+        \item for all $s \in V_{\nexists}(G)$, we have $h_V(s) \in V_{\nexists}(H)$,
         \item for all $t \in V_\exists(G)$, we have $h_V(t) \in V_\exists(H)$.
     \end{itemize} 
 \end{definition}
@@ -119,7 +119,7 @@ The \textbf{union} $C \cup R$ of two sub pre-graphs $C \subseteq G$ and $R \subs
     \item Node set: $ V(C) \cup V(R) $,
     \item Missing nodes:
         $(
-            V_{\not \exists}(C) \cup V_{\not \exists}(R)) \setminus 
+            V_{\nexists}(C) \cup V_{\nexists}(R)) \setminus 
             (   V_\exists(C) \cup 
              V_\exists(R)  
                    )$
@@ -129,7 +129,7 @@ The \textbf{union} $C \cup R$ of two sub pre-graphs $C \subseteq G$ and $R \subs
     \item Edge-labeling function: $ l_C \cup l_R $.   
 \end{itemize} 
 An example is illustrated in~\autoref{fig:subgraph_counting:union_of_pregraphs}.
-\begin{figure}[!htbp]
+\begin{figure}[!ht]
     \centering
     \resizebox{\textwidth}{!}{
         \begin{tikzpicture}  
@@ -235,7 +235,7 @@ The \textbf{relative complement} of $R$ in $H$ where $R \subseteq H$, denoted $H
     \item Edges $X = E(H) \setminus E(R)$,
     \item Nodes $Y =  \bigcup \{\{\opn{src}(e), \opn{dst}(e)\} \mid e \in X \}$ where $\bigcup$ returns the union of all sets in the set,  
     \item Missing nodes $
-   ( V_{\not \exists}(H)  \cup
+   ( V_{\nexists}(H)  \cup
         (
                   V_\exists(H) 
                   \cap 
@@ -250,7 +250,7 @@ The \textbf{relative complement} of $R$ in $H$ where $R \subseteq H$, denoted $H
     \item Edge-labeling function : $l_H$ restricted to $X$.
 \end{itemize}
 An example is shown in~\autoref{fig:subgraph_counting:relative_complement_of_pregraphs}.
-    \begin{figure}[!htbp]
+    \begin{figure}[!ht]
         \centering
   \resizebox{\textwidth}{!}{
         \begin{tikzpicture}  
@@ -310,7 +310,7 @@ Since all arrows are inclusions, by~\autoref{def:rewriting_inclusion}, graphs ca
    \begin{definition}
     \label{def:x_occurrence}
     A double pushout diagram illlustrated in~\autoref{fig:subgraph_counting:pushoutsquare} can be decomposed into the diagram illustrated in~\autoref{fig:subgraph_counting:decomposition_of_rewriting_step}.
-    \begin{figure}[!htbp]
+    \begin{figure}[!ht]
         \centering
        \resizebox{0.49\textwidth}{!}{
         \begin{tikzpicture}
@@ -341,7 +341,7 @@ Since all arrows are inclusions, by~\autoref{def:rewriting_inclusion}, graphs ca
     \caption{}
     \label{fig:subgraph_counting:pushoutsquare}
     \end{figure}
-    \begin{figure}[!htbp]
+    \begin{figure}[!ht]
         \centering
     \resizebox{0.49\textwidth}{!}{
             \begin{tikzpicture} 
@@ -468,11 +468,11 @@ Since all arrows are inclusions, by~\autoref{def:rewriting_inclusion}, graphs ca
 \begin{example}
     Let $X$ be the graph
 \tikz[baseline=-0.5ex]{ 
-        \node (x) at (0,0) {$\bullet$};  
-        \node (y) at (1,0) {$\bullet$};
-        \node (z) at (2,0) {$\bullet$};
-        \draw[->] (x) -- node[midway,below] {a} (y) ;
-        \draw[->] (y) -- node[midway,below] {a} (z) ;
+        \node[draw,circle] (x) at (0,0) {};  
+        \node[draw,circle] (y) at (1,0) {};
+        \node[draw,circle] (z) at (2,0) {};
+        \draw[->] (x) -- node[midway,above] {a} (y) ;
+        \draw[->] (y) -- node[midway,above] {a} (z) ;
 }.
 Consider the $X$-occurrences in the decomposition of a rewriting step using the rule in~\autoref{ex:grsaa} shown in~\autoref{fig:subgraph_counting:occurrdlfdjslfkjsa}.
     \begin{figure} 
@@ -514,7 +514,7 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
       \label{fig:subgraph_counting:occurrdlfdjslfkjsa}
   \end{figure}
     This decomposition is illustrated in~\autoref{fig:subgraph_counting:occurrendfsdadsgces_of_x} using the visual notation for graph homomorphisms introduced in~\autoref{notation:graph_homomorphism}, with distinct pre-graphs highlighted in different colors.
-\begin{figure}[!htbp]
+\begin{figure}[!ht]
     \centering
     \resizebox{0.8\textwidth}{!}{
       \begin{tikzpicture}
@@ -602,13 +602,68 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
    \end{figure}
    There are 
 \begin{itemize}
-    \item 1 occurrence shared by $G$ and $H$: $2\textcolor{blue}{ \to 6 \to 7}$,
-    \item 1 explicit occurrence in $G$: $1\textcolor{orange}{ \to 3 \to }2$,
-    \item 1 implicit occurrences in $G$: 
-        $\textcolor{orange}{3 \to }2\textcolor{blue}{ \to 6}$,
+    \item 1 occurrence shared by $G$ and $H$: 
+     \tikz[baseline=-0.5ex]{ 
+        \node[draw,circle] (x) at (0,0) {2};  
+        \node[blue,draw,circle] (y) at (1,0) {6};
+        \node[blue,draw,circle] (z) at (2,0) {7};
+        \draw[blue,->] (x) -- node[midway,above] {a} (y) ;
+        \draw[blue,->] (y) -- node[midway,above] {a} (z) ;
+     }
+    \item 1 explicit occurrence in $G$:
+     \tikz[baseline=-0.5ex]{ 
+        \node[draw,circle] (x) at (0,0) {1};  
+        \node[orange,draw,circle] (y) at (1,0) {3};
+        \node[draw,circle] (z) at (2,0) {2};
+        \draw[orange,->] (x) -- node[midway,above] {a} (y) ;
+        \draw[orange,->] (y) -- node[midway,above] {a} (z) ;
+    }
+ 
+    \item 1 implicit occurrences in $G$:
+    \tikz[baseline=-0.5ex]{ 
+        \node[orange,draw,circle] (x) at (0,0) {3};  
+        \node[draw,circle] (y) at (1,0) {2};
+        \node[blue,draw,circle] (z) at (2,0) {6};
+        \draw[orange,->] (x) -- node[midway,above] {a} (y) ;
+        \draw[blue,->] (y) -- node[midway,above] {a} (z) ;
+    } 
+ 
     \item 0 explicit occurrence in $H$,
     \item 1 implicit occurrences in $H$: 
-        $\textcolor{red}{5 \to }2\textcolor{blue}{ \to 6}$.
+    \tikz[baseline=-0.5ex]{ 
+        \node[red,draw,circle] (x) at (0,0) {5};  
+        \node[draw,circle] (y) at (1,0) {2};
+        \node[blue,draw,circle] (z) at (2,0) {6};
+        \draw[red,->] (x) -- node[midway,above] {a} (y) ;
+        \draw[blue,->] (y) -- node[midway,above] {a} (z) ;
+}
+ 
 \end{itemize}
-    The corresponding X-occurrence of the implicit occurrences $\textcolor{red}{5 \to }2\textcolor{blue}{ \to 6}$ in $H$ relative to the unique monomorphism from $\textcolor{red}{5 \to }2$ to $\textcolor{orange}{3 \to }2$ is the implicit occurrences $\textcolor{orange}{3 \to }2\textcolor{blue}{ \to 6}$ in $G$.
+    The corresponding X-occurrence of the implicit occurrences \tikz[baseline=-0.5ex]{ 
+        \node[red,draw,circle] (x) at (0,0) {5};  
+        \node[draw,circle] (y) at (1,0) {2};
+        \node[blue,draw,circle] (z) at (2,0) {6};
+        \draw[red,->] (x) -- node[midway,above] {a} (y) ;
+        \draw[blue,->] (y) -- node[midway,above] {a} (z) ;
+} in $H$ relative to the unique monomorphism from 
+    \tikz[baseline=-0.5ex]{
+      \node[red,draw,circle] (x) at (0,0) {5};
+      \node[draw,circle] (y) at (1,0) {2};
+      \draw[red,->] (x) -- (y) node[midway, above] {a};
+  }
+     to 
+    \tikz[baseline=-0.5ex]{
+      \node[orange,draw,circle] (x) at (0,0) {3};
+      \node[draw,circle] (y) at (1,0) {2};
+      \draw[orange,->] (x) -- (y) node[midway, above] {a};
+  }
+    is the implicit occurrences 
+       \tikz[baseline=-0.5ex]{ 
+        \node[orange,draw,circle] (x) at (0,0) {3};  
+        \node[draw,circle] (y) at (1,0) {2};
+        \node[blue,draw,circle] (z) at (2,0) {6};
+        \draw[orange,->] (x) -- node[midway,above] {a} (y) ;
+        \draw[blue,->] (y) -- node[midway,above] {a} (z) ;
+    } 
+    in $G$.
 \end{example}

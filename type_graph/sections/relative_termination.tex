@@ -9,7 +9,7 @@
 
 \begin{example}
     Consider the rewriting rules in~\autoref{fig:preliminaries:graph_transformation_rule_nonterminating}.
-    \begin{figure}[!htbp]
+    \begin{figure}[!ht]
         \centering
             \resizebox{0.85\textwidth}{!}{
                 \begin{tikzpicture}[baseline=-3ex]
@@ -47,42 +47,42 @@
     \end{figure} 
     A rewriting sequence using the rule with matches in red is shown in~\autoref{fig:preliminaries:sequence_of_transformation_infinite}.
        
-        \begin{figure}[!htbp]
-            \centering
+        \begin{figure}[!ht]
+           \centering
           \resizebox{0.85\textwidth}{!}{
             \tikz
             [baseline=-0.5ex]
             { 
-                \node (x) at (0,0) {$\bullet$};  
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (0.5,0.86) {$\bullet$};
+                \node[draw,circle] (x) at (0,0) {};
+                \node[draw,circle] (y) at (1,0) {};
+                \node[draw,circle] (z) at (0.5,0.86) {};
                 \draw[->,red] (x) -- node[midway,below] {a} (y) ;
                 \draw[->,red] (y) -- node[midway,right] {b} (z) ;
                 \draw[->] (z) -- node[midway,left] {b} (x) ;
             } 
             $\Rightarrow$ 
             \tikz[baseline=-0.5ex]{ 
-                \node (x) at (0,0) {$\bullet$};  
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (0.5,0.86) {$\bullet$};
+                \node[draw,circle] (x) at (0,0) {};  
+                \node[draw,circle] (y) at (1,0) {};
+                \node[draw,circle] (z) at (0.5,0.86) {};
                 \draw[->] (x) -- node[midway,below] {b} (y) ;
                 \draw[->,red] (y) -- node[midway,right] {a} (z) ;
                 \draw[->,red] (z) -- node[midway,left] {b} (x) ;
             }
             $\Rightarrow$ 
             \tikz[baseline=-0.5ex]{ 
-                \node (x) at (0,0) {$\bullet$};  
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (0.5,0.86) {$\bullet$};
+                \node[draw,circle] (x) at (0,0) {};  
+                \node[draw,circle] (y) at (1,0) {};
+                \node[draw,circle] (z) at (0.5,0.86) {};
                 \draw[->,red] (x) -- node[midway,below] {b} (y) ;
                 \draw[->] (y) -- node[midway,right] {b} (z) ;
                 \draw[->,red] (z) -- node[midway,left] {a} (x) ;
             }
-            $\Rightarrow$ 
+            $\Rightarrow$
             \tikz[baseline=-0.5ex]{ 
-                \node (x) at (0,0) {$\bullet$};   
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (0.5,0.86) {$\bullet$};
+                \node[draw,circle] (x) at (0,0) {};   
+                \node[draw,circle] (y) at (1,0) {};
+                \node[draw,circle] (z) at (0.5,0.86) {};
                 \draw[->,red] (x) -- node[midway,below] {a} (y) ;
                 \draw[->,red] (y) -- node[midway,right] {b} (z) ;
                 \draw[->] (z) -- node[midway,left] {b} (x) ;
@@ -102,9 +102,9 @@ We adapt the concept of relative termination~\cite{klop1987term,geser1990relativ
     Consider the rewriting system with two rules shown in~\autoref{fig:preliminaries:relative_termination}.
     
      
-    \begin{figure}[!htbp]
+    \begin{figure}[!ht]
      $\alpha$ = \resizebox{0.85\textwidth}{!}{ 
-                \begin{tikzpicture}[baseline=-3ex]
+                \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
@@ -134,7 +134,7 @@ We adapt the concept of relative termination~\cite{klop1987term,geser1990relativ
                 }
  
      $\beta$ = \resizebox{0.85\textwidth}{!}{ 
-                \begin{tikzpicture}[baseline=-3ex]
+                \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};

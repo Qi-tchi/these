@@ -132,14 +132,22 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
 \begin{remark}[~\cite{endrullis2024generalized_arxiv_v2}]
     \label{remark:traceability_graph}
     In \textbf{Graph}, the objects \tikz[baseline=-0.5ex]{
-        \node (x) at (0,0) {$\bullet$};
-    } and \tikz[baseline=-0.5ex]{
-        \node (x) at (0,0) {$\bullet$};
-        \node (y) at (1,0) {$\bullet$};
-        \draw[->] (x) -- (y) node[midway, above] {$x$};
-    } (for edge labels $x$) are the only (non-initial) objects that are (strongly) traceable along all pushout squares. 
+        \node[draw,circle] (x) at (0,0) {};
+    } and
+    %  \tikz[baseline=-0.5ex]{
+    %     \node (x) at (0,0) {$\bullet$};
+    %     \node (y) at (1,0) {$\bullet$};
+    %     \draw[->] (x) -- (y) node[midway, above] {$x$};
+    % } 
+    \raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node[draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \draw[->] (x)--(y) node[midway, above] {$x$};
+        }}}
+    (for edge labels $x$) are the only (non-initial) objects that are (strongly) traceable along all pushout squares. 
     Other objects, such as loops~\tikz[baseline=-0.5ex]{
-        \node (x) at (0,0) {$\bullet$};
+        \node[draw,circle] (x) at (0,0) {};
         \draw[->] (x) edge[loop right]  node[midway, right] {$x$}  (x)
     }, are strongly traceable if all morphisms in the square are monomorphisms.
 \end{remark}
@@ -220,15 +228,16 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
       \caption{}
       \label{fig:nwf:two_pushout_squares}
   \end{figure}
-   The graph \tikz[baseline=-0.5ex]{
-        \node (x) at (0,0) {$\bullet$};
-        \node (y) at (1,0) {$\bullet$};
-        \node (z) at (2,0) {$\bullet$};
+   The graph 
+   \tikz[baseline=-0.5ex]{
+        \node[draw,circle] (x) at (0,0) {};
+        \node[draw,circle] (y) at (1,0) {};
+        \node[draw,circle] (z) at (2,0) {};
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[<-] (z) -- (y) node[midway, above] {$a$};
     } is not traceable in both pushout squares. The graph \tikz[baseline=-0.5ex]{
-        \node (x) at (0,0) {$\bullet$};
-        \node (y) at (1,0) {$\bullet$};
+        \node[draw,circle] (x) at (0,0) {};
+        \node[draw,circle] (y) at (1,0) {};
         \draw[->] (x) -- (y) node[midway, above] {$a$};
     } is traceable (and $u$-strongly traceable) along both pushout squares.
 \end{example}
@@ -350,8 +359,8 @@ The following concepts are restricted versions of the concept of monicity.
     In $\mathbf{Graph}$, let 
     $\Gamma = \left\{ \vcenter{\hbox{
     \begin{tikzpicture}[baseline=-0.5ex]
-    \node[circle, fill, inner sep=1pt] (A) at (0,0) {};
-    \node[circle, fill, inner sep=1pt] (B) at (1,0) {};
+    \node[draw,circle] (A) at (0,0) {};
+    \node[draw,circle] (B) at (1,0) {};
     \draw[->] (A) -- (B) node[midway, above] {$x$};
     \end{tikzpicture}
     }} \mid x \text{ is an edge label} \right\}$.
