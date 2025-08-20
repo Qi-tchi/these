@@ -669,20 +669,37 @@ First of all, edge-labeled directed multigraphs are simple and intuitive: they a
 
 Finally, specializing to edge-labeled directed multigraphs enables us to leverage graph-specific properties to develop stronger termination criteria. Because termination is undecidable for general DPO graph rewriting systems~\cite{plump1998terminationundecidable}, this specialization is essential for extending the boundaries of practically verifiable termination. 
 
-\paragraph{This thesis makes four main contributions, each detailed in a dedicated chapter:}\ \\
+% Chapter~\ref{chap:nwf} extends a existing method for termination of DPO graph rewriting systems, called type graph method~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt}. This work resulted in the following publication:
+% \begin{itemize}
+% \item Qi Qiu. Termination of Graph Rewriting using Weighted Type Graphs over Non-well-founded Semirings. 16th International Workshop on Graph Computation Models, Jun 2025, Koblenz, Germany. 2025. ⟨hal-04954960v3⟩
+% \end{itemize}
  
-Chapter~\ref{chap:nwf} extends a existing method, called Weighted Type Graph Method~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt}. This work resulted in the following publication:
-\begin{itemize}
-\item Qi Qiu. Termination of Graph Rewriting using Weighted Type Graphs over Non-well-founded Semirings. 16th International Workshop on Graph Computation Models, Jun 2025, Koblenz, Germany. 2025. ⟨hal-04954960v3⟩
-\end{itemize}
+%  Chapter~\ref{chap:subgraph_counting} introduces a new machine-checkable sufficient condition for relative termination of DPO graph rewriting with injective rules on edge-labeled multigraphs. The method is based on counting injective graph homomorphisms: let $\mathcal{A}$ and $\mathcal{B}$ be two sets of rewriting rules, if the number of injective homomorphisms from a chosen set of pattern graphs into the host graph strictly decreases when a rule from $\mathcal{A}$ is applied, and the number does not increase when any rule from $\mathcal{B}$ is applied, then rules in $\mathcal{A}$ can only be applied finitely many times.
+% This work resulted in the following publication:
+% \begin{itemize}
+%     \item Qiu, Q. (2025). Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting. In: Endrullis, J., Tichy, M. (eds) Graph Transformation. ICGT 2025. Lecture Notes in Computer Science, vol 15720. Springer, Cham. \url{https://doi.org/10.1007/978-3-031-94706-3_1}
+% \end{itemize}
+
+%  Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{chap:subgraph_counting} to handle cases like the one shown in~\autoref{fig:intro:{fig:intro:graph_transformation_rule_anti_pattern_}} which cannot be addressed by the method presented in Chapter~\ref{chap:subgraph_counting}.
  
- Chapter~\ref{chap:subgraph_counting} introduces a new machine-checkable sufficient condition for relative termination of DPO graph rewriting with injective rules on edge-labeled multigraphs. The method is based on counting injective graph homomorphisms: let $\mathcal{A}$ and $\mathcal{B}$ be two sets of rewriting rules, if the number of injective homomorphisms from a chosen set of pattern graphs into the host graph strictly decreases when a rule from $\mathcal{A}$ is applied, and the number does not increase when any rule from $\mathcal{B}$ is applied, then rules in $\mathcal{A}$ can only be applied finitely many times.
+%  Chapter~\ref{chap:lyonparallel} presents a termination tool, \textit{LyonParallel}, developed for DPO edge-labeled multigraph rewriting that integrates the existing type graph method, our extension presented in Chapter~\ref{chap:nwf}, and our technique presented in Chapter~\ref{chap:subgraph_counting} and its extension presented in Chapter~\ref{chap:antipattern}.
+
+\paragraph{Contribution 1: Extension of Weighted Type Graph Method}\ \newline
+Chapter~\ref{chap:nwf} extends a existing method for termination of DPO graph rewriting systems, called type graph method~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt}. 
+The method assigns weights to morphisms targeting a weighted type graph over a well-founded semiring. The weight of a graph is defined
+ as the sum of the weights of all morphisms from that graph to the type graph. Relative termination of $\mathcal{A}$ with respect to $\mathcal{B}$ is proven by ensuring that rewriting steps using rules in \( \mathcal{A} \) strictly decrease the weights of the host graphs, while rewriting steps using rules in \( \mathcal{B} \) do not increase them. However, searching for a suitable type graph over a well-founded semiring is challenging. We propose to consider type graphs over non-well-founded semirings, which can be easier to find in some scenarios. This work resulted in the following publication:
+ 
+\paragraph{Contribution 2: Termination by Morphism Counting}
+\ \newline
+Chapter~\ref{chap:subgraph_counting} introduces a new machine-checkable sufficient condition for relative termination of DPO graph rewriting with injective rules on edge-labeled multigraphs. The method is based on counting injective graph homomorphisms: let $\mathcal{A}$ and $\mathcal{B}$ be two sets of rewriting rules, if the number of injective homomorphisms from a chosen set of pattern graphs into the host graph strictly decreases when a rule from $\mathcal{A}$ is applied, and the number does not increase when any rule from $\mathcal{B}$ is applied, then rules in $\mathcal{A}$ can only be applied finitely many times.
 This work resulted in the following publication:
 \begin{itemize}
     \item Qiu, Q. (2025). Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting. In: Endrullis, J., Tichy, M. (eds) Graph Transformation. ICGT 2025. Lecture Notes in Computer Science, vol 15720. Springer, Cham. \url{https://doi.org/10.1007/978-3-031-94706-3_1}
 \end{itemize}
 
- Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{chap:subgraph_counting} to handle cases like the one shown in~\autoref{fig:intro:graph_transformation_rule_anti_pattern_}.
+\paragraph{Contribution 3: Termination by Morphism Counting with Antipattern}
+\ \newline
+\autoref{chap:antipattern} extends the technique introduced in~\autoref{chap:subgraph_counting} to handle cases like the one shown in~\autoref{fig:intro:graph_transformation_rule_anti_pattern__}.
  \begin{figure}[!ht]
     \centering
 \begin{tikzpicture}
@@ -713,59 +730,10 @@ This work resulted in the following publication:
       \node () at (67mm,-10mm) {$\rightarrowtail$};
   \end{tikzpicture}
   \caption{}
-  \label{fig:intro:graph_transformation_rule_anti_pattern_}
+  \label{fig:intro:graph_transformation_rule_anti_pattern__}
  \end{figure} 
-In this example, the number of injective graph homomorphisms from every pattern graph increases with each application of the rewriting rule. Therefore, the method introduced in Chapter~\ref{chap:subgraph_counting} cannot be applied. However, if we restrict our attention to occurrences of pattern graphs that are not part of a larger occurrence of a specific \emph{antipattern} graph, the number of such occurrences decreases with each application of the rewriting rule.
- 
- Chapter~\ref{chap:lyonparallel} presents a termination tool, \textit{LyonParallel}, developed for DPO edge-labeled multigraph rewriting that integrates the existing type graph method, our extension presented in Chapter~\ref{chap:nwf}, and our technique presented in Chapter~\ref{chap:subgraph_counting} and its extension presented in Chapter~\ref{chap:antipattern}.
-% \paragraph{Contribution 1: Extension of an Existing Method}\ \newline
+In this example, the number of injective graph homomorphisms from every pattern graph increases with each application of the rewriting rule. Therefore, the method introduced in~\autoref{chap:subgraph_counting} cannot be applied. However, if we restrict our attention to occurrences of pattern graphs that are not part of a larger occurrence of a specific \emph{antipattern} graph, the number of such occurrences decreases with each application of the rewriting rule. 
 
- 
-% \paragraph{Contribution 2: Development of a new Technique}
-% \ \newline
-% Chapter~\ref{chap:subgraph_counting} introduces a new machine-checkable sufficient condition for relative termination of DPO graph rewriting with injective rules on edge-labeled multigraphs. The method is based on counting injective graph homomorphisms: let $\mathcal{A}$ and $\mathcal{B}$ be two sets of rewriting rules, if the number of injective homomorphisms from a chosen set of pattern graphs into the host graph strictly decreases when a rule from $\mathcal{A}$ is applied, and the number does not increase when any rule from $\mathcal{B}$ is applied, then rules in $\mathcal{A}$ can only be applied finitely many times.
-% This work resulted in the following publication:
-% \begin{itemize}
-%     \item Qiu, Q. (2025). Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting. In: Endrullis, J., Tichy, M. (eds) Graph Transformation. ICGT 2025. Lecture Notes in Computer Science, vol 15720. Springer, Cham. \url{https://doi.org/10.1007/978-3-031-94706-3_1}
-% \end{itemize}
-
-% \paragraph{Contribution 3: Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting with Antipattern}
-% \ \newline
-% \autoref{chap:antipattern} extends the technique introduced in~\autoref{chap:subgraph_counting} to handle cases like the one shown in~\autoref{fig:intro:graph_transformation_rule_anti_pattern_}.
-%  \begin{figure}[!ht]
-%     \centering
-% \begin{tikzpicture}
-%       \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
-%           \coordinate (o) at (0mm,-3mm); 
-%           \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%           \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%           \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-%           \draw[->] (l1) -- (l3) node[midway,above] {a};
-%           \draw[->] (l3) -- (l2) node[midway,above] {a};
-%       }     
-%       \graphbox{$K$}{40mm}{0mm}{24mm}{20mm}{2mm}{-5mm}{
-%           \coordinate (o) at (5mm,-3mm); 
-%           \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%           \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-%       }    
-%       \graphbox{$R$}{70mm}{0mm}{45mm}{20mm}{2mm}{-5mm}{
-%         \coordinate (o) at (0mm,-3mm); 
-%         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-%         \draw[->] (l1) -- (l3) node[midway,above] {a};
-%         \draw[->] (l3) -- (l2) node[midway,above] {a};
-%         \draw[->] (l3) edge [loop below] node {$c$} (l3);
-%       }    
-
-%       \node () at (37mm,-10mm) {$\leftarrowtail$};
-%       \node () at (67mm,-10mm) {$\rightarrowtail$};
-%   \end{tikzpicture}
-%   \caption{}
-%   \label{fig:intro:graph_transformation_rule_anti_pattern_}
-%  \end{figure} 
-% In this example, the number of injective graph homomorphisms from every pattern graph increases with each application of the rewriting rule. Therefore, the method introduced in~\autoref{chap:subgraph_counting} cannot be applied. However, if we restrict our attention to occurrences of pattern graphs that are not part of a larger occurrence of a specific \emph{antipattern} graph, the number of such occurrences decreases with each application of the rewriting rule. 
-
-% \paragraph{Contribution 4:}
-% \ \newline
-% A termination tool, \textit{LyonParallel}, is developed for DPO edge-labeled multigraph rewriting that integrates the existing type graph method, our extension, and our subgraph counting technique and its extension.
+\paragraph{Contribution 4:}
+\ \newline
+A termination tool, \textit{LyonParallel}, is developed for DPO edge-labeled multigraph rewriting that integrates the existing type graph method, our extension, and our subgraph counting technique and its extension.

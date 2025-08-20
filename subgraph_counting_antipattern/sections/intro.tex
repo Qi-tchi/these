@@ -1,8 +1,60 @@
-This chapter extends the subgraph counting method presented in Chapter~\ref{chap:subgraph_counting}. This extension counts monomorphisms from given graphs while excluding those whose images overlap with forbidden contexts.
-    
-It successfully proves termination for systems like the ones presented
-in~\autoref{antipattern:ex:grs_aca} and~\autoref{antipattern:ex:endrullis:d3:termination}, which cannot be handled by the
+Chapter~\ref{chap:antipattern} extends the subgraph counting method presented in Chapter~\ref{chap:subgraph_counting}. 
+Consider the DPO rewriting system on edge-labeld directed multi-graphs shown in~\autoref{fig:intro:graph_transformation_rule_anti_pattern_}.
+ \begin{figure}[!ht]
+    \centering
+\begin{tikzpicture}
+      \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
+          \coordinate (o) at (0mm,-3mm); 
+          \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+          \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+          \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+          \draw[->] (l1) -- (l3) node[midway,above] {a};
+          \draw[->] (l3) -- (l2) node[midway,above] {a};
+      }     
+      \graphbox{$K$}{40mm}{0mm}{24mm}{20mm}{2mm}{-5mm}{
+          \coordinate (o) at (5mm,-3mm); 
+          \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+          \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+      }    
+      \graphbox{$R$}{70mm}{0mm}{45mm}{20mm}{2mm}{-5mm}{
+        \coordinate (o) at (0mm,-3mm); 
+        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+        \draw[->] (l1) -- (l3) node[midway,above] {a};
+        \draw[->] (l3) -- (l2) node[midway,above] {a};
+        \draw[->] (l3) edge [loop below] node {$c$} (l3);
+      }    
+
+      \node () at (37mm,-10mm) {$\leftarrowtail$};
+      \node () at (67mm,-10mm) {$\rightarrowtail$};
+  \end{tikzpicture}
+  \caption{}
+  \label{fig:intro:graph_transformation_rule_anti_pattern_}
+ \end{figure} 
+In this system, the number of injective graph homomorphisms from every pattern graph increases with each application of the rewriting rule. Therefore, the method introduced in Chapter~\ref{chap:subgraph_counting} cannot be applied. However, the number of injective graph homomorphisms from the graph
+\raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {};
+            \node [draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \draw[->] (z)--(x) node[midway, above] {$a$};
+            \draw[->] (x)--(y) node[midway, above] {$a$};
+        }}} 
+    whose images are not included in occurrences of the graph
+        \raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {};
+            \node [draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \draw[->] (z)--(x) node[midway, above] {$a$};
+            \draw[->] (x)--(y) node[midway, above] {$a$};
+            \draw[->] (x) edge [loop below] node {$c$} (l3);
+        }}}
+decreases with each application of the rewriting rule.
+
+This extension can handle systems (e.g.~\autoref{antipattern:ex:grs_aca} and~\autoref{antipattern:ex:endrullis:d3:termination}) which cannot be handled by the
 prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and the morphism counting method presented in Chapter~\ref{chap:subgraph_counting}.
 An implementation of this extension is also provided in our tool~\textbf{LyonParallel}.
-
+  
 We are going to proceed as follows:~\textsection~\ref{antipattern:sec:termination_criterion} presents the extension.~\textsection~\ref{antipattern:sec:examples} provides some examples,~\textsection~\ref{antipattern:sec:conclusion} concludes. Missing proofs and definitions are in the appendix of this chapter.
