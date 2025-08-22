@@ -1,4 +1,6 @@
-\begin{definition}[Category \cite{pierce1991basic, barr1990category}]
+ The concepts and notation in this section follow the treatments in~\cite{pierce1991basic,barr1990category}. The concept of category is introduced in~\autoref{def:cat}. Throughout this section, we fix a category \( \mathcal{C} \).
+
+\begin{definition}
     \label{def:cat}
     A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : V(C) \to E(C) \) and a partial function \( \star: E(C) \times E(C) \to E(C) \) such that 
         (i) for all edges \( f:X \to Y \) and \( g:Y \to Z \), the edge \( f \star g :X \to Z \) is defined; 
@@ -10,23 +12,23 @@
 \end{definition} 
 
 \begin{example}
-    A category with two objects and the recheability as the morphism is illustrated in~\autoref{fig:preliminaries:category}.
-    \begin{figure}[!ht]
+    Consider the unlabeled graph shown in~\autoref{fig:preliminaries:category}. 
+        \begin{figure}[!ht]
         \centering
         \begin{tikzpicture}
-            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+            \graphbox{}{0mm}{0mm}{32mm}{16mm}{-10mm}{-8mm}{
                 \node[draw,circle] (1) at (0,0) {};
                 \node[draw,circle] (2) at (2,0) {};
                 \draw[->] (1) edge[loop above] node[midway, above] { } (1) ;
-                % \draw[->] (1) edge[loop below] node[midway, below] {} (1) ;
                 \draw[->] (2) edge[loop above] node[midway, above] { } (2) ;
                 \draw[->] (1) edge[bend left] node[midway, above] {}  (2)  ;
                 \draw[->] (2) edge[bend left] node[midway, below] {} (1)   ;
             }
         \end{tikzpicture}
-        \caption{Category}
+        \caption{}
         \label{fig:preliminaries:category}
     \end{figure}
+    It can be considered as a category where the objects are the nodes and the morphisms are the paths between nodes; composition is path concatenation. The identity of a node is the self-loop of the node. There are at least three morphisms from the left node to itself: the identity morphism (the self-loop), the path that traverses the self-loop twice, and the path that goes to the right node and back.
 \end{example}
 
 % cat notation * 
@@ -34,13 +36,15 @@
     The composition of morphisms \( f : X \to Y \) and \( g : Y \to Z \) is written in diagrammatic order as \( f \star g \), rather than in functional order \( g \circ f \) as is common in litterature. The advantage is that, when reading from left to right, the morphisms appear in the same order as in the corresponding diagram, making the reasoning accompanying diagrams more intuitive. 
 \end{notation}  
 
-\begin{definition}[Monomorphism \cite{pierce1991basic,barr1990category}]
+\begin{definition}[Monomorphism]
     \label{def:cat:homo}
-    A morphism \( f : X \to Y \) is \textbf{monic} (or a \textbf{monomorphism}) if for all morphisms \( g \) and \( h \), if \( g \star f = h \star f \), then \( g = h \). A monomorphism is denoted by \( f : X \rightarrowtail Y \). The set of monomorphisms from $X$ to $Y$ is denoted $\opn{Mono}(X,Y)$.
+    A morphism \( f : X \to Y \) is called a \textbf{monomorphism} (is \textbf{monic}) if given any morphisms \( g,h: Z \to X  \), \( g \star f = h \star f \) implies \( g = h \). 
+    In this case, we write $f : X \rightarrowtail Y$ to indicate that $f$ is a monomorphism.
 \end{definition} 
 
 \begin{example} 
-    Finite edge-labeled directed multigraphs and their homomorphisms form a category, hereafter denoted \textbf{Graph}. Its objects are labeled graphs, its morphisms are graph homomorphisms, and the monomorphisms are injective homomorphisms.
+    Finite directed edge-labeled multigraphs and their homomorphisms form a category, hereafter denoted \textbf{Graph}. Its objects are labeled graphs, its morphisms are graph homomorphisms, and the monomorphisms are injective homomorphisms. 
+    The set of homomorphisms from a graph $X$ to another graph $Y$ is denoted $\opn{Hom}(X,Y)$, and the set of monomorphisms from a graph $X$ to another graph $Y$ is denoted $\opn{Mono}(X,Y)$.
 \end{example}
 
 % \begin{definition}[Span \cite{lowe2010graph}]
@@ -51,7 +55,8 @@
 %     A pair \( (\beta' : B \to D,~\alpha' : C \to D) \) of morphisms with a common codomain is called a \textbf{cospan}, denoted by \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \). 
 % \end{definition} 
 
-In category theory, an ordered pair \((\alpha : A \to B,\, \beta : A \to C)\) of morphisms with a common domain is called a \textbf{span} \cite{lowe2010graph}, denoted by
+\begin{definition}
+An ordered pair \((\alpha : A \to B,\, \beta : A \to C)\) of morphisms with a common domain is called a \textbf{span} \cite{lowe2010graph}, denoted by
 \(
 B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C
 \). 
@@ -60,8 +65,15 @@ Likewise, an ordered pair \((\beta' : B \to D,\, \alpha' : C \to D)\) of morphis
 \(
 B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
 \). 
-% An example of a cospan $(\beta', \alpha')$ is shown below.
-A span and a cospan are illustrated in~\autoref{fig:preliminaries:span_cospan}.
+\end{definition}
+Note that the concepts of spans and cospans are defined for conciseness and clarity of notation, they are not essential in this thesis.
+\begin{example}
+Consider the diagram in the category \textbf{Graph} shown in~\autoref{fig:preliminaries:span_cospan}. \(
+L \overset{\alpha}{\leftarrow} K \overset{\beta}{\rightarrow} C
+\) is a span and \(L \overset{\beta'}{\rightarrow} G \overset{\alpha'}{\leftarrow} C \) is a cospan.
+\end{example}
+
+
 \begin{figure}[!ht]
    \centering
         \resizebox{0.7\textwidth}{!}{
@@ -115,11 +127,11 @@ A span and a cospan are illustrated in~\autoref{fig:preliminaries:span_cospan}.
             % \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
-        \caption{Span and Cospan}
+        \caption{}
         \label{fig:preliminaries:span_cospan}
 \end{figure}
 
-\begin{definition}[Diagram \cite{barr1990category}]
+\begin{definition}[Diagram~\cite{barr1990category}]
     \label{def:cat:diagram}
     Let \( G \) be an unlabeled graph. A \textbf{diagram} (in \( \mathcal{C} \) of shape \( G \)) is a homomorphism of unlabeled graphs \( h : G \to C \) where \( C \) is the underlying unlabeled graph of the category \( \mathcal{C} \). A diagram is \textbf{commutative} if, for all nodes \( u \), \( v \), and any two paths from \( u \) to \( v \) in the unlabeled graph \( G \):
 
@@ -158,7 +170,7 @@ A span and a cospan are illustrated in~\autoref{fig:preliminaries:span_cospan}.
 \end{definition}
 
 \begin{example}
-    A commutative diagram in the category \textbf{Graph} of edge-labeled directed multigraphs is illustrated in~\autoref{fig:preliminaries:commutative_diagram}. The symbol $\mathop{=}$ in the center of the diagram
+    A commutative diagram in the category \textbf{Graph} of directed edge-labeled multigraphs is illustrated in~\autoref{fig:preliminaries:commutative_diagram}. The symbol $\mathop{=}$ in the center of the diagram
     is used to indicate that the two paths from node 1 to node 2 are equal.
  
     \begin{figure}[!ht]
@@ -251,7 +263,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
 \end{definition} 
 
 \begin{example}
-    The diagram in~\autoref{fig:preliminaries:pushout_injective} is a pushout square in the category \textbf{Graph} of edge-labeled directed multigraphs. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
+    The diagram in~\autoref{fig:preliminaries:pushout_injective} is a pushout square in the category \textbf{Graph} of directed edge-labeled multigraphs. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
     \begin{figure}[!ht]
         \centering
         \resizebox{0.7\textwidth}{!}{
@@ -311,7 +323,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
 \end{example}
 
 \begin{example}
-    The diagram in~\autoref{fig:preliminaries:pushout_non_injective} is a pushout square in the category \textbf{Graph} of edge-labeled directed multigraphs. In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
+    The diagram in~\autoref{fig:preliminaries:pushout_non_injective} is a pushout square in the category \textbf{Graph} of directed edge-labeled multigraphs. In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
 
     \begin{figure}[!ht]
         \centering 
@@ -374,7 +386,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
     \end{figure} 
 \end{example}
 The pullback is the dual construction of the pushout in category theory, and it can be thought of as construction of the interface structure along which two structures are glued together. (to do: double check)
-\begin{definition}[Pullback \cite{pierce1991basic}]
+\begin{definition}[Pullback]
     \label{def:cat:pb}
     \ \newline
 \noindent
@@ -389,7 +401,7 @@ The pullback is the dual construction of the pushout in category theory, and it 
                 \node (i) at (0,0) {A};
                 \node (r) at (1,1) {B};
                 \node (c) at (1,-1) {C};
-                \node (h) at (2,0) {D};
+                \node (h) at (2,0) {D}; 
                 % \node () at (1,-1) {\( \Delta \)};
                 \draw[->]  (i) -- (r) node [midway,left] {$\alpha$};
                 \draw[->] (c) -- (h) node [midway,left] {$\alpha'$};
@@ -402,12 +414,12 @@ The pullback is the dual construction of the pushout in category theory, and it 
             \end{tikzpicture}
 }
 \end{minipage}
+ 
 The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \textbf{pullback square}, with \(A\) as the \textbf{pullback object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pullback}.
 \end{definition} 
 
- 
 \begin{example}
-    The diagram in~\autoref{fig:preliminaries:pullback} is a pullback square in the category \textbf{Graph} of edge-labeled directed multigraphs. 
+    The diagram in~\autoref{fig:preliminaries:pullback} is a pullback square in the category \textbf{Graph} of directed edge-labeled multigraphs. 
     \begin{figure}[!ht]
         \centering
         \resizebox{0.7\textwidth}{!}{

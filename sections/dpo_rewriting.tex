@@ -1,4 +1,5 @@
-\begin{definition}[Rewriting rule and match~\cite{corradini1997algebraic}]
+ The concepts and notation in this section follow the treatments in~\cite{endrullis2024generalized_icgt}.
+\begin{definition}[Rewriting rule and match]
   \label{def:grs:dpo_rule}
 A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}, \( L \) is the \textbf{left-hand-side graph}, denoted \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side graph}, denoted \( \operatorname{rhs}(\rho) \). We denote $\rho^{-1}$ as the rule $(R \overset{r}{\leftarrow} K \overset{l}{\rightarrow} L)$. The rule is \textbf{left monic} if \( l \) is monic, and \textbf{right monic} if \( r \) is monic. 
 The rule is \textbf{monic} if $l$ and $r$ are both monic.
@@ -77,7 +78,7 @@ Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an obje
 %         }
 % \end{center}
 
-\begin{definition}[DPO Rewriting step~\cite{endrullis2024generalized_arxiv_v2}]
+\begin{definition}[DPO Rewriting step]
   \label{def:rewriting_step}
     \ \newline
     \noindent
@@ -193,7 +194,7 @@ Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an obje
 \end{example}
 In category \textbf{Graph}, the pushout of two arrows always exists~\cite[p.188]{corradini1997algebraic}. Therefore, once the first pushout square is constructed, the second pushout square can always be constructed and is unique up to isomorphism because of the universal property. However, the first pushout square cannot always be constructed.
 
-\begin{proposition}[Existence of pushout complements~\cite{corradini1997algebraic}]
+\begin{proposition}[Existence of pushout complements]
     Let $A \overset{l}{\rightarrow} B \overset{m}{\rightarrow} D$ be two morphisms in the category \textbf{Graph}. There exist two morphisms $A \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} D$ such that $A \overset{l}{\rightarrow} B \overset{m}{\rightarrow} D$ and $A \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} D$ form a pushout square as shown in~\autoref{fig:preliminaries:a_pushout_square_complement} if and only if the following conditions are satisfied:
     \begin{itemize}
         \item{[Dangling edge condition]} No edge of $E(G) \setminus m(E(L))$ is incident to any node in $m(E(L) \setminus l(E(K)))$ are the edge-sets of $G,L,K$,
@@ -418,7 +419,7 @@ Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in t
     \end{figure}
     However, there does not exist a morphism \(\delta : G \to E\) such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \), which contradicts the universal property of the pushout. Therefore, there do not exist a graph \( C \) and morphisms \( \beta \) and \( \alpha' \) such that the diagram in the assumption is a pushout square.
 
-    \begin{definition}[Rewriting framework \cite{endrullis2024generalized_arxiv_v2}]
+    \begin{definition}[Rewriting framework]
   \label{def:rewriting_framework} 
     A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to collections of DPO diagrams. Specifically, for every rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \), the collection $\mathfrak{F}(\rho)$ consists of DPO diagrams of the form illustrated in~\autoref{fig:preliminaries:a_rewriting_framework}.
  \begin{figure}[!ht]
