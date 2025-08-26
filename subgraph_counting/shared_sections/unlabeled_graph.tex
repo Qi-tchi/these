@@ -1,31 +1,56 @@
-\begin{definition}
-    \label{def:graph:unlabeled}
-    An \textbf{directed unlabeled multigraph} \( G \) consists of a collection of \textbf{nodes} (also called \textbf{objects}) and a collection of \textbf{edges}, each equipped with a \textbf{source} (or \textbf{domain}) node and a \textbf{target} (or \textbf{codomain}) node. 
-    An directed unlabeled multigraph is \textbf{finite} if
-    it has a finite set of nodes and a finite set of edges.
+% \begin{definition}
+%     \label{def:graph:unlabeled}
+%     An \textbf{directed unlabeled multigraph} \( G \) consists of 
+%     \begin{itemize}
+%         \item a collection $V(G)$ of elements, which are called \textbf{nodes} (or \textbf{objects}),
+%         \item a collection $E(G)$ of elements different from nodes, which are called \textbf{edges} (or \textbf{arrows}),
+%         \item a function $\opn{dom}: E \to V$ assigning to each edge its \textbf{source} (or \textbf{domain}) node,
+%         \item a function $\opn{cod}: E \to V$ assigning to each edge its \textbf{target} (or \textbf{codomain}) node.
+%     \end{itemize} 
+%     An directed unlabeled multigraph $G$ is \textbf{finite} if $V(G)$ and $E(G)$ have both finite elements.
+%     Throughout, the term \enquote{unlabeled graph} denotes a directed unlabeled multigraph.
+%     We write \( a: s \to t \) to indicate that \( a \) is an edge from \( s \) to \( t \).
+% \end{definition}   
 
-    Throughout, the term \enquote{unlabeled graph} denotes a directed unlabeled multigraph.
-    For an unlabeled graph \( G \), we denote by \( V(G) \) its collection of nodes, \( E(G) \) its collection of edges, \( \operatorname{dom}: E(G) {\to}V(G) \) the domain function, and \( \operatorname{cod}:E(G) {\to} V(G) \) the codomain function. 
-    We write \( a: s \to t \) to indicate that \( a \) is a directed edge from \( s \) to \( t \).
-\end{definition}   
+% Note that an unlabeled graph can have multiple edges from one node to another, as well as loops (edges from a node to itself), because different edges $u,v$ of the unlabeled graph can have the same source and target nodes, i.e. $\opn{dom}(u) = \opn{dom}(v)$ and $\opn{cod}(u) = \opn{cod}(v)$.
 
-Note that the collection of edges in a directed unlabeled multigraph can contain multiple edges between the same pair of nodes, as well as loops.
 
-\begin{example}
-    In an unlabeled graph, edges are directed and will be visualized as arrows; between any two nodes, there can be multiple edges, and loops are allowed. An unlabeled graph is depicted in~\autoref{fig:preliminaries:unlabeled_graph} where nodes are marked with numbers to facilitate discussion, but in general, nodes are not labeled.
-    \begin{figure}[!ht]
-        \centering
-        \begin{tikzpicture}
-            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
-                \node[draw,circle] (1) at (0,0) {1};
-                \node[draw,circle] (2) at (2,0) {2};
-                \draw[->] (1) edge[loop above] (1) ;
-                \draw[->] (1) edge[loop below] (1) ;
-                \draw[->] (1) edge[bend left] (2)  ;
-                \draw[->] (2) edge[bend left] (1)   ;
-            }
-        \end{tikzpicture}
-    \caption{Unlabeled graph}
-    \label{fig:preliminaries:unlabeled_graph}
-    \end{figure}
-\end{example}
+% \begin{example}
+%     An unlabeled graph is shown in~\autoref{fig:preliminaries:unlabeled_graph}.
+
+%     In an unlabeled graph, edges are directed and will be visualized as arrows; between any two nodes, there can be multiple edges, and loops are allowed. An unlabeled graph is depicted in~\autoref{fig:preliminaries:unlabeled_graph} where nodes are marked with numbers to facilitate discussion, but in general, nodes are not labeled.
+%     \begin{figure}[!ht]
+%         \centering
+%         \begin{tikzpicture}
+%             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+%                 \node[draw,circle] (1) at (0,0) {1};
+%                 \node[draw,circle] (2) at (2,0) {2};
+%                 \draw[->] (1) edge[loop above] (1) ;
+%                 \draw[->] (1) edge[loop below] (1) ;
+%                 \draw[->] (1) edge[bend left] (2)  ;
+%                 \draw[->] (2) edge[bend left] (1)   ;
+%             }
+%         \end{tikzpicture}
+%     \caption{Unlabeled graph}
+%     \label{fig:preliminaries:unlabeled_graph}
+%     \end{figure}
+% \end{example}
+
+% \begin{example}
+%     In an unlabeled graph, edges are directed and will be visualized as arrows; between any two nodes, there can be multiple edges, and loops are allowed. An unlabeled graph is depicted in~\autoref{fig:preliminaries:unlabeled_graph} where nodes are marked with numbers to facilitate discussion, but in general, nodes are not labeled.
+%     \begin{figure}[!ht]
+%         \centering
+%         \begin{tikzpicture}
+%             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+%                 \node[draw,circle] (1) at (0,0) {1};
+%                 \node[draw,circle] (2) at (2,0) {2};
+%                 \draw[->] (1) edge[loop above] (1) ;
+%                 \draw[->] (1) edge[loop below] (1) ;
+%                 \draw[->] (1) edge[bend left] (2)  ;
+%                 \draw[->] (2) edge[bend left] (1)   ;
+%             }
+%         \end{tikzpicture}
+%     \caption{Unlabeled graph}
+%     \label{fig:preliminaries:unlabeled_graph}
+%     \end{figure}
+% \end{example}

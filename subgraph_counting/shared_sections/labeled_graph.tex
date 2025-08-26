@@ -1,15 +1,35 @@
 \begin{definition} 
     \label{def:graph}
-    Let \(\Sigma\) be a finite set of labels. A \textbf{directed edge-labeled multigraph} is an ordered pair \((G,\lambda)\) where \( G \) is an unlabeled graph and \( \lambda : E(G) \rightarrow \Sigma\) is an edge-labeling function. 
-    It is called \textbf{finite} if its underlying unlabeled graph is finite.
-    Throughout, a directed edge-labeled multigraph will be simply referred to as a \enquote{labeled graph} when the context makes it clear.
-     By $a : s\overset{l}{\rightarrow} t$, we denote the arrow $a$ labeled by $l$ from $s$ to $t$.
+     Let \(\Sigma\) be a finite set of labels. A \textbf{directed edge-labeled multigraph} is a structure \((V, E, \opn{dom}, \opn{cod},\lambda)\) where
+    \begin{itemize}
+        \item $V$ is a collection of distinct elements called \textbf{nodes} (or \textbf{objects}),
+        \item $E$ is a collection of distinct elements, disjoint from $V$, called \textbf{edges} (or \textbf{arrows}),
+        \item $\opn{dom}: E \to V$ is the \textbf{domain} (or \textbf{source}) function assigning to each edge its source node,
+        \item $\opn{cod}: E \to V$ is the \textbf{codomain} (or \textbf{target}) function assigning to each edge its target node,
+        \item $\lambda: E \to \Sigma$ is the \textbf{labeling} function assigning to each edge a label from $\Sigma$.
+    \end{itemize}
+    A directed edge-labeled multigraph is said to be \textbf{finite} if $V$ and $E$ are finite.
+    For a directed edge-labeled multigraph \( G \), we write \( V(G) \) for its set of nodes, \( E(G) \) for its set of edges, \( \opn{dom}_G \) for its domain function, \( \opn{cod}_G \) for its codomain function, and \( \lambda_G \) for its labeling function. $a : s\overset{l}{\rightarrow} t$ denotes an arrow $a$ labeled by $l$ from $s$ to $t$.
 \end{definition}
- The definition of labeled graphs extends the definition of unlabeled graphs, as unlabeled graphs can be seen as labeled graphs with a single label for all edges, i.e., the label function is a constant function.
+A directed edge-labeled multigraph may have multiple edges from one node to another, as well as loops (edges from a node to itself), because different edges $u,v$ can have the same source and target nodes, i.e. $\opn{dom}(u) = \opn{dom}(v)$ and $\opn{cod}(u) = \opn{cod}(v)$.
 
-  A homomorphism of labeled graphs is a homomorphism of unlabeled graphs that preserves the labels assigned to the edges. 
+    Throughout, a directed edge-labeled multigraph will be simply referred to as a \enquote{labeled graph} or \enquote{graph} when the context makes it clear, and we fix a set $\Sigma$ of labels.
+
+% \begin{definition} 
+%     \label{def:graph}
+%     Let \(\Sigma\) be a finite set of labels. A \textbf{directed edge-labeled multigraph} is an ordered pair \((G,\lambda)\) where \( G \) is an unlabeled graph and \( \lambda : E(G) \rightarrow \Sigma\) is an edge-labeling function. 
+%     It is called \textbf{finite} if its underlying unlabeled graph is finite.
+%     Throughout, a directed edge-labeled multigraph will be simply referred to as a \enquote{labeled graph} when the context makes it clear.
+%     An arrow $a$ labeled by $l$ from $s$ to $t$ is denoted by $a : s\overset{l}{\rightarrow} t$.
+% \end{definition}
+%  The definition of labeled graphs extends the definition of unlabeled graphs, as unlabeled graphs can be seen as labeled graphs with a single label for all edges, i.e., the label function is a constant function.
+
+
 \begin{example}
-    Edges of a labeled graph are directed and labeled by elements of a finite set of labels. Between any two nodes, there can be multiple edges, and loops are allowed. An example of a labeled graph is shown in~\autoref{fig:preliminaries:labeled_graph}.
+    Consider the graph shown in~\autoref{fig:preliminaries:labeled_graph}.
+    It has two nodes which are marked with numbers to facilitate discussion, but in general, nodes are not labeled.
+    There are five edges: two loops on node $1$ labeled \(a\) and \(b\), two edges from node $1$ to node $2$ both labeled \(a\), and one edge from node $2$ to node $1$ labeled \(a\). Note that the two edges from node $1$ to node $2$ are distinct edges, even though they share the same source, target, and label.
+
     \begin{figure}[!ht]
        \centering
         \begin{tikzpicture}
@@ -19,6 +39,7 @@
                 \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
                 \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
                 \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                \draw[->] (1) edge node[midway, above] {$a$}  (2)  ;
                 \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
             }
         \end{tikzpicture}
@@ -27,3 +48,4 @@
     \end{figure}
 
 \end{example}
+  A homomorphism of labeled graphs is a homomorphism of unlabeled graphs that preserves the labels assigned to the edges. 

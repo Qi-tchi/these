@@ -1,16 +1,18 @@
- The concepts and notation in this section follow the treatments in~\cite{pierce1991basic,barr1990category}. The concept of category is introduced in~\autoref{def:cat}. Throughout this section, we fix a category \( \mathcal{C} \).
+ The concepts and notation in this section follow the treatments in~\cite{pierce1991basic,barr1990category}.
 
 \begin{definition}
     \label{def:cat}
     A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : V(C) \to E(C) \) and a partial function \( \star: E(C) \times E(C) \to E(C) \) such that 
-        (i) for all edges \( f:X \to Y \) and \( g:Y \to Z \), the edge \( f \star g :X \to Z \) is defined; 
-        (ii) for every node \( X \), \( u(X) \) is an edge from \( X \) to \( X \);
-        (iii) for every \( f:X \to Y \), we have \(u(X) \star f = f = f \star u(Y)\);
-        (iv) for all edges \( f \), \( g \) and \(h\), we have \( (f \star g) \star h = f \star (g \star h) \) whenever either side is defined.
-    Edges are called \textbf{morphisms}. The function $\star$ is called \textbf{composition}. For all \( X \in V(C) \), the edge \( u(X) \) is denoted \( \operatorname{id}_X \) and is called the \textbf{identity} of the object \( X \).
+        \begin{itemize}
+            \item for all edges \( f:X \to Y \) and \( g:Y \to Z \), the edge \( f \star g :X \to Z \) is defined; 
+            \item  for every node \( X \), \( u(X) \) is an edge from \( X \) to \( X \);
+            \item for every \( f:X \to Y \), we have \(u(X) \star f = f = f \star u(Y)\);
+            \item for all edges \( f \), \( g \) and \(h\), we have \( (f \star g) \star h = f \star (g \star h) \) whenever either side is defined.
+        \end{itemize}
+    Edges are called \textbf{morphisms}. The function $\star$ is called \textbf{composition}. For all \( X \in V(C) \), the edge \( u(X) \) is denoted by \( \operatorname{id}_X \) and is called the \textbf{identity} of the object \( X \).
     % \( C \) is called the \textbf{underlying graph} of the category \( \mathcal{C} \).
 \end{definition} 
-
+ Throughout this section, we fix a category \( \mathcal{C} \).
 \begin{example}
     Consider the unlabeled graph shown in~\autoref{fig:preliminaries:category}. 
         \begin{figure}[!ht]
@@ -43,8 +45,8 @@
 \end{definition} 
 
 \begin{example} 
-    Finite directed edge-labeled multigraphs and their homomorphisms form a category, hereafter denoted \textbf{Graph}. Its objects are labeled graphs, its morphisms are graph homomorphisms, and the monomorphisms are injective homomorphisms. 
-    The set of homomorphisms from a graph $X$ to another graph $Y$ is denoted $\opn{Hom}(X,Y)$, and the set of monomorphisms from a graph $X$ to another graph $Y$ is denoted $\opn{Mono}(X,Y)$.
+    Finite labeled graphs and their homomorphisms form a category, hereafter denoted by \textbf{Graph}. Its objects are labeled graphs, its morphisms are graph homomorphisms, and the monomorphisms are homomorphisms. 
+    The set of homomorphisms from a graph $X$ to another graph $Y$ is denoted by $\opn{Hom}(X,Y)$, and the set of monomorphisms from a graph $X$ to another graph $Y$ is denoted by $\opn{Mono}(X,Y)$.
 \end{example}
 
 % \begin{definition}[Span \cite{lowe2010graph}]
@@ -68,9 +70,7 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
 \end{definition}
 Note that the concepts of spans and cospans are defined for conciseness and clarity of notation, they are not essential in this thesis.
 \begin{example}
-Consider the diagram in the category \textbf{Graph} shown in~\autoref{fig:preliminaries:span_cospan}. \(
-L \overset{\alpha}{\leftarrow} K \overset{\beta}{\rightarrow} C
-\) is a span and \(L \overset{\beta'}{\rightarrow} G \overset{\alpha'}{\leftarrow} C \) is a cospan.
+Consider the diagram in the category \textbf{Graph} shown in~\autoref{fig:preliminaries:span_cospan}. $(\alpha, \beta)$ is a span, and $(\beta', \alpha')$ is a cospan.
 \end{example}
 
 
@@ -133,7 +133,7 @@ L \overset{\alpha}{\leftarrow} K \overset{\beta}{\rightarrow} C
 
 \begin{definition}[Diagram~\cite{barr1990category}]
     \label{def:cat:diagram}
-    Let \( G \) be an unlabeled graph. A \textbf{diagram} (in \( \mathcal{C} \) of shape \( G \)) is a homomorphism of unlabeled graphs \( h : G \to C \) where \( C \) is the underlying unlabeled graph of the category \( \mathcal{C} \). A diagram is \textbf{commutative} if, for all nodes \( u \), \( v \), and any two paths from \( u \) to \( v \) in the unlabeled graph \( G \):
+    Let $\mathcal{C}$ be a category, and \( G \) an unlabeled graph. A \textbf{diagram} (of shape \( G \)) is a homomorphism of unlabeled graphs \( h : G \to \mathcal{C} \) where \( C \) is considered as an unlabeled graph. A diagram is said to be \textbf{commutative} if, for all nodes \( u \), \( v \), and any two paths from \( u \) to \( v \) in the unlabeled graph \( G \):
 
     \begin{center}
     \resizebox{12cm}{!}{
@@ -170,7 +170,7 @@ L \overset{\alpha}{\leftarrow} K \overset{\beta}{\rightarrow} C
 \end{definition}
 
 \begin{example}
-    A commutative diagram in the category \textbf{Graph} of directed edge-labeled multigraphs is illustrated in~\autoref{fig:preliminaries:commutative_diagram}. The symbol $\mathop{=}$ in the center of the diagram
+    A commutative diagram in the category \textbf{Graph} of finite directed edge-labeled multigraphs is illustrated in~\autoref{fig:preliminaries:commutative_diagram}. The symbol $\mathop{=}$ in the center of the diagram
     is used to indicate that the two paths from node 1 to node 2 are equal.
  
     \begin{figure}[!ht]
@@ -226,44 +226,42 @@ L \overset{\alpha}{\leftarrow} K \overset{\beta}{\rightarrow} C
             \node () at (57mm,-6mm) {$\mathop{=}$};
         \end{tikzpicture}
         }
-        \caption{Commutative diagram}
+        \caption{}
         \label{fig:preliminaries:commutative_diagram}
     \end{figure}
 \end{example}
 The pushout is a construction in category theory that can often be thought of as the construction of a new structure from two given structures by gluing them along a common interface structure.
-\begin{definition}[Pushout \cite{barr1990category}]
-    \label{def:cat:po}
-    \ \newline
-\noindent
-\begin{minipage}{0.7\textwidth}  
-    A \textbf{pushout} of a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \), as shown on the right, is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \star \gamma' = \beta \star \gamma \) holds, then there exists a unique morphism \(\delta : D \to E\) such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \).
-\end{minipage}
-\hfill
-\begin{minipage}{0.299\textwidth}
-    \hfill
-\resizebox{0.9\textwidth}{!}{
-           \begin{tikzpicture}
-                \node (i) at (0,0) {A};
-                \node (r) at (1,1) {B};
-                \node (c) at (1,-1) {C};
-                \node (h) at (2,0) {D};
-                % \node () at (1,-1) {\( \Delta \)};
-                \draw[->]  (i) -- (r) node [midway,left] {$ \alpha $};
-                \draw[->] (c) -- (h) node [midway,left] {$ \alpha' $};
-                \draw[->] (r) -- (h) node[midway, left] {$ \beta' $};
-                \draw[->] (i) -- (c) node[midway, left] {$ \beta $};
-                \node (d') at (4,0) {E};
-                \draw[->] (c) -- (d') node [midway,below]{$ \gamma $};
-                \draw[->] (r) -- (d') node [midway,above]{$ \gamma' $};
-                \draw[->,dashed] (h) -- (d') node [midway]{$ \delta $};
-            \end{tikzpicture}
-}
-\end{minipage}
+\begin{definition}
+    \label{def:cat:po} 
+    A \textbf{pushout} of a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \), as shown in~\autoref{fig:preliminaries:pushout_sdfkjasdlgjfl}
+    \begin{figure}
+        \centering
+        \resizebox{0.4\textwidth}{!}{
+            \begin{tikzpicture}
+                    \node (i) at (0,0) {A};
+                    \node (r) at (1,1) {B};
+                    \node (c) at (1,-1) {C};
+                    \node (h) at (2,0) {D};
+                    % \node () at (1,-1) {\( \Delta \)};
+                    \draw[->]  (i) -- (r) node [midway,left] {$ \alpha $};
+                    \draw[->] (c) -- (h) node [midway,left] {$ \alpha' $};
+                    \draw[->] (r) -- (h) node[midway, left] {$ \beta' $};
+                    \draw[->] (i) -- (c) node[midway, left] {$ \beta $};
+                    \node (d') at (4,0) {E};
+                    \draw[->] (c) -- (d') node [midway,below]{$ \gamma $};
+                    \draw[->] (r) -- (d') node [midway,above]{$ \gamma' $};
+                    \draw[->,dashed] (h) -- (d') node [midway]{$ \delta $};
+                \end{tikzpicture}
+        }
+        \caption{}
+        \label{fig:preliminaries:pushout_sdfkjasdlgjfl}
+    \end{figure}
+    is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \star \gamma' = \beta \star \gamma \) holds, then there exists a unique morphism \(\delta : D \to E\) such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \).
 The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \textbf{pushout square}, with \(D\) as the \textbf{pushout object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pushout}.
 \end{definition} 
 
 \begin{example}
-    The diagram in~\autoref{fig:preliminaries:pushout_injective} is a pushout square in the category \textbf{Graph} of directed edge-labeled multigraphs. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
+    The diagram in~\autoref{fig:preliminaries:pushout_injective} is a pushout square in the category \textbf{Graph}. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
     \begin{figure}[!ht]
         \centering
         \resizebox{0.7\textwidth}{!}{
@@ -323,7 +321,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
 \end{example}
 
 \begin{example}
-    The diagram in~\autoref{fig:preliminaries:pushout_non_injective} is a pushout square in the category \textbf{Graph} of directed edge-labeled multigraphs. In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
+    The diagram in~\autoref{fig:preliminaries:pushout_non_injective} is a pushout square in the category \textbf{Graph}. In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
 
     \begin{figure}[!ht]
         \centering 
@@ -385,44 +383,45 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
         \label{fig:preliminaries:pushout_non_injective}
     \end{figure} 
 \end{example}
-The pullback is the dual construction of the pushout in category theory, and it can be thought of as construction of the interface structure along which two structures are glued together. (to do: double check)
-\begin{definition}[Pullback]
+\begin{definition} 
+    to do : un example avec un span qui n'a pas de pushout
+\end{definition}
+The \emph{pullback}, defined below, is the dual construction of the pushout in category theory, and it can be thought of as construction of the interface structure along which two structures are glued together. (to do: double check)
+\begin{definition} 
     \label{def:cat:pb}
-    \ \newline
-\noindent
-\begin{minipage}{0.7\textwidth}  
-   A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \), as shown on the right, is defined as a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \star \beta' = \gamma \star \alpha'\) holds, then there exists a unique morphism \(\delta: E \to A\) such that $\gamma' = \delta \star \alpha$ and $\gamma = \delta \star \beta$. 
-\end{minipage}
-\hfill
-\begin{minipage}{0.299\textwidth}
-    \hfill
-\resizebox{0.9\textwidth}{!}{
-            \begin{tikzpicture}
-                \node (i) at (0,0) {A};
-                \node (r) at (1,1) {B};
-                \node (c) at (1,-1) {C};
-                \node (h) at (2,0) {D}; 
-                % \node () at (1,-1) {\( \Delta \)};
-                \draw[->]  (i) -- (r) node [midway,left] {$\alpha$};
-                \draw[->] (c) -- (h) node [midway,left] {$\alpha'$};
-                \draw[->] (r) -- (h) node[midway, left] {$\beta'$};
-                \draw[->] (i) -- (c) node[midway, left] {$\beta$};
-                \node (d') at (-2,0) {E};
-                \draw[<-] (c) -- (d') node [midway,below]{$\gamma$};
-                \draw[<-] (r) -- (d') node [midway,above]{$\gamma'$};
-                \draw[->, dashed] (d') -- (i) node [midway]{$\delta$};
-            \end{tikzpicture}
-}
-\end{minipage}
- 
+   A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \), as shown in~\autoref{fig:preliminaries:pullback_ssdsfd},
+      \begin{figure}[!ht]
+        \centering  
+        \resizebox{0.4\textwidth}{!}{
+                    \begin{tikzpicture}
+                        \node (i) at (0,0) {A};
+                        \node (r) at (1,1) {B};
+                        \node (c) at (1,-1) {C};
+                        \node (h) at (2,0) {D}; 
+                        % \node () at (1,-1) {\( \Delta \)};
+                        \draw[->]  (i) -- (r) node [midway,left] {$\alpha$};
+                        \draw[->] (c) -- (h) node [midway,left] {$\alpha'$};
+                        \draw[->] (r) -- (h) node[midway, left] {$\beta'$};
+                        \draw[->] (i) -- (c) node[midway, left] {$\beta$};
+                        \node (d') at (-2,0) {E};
+                        \draw[<-] (c) -- (d') node [midway,below]{$\gamma$};
+                        \draw[<-] (r) -- (d') node [midway,above]{$\gamma'$};
+                        \draw[->, dashed] (d') -- (i) node [midway]{$\delta$};
+                    \end{tikzpicture}
+        }
+        \caption{}
+        \label{fig:preliminaries:pullback_ssdsfd}
+\end{figure}
+is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \star \beta' = \gamma \star \alpha'\) holds, then there exists a unique morphism \(\delta: E \to A\) such that $\gamma' = \delta \star \alpha$ and $\gamma = \delta \star \beta$. 
 The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \textbf{pullback square}, with \(A\) as the \textbf{pullback object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pullback}.
 \end{definition} 
 
 \begin{example}
-    The diagram in~\autoref{fig:preliminaries:pullback} is a pullback square in the category \textbf{Graph} of directed edge-labeled multigraphs. 
+    Consider the diagram shown in~\autoref{fig:preliminaries:pullback} in the category \textbf{Graph}.
+    The span $L \overset{\alpha}{\leftarrow} K \overset{\beta}{\rightarrow} C$ is a pullback of the cospan $L \overset{\beta'}{\rightarrow} G \overset{\alpha'}{\leftarrow} C$.
     \begin{figure}[!ht]
         \centering
-        \resizebox{0.7\textwidth}{!}{
+        \resizebox{0.9\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
                 \coordinate (o) at (0mm,-8mm); 
@@ -479,7 +478,13 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
         \caption{Pullback}
         \label{fig:preliminaries:pullback}
     \end{figure} 
-    There are three other possible spans \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \), shown in~\autoref{fig:preliminaries:three_squares}, such that \(\gamma' \star \beta' = \gamma \star \alpha'\) holds, and for each of them, there exists a unique morphism \(\delta: E \to A\) such that $\gamma' = \delta \star \alpha$ and $\gamma = \delta \star \beta$, as shown in the following three diagrams:
+
+    \color{red}
+    todo to do 
+    to do todo
+    
+    Specifically, for a possible span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) to satisfy \(\gamma' \star \beta' = \gamma \star \alpha'\), graph $E$ must not contain any edges as $\alpha'$ and $\beta'$ do not map any edges from $C$ and $L$ to a common edge in $G$.
+     For all graph $E$ without edges and all morphisms $\gamma': E \rightarrow L $ and $\gamma : E \rightarrow C$, we have \(\gamma' \star \beta' = \gamma \star \alpha'\). Three examples of such spans are illustrated in~\autoref{fig:preliminaries:three_squares}.
     \begin{figure}[!ht]
         \centering
             \resizebox{0.7\textwidth}{!}{
@@ -687,8 +692,11 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
         \caption{}
         \label{fig:preliminaries:three_squares} 
     \end{figure}
+    \color{black}
 \end{example} 
-
+\begin{definition} 
+    to do : un example avec un cospan qui n'a pas de pullback
+\end{definition}
 \begin{notation}
     When the context makes it clear, a morphism \( h : A \to B \) will be denoted by \( h_{AB} \), and diagrams will be referred to by their nodes, as is standard in geometry. For example, the diagram involving morphisms \( ( \alpha, \beta, \alpha', \beta' ) \) in \autoref{def:cat:po} will be denoted by \( ACDB \) or \( ABDC \).
 \end{notation}   

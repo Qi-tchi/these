@@ -1,15 +1,15 @@
- The concepts and notation in this section follow the treatments in~\cite{endrullis2024generalized_icgt}.
+Now that we have defined labeled graphs, we introduce double-pushout (DPO) graph rewriting. The concepts and notation in this section follow the treatments in~\cite{endrullis2024generalized_icgt}.
 \begin{definition}[Rewriting rule and match]
   \label{def:grs:dpo_rule}
-A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}, \( L \) is the \textbf{left-hand-side graph}, denoted \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side graph}, denoted \( \operatorname{rhs}(\rho) \). We denote $\rho^{-1}$ as the rule $(R \overset{r}{\leftarrow} K \overset{l}{\rightarrow} L)$. The rule is \textbf{left monic} if \( l \) is monic, and \textbf{right monic} if \( r \) is monic. 
+A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}, \( L \) is the \textbf{left-hand-side graph}, denoted by \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side graph}, denoted by \( \operatorname{rhs}(\rho) \). The rule $(R \overset{r}{\leftarrow} K \overset{l}{\rightarrow} L)$ is denoted by $\rho^{-1}$. The rule is \textbf{left monic} if \( l \) is monic, and \textbf{right monic} if \( r \) is monic. 
 The rule is \textbf{monic} if $l$ and $r$ are both monic.
-A \textbf{match} of the rule in a graph \( G \) is a morphism \( m: L \rightarrow G \).
+A \textbf{match} of the rule in a graph \( G \) is a morphism \( m: L \rightarrow G \). 
 \end{definition}
-In the case of the category \textbf{Graph} of edge-labeled directed multigraphs, the rule is left monic if the morphism \( l \) is injective, and right monic if the morphism \( r \) is injective. The rule is monic if both \( l \) and \( r \) are injective.
+In the case of the category \textbf{Graph}, the rule is left monic if the morphism \( l \) is injective, and is right monic if the morphism \( r \) is injective. The rule is monic if both \( l \) and \( r \) are injective.
 
 \begin{example}
   \label{ex:grsaa}
-  The DPO rewriting rule in~\autoref{fig:preliminaries:a_rewriting_rule} on edge-labeled directed multigraphs is from \cite[Example 6]{bruggink2014termination}:
+  The injective DPO rewriting rule shown in~\autoref{fig:preliminaries:a_rewriting_rule} is from \cite[Example 6]{bruggink2014termination}.
   \begin{figure}[!ht]
       \centering 
       \resizebox{0.7\textwidth}{!}{
@@ -45,14 +45,10 @@ In the case of the category \textbf{Graph} of edge-labeled directed multigraphs,
           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
       }
-      \caption{Rewriting rule}
+      \caption{}
       \label{fig:preliminaries:a_rewriting_rule}
   \end{figure}
-  This rule has a discrete interface \( K \). It is monic (or injective). It replaces a chain \enquote{aa} whose middle node has no other incident edges by a chain \enquote{aba} with the same endpoints and all other nodes and edges are fresh. 
 \end{example}
-
-
-Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an object $G$, we need to find a match $m:L \to G$. The rule is then applied by constructing the diagram with double pushout shown in \autoref{def:rewriting_step} and once the pushout squares are constructed, one says that the object $G$ rewrites to $H$ using the rule $\rho$ and the match $m$. 
 
 % \begin{center}
 %      \resizebox{0.4\textwidth}{!}{
@@ -77,21 +73,16 @@ Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an obje
 %         % \end{center}
 %         }
 % \end{center}
+Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an object $G$, we need to find a match $m:L \to G$. The rule is then applied by constructing the diagram with double pushout shown in \autoref{def:rewriting_step} and once the pushout squares are constructed, one says that the object $G$ rewrites to $H$ using the rule $\rho$ and the match $m$. 
 
 \begin{definition}[DPO Rewriting step]
   \label{def:rewriting_step}
     \ \newline
     \noindent
-    \begin{minipage}{0.72\textwidth}
-      A DPO diagram $\delta$ is a diagram as shown on the right.
-      This diagram $\delta$ is a witness for the \textbf{rewriting step} from \( G \) to \( H \) using 
-      a rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) and a \textbf{match}, denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). We denote $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$ the pushout squares $KLGC$ and $KRHC$, respectively.
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.28\textwidth}
-          % \begin{center}
-          \hfill
-          \resizebox{0.85\textwidth}{!}{
+    A diagram in a category consisting of two pushout squares arranged as shown in~\autoref{fig:preliminaries:a_rewriting_step_slkjdfsljsdl} is called a \textbf{double-pushout (DPO) diagram}.
+      \begin{figure}[!ht]
+        \centering
+          \resizebox{0.4\textwidth}{!}{
           \begin{tikzpicture}
             % [node distance=11mm]
             \node (I) at (0,0) {$K$};
@@ -112,7 +103,11 @@ Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an obje
           \end{tikzpicture}
         % \end{center}
         }
-        \end{minipage}
+        \caption{}
+        \label{fig:preliminaries:a_rewriting_step_slkjdfsljsdl}
+      \end{figure}
+      It is a \textbf{witness} for the \textbf{rewriting step} from \( G \) to \( H \) using 
+      a rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) and a \textbf{match}, denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). The pushout squares $KLGC$ and $KRHC$ are denoted by $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$, respectively.
   \end{definition}
 \begin{example}
   \label{ex:rewriting_step_grs_aa}
@@ -194,12 +189,12 @@ Intuitively, $K$ is the common part of $L$ and $R$. To apply the rule to an obje
 \end{example}
 In category \textbf{Graph}, the pushout of two arrows always exists~\cite[p.188]{corradini1997algebraic}. Therefore, once the first pushout square is constructed, the second pushout square can always be constructed and is unique up to isomorphism because of the universal property. However, the first pushout square cannot always be constructed.
 
-\begin{proposition}[Existence of pushout complements]
-    Let $A \overset{l}{\rightarrow} B \overset{m}{\rightarrow} D$ be two morphisms in the category \textbf{Graph}. There exist two morphisms $A \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} D$ such that $A \overset{l}{\rightarrow} B \overset{m}{\rightarrow} D$ and $A \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} D$ form a pushout square as shown in~\autoref{fig:preliminaries:a_pushout_square_complement} if and only if the following conditions are satisfied:
-    \begin{itemize}
-        \item{[Dangling edge condition]} No edge of $E(G) \setminus m(E(L))$ is incident to any node in $m(E(L) \setminus l(E(K)))$ are the edge-sets of $G,L,K$,
-        \item{[Identification condition]} There is no $x,y \in V(L) \cup E(L)$ such that $x \not = y$, $m(x) = m(y)$ and $y \notin l(V(K) \cup E(K))$ where 
-    \end{itemize} 
+\begin{proposition}[Existence of pushout complements~\cite{corradini1997algebraic}]
+    Let $K \overset{l}{\rightarrow} L$ and $L \overset{m}{\rightarrow} G$ be two morphisms in the category \textbf{Graph}. There exist two morphisms $K \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} G$ such that $K \overset{l}{\rightarrow} L \overset{m}{\rightarrow} G$ and $K \overset{u}{\rightarrow} L \overset{l'}{\rightarrow} G$ form a pushout square as shown in~\autoref{fig:preliminaries:a_pushout_square_complement} if and only if the following conditions are satisfied:
+    \begin{enumerate} 
+        \item{Dangling edge condition: } No edge in $G_E \setminus m(L_E)$ is incident to any node in $m(L_V \setminus l(K_V))$;
+        \item{Identification condition: } There is no $x,y \in L_V \cup L_E$ such that $x \neq y$, $m(x) = m(y)$ and $y \notin l(K_V \cup K_E)$.
+    \end{enumerate} 
     \begin{figure}[!ht]
         \centering
         \resizebox{0.2\textwidth}{!}{
@@ -219,7 +214,7 @@ In category \textbf{Graph}, the pushout of two arrows always exists~\cite[p.188]
         \label{fig:preliminaries:a_pushout_square_complement}
     \end{figure}
 \end{proposition}
-Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in the image of the match $m$. If such an edge $e$ is incident to a node in $m(V(L) \setminus l(V(K)))$ which are nodes that will be removed in the rewriting step and thus neither contained in $C$ nor in $H$, the edge $e$ will be dangling in $H$ after the rewriting step. A match which does not satisfy the dangling edge condition is shown in~\autoref{fig:preliminaries:a_match_dangling_edge_condition}. In this example, when node 3 is removed, the edge from node 3 to node 6 will be dangling. (to double check)
+A match which does not satisfy the dangling edge condition is shown in~\autoref{fig:preliminaries:a_match_dangling_edge_condition}.
     \begin{figure}[!ht]
         \centering
         \resizebox{0.9\textwidth}{!}{
@@ -250,7 +245,7 @@ Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in t
                 \draw[->] (l4) -- (l2) node[midway,above] {a};
             }    
     
-            \graphbox{\( G' \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+            \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -265,7 +260,7 @@ Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in t
                 \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
             }    
     
-            \graphbox{\( C'  \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+            \graphbox{\( C \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -278,25 +273,6 @@ Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in t
                 \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
                 \draw[<-] (l1) -- (l6) node[midway,left] {a};
             }    
-     
-            % \graphbox{\( H' \)}{80mm}{-22mm}{45mm}{22mm}{2mm}{-3mm}{
-            %     \coordinate (o) at (-5mm,-3mm); 
-            %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-            %     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-            %     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            %     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-            %     \node[draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-            %     \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-            %     \draw[<-] (l1) -- (l6) node[midway,left] {a};
-            %     \draw[->] (l1) -- (l3) node[midway,above] {a};
-            %     \draw[->] (l3) -- (l4) node[midway,above] {b};
-            %     \draw[->] (l4) -- (l2) node[midway,above] {a};
-            %     \draw[->] (l2) -- (l5) node[midway,right] {a};
-            %     \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
-            %     \node[draw,circle,dashed,red] (l3) at (-0mm,-7mm) {3};
-            %     \draw[->] (l3) -- (l5) node[midway,above] {a};
-            % }    
-    
             \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
             \node () at (77mm,-8mm) {\( \rightarrowtail \)}; % K -> R
             \node () at (15mm,-18mm) {\(\downarrowtail \)};
@@ -311,6 +287,7 @@ Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in t
         \caption{Match} 
         \label{fig:preliminaries:a_match_dangling_edge_condition} 
     \end{figure}
+ In this example, edge $3 \overset{a}{\rightarrow} 6$ is in $G_E \setminus m(L_E)$, and it is incident to the node $3$ which is in $m(L_V \setminus l(K_V))$. When node $3$ is removed, the edge from node $3$ to node $6$ will be dangling. Intuitively, edges in $G_E \setminus m(L_E)$.
 
     To give an intuition on the second condition, suppose that there is a graph C and morphisms $\beta$ and $\alpha'$ such that the diagram in~\autoref{fig:preliminaries:a_pushout_square_diagram_1} is a pushout square.
    We have the commutative diagram in~\autoref{fig:preliminaries:a_pushout_square_diagram} where the morphism $\gamma$ maps all nodes in $C$ to the node 1 in $E$.
@@ -349,8 +326,7 @@ Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in t
                 % \draw[<-,blue] (l1) edge node[midway,left] {a} (l6) ;
                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
             }   
-            \graphbox{\( C \)}{50mm}{-28mm}{20mm}{10mm}{2mm}{-3mm}{
-            }
+            \node () at (50mm,-28mm) {\( C \)};
             % K to L  
             \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
@@ -359,7 +335,7 @@ Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in t
             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G
             \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
-            \node () at (57mm,-6mm) {$PO$};
+            % \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
         \caption{Pushout square}
@@ -399,8 +375,6 @@ Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in t
                 % \draw[<-,blue] (l1) edge node[midway,left] {a} (l6) ;
                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
             }   
-     
-            % \node () at (50mm,-28mm) {C};
             \graphbox{\( C \)}{50mm}{-28mm}{20mm}{10mm}{2mm}{-3mm}{
             }
             % K to L  
@@ -417,11 +391,11 @@ Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in t
         \caption{Diagram}
         \label{fig:preliminaries:a_pushout_square_diagram}
     \end{figure}
-    However, there does not exist a morphism \(\delta : G \to E\) such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \), which contradicts the universal property of the pushout. Therefore, there do not exist a graph \( C \) and morphisms \( \beta \) and \( \alpha' \) such that the diagram in the assumption is a pushout square.
+    However, no morphism \(\delta : G \to E\) exists such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \), which contradicts the universal property of the pushout. Therefore, there cannot be any graph \( C \) and morphisms \( \beta \) and \( \alpha' \) such that the diagram in the assumption is a pushout square.
 
-    \begin{definition}[Rewriting framework]
+    \begin{definition}[Rewriting framework~\cite{endrullis2024generalized_icgt}]
   \label{def:rewriting_framework} 
-    A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to collections of DPO diagrams. Specifically, for every rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \), the collection $\mathfrak{F}(\rho)$ consists of DPO diagrams of the form illustrated in~\autoref{fig:preliminaries:a_rewriting_framework}.
+    A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to classes of DPO diagrams. Specifically, for every rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \), class $\mathfrak{F}(\rho)$ consists of DPO diagrams, shown in~\autoref{fig:preliminaries:a_rewriting_framework}, which are witnesses of rewriting steps using the rule \( \rho \).
  \begin{figure}[!ht]
       \centering
       \resizebox{0.4\textwidth}{!}{
@@ -450,10 +424,13 @@ Intuitively, an edge $e$ in $G_1 \setminus m(E(L))$ is an edge which is not in t
         \caption{}
         \label{fig:preliminaries:a_rewriting_framework}
 \end{figure}
-    The \textbf{DPO rewriting relation $\Rightarrow_{\rho,\mathfrak{F}}$ induced by a DPO rewriting rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \Rightarrow_{\rho,\mathfrak{F}} H$ iff $G \Rightarrow_\rho^\delta H$ for some $\delta \in \mathfrak{F}(\rho)$. 
-     The \textbf{DPO rewriting relation $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \Rightarrow_{\mathcal{R},\mathfrak{F}} H$ iff $G \Rightarrow_{\rho,\mathfrak{F}} H$ for some $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
-    suppress $\mathfrak{F}$ and 
+    The \textbf{DPO rewriting relation $\Rightarrow_{\rho,\mathfrak{F}}$ induced by a DPO rewriting rule $\rho$ in $\mathfrak{F}$} is defined as follows:
+     $$G \Rightarrow_{\rho,\mathfrak{F}} H \text{if and only if} G \Rightarrow_\rho^\delta H$$
+    for some $\delta \in \mathfrak{F}(\rho)$. 
+     The \textbf{DPO rewriting relation $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: 
+     $$G \Rightarrow_{\mathcal{R},\mathfrak{F}} H \text{if and only if} G \Rightarrow_{\rho,\mathfrak{F}} H$$ for some $\rho \in \mathcal{R}$. Whenever $\mathfrak{F}$ is clear from the context, we 
+    omit $\mathfrak{F}$ and 
     write $\Rightarrow_{\rho}$ and $\Rightarrow_{\mathcal{R}}$.
   \end{definition}
-Let \(\mathfrak{F}\) denote the DPO rewriting framework that associates each rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) with the collection of all DPO diagrams of the form shown in~\autoref{fig:preliminaries:a_rewriting_framework}.
-Let \(\mathfrak{M}\) denote the DPO rewriting framework that associates each rule with the collection of all DPO diagrams of the form shown in~\autoref{fig:preliminaries:a_rewriting_framework} with monic match $m$.  
+% Let \(\mathfrak{F}\) denote the DPO rewriting framework that associates each rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) with the collection of all DPO diagrams of the form shown in~\autoref{fig:preliminaries:a_rewriting_framework}.
+Throughout this work, we will use the notation \(\mathfrak{M}\) to denote the DPO rewriting framework that associates each rule with the class of all DPO diagrams of the form shown in~\autoref{fig:preliminaries:a_rewriting_framework} with monic match $m$.

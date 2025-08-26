@@ -1,18 +1,24 @@
+% \begin{definition}
+%     \label{def:graph:homomorphism}
+%     Let \( (G,\lambda) \) and \( (H,\lambda') \) be labeled graphs. A \textbf{homomorphism of labeled graphs} $h:(G,\lambda) \rightarrow (H,\lambda')$ is a homomorphism of unlabeled graphs such that for each edge \( a \) in \( G \), we have \( \lambda (a) = \lambda' (h_E (a)) \).
+% \end{definition}
+
+% \begin{definition}
+%     \label{def:unlabeled_graph:homomorphism}
+%     Let \( G \) and \( H \) be unlabeled graphs. A \textbf{homomorphism of unlabeled graphs} $h: G \to H$ 
+% \end{definition}
 \begin{definition}
     \label{def:graph:homomorphism}
-    Let \( (G,\lambda) \) and \( (H,\lambda') \) be labeled graphs. A \textbf{homomorphism of labeled graphs} $h:(G,\lambda) \rightarrow (H,\lambda')$ is a homomorphism of unlabeled graphs such that for each edge \( a \) in \( G \), we have \( \lambda (a) = \lambda' (h_E (a)) \).
+    Let \( G \) and \( H \) be labeled graphs. A \textbf{homomorphism of labeled graphs} $h:(G) \rightarrow (H)$ is a pair of functions $(h_V: V(G) \to V(H), h_E: E(G) \to E(H))$ such that for every edge \( a: s \to t \) in \( G \), the edge \( h_E(a) \) in $H$ is from node \( h_V(s) \) to node \( h_V(t) \), and \( \lambda_H(h_E(a)) = \lambda_G(a) \).
 \end{definition}
-
 
 \begin{notation}
     \label{notation:graph_homomorphism}
-    We use the notation from~\cite[Notation 1]{overbeek2023apbpotutorial} to visualize edge-labeled graph homomorphisms. Labeled graphs are enclosed in boxes with their names displayed in the top-left corner. Nodes and edges are assigned subsets of \(\mathbb{N}\) as identifiers, and these identifiers are chosen such that: (i) Each node or edge \( y \) in the codomain graph is assigned the union of the identifiers of all nodes or edges in the domain graph that are mapped to \( y \); (ii) The graph homomorphism is uniquely determined by this assignment.
-    
-    \noindent To further improve readability, we represent sets by listing their elements. Additionally, we omit identifiers when doing so does not cause confusion. An example of a homomorphism of labeled graphs is shown in~\autoref{fig:preliminaries:graph_homomorphism}.
+    We use the notation from Overbeek and Endrullis~\cite[Notation 1]{overbeek2023apbpotutorial} to visualize edge-labeled graph homomorphisms. Labeled graphs are enclosed in boxes with their names displayed in the top-left corner. Nodes and edges are assigned subsets of \(\mathbb{N}\) as identifiers, and these identifiers are chosen such that: (i) Each node \( y \) (resp. edge \( y \)) in the codomain graph is assigned the union of the identifiers of all nodes (resp. edges) in the domain graph that are mapped to \( y \); (ii) The graph homomorphism is uniquely determined by this assignment. To improve readability, we represent sets by listing their elements. Additionally, we omit identifiers when doing so does not cause confusion. An example of a homomorphism of labeled graphs is shown in~\autoref{fig:preliminaries:graph_homomorphism}.
     
     \begin{figure}[!ht]
         \centering
-        \resizebox{0.45\textwidth}{!}{
+        \resizebox{0.6\textwidth}{!}{
         \begin{tikzpicture}
             \graphbox{\( G \)}{00mm}{-20mm}{45mm}{20mm}{2mm}{-5mm}{
                 \coordinate (o) at (-5mm,-8mm); 
@@ -30,45 +36,26 @@
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3\ 4};
                 \draw[->] (l1) -- (l3) node[midway,above] {a};
-                \draw[->] (l3) edge[loop above] (l3) node[midway,above] {b};
+                \draw[->] (l3) edge[loop above] node[midway,above] {b} (l3) ;
                 \draw[->] (l3) -- (l2) node[midway,above] {a};
             }      
             \node () at (48mm,-30mm) {$\rightarrow$};
         \end{tikzpicture}
     }
-    \caption{Homomorphism of labeled graphs}
+    \caption{}
     \label{fig:preliminaries:graph_homomorphism}
     \end{figure}
     In this example, the sets \(\{1\}\), \(\{2\}\), \(\{3\}\), \(\{4\}\), and \(\{3,4\}\) are represented as \(1\), \(2\), \(3\), \(4\), and \(3\ 4\), respectively. Edge identifiers are omitted.
 \end{notation} 
 
-% \begin{example}
-%     An example of a homomorphism of labeled graphs is shown below where nodes 3 and 4 of the graph $G$ are mapped to the middle node of the graph $H$.
-%     \begin{center}
-%         \resizebox{0.5\textwidth}{!}{
-%         \begin{tikzpicture}
-%             \graphbox{\( G \)}{00mm}{-20mm}{45mm}{25mm}{2mm}{-10mm}{
-%                 \coordinate (o) at (-5mm,-8mm); 
-%                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-%                 \node[draw,circle] (l4) at ($(l1)+(2,0)$) {4};
-%                 \draw[->] (l1) -- (l3) node[midway,above] {a};
-%                 \draw[->] (l3) -- (l4) node[midway,above] {b};
-%                 \draw[->] (l4) -- (l2) node[midway,above] {a};
-%             }  
-%             \graphbox{\( H \)}{52mm}{-20mm}{50mm}{25mm}{2mm}{-10mm}{
-%                 \coordinate (o) at (-5mm,-8mm); 
-%                 \node[draw,circle] (l1) at ($(o)+(-1,0mm)$) {1};
-%                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                 \node[draw,circle] (l3) at ($(l1)+(1.5,0)$) {3\ 4};
-%                 \draw[->] (l1) edge node[midway,above] {a} (l3);
-%                 \draw[->] (l3) edge [loop above] node[midway,above] {b} (l3) ;
-%                 \draw[->] (l3) -- (l2) node[midway,above] {a};
-%             }      
-%             \node () at (48mm,-30mm) {$\overset{h}{\rightarrow}$};
-%         \end{tikzpicture}
-%     }
-%     \end{center} 
-% \end{example}
 
+\begin{definition}
+    \label{def:graph:composition}
+    Let $G, G'$ and $G''$ be labeled graphs, and $f: G \to G'$ and $g: G' \to G''$ homomorphisms of labeled graphs. Their composition, denoted by $g \circ f$, is defined as the component-wise composition of their node and edge mapping functions $(g_V \circ f_V, g_E \circ f_E)$.
+\end{definition}
+
+\begin{definition}
+    \label{def:graph:unlabeled}
+    An \textbf{unlabeled multigraph} \( G \) is a labeled graph such that the labeling function is constant, i.e., there exists a label \( l \in \Sigma \) such that \( \lambda_G(e) = l \) for all edges \( e \) in $G$.
+\end{definition}
+    Throughout, we omit the labeling function when referring to an unlabeled graph, and \( a: s \to t \) denotes an arrow \( a \) from \( s \) to \( t \).
