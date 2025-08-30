@@ -1,4 +1,4 @@
-Throughout this chapter, we fix a category $\mathcal{C}$.
+Throughout this chapter, we fix a locally smallcategory $\mathcal{C}$.
 \begin{definition}[Weighted Type Graph~\cite{endrullis2024generalized_arxiv_v2}]
     \label{wf:def:weighted_type_graph}
     A \textbf{weighted type graph} is a tuple~\(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) where
@@ -14,22 +14,136 @@ Throughout this chapter, we fix a category $\mathcal{C}$.
 
 \begin{example}
     \label{wf:example:weighted_type_graph}
-     In \textbf{Graph}, a weighted type graph 
-     whose $\operatorname{dom}(\mathbb{E})$ consists of graphs with two vertices and one labeled edge between them
-     can be visualized as a graph with weighted labels and weights given as superscripts. For example, the finitary weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ with $\mathcal{S}$ as the natural arithmetic semiring $(\mathbb{N}, +_\mathbb{N}, *_\mathbb{N}, 0_\mathbb{N}, 1_\mathbb{N}, <_\mathbb{N},\leq_\mathbb{N})$ defined in~\autoref{def:weight_of_an_object_relative_to_a_type_graph},
-     $T$ as the graph illustrated below (without superscripts), $\mathbb{E}=\{e_{11a},e_{12a},e_{21a},e_{11b}\}$ as the set of morphism-rulers where 
-     $e_{uvl}$, for all edge from $u$ to $v$ labeled by $l$, has domain 
-     \tikz[baseline=-0.5ex]{
-        \node[draw,circle] (x) at (0,0) {};
-        \node[draw,circle] (y) at (1,0) {};
-        \draw[->] (x) -- (y) node[midway, above] {$l$};
-    } and image 
-    \begin{tikzpicture}[baseline=-2mm]
-        \node[draw, circle] (x) at (0,0) {$\mathrm{u}$};
-        \node[draw, circle] (y) at (1,0) {$\mathrm{v}$};
-        \draw[->]  (x) -- (y) node [midway,above] {$l$};
-    \end{tikzpicture} in the graph $T$,
-    and $w(e) = 1_\mathbb{N}$ for all $e \in \mathbb{E}$, is visualized in~\autoref{fig:weighted_type_graph_instance}. To improve readability, we omit the subscripts.
+     In \textbf{Graph}, a weighted type graph $(T,\mathbb{E}, \mathcal{S}, w)$ 
+     whose 
+     can be visualized as a graph with weighted labels and weights given as superscripts. 
+     Consider the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ where
+     
+    \begin{itemize}
+        \item $T$ is the graph shown in~\autoref{fig:weighted_type_graph_instance_dfjlsjl},
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                    \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+                        \node[draw,circle] (1) at (0,0) {};
+                        \node[draw,circle] (2) at (2,0) {};
+                        \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
+                        \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
+                        \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                        \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
+                    }
+                \end{tikzpicture}
+                \caption{}
+                \label{fig:weighted_type_graph_instance_dfjlsjl}
+            \end{figure}
+        \item $\mathcal{S}$ is the natural arithmetic semiring $(\mathbb{N}, +_\mathbb{N}, *_\mathbb{N}, 0_\mathbb{N}, 1_\mathbb{N}, <_\mathbb{N},\leq_\mathbb{N})$,
+        \item $\mathbb{E}$ consists of 4 morphism-rulers $e_{11a}, e_{12a}, e_{21a}, e_{11b}$ shown in~\autoref{fig:morphism_ruler__dfjsdlfjsadl}.
+            \begin{figure}[H]
+               \centering
+        \resizebox{0.69\textwidth}{!}{
+            \begin{tikzpicture}
+            \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \coordinate (o) at (0mm,-10mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                    \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+                    \draw[->] (l1) -- (l2) node[midway,above] {$a$};
+                } 
+                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                    \node[draw,circle] (1) at (0,0) {$1\ 2$};
+                    \node[draw,circle] (2) at (2,0) {};
+                    \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
+                    \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
+                }
+                \node () at (-5mm,-15mm) {$\overset{e_{11a}}{\to}$};
+            \end{tikzpicture}
+            } 
+
+            \resizebox{0.69\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
+                    \coordinate (o) at (0mm,-10mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                    \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+                    \draw[->] (l1) -- (l2) node[midway,above] {$b$};
+                } 
+                \graphbox{$T$}{0mm}{0mm}{40mm}{28mm}{-10mm}{-15mm}{
+                    \node[draw,circle] (1) at (0,0) {$1\ 2$};
+                    \node[draw,circle] (2) at (2,0) {};
+                    \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
+                    \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
+                }
+                \node () at (-5mm,-15mm) {$\overset{e_{11b}}{\to}$};
+            \end{tikzpicture}
+            }
+
+            \resizebox{0.69\textwidth}{!}{
+                \begin{tikzpicture}
+                    \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
+                        \coordinate (o) at (0mm,-10mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+                        \draw[->] (l1) -- (l2) node[midway,above] {$a$};
+                    } 
+                    \graphbox{$T$}{0mm}{0mm}{40mm}{26mm}{-10mm}{-15mm}{
+                        \node[draw,circle] (1) at (0,0) {$1$};
+                        \node[draw,circle] (2) at (2,0) {$2$};
+                        \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
+                        \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
+                        \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                        \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
+                    }
+                    \node () at (-5mm,-15mm) {$\overset{e_{12a}}{\to}$};
+                \end{tikzpicture}
+            }
+
+            \resizebox{0.69\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
+                    \coordinate (o) at (0mm,-10mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                    \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+                    \draw[->] (l1) -- (l2) node[midway,above] {$a$};
+                } 
+                \graphbox{$T$}{0mm}{0mm}{40mm}{28mm}{-10mm}{-15mm}{
+                    \node[draw,circle] (1) at (0,0) {2};
+                    \node[draw,circle] (2) at (2,0) {1};
+                    \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
+                    \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1) ;
+                    \draw[->] (1) edge[bend left] node[midway, above] {$a$}  (2)  ;
+                    \draw[->] (2) edge[bend left] node[midway, below] {$a$} (1)   ;
+                }
+                \node () at (-5mm,-15mm) {$\overset{e_{21a}}{\to}$};
+            \end{tikzpicture}
+            }
+                \caption{}
+                \label{fig:morphism_ruler__dfjsdlfjsadl}
+            \end{figure}
+        \item $w(e) = 1_\mathbb{N}$ for all $e \in \mathbb{E}$.
+     \end{itemize}
+    %  with 
+% $\mathbb{E}=\{e_{11a},e_{12a},e_{21a},e_{11b}\}$ as the set of morphism-rulers where 
+%      $e_{uvl}$, for all edge from $u$ to $v$ labeled by $l$, has domain 
+%      \tikz[baseline=-0.5ex]{
+%         \node[draw,circle] (x) at (0,0) {};
+%         \node[draw,circle] (y) at (1,0) {};
+%         \draw[->] (x) -- (y) node[midway, above] {$l$};
+%     } and image 
+%     \begin{tikzpicture}[baseline=-2mm]
+%         \node[draw, circle] (x) at (0,0) {$\mathrm{u}$};
+%         \node[draw, circle] (y) at (1,0) {$\mathrm{v}$};
+%         \draw[->]  (x) -- (y) node [midway,above] {$l$};
+%     \end{tikzpicture} in the graph $T$,
+    % and $w(e) = 1_\mathbb{N}$ for all $e \in \mathbb{E}$, is visualized in~\autoref{fig:weighted_type_graph_instance}. 
+    To improve readability, this weighted type graph will visualized as shown in~\autoref{fig:weighted_type_graph_instance}, where a label $l$ with superscript $n$ on an edge means that there is a morphism-ruler with weight $n$ from \raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \draw[->] (x)--(y) node[midway, above] {$l$};
+        }}} to this edge in $\mathbb{E}$.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -42,7 +156,7 @@ Throughout this chapter, we fix a category $\mathcal{C}$.
                 \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
             }
         \end{tikzpicture}
-        \caption{Weighted type graph instance}
+        \caption{}
         \label{fig:weighted_type_graph_instance}
     \end{figure}
 \end{example}
