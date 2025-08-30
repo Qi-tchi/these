@@ -1,13 +1,15 @@
+Throughout this chapter, we fix a category $\mathcal{C}$.
 \begin{definition}[Weighted Type Graph~\cite{endrullis2024generalized_arxiv_v2}]
     \label{wf:def:weighted_type_graph}
-    A \textbf{weighted type graph}~\(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) consists of:
+    A \textbf{weighted type graph} is a tuple~\(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) where
     \begin{itemize} 
-        \item an object \(T\) in $\mathcal{C}$, called \textbf{type graph},
-        \item a commutative semiring \(\mathcal{S}=(S, \oplus, \odot, 0, 1)\),
-        \item a set \(\mathbb{E}\) of morphisms with codomain $T$ in $\mathcal{C}$, called \textbf{morphism-rulers}
-        \item a weight function \(w : \mathbb{E} \to S \setminus \{0\}\) such that for all $e \in \mathbb{E}, w(e) \geq 1$.
+        \item \(T\) is an object of $\mathcal{C}$, called \textbf{type graph},
+        \item \(\mathbb{E}\) is a set of morphisms in $\mathcal{C}$ with codomain $T$; the elements of \(\mathbb{E}\) are called \textbf{morphism-rulers};
+        \item \(\mathcal{S}=(S, \oplus, \odot, 0, 1)\) is a commutative semiring,
+        \item \(w : \mathbb{E} \to S \setminus \{0\}\) is a weight function such that for all $e \in \mathbb{E}, w(e) \geq 1$
     \end{itemize}
-    \(\mathcal{T}\) is \textbf{finitary} if for every \( (e :X \to T) \in \mathbb{E}\) and every object \(G\), the sets \(\operatorname{Hom}(X, G)\) and \(\operatorname{Hom}(G, T)\) are finite.
+    % The weighted type graph \(\mathcal{T}\) is \textbf{finitary} if for every \( (e :X \to T) \in \mathbb{E}\) and every object \(G\), \(\operatorname{Hom}(X, G)\) and \(\operatorname{Hom}(G, T)\) are finite sets.
+    such that for every \( (e :X \to T) \in \mathbb{E}\) and every object \(G\), \(\operatorname{Hom}(X, G)\) and \(\operatorname{Hom}(G, T)\) are finite sets.
 \end{definition}
 
 \begin{example}
@@ -28,7 +30,7 @@
         \draw[->]  (x) -- (y) node [midway,above] {$l$};
     \end{tikzpicture} in the graph $T$,
     and $w(e) = 1_\mathbb{N}$ for all $e \in \mathbb{E}$, is visualized in~\autoref{fig:weighted_type_graph_instance}. To improve readability, we omit the subscripts.
-    \begin{figure}[!ht]
+    \begin{figure}[H]
         \centering
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{

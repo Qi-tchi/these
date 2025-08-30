@@ -1,8 +1,19 @@
 \subsection{Context Closure}
-It is crucial to ensure that the weight of any object subject to rewriting is greater than or equal to $1_\mathcal{S}$.
-% not $0_S$, because \(0_S\) behaves unpredictably in well-founded semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +, +\infty, 0_S, <, \leq)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +, -\infty, 0_S, <, \leq)\), \(0_S\) is the smallest element \(-\infty\).
-This issue is addressed by the existence of a context closure. Specifically, it ensures that every graph that can be rewritten using that rule admits some morphism into the weighted type graph, and thus the weight of the morphism, which is the sum of the weights of the morphisms into the type graph, is greater than or equal to \(1_S\) by \autoref{lem:wf:morphism_weight_geq_1_neq_0}.
 \label{sec:context_closure}
+% It is crucial to ensure that the weight of any object subject to rewriting is greater than or equal to $1_\mathcal{S}$.
+% This issue is addressed by the existence of a context closure. Specifically, it ensures that every graph that can be rewritten using that rule admits some morphism into the weighted type graph, and thus the weight of the morphism, which is the sum of the weights of the morphisms into the type graph, is greater than or equal to \(1_S\) by the following \autoref{lem:wf:morphism_weight_geq_1_neq_0}.
+
+It is crucial to ensure that the weight of any object subject to rewriting is not $0_S$, because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +)\), \(0_S\) is the smallest element \(-\infty\).
+This issue is addressed by the existence of a context closure defined as follows:
+
+% \begin{lemma}[Lemma 4.5~\cite{endrullis2024generalized_arxiv_v4}]
+% \label{lem:wf:morphism_weight_geq_1_neq_0}
+% Let $\mathcal{T} = (T, \mathbb{E}, S, \mathbf{w})$ be a finitary weighted type graph. Then
+% \begin{itemize}
+%     \item for every $\phi : G \to T$: $1_S \preceq \mathbf{w}_\mathcal{T}(\phi) \neq 0_S$;
+%     \item for every $\phi : G \to T$ and $\alpha : A \to G$: $1_S \preceq \mathbf{w}_\mathcal{T}(\phi - (\alpha \circ -)) \neq 0_S$;
+% \end{itemize}
+% \end{lemma}
 % \begin{remark} 
 %   \label{remark:semiring_0_unpredictable}
 %   The requirement \textquote{for all \(e \in \mathbb{E}, w(e) \neq 0_S\)} is necessary because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +)\), \(0_S\) is the smallest element \(-\infty\).
@@ -41,7 +52,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
     \label{wf:example:context_closure}
     Let the set of edge labels be $\Sigma = \{a,b\}$.
     Consider the DPO rule in~\autoref{ex:nwf:grsaa_rule}.
-    \begin{figure}[!ht]
+    \begin{figure}[H]
      \centering 
       \resizebox{0.7\textwidth}{!}{
       \begin{tikzpicture}
@@ -80,7 +91,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
       \label{ex:nwf:grsaa_rule}
   \end{figure}
    and the weighted type graph in \autoref{fig:nwf:weighted_type_graph_grsaa} shown below
-  \begin{figure}[!ht]
+  \begin{figure}[H]
         \centering
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
@@ -96,7 +107,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
         \label{fig:nwf:weighted_type_graph_grsaa}
     \end{figure}
    Let $c$ be the morphism shown in~\autoref{fig:nwf:context_closure_grsaa}. Since for every match $m : L \to G$, there exists a morphism $\alpha : G \to T$ such that $m \star \alpha = c$, the morphism $c$ is a context closure for the DPO rule in the type graph.
-  \begin{figure}[!ht]
+  \begin{figure}[H]
     \centering
     \resizebox{0.6\textwidth}{!}{
     \begin{tikzpicture}
@@ -136,13 +147,13 @@ This issue is addressed by the existence of a context closure. Specifically, it 
     Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \preceq),w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule.
 
     \noindent
-    The rule $\rho$ is \textbf{weakly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if 
+    The rule $\rho$ is said to be \textbf{weakly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if 
             for every $t_K : K \to T$,
                 $$ 
                   w_\mathcal{T}(\{l \star - = t_K\}) \succeq w_\mathcal{T}(\{r\star - = t_K\})$$
            
     \noindent
-    The rule $\rho$ is \textbf{uniformly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
+    The rule $\rho$ is said to be \textbf{uniformly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following conditions hold:
         \begin{itemize}
             \item[]- there exists a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$, 
             \item[]- for every $t_K : K \to T$,
@@ -167,7 +178,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
 \begin{example}
     \label{wf:example:decreasing_rule}
     Consider the DPO rule in~\autoref{ex:nwf:grsaa_rule_2}
-    \begin{figure}[!ht]
+    \begin{figure}[H]
       \centering
       \resizebox{0.7\textwidth}{!}{
       \begin{tikzpicture}
@@ -206,10 +217,10 @@ This issue is addressed by the existence of a context closure. Specifically, it 
       \label{ex:nwf:grsaa_rule_2}
   \end{figure} 
   and the weighted type graph in~\autoref{fig:nwf:weighted_type_graph_grsaa_2} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0,1,<,\leq)$.
-  \begin{figure}[!ht]
+  \begin{figure}[H]
     \centering
         \begin{tikzpicture}
-            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+            \graphbox{}{0mm}{0mm}{32mm}{26mm}{-10mm}{-14mm}{
                 \node[draw,circle] (1) at (0,0) {};
                 \node[draw,circle] (2) at (2,0) {};
                 \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
@@ -223,9 +234,9 @@ This issue is addressed by the existence of a context closure. Specifically, it 
     \end{figure}
      There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \rightarrow T$ as illustrated in~\autoref{fig:nwf:grsaa_rule_morphisms}.
 
-    \begin{figure}[!ht]
+    \begin{figure}[H]
         \centering
-        \resizebox{0.49\textwidth}{!}{
+        \resizebox{0.69\textwidth}{!}{
             \begin{tikzpicture}
             \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
@@ -246,9 +257,10 @@ This issue is addressed by the existence of a context closure. Specifically, it 
                 \node () at (-5mm,-15mm) {$\overset{t_K^{11}}{\to}$};
             \end{tikzpicture}
             } 
-            \resizebox{0.49\textwidth}{!}{
+
+            \resizebox{0.69\textwidth}{!}{
             \begin{tikzpicture}
-                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -256,7 +268,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
                 % \draw[] (l1) -- (l3) node[midway,above] {a};
                 % \draw[] (l3) -- (l2) node[midway,above] {a};
             } 
-                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                \graphbox{$T$}{0mm}{0mm}{40mm}{28mm}{-10mm}{-15mm}{
                     \node[draw,circle] (1) at (0,0) {$1$};
                     \node[draw,circle] (2) at (2,0) {2};
                     \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
@@ -267,11 +279,10 @@ This issue is addressed by the existence of a context closure. Specifically, it 
                 \node () at (-5mm,-15mm) {$\overset{t_K^{12}}{\to}$};
             \end{tikzpicture}
             }
-            \hspace{5mm}
             
-            \resizebox{0.49\textwidth}{!}{
+            \resizebox{0.69\textwidth}{!}{
             \begin{tikzpicture}
-                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -279,7 +290,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
                 % \draw[] (l1) -- (l3) node[midway,above] {a};
                 % \draw[] (l3) -- (l2) node[midway,above] {a};
             } 
-                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                \graphbox{$T$}{0mm}{0mm}{40mm}{28mm}{-10mm}{-15mm}{
                     \node[draw,circle] (1) at (0,0) {2};
                     \node[draw,circle] (2) at (2,0) {1};
                     \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
@@ -290,9 +301,10 @@ This issue is addressed by the existence of a context closure. Specifically, it 
                 \node () at (-5mm,-15mm) {$\overset{t_K^{21}}{\to}$};
             \end{tikzpicture}
             }
-            \resizebox{0.49\textwidth}{!}{
+
+            \resizebox{0.69\textwidth}{!}{
             \begin{tikzpicture}
-                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -300,7 +312,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
                 % \draw[] (l1) -- (l3) node[midway,above] {a};
                 % \draw[] (l3) -- (l2) node[midway,above] {a};
             } 
-                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                \graphbox{$T$}{0mm}{0mm}{40mm}{26mm}{-10mm}{-15mm}{
                     \node[draw,circle] (1) at (0,0) {};
                     \node[draw,circle] (2) at (2,0) {$1\ 2$};
                     \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
@@ -314,11 +326,12 @@ This issue is addressed by the existence of a context closure. Specifically, it 
         \caption{}
         \label{fig:nwf:grsaa_rule_morphisms}
       \end{figure}
-    The set $\{l \star - = t_K^{11}\}$ has two morphisms $h_{11}^1$ and $h_{11}^2$ as illustrated in~\autoref{fig:nwf:grsaa_rule_morphisms_22}.
-    \begin{figure}[!ht]
-        \resizebox{0.49\textwidth}{!}{
+    The set $\{l \star - = t_K^{11}\}$ has two morphisms $h_{11}^1$ and $h_{11}^2$ shown in~\autoref{fig:nwf:grsaa_rule_morphisms_22}.
+    \begin{figure}[H]
+        \centering
+        \resizebox{0.65\textwidth}{!}{
         \begin{tikzpicture}
-          \graphbox{\( L \)}{-50mm}{0mm}{40mm}{40mm}{2mm}{-6mm}{
+          \graphbox{\( L \)}{-50mm}{0mm}{40mm}{35mm}{2mm}{-6mm}{
             \coordinate (o) at (0mm,-10mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -326,7 +339,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
             \draw[] (l1) -- (l3) node[midway,above] {a};
             \draw[] (l3) -- (l2) node[midway,above] {a};
         } 
-            \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
+            \graphbox{$T$}{0mm}{0mm}{40mm}{35mm}{-8mm}{-17mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2$};
                 \node[draw,circle] (2) at (2,0) {3};
                 \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
@@ -337,9 +350,10 @@ This issue is addressed by the existence of a context closure. Specifically, it 
             \node () at (-5mm,-15mm) {$\overset{h_{11}^1}{\to}$};
         \end{tikzpicture}
         }
-        \resizebox{0.49\textwidth}{!}{
+
+        \resizebox{0.65\textwidth}{!}{
             \begin{tikzpicture}
-              \graphbox{\(L\)}{-50mm}{0mm}{40mm}{40mm}{2mm}{-10mm}{
+              \graphbox{\(L\)}{-50mm}{0mm}{40mm}{37mm}{2mm}{-10mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -347,7 +361,7 @@ This issue is addressed by the existence of a context closure. Specifically, it 
                 \draw[] (l1) -- (l3) node[midway,above] {a};
                 \draw[] (l3) -- (l2) node[midway,above] {a};
             } 
-                \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-20mm}{
+                \graphbox{$T$}{0mm}{0mm}{40mm}{37mm}{-8mm}{-20mm}{
                     \node[draw,circle] (1) at (0,0) {$1\ 2\ 3$};
                     \node[draw,circle] (2) at (2,0) {};
                     \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
@@ -364,14 +378,14 @@ This issue is addressed by the existence of a context closure. Specifically, it 
     Therefore, we have \begin{flalign*}
         w_\mathcal{T}(\{l \star - = t_K^{11}\})
         =&w_\mathcal{T}(\{h_{11}^1, h_{11}^2\})\\
-        \overset{\mathrm{def}}{=}&w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2) \\
+        =&w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2) \\
         =&(1^1 * 1^1) + (1^1 * 1^1)\\
         =&2
     \end{flalign*}
     The set $\{r \star - = t_K^{11}\}$ has one morphism $h_{11}^3$ as illustrated in~\autoref{wf:example:context_closure_grs_aa}.
-    \begin{figure}[!ht]
+    \begin{figure}[H]
         \centering
-        \resizebox{0.49\textwidth}{!}{
+        \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture}
           \graphbox{\( R \)}{-55mm}{0mm}{45mm}{44mm}{1mm}{-22mm}{
             \coordinate (o) at (-5mm,-3mm); 
@@ -397,12 +411,26 @@ This issue is addressed by the existence of a context closure. Specifically, it 
         \caption{}
         \label{wf:example:context_closure_grs_aa}
       \end{figure}
-    Therefore, we have: $w_\mathcal{T}(\{r \star - = t_K^{11}\}) = w_\mathcal{T}(h_{11}^3) = 1^1 * 1^1 * 1 ^ 1 = 1$. Thus, we have $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$.
+    Therefore, we have: 
+        $$w_\mathcal{T}(\{r \star - = t_K^{11}\}) = w_\mathcal{T}(h_{11}^3) = 1^1 * 1^1 * 1 ^ 1 = 1$$ 
+    The following inequality follows:
+     $$w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$$
 
-    Similarly, we can check that $w_\mathcal{T}(\{l \star - = t_K^{12}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{12}\})$,  $w_\mathcal{T}(\{l \star - = t_K^{21}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{21}\})$, and $w_\mathcal{T}(\{l \star - = t_K^{22}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{22}\})$. The rule is therefore weakly decreasing.
+    Similarly, we can check that
+        \begin{itemize}
+            \item $w_\mathcal{T}(\{l \star - = t_K^{12}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{12}\})$, and
+            \item $w_\mathcal{T}(\{l \star - = t_K^{21}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{21}\})$, and
+            \item $w_\mathcal{T}(\{l \star - = t_K^{22}\}) = 1 \geq 1 = w_\mathcal{T}(\{r \star - = t_K^{22}\})$.
+        \end{itemize}  
+     The rule is therefore weakly decreasing.
 
     There exists a context closure $c$ for the DPO rule in the weighted type graph, as shown in \autoref{wf:example:context_closure}.
-    Since we have additionally $t_K^{11} = l \star c$ and $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 > 1 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$, the rule is closure decreasing since the semiring is strictly monotonic.
+    Since we have additionally 
+        \begin{itemize}
+            \item $t_K^{11} = l \star c$, and
+            \item $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 > 1 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$.
+        \end{itemize}
+       We conclude that the rule is closure decreasing since the semiring is strictly monotonic.
 \end{example} 
  
 \subsection{Termination Criterion}

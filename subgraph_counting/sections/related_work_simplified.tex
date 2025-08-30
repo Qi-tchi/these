@@ -4,7 +4,7 @@ A comparative analysis of termination techniques for DPO graph rewriting systems
 {% local group
   \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{1}
-\begin{table}[!ht]
+\begin{table}[H]
    \centering
   \small % Reduce font size
   \caption{Applicability of termination techniques to DPO rewriting examples.
@@ -224,11 +224,11 @@ Plump~\cite{plump2018modular} later proposed a modular critical pair-based strat
 Our method complements this: while modularity reduces global complexity, each subsystem requires individual termination proofs. For example, the measure based on the indegree proposed in~\cite{plump2018modular} cannot prove the termination of~\autoref{subgraph_counting:ex_contrib_variant} due to the additional loops. Specifically, if the context graph is identical to the interface graph, then we have $3^k < 2^k+2^k+3^k$ for all $k \in \mathbb{N}$. In contrast, our method succeeds.
 Additionally, ur method can proe termination for~\cite[Examples 1 and 5]{plump2018modular} but not~\cite[Example 4]{plump2018modular}, and non-injective rules (e.g.,~\cite[Example 6]{plump2018modular}) fall outside our scope.
 
-In~\cite{LEVENDOVSZKY200787}, a terminaiton criterion for DPO rewriting with monic matches, injective rules and negative application conditions on finite typed attributed graphs is proposed. It is based on the fact that if the application of every infinite sequence of rules requires the initial graph to be infinite, then the system terminates. This technique is theoretically very interesting, but it is hard to automatically check the termination condition.
+In~\cite{levendovszky2007termination}, a terminaiton criterion for DPO rewriting with monic matches, injective rules and negative application conditions on finite typed attributed graphs is proposed. It is based on the fact that if the application of every infinite sequence of rules requires the initial graph to be infinite, then the system terminates. This technique is theoretically very interesting, but it is hard to automatically check the termination condition.
 
 ~\cite{bottoni2005termination} presents a termination criterion for DPO and SPO rewriting on high-level replacement units. The high-level replacement units that they consider are rewriting systems with very restrictive external control mechanisms. The method relies on a mesearing function satisfying a very strong constrainte, and the instance of such a mesearing function proposed is node and edge counting, which is subsumed by our method in the setting of DPO rewriting with injective rules.
 
-~\cite{Bottoni2010_termination} presents a criterion for termination of DPO rewriting with monic matches, injective rules and negative application conditions, based on the construction of a labeled transition system.
+~\cite{bottoni2010atermination} presents a criterion for termination of DPO rewriting with monic matches, injective rules and negative application conditions, based on the construction of a labeled transition system.
 whose states represent overlaps between the negative application condition and the right hand side that can give rise to cycles.
 
 Levendovszky et al.~\cite{levendovszky2007termination} propose a termination criterion for DPO rewriting (monic matches, injective rules, negative application condition), though automated verification is hard as explained in~\cite[\textsection 6]{levendovszky2007termination}. 

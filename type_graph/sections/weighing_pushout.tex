@@ -1,96 +1,63 @@
 Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a finitary weighted type graph over a well-founded commutative semiring such that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. By \autoref{rem:wf:weight_of_object_geq_1}, for all objects \( G \) subject to rewriting, \(w_\mathcal{T}(G) \succeq_S 1_\mathcal{S} \).
-
 The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succ_S w_\mathcal{T}(H)\), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succeq_S w_\mathcal{T}(H) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
-In this section, we recall the concepts of traceability of objects (Definition \ref{def:traceability}) and relative monicity of morphisms (\autoref{def:relative_monicity}), which are used to define the notion of weighable pushout squares (\autoref{def:weighable}). Using the notion of a weighable pushout square, we can bound the weight of the pushout object as explained below.
+In this section, we first introduce the notions of \emph{morphism measurement excluding morphisms in a set}(\autoref{def:weight_excluding_pre}) and \emph{weight of a morphism relative to a morphism-ruler set excluding some specific morphisms}(\autoref{def:weight_excluding}),
+to reduce notational overhead (following Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}).
+We then recall the notions of traceability of objects (\autoref{def:traceability}) and relative monicity of morphisms (\autoref{def:relative_monicity}),
+which are used to define the notion of weighable pushout squares (\autoref{def:weighable}). With the notion of a weighable pushout square, we recall a result from Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} which shows that the weight of the pushout object of a weighable pushout square can be bounded by the weights of the other objects in the pushout square.
 
-\noindent
-\begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
-    Consider a DPO diagram (illustrated on the right) that defines a rewriting step \( G \Rightarrow_{\rho,\mathfrak{F}} H \). 
-    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in \autoref{def:weighable}), then, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
-\end{minipage}%
-\hfill
-\begin{minipage}{0.29\textwidth}
-    \hfill
-    \resizebox{\textwidth}{!}{
-    \begin{tikzpicture}
-        % [node distance=11mm]
-        \node (I) at (0,0) {$K$};
-        \node (L) at (-2,0) {$L$};
-        \node (R) at (2,0) {$R$};
-        \node (G) at (-2,-2) {$G$};
-        \node (C) at (0,-2) {$C$};
-        \node (H) at (2,-2) {$H$};
-        \draw [->] (I) to  node [midway,below] {$l$} (L);
-        \draw [->] (I) to  node [midway,below] {$r$} (R);
-        \draw [->] (L) to node [midway,right] {$m$} (G);
-        \draw [->] (I) to node [midway,right] {$u$} (C);
-        \draw [->] (R) to node [midway,left] {$m'$} (H);
-        \draw [->] (C) to node [midway,above] {$l'$} (G);
-        \draw [->] (C) to node [midway,above] {$r'$} (H);
-        \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-        \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-      \end{tikzpicture}
-    }
-\end{minipage}
+For any set \( \Gamma \subseteq \operatorname{Hom}(A, G) \),
+    we define $\Gamma'$ as the set consisting of all morphisms \( \iota : X \to G \) admitting morphisms \( \zeta \colon X \to A \) and \( \alpha \in \Gamma \) such that the diagram shown in~\autoref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler_dfsdfsdsa} is commutative.  Formally,  
+    \[
+    \Gamma' \overset{\operatorname{def}}{=} \left\{ \iota \in \operatorname{Hom}(X, G)~\middle|~\exists \alpha \in \Gamma,~\exists \zeta:X \to A,~\zeta \star \alpha = \iota \right\}. 
+    \]
+    \begin{figure}[H]
+    \centering
+        \begin{tikzpicture}[scale=0.8]
+            \node (X) at (0,0) {\(X \)};
+            \node (A) at (2,1) {\( A \)};
+            \node (G) at (4,0) {\( G \)}; 
+            \draw[->] (X) -- (A) node[midway, above] {\( \zeta \)};
+            \draw[ ->] (X) -- (G) node[midway, below] {\( \iota \)};
+            \draw[->] (A) -- (G) node[midway, above] {\( \alpha \)};
+            % \node at (2,0.5) {\( = \)};
+            \node (T) at (2,-1) {\( T \)};
+            \draw[ ->] (X) -- (T) node[midway, below ] {$e$};
+            \draw[<-] (T) -- (G) node[midway, below] {$h$};
+        \end{tikzpicture}
+    \caption{}
+    \label{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler_dfsdfsdsa}
+\end{figure} 
+    
 
-% \begin{flalign*}
-%     w_\mathcal{T}(G) 
-%         & \overset{def}{=} \bigoplus_{t_G: G \rightarrow T} w_\mathcal{T}(t_G) 
-%         \overset{def}{=} \bigoplus_{t_K: K \rightarrow T} \bigoplus_{\substack{t_G: G \rightarrow T\\ t_K = l \star m \star t_G}} w_\mathcal{T}(t_G) \\
-%     w_\mathcal{T}(H) 
-%         &\overset{def}{=} \bigoplus_{t_H: H \rightarrow T} w_\mathcal{T}(t_H) 
-%          \overset{def}{=} \bigoplus_{t_K: K \rightarrow T} \bigoplus_{\substack{t_H: H \rightarrow T\\ t_K = r \star m' \star t_H}} w_\mathcal{T}(t_H)
-% \end{flalign*}
-
-% If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in \autoref{def:weighable}), then, by \cite[Lemma 5.10]{endrullis2024generalized_lmcs}, we derive the following assertions:
-% \begin{flalign*}
-%     w_\mathcal{T}(G) 
-%         & = \bigoplus_{t_K: K \rightarrow T} \bigoplus_{\substack{t_G: G \rightarrow T\\ t_K = l \star m \star t_G}} w_\mathcal{T}(m \star t_G) \odot (l' \star t_G - u) \\
-%     w_\mathcal{T}(H) 
-%         &  \preceq \bigoplus_{t_K: K \rightarrow T} \bigoplus_{\substack{t_H: H \rightarrow T\\ t_K = r \star m' \star t_H}} w_\mathcal{T}(m' \star t_H) \odot (r' \star t_H - u)
-% \end{flalign*}
-% By \cite[Theorem 5.12]{endrullis2024generalized_lmcs}, it follows:
-% \begin{flalign*}
-%     w_\mathcal{T}(G) 
-%         & = \bigoplus_{t_K: K \rightarrow T} 
-%         \bigoplus_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
-%         \bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
-%             w_\mathcal{T}(t_L) \odot w_\mathcal{T}(t_C - u) \\
-%     w_\mathcal{T}(H) 
-%         &  \preceq \bigoplus_{t_K: K \rightarrow T} 
-%         \bigoplus_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
-%         \bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
-%             w_\mathcal{T}(t_R) \odot w_\mathcal{T}(t_C - u) \\
-% \end{flalign*}
-% By \cite[Theorem 5.13]{endrullis2024generalized_lmcs}, we have the following assertions: 
-\begin{flalign*}
-    w_\mathcal{T}(G) 
-        & = \bigoplus_{t_K: K \rightarrow T} 
-        \left ( \bigoplus_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
-          w_\mathcal{T}(t_C - u) \right ) 
-          \odot
-        \left (\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
-        w_\mathcal{T}(t_L) \right )
-         \\
-    w_\mathcal{T}(H) 
-        &  \preceq \bigoplus_{t_K: K \rightarrow T} 
-        \left ( \bigoplus_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
-         w_\mathcal{T}(t_C - u) \right ) 
-         \odot 
-         \left ( \bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
-            w_\mathcal{T}(t_R) \right ) \\
-\end{flalign*}
-According to these results, a termination criterion will be established in~\textsection~\ref{wf:sec:termination} by comparing the weights 
-$\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
-        w_\mathcal{T}(t_L)$ and 
-$\bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}} 
-        w_\mathcal{T}(t_R)$ for every $t_K: K \rightarrow T$.
+\begin{definition}[Morphism measurement excluding morphisms in a set]
+    \label{def:weight_excluding_pre}
+    Let \( \Gamma \subseteq \operatorname{Hom}(A, G) \).
+    The \emph{measurement} of a morphism \( h:G \to T \) relative to a morphism-ruler \( e: X \to T \), excluding morphisms in \( \Gamma' \), denoted by $m_e(h-\Gamma)$, is defined as:
+    \[
+        m_e(h-\Gamma) \overset{\operatorname{def}}{=} 
+            \card{\set{- \star h = e} \setminus \Gamma'}
+    \]
+\end{definition}
+\begin{definition}
+    \label{def:weight_excluding}
+    weight of a morphism $h: G \to T$ relative to a set $\mathbb{E}$ of morphism-rulers excluding morphisms
+    Let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a finitary weighted type graph. The \textbf{weight of a morphism $h: G \to T$ relative to a set $\mathbb{E}$ of morphism-rulers excluding morphisms in \( \Gamma' \)} is defined as the semiring product of $w(e)^{w_e(h-\Gamma)}$ for $e \in \mathbb{E}$:
+    \[ 
+        w_\mathcal{T}(h-\Gamma) \overset{\operatorname{def}}{=} \underset{e \in \mathbb{E}}{\bigodot} 
+    w(e)^{m_e(h-\Gamma)}
+            \]
+\end{definition}
 
 \begin{definition}[Traceability~\cite{endrullis2024generalized_arxiv_v2}]
     \label{def:traceability}
-An object $X \in \mathcal{C}$ is called \emph{traceable} along a class of pushout squares $\Delta$ if for every diagram $\delta$ in $\Delta$, shown in~\autoref{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}
-\begin{figure}
+An object $X$ is called \emph{traceable} along a class of pushout squares $\Delta$ if for every diagram $\delta$ in $\Delta$, shown in~\autoref{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}        
+ the following hold
+    \begin{enumerate}[label=(\alph*)]
+        \item\label{traceable:a} there exists a morphism $f : X \to B$ such that $h = f \star \beta'$, or
+        \item\label{traceable:b} there exists a morphism $g : X \to C$ such that $h = g \star \alpha'$.
+    \end{enumerate}
+    \begin{figure}[H]
     \centering
      \resizebox{0.4\textwidth}{!}{
     \begin{tikzpicture}
@@ -112,11 +79,6 @@ An object $X \in \mathcal{C}$ is called \emph{traceable} along a class of pushou
     \caption{}
     \label{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}
 \end{figure}
- the following hold
-    \begin{enumerate}[label=(\alph*)]
-        \item\label{traceable:a} there exists a morphism $f : X \to B$ such that $h = f \star \beta'$, or
-        \item\label{traceable:b} there exists a morphism $g : X \to C$ such that $h = g \star \alpha'$.
-    \end{enumerate}
     If additionally, 
     whenever \ref{traceable:a} and \ref {traceable:b} hold,
     \begin{enumerate}[label=(\alph*),resume]
@@ -152,7 +114,7 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
 
 \begin{example}
     Consider the DPO diagram shown in~\autoref{fig:nwf:two_pushout_squares}.
-    \begin{figure}
+    \begin{figure}[H]
         \centering 
       \resizebox{0.7\textwidth}{!}{
       \begin{tikzpicture}
@@ -264,7 +226,7 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
 %        \draw[->]  (x) -- (y) node [midway,above] {$c$};
 %        \draw[->]  (y) -- (z) node [midway,above] {$c$};
 %    \end{tikzpicture} is in the pushout object $G$ but in neither $L$ nor $C$.
-   \begin{figure}
+   \begin{figure}[H]
     \centering
     \resizebox{0.7\textwidth}{!}{
     \begin{tikzpicture}
@@ -325,7 +287,7 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
             % \def\x{10};
             % \def\y{-1.1};
             \node[draw,circle] (1) at (0,-1) {x y z};
-            \draw[->] (1) edge[loop below]  node[midway, below] {} node[midway, above] {$c$} (1);
+            \draw[->] (1) edge[loop below]  node[midway, below] {} node[midway, below] {$c$} (1);
             \draw[->] (1) edge[loop above]  node[midway, below] {} node[midway, above] {$c$} (1);
         }
 
@@ -342,7 +304,7 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
 The following concepts are restricted versions of the concept of monicity.
 \begin{definition}[Relative Monicity~\cite{endrullis2024generalized_arxiv_v2}]
     \label{def:relative_monicity}
-    Let $A,B,C$ and $X$ be objects, $\Gamma$ a set of objects, $S$ a set of morphisms to $A$ and $u:C\to A$ a morphism. A morphism $f : A \to B$ is called 
+    Let $A,B,C$ and $X$ be objects, $\Gamma$ a set of objects, $S$ a set of morphisms to $A$ and $u:C\to A$ a morphism. A morphism $f : A \to B$ is said to be
     \begin{enumerate}[label=(\roman*)] 
         \item 
             \emph{monic for $S$} 
@@ -370,7 +332,7 @@ The following concepts are restricted versions of the concept of monicity.
     \noindent
     \begin{minipage}{0.7\textwidth}
         Let  $\mathcal{T} = (T,\mathbb{E}, S, w)$ be a finitary weighted type graph.
-        Consider the pushout square $\delta$ shown on the right. We say that $\delta$ is
+        Consider the pushout square $\delta$ shown on the right. We say that $\delta$ is said to be
          \begin{enumerate}[label=(\alph*)]
         \item \emph{weighable} with $\mathcal{T}$ if the following hold:
             \begin{enumerate}[label=(\roman*)]
@@ -399,3 +361,54 @@ The following concepts are restricted versions of the concept of monicity.
    
 \end{definition}
 
+    Consider a DPO diagram shown in~\autoref{fig:nwf:dpo_diagram_sdfslafgjsl} that defines a rewriting step \( G \Rightarrow_{\rho,\mathfrak{F}} H \). 
+    \begin{figure}[H]
+        \centering
+        \resizebox{0.4\textwidth}{!}{
+        \begin{tikzpicture}
+            % [node distance=11mm]
+            \node (I) at (0,0) {$K$};
+            \node (L) at (-2,0) {$L$};
+            \node (R) at (2,0) {$R$};
+            \node (G) at (-2,-2) {$G$};
+            \node (C) at (0,-2) {$C$};
+            \node (H) at (2,-2) {$H$};
+            \draw [->] (I) to  node [midway,below] {$l$} (L);
+            \draw [->] (I) to  node [midway,below] {$r$} (R);
+            \draw [->] (L) to node [midway,right] {$m$} (G);
+            \draw [->] (I) to node [midway,right] {$u$} (C);
+            \draw [->] (R) to node [midway,left] {$m'$} (H);
+            \draw [->] (C) to node [midway,above] {$l'$} (G);
+            \draw [->] (C) to node [midway,above] {$r'$} (H);
+            \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+            \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+        \end{tikzpicture}
+    } 
+    \caption{}
+    \label{fig:nwf:dpo_diagram_sdfslafgjsl}
+\end{figure}
+    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in \autoref{def:weighable}), then, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
+
+\begin{flalign*}
+    w_\mathcal{T}(G) 
+        & = \bigoplus_{t_K: K \rightarrow T} 
+        \left ( \bigoplus_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
+          w_\mathcal{T}(t_C - u) \right ) 
+          \odot
+        \left (\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
+        w_\mathcal{T}(t_L) \right )
+         \\
+    w_\mathcal{T}(H) 
+        &  \preceq \bigoplus_{t_K: K \rightarrow T} 
+        \left ( \bigoplus_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
+         w_\mathcal{T}(t_C - u) \right ) 
+         \odot 
+         \left ( \bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
+            w_\mathcal{T}(t_R) \right ) \\
+\end{flalign*}
+According to these results, in \textsection\ref{wf:sec:termination}, we establish a termination criterion by, for every $t_K: K \rightarrow T$, comparing
+$\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
+        w_\mathcal{T}(t_L)$ and 
+$\bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}} 
+        w_\mathcal{T}(t_R)$ 
+Before doing so, we introduce the concept of context closure in the following section. 

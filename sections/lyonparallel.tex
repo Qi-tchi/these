@@ -7,7 +7,7 @@ It implements the type graph method presented in~\cite{endrullis2024generalized_
 LyonParallel implements the notions of DPO rewriting systems on finite directed, edge-labelled multigraphs introduced in Chapter~\ref{chap:preliminaries}. Using the \texttt{REPL} (Read-Eval-Print Loop)\textemdash an interactive environment that reads user commands, evaluates them, prints results, and waits for the next input\textemdash users can select a set of rules encoded in the tool, then choose a method to partition the rules of the system into two sets of rules $\mathcal{A}$ and $\mathcal{B}$ such that $\mathcal{A}$ is relative terminating with respect to $\mathcal{B}$. If such a partition is found, the tool replaces the current rule set with \(\mathcal{B}\) and a new iteration begins; otherwise users may try a different method. When the rule set becomes empty, the termination of the original system is proven.
 \section{DPO graph rewriting systems on finite directed edge-labeled multigraphs}
 \label{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}
-A finite \textbf{unlabeled graph} is encoded in the tool as a structure with 4 fields: a list of nodes, a list of edges, a mapping that associates to each edge a source node, a mapping that associates to each edge a target node. 
+A finite unlabeled graph is encoded in the tool as a structure with 4 fields: a list of nodes, a list of edges, a mapping that associates to each edge a source node, a mapping that associates to each edge a target node. 
 The representation of a labeled graph is constructed using a construction function \colorbox{Ivory2}{$MGraph.fromList$} given 2 parameters. The first parameter is a list of integers representing the nodes of the graph. The second parameter is a list of 4-tuples representing the labeled edges of the graph, where each tuple \colorbox{Ivory2}{$(s,lab,t,id)$} of type \colorbox{Ivory2}{$\textit{int}\times \textit{string}\times \textit{int}\times \textit{int}$} stands for an edge with source node $s$, label $lab$, target node $t$, and identifier $id$.
 
 For example, consider graphs $K$,$L$, and $R$ shown in~\autoref{fig:implemented:grsaa_0}.
@@ -206,13 +206,13 @@ Instances of ruler-graphs can be defined in the file \colorbox{Ivory2}{$lib/rule
 
 \section{Installation and Execution of LyonParallel}
 \label{lyonparallel:sec:installation}
-This section shows the installation process using \colorbox{Ivory2}{$OPAM$}\textemdash a package manager for OCaml. To install LyonParallel, one needs to have \colorbox{Ivory2}{$OPAM$} installed on one's system, then 
+This section shows the installation process using \colorbox{Ivory2}{OPAM}\textemdash a package manager for OCaml. To install LyonParallel, one needs to have \colorbox{Ivory2}{OPAM} installed on one's system, then 
 run the following command
 \begin{minted}[style=bw]{bash}
     >> opam switch create lyonParallel 5.2.1
 \end{minted}
     % \colorbox{Ivory2}{opam switch create lyonParallel 5.2.1}
- and follow the instructions to create and switch to a new \colorbox{Ivory2}{$OPAM$} switch. 
+ and follow the instructions to create and switch to a new \colorbox{Ivory2}{OPAM} switch. 
  The dependencies of LyonParallel are listed in the file \colorbox{Ivory2}{$LyonParallel.opam$} in the root directory of the project. To install these dependencies, run the following command:
 \begin{minted}{bash}
     >> opam install .
@@ -355,9 +355,13 @@ The rule is predefined in the tool and can be selected with the REPL command:
  \begin{minted}[style=bw]{bash}
    >> select_system_by_name bruggink14_ex1
  \end{minted}
-To analyse the system's relative termination using the morphism counting method with a forbidden pattern (see Chapter~\ref{chap:antipattern}) with the ruler-graph shown in~\autoref{fig:implemented:ruler_graph_representation}, run:
+The ruler-graph shown in~\autoref{fig:implemented:ruler_graph_representation} is predefined and can be selected with the REPL command:
  \begin{minted}[style=bw]{bash}
-   >> subgraph_counting_one_forbidden_context aa_not_in_aca
+   >> select_ruler_graph aa_not_in_aca
+ \end{minted}
+To analyse the system's relative termination using the morphism counting method with a forbidden pattern (see Chapter~\ref{chap:antipattern}) with the ruler-graph, run:
+ \begin{minted}[style=bw]{bash}
+   >> subgraph_counting_one_forbidden_context
 \end{minted}
 The following command summarizes the result of the termination analysis.
  \begin{minted}[style=bw]{bash}
@@ -424,8 +428,9 @@ is an instance of the following command pattern
 \begin{minted}[style=bw]{bash}
     type_graph [index] [timeout] [semiring_1 semiring_2 ...]
 \end{minted}
-From the command pattern, we can see that more semirings can be selected. In fact, there are 6 semirings available in the tool, which can be selected by adding flags in the set $\set{a,t,n,A,T,N}$
-where $A$, $T$, $N$ stand for the arctic, tropical, and arithmetic semirings over the (extended) natural numbers;  $a$, $t$, $n$ stand for the arctic, tropical, and arithmetic semirings over the (extended) real numbers. For example, we can have the following command which launch the type graph method with the timeout set to 30 seconds and all 6 available semirings.
+From the command pattern, we can see that more semirings can be selected. In fact, there are 6 semirings available in the tool, which can be selected by adding flags in the set $\set{a,t,n,A,T,N}$ where $A$, $T$, $N$ stand for the arctic, tropical, and arithmetic semirings over the (extended) natural numbers;  $a$, $t$, $n$ stand for the arctic, tropical, and arithmetic semirings over the (extended) real numbers. If multiple semirings are selected, the tool runs the type-graph method in parallel for each chosen semiring. When some rules are removed the tool automatically starts a new iteration on the remaining rules using the same selected semirings. 
+
+For example, we can have the following command which launch the type graph method with the timeout set to 30 seconds and all 6 available semirings.
 \begin{minted}[style=bw]{bash} 
     >> type_graph 30 a n t A N T
 \end{minted}
@@ -439,4 +444,4 @@ Type graph method with different semirings will be launched parallelly and coope
 
 \section{Availability and license}
 
-The implementation described in this paper is available at \url{https://github.com/Qi-tchi/LyonParallel/tree/thesis}. The project is distributed under the LGPL-2.1 License; see the repository's \texttt{LICENSE} file for the full license text.
+LyonParallel is available at \url{https://github.com/Qi-tchi/LyonParallel/tree/thesis}. The project is distributed under the LGPL-2.1 License.
