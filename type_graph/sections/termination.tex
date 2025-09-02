@@ -25,7 +25,7 @@ This issue is addressed by the existence of a context closure defined as follows
 \begin{minipage}{0.65\textwidth}
     Let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a finitary weighted type graph, \(\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R ) \) a DPO rewriting rule and $\mathfrak{F}$ a rewriting framework. 
     A \textbf{context closure} for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$ is a morphism $c:L \rightarrow T$ such that for every DPO diagram in $\mathfrak{F}(\rho)$ (shown on the right) 
-    there exists $\alpha : G \rightarrow T$ such that $m \star \alpha = c$.
+    there is $\alpha : G \rightarrow T$ such that $m \star \alpha = c$.
 \end{minipage}
 \begin{minipage}{0.35\textwidth}
     \begin{center}
@@ -61,16 +61,16 @@ This issue is addressed by the existence of a context closure defined as follows
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-              \draw[->] (l1) -- (l3) node[midway,above] {a};
-              \draw[->] (l3) -- (l2) node[midway,above] {a};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }     
           \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
               % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-              % \draw[->] (l1) -- (l3) node[midway,above] {a};
-              % \draw[->] (l3) -- (l2) node[midway,above] {a};
+              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
           \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (-5mm,-3mm); 
@@ -78,9 +78,9 @@ This issue is addressed by the existence of a context closure defined as follows
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
               \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-              \draw[->] (l1) -- (l3) node[midway,above] {a};
-              \draw[->] (l3) -- (l4) node[midway,above] {b};
-              \draw[->] (l4) -- (l2) node[midway,above] {a};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+              \draw[->] (l4) -- (l2) node[midway,above] {$a$};
           }    
           \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
@@ -106,7 +106,7 @@ This issue is addressed by the existence of a context closure defined as follows
         \caption{}
         \label{fig:nwf:weighted_type_graph_grsaa}
     \end{figure}
-   Let $c$ be the morphism shown in~\autoref{fig:nwf:context_closure_grsaa}. Since for every match $m : L \to G$, there exists a morphism $\alpha : G \to T$ such that $m \star \alpha = c$, the morphism $c$ is a context closure for the DPO rule in the type graph.
+   Let $c$ be the morphism shown in~\autoref{fig:nwf:context_closure_grsaa}. Since for every match $m : L \to G$, there is a morphism $\alpha : G \to T$ such that $m \star \alpha = c$, the morphism $c$ is a context closure for the DPO rule in the type graph.
   \begin{figure}[H]
     \centering
     \resizebox{0.6\textwidth}{!}{
@@ -116,8 +116,8 @@ This issue is addressed by the existence of a context closure defined as follows
         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-        \draw[] (l1) -- (l3) node[midway,above] {a}; 
-        \draw[] (l3) -- (l2) node[midway,above] {a};
+        \draw[] (l1) -- (l3) node[midway,above] {$a$}; 
+        \draw[] (l3) -- (l2) node[midway,above] {$a$};
     } 
         \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
             % \node[draw,circle] (1) at (0,0) {$1\ 2\ 3$};
@@ -155,7 +155,7 @@ This issue is addressed by the existence of a context closure defined as follows
     \noindent
     The rule $\rho$ is said to be \textbf{uniformly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following conditions hold:
         \begin{itemize}
-            \item[]- there exists a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$, 
+            \item[]- there is a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$, 
             \item[]- for every $t_K : K \to T$,
             \begin{itemize}
                 \item[] $\bullet$ $\{l \star - = t_K\} = \emptyset = \{r \star - = t_K\}$, or
@@ -169,7 +169,7 @@ This issue is addressed by the existence of a context closure defined as follows
             \textbf{closure decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
             \begin{itemize}
                 \item[]- $\rho$ is weakly decreasing,
-                \item[]- there exists a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$,
+                \item[]- there is a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$,
                 \item[]- $w_\mathcal{T}(\{l \star - = t_K\})  
                 \succ  w_\mathcal{T}(\{r \star - = t_K\})$ for $t_K = l \star c_\rho$.
             \end{itemize}
@@ -187,16 +187,16 @@ This issue is addressed by the existence of a context closure defined as follows
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-              \draw[->] (l1) -- (l3) node[midway,above] {a};
-              \draw[->] (l3) -- (l2) node[midway,above] {a};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }     
           \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
               % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-              % \draw[->] (l1) -- (l3) node[midway,above] {a};
-              % \draw[->] (l3) -- (l2) node[midway,above] {a};
+              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
           \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (-5mm,-3mm); 
@@ -204,9 +204,9 @@ This issue is addressed by the existence of a context closure defined as follows
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
               \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-              \draw[->] (l1) -- (l3) node[midway,above] {a};
-              \draw[->] (l3) -- (l4) node[midway,above] {b};
-              \draw[->] (l4) -- (l2) node[midway,above] {a};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+              \draw[->] (l4) -- (l2) node[midway,above] {$a$};
           }    
           \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
@@ -232,19 +232,19 @@ This issue is addressed by the existence of a context closure defined as follows
         \caption{}
         \label{fig:nwf:weighted_type_graph_grsaa_2}
     \end{figure}
-     There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \rightarrow T$ as illustrated in~\autoref{fig:nwf:grsaa_rule_morphisms}.
+     There are 4 morphisms $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}$ from $K$ to $T$ shown in~\autoref{fig:nwf:grsaa_rule_morphisms}.
 
     \begin{figure}[H]
         \centering
-        \resizebox{0.69\textwidth}{!}{
+        \resizebox{0.6\textwidth}{!}{
             \begin{tikzpicture}
             \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                % \draw[] (l1) -- (l3) node[midway,above] {a};
-                % \draw[] (l3) -- (l2) node[midway,above] {a};
+                % \draw[] (l1) -- (l3) node[midway,above] {$a$};
+                % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
                 \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
                     \node[draw,circle] (1) at (0,0) {$1\ 2$};
@@ -258,15 +258,15 @@ This issue is addressed by the existence of a context closure defined as follows
             \end{tikzpicture}
             } 
 
-            \resizebox{0.69\textwidth}{!}{
+            \resizebox{0.6\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                % \draw[] (l1) -- (l3) node[midway,above] {a};
-                % \draw[] (l3) -- (l2) node[midway,above] {a};
+                % \draw[] (l1) -- (l3) node[midway,above] {$a$};
+                % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
                 \graphbox{$T$}{0mm}{0mm}{40mm}{28mm}{-10mm}{-15mm}{
                     \node[draw,circle] (1) at (0,0) {$1$};
@@ -280,15 +280,15 @@ This issue is addressed by the existence of a context closure defined as follows
             \end{tikzpicture}
             }
             
-            \resizebox{0.69\textwidth}{!}{
+            \resizebox{0.6\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                % \draw[] (l1) -- (l3) node[midway,above] {a};
-                % \draw[] (l3) -- (l2) node[midway,above] {a};
+                % \draw[] (l1) -- (l3) node[midway,above] {$a$};
+                % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
                 \graphbox{$T$}{0mm}{0mm}{40mm}{28mm}{-10mm}{-15mm}{
                     \node[draw,circle] (1) at (0,0) {2};
@@ -302,15 +302,15 @@ This issue is addressed by the existence of a context closure defined as follows
             \end{tikzpicture}
             }
 
-            \resizebox{0.69\textwidth}{!}{
+            \resizebox{0.6\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                % \draw[] (l1) -- (l3) node[midway,above] {a};
-                % \draw[] (l3) -- (l2) node[midway,above] {a};
+                % \draw[] (l1) -- (l3) node[midway,above] {$a$};
+                % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
                 \graphbox{$T$}{0mm}{0mm}{40mm}{26mm}{-10mm}{-15mm}{
                     \node[draw,circle] (1) at (0,0) {};
@@ -329,15 +329,15 @@ This issue is addressed by the existence of a context closure defined as follows
     The set $\{l \star - = t_K^{11}\}$ has two morphisms $h_{11}^1$ and $h_{11}^2$ shown in~\autoref{fig:nwf:grsaa_rule_morphisms_22}.
     \begin{figure}[H]
         \centering
-        \resizebox{0.65\textwidth}{!}{
+        \resizebox{0.6\textwidth}{!}{
         \begin{tikzpicture}
           \graphbox{\( L \)}{-50mm}{0mm}{40mm}{35mm}{2mm}{-6mm}{
             \coordinate (o) at (0mm,-10mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-            \draw[] (l1) -- (l3) node[midway,above] {a};
-            \draw[] (l3) -- (l2) node[midway,above] {a};
+            \draw[] (l1) -- (l3) node[midway,above] {$a$};
+            \draw[] (l3) -- (l2) node[midway,above] {$a$};
         } 
             \graphbox{$T$}{0mm}{0mm}{40mm}{35mm}{-8mm}{-17mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2$};
@@ -351,15 +351,15 @@ This issue is addressed by the existence of a context closure defined as follows
         \end{tikzpicture}
         }
 
-        \resizebox{0.65\textwidth}{!}{
+        \resizebox{0.6\textwidth}{!}{
             \begin{tikzpicture}
               \graphbox{\(L\)}{-50mm}{0mm}{40mm}{37mm}{2mm}{-10mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                \draw[] (l1) -- (l3) node[midway,above] {a};
-                \draw[] (l3) -- (l2) node[midway,above] {a};
+                \draw[] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
                 \graphbox{$T$}{0mm}{0mm}{40mm}{37mm}{-8mm}{-20mm}{
                     \node[draw,circle] (1) at (0,0) {$1\ 2\ 3$};
@@ -393,9 +393,9 @@ This issue is addressed by the existence of a context closure defined as follows
             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
             \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-            \draw[->] (l1) -- (l3) node[midway,above] {a};
-            \draw[->] (l3) -- (l4) node[midway,above] {b};
-            \draw[->] (l4) -- (l2) node[midway,above] {a};
+            \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+            \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+            \draw[->] (l4) -- (l2) node[midway,above] {$a$};
         } 
             \graphbox{$T$}{0mm}{0mm}{40mm}{44mm}{-10mm}{-22mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2\ 4\ 5$};
@@ -424,7 +424,7 @@ This issue is addressed by the existence of a context closure defined as follows
         \end{itemize}  
      The rule is therefore weakly decreasing.
 
-    There exists a context closure $c$ for the DPO rule in the weighted type graph, as shown in \autoref{wf:example:context_closure}.
+    There is a context closure $c$ for the DPO rule in the weighted type graph, as shown in \autoref{wf:example:context_closure}.
     Since we have additionally 
         \begin{itemize}
             \item $t_K^{11} = l \star c$, and
@@ -439,7 +439,7 @@ This issue is addressed by the existence of a context closure defined as follows
     \label{wf:thm:termination_grs}
     Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules, $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \leq), w)$ a finitary weighted type graph and $\mathfrak{F}$ a DPO rewriting framework such that
 
-        \begin{itemize}
+        \begin{itemize} 
             \item \(\operatorname{left}(\Delta)\) is weighable with \(\mathcal{T}\),
             \item \(\operatorname{right}(\Delta)\) is bounded above by \(\mathcal{T}\). 
         \end{itemize}

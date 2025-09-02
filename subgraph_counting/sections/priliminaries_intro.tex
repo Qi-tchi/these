@@ -85,10 +85,10 @@ The set of existing nodes, $V(G) \setminus V_{\nexists}(G)$, is denoted by $V_\e
                 % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
                 \node[draw,circle,dashed,red] (l3) at ($(l1)+(1,0)$) {2};
                 \node[draw,circle] (l4) at ($(l1)+(2,0)$) {3};
-                \draw[->] (l1) edge[bend right]  node[midway,below] {a} (l3);
-                \draw[->] (l1) edge[bend left] node[midway,above] {a}  (l3);
-                \draw[->] (l3) -- (l4) node[midway,above] {b};
-                % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                \draw[->] (l1) edge[bend right]  node[midway,below] {$a$} (l3);
+                \draw[->] (l1) edge[bend left] node[midway,above] {$a$}  (l3);
+                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
             }  
         \end{tikzpicture} 
     }
@@ -139,9 +139,9 @@ An example is illustrated in~\autoref{fig:subgraph_counting:union_of_pregraphs}.
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                 \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                \draw[->] (l1) -- (l3) node[midway,above] {a};
-                \draw[->] (l3) -- (l4) node[midway,above] {b};
-                \draw[->] (l4) -- (l2) node[midway,above] {a};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
             }    
         
             \graphbox{\( C  \)}{0mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
@@ -149,10 +149,10 @@ An example is illustrated in~\autoref{fig:subgraph_counting:union_of_pregraphs}.
                 \node[draw,circle,dashed] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle,dashed] (l2) at ($(l1)+(2,0)$) {2};
                 \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-                \draw[->] (l2) -- (l4) node[midway,right] {a};
-                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \draw[->] (l2) -- (l4) node[midway,right] {$a$};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                 % \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                % \draw[<-] (l1) -- (l6) node[midway,left] {a};
+                % \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
             }    
 
             \graphbox{\(C \cup R \)}{40mm}{-22mm}{45mm}{25mm}{2mm}{-3mm}{
@@ -163,12 +163,12 @@ An example is illustrated in~\autoref{fig:subgraph_counting:union_of_pregraphs}.
                 \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
                 \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
                 % \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                % \draw[<-] (l1) -- (l6) node[midway,left] {a};
-                \draw[->] (l1) -- (l3) node[midway,above] {a};
-                \draw[->] (l3) -- (l4) node[midway,above] {b};
-                \draw[->] (l4) -- (l2) node[midway,above] {a};
-                \draw[->] (l2) -- (l5) node[midway,right] {a};
-                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                % \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+                \draw[->] (l2) -- (l5) node[midway,right] {$a$};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }    
              
         \end{tikzpicture}
@@ -190,12 +190,12 @@ An example is illustrated in~\autoref{fig:subgraph_counting:union_of_pregraphs}.
     %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
     %             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
     %             \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-    %             \draw[->] (l1) -- (l3) node[midway,above] {a};
-    %             \draw[->] (l3) -- (l2) node[midway,above] {a};
-    %             \draw[->] (l2) -- (l4) node[midway,right] {a};
+    %             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+    %             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+    %             \draw[->] (l2) -- (l4) node[midway,right] {$a$};
     %             \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-    %             \draw[<-] (l1) -- (l6) node[midway,left] {a};
-    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+    %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
+    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
     %         }    
     
     %         \graphbox{ \textcolor{red}{\(G \cap H\)}  }{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
@@ -203,10 +203,10 @@ An example is illustrated in~\autoref{fig:subgraph_counting:union_of_pregraphs}.
     %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
     %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
     %             \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-    %             \draw[->] (l2) -- (l4) node[midway,right] {a};
-    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+    %             \draw[->] (l2) -- (l4) node[midway,right] {$a$};
+    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
     %             \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-    %             \draw[<-] (l1) -- (l6) node[midway,left] {a};
+    %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
     %         }    
     
     %         \graphbox{\( H \)}{80mm}{-22mm}{45mm}{25mm}{2mm}{-6mm}{
@@ -217,12 +217,12 @@ An example is illustrated in~\autoref{fig:subgraph_counting:union_of_pregraphs}.
     %             \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
     %             \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
     %             \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-    %             \draw[<-] (l1) -- (l6) node[midway,left] {a};
-    %             \draw[->] (l1) -- (l3) node[midway,above] {a};
-    %             \draw[->] (l3) -- (l4) node[midway,above] {b};
-    %             \draw[->] (l4) -- (l2) node[midway,above] {a};
-    %             \draw[->] (l2) -- (l5) node[midway,right] {a};
-    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+    %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
+    %             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+    %             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+    %             \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+    %             \draw[->] (l2) -- (l5) node[midway,right] {$a$};
+    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
     %         }    
            
     %         % \node () at (37mm,-33mm) {\( \leftarrowtail \)};
@@ -264,9 +264,9 @@ An example is shown in~\autoref{fig:subgraph_counting:relative_complement_of_pre
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                 \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                \draw[->] (l1) -- (l3) node[midway,above] {a};
-                \draw[->] (l3) -- (l4) node[midway,above] {b};
-                \draw[->] (l4) -- (l2) node[midway,above] {a};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
             }    
         
             \graphbox{\( H \setminus R  \)}{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
@@ -274,10 +274,10 @@ An example is shown in~\autoref{fig:subgraph_counting:relative_complement_of_pre
                 \node[draw,dashed,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,dashed,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-                \draw[->] (l2) -- (l4) node[midway,right] {a};
-                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \draw[->] (l2) -- (l4) node[midway,right] {$a$};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                 % \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                % \draw[<-] (l1) -- (l6) node[midway,left] {a};
+                % \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
             }    
 
             \graphbox{\( H \)}{-11mm}{-22mm}{45mm}{25mm}{2mm}{-3mm}{
@@ -288,12 +288,12 @@ An example is shown in~\autoref{fig:subgraph_counting:relative_complement_of_pre
                 \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
                 \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
                 % \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                % \draw[<-] (l1) -- (l6) node[midway,left] {a};
-                \draw[->] (l1) -- (l3) node[midway,above] {a};
-                \draw[->] (l3) -- (l4) node[midway,above] {b};
-                \draw[->] (l4) -- (l2) node[midway,above] {a};
-                \draw[->] (l2) -- (l5) node[midway,right] {a};
-                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                % \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+                \draw[->] (l2) -- (l5) node[midway,right] {$a$};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }    
             % \node () at (102mm,-18mm) {\( \downarrowtail \)};
             % \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
@@ -471,8 +471,8 @@ Since all arrows are inclusions, by~\autoref{def:rewriting_inclusion}, graphs ca
         \node[draw,circle] (x) at (0,0) {};  
         \node[draw,circle] (y) at (1,0) {};
         \node[draw,circle] (z) at (2,0) {};
-        \draw[->] (x) -- node[midway,above] {a} (y) ;
-        \draw[->] (y) -- node[midway,above] {a} (z) ;
+        \draw[->] (x) -- node[midway,above] {$a$} (y) ;
+        \draw[->] (y) -- node[midway,above] {$a$} (z) ;
 }.
 Consider the $X$-occurrences in the decomposition of a rewriting step using the rule in~\autoref{ex:grsaa} shown in~\autoref{fig:subgraph_counting:occurrdlfdjslfkjsa}.
     \begin{figure} 
@@ -484,16 +484,16 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-              \draw[->] (l1) -- (l3) node[midway,above] {a};
-              \draw[->] (l3) -- (l2) node[midway,above] {a};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }     
           \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
               % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-              % \draw[->] (l1) -- (l3) node[midway,above] {a};
-              % \draw[->] (l3) -- (l2) node[midway,above] {a};
+              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
           \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (-5mm,-3mm); 
@@ -501,9 +501,9 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
               \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-              \draw[->] (l1) -- (l3) node[midway,above] {a};
-              \draw[->] (l3) -- (l4) node[midway,above] {b};
-              \draw[->] (l4) -- (l2) node[midway,above] {a};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+              \draw[->] (l4) -- (l2) node[midway,above] {$a$};
           }    
           \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
@@ -523,8 +523,8 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                   \node[orange,draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                  \draw[orange,->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[orange,->] (l3) -- (l2) node[midway,above] {a};
+                  \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
               } 
 
               \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
@@ -539,9 +539,9 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                   \node[red,draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                   \node[red,draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                  \draw[red,->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[red,->] (l3) -- (l4) node[midway,above] {b};
-                  \draw[red,->] (l4) -- (l2) node[midway,above] {a};
+                  \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
+                  \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
               }    
 
               \graphbox{\( G = L' \cup K \cup C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
@@ -550,13 +550,13 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                   \node[draw,circle,orange] (l3) at ($(l1) + (1,0)$) {3};
                   \node[blue, draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-                  \draw[orange,->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[orange,->] (l3) -- (l2) node[midway,above] {a};
-                  \draw[blue,->] (l2) -- (l4) node[midway,right] {a};
+                  \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
+                  \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
                 %   \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {a};
+                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
                 \node[blue,draw,circle] (l7) at ($(l4) + (-1,0)$) {7};
-                  \draw[blue,->] (l4) -- (l7) node[midway,below] {a};
+                  \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
               }    
 
               \graphbox{\( C = K \cup C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
@@ -564,11 +564,11 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                   \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-                  \draw[blue,->] (l2) -- (l4) node[midway,right] {a};
+                  \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
                 %   \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {a};
+                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
                     \node[blue,draw,circle] (l7) at ($(l4) + (-1,0)$) {7};
-                  \draw[blue,->] (l4) -- (l7) node[midway,below] {a};
+                  \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
               }    
 
               \graphbox{\( H = R' \cup K \cup C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
@@ -579,13 +579,13 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
                   \node[draw,circle,red] (l4) at ($(l1) + (2,0)$) {5};
                   \node[blue,draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
                 %   \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {a};
-                  \draw[red,->] (l1) -- (l3) node[midway,above] {a};
-                  \draw[red,->] (l3) -- (l4) node[midway,above] {b};
-                  \draw[red,->] (l4) -- (l2) node[midway,above] {a};
-                  \draw[blue,->] (l2) -- (l5) node[midway,right] {a};
+                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
+                  \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
+                  \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
+                  \draw[blue,->] (l2) -- (l5) node[midway,right] {$a$};
                         \node[blue,draw,circle] (l7) at ($(l5) + (-1,0)$) {7};
-                  \draw[blue,->] (l5) -- (l7) node[midway,below] {a};
+                  \draw[blue,->] (l5) -- (l7) node[midway,below] {$a$};
               }    
 
               \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
@@ -607,16 +607,16 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
         \node[draw,circle] (x) at (0,0) {2};  
         \node[blue,draw,circle] (y) at (1,0) {6};
         \node[blue,draw,circle] (z) at (2,0) {7};
-        \draw[blue,->] (x) -- node[midway,above] {a} (y) ;
-        \draw[blue,->] (y) -- node[midway,above] {a} (z) ;
+        \draw[blue,->] (x) -- node[midway,above] {$a$} (y) ;
+        \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
      }
     \item 1 explicit occurrence in $G$:
      \tikz[baseline=-0.5ex]{ 
         \node[draw,circle] (x) at (0,0) {1};  
         \node[orange,draw,circle] (y) at (1,0) {3};
         \node[draw,circle] (z) at (2,0) {2};
-        \draw[orange,->] (x) -- node[midway,above] {a} (y) ;
-        \draw[orange,->] (y) -- node[midway,above] {a} (z) ;
+        \draw[orange,->] (x) -- node[midway,above] {$a$} (y) ;
+        \draw[orange,->] (y) -- node[midway,above] {$a$} (z) ;
     }
  
     \item 1 implicit occurrences in $G$:
@@ -624,8 +624,8 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
         \node[orange,draw,circle] (x) at (0,0) {3};  
         \node[draw,circle] (y) at (1,0) {2};
         \node[blue,draw,circle] (z) at (2,0) {6};
-        \draw[orange,->] (x) -- node[midway,above] {a} (y) ;
-        \draw[blue,->] (y) -- node[midway,above] {a} (z) ;
+        \draw[orange,->] (x) -- node[midway,above] {$a$} (y) ;
+        \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
     } 
  
     \item 0 explicit occurrence in $H$,
@@ -634,8 +634,8 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
         \node[red,draw,circle] (x) at (0,0) {5};  
         \node[draw,circle] (y) at (1,0) {2};
         \node[blue,draw,circle] (z) at (2,0) {6};
-        \draw[red,->] (x) -- node[midway,above] {a} (y) ;
-        \draw[blue,->] (y) -- node[midway,above] {a} (z) ;
+        \draw[red,->] (x) -- node[midway,above] {$a$} (y) ;
+        \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
 }
  
 \end{itemize}
@@ -643,27 +643,27 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
         \node[red,draw,circle] (x) at (0,0) {5};  
         \node[draw,circle] (y) at (1,0) {2};
         \node[blue,draw,circle] (z) at (2,0) {6};
-        \draw[red,->] (x) -- node[midway,above] {a} (y) ;
-        \draw[blue,->] (y) -- node[midway,above] {a} (z) ;
+        \draw[red,->] (x) -- node[midway,above] {$a$} (y) ;
+        \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
 } in $H$ relative to the unique monomorphism from 
     \tikz[baseline=-0.5ex]{
       \node[red,draw,circle] (x) at (0,0) {5};
       \node[draw,circle] (y) at (1,0) {2};
-      \draw[red,->] (x) -- (y) node[midway, above] {a};
+      \draw[red,->] (x) -- (y) node[midway, above] {$a$};
   }
      to 
     \tikz[baseline=-0.5ex]{
       \node[orange,draw,circle] (x) at (0,0) {3};
       \node[draw,circle] (y) at (1,0) {2};
-      \draw[orange,->] (x) -- (y) node[midway, above] {a};
+      \draw[orange,->] (x) -- (y) node[midway, above] {$a$};
   }
     is the implicit occurrences 
        \tikz[baseline=-0.5ex]{ 
         \node[orange,draw,circle] (x) at (0,0) {3};  
         \node[draw,circle] (y) at (1,0) {2};
         \node[blue,draw,circle] (z) at (2,0) {6};
-        \draw[orange,->] (x) -- node[midway,above] {a} (y) ;
-        \draw[blue,->] (y) -- node[midway,above] {a} (z) ;
+        \draw[orange,->] (x) -- node[midway,above] {$a$} (y) ;
+        \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
     } 
     in $G$.
 \end{example}

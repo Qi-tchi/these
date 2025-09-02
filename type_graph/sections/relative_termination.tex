@@ -1,14 +1,19 @@
+\todo{plus generalement, c'est defini sur des relations, pas forcement de reecriture}
 \begin{definition}[Rewriting sequence]
     Let \(\mathcal{R}\) be a set of rewriting rules and let $\mathfrak{F}$ be a DPO rewriting framework.
-    A \textbf{$(\mathcal{R},\mathfrak{F})$-rewriting sequence} is either a finite sequence \(s_0,s_1,\hdots, s_m\) of objects such that \(s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\) for each \( 0 \leq n \leq m-1\), or an infinite sequence \(s_0,s_1,\hdots\) of objects such that \(s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\) for each \(n \in \mathbb{N}\).
-    A $(\mathcal{R},\mathfrak{F})$-rewriting sequence from \( s_0 \) will be denoted by:
+    An \textbf{$(\mathcal{R},\mathfrak{F})$-rewriting sequence} is either  
+    \begin{itemize}
+        \item a finite sequence \(s_0,s_1,\hdots, s_m\) of objects such that \( s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\text{ for each } 0 \leq n \leq m-1\), or
+        \item an infinite sequence \(s_0,s_1,\hdots\) of objects such that \(s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\) for each \(n \in \mathbb{N}\).
+    \end{itemize}
+    An $(\mathcal{R},\mathfrak{F})$-rewriting sequence from \( s_0 \) will be denoted by:
     \[
     s_0 \Rightarrow_{\mathcal{R},\mathfrak{F}} s_1 \Rightarrow_{\mathcal{R},\mathfrak{F}} s_2 \Rightarrow_{\mathcal{R},\mathfrak{F}} \cdots 
     \]
 \end{definition}
 
 \begin{example}
-    Consider the rewriting rules in~\autoref{fig:preliminaries:graph_transformation_rule_nonterminating}.
+    Consider the rewriting rules in~\autoref{fig:preliminaries:graph_transformation_rule_nonterminating}. 
     \begin{figure}[H]
         \centering
             \resizebox{0.85\textwidth}{!}{
@@ -18,8 +23,8 @@
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                        \draw[->] (l1) -- (l3) node[midway,above] {a};
-                        \draw[->] (l3) -- (l2) node[midway,above] {b};
+                        \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                        \draw[->] (l3) -- (l2) node[midway,above] {$b$};
                     } 
             
                     \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -34,9 +39,9 @@
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                         \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
-                        \draw[->] (l1) -- (l3) node[midway,above] {b};
-                        \draw[->] (l3) -- (l4) node[midway,above] {a};
-                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                        \draw[->] (l1) -- (l3) node[midway,above] {$b$};
+                        \draw[->] (l3) -- (l4) node[midway,above] {$a$};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                     }    
                     \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
@@ -45,7 +50,23 @@
         \caption{}
         \label{fig:preliminaries:graph_transformation_rule_nonterminating}
     \end{figure} 
-    A rewriting sequence using the rule with matches in red is shown in~\autoref{fig:preliminaries:sequence_of_transformation_infinite}.
+   It replaces an occurrence of the graph 
+\raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {};
+            \node [draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \draw[->] (z)--(x) node[midway, above] {$a$};
+            \draw[->] (x)--(y) node[midway, above] {$b$};
+        }}} with an occurrence of the graph \raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {};
+            \node [draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \draw[->] (z)--(x) node[midway, above] {$b$};
+            \draw[->] (x)--(y) node[midway, above] {$a$};
+        }}}, keeping the extreme nodes unchanged.
+    A looping rewriting sequence using this rule is shown in~\autoref{fig:preliminaries:sequence_of_transformation_infinite}, in which the subgraph to be replaced at each transformation step is highlighted in red.
        
         \begin{figure}[H]
            \centering
@@ -56,36 +77,36 @@
                 \node[draw,circle] (x) at (0,0) {};
                 \node[draw,circle] (y) at (1,0) {};
                 \node[draw,circle] (z) at (0.5,0.86) {};
-                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
-                \draw[->,red] (y) -- node[midway,right] {b} (z) ;
-                \draw[->] (z) -- node[midway,left] {b} (x) ;
+                \draw[->,red] (x) -- node[midway,below] {$a$} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
+                \draw[->] (z) -- node[midway,left] {$b$} (x) ;
             } 
             $\Rightarrow$ 
             \tikz[baseline=-0.5ex]{ 
                 \node[draw,circle] (x) at (0,0) {};  
                 \node[draw,circle] (y) at (1,0) {};
                 \node[draw,circle] (z) at (0.5,0.86) {};
-                \draw[->] (x) -- node[midway,below] {b} (y) ;
-                \draw[->,red] (y) -- node[midway,right] {a} (z) ;
-                \draw[->,red] (z) -- node[midway,left] {b} (x) ;
+                \draw[->] (x) -- node[midway,below] {$b$} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {$a$} (z) ;
+                \draw[->,red] (z) -- node[midway,left] {$b$} (x) ;
             }
             $\Rightarrow$ 
             \tikz[baseline=-0.5ex]{ 
                 \node[draw,circle] (x) at (0,0) {};  
                 \node[draw,circle] (y) at (1,0) {};
                 \node[draw,circle] (z) at (0.5,0.86) {};
-                \draw[->,red] (x) -- node[midway,below] {b} (y) ;
-                \draw[->] (y) -- node[midway,right] {b} (z) ;
-                \draw[->,red] (z) -- node[midway,left] {a} (x) ;
+                \draw[->,red] (x) -- node[midway,below] {$b$} (y) ;
+                \draw[->] (y) -- node[midway,right] {$b$} (z) ;
+                \draw[->,red] (z) -- node[midway,left] {$a$} (x) ;
             }
             $\Rightarrow$
             \tikz[baseline=-0.5ex]{ 
                 \node[draw,circle] (x) at (0,0) {};   
                 \node[draw,circle] (y) at (1,0) {};
                 \node[draw,circle] (z) at (0.5,0.86) {};
-                \draw[->,red] (x) -- node[midway,below] {a} (y) ;
-                \draw[->,red] (y) -- node[midway,right] {b} (z) ;
-                \draw[->] (z) -- node[midway,left] {b} (x) ;
+                \draw[->,red] (x) -- node[midway,below] {$a$} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
+                \draw[->] (z) -- node[midway,left] {$b$} (x) ;
             }
           }
           \caption{}
@@ -95,7 +116,7 @@
 We adapt the concept of relative termination~\cite{klop1987term,geser1990relative} to DPO rewriting.
 \begin{definition}[Relative termination]
     \label{termination:def:relative_termination}
-     Let $\mathcal{A}$ and $\mathcal{B}$ be sets of rewriting rules and let $\mathfrak{F}$ be a DPO rewriting framework. We say that $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{terminating relative to} $\Rightarrow_{\mathcal{B}, \mathfrak{F}}$ if any infinite $(\mathcal{A} \cup \mathcal{B},\mathfrak{F})$-rewriting sequence has only a finite number of rewriting steps with rules in $\mathcal{A}$.
+     Let $\mathcal{A}$ and $\mathcal{B}$ be sets of rewriting rules and let $\mathfrak{F}$ be a DPO rewriting framework. We say that $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{relatively terminating to} $\Rightarrow_{\mathcal{B}, \mathfrak{F}}$ if any infinite $(\mathcal{A} \cup \mathcal{B},\mathfrak{F})$-rewriting sequence has only a finite number of rewriting steps with rules in $\mathcal{A}$.
 \end{definition}
 
 \begin{example}
@@ -108,7 +129,7 @@ We adapt the concept of relative termination~\cite{klop1987term,geser1990relativ
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                         % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                        \draw[->] (l1) -- (l2) node[midway,above] {a};
+                        \draw[->] (l1) -- (l2) node[midway,above] {$a$};
                     } 
             
                     \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -123,8 +144,8 @@ We adapt the concept of relative termination~\cite{klop1987term,geser1990relativ
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                         % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                         \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
-                        \draw[->] (l1) -- (l4) node[midway,above] {b};
-                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                        \draw[->] (l1) -- (l4) node[midway,above] {$b$};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                     }    
                     \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
@@ -138,7 +159,7 @@ We adapt the concept of relative termination~\cite{klop1987term,geser1990relativ
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                         % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                        \draw[->] (l1) -- (l2) node[midway,above] {a};
+                        \draw[->] (l1) -- (l2) node[midway,above] {$a$};
                     } 
             
                     \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -153,8 +174,8 @@ We adapt the concept of relative termination~\cite{klop1987term,geser1990relativ
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                         % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                         \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
-                        \draw[->] (l1) -- (l4) node[midway,above] {a};
-                        % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                        \draw[->] (l1) -- (l4) node[midway,above] {$a$};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                     }    
                     \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
@@ -163,7 +184,7 @@ We adapt the concept of relative termination~\cite{klop1987term,geser1990relativ
             \caption{}
             \label{fig:preliminaries:relative_termination}
     \end{figure}
-    The rewriting system is not terminating because of the rule $\beta$, but the rule $\alpha$ is terminating relative to $\beta$ because it can only be applied finitely many times in any rewriting sequence that uses $\alpha$ and $\beta$.
+    The rewriting system is not terminating because of the rule $\beta$, but the rule $\alpha$ is relatively terminating to $\beta$ because it can only be applied finitely many times in any rewriting sequence that uses $\alpha$ and $\beta$.
 \end{example}
 % The concept of relative termination generalizes the notion of uniform termination of DPO graph rewriting systems which is a fundamental property of algorithms because many other properties are based on it. Given a set of rules, the uniform termination means that any rewriting sequence using these rules has a finite length. Uniform termination is undecidable in general~\cite{plump1998terminationundecidable}. It is a fundamental property of rewriting systems because it is a prerequisite for reasoning about the correctness of algorithms based on these systems.
 % For example, there is no point to talk about the correctness of the result of an algorithm if the algorithm does not terminate. In the context of graph rewriting, termination means that any graph can not be transformed indefinitely by applying rewriting rules. Plump has shown that termination of DPO graph rewriting systems is undecidable in general~\cite{plump1998terminationundecidable}.

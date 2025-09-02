@@ -47,8 +47,8 @@
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-            \draw[] (l1) -- (l3) node[midway,above] {a};
-            \draw[] (l3) -- (l2) node[midway,above] {a};
+            \draw[] (l1) -- (l3) node[midway,above] {$a$};
+            \draw[] (l3) -- (l2) node[midway,above] {$a$};
         } 
             \graphbox{$T$}{0mm}{0mm}{40mm}{39mm}{-10mm}{-17mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2$};
@@ -68,8 +68,8 @@
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                \draw[] (l1) -- (l3) node[midway,above] {a};
-                \draw[] (l3) -- (l2) node[midway,above] {a};
+                \draw[] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
                 \graphbox{$T$}{0mm}{0mm}{40mm}{39mm}{-10mm}{-19mm}{
                     \node[draw,circle] (1) at (0,0) {$1\ 2\ 3$};
@@ -185,7 +185,7 @@ This will be used in \autoref{nwf:thm:termination_grs}.
     Therefore, by the proposition above and the definition of the weight of a morphism (\autoref{def:weight_of_a_morphism_relative_to_a_type_graph}), for all morphisms \( h \) from a finite graph $G$ to $\mathcal{T}$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(h) \succeq 1_\mathcal{S} \). 
     By the above proposition, Axiom \eqref{ax:s0} and the definition of the weight of an object (\autoref{def:weight_of_an_object_relative_to_a_type_graph}), we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(G) \succeq 1_\mathcal{S} \). By assumption, we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} \mu(1_\mathcal{S}) = 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} 1 \) if $\mathcal{S}$ is the arithmetic semiring.
 
-Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \geq \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
+Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is relatively terminating to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \geq \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
 
 \noindent
@@ -311,7 +311,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
         \item there exists $\delta >_{\mathbb{R}^+} 0$ such that either every $\rho \in \mathcal{A}$ is $\delta$-uniformly decreasing, or every $\rho \in \mathcal{A}$ is $\delta$-closure decreasing, and
         \item every rule $\rho \in \mathcal{B}$ is weakly decreasing,
     \end{enumerate}
-    then $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{terminating} relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
+    then $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{relatively terminating} to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
 \end{theorem} 
 % \begin{proof}
 %     See the \hyperref[proof_termination_grs]{Appendix}.

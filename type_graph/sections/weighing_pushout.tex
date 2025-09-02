@@ -1,5 +1,5 @@
 Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a weighted type graph over a well-founded commutative semiring such that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. By \autoref{rem:wf:weight_of_object_geq_1}, for all objects \( G \) subject to rewriting, \(w_\mathcal{T}(G) \succeq_S 1_\mathcal{S} \).
-The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succ_S w_\mathcal{T}(H)\), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succeq_S w_\mathcal{T}(H) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
+The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is relatively terminating to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succ_S w_\mathcal{T}(H)\), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succeq_S w_\mathcal{T}(H) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
 In this section, we first introduce the notions of \emph{morphism measurement excluding morphisms in a set}(\autoref{def:weight_excluding_pre}) and \emph{weight of a morphism relative to a morphism-ruler set excluding some specific morphisms}(\autoref{def:weight_excluding}),
 to reduce notational overhead (following Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}).
@@ -48,10 +48,35 @@ For any set \( \Gamma \subseteq \operatorname{Hom}(A, G) \),
     w(e)^{m_e(h-\Gamma)}
             \]
 \end{definition}
+Consider the pushout square shown in~\autoref{fig:preliminaries:pushout_square_traceable_sdldfsfsfsdfkfjsladkj}. Informally, any subgraph of the pushout object \(D\) is either the image of \(B\) or the image of \(C\), or is obtained by gluing together parts of the images of \(B\) and \(C\). This intuition is made precise in~\autoref{def:traceability}.
+\begin{figure}[H]
+    \centering
+     \resizebox{0.4\textwidth}{!}{
+    \begin{tikzpicture}
+      \node (A) at (0,0) {$A$};
+      \node (B) at (2,0) {$B$}; 
+      \node  (C) at (0,-2) {$C$}; 
+      \node  (D) at (2,-2) {$D$}; 
+      \node  (X) at (4,-2) {$X$};
+      \begin{scope}[nodes=rectangle]          
+      \draw [->] (A) to node [above,label,pos=0.5] {$\alpha$} (B);
+      \draw [->] (A) to node [left,label,pos=0.5] {$\beta$} (C);
+      \draw [->] (B) to node [right,label,pos=0.45] {$\beta'$} (D); 
+      \draw [->] (C) to node [below,label,pos=0.45] {$\alpha'$} (D);
+    %   \draw [->] (X) to node [below,label,pos=0.4] {$h$} (D);
+      \end{scope}
+      \node at ($(A)!.5!(D)$) {$\delta$};
+    \end{tikzpicture}
+    }
+    \caption{}
+    \label{fig:preliminaries:pushout_square_traceable_sdldfsfsfsdfkfjsladkj}
+\end{figure}
 
 \begin{definition}[Traceability~\cite{endrullis2024generalized_arxiv_v2}]
     \label{def:traceability}
-An object $X$ is called \emph{traceable} along a class of pushout squares $\Delta$ if for every diagram $\delta$ in $\Delta$, shown in~\autoref{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}        
+Let $\Delta$ be a class of pushout squares. 
+
+An object $X$ is said to be \emph{traceable along $\Delta$} if for every diagram $\delta$ in $\Delta$, shown in~\autoref{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}, and $h:X \to D$,       
  the following hold
     \begin{enumerate}[label=(\alph*)]
         \item\label{traceable:a} there exists a morphism $f : X \to B$ such that $h = f \star \beta'$, or
@@ -85,7 +110,7 @@ An object $X$ is called \emph{traceable} along a class of pushout squares $\Delt
         \item 
         there exists a morphism $k : X \to A$ such that $h = k \star \alpha \star \beta' $,
     \end{enumerate}
-    then we say that $X$ is \emph{$\beta$-strongly traceable} along $\Delta$.
+    then we say that $X$ is \emph{strongly traceable} along $\Delta$.
 \end{definition}
 Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strongly traceable along a pushout square as illustrated above, if whenever $X$ occurs in $D$, it occurs either in $B$ or in $C$, and if it occurs in both, then it occurs in $A$ as well.
 
@@ -123,8 +148,8 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-              \draw[] (l1) -- (l3) node[midway,above] {a};
-              \draw[] (l3) -- (l2) node[midway,above] {a};
+              \draw[] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[] (l3) -- (l2) node[midway,above] {$a$};
           } 
           \graphbox{\( K \)}{40mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
               \coordinate (o) at (0mm,-8mm); 
@@ -137,9 +162,9 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
               \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-              \draw[ ] (l1) -- (l3) node[midway,above] {a};
-              \draw[ ] (l3) -- (l4) node[midway,above] {b};
-              \draw[ ] (l4) -- (l2) node[midway,above] {a};
+              \draw[ ] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[ ] (l3) -- (l4) node[midway,above] {$a$};
+              \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
           }    
           \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -147,20 +172,20 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
               \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-              \draw[] (l1) -- (l3) node[midway,above] {a};
-              \draw[] (l3) -- (l2) node[midway,above] {a};
-              \draw[ ] (l2) -- (l4) node[midway,right] {a};
+              \draw[] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[] (l3) -- (l2) node[midway,above] {$a$};
+              \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
               \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-              \draw[] (l1) -- (l6) node[midway,left] {a};
+              \draw[] (l1) -- (l6) node[midway,left] {$a$};
           }    
           \graphbox{\( C  \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
               \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-              \draw[ ] (l2) -- (l4) node[midway,right] {a};
+              \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
               \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-              \draw[ ] (l1) -- (l6) node[midway,left] {a};
+              \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
           }    
           \graphbox{\( H \)}{80mm}{-22mm}{45mm}{22mm}{2mm}{-3mm}{
               \coordinate (o) at (-5mm,-3mm); 
@@ -170,11 +195,11 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
               \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
               \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
               \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-              \draw[ ] (l1) -- (l6) node[midway,left] {a};
-              \draw[] (l1) -- (l3) node[midway,above] {a};
-              \draw[] (l3) -- (l4) node[midway,above] {b};
-              \draw[ ] (l4) -- (l2) node[midway,above] {a};
-              \draw[ ] (l2) -- (l5) node[midway,right] {a};
+              \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
+              \draw[] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[] (l3) -- (l4) node[midway,above] {$a$};
+              \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
+              \draw[ ] (l2) -- (l5) node[midway,right] {$a$};
           }    
           \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
           \node () at (77mm,-8mm) {\( \rightarrowtail \)}; % K -> R
@@ -199,132 +224,145 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
         \node[draw,circle] (x) at (0,0) {};
         \node[draw,circle] (y) at (1,0) {};
         \draw[->] (x) -- (y) node[midway, above] {$a$};
-    } is traceable (and $u$-strongly traceable) along both pushout squares.
+    } is traceable (and strongly traceable) along both pushout squares.
 \end{example}
 
-\begin{example} 
-    Consider the rewriting step shown in~\autoref{fig:nwf:rewriting_step_traceability}.
-    The graph \begin{tikzpicture}
-        \node[draw, circle] (x) at (0,0) {};
-        \node[draw, circle] (y) at (1,0) {};
-        \draw[->]  (x) -- (y) node [midway,above] {$c$};
-    \end{tikzpicture} 
-    is traceable along both pushout squares. 
-     It is $u$-strongly traceable along the left pushout square, but not $u$-strongly traceable along the right pushout square. 
-    The graph \begin{tikzpicture}
-        \node[draw, circle] (x) at (0,0) {};
-        \node[draw, circle] (y) at (1,0) {};
-        \node[draw, circle] (z) at (2,0) {};
-        \draw[->]  (x) -- (y) node [midway,above] {$c$};
-        \draw[->]  (y) -- (z) node [midway,above] {$c$};
-    \end{tikzpicture} is not traceable along both pushout squares.
-%     because    
+% \begin{example} 
+%     Consider the rewriting step shown in~\autoref{fig:nwf:rewriting_step_traceability}.
+%     The graph \begin{tikzpicture}
+%         \node[draw, circle] (x) at (0,0) {};
+%         \node[draw, circle] (y) at (1,0) {};
+%         \draw[->]  (x) -- (y) node [midway,above] {$c$};
+%     \end{tikzpicture} 
+%     is traceable along both pushout squares because for every morphism $h$ from this graph to $G$ (resp. to $H$), $h$ factors through $m$ or $l$ (resp. through $u$ or $r$).
+
+%      It is $u$-strongly traceable along the left pushout square, because the only morphism $h:X \to G$ factorizable through $m$ and $l$ has as image the graph \begin{tikzpicture}
+%         \node[draw, circle] (x) at (0,0) {z};
+%         \node[draw, circle] (y) at (1,0) {y};
+%         \draw[->]  (x) -- (y) node [midway,above] {$c$};
+%      \end{tikzpicture} and there is a unique morphism $k:X \to A$ such that $h = k \star l \star m$.
+
+%     It is not $u$-strongly traceable along the right pushout square
+%     The graph \begin{tikzpicture}
+%         \node[draw, circle] (x) at (0,0) {};
+%         \node[draw, circle] (y) at (1,0) {};
+%         \node[draw, circle] (z) at (2,0) {};
+%         \draw[->]  (x) -- (y) node [midway,above] {$c$};
+%         \draw[->]  (y) -- (z) node [midway,above] {$c$};
+%     \end{tikzpicture} is not traceable along both pushout squares. \todo{todo: why}
+% %     because    
+% %     \begin{tikzpicture}
+% %        \node[draw, circle] (x) at (0,0) {z};
+% %        \node[draw, circle] (y) at (1,0) {x};
+% %        \node[draw, circle] (z) at (2,0) {y};
+% %        \draw[->]  (x) -- (y) node [midway,above] {$c$};
+% %        \draw[->]  (y) -- (z) node [midway,above] {$c$};
+% %    \end{tikzpicture} is in the pushout object $G$ but in neither $L$ nor $C$.
+%    \begin{figure}[H]
+%     \centering
+%     \resizebox{0.7\textwidth}{!}{
 %     \begin{tikzpicture}
-%        \node[draw, circle] (x) at (0,0) {z};
-%        \node[draw, circle] (y) at (1,0) {x};
-%        \node[draw, circle] (z) at (2,0) {y};
-%        \draw[->]  (x) -- (y) node [midway,above] {$c$};
-%        \draw[->]  (y) -- (z) node [midway,above] {$c$};
-%    \end{tikzpicture} is in the pushout object $G$ but in neither $L$ nor $C$.
-   \begin{figure}[H]
-    \centering
-    \resizebox{0.7\textwidth}{!}{
-    \begin{tikzpicture}
-        \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-7mm}{
-        \node[draw,circle] (1) at (0,0) {x};
-        \node[draw,circle] (2) at (1,-2) {y};
-        \node[draw,circle] (3) at (-1,-2) {z};
-        \draw[->] (1) edge node[midway,right]  {c}  node[midway,left]{} (2);
-        \draw[->] (2) edge node[midway,above]  {c}  node[midway,below]{}  (3);
-        }
-        \graphbox{$K$}{45mm}{0mm}{35mm}{35mm}{2mm}{-7mm}{
-        % I
-            % \def\x{5};
-            % \def\y{0};
-            \node[draw,circle] (1) at (0,0) {x};
-            \node[draw,circle] (2) at (1,-2) {y};
-            \node[draw,circle] (3) at (-1,-2) {z};
-            \draw[->] (2) edge node[midway,above]  {c}  node[midway,below]{}  (3);
-        }
-        \node () at (40mm,-15mm)  {$\overset{l}{\leftarrowtail}$};
+%         \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-7mm}{
+%         \node[draw,circle] (1) at (0,0) {x};
+%         \node[draw,circle] (2) at (1,-2) {y};
+%         \node[draw,circle] (3) at (-1,-2) {z};
+%         \draw[->] (1) edge node[midway,right]  {$c$}  node[midway,left]{} (2);
+%         \draw[->] (2) edge node[midway,above]  {$c$}  node[midway,below]{}  (3);
+%         }
+%         \graphbox{$K$}{45mm}{0mm}{35mm}{35mm}{2mm}{-7mm}{
+%         % I
+%             % \def\x{5};
+%             % \def\y{0};
+%             \node[draw,circle] (1) at (0,0) {x};
+%             \node[draw,circle] (2) at (1,-2) {y};
+%             \node[draw,circle] (3) at (-1,-2) {z};
+%             \draw[->] (2) edge node[midway,above]  {$c$}  node[midway,below]{}  (3);
+%         }
+%         \node () at (40mm,-15mm)  {$\overset{l}{\leftarrowtail}$};
 
-        % \node () at (2.5,-2.5) {PO};
-        \graphbox{$R$}{90mm}{0mm}{35mm}{35mm}{2mm}{-7mm}{
-        % R
-            % \def\x{10};
-            % \def\y{-1.1};
-            \node[draw,circle] (1) at (0,-1) {x y z};
-            \draw[->] (1) edge[loop below]  node[midway, above] {$c$}  (1);
-        }
-        \node () at (85mm,-15mm)  {$\overset{r}{\rightarrow}$};
+%         % \node () at (2.5,-2.5) {$PO$};
+%         \graphbox{$R$}{90mm}{0mm}{35mm}{35mm}{2mm}{-7mm}{
+%         % R
+%             % \def\x{10};
+%             % \def\y{-1.1};
+%             \node[draw,circle] (1) at (0,-1) {x y z};
+%             \draw[->] (1) edge[loop below]  node[midway, below] {$c$}  (1);
+%         }
+%         \node () at (85mm,-15mm)  {$\overset{r}{\rightarrow}$};
 
-        \graphbox{$G$}{0mm}{-45mm}{35mm}{35mm}{2mm}{-7mm}{
-        % \node () at (7.5,-2.5) {PO};
-        % G
-            % \def\x{0};
-            % \def\y{-5};
-            \node[draw,circle] (1) at (0,0) {x};
-            \node[draw,circle] (2) at (1,-2) {y};
-            \node[draw,circle] (3) at (-1,-2) {z};
-            \draw[->] (1) edge node[midway,right]  {c}  node[midway,left]{} (2);
-            \draw[->] (2) edge node[midway,above]  {c}  node[midway,below]{}  (3);
-            \draw[->] (3) edge node[midway,above]  {c}  node[midway,below]{}  (1);
-        }
-        % C
-        \graphbox{$C$}{45mm}{-45mm}{35mm}{35mm}{2mm}{-7mm}
-        {    
-            \node[draw,circle] (1) at (0,0) {x};
-            \node[draw,circle] (2) at (1,-2) {y};
-            \node[draw,circle] (3) at (-1,-2) {z};
-            % \draw[->] (1) edge node[midway,right]  {c}  node[midway,left]{} (2);
-            \draw[->] (3) edge node[midway,above]  {c}  node[midway,below]{} (1);
-            \draw[->] (2) edge node[midway,above]  {c}  node[midway,below]{} (3);
-            }
-        \node () at (40mm,-55mm)  {$\overset{l}{\leftarrowtail}$};
-        % H
-        \graphbox{$H$}{90mm}{-45mm}{35mm}{35mm}{2mm}{-7mm}{
-        % R
-            % \def\x{10};
-            % \def\y{-1.1};
-            \node[draw,circle] (1) at (0,-1) {x y z};
-            \draw[->] (1) edge[loop below]  node[midway, below] {} node[midway, below] {$c$} (1);
-            \draw[->] (1) edge[loop above]  node[midway, below] {} node[midway, above] {$c$} (1);
-        }
+%         \graphbox{$G$}{0mm}{-45mm}{35mm}{35mm}{2mm}{-7mm}{
+%         % \node () at (7.5,-2.5) {$PO$};
+%         % G
+%             % \def\x{0};
+%             % \def\y{-5};
+%             \node[draw,circle] (1) at (0,0) {x};
+%             \node[draw,circle] (2) at (1,-2) {y};
+%             \node[draw,circle] (3) at (-1,-2) {z};
+%             \draw[->] (1) edge node[midway,right]  {$c$}  node[midway,left]{} (2);
+%             \draw[->] (2) edge node[midway,above]  {$c$}  node[midway,below]{}  (3);
+%             \draw[->] (3) edge node[midway,above]  {$c$}  node[midway,below]{}  (1);
+%         }
+%         % C
+%         \graphbox{$C$}{45mm}{-45mm}{35mm}{35mm}{2mm}{-7mm}
+%         {    
+%             \node[draw,circle] (1) at (0,0) {x};
+%             \node[draw,circle] (2) at (1,-2) {y};
+%             \node[draw,circle] (3) at (-1,-2) {z};
+%             % \draw[->] (1) edge node[midway,right]  {$c$}  node[midway,left]{} (2);
+%             \draw[->] (3) edge node[midway,above]  {$c$}  node[midway,below]{} (1);
+%             \draw[->] (2) edge node[midway,above]  {$c$}  node[midway,below]{} (3);
+%             }
+%         \node () at (40mm,-55mm)  {$\overset{l'}{\leftarrowtail}$};
+%         % H
+%         \graphbox{$H$}{90mm}{-45mm}{35mm}{35mm}{2mm}{-7mm}{
+%         % R
+%             % \def\x{10};
+%             % \def\y{-1.1};
+%             \node[draw,circle] (1) at (0,-1) {x y z};
+%             \draw[->] (1) edge[loop below]  node[midway, below] {} node[midway, below] {$c$} (1);
+%             \draw[->] (1) edge[loop above]  node[midway, below] {} node[midway, above] {$c$} (1);
+%         }
 
-        \node () at (85mm,-55mm)  {$\overset{r}{\rightarrow}$};
-        \node () at (17mm,-40mm) {$m\downarrowtail$};
-        \node () at (62mm,-40mm) {$u\downarrowtail$};
-        \node () at (107mm,-40mm) {$\downarrow m'$};
-    \end{tikzpicture}
-    }
-    \caption{}
-    \label{fig:nwf:rewriting_step_traceability}
-   \end{figure}
-\end{example} 
+%         \node () at (85mm,-55mm)  {$\overset{r'}{\rightarrow}$};
+%         \node () at (17mm,-40mm) {$m\downarrowtail$};
+%         \node () at (62mm,-40mm) {$u\downarrowtail$};
+%         \node () at (107mm,-40mm) {$\downarrow m'$};
+%     \end{tikzpicture}
+%     }
+%     \caption{}
+%     \label{fig:nwf:rewriting_step_traceability}
+%    \end{figure}
+% \end{example} 
 The following concepts are restricted versions of the concept of monicity.
 \begin{definition}[Relative Monicity~\cite{endrullis2024generalized_arxiv_v2}]
     \label{def:relative_monicity}
     Let $A,B,C$ and $X$ be objects, $\Gamma$ a set of objects, $S$ a set of morphisms to $A$ and $u:C\to A$ a morphism. A morphism $f : A \to B$ is said to be
-    \begin{enumerate}[label=(\roman*)] 
+    \begin{itemize} 
         \item 
-            \emph{monic for $S$} 
+            \textbf{monic for $S$} 
             if $g \star f = h \star f$ implies $g = h$ for all $g, h \in S$;
         \item 
-            \emph{$X$-monic} if $f$ is monic for $\operatorname{Hom}(X, A)$.
-        \item \emph{$X$-monic outside of $u$}, if $f$ is monic for \( \operatorname{Hom}(X,A) \setminus \left ( \operatorname{Hom}(X,C) \star u \right ) \).
-        \item  \emph{$\Gamma$-monic} if $f$ is $X$-monic for every $X \in \Gamma$.
-    \end{enumerate}
+            \textbf{$X$-monic} if $f$ is monic for $\operatorname{Hom}(X, A)$.
+        \item \textbf{$X$-monic outside of $u$}, if $f$ is monic for \( \operatorname{Hom}(X,A) \setminus \left ( \operatorname{Hom}(X,C) \star u \right ) \).
+        \item  \textbf{$\Gamma$-monic} if $f$ is $X$-monic for every $X \in \Gamma$.
+    \end{itemize}
 \end{definition} 
 \begin{example}[Edge-Monicity \cite{endrullis2024generalized_arxiv_v2}]
-    In $\mathbf{Graph}$, let 
-    $\Gamma = \left\{ \vcenter{\hbox{
-    \begin{tikzpicture}[baseline=-0.5ex]
-    \node[draw,circle] (A) at (0,0) {};
-    \node[draw,circle] (B) at (1,0) {};
-    \draw[->] (A) -- (B) node[midway, above] {$x$};
-    \end{tikzpicture}
-    }} \mid x \text{ is an edge label} \right\}$.
-    A morphism $f : G \to H$ that does not identify edges (but may identify nodes) is not necessarily monic, but it is $\Gamma$-monic. 
+ 
+ Let \(f\colon G\to H\) be a morphism in \(\mathbf{Graph}\) that does not identify distinct edges, but may identify distinct nodes. Then \(f\) need not be monic. Indeed, if \(u\neq v\) are nodes of \(G\) with \(f(u)=f(v)\), let \(K\) be the graph consisting of a single node and no edges, and let \(g,h\colon K\to G\) send that node to \(u\) and \(v\), respectively. Then \(g\neq h\) while \(f\circ g=f\circ h\), so \(f\) is not monic.
+
+Nevertheless \(f\) is \(\Gamma\)-monic, where
+\[
+\Gamma = \left\{ \vcenter{\hbox{
+\begin{tikzpicture}[baseline=-0.5ex]
+\node[draw,circle] (A) at (0,0) {};
+\node[draw,circle] (B) at (1,0) {};
+\draw[->] (A) -- (B) node[midway, above] {$x$};
+\end{tikzpicture}
+}} \mid x \text{ is an edge label} \right\}.
+\]
+To see this, let \(X\in\Gamma\) and let \(g,h\colon X\to G\) satisfy \(g \star f = h \star f\). Let \(e\) denote the unique edge of \(X\). From \(f(g(e))=f(h(e))\) and the hypothesis that \(f\) is injective on edges we obtain \(g(e)=h(e)\). Since we are working with directed graphs, the images of the two nodes of \(X\) are determined by the image of \(e\), so \(g\) and \(h\) agree on both nodes. Hence \(g=h\), and \(f\) is \(\Gamma\)-monic.
+
 \end{example}
 \begin{definition}[Weighable Pushout Square~\text{\cite[\textdef~4.9]{endrullis2024generalized_arxiv_v2}}]
     \label{def:weighable}
@@ -410,5 +448,5 @@ According to these results, in \textsection\ref{wf:sec:termination}, we establis
 $\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
         w_\mathcal{T}(t_L)$ and 
 $\bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}} 
-        w_\mathcal{T}(t_R)$ 
+        w_\mathcal{T}(t_R)$.
 Before doing so, we introduce the concept of context closure in the following section. 

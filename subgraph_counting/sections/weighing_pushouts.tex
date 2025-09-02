@@ -22,7 +22,7 @@ combination of these measures.
     \).
 \end{definition} 
 Counting monomorphisms from ruler-graphs before and after a rewriting step provides a termination criterion: 
-    If there exists a ruler-graph $X$ such that every rewriting step using a rule in $\mathcal{A}$ strictly decreases the number monomorphism from $X$, and every rewriting step using a rule in $\mathcal{B}$ never increases it, then the rewriting relation induced by $\mathcal{A}$ is terminating relative to the rewriting relation induced by $\mathcal{B}$.
+    If there exists a ruler-graph $X$ such that every rewriting step using a rule in $\mathcal{A}$ strictly decreases the number monomorphism from $X$, and every rewriting step using a rule in $\mathcal{B}$ never increases it, then the rewriting relation induced by $\mathcal{A}$ is relatively terminating to the rewriting relation induced by $\mathcal{B}$.
  
 For some ruler-graphs, the change in the number of monomorphism when applying a rewriting step using an injective rule is precisely computable by simply counting the numbers of monomorphisms from these ruler-graphs in the left- and right-hand side graphs. Examples include: the ruler-graph \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) {};
@@ -64,7 +64,7 @@ Assigning different weights to measurements from distinct ruler-graphs enhences 
 For the remainder of this section, we assume: a set \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) of injective DPO rewriting rules, a set \( \mathbb{X} \) of ruler-graphs, and a weight function \( s_{\mathbb{X}} \).  Let \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) denote a rule in \( \mathcal{R} \) and \( X \in \mathbb{X} \). 
 Recall that \(\mathfrak{M}\), defined in~\autoref{def:rewriting_framework}, denotes the DPO rewriting framework that associates each rule with the collection of all DPO diagrams witnessing rewriting steps using the rule, where the matches are monic.
 
-The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{M}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{M}}$ if the following hold: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) > w_{s_\mathbb{X}}(H) \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H) \). However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
+The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{M}} \) is relatively terminating to $\Rightarrow_{\mathcal{B},\mathfrak{M}}$ if the following hold: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) > w_{s_\mathbb{X}}(H) \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H) \). However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
 Thus, we aim to provide a rule-based sufficient condition for termination.
 % \begin{remark}
 %     To simplify our presentation, we treat the following three notions interchangeably when the monomorphism \( h: A \to B \) is understood: the domain graph \( A \), the monomorphism \( h: A \to B \), the image \( h(A) \subseteq B \) (an occurrence of \( A \) in \( B \)).
@@ -708,8 +708,8 @@ We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along
             \node (k') [right=of k] {K'};
             \node (x)  [right=of r'] {X};
             \node (c') [below=of x] {C'};
-            \node () [at=($(r)!0.5!(k')$)] {PB};
-            \node () [at=($(x)!0.5!(k')$)] {PO};
+            \node () [at=($(r)!0.5!(k')$)] {$PB$};
+            \node () [at=($(x)!0.5!(k')$)] {$PO$};
             \draw[>->] (k) -- (r) node[pos= .5, left] {$r$}; 
             \draw[>->] (r') -- (r) node[pos= .5, above] {$h_{R'R}$};
             \draw[>->] (k') -- (k) node[pos= .5, below] {$h_{K'K}$};
@@ -737,16 +737,16 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                \draw[->] (l1) -- (l3) node[midway,above] {a};
-                \draw[->] (l3) -- (l2) node[midway,above] {a};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }     
             \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
                 \coordinate (o) at (5mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                 % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-                % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }    
             \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                 \coordinate (o) at (-5mm,-3mm); 
@@ -754,9 +754,9 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                 \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                \draw[->] (l1) -- (l3) node[midway,above] {a};
-                \draw[->] (l3) -- (l4) node[midway,above] {b};
-                \draw[->] (l4) -- (l2) node[midway,above] {a};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
             }    
 
             \node () at (37mm,-8mm) {$\leftarrowtail$};
@@ -794,13 +794,13 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
     \tikz[baseline=-0.5ex]{ 
             \node[draw,circle] (x) at (0,0) {1}; 
             \node[draw,circle] (y) at (1,0) {4};
-            \draw[->] (x) -- (y)  node[midway, above] {a};
+            \draw[->] (x) -- (y)  node[midway, above] {$a$};
     }
       or 
         \tikz[baseline=-0.5ex]{ 
             \node[draw,circle] (x) at (0,0) {5}; 
             \node[draw,circle] (y) at (1,0) {2};
-            \draw[->] (x) -- (y) node[midway, above] {a};
+            \draw[->] (x) -- (y) node[midway, above] {$a$};
     }
     , because if node 
         \tikz[baseline=-0.5ex]{ 
@@ -815,7 +815,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
             \tikz[baseline=-0.5ex]{ 
             \node[draw,circle] (x) at (0,0) {4}; 
             \node[draw,circle] (y) at (1,0) {5};
-            \draw[->] (x) -- (y) node[midway, above] {b};
+            \draw[->] (x) -- (y) node[midway, above] {$b$};
     }
     by Condition 1.
     The graph illustrated in~\autoref{fig:subgraph_counting:rx_counter_exdfsdfadfs} is not in $D(R,X)$ because it violates Condition 1.
@@ -829,8 +829,8 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \draw[->] (l4) -- (l2) node[midway,above] {a};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
+                    \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
         } 
@@ -848,7 +848,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                     \node[circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
         }
@@ -859,7 +859,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
         } 
@@ -869,7 +869,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 }   
         \end{tikzpicture}
         } 
@@ -880,7 +880,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
         }
@@ -908,7 +908,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                     % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {2};
                     \draw[->] (l3) -- (l1) node[midway,above] {};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
@@ -916,7 +916,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
                     \draw[->] (l2) -- (l1) node[midway,above] {};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$R$}{70mm}{0mm}{40mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -926,7 +926,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {3};
                     \draw[->] (l3) -- (l1) node[midway,above] {};
                     \draw[->] (l3) -- (l4) node[midway,above] {};
-                    % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
                 \node () at (37mm,-8mm) {$\leftarrowtail$};
                 \node () at (67mm,-8mm) {$\rightarrowtail$};
@@ -989,15 +989,15 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
                 %     \node (rb) [above=of l] {$R'$};
                 %     \node (r) [right=of k] {$R$};
                 %     \node (rb') [above=of r] {$R'$};
-                %     \draw[<-<]  (l) -- (k) node [midway,below] {l};
-                %     \draw[<-<]  (r) -- (k) node [midway,below] {r};
+                %     \draw[<-<]  (l) -- (k) node [midway,below] {$l$};
+                %     \draw[<-<]  (r) -- (k) node [midway,below] {$r$};
                 %     \draw[>->]  (k') -- (rb');
                 %     \draw[>->]  (rb') -- (r);
                 %     \draw[>->]  (k') -- (rb);
                 %     \draw[>->]  (k') -- (k);
                 %     \draw[>->]  (rb) -- (l) node [midway,above,sloped] {$h_{R'L}$};
-                %     \node () [at=($(k)!0.5!(rb)$)] {PB};
-                %     \node () [at=($(k)!0.5!(rb')$)] {PB};
+                %     \node () [at=($(k)!0.5!(rb)$)] {$PB$};
+                %     \node () [at=($(k)!0.5!(rb')$)] {$PB$};
                 % \end{tikzpicture}
                 \begin{tikzpicture} 
                     \node (k) {K}; 
@@ -1006,15 +1006,15 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
                     \node (rb) [left=of l] {$R'$};
                     \node (r) [below=of k] {$R$};
                     \node (rb') [left=of r] {$R'$};
-                    \draw[<-<]  (l) -- (k) node [midway,right] {l};
-                    \draw[<-<]  (r) -- (k) node [midway,right] {r};
+                    \draw[<-<]  (l) -- (k) node [midway,right] {$l$};
+                    \draw[<-<]  (r) -- (k) node [midway,right] {$r$};
                     \draw[>->]  (k') -- (rb');
                     \draw[>->]  (rb') -- (r);
                     \draw[>->]  (k') -- (rb);
                     \draw[>->]  (k') -- (k);
                     \draw[>->]  (rb) -- (l) node [midway,above] {$\Psi(R')$};
-                    \node () [at=($(k)!0.5!(rb)$)] {PB};
-                    \node () [at=($(k)!0.5!(rb')$)] {PB}; 
+                    \node () [at=($(k)!0.5!(rb)$)] {$PB$};
+                    \node () [at=($(k)!0.5!(rb')$)] {$PB$}; 
                 \end{tikzpicture}
             % }
         \end{center}
@@ -1047,15 +1047,15 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
 %                 %     \node (rb) [above=of l] {$R'$};
 %                 %     \node (r) [right=of k] {$R$};
 %                 %     \node (rb') [above=of r] {$R'$};
-%                 %     \draw[<-<]  (l) -- (k) node [midway,below] {l};
-%                 %     \draw[<-<]  (r) -- (k) node [midway,below] {r};
+%                 %     \draw[<-<]  (l) -- (k) node [midway,below] {$l$};
+%                 %     \draw[<-<]  (r) -- (k) node [midway,below] {$r$};
 %                 %     \draw[>->]  (k') -- (rb');
 %                 %     \draw[>->]  (rb') -- (r);
 %                 %     \draw[>->]  (k') -- (rb);
 %                 %     \draw[>->]  (k') -- (k);
 %                 %     \draw[>->]  (rb) -- (l) node [midway,above,sloped] {$h_{R'L}$};
-%                 %     \node () [at=($(k)!0.5!(rb)$)] {PB};
-%                 %     \node () [at=($(k)!0.5!(rb')$)] {PB};
+%                 %     \node () [at=($(k)!0.5!(rb)$)] {$PB$};
+%                 %     \node () [at=($(k)!0.5!(rb')$)] {$PB$};
 %                 % \end{tikzpicture}
 %                 \begin{tikzpicture} 
 %                     \node (k) {K}; 
@@ -1064,15 +1064,15 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
 %                     \node (rb) [left=of l] {$R'$};
 %                     \node (r) [below=of k] {$R$};
 %                     \node (rb') [left=of r] {$R'$};
-%                     \draw[<-<]  (l) -- (k) node [midway,right] {l};
-%                     \draw[<-<]  (r) -- (k) node [midway,right] {r};
+%                     \draw[<-<]  (l) -- (k) node [midway,right] {$l$};
+%                     \draw[<-<]  (r) -- (k) node [midway,right] {$r$};
 %                     \draw[>->]  (k') -- (rb');
 %                     \draw[>->]  (rb') -- (r);
 %                     \draw[>->]  (k') -- (rb);
 %                     \draw[>->]  (k') -- (k);
 %                     \draw[>->]  (rb) -- (l) node [midway,above] {$h_{R'L}$};
-%                     \node () [at=($(k)!0.5!(rb)$)] {PB};
-%                     \node () [at=($(k)!0.5!(rb')$)] {PB};
+%                     \node () [at=($(k)!0.5!(rb)$)] {$PB$};
+%                     \node () [at=($(k)!0.5!(rb')$)] {$PB$};
 %                 \end{tikzpicture}
 %             % }
 %         \end{center}
@@ -1118,16 +1118,16 @@ The following example shows an $X$-non-increasing rule.
                     \node (l1) at ($(o)+(-10mm,0mm)$) {};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$K'$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
                     \node (l1) at ($(o)+(-10mm,0mm)$) {};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$R'_1$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -1135,25 +1135,25 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l4) node[midway,above] {b};
-                    \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                    \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$L$}{0mm}{-20mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$K$}{40mm}{-20mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$R$}{70mm}{-20mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -1161,9 +1161,9 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    \draw[->] (l3) -- (l4) node[midway,above] {b};
-                    \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                    \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
                 \node () at (37mm,-8mm) {$\leftarrowtail$};
                 \node () at (17mm,-17mm) {$\downarrowtail$};
@@ -1186,16 +1186,16 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$K'$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$R'_2$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -1203,25 +1203,25 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l4) node[midway,above] {b};
-                    \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                    \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$L$}{0mm}{-20mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$K$}{40mm}{-20mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$R$}{70mm}{-20mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -1229,9 +1229,9 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    \draw[->] (l3) -- (l4) node[midway,above] {b};
-                    \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                    \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
                 \node () at (37mm,-8mm) {$\leftarrowtail$};
                 \node () at (17mm,-17mm) {$\downarrowtail$};
@@ -1254,16 +1254,16 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$K'$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     % \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$R'_3$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -1271,25 +1271,25 @@ The following example shows an $X$-non-increasing rule.
                     % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {4};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                     % \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l4) node[midway,above] {b};
-                    % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                    % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$L$}{0mm}{-20mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$K$}{40mm}{-20mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$R$}{70mm}{-20mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -1297,9 +1297,9 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    \draw[->] (l3) -- (l4) node[midway,above] {b};
-                    \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                    \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
                 \node () at (37mm,-8mm) {$\leftarrowtail$};
                 \node () at (17mm,-17mm) {$\downarrowtail$};
@@ -1322,16 +1322,16 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$K'$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$R'_4$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -1339,25 +1339,25 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                     % \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l4) node[midway,above] {b};
-                    % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                    % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$L$}{0mm}{-20mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$K$}{40mm}{-20mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
-                    % \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$R$}{70mm}{-20mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -1365,9 +1365,9 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \draw[->] (l1) -- (l3) node[midway,above] {a};
-                    \draw[->] (l3) -- (l4) node[midway,above] {b};
-                    \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                    \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
                 \node () at (37mm,-8mm) {$\leftarrowtail$};
                 \node () at (17mm,-17mm) {$\downarrowtail$};
@@ -1391,15 +1391,15 @@ The following example shows an $X$-non-increasing rule.
     %                 \coordinate (o) at (-5mm,-3mm); 
     %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
     %                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-    %                 \draw[->] (l1) -- (l3) node[midway,above] {a};
+    %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
     %             } 
     %             \graphbox{$L$}{60mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
     %                 \coordinate (o) at (0mm,-3mm); 
     %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
     %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
     %                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-    %                 \draw[->] (l1) -- (l3) node[midway,above] {a};
-    %                 \draw[->] (l3) -- (l2) node[midway,above] {a};
+    %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+    %                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
     %             }    
     %         \node () at (52mm,-8mm) {$\rightarrowtail$};
     %         \end{tikzpicture}
@@ -1413,15 +1413,15 @@ The following example shows an $X$-non-increasing rule.
     %                     \node[] (l1) at ($(o)+(-10mm,0mm)$) {};
     %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
     %                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-    %                     \draw[->] (l4) -- (l2) node[midway,above] {a};
+    %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
     %                 } 
     %                 \graphbox{$L$}{60mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
     %                     \coordinate (o) at (0mm,-3mm); 
     %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
     %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
     %                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
-    %                     \draw[->] (l1) -- (l3) node[midway,above] {a};
-    %                     \draw[->] (l3) -- (l2) node[midway,above] {a};
+    %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+    %                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
     %                 }    
     %             \node () at (52mm,-8mm) {$\rightarrowtail$};
     %             \end{tikzpicture}
@@ -1444,8 +1444,8 @@ The following example shows an $X$-non-increasing rule.
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                \draw[] (l1) -- (l3) node[midway,above] {a};
-                \draw[] (l3) -- (l2) node[midway,above] {a};
+                \draw[] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
 
             \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
@@ -1460,9 +1460,9 @@ The following example shows an $X$-non-increasing rule.
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
                 \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                \draw[ ] (l1) -- (l3) node[midway,above] {a};
-                \draw[ ] (l3) -- (l4) node[midway,above] {b};
-                \draw[ ] (l4) -- (l2) node[midway,above] {a};
+                \draw[ ] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[ ] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
             }    
 
             \graphbox{\( G \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
@@ -1471,11 +1471,11 @@ The following example shows an $X$-non-increasing rule.
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
                 \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-                \draw[] (l1) -- (l3) node[midway,above] {a};
-                \draw[] (l3) -- (l2) node[midway,above] {a};
-                \draw[ ] (l2) -- (l4) node[midway,right] {a};
+                \draw[] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[] (l3) -- (l2) node[midway,above] {$a$};
+                \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
                 \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                \draw[] (l1) -- (l6) node[midway,left] {a};
+                \draw[] (l1) -- (l6) node[midway,left] {$a$};
             }    
 
             \graphbox{\( C  \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
@@ -1483,9 +1483,9 @@ The following example shows an $X$-non-increasing rule.
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-                \draw[ ] (l2) -- (l4) node[midway,right] {a};
+                \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
                 \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                \draw[ ] (l1) -- (l6) node[midway,left] {a};
+                \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
             }    
 
             \graphbox{\( H  \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
@@ -1496,11 +1496,11 @@ The following example shows an $X$-non-increasing rule.
                 \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
                 \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
                 \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-                \draw[ ] (l1) -- (l6) node[midway,left] {a};
-                \draw[] (l1) -- (l3) node[midway,above] {a};
-                \draw[] (l3) -- (l4) node[midway,above] {b};
-                \draw[ ] (l4) -- (l2) node[midway,above] {a};
-                \draw[ ] (l2) -- (l5) node[midway,right] {a};
+                \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
+                \draw[] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
+                \draw[ ] (l2) -- (l5) node[midway,right] {$a$};
             }    
             \node () at (37mm,-18mm) {\text{PO}};
             \node () at (78mm,-18mm) {\text{PO}};
@@ -1539,7 +1539,7 @@ The following example shows an $X$-non-increasing rule.
                     % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {2};
                     \draw[->] (l3) -- (l1) node[midway,above] {};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
                 \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
@@ -1547,7 +1547,7 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
                     \draw[->] (l2) -- (l1) node[midway,above] {};
-                    % \draw[->] (l3) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
                 \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -1557,7 +1557,7 @@ The following example shows an $X$-non-increasing rule.
                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {3};
                     \draw[->] (l3) -- (l1) node[midway,above] {};
                     \draw[->] (l3) -- (l4) node[midway,above] {};
-                    % \draw[->] (l4) -- (l2) node[midway,above] {a};
+                    % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
                 \node () at (37mm,-8mm) {$\leftarrowtail$};
                 \node () at (67mm,-8mm) {$\rightarrowtail$};
@@ -1583,7 +1583,7 @@ The following example shows an $X$-non-increasing rule.
     %                 \node[draw,circle] (l2) at ($(l1)+(1,0)$) {3};
     %                 % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
     %                 \draw[->] (l1) -- (l2) node[midway,above] {};
-    %                 % \draw[->] (l3) -- (l2) node[midway,above] {a};
+    %                 % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
     %             }    
     %             \graphbox{$L$}{70mm}{-20mm}{45mm}{15mm}{2mm}{-5mm}{
     %                 \coordinate (o) at (-5mm,-3mm); 
@@ -1591,7 +1591,7 @@ The following example shows an $X$-non-increasing rule.
     %                 % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
     %                 \node[draw,circle] (l2) at ($(l1) + (1,0)$) {2};
     %                 \draw[->] (l2) -- (l1) node[midway,above] {};
-    %                 % \draw[->] (l4) -- (l2) node[midway,above] {a};
+    %                 % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
     %             }    
     %             \node () at (67mm,-28mm) {$\rightarrowtail$};
     %         \end{tikzpicture}
@@ -1775,7 +1775,7 @@ more X-occurrences are implicitly destroyed than implicitly created by the rewri
     \hfill
     \begin{minipage}{0.29\textwidth}
         \hfill
-        \resizebox{0.9\textwidth}{!}{
+        \resizebox{0.9\textwidth}{!}{ 
                 \begin{tikzpicture}
             \node (k) at (0,1) {K};
             \node (l) at (-2,1) {L};
@@ -1783,15 +1783,15 @@ more X-occurrences are implicitly destroyed than implicitly created by the rewri
             \node (c) at (0,-1) {C};
             \node (g) at (-2,-1) {G};
             \node (h) at (2,-1) {H};
-            \draw[<-<]  (l) -- (k) node [midway,below] {l};
-            \draw[>->]  (k) -- (r) node [midway,below] {r};
-            \draw[>->] (c) -- (g) node [midway, above] {l'};
-            \draw[>->] (c) -- (h) node [midway,above] {r'};
-            \draw[>->] (l) -- (g) node[midway, right] {m};
-            \draw[>->] (r) -- (h) node[midway, left] {m'};
+            \draw[<-<]  (l) -- (k) node [midway,below] {$l$};
+            \draw[>->]  (k) -- (r) node [midway,below] {$r$};
+            \draw[>->] (c) -- (g) node [midway, above] {$l'$};
+            \draw[>->] (c) -- (h) node [midway,above] {$r'$};
+            \draw[>->] (l) -- (g) node[midway, right] {$m$};
+            \draw[>->] (r) -- (h) node[midway, left] {$m'$};
             \draw[>->] (k) -- (c) node[midway, left] {};
-            \node () [at=($(l)!0.5!(c)$)] {PO};
-            \node () [at=($(r)!0.5!(c)$)] {PO};
+            \node () [at=($(l)!0.5!(c)$)] {$PO$};
+            \node () [at=($(r)!0.5!(c)$)] {$PO$};
         \end{tikzpicture}
         }
     \end{minipage}
