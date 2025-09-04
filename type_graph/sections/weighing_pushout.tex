@@ -1,5 +1,5 @@
 Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a weighted type graph over a well-founded commutative semiring such that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. By \autoref{rem:wf:weight_of_object_geq_1}, for all objects \( G \) subject to rewriting, \(w_\mathcal{T}(G) \succeq_S 1_\mathcal{S} \).
-The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is relatively terminating to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succ_S w_\mathcal{T}(H)\), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succeq_S w_\mathcal{T}(H) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
+The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succ_S w_\mathcal{T}(H)\), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succeq_S w_\mathcal{T}(H) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
 In this section, we first introduce the notions of \emph{morphism measurement excluding morphisms in a set}(\autoref{def:weight_excluding_pre}) and \emph{weight of a morphism relative to a morphism-ruler set excluding some specific morphisms}(\autoref{def:weight_excluding}),
 to reduce notational overhead (following Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}).
@@ -30,10 +30,10 @@ For any set \( \Gamma \subseteq \operatorname{Hom}(A, G) \),
 \end{figure} 
     
 
-\begin{definition}[Morphism measurement excluding morphisms in a set]
+\begin{definition} 
     \label{def:weight_excluding_pre}
     Let \( \Gamma \subseteq \operatorname{Hom}(A, G) \).
-    The \emph{measurement} of a morphism \( h:G \to T \) relative to a morphism-ruler \( e: X \to T \), excluding morphisms in \( \Gamma' \), denoted by $m_e(h-\Gamma)$, is defined as:
+    The \textbf{measurement of a morphism \( h:G \to T \) relative to a morphism-ruler \( e: X \to T \), excluding morphisms in \( \Gamma' \)}, denoted by $m_e(h-\Gamma)$, is defined as:
     \[
         m_e(h-\Gamma) \overset{\operatorname{def}}{=} 
             \card{\set{- \star h = e} \setminus \Gamma'}
@@ -72,11 +72,10 @@ Consider the pushout square shown in~\autoref{fig:preliminaries:pushout_square_t
     \label{fig:preliminaries:pushout_square_traceable_sdldfsfsfsdfkfjsladkj}
 \end{figure}
 
-\begin{definition}[Traceability~\cite{endrullis2024generalized_arxiv_v2}]
+\begin{definition}[\cite{endrullis2024generalized_arxiv_v2}]
     \label{def:traceability}
 Let $\Delta$ be a class of pushout squares. 
-
-An object $X$ is said to be \emph{traceable along $\Delta$} if for every diagram $\delta$ in $\Delta$, shown in~\autoref{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}, and $h:X \to D$,       
+An object $X$ is said to be \textbf{traceable along $\Delta$} if for every diagram $\delta$ in $\Delta$, shown in~\autoref{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}, and $h:X \to D$,       
  the following hold
     \begin{enumerate}[label=(\alph*)]
         \item\label{traceable:a} there exists a morphism $f : X \to B$ such that $h = f \star \beta'$, or
@@ -114,7 +113,7 @@ An object $X$ is said to be \emph{traceable along $\Delta$} if for every diagram
 \end{definition}
 Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strongly traceable along a pushout square as illustrated above, if whenever $X$ occurs in $D$, it occurs either in $B$ or in $C$, and if it occurs in both, then it occurs in $A$ as well.
 
-\begin{remark}[~\cite{endrullis2024generalized_arxiv_v2}]
+\begin{remark}[\cite{endrullis2024generalized_arxiv_v2}]
     \label{remark:traceability_graph}
     In \textbf{Graph}, the objects \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) {};
@@ -334,7 +333,7 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
 %    \end{figure}
 % \end{example} 
 The following concepts are restricted versions of the concept of monicity.
-\begin{definition}[Relative Monicity~\cite{endrullis2024generalized_arxiv_v2}]
+\begin{definition}[\cite{endrullis2024generalized_arxiv_v2}]
     \label{def:relative_monicity}
     Let $A,B,C$ and $X$ be objects, $\Gamma$ a set of objects, $S$ a set of morphisms to $A$ and $u:C\to A$ a morphism. A morphism $f : A \to B$ is said to be
     \begin{itemize} 
@@ -364,7 +363,7 @@ Nevertheless \(f\) is \(\Gamma\)-monic, where
 To see this, let \(X\in\Gamma\) and let \(g,h\colon X\to G\) satisfy \(g \star f = h \star f\). Let \(e\) denote the unique edge of \(X\). From \(f(g(e))=f(h(e))\) and the hypothesis that \(f\) is injective on edges we obtain \(g(e)=h(e)\). Since we are working with directed graphs, the images of the two nodes of \(X\) are determined by the image of \(e\), so \(g\) and \(h\) agree on both nodes. Hence \(g=h\), and \(f\) is \(\Gamma\)-monic.
 
 \end{example}
-\begin{definition}[Weighable Pushout Square~\text{\cite[\textdef~4.9]{endrullis2024generalized_arxiv_v2}}]
+\begin{definition}[\text{\cite[\textdef~4.9]{endrullis2024generalized_arxiv_v2}}]
     \label{def:weighable}
     \ \newline
     \noindent
@@ -372,13 +371,13 @@ To see this, let \(X\in\Gamma\) and let \(g,h\colon X\to G\) satisfy \(g \star f
         Let  $\mathcal{T} = (T,\mathbb{E}, S, w)$ be a weighted type graph.
         Consider the pushout square $\delta$ shown on the right. We say that $\delta$ is said to be
          \begin{enumerate}[label=(\alph*)]
-        \item \emph{weighable} with $\mathcal{T}$ if the following hold:
+        \item \textbf{weighable} with $\mathcal{T}$ if the following hold:
             \begin{enumerate}[label=(\roman*)]
                 \item $dom(\mathbb{E})$ is strongly traceable along $\delta$,
                 \item $\beta'$ is $dom(\mathbb{E})$-monic,
                 \item $\alpha'$ is $dom(\mathbb{E})$-monic outside of $\beta$.
             \end{enumerate}
-        \item \emph{bounded-above} by $\mathcal{T}$ if $dom(\mathbb{E})$ is traceable along $\delta$.
+        \item \textbf{bounded-above} by $\mathcal{T}$ if $dom(\mathbb{E})$ is traceable along $\delta$.
     \end{enumerate}
     \end{minipage}
     \begin{minipage}{0.3\textwidth}

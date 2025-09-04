@@ -1,7 +1,7 @@
 LyonParallel is a prototype tool, written in OCaml, for the analysis of DPO graph rewriting systems.
 It implements the type graph method presented in~\cite{endrullis2024generalized_icgt} and its extension in Chapter~\ref{chap:nwf}, the morphism counting method in Chapter~\ref{chap:subgraph_counting} and its extension in Chapter~\ref{chap:antipattern}. Note that the type graph method presented in~\cite{endrullis2024generalized_icgt} is more powerful compared to the versions presented in~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}, which are implemented in~\cite{TORPAcyc} and~\cite{grez}, for DPO graph rewriting systems with monic match. It does not have a publicly available implementation. 
 
-LyonParallel implements the notions of DPO rewriting systems on finite directed, edge-labelled multigraphs introduced in Chapter~\ref{chap:preliminaries}. Using the \texttt{REPL} (Read-Eval-Print Loop)\textemdash an interactive environment that reads user commands, evaluates them, prints results, and waits for the next input\textemdash users can select a set of rules encoded in the tool, then choose a method to partition the rules of the system into two sets $\mathcal{A}$ and $\mathcal{B}$ such that $\mathcal{A}$ is relatively terminating with respect to $\mathcal{B}$. If such a partition is found, the tool replaces the current rule set with \(\mathcal{B}\) and a new iteration begins; otherwise users may try a different method. When the rule set becomes empty, the termination of the original system is proven.
+LyonParallel implements the notions of DPO rewriting systems on finite directed, edge-labelled multigraphs introduced in Chapter~\ref{chap:preliminaries}. Using the \texttt{REPL} (Read-Eval-Print Loop)\textemdash an interactive environment that reads user commands, evaluates them, prints results, and waits for the next input\textemdash users can select a set of rules encoded in the tool, then choose a method to partition the rules of the system into two sets $\mathcal{A}$ and $\mathcal{B}$ such that $\mathcal{A}$ terminates relative to $\mathcal{B}$. If such a partition is found, the tool replaces the current rule set with \(\mathcal{B}\) and a new iteration begins; otherwise users may try a different method. When the rule set becomes empty, the termination of the original system is proven.
 \section{DPO graph rewriting systems on finite directed edge-labeled multigraphs}
 \label{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}
 A \textbf{labeled graph} is encoded in the tool as a structure with 5 fields: a list of nodes, a list of edges, a mapping that associates to each edge a source node, a mapping that associates to each edge a target node, and a mapping that associates to each edge a label.
@@ -238,7 +238,7 @@ Upon launching, one should see:
 \end{minted}
 \section{Relative Termination Analysis using LyonParallel}
 \label{lyonparallel:sec:termination}
-The LyonParallel REPL lets the user select a set of rewriting rules and run the tool's relative termination analysis techniques to test whether the set can be partitioned into two subsets \(\mathcal{A}\) and \(\mathcal{B}\) such that \(\mathcal{A}\) is relatively terminating with respect to \(\mathcal{B}\). If such a partition is found, the REPL replaces the analyzed rule set with \(\mathcal{B}\) for further analysis; otherwise, the user can try alternative methods or different partitions.
+The LyonParallel REPL lets the user select a set of rewriting rules and run the tool's relative termination analysis techniques to test whether the set can be partitioned into two subsets \(\mathcal{A}\) and \(\mathcal{B}\) such that \(\mathcal{A}\) terminates relative to \(\mathcal{B}\). If such a partition is found, the REPL replaces the analyzed rule set with \(\mathcal{B}\) for further analysis; otherwise, the user can try alternative methods or different partitions.
 
 The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewriting systems; user-defined systems can be added as described in~\textsection~\ref{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}. The predefined system shown in~\autoref{fig:implemented:grsaa_0} is named \colorbox{Ivory2}{$bruggink\_2014\_ex\_4\_and\_6$} and appears in that list. Select it at the REPL by name:
 \begin{minted}[style=bw]{bash}
@@ -437,7 +437,7 @@ For example, we can have the following command which launch the type graph metho
 \begin{minted}[style=bw]{bash} 
     >> type_graph 30 a n t A N T
 \end{minted}
-Type graph method with different semirings will be launched parallelly and cooperate with each other. When a non-empty subset $A$ of rules is proved to be relatively terminating with respect to the set of remaining rules $B$, a new iteration starts with the set of rules $B$.
+Type graph method with different semirings will be launched parallelly and cooperate with each other. When a non-empty subset $A$ of rules is proved to be terminating relative to the set of remaining rules $B$, a new iteration starts with the set of rules $B$.
 
 
 % The system can be selected by using the command \colorbox{Ivory2}{select 3} which select the system with number \textit{3}. The REPL will display the following message to confirm the selection:

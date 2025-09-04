@@ -1,7 +1,26 @@
 \begin{example}
   \label{antipattern:example:contrib_variant}
-  The rewriting rule illustrated in~\autoref{fig:antipattern:def:contrib_variant} modifies a rule from~\cite[Example 6]{plump2018modular} by removing all interface edges and adding a node with identifier $5$ and three self-loops labeled $0$.
-  \begin{figure}[H]
+  The rewriting rule illustrated in~\autoref{fig:antipattern:def:contrib_variant} modifies a rule from~\cite[Example 6]{plump2018modular} by removing all edges of the interface graph and adding a node with identifier $5$ and three self-loops labeled $0$ in the right-hand side graph.
+  
+      Consider the ruler-graph $\mathcal{X} = (X)$ where $X$ is the graph
+      \tikz[baseline=-0.5ex]{ 
+              \node[draw,circle] (x) at (0,0) { }; 
+              \node[draw,circle] (y) at (1,0) { };
+              \node[draw,circle] (z) at (2,0) { };
+              \draw[->] (x) -- (y) node[midway, above] {$s$};
+              \draw[->] (z) -- (y) node[midway, above] {$s$};
+      } and there is no forbidden contexts. $\mathcal{X}$ has weight $1$ and $\mathbb{X} = \{X\}$.
+      The set \( D(R,X) \) contains a unique element $R'$:
+      \raisebox{2pt}{
+          \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+          \node [draw,circle] (x) at (0,0) {1};
+          \node[draw,circle] (y) at (1,0) {3};
+          \draw[->] (x) -- (y) node[midway, above] {$s$};
+      }}}. The rule is $X$-non-increasing under the function mapping the unique subgraph in $R$ to the same subgraph in $L$. 
+    %   Since $F_X = \emptyset$, the number of $X$-occurrences not included in any occurrences of forbidden context in any rewriting step is predictable.
+      By~\autoref{antipattern:thm:termination_grs}, the rule terminates because \(|Mono(X,L)| - |Mono(X,R)| = 1 - 0 = 1 > 0 \). 
+
+      \begin{figure}[H]
         \centering
       \resizebox{0.6\textwidth}{!}{
           \begin{tikzpicture}
@@ -43,29 +62,20 @@
         \caption{}
         \label{fig:antipattern:def:contrib_variant}
   \end{figure}
- 
-      Consider the ruler-graph $\mathcal{X} = (X)$ where $X$ is the graph
-      \tikz[baseline=-0.5ex]{ 
-              \node[draw,circle] (x) at (0,0) { }; 
-              \node[draw,circle] (y) at (1,0) { };
-              \node[draw,circle] (z) at (2,0) { };
-              \draw[->] (x) -- (y) node[midway, above] {$s$};
-              \draw[->] (z) -- (y) node[midway, above] {$s$};
-      } and there is no forbidden contexts. $\mathcal{X}$ has weight $1$ and $\mathbb{X} = \{X\}$.
-      The set \( D(R,X) \) contains a unique element $R'$:
-      \raisebox{2pt}{
-          \scalebox{0.7}{\tikz[baseline=-0.5ex]{
-          \node [draw,circle] (x) at (0,0) {1};
-          \node[draw,circle] (y) at (1,0) {3};
-          \draw[->] (x) -- (y) node[midway, above] {$s$};
-      }}}. The rule is $X$-non-increasing under the function mapping the unique subgraph in $R$ to the same subgraph in $L$. 
-    %   Since $F_X = \emptyset$, the number of $X$-occurrences not included in any occurrences of forbidden context in any rewriting step is predictable.
-      By~\autoref{antipattern:thm:termination_grs}, the rule terminates because \(|Mono(X,L)| - |Mono(X,R)| = 1 - 0 = 1 > 0 \). 
 \end{example}
 \begin{example}
   \label{antipattern:ex:grs_aca}
   Consider the rule $\rho$ shown in~\autoref{fig:antipattern:grs_aca} from~\cite[Example 1]{bruggink2014termination}.
-  \begin{figure}[H]
+Consider the ruler-graph $\mathcal{X} = (L, f)$ where the underlying graph is $L$ and $f:L \rightarrowtail R$ is the inclusion function.
+% The number of $L$-occurrences not included in any occurrences of the forbidden context $R$ in any rewriting step using this rule is predictable:
+% the condition~\ref{hyp:inj_mono_x_l_to_r} is satisfied because $Mono(L,L)_F = \emptyset$; the condition~\ref{hyp:inj_mono_f_l_to_r} is satisfied because $Mono(R,L) = \emptyset$; the conditions~\ref{hyp:x_non_increasing} and~\ref{hyp:f_non_increasing} are satisfied under identity function; the condition~\ref{hyp:f_non_increasing} is satisfied because for the condition~\ref{hyp:f_non_increasing} we employ identity function. 
+$\rho$ is $X$-non-increasing, and $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing. \todo{more details?}
+Since we have additionally $\card{\operatorname{Mono}(X,L)_{\operatorname{NF}}} - 
+\card{
+    \Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})
+    }   -
+\card{\operatorname{Mono}(X,R)_{\operatorname{NF}}} = 1 - 0 - 0 = 1 > 0$. The rule terminates by~\autoref{antipattern:thm:termination_grs}.
+\begin{figure}[H]
     \centering  
   \resizebox{0.7\textwidth}{!}{ 
   \begin{tikzpicture}   
@@ -104,16 +114,7 @@
   \caption{}
   \label{fig:antipattern:grs_aca}
 \end{figure}
-Consider the ruler-graph $\mathcal{X} = (L, f)$ where the underlying graph is $L$ and $f:L \rightarrowtail R$ is the inclusion function.
-% The number of $L$-occurrences not included in any occurrences of the forbidden context $R$ in any rewriting step using this rule is predictable:
-% the condition~\ref{hyp:inj_mono_x_l_to_r} is satisfied because $Mono(L,L)_F = \emptyset$; the condition~\ref{hyp:inj_mono_f_l_to_r} is satisfied because $Mono(R,L) = \emptyset$; the conditions~\ref{hyp:x_non_increasing} and~\ref{hyp:f_non_increasing} are satisfied under identity function; the condition~\ref{hyp:f_non_increasing} is satisfied because for the condition~\ref{hyp:f_non_increasing} we employ identity function. 
-$\rho$ is $X$-non-increasing, and $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing. \todo{more details?}
-Since we have additionally $\card{\operatorname{Mono}(X,L)_{\operatorname{NF}}} - 
-\card{
-    \Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})
-    }   -
-\card{\operatorname{Mono}(X,R)_{\operatorname{NF}}} = 1 - 0 - 0 = 1 > 0$. The rule terminates by~\autoref{antipattern:thm:termination_grs}.
-\todo{check} 
+\todo{to do todo : check} 
 \end{example} 
 % Finally, we present a limitation of our approach.
 \begin{example}

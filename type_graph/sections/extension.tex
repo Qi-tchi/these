@@ -185,7 +185,7 @@ This will be used in \autoref{nwf:thm:termination_grs}.
     Therefore, by the proposition above and the definition of the weight of a morphism (\autoref{def:weight_of_a_morphism_relative_to_a_type_graph}), for all morphisms \( h \) from a finite graph $G$ to $\mathcal{T}$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(h) \succeq 1_\mathcal{S} \). 
     By the above proposition, Axiom \eqref{ax:s0} and the definition of the weight of an object (\autoref{def:weight_of_an_object_relative_to_a_type_graph}), we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(G) \succeq 1_\mathcal{S} \). By assumption, we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} \mu(1_\mathcal{S}) = 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} 1 \) if $\mathcal{S}$ is the arithmetic semiring.
 
-Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is relatively terminating to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \geq \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
+Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) terminates relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \geq \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
 
 \noindent
@@ -311,7 +311,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
         \item there exists $\delta >_{\mathbb{R}^+} 0$ such that either every $\rho \in \mathcal{A}$ is $\delta$-uniformly decreasing, or every $\rho \in \mathcal{A}$ is $\delta$-closure decreasing, and
         \item every rule $\rho \in \mathcal{B}$ is weakly decreasing,
     \end{enumerate}
-    then $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{relatively terminating} to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
+    then $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ terminates relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
 \end{theorem} 
 % \begin{proof}
 %     See the \hyperref[proof_termination_grs]{Appendix}.
@@ -358,7 +358,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
     % Let $G \in \mathcal{C}_0$ be an object. By Assumption \ref{thm1:hyp4}, we have $\mu(w_\mathcal{T}(G)) \in \mathbb{R}$ and $\mu(w_\mathcal{T}(G)) \geq \mu(1_S)$.
 
     By~\autoref{nwf:lem:decreasing_step}, every rewriting step with rules in $\mathcal{A}$ strictly decreases the weight by at least $\delta$ and no rewriting step with rules in $\mathcal{B}$ increases the weight.
-    Consequently, there is no infinite rewriting sequence with an infinite rewriting steps with rules in $\mathcal{A}$ from $G$.
+    Consequently, there is no infinite rewriting chain with an infinite rewriting steps with rules in $\mathcal{A}$ from $G$.
 \end{proof}
 \begin{example}
     \label{nwf:example:termination}

@@ -526,7 +526,8 @@ It replaces an occurrence of the graph
             \draw[->] (z)--(x) node[midway, above] {$b$};
             \draw[->] (x)--(y) node[midway, above] {$a$};
         }}}, keeping the extreme nodes unchanged.
-    A looping rewriting sequence using this rule is shown in~\autoref{fig:intro:sequence_of_transformation_infinite}, in which the subgraph to be replaced at each transformation step is highlighted in red.
+    A looping sequence of graphs, each obtained by applying the rule to its predecessor, is shown in~\autoref{fig:intro:sequence_of_transformation_infinite};
+    the subgraph replaced at each transformation step is highlighted in red.
 
         % \begin{figure}[H]
         %     \centering
@@ -691,14 +692,76 @@ Moreover, termination may not be the most pertinent property for our purposes. C
   \end{figure}
 The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the notion of relative termination.
 
-\paragraph{Relative termination} was initially introduced for binary relations~\cite{klop1987term}: let $\mathcal{A}$ and $\mathcal{B}$ be two binary relations, $\mathcal{A}$ is said to be relatively terminating with respect to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with \( (x_i,x_{i+1}) \in \mathcal{A} \) or \( (x_i,x_{i+1}) \in \mathcal{B} \) for all \( i \in \mathbb{N} \), there are only finitely many \( i \in \mathbb{N} \) such that \( (x_i,x_{i+1}) \in \mathcal{A} \).
+\paragraph{Relative termination} was initially introduced for binary relations~\cite{klop1987term}: let $\mathcal{A}$ and $\mathcal{B}$ be two binary relations, $\mathcal{A}$ is said to be terminating relative to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with \( (x_i,x_{i+1}) \in \mathcal{A} \) or \( (x_i,x_{i+1}) \in \mathcal{B} \) for all \( i \in \mathbb{N} \), there are only finitely many \( i \in \mathbb{N} \) such that \( (x_i,x_{i+1}) \in \mathcal{A} \).
 
 Since a set of graph rewriting rules defines the binary relation \enquote{graph $X$ can be rewritten to graph $Y$ using rules from the rule set},
-the notion of relative termination can be adapted to the context of graph rewriting in a straightforward way: a rule set $\mathcal{A}$ is relatively terminating with respect to another rule set $\mathcal{B}$, if the binary relation induced by $\mathcal{A}$ is relatively terminating with respect to the binary relation induced by $\mathcal{B}$.
+the notion of relative termination can be adapted to the context of graph rewriting in a straightforward way: a rule set $\mathcal{A}$ terminates relative to another rule set $\mathcal{B}$, if the binary relation induced by $\mathcal{A}$ terminates relative to the binary relation induced by $\mathcal{B}$.
 % let \( \mathcal{A} \) and \( \mathcal{B} \) be two sets of rewriting rules, \( \mathcal{A} \) is said to be relatively terminating with respect to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with $x_i$ can be rewritten to $x_{i+1}$ by a rule in $\mathcal{A}$ or $\mathcal{B}$ for all \( i \in \mathbb{N} \), there are only finitely many \( i \in \mathbb{N} \) such that $x_i$ can be rewritten to $x_{i+1}$ by a rule in $\mathcal{A}$. 
-As an example, consider the edge-deleting rule $\alpha$ and the node-adding rule $\beta$ shown in~\autoref{fig:intro:edge_deletion_and_node_addition_rule}. The rule set $\set{\alpha}$ is relatively terminating with respect to the rule set $\set{\beta}$, because any infinite sequence of graph transformations can apply the edge-deleting rule only finitely many times.
+As an example, consider the edge-deleting rule $\alpha$ and the node-adding rule $\beta$ shown in~\autoref{fig:intro:edge_deletion_and_node_addition_rule}. The rule set $\set{\alpha}$ terminates relative to the rule set $\set{\beta}$, because any infinite sequence of graph transformations can apply the edge-deleting rule only finitely many times.
+ \begin{figure}[H]
+        \centering
+%   \begin{subfigure}{0.3\textwidth}
+%         % \centering
+        $\alpha$ = {
+             \resizebox{0.7\textwidth}{!}{
+             \begin{tikzpicture}[baseline=-7ex]
+                    \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+                        \draw[->] (l1) -- (l2) node[midway,above] {$A$};
+                    } 
+            
+                    \graphbox{\( \mathcal{K} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+                    }  
+            
+                    \graphbox{\( \mathcal{R} \)}{80mm}{-3mm}{35mm}{15mm}{5mm}{2mm}{
+                        \coordinate (o) at (-5mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {$2$};
+                    }    
+                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
+                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
+                \end{tikzpicture}
+            }
+        }
+    %     \caption{A graph transformation rule for edge deletion}
+    % \label{fig:intro:edge_deletion_rule}
+    % \end{subfigure}
+    
+    % \begin{subfigure}{0.3\textwidth}
+    %     % \centering
 
-Relative termination generalizes termination in the context of rewriting, because a set of rules relatively terminating with respect to an empty set is terminating. In practice, to prove termination of a rewriting system $\mathcal{R}$, one partitions the set of rules into two disjoint subsets \( \mathcal{B} \) and \( \mathcal{A} \) with non-empty $\mathcal{A}$ such that \( \mathcal{A} \) is relatively terminating with respect to \( \mathcal{B} \), if $\mathcal{B}$ is not empty then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.
+        $\beta$ ={
+             \resizebox{0.7\textwidth}{!}{
+             \begin{tikzpicture}[baseline=-7ex]
+                    \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        
+                    } 
+            
+                    \graphbox{\( \mathcal{K} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                       
+                    }  
+            
+                    \graphbox{\( \mathcal{R} \)}{80mm}{-3mm}{35mm}{15mm}{5mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                    }    
+                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
+                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
+                \end{tikzpicture}
+            }
+        }
+    %     \caption{A graph transformation rule for node addition}
+    %     \label{fig:intro:node_addition_rule}
+    % \end{subfigure} 
+    \caption{A rewriting system}
+    \label{fig:intro:edge_deletion_and_node_addition_rule_dghkashfj}
+  \end{figure}
+Relative termination generalizes termination in the context of rewriting, because a set of rules terminating relative to an empty set is terminating. In practice, to prove termination of a rewriting system $\mathcal{R}$, one partitions the set of rules into two disjoint subsets \( \mathcal{B} \) and \( \mathcal{A} \) with non-empty $\mathcal{A}$ such that \( \mathcal{A} \) terminates relative to \( \mathcal{B} \), if $\mathcal{B}$ is not empty then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.
  
 Relative termination has several advantages.
   Firstly, by eliminating irrelevant rules, it lets us focus termination analysis on the essential part of the system.

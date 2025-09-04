@@ -14,7 +14,7 @@ Each ruler-graph in a set $\mathbb{X}$ provides a measure for a graph
 G, and the total weight of G is determined by a weighted linear
 combination of these measures.
 
-\begin{definition}[Measurement]
+\begin{definition} 
     \label{subgraph_counting:def:measurement}
     For a ruler-graph \( X \) and graph \( G \), the \textbf{measurement} \( m_X(G) \) is defined as the number of $X$-occurrences in $G$, i.e. the cardinality of the set of monomorphisms from $ X $ to $ G $:
     \(
@@ -22,7 +22,7 @@ combination of these measures.
     \).
 \end{definition} 
 Counting monomorphisms from ruler-graphs before and after a rewriting step provides a termination criterion: 
-    If there exists a ruler-graph $X$ such that every rewriting step using a rule in $\mathcal{A}$ strictly decreases the number monomorphism from $X$, and every rewriting step using a rule in $\mathcal{B}$ never increases it, then the rewriting relation induced by $\mathcal{A}$ is relatively terminating to the rewriting relation induced by $\mathcal{B}$.
+    If there exists a ruler-graph $X$ such that every rewriting step using a rule in $\mathcal{A}$ strictly decreases the number monomorphism from $X$, and every rewriting step using a rule in $\mathcal{B}$ never increases it, then the rewriting relation induced by $\mathcal{A}$ terminates relative to the rewriting relation induced by $\mathcal{B}$.
  
 For some ruler-graphs, the change in the number of monomorphism when applying a rewriting step using an injective rule is precisely computable by simply counting the numbers of monomorphisms from these ruler-graphs in the left- and right-hand side graphs. Examples include: the ruler-graph \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) {};
@@ -45,12 +45,12 @@ However, systems like~\autoref{subgraph_counting:ex:grsaa_rx} require more compl
     For such ruler-graph, the change in the number of monomorphisms when applying a rewriting rule is unpredictable in general, because the number of monomorphisms from such ruler-graph depends on the context graph\textemdash a challenge that we address in later sections.
     
 To combine measurements from multiple ruler-graphs (analogous to combining measurements of physical objects from multiple rulers), we introduce:
-\begin{definition}[Weight function]
+\begin{definition} 
     \label{subgraph_counting:def:weight_function}
     A \textbf{weight function} for a set of ruler-graphs \( \mathbb{X} \) is a map \( s_{\mathbb{X}} \colon \mathbb{X} \to \mathbb{N} \) assigning a weight in $\mathbb{N}$ to each ruler-graph. The weight of a monomorphism from a ruler-graph $X$ is defined to be $s_\mathbb{X}(X)$. 
 \end{definition}
 Assigning different weights to measurements from distinct ruler-graphs enhences the technique, as demonstrated in~\autoref{ex:overbeek_5d6}.
-\begin{definition}[Graph weight]
+\begin{definition} 
     \label{subgraph_counting:def:graph_weight}  
     Let \( \mathbb{X} \) be a set of ruler-graphs, 
     \( s_{\mathbb{X}} \) a weight function, and \( G \) a graph. The \textbf{weight of graph} \( G \) relative to \( s_{\mathbb{X}} \), denoted by \( w_{s_{\mathbb{X}}}(G) \), is defined as: 
@@ -64,7 +64,7 @@ Assigning different weights to measurements from distinct ruler-graphs enhences 
 For the remainder of this section, we assume: a set \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) of injective DPO rewriting rules, a set \( \mathbb{X} \) of ruler-graphs, and a weight function \( s_{\mathbb{X}} \).  Let \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) denote a rule in \( \mathcal{R} \) and \( X \in \mathbb{X} \). 
 Recall that \(\mathfrak{M}\), defined in~\autoref{def:rewriting_framework}, denotes the DPO rewriting framework that associates each rule with the collection of all DPO diagrams witnessing rewriting steps using the rule, where the matches are monic.
 
-The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{M}} \) is relatively terminating to $\Rightarrow_{\mathcal{B},\mathfrak{M}}$ if the following hold: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) > w_{s_\mathbb{X}}(H) \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H) \). However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
+The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{M}} \) terminates relative to $\Rightarrow_{\mathcal{B},\mathfrak{M}}$ if the following hold: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) > w_{s_\mathbb{X}}(H) \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H) \). However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
 Thus, we aim to provide a rule-based sufficient condition for termination.
 % \begin{remark}
 %     To simplify our presentation, we treat the following three notions interchangeably when the monomorphism \( h: A \to B \) is understood: the domain graph \( A \), the monomorphism \( h: A \to B \), the image \( h(A) \subseteq B \) (an occurrence of \( A \) in \( B \)).

@@ -1,15 +1,20 @@
-\todo{plus generalement, c'est defini sur des relations, pas forcement de reecriture}
-\begin{definition}[Rewriting sequence]
-    Let \(\mathcal{R}\) be a set of rewriting rules and let $\mathfrak{F}$ be a DPO rewriting framework.
-    An \textbf{$(\mathcal{R},\mathfrak{F})$-rewriting sequence} is either  
-    \begin{itemize}
-        \item a finite sequence \(s_0,s_1,\hdots, s_m\) of objects such that \( s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\text{ for each } 0 \leq n \leq m-1\), or
-        \item an infinite sequence \(s_0,s_1,\hdots\) of objects such that \(s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\) for each \(n \in \mathbb{N}\).
-    \end{itemize}
-    An $(\mathcal{R},\mathfrak{F})$-rewriting sequence from \( s_0 \) will be denoted by:
-    \[
-    s_0 \Rightarrow_{\mathcal{R},\mathfrak{F}} s_1 \Rightarrow_{\mathcal{R},\mathfrak{F}} s_2 \Rightarrow_{\mathcal{R},\mathfrak{F}} \cdots 
-    \]
+% \todo{plus generalement, c'est defini sur des relations, pas forcement de reecriture}
+% \begin{definition} 
+%     Let \(\mathcal{R}\) be a set of rewriting rules and let $\mathfrak{F}$ be a DPO rewriting framework.
+%     An \textbf{$(\mathcal{R},\mathfrak{F})$-rewriting sequence} is either  
+%     \begin{itemize}
+%         \item a finite sequence \(s_0,s_1,\hdots, s_m\) of objects such that \( s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\text{ for each } 0 \leq n \leq m-1\), or
+%         \item an infinite sequence \(s_0,s_1,\hdots\) of objects such that \(s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\) for each \(n \in \mathbb{N}\).
+%     \end{itemize}
+%     An $(\mathcal{R},\mathfrak{F})$-rewriting sequence from \( s_0 \) will be denoted by:
+%     \[
+%     s_0 \Rightarrow_{\mathcal{R},\mathfrak{F}} s_1 \Rightarrow_{\mathcal{R},\mathfrak{F}} s_2 \Rightarrow_{\mathcal{R},\mathfrak{F}} \cdots 
+%     \]
+% \end{definition}
+
+\begin{definition}\label{def:rewriting-chain}
+Let \(\mathcal{R}\) be a rule set and let \(\mathfrak{F}\) be a DPO rewriting framework.
+An \((\mathcal{R},\mathfrak{F})\)-rewriting chain is a \(\Rightarrow_{\mathcal{R},\mathfrak{F}}\)-chain. Hence, when the context is clear, we simply call it a rewriting chain.
 \end{definition}
 
 \begin{example}
@@ -66,7 +71,7 @@
             \draw[->] (z)--(x) node[midway, above] {$b$};
             \draw[->] (x)--(y) node[midway, above] {$a$};
         }}}, keeping the extreme nodes unchanged.
-    A looping rewriting sequence using this rule is shown in~\autoref{fig:preliminaries:sequence_of_transformation_infinite}, in which the subgraph to be replaced at each transformation step is highlighted in red.
+    A looping rewriting chain using this rule is shown in~\autoref{fig:preliminaries:sequence_of_transformation_infinite}, in which the subgraph to be replaced at each transformation step is highlighted in red.
        
         \begin{figure}[H]
            \centering
@@ -113,78 +118,77 @@
           \label{fig:preliminaries:sequence_of_transformation_infinite}
         \end{figure}
 \end{example}
-We adapt the concept of relative termination~\cite{klop1987term,geser1990relative} to DPO rewriting.
-\begin{definition}[Relative termination]
-    \label{termination:def:relative_termination}
-     Let $\mathcal{A}$ and $\mathcal{B}$ be sets of rewriting rules and let $\mathfrak{F}$ be a DPO rewriting framework. We say that $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is \textbf{relatively terminating to} $\Rightarrow_{\mathcal{B}, \mathfrak{F}}$ if any infinite $(\mathcal{A} \cup \mathcal{B},\mathfrak{F})$-rewriting sequence has only a finite number of rewriting steps with rules in $\mathcal{A}$.
+The concept of relative termination was introduced by Klop in~\cite{klop1987term,geser1990relative} for binary relations.
+\begin{definition}
+Let $A$ be a collection of objects and let $R,S \subseteq A \times A$ be binary relations. 
+We say that $R$ is \textbf{terminating relative to} $S$ (or that $R$ \textbf{terminates relative to} $S$) if 
+any $(R \cup S)$-chain contains only finitely many $R$-steps.
+In particular, $R$ is \textbf{terminating} (or terminates) if it is terminating relative to the empty relation $\emptyset$.
 \end{definition}
+For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the empty relation, since any $(> \cup \emptyset)$-chain contains only finitely many $>$-steps. The relation $>$ is also terminating relative to $\geq$ on $\mathbb{N}$, since any $(> \cup \geq)$-chain can only contain finitely many $>$-steps.
 
-\begin{example}
-    Consider the rewriting system with two rules shown in~\autoref{fig:preliminaries:relative_termination}.
-    \begin{figure}[H]
-     $\alpha$ = \resizebox{0.85\textwidth}{!}{ 
-                \begin{tikzpicture}[baseline=-7ex]
-                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+Since a set of rewriting rules defines the binary relation \enquote{object $X$ can be rewritten to object $Y$ using rules from the rule set},
+the notion of relative termination can be adapted to the context of rewriting in a straightforward way:
+\begin{definition} 
+    \label{termination:def:relative_termination}
+     Let $\mathcal{R}$ and $\mathcal{S}$ be sets of rewriting rules and let $\mathfrak{F}$ be a DPO rewriting framework. 
+     We say that $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\Rightarrow_{\mathcal{S}, \mathfrak{F}}$ if 
+     $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\Rightarrow_{\mathcal{S}, \mathfrak{F}}$
+\end{definition}
+As an example, consider the edge-deleting rule $\alpha$ and the node-adding rule $\beta$ shown in~\autoref{fig:intro:edge_deletion_andffsfjsss}. The rule set $\set{\alpha}$ is terminating with respect to the rule set $\set{\beta}$, because any infinite sequence of graph transformations can apply the edge-deleting rule only finitely many times.
+ \begin{figure}[H]
+        \centering
+        $\alpha$ = {
+             \resizebox{0.7\textwidth}{!}{
+             \begin{tikzpicture}[baseline=-7ex]
+                    \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                        \draw[->] (l1) -- (l2) node[midway,above] {$a$};
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+                        \draw[->] (l1) -- (l2) node[midway,above] {$A$};
                     } 
             
-                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                    \graphbox{\( \mathcal{K} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
                     }  
             
-                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
+                    \graphbox{\( \mathcal{R} \)}{80mm}{-3mm}{35mm}{15mm}{5mm}{2mm}{
                         \coordinate (o) at (-5mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
-                        \draw[->] (l1) -- (l4) node[midway,above] {$b$};
-                        % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {$2$};
                     }    
                     \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
                 \end{tikzpicture}
-                }
- 
-     $\beta$ = \resizebox{0.85\textwidth}{!}{ 
-                \begin{tikzpicture}[baseline=-7ex]
-                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                        \draw[->] (l1) -- (l2) node[midway,above] {$a$};
+            }
+        }
+
+        $\beta$ ={
+             \resizebox{0.7\textwidth}{!}{
+             \begin{tikzpicture}[baseline=-7ex]
+                    \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        
                     } 
             
-                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    \graphbox{\( \mathcal{K} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                       
                     }  
             
-                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (-5mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
-                        \draw[->] (l1) -- (l4) node[midway,above] {$a$};
-                        % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+                    \graphbox{\( \mathcal{R} \)}{80mm}{-3mm}{35mm}{15mm}{5mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                     }    
                     \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
                 \end{tikzpicture}
-                }
-            \caption{}
-            \label{fig:preliminaries:relative_termination}
-    \end{figure}
-    The rewriting system is not terminating because of the rule $\beta$, but the rule $\alpha$ is relatively terminating to $\beta$ because it can only be applied finitely many times in any rewriting sequence that uses $\alpha$ and $\beta$.
-\end{example}
-% The concept of relative termination generalizes the notion of uniform termination of DPO graph rewriting systems which is a fundamental property of algorithms because many other properties are based on it. Given a set of rules, the uniform termination means that any rewriting sequence using these rules has a finite length. Uniform termination is undecidable in general~\cite{plump1998terminationundecidable}. It is a fundamental property of rewriting systems because it is a prerequisite for reasoning about the correctness of algorithms based on these systems.
-% For example, there is no point to talk about the correctness of the result of an algorithm if the algorithm does not terminate. In the context of graph rewriting, termination means that any graph can not be transformed indefinitely by applying rewriting rules. Plump has shown that termination of DPO graph rewriting systems is undecidable in general~\cite{plump1998terminationundecidable}.
+            }
+        }
+    %     \caption{A graph transformation rule for node addition}
+    %     \label{fig:intro:node_addition_rule}
+    % \end{subfigure} 
+    \caption{A rewriting system}
+    \label{fig:intro:edge_deletion_andffsfjsss}
+  \end{figure}
+In practice, to prove termination of a rewriting system $\mathcal{R}$, one partitions the set of rules into two disjoint subsets \( \mathcal{B} \) and \( \mathcal{A} \) with non-empty $\mathcal{A}$ such that \( \mathcal{A} \) terminates relative to \( \mathcal{B} \), if $\mathcal{B}$ is not empty then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.
