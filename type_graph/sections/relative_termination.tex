@@ -127,13 +127,14 @@ In particular, $R$ is \textbf{terminating} (or terminates) if it is terminating 
 \end{definition}
 For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the empty relation, since any $(> \cup \emptyset)$-chain contains only finitely many $>$-steps. The relation $>$ is also terminating relative to $\geq$ on $\mathbb{N}$, since any $(> \cup \geq)$-chain can only contain finitely many $>$-steps.
 
-Since a set of rewriting rules defines the binary relation \enquote{object $X$ can be rewritten to object $Y$ using rules from the rule set},
-the notion of relative termination can be adapted to the context of rewriting in a straightforward way:
-\begin{definition} 
+Since a set of rewriting rules defines a binary relation \enquote{object $X$ can be rewritten to object $Y$ using rules from the rule set}, called a rewriting relation,
+the concept of relative termination
+carries over to rewriting systems in a straightforward way via their associated rewriting relations:
+\begin{definition}
     \label{termination:def:relative_termination}
      Let $\mathcal{R}$ and $\mathcal{S}$ be sets of rewriting rules and let $\mathfrak{F}$ be a DPO rewriting framework. 
      We say that $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\Rightarrow_{\mathcal{S}, \mathfrak{F}}$ if 
-     $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\Rightarrow_{\mathcal{S}, \mathfrak{F}}$
+     $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\Rightarrow_{\mathcal{S}, \mathfrak{F}}$.
 \end{definition}
 As an example, consider the edge-deleting rule $\alpha$ and the node-adding rule $\beta$ shown in~\autoref{fig:intro:edge_deletion_andffsfjsss}. The rule set $\set{\alpha}$ is terminating with respect to the rule set $\set{\beta}$, because any infinite sequence of graph transformations can apply the edge-deleting rule only finitely many times.
  \begin{figure}[H]
@@ -188,7 +189,7 @@ As an example, consider the edge-deleting rule $\alpha$ and the node-adding rule
     %     \caption{A graph transformation rule for node addition}
     %     \label{fig:intro:node_addition_rule}
     % \end{subfigure} 
-    \caption{A rewriting system}
+    \caption{A rewriting system.}
     \label{fig:intro:edge_deletion_andffsfjsss}
   \end{figure}
 In practice, to prove termination of a rewriting system $\mathcal{R}$, one partitions the set of rules into two disjoint subsets \( \mathcal{B} \) and \( \mathcal{A} \) with non-empty $\mathcal{A}$ such that \( \mathcal{A} \) terminates relative to \( \mathcal{B} \), if $\mathcal{B}$ is not empty then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.

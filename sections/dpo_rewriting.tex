@@ -1,4 +1,7 @@
-Now that we have defined labeled graphs, we introduce double-pushout (DPO) graph rewriting. The concepts and notation in this section follow the treatments in~\cite{endrullis2024generalized_icgt}.
+The algebraic approach of double-pushout (DPO) rewriting was introduced by Ehrig et al. in~\cite{ehrig1973graph}. It is not restricted to graphs, but can be defined in any category that has some properties~\cite{ehrig2006fundamentals,lack2004adhesive}. This section recalls the definition of DPO rewriting, following the treatment of Endrullis and Overbeek in~\cite{endrullis2024generalized_icgt}.
+
+Throughout this section, let \(\mathcal{C}\) be a category.
+ A DPO rewriting rule is given by two morphisms \(l: K \to L\) and \(r: K \to R\). \(L\) encodes the rule's preconditions, \(R\) specifies the postconditions, and \(K\) is the interface—the subobject common to \(L\) and \(R\) that is preserved by the rule and links \(L\) and \(R\) to the surrounding context.
 \begin{definition} 
   \label{def:grs:dpo_rule}
 A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}, \( L \) is the \textbf{left-hand-side object}, denoted by \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side object}, denoted by \( \operatorname{rhs}(\rho) \). The rule $(R \overset{r}{\leftarrow} K \overset{l}{\rightarrow} L)$ is denoted by $\rho^{-1}$. The rule is said to be \textbf{left monic} if \( l \) is monic, and \textbf{right monic} if \( r \) is monic. 
@@ -12,9 +15,29 @@ The work \enquote{injective} and \enquote{monic} are used interchangeably in thi
 \begin{example}
   \label{ex:grsaa}
   Consider the DPO rewriting rule shown in~\autoref{fig:preliminaries:a_rewriting_rule} from \cite[Example 6]{bruggink2014termination}. 
-  \begin{figure}[H]
+  It is an injective rule.
+  It replaces an occurrence of the graph 
+\raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {};
+            \node [draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \draw[->] (z)--(x) node[midway, above] {$a$};
+            \draw[->] (x)--(y) node[midway, above] {$a$};
+        }}} with an occurrence of the graph \raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {};
+            \node [draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \node[draw,circle] (w) at (2,0) {};
+            \draw[->] (z)--(x) node[midway, above] {$a$};
+            \draw[->] (x)--(y) node[midway, above] {$b$};
+            \draw[->] (y)--(w) node[midway, above] {$a$};
+        }}}, keeping the extreme nodes unchanged.   
+To perform a rewriting step using a DPO rewriting rule $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ to an object $G$, we need to find a match $m:L \to G$. The rule is then applied by constructing the diagram with double pushout shown in \autoref{def:rewriting_step} and once the pushout squares are constructed, one says that the object $G$ rewrites to $H$ using the rule $\rho$ and the match $m$.
+\begin{figure}[H]
       \centering 
-      \resizebox{0.7\textwidth}{!}{
+      \resizebox{0.8\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -50,57 +73,10 @@ The work \enquote{injective} and \enquote{monic} are used interchangeably in thi
       \caption{}
       \label{fig:preliminaries:a_rewriting_rule}
   \end{figure}
-  It is an injective rule.
-  It replaces an occurrence of the graph 
-\raisebox{2pt}{
-            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
-            \node [draw,circle] (z) at (-1,0) {};
-            \node [draw,circle] (x) at (0,0) {};
-            \node[draw,circle] (y) at (1,0) {};
-            \draw[->] (z)--(x) node[midway, above] {$a$};
-            \draw[->] (x)--(y) node[midway, above] {$a$};
-        }}} with an occurrence of the graph \raisebox{2pt}{
-            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
-            \node [draw,circle] (z) at (-1,0) {};
-            \node [draw,circle] (x) at (0,0) {};
-            \node[draw,circle] (y) at (1,0) {};
-            \node[draw,circle] (w) at (2,0) {};
-            \draw[->] (z)--(x) node[midway, above] {$a$};
-            \draw[->] (x)--(y) node[midway, above] {$b$};
-            \draw[->] (y)--(w) node[midway, above] {$a$};
-        }}}, keeping the extreme nodes unchanged.   
 \end{example}
-
-% \begin{center}
-%      \resizebox{0.4\textwidth}{!}{
-%           \begin{tikzpicture}
-%             % [node distance=11mm]
-%             \node (I) at (0,0) {$K$};
-%             \node (L) at (-2,0) {$L$};
-%             \node (R) at (2,0) {$R$};
-%             \node (G) at (-2,-2) {$G$};
-%             \node (C) at (0,-2) {$C$};
-%             \node (H) at (2,-2) {$H$};
-%             \draw [->] (I) to  node [midway,below] {$l$} (L);
-%             \draw [->] (I) to  node [midway,below] {$r$} (R);
-%             \draw [->] (L) to node [midway,right] {$m$} (G);
-%             \draw [->] (I) to node [midway,right] {$u$} (C);
-%             \draw [->] (R) to node [midway,left] {$m'$} (H);
-%             \draw [->] (C) to node [midway,above] {$l'$} (G);
-%             \draw [->] (C) to node [midway,above] {$r'$} (H);
-%             \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-%             \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-%           \end{tikzpicture}
-%         % \end{center}
-%         }
-% \end{center}
-To perform a rewriting step using a DPO rewriting rule $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ to an object $G$, we need to find a match $m:L \to G$. The rule is then applied by constructing the diagram with double pushout shown in \autoref{def:rewriting_step} and once the pushout squares are constructed, one says that the object $G$ rewrites to $H$ using the rule $\rho$ and the match $m$. 
-
-
+To rewrite an object $G$, one matches the left-hand side \(L\) into \(G\) by a morphism \(m:L\to G\) and then constructs the resulting object from a diagram consisting of two pushout squares; these two pushouts are the origin of the name \enquote{double-pushout}.
 \begin{definition} 
   \label{def:rewriting_step}
-    \ \newline
-    \noindent
     A diagram in a category consisting of two pushout squares arranged as shown in~\autoref{fig:preliminaries:a_rewriting_step_slkjdfsljsdl} is called a \textbf{double-pushout (DPO) diagram}.
       \begin{figure}[H]
         \centering
@@ -175,20 +151,6 @@ As an example, consider the DPO rewriting rule shown in~\autoref{fig:preliminari
       \caption{}
       \label{fig:preliminaries:a_rewriting_rule_sfdsgdfa}
   \end{figure}
-The graph $G$ can be rewritten to yield the graph $H$ by applying the rule to the occurrence \raisebox{2pt}{
-            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
-            \node [draw,circle] (z) at (-1,0) {$1$};
-            \node [draw,circle,orange] (x) at (0,0) {$3$};
-            \node[draw,circle] (y) at (1,0) {$2$};
-            \draw[->,orange] (z)--(x) node[midway, above] {$a$};
-            \draw[->,orange] (x)--(y) node[midway, above] {$a$};
-        }}} of $L$ in $G$.
-Specifically, graph $G$ can be decomposed into an occurrence of graph $L$ (elements shown in orange and black in $G$) and the context graph $C$ (elements shown in blue and black in $G$). The interface graph is the subgraph shown in black.
-The graph $R$ can be decomposed into an occurrence of $K$ (elements shown in black) and the others (elements shown in red).
-The rule removes the orange part of the occurrence of $L$ in $G$ to obtain the context graph $C$. 
-The result graph $H$ is obtained by gluing the context graph $C$ and the graph $R$ via the interface graph.
-% \begin{example}
-%   \label{ex:rewriting_step_grs_aa}
   \begin{figure}[H]
     \centering
     \resizebox{0.8\textwidth}{!}{
@@ -275,82 +237,19 @@ The result graph $H$ is obtained by gluing the context graph $C$ and the graph $
       \caption{}
       \label{fig:preliminaries:a_rewriting_step}
     \end{figure}
+The graph $G$ can be rewritten to yield the graph $H$ by applying the rule to the occurrence \raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {$1$};
+            \node [draw,circle,orange] (x) at (0,0) {$3$};
+            \node[draw,circle] (y) at (1,0) {$2$};
+            \draw[->,orange] (z)--(x) node[midway, above] {$a$};
+            \draw[->,orange] (x)--(y) node[midway, above] {$a$};
+        }}} of $L$ in $G$.
+Specifically, graph $G$ can be decomposed into an occurrence of graph $L$ (elements shown in orange and black in $G$) and the context graph $C$ (elements shown in blue and black in $G$). The interface graph is the subgraph shown in black.
+The graph $R$ can be decomposed into an occurrence of $K$ (elements shown in black) and the others (elements shown in red).
+The rule removes the orange part of the occurrence of $L$ in $G$ to obtain the context graph $C$. 
+The result graph $H$ is obtained by gluing the context graph $C$ and the graph $R$ via the interface graph.
 
-%   \begin{figure}[H]
-%       \centering 
-%       \resizebox{0.7\textwidth}{!}{
-%       \begin{tikzpicture}
-%           \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
-%               \coordinate (o) at (0mm,-8mm); 
-%               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
-%               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-%               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
-%               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-%               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-%           } 
-%           \graphbox{\( K \)}{40mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
-%               \coordinate (o) at (0mm,-8mm); 
-%               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%           }  
-%           \graphbox{\( R \)}{80mm}{-3mm}{45mm}{12mm}{2mm}{2mm}{
-%               \coordinate (o) at (-5mm,-8mm); 
-%               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%               \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-%               \draw[ ] (l1) -- (l3) node[midway,above] {$a$};
-%               \draw[ ] (l3) -- (l4) node[midway,above] {$b$};
-%               \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
-%           }    
-%           \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
-%               \coordinate (o) at (0mm,-3mm); 
-%               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-%               \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-%               \draw[] (l1) -- (l3) node[midway,above] {$a$};
-%               \draw[] (l3) -- (l2) node[midway,above] {$a$};
-%               \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
-%               \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-%               \draw[] (l1) -- (l6) node[midway,left] {$a$};
-%           }    
-%           \graphbox{\( C  \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
-%               \coordinate (o) at (0mm,-3mm); 
-%               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%               \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-%               \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
-%               \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-%               \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
-%           }    
-%           \graphbox{\( H \)}{80mm}{-22mm}{45mm}{22mm}{2mm}{-3mm}{
-%               \coordinate (o) at (-5mm,-3mm); 
-%               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%               \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-%               \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-%               \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
-%               \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
-%               \draw[] (l1) -- (l3) node[midway,above] {$a$};
-%               \draw[] (l3) -- (l4) node[midway,above] {$b$};
-%               \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
-%               \draw[ ] (l2) -- (l5) node[midway,right] {$a$};
-%           }    
-%           \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
-%           \node () at (77mm,-8mm) {\( \rightarrowtail \)}; % K -> R
-%           \node () at (15mm,-18mm) {\( m\ \downarrowtail \)};
-%           \node () at (37mm,-33mm) {\( \leftarrowtail \)};
-%           \node () at (58mm,-18mm) {\( u\downarrowtail \)};
-%           \node () at (102mm,-18mm) {\( \downarrowtail \)};
-%           \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
-%       \end{tikzpicture}
-%       }
-%       \caption{Rewriting step}
-%       \label{fig:preliminaries:a_rewriting_step}
-%   \end{figure}
-% \end{example}
 
 In category \textbf{Graph}, the pushout of two arrows always exists by~\autoref{prop:pushout_graph_always_exists}. Therefore, consider the DPO diagram shown in~\autoref{fig:preliminaries:a_gadsfsddfsmework}. Once the left pushout square is constructed, the right pushout square can always be constructed and is unique up to isomorphism because of the universal property.
 \begin{figure}[H]
@@ -675,7 +574,7 @@ Finally, the following proposition from~\cite{corradini1997algebraic} characteri
 %     \end{figure}
 %     However, no morphism \(\delta : G \to E\) exists such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \), which contradicts the universal property of the pushout. Therefore, there cannot be any graph \( C \) and morphisms \( \beta \) and \( \alpha' \) such that the diagram in the assumption is a pushout square.
 
-\todo{todo : motivation ; variants?}
+There are several variants of DPO rewriting. Typically both the match (m) and the morphism (l) are required to be monomorphisms, and some variants impose additional constraints on the left pushout—for example, that the pushout complement be minimal or initial~\cite{braatz2011delete,behr2021concurrency,behr2023fundamentals}. Because these choices affect which rewriting steps are permitted and hence properties such as termination, following Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}, we employ the definition which is parametric in the variation of DPO under consideration.
 \begin{definition}[\cite{endrullis2024generalized_icgt}]
   \label{def:rewriting_framework} 
     A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to classes of DPO diagrams. Specifically, for every rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \), class $\mathfrak{F}(\rho)$ consists of DPO diagrams, shown in~\autoref{fig:preliminaries:a_rewriting_framework}, which are witnesses of rewriting steps using the rule \( \rho \).
