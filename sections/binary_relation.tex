@@ -1,9 +1,12 @@
-In this thesis, we often need to consider collections of objects.
- A collection is not necessarily a set. A well known example is the collection of all sets which is not a set.
+This section recalls the definition of binary relations and some related concepts on collections of objects.
+A collection is not necessarily a set. A well known example is the collection of all sets which is not a set. For simplicity, we use similar notation for collections as for sets.  
 \begin{notation}
-    Let $C$ and $D$ be collections of objects. $c \in C$ denotes \enquote{$c$ is an element of C}, $C \cup D$ denotes the smallest collection including $C$ and $D$, $C \cap D$ denotes the smallest collection contains all elements in $C$ that are also in $D$,
-    $X \subseteq C$ denotes a collection of elements in $C$,
-     $C \times D$ denotes the collection of ordered pairs $(c,d)$ with $c \in C$ and $d \in D$.
+    Let $C$ and $D$ be collections of objects. 
+    we write $c \in C$ to mean that \enquote{$c$ is an element of C}, 
+    and $X \subseteq C$ to mean that $X$ is a collection of elements of $C$,
+    $C \cup D$ denotes the smallest collection including $C$ and $D$,
+    $C \cap D$ denotes the smallest collection contains all elements in $C$ that are also in $D$,
+    $C \times D$ denotes the collection of ordered pairs $(c,d)$ with $c \in C$ and $d \in D$.
   \end{notation} 
   % \begin{definition}[Binary relation]
   %   \label{def:binary_relation:binary_relation}
@@ -13,44 +16,68 @@ In this thesis, we often need to consider collections of objects.
     
   %   When $D$ is irrelevant, we say simply that $\mathcal{R}$ is a binary relation.
   % \end{definition}
-  We define binary relations on collections of objects instead of on sets. 
+  % Binary relations on collections of objects instead of on sets.
 \begin{definition}
     \label{def:binary_relation:binary_relation}
-    Let $S$ be a collection of objects. A \textbf{binary relation} on $S$ is a mathematical structure \((S,\to)\) with \(\to \subseteq S\times S\). For \(x,y\in S\) we write \(x\to y\) to mean \((x,y)\) is an element in \(\to\). When the underlying collection \(S\) is clear from context or irrelevant to the discussion, we simply say that \(\to\) is a binary relation.
+    Let $S$ be a collection of objects. A \textbf{binary relation} on $S$ is a mathematical structure \((S,\to)\) with \(\to \subseteq S\times S\). For \(x,y\in S\) we write \(x\to y\) to mean \((x,y)\) is an element of \(\to\). When the underlying collection \(S\) is clear from context or irrelevant to the discussion, we simply say that \(\to\) is a binary relation.
   \end{definition}
-  Examples of binary relations are \((\mathbb{N}, \geq)\), \((\mathbb{N}, >)\), and \((\mathbb{N}, =)\).
+  Examples of binary relations are the empty set, the set $\set{(2,4),(1,3),(3,5)}$, \((\mathbb{N}, \geq)\), \((\mathbb{N}, >)\), and \((\mathbb{N}, =)\).
   \begin{definition}
     \label{def:binary_relation:reflexivity_transitivity}
     Let \(\to\) be a binary relation on a collection \(S\). It is said to be
     \begin{itemize}
       \item \textbf{reflexive} if $a \to a$ for all $a \in S$;
-      \item \textbf{irreflexive} if $a \to a$ does not hold for all $a \in S$;
+      \item \textbf{irreflexive} if for all $a \in S$, $a \to a$ does not hold;
       \item \textbf{symmetric} if for all $a,b \in S$, $a \to b$ implies $b \to a$;
       \item \textbf{transitive} if for all $a,b,c \in S$, $a \to b$ and $b \to c$ implies $a \to c$.
     \end{itemize}
-    An \textbf{equivalence relation} on $S$ is a binary relation that is reflexive, symmetric, and transitive.
   \end{definition}
-For example, the equality \(=\) on \(\mathbb{N}\) is reflexive, symmetric, and transitive, whereas, the strict order \(>\) on \(\mathbb{N}\) is neither reflexive nor symmetric, but it is irreflexive and transitive.
+Some examples of binary relations with these properties are as follows.
+\begin{itemize}
+  \item The binary relation $\set{(1,1),(3,3),(5,5),(1,3),(3,5)}$ is reflexive. It is not transitive because $(1,5)$ is not in the relation while $(1,3)$ and $(3,5)$ are in the relation. It is not symmetric because $(3,1)$ is not in the relation while $(1,3)$ is in the relation.
+  \item The binary relation $\set{(1,3),(3,1)}$ is irreflexive and symmetric. It is neither reflexive nor transitive, because $(1,1)$ is not in the relation.
+  \item The binary relation $\set{(1,3),(3,5),(1,5)}$ is transitive.
+   It is not reflexive, because $(3,3)$ is not in the relation. It is not symmetric, because $(3,1)$ is not in the relation while $(1,3)$ is in the relation.
+  \item The usual equality relation \(=\) on \(\mathbb{N}\) is reflexive, symmetric, and transitive.
+  \item The carnonical order \(>\) on \(\mathbb{N}\) is neither reflexive nor symmetric, but it is irreflexive and transitive.
+\end{itemize}
+
+
 
 \begin{definition} 
     \label{def:binary_relation:closure}
     Let \( \to \) be a binary relation.
     % The \textbf{transitive closure} of $\to$, denoted $\to^+$, is the smallest transitive relation that includes \( \to \).
     % The \textbf{symmetric closure} of $\to$, denoted $\leftrightarrow$, is the smallest symmetric relation that includes \( \to \).
-    The \textbf{reflexive symmetric transitive closure} of $\to$, denoted $\to^*$, is the smallest reflexive, symmetric, and transitive relation that includes \( \to \).
-\end{definition}
+    The \textbf{reflexive transitive closure} of $\to$, denoted $\to^*$, is the smallest reflexive and transitive relation that includes \( \to \).
+    An equivalence relation is a \textbf{reflexive transitive symmetric closure} binary relation. An \textbf{equivalence relation generated by \(\to\)} is the smallest equivalence relation that includes \(\to\).
+\end{definition} 
 For example, 
-the relation \(\geq\) on \(\mathbb{N}\) is the reflexive transitive closure of the binary relation \(\set{(n, n+1) \mid n \in \mathbb{N}}\).
-
+the relation \(\geq\) on \(\mathbb{N}\) is the reflexive transitive closure of the binary relation \(\set{(n+1, n) \mid n \in \mathbb{N}}\).
+Furthermore, consider the binary relation $\set{(2,4),(1,3),(3,5)}$. The equivalence relation $\sim$ generated by this relation is 
+\begin{flalign*}
+    \set{&(1,1),(2,2),(3,3),(4,4),(5,5),(1,3),(3,1),\\
+         &(2,4),(4,2),(3,5),(5,3),(1,5),(5,1)}
+\end{flalign*} 
+because every equivalence relation generated by $\sim$, it includes
+\begin{itemize}
+  \item $\set{(2,4),(1,3),(3,5)}$;
+  \item $\set{(1,1),(2,2),(3,3),(4,4),(5,5)}$, by reflexivity;
+  \item $\set{(1,5)}$, by transitivity;
+  \item $\set{(4,2),(3,1),(5,3),(5,1)}$, by symmetry.
+\end{itemize} 
+Given an equivalence relation, one may naturally consider the induced partition of the underlying collection into equivalence classes.
 \begin{definition}
-   Let \(\sim\) be an equivalence relation on a set \(S\). For \(x\in S\) the \textbf{equivalence class} of \(x\) with respect to \(\sim\) is 
-   \[[x]_{\sim} \isdef \{y\in S \mid y \sim x\}\]
-   The \textbf{quotient set} (or set of equivalence classes) is 
-   \[S/{\sim} \isdef \{[x]_{\sim} \mid x\in S\}\]
-   We may simply write \([x]\) instead of \([x]_{\sim}\) when the equivalence relation is clear from context.
-\end{definition}
-For example, let $S = \set{1,2,3,4}$ and $\sim = \set{(2,4),(1,3)}$. Then $[1] = {1,3} = [3]$ and $[2] = {2,4} = [4]$. Thus, $S/{\sim} = \set{[1],[2]}$.
+   Let \(S\) be a collection of objects and \(\sim\) be an equivalence relation on \(S\). For an element \(x\) in \(S\), the \textbf{equivalence class} of \(x\) in \(S\) with respect to \(\sim\) is the collection that consists of all elements \(y \in S\) such that \(y \sim x\), and is denoted by \([x]_{\sim}\).
+      We may simply write \([x]\) instead of \([x]_{\sim}\) when the equivalence relation is clear from context.
+   The collection of all equivalence classes in \(S\) with respect to \(\sim\) is called the \textbf{quotient collection}, and is  
+    denoted by
+   \(S/{\sim}\).
 
+\end{definition}
+For example, consider the set $S \isdef \set{1,2,3,4}$ and the binary relation $\sim \isdef \set{(2,4),(1,3)}$. The equivalence class of $[1]$ and $[3]$ are $\set{1,3}$, because $(1,3) \in S$. 
+The equivalence class shared by $[2]$ and $[4]$ are $\set{2,4}$, because $(2,4) \in S$.
+ Finally, the quotient set $S/{\sim}$ is $\set{[1],[2]}$.
 
 \begin{definition}
     \label{def:binary_relation:chain} 
@@ -67,4 +94,5 @@ An example of an infinite \(\geq\)-chain is the sequence \(3 \geq 2 \geq 1 \geq 
     \label{def:binary_relation:well_founded}
     A binary relation $\to$ is said to be \textbf{well-founded} if there is no infinite $\to$-chain. 
 \end{definition}
-An example of a well-founded relation is \(>\) on \(\mathbb{N}\). An example of a non well-founded relation \(\geq\) on \(\mathbb{N}\), because there is an infinite \(\geq\)-chain \(3 \geq 2 \geq 1 \geq 1 \cdots\).
+An example of a well-founded relation is the usual order
+\(>\) on \(\mathbb{N}\). An example of a non well-founded relation is \(\geq\) on \(\mathbb{N}\), because there is an infinite \(\geq\)-chain \(3 \geq 2 \geq 1 \geq 1 \cdots\).

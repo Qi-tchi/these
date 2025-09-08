@@ -85,11 +85,11 @@ $$\colorbox{Ivory2}{$GraphRewritingSystem.fromRulesListAndName$}$$ given three a
 
 For example, the DPO graph rewriting system that contains the single rule illustrated in~\autoref{fig:implemented:grsaa_0} is represented by the following OCaml expression. 
 \begin{minted}{ocaml}
-let bruggink_2014_ex_4 =
+let bruggink14_ex_4_and_6 =
   GraphRewritingSystem.fromRulesListAndName 
-  [rl] "bruggink_2014_ex_4"
+  [rl] "bruggink14_ex_4_and_6"
 \end{minted}
-The function \colorbox{Ivory2}{$GraphRewritingSystem.fromRulesListAndName$} produces a system named \colorbox{Ivory2}{$bruggink\_2014\_ex\_4$} from the singleton list \colorbox{Ivory2}{$[rl]$}.
+The function \colorbox{Ivory2}{$GraphRewritingSystem.fromRulesListAndName$} produces a system named \colorbox{Ivory2}{$bruggink14\_ex\_4\_and\_6$} from the singleton list \colorbox{Ivory2}{$[rl]$}.
 
 
 \textbf{User-defined rewriting systems} should be placed in the file 
@@ -97,10 +97,10 @@ The function \colorbox{Ivory2}{$GraphRewritingSystem.fromRulesListAndName$} prod
  To expose them, add each instance to the list 
  $$\colorbox{Ivory2}{$available\_graph\_rewriting\_systems$}$$ in the same file.
 
-For example, for the rewriting rule named \colorbox{Ivory2}{$bruggink\_2014\_ex\_4$}, the following code should be added to the end of the file:
+For example, for the rewriting rule named \colorbox{Ivory2}{$bruggink14\_ex\_4\_and\_6$}, the following code should be added to the end of the file:
 \begin{minted}{ocaml}
     let available_graph_rewriting_systems = 
-        bruggink_2014_ex_4 :: available_graph_rewriting_systems 
+        bruggink14_ex_4_and_6 :: available_graph_rewriting_systems 
 \end{minted}
 
 \section{Ruler-Graphs}
@@ -240,9 +240,9 @@ Upon launching, one should see:
 \label{lyonparallel:sec:termination}
 The LyonParallel REPL lets the user select a set of rewriting rules and run the tool's relative termination analysis techniques to test whether the set can be partitioned into two subsets \(\mathcal{A}\) and \(\mathcal{B}\) such that \(\mathcal{A}\) terminates relative to \(\mathcal{B}\). If such a partition is found, the REPL replaces the analyzed rule set with \(\mathcal{B}\) for further analysis; otherwise, the user can try alternative methods or different partitions.
 
-The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewriting systems; user-defined systems can be added as described in~\textsection~\ref{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}. The predefined system shown in~\autoref{fig:implemented:grsaa_0} is named \colorbox{Ivory2}{$bruggink\_2014\_ex\_4\_and\_6$} and appears in that list. Select it at the REPL by name:
+The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewriting systems; user-defined systems can be added as described in~\textsection~\ref{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}. The predefined system shown in~\autoref{fig:implemented:grsaa_0} is named \colorbox{Ivory2}{$bruggink14\_ex\_4\_and\_6$} and appears in that list. Select it at the REPL by name:
 \begin{minted}[style=bw]{bash}
-select_system_by_name bruggink_2014_ex_4_and_6
+select_system_by_name bruggink14_ex_4_and_6
 \end{minted}
 
 The REPL provides the command \colorbox{Ivory2}{$rulergraphs$} to list available ruler-graphs. User-defined ruler-graphs can be added to this list using the the method presented in the previous section. The ruler-graph shown in~\autoref{fig:implemented:ruler_graph_representation} is predefined in the tool and appears in the list of available ruler-graphs.
@@ -252,7 +252,7 @@ Consider the graph rewriting system presented in~\autoref{subgraph_counting:ex_c
  
     \begin{figure}[H]
         \centering
-        \resizebox{0.6\textwidth}{!}{
+        \resizebox{0.7\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
@@ -319,6 +319,32 @@ The following command summarizes the result of the termination analysis.
 
 The message displayed contains \colorbox{Ivory2}{$Terminating:\ yes$} when the method has proved the rule's relative termination with respect to the empty set; otherwise the message contains \colorbox{Ivory2}{$Terminating:\ unknown$} and \colorbox{Ivory2}{$Remaining\ Rules:$}, followed by a list of rules to be analyzed.
 
+Our implementation automatically tries every subgraph of the left-hand-side graphs of the system's rules as a candidate rule-graph until one succeeds. The chosen rule graph is then displayed in the analysis summary. For the system considered in this section, the summary contains the information shown in~\autoref{kdsljsssmkkggnn}, which describes the employed rule graph; the ruler-graph is illustrated in~\autoref{dkgnnnaqqmmamnv}.
+\begin{figure}[H]
+    \begin{minted}[style=bw]{bash}
+        rule graph : nodes : [ 1;2;3 ]
+        arrows : [ (1,s,3,1);(2,s,3,3) ]
+    \end{minted}
+    \caption{}
+    \label{kdsljsssmkkggnn}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \resizebox{0.2\textwidth}{!}{
+        \begin{tikzpicture}
+                \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+                        \coordinate (delta) at (0,-18mm);
+                        \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {1};
+                        \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {2};
+                        \node[draw,circle] (l3) at ($(delta) + (0,0)$) {3};
+                        \draw[->] (l1) -- (l3) node[midway,left] {$s$};
+                        \draw[->] (l2) -- (l3) node[midway,right] {$s$};
+                }
+        \end{tikzpicture}
+    }
+    \caption{}
+    \label{dkgnnnaqqmmamnv}
+\end{figure}
 
 \subsection{Termination Analysis using the Morphism Counting with Antipattern}
 Consider the graph rewriting system shown in~\autoref{antipattern:ex:grs_aca}, whose termination cannot be proven either by the morphism counting method without forbidden patterns introduced in Chapter~\ref{chap:subgraph_counting} or by the subgraph counting method presented in~\cite{overbeek2024termination_lmcs}. Its unique rule is illustrated in~\autoref{fig:intro:graph_transformation_rule_anti_pattern___}.
@@ -366,7 +392,7 @@ To analyse the system's relative termination using the morphism counting method 
  \begin{minted}[style=bw]{bash}
    >> subgraph_counting_one_forbidden_context
 \end{minted}
-The following command summarizes the result of the termination analysis.
+The following command displays a summary of the termination analysis.
  \begin{minted}[style=bw]{bash}
    >> recap
 \end{minted} 
@@ -415,19 +441,13 @@ Consider the rewriting rule shown in~\autoref{fig:implemented:grsaa_0ssssdfss}.
   \end{figure}
 The following command selects this system.
  \begin{minted}[style=bw]{bash}
-   >> select 0
+   >> select_system_by_name bruggink14_ex_4_and_6
 \end{minted}
 The following command shows relative termination of some non-empty subset of rules of the system with respect to the set containing other rules using the type graph method with the natural arithmetic semiring. The timeout is set to 30 seconds.
  \begin{minted}[style=bw]{bash}
    >> type_graph 30 n
 \end{minted}
-The command \colorbox{Ivory2}{$recap$} displays a summary of the termination analysis. The summary contains \colorbox{Ivory2}{$Terminating:\ yes$} and \colorbox{Ivory2}{$Remaining\ Rules:\ none$}, showing that the method successfully proved the rule's relative termination with respect to the empty rule set.
-
-This command
-\begin{minted}[style=bw]{bash}
-   >> type_graph 30 n
-\end{minted}
-is an instance of the following command pattern
+This command is an instance of the following command pattern
 \begin{minted}[style=bw]{bash}
     type_graph [timeout] [semiring_1 semiring_2 ...]
 \end{minted}
@@ -438,6 +458,61 @@ For example, we can have the following command which launch the type graph metho
     >> type_graph 30 a n t A N T
 \end{minted}
 Type graph method with different semirings will be launched parallelly and cooperate with each other. When a non-empty subset $A$ of rules is proved to be terminating relative to the set of remaining rules $B$, a new iteration starts with the set of rules $B$.
+
+The command \colorbox{Ivory2}{$recap$} displays a summary of the termination analysis. The summary contains \colorbox{Ivory2}{$Terminating:\ yes$} and \colorbox{Ivory2}{$Remaining\ Rules:\ none$}, showing that the method successfully proved the rule's relative termination with respect to the empty rule set.
+The summary contains also the information in~\autoref{fig:implemented:type_graph_summarydfsaldkfjsdl}. 
+\begin{figure}[H]
+    \begin{minted}[style=bw]{bash} 
+        1 rule eliminated : rule 0 
+        0 rule remaind : None
+
+        0--a->0 : 0.0
+        1--a->1 : 1.0/4.0 
+        0--a->1 : 0.0
+        0--b->0 : 1.0/16.0 
+        1--a->0 : 1.0/8.0 
+
+        0--a->0 : 0
+        1--a->1 : 4
+        0--a->1 : 0
+        0--b->0 : 1
+        1--a->0 : 2
+    \end{minted}
+    \caption{}
+    \label{fig:implemented:type_graph_summarydfsaldkfjsdl}
+\end{figure}
+The first block indicates that the rule whose representation is indexed by \colorbox{Ivory2}{0} (here the system's unique rule) can be eliminated using the type graph method over the real arctic semiring; no rules remain to be analyzed. The second block gives the information for constructing the type graph: two nodes and 5 edges with rational weights. The third block shows an equivalent type graph with integer weights obtained by multiplying the rational weights by their least common multiple. These type graphs are shown in~\autoref{fig:implemented:type_gdfdgggggg}.
+ \begin{figure}[H]
+    \centering
+    \resizebox{0.6\textwidth}{!}{
+    \begin{tikzpicture}
+      \graphbox{$L$}{20mm}{0mm}{45mm}{25mm}{2mm}{-5mm}{
+          \coordinate (o) at (3mm,-4mm); 
+          \node[draw,circle] (l0) at ($(o)+(-10mm,0mm)$) {$0$};
+          \node[draw,circle] (l1) at ($(l0)+(2,0)$) {$1$};
+            \draw[->] (l0) edge [loop below] node {$a^{0.0}$} (l0);
+            \draw[->] (l0) edge [loop left] node {$b^{\frac{1.0}{16.0}}$} (l0);
+            \draw[->] (l1) edge [loop below] node {$a^{\frac{1.0}{4.0}}$} (l1);
+          \draw[->] (l0) to[bend left] node[midway,above] {$a^{0.0}$} (l1) ;
+          \draw[->] (l1) to[bend left] node[midway,below] {$a^{\frac{1.0}{8.0}}$} (l0) ;
+      }        
+      \graphbox{$F$}{70mm}{0mm}{45mm}{25mm}{2mm}{-5mm}{
+          \coordinate (o) at (3mm,-4mm); 
+          \node[draw,circle] (l0) at ($(o)+(-10mm,0mm)$) {$0$};
+          \node[draw,circle] (l1) at ($(l0)+(2,0)$) {$1$};
+            \draw[->] (l0) edge [loop below] node {$a^{0}$} (l0);
+            \draw[->] (l0) edge [loop left] node {$b^{1}$} (l0);
+            \draw[->] (l1) edge [loop below] node {$a^{4}$} (l1);
+          \draw[->] (l0) to[bend left] node[midway,above] {$a^{0}$} (l1) ;
+          \draw[->] (l1) to[bend left] node[midway,below] {$a^{2}$} (l0);
+      }    
+    %   \node () at (37mm,-10mm) {$\leftarrowtail$};
+      \node () at (67mm,-10mm) {$\rightarrowtail$};
+  \end{tikzpicture}
+    }
+  \caption{}
+  \label{fig:implemented:type_gdfdgggggg}
+ \end{figure}
 
 
 % The system can be selected by using the command \colorbox{Ivory2}{select 3} which select the system with number \textit{3}. The REPL will display the following message to confirm the selection:

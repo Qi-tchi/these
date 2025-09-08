@@ -223,7 +223,7 @@ However, in many cases, an interesting property can be proved even if the whole 
     \caption{}
     \label{fig:intro:edge_deletion_and_node_addition_ruledfakdsjflsdaj}
   \end{figure}
-The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the more general property called \emph{relative termination}, which was originally introduced by Klop in~\cite{klop1987term} for binary relations, and has been studied and employed in the context of rewriting systems~\cite{geser1990relative,kassing2024dependency,endrullis2024generalized_icgt,zantema2014termination,bruggink2014termination,bruggink2015proving}.
+The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the more general property called \emph{relative termination}, which was originally introduced by Klop in~\cite{klop1987term} for binary relations, and has been studied and employed in the context of rewriting systems~\cite{geser1990relative,kassing2024dependency,endrullis2024generalized_icgt,zantema2014termination,bruggink2014termination,bruggink2015proving}. 
 
 \begin{definition}
 Let $A$ be a collection of objects and let $R$ and $S$ be binary relations on $A$. 
@@ -231,10 +231,12 @@ We say that $R$ is \textbf{terminating relative to} $S$ (or that $R$ \textbf{ter
 any $(R \cup S)$-chain contains only finitely many $R$-steps.
 In particular, $R$ is \textbf{terminating} (or terminates) if it is terminating relative to the empty relation $\emptyset$.
 \end{definition}
+
 For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the empty relation, since any $(> \cup \emptyset)$-chain contains only finitely many $>$-steps. The relation $>$ is also terminating relative to $\geq$ on $\mathbb{N}$, since any $(> \cup \geq)$-chain can only contain finitely many $>$-steps.
 
-% Since a set of rewriting rules defines a binary relation \enquote{object $X$ can be rewritten to object $Y$ using rules from the rule set}, called a rewriting relation,
-The concept of relative termination
+Note that termination and well-foundedness are the same property of a binary relation $\to$ described from two perspectives. Operationally, we read $x \to y$ as \enquote{$x$ can be transformed to $y$}; the absence of infinite $\rightarrow$-chains therefore means that any transformation sequence starting from an initial object $x$ is finite, i.e. every computation or rewrite sequence eventually terminates. Structurally, we read $x \to y$ as \enquote{$x$ is constructed from $y$}; the absence of infinite $\to$-chains then implies that every object $x$ can be traced back along a finite chain to an element that is not constructed from any other, so the structure is well-founded. In this thesis we adopt the operational viewpoint and use the term termination.
+
+Relative termination 
 carries over to rewriting systems in a straightforward way via their associated rewriting relations.
 \begin{definition}
     \label{termination:def:relative_termination}

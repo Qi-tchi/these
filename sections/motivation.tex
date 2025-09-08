@@ -17,7 +17,7 @@ To enable such methods, distributed algorithms must be modeled using a formalism
 \section{Finite edge-labeled directed multigraphs} 
 Finite edge-labeled directed multigraphs provide an intuitive yet formal way to model states of distributed algorithms: Computational units are represented by nodes; communication channels are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computational units and states of communication channels. 
 
-For example, consider the graph $\mathcal{G}$ shown in~\autoref{fig:graph_modeling_state_network}, enclosed in a box labeled with its name in the top-left corner. 
+For example, consider the graph $\mathcal{G}$ shown in the following~\autoref{fig:graph_modeling_state_network}, enclosed in a box labeled with its name in the top-left corner. 
 The graph models a distributed network of six computational units.
 Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. In~\autoref{fig:graph_modeling_state_network}, node $1$ labeled by $A$ represents an active computational unit, the other nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$.
 \begin{figure}[H]
@@ -56,9 +56,10 @@ Graph transformation provides an intuitive yet formal way to model algorithm beh
 
 As an example, consider a distributed spanning-tree construction algorithm on a connected network, where one computational unit is active, all other nodes are neutral, and every channel is initially in state $0$. An example initial configuration is shown in~\autoref{fig:graph_modeling_state_network}. 
 The algorithm operates as follows: when an active unit detects a neutral neighbor via a channel in state $0$, it activates the neighbor and updates the channel to state $1$.
- This behavior is captured by the graph transformation rule in~\autoref{fig:intro:graph_transformation_rule_0}: when an active unit detects a neutral neighbor via a channel in state $0$, the corresponding subgraph \(\mathcal{L}\) appears in the network model and is replaced by the subgraph \(\mathcal{R}\), which represents the neighbor's activation and the channel updated to state $1$.
+ This behavior is captured by the graph transformation rule in the following~\autoref{fig:intro:graph_transformation_rule_0}.
  \begin{figure}[H]
         \centering 
+            \resizebox{0.6\textwidth}{!}{
         \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{0mm}{0mm}{34mm}{20mm}{-8mm}{-15mm}{
                         \node[draw, circle] (x) at (0,0) {$1$};  
@@ -76,11 +77,13 @@ The algorithm operates as follows: when an active unit detects a neutral neighbo
                     }  
                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
         \end{tikzpicture}
+            }
         \caption{}  
         \label{fig:intro:graph_transformation_rule_0}
     \end{figure}
+\noindent This rule applies as follows: when an active unit detects a neutral neighbor via a channel in state $0$, the corresponding subgraph \(\mathcal{L}\) appears in the network model and is replaced by the subgraph \(\mathcal{R}\), which represents the neighbor's activation and the channel updated to state $1$.
 
-A sample execution sequence starting from the initial configuration in~\autoref{fig:graph_modeling_state_network} is shown in~\autoref{fig:intro_sequence_of_transformation}, where self-loops are omitted and their labels are displayed directly on the nodes to improve readability. Given an initial finite edge-labeled directed multigraph in which all edges are labeled \textit{0} and all nodes are in the neutral state $N$ except for a single node in the active state $A$, the subgraph induced by edges labeled \textit{1} constitutes a spanning tree once no further rule applications are possible.
+A sample execution sequence starting from the initial configuration, previously defined and illustrated in~\autoref{fig:graph_modeling_state_network}, is shown in the following~\autoref{fig:intro_sequence_of_transformation}, where self-loops are omitted and their labels are displayed directly on the nodes to improve readability. Given an initial finite edge-labeled directed multigraph in which all edges are labeled \textit{0} and all nodes are in the neutral state $N$ except for a single node in the active state $A$, the subgraph induced by edges labeled \textit{1} constitutes a spanning tree once no further rule applications are possible.
 
     \begin{figure}[H]
         \centering
@@ -286,7 +289,7 @@ A sample execution sequence starting from the initial configuration in~\autoref{
                         \draw(3,0) node[right] {\textcolor{red}{$1$}};
                     \end{tikzpicture}
 }
-        \caption{Sequence of graph transformation.}
+        \caption{Sequence of graph transformation, to be read from left to right and from top to bottom.}
         \label{fig:intro_sequence_of_transformation}
     \end{figure}
 
@@ -301,9 +304,12 @@ This enables a uniform definition of graph transformation, and leads to an elega
  Double-pushout (DPO) graph rewriting~\cite{corradini1997algebraic,habel2001double} is among the most studied algebraic graph transformation. A DPO graph rewriting rule consists of two functions that preserve graph structure, namely $l:\mathcal{K} \to \mathcal{L}$ and $r:\mathcal{K} \to \mathcal{R}$,
  Here, \(\mathcal{L}\) is the left-hand side graph encoding the rule's preconditions, \(\mathcal{R}\) is the right-hand side graph describing the postconditions, and \(\mathcal{K}\) is the interface graph—the part common to \(\mathcal{L}\) and \(\mathcal{R}\) that is preserved by the rule and serves as the interface to the surrounding context. A DPO graph rewriting rule is commonly denoted by \(\mathcal{L} \xleftarrow{l} \mathcal{K} \xrightarrow{r} \mathcal{R}\) in the literature.
  
- As an example, the graph transformation rule in~\autoref{fig:intro:graph_transformation_rule_0} can be represented as a DPO graph rewriting rule as shown in~\autoref{fig:intro:graph_transformation_rule_0_dpo}.
+ As an example, the graph transformation rule, previously defined and illustrated in~\autoref{fig:intro:graph_transformation_rule_0}, can be represented as the DPO graph rewriting rule shown in~\autoref{fig:intro:graph_transformation_rule_0_dpo}.
+
+%  \begin{center}
  \begin{figure}[H]
     \centering
+    \resizebox{0.85\textwidth}{!}{
        \begin{tikzpicture} 
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{-8mm}{-9mm}{
                         \node[draw, circle] (x) at (0,0) {$1$};  
@@ -326,21 +332,24 @@ This enables a uniform definition of graph transformation, and leads to an elega
                     \node () at (37mm,-10mm) {\( \rightarrowtail \)}; % K -> L
                     \node () at (-3mm,-10mm) {\( \leftarrowtail  \)}; % K -> L
                 \end{tikzpicture}
-    \caption{}
+    }
+            % \end{center}
+    \caption{A DPO graph rewriting rule which replaces an occurrence of \(\mathcal{L}\) by an occurrence of \(\mathcal{R}\) while preserving the two extremal nodes.}
     \label{fig:intro:graph_transformation_rule_0_dpo}
-    \end{figure}
+    \end{figure} 
 
- As another example, consider the graph transformation rule in~\autoref{fig:intro:graph_transformation_rule_dpo}. This rule identifies an occurrence of the graph
-\raisebox{2pt}{
-            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
-            \node [draw,circle] (z) at (-1,0) {};
-            \node [draw,circle] (x) at (0,0) {};
-            \node[draw,circle] (y) at (1,0) {};
-            \draw[->] (z)--(x) node[midway, above] {$a$};
-            \draw[->] (x)--(y) node[midway, above] {$a$};
-        }}} and then removes the middle node and edges of the occurrence; it does not add any new node or edge.
+To apply a DPO graph rewriting rule $\mathcal{L} \overset{l}{\leftarrow} \mathcal{K} \overset{r}{\rightarrow} \mathcal{R}$ to a host graph $\mathcal{G}$, one must first identify an occurrence of $\mathcal{L}$ in which a subgraph is designed as the interface graph. The other elements of the host graph $\mathcal{G}$ together with the interface graph form the context graph $\mathcal{C}$ of the rewriting step.
+The graph $\mathcal{G}$ is thus decomposed into the occurrence of $\mathcal{L}$ and $\mathcal{C}$. 
+Then, one modifies the occurrence of $\mathcal{L}$ (by removing some nodes and edges and adding some fresh nodes and edges while keeping the interface graph unchanged, and identifying nodes in the interface graph)
+to obtain an occurrence of $\mathcal{R}$. Finally, the result graph is obtained by gluing the occurrence of $\mathcal{R}$ with $\mathcal{C}$ via the interface graph $\mathcal{K}$.
+\newpage 
+As an example, 
+consider the graph transformation rule, shown in the following~\autoref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}, and the graphs shown in the following~\autoref{fig:intro:dangling_edge}.
+
   \begin{figure}[H]
     \centering
+% \begin{center} 
+    \resizebox{0.85\textwidth}{!}{
     \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -363,21 +372,12 @@ This enables a uniform definition of graph transformation, and leads to an elega
                     \node () at (37mm,-10mm) {\( \overset{l}{\longrightarrow}\)}; % K -> L
                     \node () at (-3mm,-10mm) {\( \overset{r}{\longleftarrow}  \)}; % K -> L
                 \end{tikzpicture}
-    \caption{}
-    \label{fig:intro:graph_transformation_rule_dpo}
+    }
+            % \end{center}
+    \caption{A DPO graph rewriting rule which removes the middle node and edges of an occurrence of $\mathcal{L}$.}
+    \label{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}
 \end{figure}
 
-To apply a DPO graph rewriting rule $\mathcal{L} \overset{l}{\leftarrow} \mathcal{K} \overset{r}{\rightarrow} \mathcal{R}$ to a host graph $\mathcal{G}$, one must first identify an occurrence of $\mathcal{L}$ in which a subgraph is designed as the interface graph. The other elements of the host graph $\mathcal{G}$ together with the interface graph form the context graph $\mathcal{C}$ of the rewriting step.
-The graph $\mathcal{G}$ is thus decomposed into the occurrence of $\mathcal{L}$ and $\mathcal{C}$. 
-Then, one modifies the occurrence of $\mathcal{L}$ (by removing some nodes and edges and adding some fresh nodes and edges while keeping the interface graph unchanged, and identifying nodes in the interface graph)
-to obtain an occurrence of $\mathcal{R}$. Finally, the result graph is obtained by gluing the occurrence of $\mathcal{R}$ with $\mathcal{C}$ via the interface graph $\mathcal{K}$.
-
-
-As an example, consider the graph $\mathcal{G}$ shown in~\autoref{fig:intro:graph_G}. 
-It can be rewritten to yield the graph $\mathcal{H}$ shown in~\autoref{fig:intro:graph_H} by applying the DPO graph rewriting rule in~\autoref{fig:intro:graph_transformation_rule_dpo} to the unique occurrence of $\mathcal{L}$ in $\mathcal{G}$.
-Specifically, $\mathcal{G}$ can be decomposed, as shown in~\autoref{fig:intro:decomposition_of_G}, into the occurrence of $\mathcal{L}$ (elements shown in orange and black) and the context graph $\mathcal{C}$ (elements shown in blue and black). The interface graph is the subgraph shown in black in~\autoref{fig:intro:decomposition_of_G}. The rule removes the orange part of the occurrence of $\mathcal{L}$ to obtain an occurrence of $\mathcal{R}$. 
-The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal{R}$ and the context graph $\mathcal{C}$ via the interface graph.
-  
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.4\textwidth}
@@ -458,9 +458,44 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
     \end{subfigure}
     \caption{}
 \end{figure}
+\noindent The graph $\mathcal{G}$ shown in~\autoref{fig:intro:graph_G} can be rewritten to yield the graph $\mathcal{H}$ shown in~\autoref{fig:intro:graph_H} by applying the following DPO graph rewriting rule, defined earlier,
+% in~\autoref{fig:intro:graph_transformation_rule_dpo} 
+to the unique occurrence of $\mathcal{L}$ in $\mathcal{G}$.
+%   \begin{figure}[H]
+%     \centering
+%     \resizebox{0.85\textwidth}{!}{
+%     \begin{tikzpicture}
+%                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+%                         \coordinate (o) at (0mm,-11mm); 
+%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+%                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+%                         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
+%                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+%                         \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+%                     } 
+%                     \graphbox{\( \mathcal{K} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+%                         \coordinate (o) at (0mm,-11mm); 
+%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+%                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+%                     } 
+%                     \graphbox{\( \mathcal{R} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+%                         \coordinate (o) at (0mm,-11mm); 
+%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+%                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+%                     }  
+%                     \node () at (37mm,-10mm) {\( \overset{l}{\longrightarrow}\)}; % K -> L
+%                     \node () at (-3mm,-10mm) {\( \overset{r}{\longleftarrow}  \)}; % K -> L
+%                 \end{tikzpicture}
+%     }
+% % \end{center}
+%     \caption{}
+%     \label{fig:intro:graph_transformation_rule_dpo}
+% \end{figure}
+Specifically, $\mathcal{G}$ can be decomposed, as shown in~\autoref{fig:intro:decomposition_of_G}, into the occurrence of $\mathcal{L}$ (elements shown in orange and black) and the context graph $\mathcal{C}$ (elements shown in blue and black). The interface graph is the subgraph shown in black in~\autoref{fig:intro:decomposition_of_G}. The rule removes the orange part of the occurrence of $\mathcal{L}$ to obtain an occurrence of $\mathcal{R}$. 
+The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal{R}$ and the context graph $\mathcal{C}$ via the interface graph.
 
 However, a DPO rewriting rule cannot always be applied to a graph with an occurrence of the left-hand side graph.
-For example, consider the rule in~\autoref{fig:intro:graph_transformation_rule_dpo} and the graph $\mathcal{G}'$ in~\autoref{fig:intro:dangling_edge}. The graph $\mathcal{G}'$ is obtained from the graph $\mathcal{G}$ in~\autoref{fig:intro:graph_G} by adding an edge from $3$ to $6$ (in red). This graph has the same occurrence of the graph $\mathcal{L}$ as the graph $\mathcal{G}$ in~\autoref{fig:intro:graph_G}.
+For example, consider the rule, defined earlier and shown in~\autoref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}. and the graph $\mathcal{G}'$ in~\autoref{fig:intro:dangling_edge}. The graph $\mathcal{G}'$ is obtained from the graph $\mathcal{G}$ in~\autoref{fig:intro:graph_G} by adding an edge from $3$ to $6$ (in red). This graph has the same occurrence of the graph $\mathcal{L}$ as the graph $\mathcal{G}$ in~\autoref{fig:intro:graph_G}.
 However, when $3$ is removed, the edge from $3$ to $6$ becomes dangling.
 
 In the literature, different approaches to this problem exist, leading to different algebraic graph rewriting formalisms. Some formalisms implicitly delete dangling edges (e.g. SPO~\cite{ehrig1997algebraic}); 
@@ -471,13 +506,44 @@ some impose conditions on contexts in the rule specification (e.g. AGREE~\cite{c
    Secondly, the category-theoretic prerequisites for DPO are minimal: it depends only on pushouts. This matters because category theory's abstract nature can act as a barrier for newcomers.
     Finally, despite its conceptual simplicity, DPO graph rewriting remains expressive to model many distributed algorithms~\cite{ehrig2006fundamentals,corradini1997algebraic}.
     
-Since graph transformation rules in a system are applied repeatedly (and nondeterministically), they can lead to infinite sequences of graph transformations. However, some properties of systems depend on the absence of infinite sequences. For example, the transformation system in~\autoref{fig:intro:graph_transformation_rule_0} can construct a spanning tree of a connected graph with edges and nodes initially labeled as required if the transformation system terminates. Thus, ensuring termination of a rewriting system is crucial.
+Since graph transformation rules in a system are applied repeatedly (and nondeterministically), they can lead to infinite sequences of graph transformations. However, some properties of systems depend on the absence of infinite sequences. For example, the transformation system, previously defined and illustrated in~\autoref{fig:intro:graph_transformation_rule_0_dpo}, can construct a spanning tree of a connected graph with edges and nodes initially labeled as required if the transformation system terminates. Thus, ensuring termination of a rewriting system is crucial.
 
 \section{Termination} 
 Termination is a property of algorithms that ensures they eventually halt. In the context of DPO graph rewriting systems, it ensures that no graph can be transformed indefinitely under a given set of rewriting rules. 
-For example, the rule in~\autoref{fig:intro:graph_transformation_rule_dpo} terminates because each application reduces the number of nodes in a graph by one. For an example of a nonterminating rewriting rule, consider the rule in~\autoref{fig:intro:graph_transformation_rule_nonterminating}. 
-\begin{figure}[H]
-        \centering
+For example, the following rule terminates because each application reduces the number of nodes in a graph by one.
+
+\begin{center}
+    \resizebox{0.85\textwidth}{!}{
+    \begin{tikzpicture}
+                    \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
+                        \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                        \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+                    } 
+                    \graphbox{\( \mathcal{K} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+                    } 
+                    \graphbox{\( \mathcal{R} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
+                    }  
+                    \node () at (37mm,-10mm) {\( \overset{l}{\longrightarrow}\)}; % K -> L
+                    \node () at (-3mm,-10mm) {\( \overset{r}{\longleftarrow}  \)}; % K -> L
+                \end{tikzpicture}
+    }
+            \end{center}
+
+For an example of a nonterminating rewriting rule, consider the following rule:
+% \begin{figure}[H]
+%         \centering
+
+            \begin{center}
             \resizebox{0.85\textwidth}{!}{
                 \begin{tikzpicture}[baseline=-3ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -495,7 +561,7 @@ For example, the rule in~\autoref{fig:intro:graph_transformation_rule_dpo} termi
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
                     }  
             
-                    \graphbox{\( \mathcal{R} \)}{80mm}{-3mm}{35mm}{13mm}{5mm}{2mm}{
+                    \graphbox{\( \mathcal{R} \)}{80mm}{-3mm}{35mm}{15mm}{5mm}{2mm}{
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {$2$};
@@ -509,9 +575,10 @@ For example, the rule in~\autoref{fig:intro:graph_transformation_rule_dpo} termi
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
                 \end{tikzpicture}
                 }
-        \caption{}
-        \label{fig:intro:graph_transformation_rule_nonterminating}
-    \end{figure}
+            \end{center}
+    %     \caption{}
+    %     \label{fig:intro:graph_transformation_rule_nonterminating}
+    % \end{figure}
 It replaces an occurrence of the graph 
 \raisebox{2pt}{
             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
@@ -528,56 +595,11 @@ It replaces an occurrence of the graph
             \draw[->] (z)--(x) node[midway, above] {$b$};
             \draw[->] (x)--(y) node[midway, above] {$a$};
         }}}, keeping the extreme nodes unchanged.
-    A looping sequence of graphs, each obtained by applying the rule to its predecessor, is shown in~\autoref{fig:intro:sequence_of_transformation_infinite};
+    A looping sequence of graphs, each obtained by applying the rule to its predecessor, is shown in the following~\autoref{fig:intro:sequence_of_transformation_infinite}. In each graph,
     the subgraph replaced at each transformation step is highlighted in red.
 
-        % \begin{figure}[H]
-        %     \centering
-        %   \resizebox{0.85\textwidth}{!}{
-        %     \tikz
-        %     [baseline=-0.5ex]
-        %     { 
-        %         \node[draw,circle] (x) at (0,0) {};
-        %         \node[draw,circle] (y) at (1,0) {};
-        %         \node[draw,circle] (z) at (0.5,0.86) {};
-        %         \draw[->,red] (x) -- node[midway,below] {$a$} (y) ;
-        %         \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
-        %         \draw[->] (z) -- node[midway,left] {$b$} (x) ;
-        %     } 
-        %     $\Rightarrow$ 
-        %     \tikz[baseline=-0.5ex]{ 
-        %         \node[draw,circle] (x) at (0,0) {};  
-        %         \node[draw,circle] (y) at (1,0) {};
-        %         \node[draw,circle] (z) at (0.5,0.86) {};
-        %         \draw[->] (x) -- node[midway,below] {$b$} (y) ;
-        %         \draw[->,red] (y) -- node[midway,right] {$a$} (z) ;
-        %         \draw[->,red] (z) -- node[midway,left] {$b$} (x) ;
-        %     }
-        %     $\Rightarrow$ 
-        %     \tikz[baseline=-0.5ex]{ 
-        %         \node[draw,circle] (x) at (0,0) {};  
-        %         \node[draw,circle] (y) at (1,0) {};
-        %         \node[draw,circle] (z) at (0.5,0.86) {};
-        %         \draw[->,red] (x) -- node[midway,below] {$b$} (y) ;
-        %         \draw[->] (y) -- node[midway,right] {$b$} (z) ;
-        %         \draw[->,red] (z) -- node[midway,left] {$a$} (x) ;
-        %     }
-        %     $\Rightarrow$
-        %     \tikz[baseline=-0.5ex]{ 
-        %         \node[draw,circle] (x) at (0,0) {};   
-        %         \node[draw,circle] (y) at (1,0) {};
-        %         \node[draw,circle] (z) at (0.5,0.86) {};
-        %         \draw[->,red] (x) -- node[midway,below] {$a$} (y) ;
-        %         \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
-        %         \draw[->] (z) -- node[midway,left] {$b$} (x) ;
-        %     }
-        %   }
-        %   \caption{}
-        %   \label{fig:intro:sequence_of_transformation_infinite}
-        % \end{figure}
          \begin{figure}[H]
             \centering
-            \resizebox{0.85\textwidth}{!}{
             \begin{tikzpicture}
             \graphbox{\( \)}{0mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                 \node[draw,circle] (x) at (0,0) {};
@@ -620,21 +642,25 @@ It replaces an occurrence of the graph
                 \draw[->] (z) -- node[midway,left] {$b$} (x) ;
             }
          \end{tikzpicture}
-            }
-          \caption{}
+         \caption{Sequence of rewriting steps, to be read left to right.}
           \label{fig:intro:sequence_of_transformation_infinite}
         \end{figure}
 
 Many termination techniques exist for term rewriting systems~\cite{nipkow1998term, dershowitz1982orderings, middeldorp1997simple, arts2000termination,contejean2005mechanically,urbain2004modular,contejean2011automated,giesl2014proving}.  
 Most exploit the tree structure of terms, a feature absent in general graphs, making direct adaptation impossible. 
 % Therefore, new techniques are needed for proving termination of DPO graph rewriting systems.  
-Moreover, termination may not be the most pertinent property for our purposes. Consider the graph transformation system with two rules shown in~\autoref{fig:intro:edge_deletion_and_node_addition_rule}: rule $\alpha$ deletes an arbitrary edge labeled by $A$, and rule $\beta$ introduces a fresh node.
+Moreover, termination may not be the most pertinent property for our purposes. 
+
+For example, consider the graph transformation system with two rules shown below.
+
+% \begin{center}
+% in the following~\autoref{fig:intro:edge_deletion_and_node_addition_rule}
   \begin{figure}[H]
         \centering
 %   \begin{subfigure}{0.3\textwidth}
 %         % \centering
         $\alpha$ = {
-             \resizebox{0.7\textwidth}{!}{
+             \resizebox{0.85\textwidth}{!}{
              \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -667,7 +693,7 @@ Moreover, termination may not be the most pertinent property for our purposes. C
     %     % \centering
 
         $\beta$ ={
-             \resizebox{0.7\textwidth}{!}{
+             \resizebox{0.85\textwidth}{!}{
              \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         
@@ -689,10 +715,12 @@ Moreover, termination may not be the most pertinent property for our purposes. C
     %     \caption{A graph transformation rule for node addition}
     %     \label{fig:intro:node_addition_rule}
     % \end{subfigure} 
-    \caption{A rewriting system.}
+    \caption{A rewriting system with two rules.}
     \label{fig:intro:edge_deletion_and_node_addition_rule}
   \end{figure}
-The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the notion of \emph{relative termination}.
+% \end{center}
+
+\noindent Rule $\alpha$ deletes an arbitrary edge labeled by $A$, and rule $\beta$ introduces a fresh node. The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the notion of \emph{relative termination}.
 
 \section{Relative termination} 
 Relative termination was initially introduced for binary relations~\cite{klop1987term}: let $\mathcal{A}$ and $\mathcal{B}$ be two binary relations, $\mathcal{A}$ is said to be terminating relative to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with \( (x_i,x_{i+1}) \in \mathcal{A} \) or \( (x_i,x_{i+1}) \in \mathcal{B} \) for all \( i \in \mathbb{N} \), there are only finitely many \( i \in \mathbb{N} \) such that \( (x_i,x_{i+1}) \in \mathcal{A} \).
@@ -701,70 +729,9 @@ Since a set of rewriting rules defines a binary relation \enquote{object $X$ can
 the concept of relative termination
 carries over to rewriting systems in a straightforward way via their associated rewriting relations: a rule set $\mathcal{A}$ terminates relative to another rule set $\mathcal{B}$, if the binary relation induced by $\mathcal{A}$ terminates relative to the binary relation induced by $\mathcal{B}$.
 % let \( \mathcal{A} \) and \( \mathcal{B} \) be two sets of rewriting rules, \( \mathcal{A} \) is said to be relatively terminating with respect to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with $x_i$ can be rewritten to $x_{i+1}$ by a rule in $\mathcal{A}$ or $\mathcal{B}$ for all \( i \in \mathbb{N} \), there are only finitely many \( i \in \mathbb{N} \) such that $x_i$ can be rewritten to $x_{i+1}$ by a rule in $\mathcal{A}$. 
-As an example, consider the edge-deleting rule $\alpha$ and the node-adding rule $\beta$ shown in~\autoref{fig:intro:edge_deletion_and_node_addition_rule}. The rule set $\set{\alpha}$ terminates relative to the rule set $\set{\beta}$, because any infinite sequence of graph transformations can apply the edge-deleting rule only finitely many times.
- \begin{figure}[H]
-        \centering
-%   \begin{subfigure}{0.3\textwidth}
-%         % \centering
-        $\alpha$ = {
-             \resizebox{0.7\textwidth}{!}{
-             \begin{tikzpicture}[baseline=-7ex]
-                    \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                        \draw[->] (l1) -- (l2) node[midway,above] {$A$};
-                    } 
-            
-                    \graphbox{\( \mathcal{K} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                    }  
-            
-                    \graphbox{\( \mathcal{R} \)}{80mm}{-3mm}{35mm}{15mm}{5mm}{2mm}{
-                        \coordinate (o) at (-5mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {$2$};
-                    }    
-                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
-                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
-                \end{tikzpicture}
-            }
-        }
-    %     \caption{A graph transformation rule for edge deletion}
-    % \label{fig:intro:edge_deletion_rule}
-    % \end{subfigure}
-    
-    % \begin{subfigure}{0.3\textwidth}
-    %     % \centering
+As an example, consider the edge-deleting rule $\alpha$ and the node-adding rule $\beta$, defined earlier and shown in~\autoref{fig:intro:edge_deletion_and_node_addition_rule}. 
+The rule set $\set{\alpha}$ terminates relative to the rule set $\set{\beta}$, because any infinite sequence of graph transformations can apply the edge-deleting rule only finitely many times.
 
-        $\beta$ ={
-             \resizebox{0.7\textwidth}{!}{
-             \begin{tikzpicture}[baseline=-7ex]
-                    \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                        
-                    } 
-            
-                    \graphbox{\( \mathcal{K} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                       
-                    }  
-            
-                    \graphbox{\( \mathcal{R} \)}{80mm}{-3mm}{35mm}{15mm}{5mm}{2mm}{
-                        \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-                    }    
-                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
-                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
-                \end{tikzpicture}
-            }
-        }
-    %     \caption{A graph transformation rule for node addition}
-    %     \label{fig:intro:node_addition_rule}
-    % \end{subfigure} 
-    \caption{A rewriting system.}
-    \label{fig:intro:edge_deletion_and_node_addition_rule_dghkashfj}
-  \end{figure}
 Relative termination generalizes termination in the context of rewriting, because a set of rules terminating relative to an empty set is terminating. In practice, to prove termination of a rewriting system $\mathcal{R}$, one partitions the set of rules into two disjoint subsets \( \mathcal{B} \) and \( \mathcal{A} \) with non-empty $\mathcal{A}$ such that \( \mathcal{A} \) terminates relative to \( \mathcal{B} \), if $\mathcal{B}$ is not empty then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.
  
 Relative termination has several advantages.
@@ -815,10 +782,13 @@ The method is based on counting injective graph homomorphisms: let $\mathcal{A}$
 
 % \paragraph{Contribution 3: Termination by Morphism Counting with Antipattern}
 % \ \newline
-Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{chap:subgraph_counting} to handle cases like the one shown in~\autoref{fig:intro:graph_transformation_rule_anti_pattern__}.
-In this example, the number of injective graph homomorphisms from every pattern graph increases with each application of the rewriting rule. Therefore, the method introduced in Chapter~\ref{chap:subgraph_counting} cannot be applied. However, if we restrict our attention to occurrences of pattern graphs that are not part of a larger occurrence of a specific graph, the number of such occurrences decreases with each application of the rewriting rule. 
-\begin{figure}[H]
-    \centering
+Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{chap:subgraph_counting} to handle rewriting systems with rules like the following one:
+%  shown in~\autoref{fig:intro:graph_transformation_rule_anti_pattern__}.
+
+% \begin{figure}[H]
+%     \centering
+\begin{center}
+    \resizebox{0.85\textwidth}{!}{
 \begin{tikzpicture}
       \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
           \coordinate (o) at (0mm,-3mm); 
@@ -846,9 +816,12 @@ In this example, the number of injective graph homomorphisms from every pattern 
       \node () at (37mm,-10mm) {$\leftarrowtail$};
       \node () at (67mm,-10mm) {$\rightarrowtail$};
   \end{tikzpicture}
-  \caption{}
-  \label{fig:intro:graph_transformation_rule_anti_pattern__}
- \end{figure} 
+    }
+\end{center}
+%   \caption{}
+%   \label{fig:intro:graph_transformation_rule_anti_pattern__}
+%  \end{figure} 
+In this example, the number of injective graph homomorphisms from every pattern graph increases with each application of the rewriting rule. Therefore, the method introduced in Chapter~\ref{chap:subgraph_counting} cannot be applied. However, if we restrict our attention to occurrences of pattern graphs that are not part of a larger occurrence of a specific graph, the number of such occurrences decreases with each application of the rewriting rule.
 
 A purely theoretical contribution to automated proving would make little sense if it did not lead to a software tool that implements it.
 
