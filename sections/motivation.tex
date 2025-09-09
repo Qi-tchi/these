@@ -59,7 +59,7 @@ The algorithm operates as follows: when an active unit detects a neutral neighbo
  This behavior is captured by the graph transformation rule in the following~\autoref{fig:intro:graph_transformation_rule_0}.
  \begin{figure}[H]
         \centering 
-            \resizebox{0.6\textwidth}{!}{
+            \resizebox{0.48\textwidth}{!}{
         \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{0mm}{0mm}{34mm}{20mm}{-8mm}{-15mm}{
                         \node[draw, circle] (x) at (0,0) {$1$};  
@@ -78,31 +78,33 @@ The algorithm operates as follows: when an active unit detects a neutral neighbo
                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
         \end{tikzpicture}
             }
-        \caption{}  
+        \caption{Graph rewriting rule for the spanning-tree construction of a connected network with one node labeled by $A$ and all other nodes labeled by $N$ and all edges labeled by $0$. It relabels an occurrence of \(\mathcal{L}\) to \(\mathcal{R}\).}
         \label{fig:intro:graph_transformation_rule_0}
     \end{figure}
 \noindent This rule applies as follows: when an active unit detects a neutral neighbor via a channel in state $0$, the corresponding subgraph \(\mathcal{L}\) appears in the network model and is replaced by the subgraph \(\mathcal{R}\), which represents the neighbor's activation and the channel updated to state $1$.
 
-A sample execution sequence starting from the initial configuration, previously defined and illustrated in~\autoref{fig:graph_modeling_state_network}, is shown in the following~\autoref{fig:intro_sequence_of_transformation}, where self-loops are omitted and their labels are displayed directly on the nodes to improve readability. Given an initial finite edge-labeled directed multigraph in which all edges are labeled \textit{0} and all nodes are in the neutral state $N$ except for a single node in the active state $A$, the subgraph induced by edges labeled \textit{1} constitutes a spanning tree once no further rule applications are possible.
+Given an initial finite edge-labeled directed multigraph in which all edges are labeled \textit{0} and all nodes are in the neutral state $N$ except for a single node in the active state $A$, the subgraph induced by edges labeled \textit{1} constitutes a spanning tree once no further rule applications are possible. A sample execution sequence starting from the initial configuration, previously defined and illustrated in~\autoref{fig:graph_modeling_state_network}, is shown in~\autoref{fig:intro_sequence_of_transformation}, where self-loops are omitted and their labels are displayed directly on the nodes to improve readability. 
+% When no further rule applications are possible, the subgraph induced by edges labeled $1$ constitutes a spanning tree (see rightmost and bottom most graphs in~\autoref{fig:intro_sequence_of_transformation}).
 
     \begin{figure}[H]
         \centering
-        \resizebox{0.3\textwidth}{!}{
+        \resizebox{0.28\textwidth}{!}{
                 \begin{tikzpicture}
-                    \node[draw, circle] (n1) at (0,0) {};
-                    \node[draw, circle] (n2) at (1,1) {};
+                    \node[draw, red,circle] (n1) at (0,0) {};
+                    \node[draw, red,circle] (n2) at (1,1) {};
                     \node[draw, circle] (n4) at (1,-1) {};
                     \node[draw, circle] (n3) at (2,0) {};
                     \node[draw, circle] (n5) at (3,-1){};
                     \node[draw, circle] (n6) at (3,1){};
-                    \draw[-] (n1)--(n2)--(n3)--(n4);
+                    \draw[-,red] (n1)--(n2);
+                    \draw[-] (n2)--(n3)--(n4);
                     \draw[-] (n4)--(n1);
                     \draw[-] (n3)--(n6)--(n5)--(n3);
                     \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
                     \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;   
 
-                    \draw(-0.1,0) node[left] {$A$};
-                    \draw(1,1.1) node[above] {$N$};
+                    \draw(-0.1,0) node[left] {\textcolor{red}{$A$}};
+                    \draw(1,1.1) node[above] {\textcolor{red}{$N$}};
                     \draw(1,-1.1) node[below] {$N$};
                     \draw(2,0.1) node[above] {$N$};
                     \draw(3,1.1) node[above] {$N$};
@@ -111,76 +113,80 @@ A sample execution sequence starting from the initial configuration, previously 
                     % edge labels
                     \draw(1.35,0.7) node[right] {$0$};
                     \draw(1.35,-0.7) node[right] {$0$};
-                    \draw(0.5,0.5) node[left] {$0$};
+                    \draw(0.5,0.5) node[left] {\textcolor{red}{$0$}};
                     \draw(0.5,-0.5) node[left] {$0$};
                     \draw(2.6,0.6) node[left] {$0$};
                     \draw(2.6,-0.6) node[left] {$0$};
                     \draw(3,0) node[right] {$0$};
                 \end{tikzpicture}
     }
-  \resizebox{0.3\textwidth}{!}{
+  \resizebox{0.28\textwidth}{!}{
                 \begin{tikzpicture}
                     \node[draw, circle] (n1) at (0,0) {};
-                    \node[draw, circle] (n2) at (1,1) {};
+                    \node[draw, red,circle] (n2) at (1,1) {};
                     \node[draw, circle] (n4) at (1,-1) {};
-                    \node[draw, circle] (n3) at (2,0) {};
+                    \node[draw, red,circle] (n3) at (2,0) {};
                     
                     \node[draw, circle] (n5) at (3,-1){};
                     \node[draw, circle] (n6) at (3,1){};
         
-                    \draw[-] (n1)--(n2)--(n3)--(n4);
+                    \draw[-] (n1)--(n2);
+                    \draw[-,red] (n2)--(n3);
+                    \draw[-] (n3)--(n4);
                     \draw[-] (n4)--(n1);
                     \draw[-] (n3)--(n6)--(n5)--(n3);
         
                     \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
                     \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
     
-                    \draw(-0.1,0) node[left] {\textcolor{red}{$A$}};
+                    \draw(-0.1,0) node[left] {$A$};
                     \draw(1,1.1) node[above] {\textcolor{red}{$A$}};
                     \draw(1,-1.1) node[below] {$N$};
-                    \draw(2,0.1) node[above] {$N$};
+                    \draw(2,0.1) node[above] {\textcolor{red}{$N$}};
                     \draw(3,1.1) node[above] {$N$};
                     \draw(3,-1.1) node[below] {$N$};
 
                     % edge labels
-                    \draw(1.35,0.7) node[right] {$0$};
+                    \draw(1.35,0.7) node[right] {\textcolor{red}{$0$}};
                     \draw(1.35,-0.7) node[right] {$0$};
-                    \draw(0.5,0.5) node[left] {\textcolor{red}{$1$}};
+                    \draw(0.5,0.5) node[left] {$1$};
                     \draw(0.5,-0.5) node[left] {$0$};
                     \draw(2.6,0.6) node[left] {$0$};
                     \draw(2.6,-0.6) node[left] {$0$};
                     \draw(3,0) node[right] {$0$};
                 \end{tikzpicture}
 }
-\resizebox{0.3\textwidth}{!}{
+\resizebox{0.28\textwidth}{!}{
                     \begin{tikzpicture}
-                        \node[draw, circle] (n1) at (0,0) {};
+                        \node[draw, red,circle] (n1) at (0,0) {};
                         \node[draw, circle] (n2) at (1,1) {};
-                        \node[draw, circle] (n4) at (1,-1) {};
+                        \node[draw, red,circle] (n4) at (1,-1) {};
                         \node[draw, circle] (n3) at (2,0) {};
                         
                         \node[draw, circle] (n5) at (3,-1){};
                         \node[draw, circle] (n6) at (3,1){};
             
-                        \draw[-] (n1)--(n2)--(n3)--(n4);
-                        \draw[-] (n4)--(n1);
-                        \draw[-] (n3)--(n6)--(n5)--(n3);
+                    \draw[-] (n1)--(n2);
+                    \draw[-] (n2)--(n3);
+                    \draw[-] (n3)--(n4);
+                    \draw[-,red] (n4)--(n1);
+                    \draw[-] (n3)--(n6)--(n5)--(n3);
             
                         \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
                         \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
     
                         \draw(-0.1,0) node[left] {\textcolor{red}{$A$}};
-                        \draw(1,1.1) node[above] {\textcolor{red}{$A$}};
-                        \draw(1,-1.1) node[below] {$N$};
-                        \draw(2,0.1) node[above] {\textcolor{red}{$A$}};
+                        \draw(1,1.1) node[above] {$A$};
+                        \draw(1,-1.1) node[below] {\textcolor{red}{$N$}};
+                        \draw(2,0.1) node[above] {$A$};
                         \draw(3,1.1) node[above] {$N$};
                         \draw(3,-1.1) node[below] {$N$};
     
                         % edge labels
-                        \draw(1.35,0.7) node[right] {\textcolor{red}{$1$}};
+                        \draw(1.35,0.7) node[right] {$1$};
                         \draw(1.35,-0.7) node[right] {$0$};
-                        \draw(0.5,0.5) node[left] {\textcolor{red}{$1$}};
-                        \draw(0.5,-0.5) node[left] {$0$};
+                        \draw(0.5,0.5) node[left] {$1$};
+                        \draw(0.5,-0.5) node[left] {\textcolor{red}{$0$}};
                         \draw(2.6,0.6) node[left] {$0$};
                         \draw(2.6,-0.6) node[left] {$0$};
                         \draw(3,0) node[right] {$0$};
@@ -188,75 +194,80 @@ A sample execution sequence starting from the initial configuration, previously 
 }
 
 
-\resizebox{0.3\textwidth}{!}{
+\resizebox{0.28\textwidth}{!}{
                     \begin{tikzpicture}
                         \node[draw, circle] (n1) at (0,0) {};
                         \node[draw, circle] (n2) at (1,1) {};
                         \node[draw, circle] (n4) at (1,-1) {};
-                        \node[draw, circle] (n3) at (2,0) {};
+                        \node[draw, red,circle] (n3) at (2,0) {};
                         
-                        \node[draw, circle] (n5) at (3,-1){};
+                        \node[draw, red,circle] (n5) at (3,-1){};
                         \node[draw, circle] (n6) at (3,1){};
             
-                        \draw[-] (n1)--(n2)--(n3)--(n4);
+                        \draw[-] (n1)--(n2);
+                        \draw[-] (n2)--(n3);
+                        \draw[-] (n3)--(n4);
                         \draw[-] (n4)--(n1);
-                        \draw[-] (n3)--(n6)--(n5)--(n3);
+                        \draw[-] (n3)--(n6)--(n5);
+                        \draw[-,red] (n5)--(n3);
             
                         \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
                         \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
 
-                        \draw(-0.1,0) node[left] {\textcolor{red}{$A$}};
-                        \draw(1,1.1) node[above] {\textcolor{red}{$A$}};
-                        \draw(1,-1.1) node[below] {\textcolor{red}{$A$}};
+                        \draw(-0.1,0) node[left] {$A$};
+                        \draw(1,1.1) node[above] {$A$};
+                        \draw(1,-1.1) node[below] {$A$};
                         \draw(2,0.1) node[above] {\textcolor{red}{$A$}};
                         \draw(3,1.1) node[above] {$N$};
-                        \draw(3,-1.1) node[below] {$N$};
+                        \draw(3,-1.1) node[below] {\textcolor{red}{$N$}};
     
                         % edge labels
-                        \draw(1.35,0.7) node[right] {\textcolor{red}{$1$}};
+                        \draw(1.35,0.7) node[right] {$1$};
                         \draw(1.35,-0.7) node[right] {$0$};
-                        \draw(0.5,0.5) node[left] {\textcolor{red}{$1$}};
-                        \draw(0.5,-0.5) node[left] {\textcolor{red}{$1$}};
+                        \draw(0.5,0.5) node[left] {$1$};
+                        \draw(0.5,-0.5) node[left] {$1$};
                         \draw(2.6,0.6) node[left] {$0$};
-                        \draw(2.6,-0.6) node[left] {$0$};
+                        \draw(2.6,-0.6) node[left] {\textcolor{red}{$0$}};
                         \draw(3,0) node[right] {$0$};
                     \end{tikzpicture}
 }
-\resizebox{0.3\textwidth}{!}{
+\resizebox{0.28\textwidth}{!}{
                     \begin{tikzpicture}
                         \node[draw, circle] (n1) at (0,0) {};
                         \node[draw, circle] (n2) at (1,1) {};
                         \node[draw, circle] (n4) at (1,-1) {};
-                        \node[draw, circle] (n3) at (2,0) {};
+                        \node[draw,circle] (n3) at (2,0) {};
                         
-                        \node[draw, circle] (n5) at (3,-1){};
-                        \node[draw, circle] (n6) at (3,1){};
+                        \node[draw, red,circle] (n5) at (3,-1){};
+                        \node[draw, red,circle] (n6) at (3,1){};
             
                         \draw[-] (n1)--(n2)--(n3)--(n4);
                         \draw[-] (n4)--(n1);
-                        \draw[-] (n3)--(n6)--(n5)--(n3);
+                        \draw[-] (n3)--(n6);
+                        \draw[-,red] (n6)--(n5);
+                        \draw[-] (n5)--(n3);
             
                         \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
                         \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
               
-                        \draw(-0.1,0) node[left] {\textcolor{red}{$A$}};
-                        \draw(1,1.1) node[above] {\textcolor{red}{$A$}};
-                        \draw(1,-1.1) node[below] {\textcolor{red}{$A$}};
-                        \draw(2,0.1) node[above] {\textcolor{red}{$A$}};
-                        \draw(3,1.1) node[above] {$N$};
+                        \draw(-0.1,0) node[left] {$A$};
+                        \draw(1,1.1) node[above] {$A$};
+                        \draw(1,-1.1) node[below] {$A$};
+                        \draw(2,0.1) node[above] {$A$};
+                        \draw(3,1.1) node[above] {\textcolor{red}{$N$}};
                         \draw(3,-1.1) node[below] {\textcolor{red}{$A$}};
-    
+
                         % edge labels
-                        \draw(1.35,0.7) node[right] {\textcolor{red}{$1$}};
+                        \draw(1.35,0.7) node[right] {$1$};
                         \draw(1.35,-0.7) node[right] {$0$};
-                        \draw(0.5,0.5) node[left] {\textcolor{red}{$1$}};
-                        \draw(0.5,-0.5) node[left] {\textcolor{red}{$1$}};
+                        \draw(0.5,0.5) node[left] {$1$};
+                        \draw(0.5,-0.5) node[left] {$1$};
                         \draw(2.6,0.6) node[left] {$0$};
-                        \draw(2.6,-0.6) node[left] {\textcolor{red}{$1$}};
-                        \draw(3,0) node[right] {$0$};
+                        \draw(2.6,-0.6) node[left] {$1$};
+                        \draw(3,0) node[right] {\textcolor{red}{$0$}};
                     \end{tikzpicture}
 }
-\resizebox{0.3\textwidth}{!}{
+\resizebox{0.28\textwidth}{!}{
                     \begin{tikzpicture}
                         \node[draw, circle] (n1) at (0,0) {};
                         \node[draw, circle] (n2) at (1,1) {};
@@ -272,27 +283,26 @@ A sample execution sequence starting from the initial configuration, previously 
             
                         \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
                         \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
-                        \draw(-0.1,0) node[left] {\textcolor{red}{$A$}};
-                        \draw(1,1.1) node[above] {\textcolor{red}{$A$}};
-                        \draw(1,-1.1) node[below] {\textcolor{red}{$A$}};
-                        \draw(2,0.1) node[above] {\textcolor{red}{$A$}};
-                        \draw(3,1.1) node[above] {\textcolor{red}{$A$}};
-                        \draw(3,-1.1) node[below] {\textcolor{red}{$A$}};
-    
+                        \draw(-0.1,0) node[left] {$A$};
+                        \draw(1,1.1) node[above] {$A$};
+                        \draw(1,-1.1) node[below] {$A$};
+                        \draw(2,0.1) node[above] {$A$};
+                        \draw(3,1.1) node[above] {$A$};
+                        \draw(3,-1.1) node[below] {$A$};
+     
                         % edge labels
-                        \draw(1.35,0.7) node[right] {\textcolor{red}{$1$}};
+                        \draw(1.35,0.7) node[right] {$1$};
                         \draw(1.35,-0.7) node[right] {$0$};
-                        \draw(0.5,0.5) node[left] {\textcolor{red}{$1$}};
-                        \draw(0.5,-0.5) node[left] {\textcolor{red}{$1$}};
+                        \draw(0.5,0.5) node[left] {$1$};
+                        \draw(0.5,-0.5) node[left] {$1$};
                         \draw(2.6,0.6) node[left] {$0$};
-                        \draw(2.6,-0.6) node[left] {\textcolor{red}{$1$}};
-                        \draw(3,0) node[right] {\textcolor{red}{$1$}};
+                        \draw(2.6,-0.6) node[left] {$1$};
+                        \draw(3,0) node[right] {$1$};
                     \end{tikzpicture}
 }
-        \caption{Sequence of graph transformation, to be read from left to right and from top to bottom.}
+        \caption{Sequence of graph transformation, to be read from left to right and from top to bottom. At each graph, the subgraph in red is to be relabeled according to the rule to obtain the next graph.}
         \label{fig:intro_sequence_of_transformation}
     \end{figure}
-
  
  Graph transformation has many applications, such as topology-based geometric modeling~\cite{poudret2007topology,poudret2008graph_transformation, belhaouari2014jerboa, bellet2017geometric, pascale2022Geometric_modeling,arnould2022preserving_consistency}, DNA computing~\cite{harju2004tutorial_dna_computation}, life sciences~\cite{behr2021rewriting_life_sciences}, programming~\cite{plump2009graph_programming_language}, administrative access control policies~\cite{bertolissi2025category_based, bertolissi2021graph_based,koch2001specification_evolution_access_control},and software engineering and security~\cite{heckel2020software_engineers}. Its broad applicability stems from the fact that graphs and graph-like structures provide a natural and intuitive way to model complex systems. 
  
@@ -342,10 +352,8 @@ To apply a DPO graph rewriting rule $\mathcal{L} \overset{l}{\leftarrow} \mathca
 The graph $\mathcal{G}$ is thus decomposed into the occurrence of $\mathcal{L}$ and $\mathcal{C}$. 
 Then, one modifies the occurrence of $\mathcal{L}$ (by removing some nodes and edges and adding some fresh nodes and edges while keeping the interface graph unchanged, and identifying nodes in the interface graph)
 to obtain an occurrence of $\mathcal{R}$. Finally, the result graph is obtained by gluing the occurrence of $\mathcal{R}$ with $\mathcal{C}$ via the interface graph $\mathcal{K}$.
-\newpage 
 As an example, 
-consider the graph transformation rule, shown in the following~\autoref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}, and the graphs shown in the following~\autoref{fig:intro:dangling_edge}.
-
+consider the graph transformation rule, shown in the following~\autoref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}.
   \begin{figure}[H]
     \centering
 % \begin{center} 
@@ -377,7 +385,11 @@ consider the graph transformation rule, shown in the following~\autoref{fig:intr
     \caption{A DPO graph rewriting rule which removes the middle node and edges of an occurrence of $\mathcal{L}$.}
     \label{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}
 \end{figure}
-
+\noindent The graph $\mathcal{G}$ shown in~\autoref{fig:intro:graph_G} can be rewritten to yield the graph $\mathcal{H}$ shown in~\autoref{fig:intro:graph_H} by applying the following DPO graph rewriting rule, defined earlier,
+% in~\autoref{fig:intro:graph_transformation_rule_dpo} 
+to the unique occurrence of $\mathcal{L}$ in $\mathcal{G}$.
+Specifically, $\mathcal{G}$ can be decomposed, as shown in~\autoref{fig:intro:decomposition_of_G}, into the occurrence of $\mathcal{L}$ (elements shown in orange and black) and the context graph $\mathcal{C}$ (elements shown in blue and black). The interface graph is the subgraph shown in black in~\autoref{fig:intro:decomposition_of_G}. The rule removes the orange part of the occurrence of $\mathcal{L}$ to obtain an occurrence of $\mathcal{R}$. 
+The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal{R}$ and the context graph $\mathcal{C}$ via the interface graph.
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.4\textwidth}
@@ -457,42 +469,9 @@ consider the graph transformation rule, shown in the following~\autoref{fig:intr
     \label{fig:intro:dangling_edge}
     \end{subfigure}
     \caption{}
+    \label{fig:intro:example_dpo_application_sfjsdlgjadlsss}
 \end{figure}
-\noindent The graph $\mathcal{G}$ shown in~\autoref{fig:intro:graph_G} can be rewritten to yield the graph $\mathcal{H}$ shown in~\autoref{fig:intro:graph_H} by applying the following DPO graph rewriting rule, defined earlier,
-% in~\autoref{fig:intro:graph_transformation_rule_dpo} 
-to the unique occurrence of $\mathcal{L}$ in $\mathcal{G}$.
-%   \begin{figure}[H]
-%     \centering
-%     \resizebox{0.85\textwidth}{!}{
-%     \begin{tikzpicture}
-%                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-%                         \coordinate (o) at (0mm,-11mm); 
-%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
-%                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-%                         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
-%                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-%                         \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-%                     } 
-%                     \graphbox{\( \mathcal{K} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-%                         \coordinate (o) at (0mm,-11mm); 
-%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
-%                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-%                     } 
-%                     \graphbox{\( \mathcal{R} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-%                         \coordinate (o) at (0mm,-11mm); 
-%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
-%                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-%                     }  
-%                     \node () at (37mm,-10mm) {\( \overset{l}{\longrightarrow}\)}; % K -> L
-%                     \node () at (-3mm,-10mm) {\( \overset{r}{\longleftarrow}  \)}; % K -> L
-%                 \end{tikzpicture}
-%     }
-% % \end{center}
-%     \caption{}
-%     \label{fig:intro:graph_transformation_rule_dpo}
-% \end{figure}
-Specifically, $\mathcal{G}$ can be decomposed, as shown in~\autoref{fig:intro:decomposition_of_G}, into the occurrence of $\mathcal{L}$ (elements shown in orange and black) and the context graph $\mathcal{C}$ (elements shown in blue and black). The interface graph is the subgraph shown in black in~\autoref{fig:intro:decomposition_of_G}. The rule removes the orange part of the occurrence of $\mathcal{L}$ to obtain an occurrence of $\mathcal{R}$. 
-The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal{R}$ and the context graph $\mathcal{C}$ via the interface graph.
+
 
 However, a DPO rewriting rule cannot always be applied to a graph with an occurrence of the left-hand side graph.
 For example, consider the rule, defined earlier and shown in~\autoref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}. and the graph $\mathcal{G}'$ in~\autoref{fig:intro:dangling_edge}. The graph $\mathcal{G}'$ is obtained from the graph $\mathcal{G}$ in~\autoref{fig:intro:graph_G} by adding an edge from $3$ to $6$ (in red). This graph has the same occurrence of the graph $\mathcal{L}$ as the graph $\mathcal{G}$ in~\autoref{fig:intro:graph_G}.
@@ -642,16 +621,15 @@ It replaces an occurrence of the graph
                 \draw[->] (z) -- node[midway,left] {$b$} (x) ;
             }
          \end{tikzpicture}
-         \caption{Sequence of rewriting steps, to be read left to right.}
+         \caption{Sequence of rewriting steps, to be read left to right. In each graph, the subgraph to be replaced to obtain the next graph is highlighted in red.}
           \label{fig:intro:sequence_of_transformation_infinite}
         \end{figure}
-
 Many termination techniques exist for term rewriting systems~\cite{nipkow1998term, dershowitz1982orderings, middeldorp1997simple, arts2000termination,contejean2005mechanically,urbain2004modular,contejean2011automated,giesl2014proving}.  
 Most exploit the tree structure of terms, a feature absent in general graphs, making direct adaptation impossible. 
 % Therefore, new techniques are needed for proving termination of DPO graph rewriting systems.  
 Moreover, termination may not be the most pertinent property for our purposes. 
 
-For example, consider the graph transformation system with two rules shown below.
+For example, consider the graph transformation system with two rules shown in~\autoref{fig:intro:edge_deletion_and_node_addition_rule}. Rule $\alpha$ deletes an arbitrary edge labeled by $A$, and rule $\beta$ introduces a fresh node. The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the notion of \emph{relative termination}.
 
 % \begin{center}
 % in the following~\autoref{fig:intro:edge_deletion_and_node_addition_rule}
@@ -715,12 +693,11 @@ For example, consider the graph transformation system with two rules shown below
     %     \caption{A graph transformation rule for node addition}
     %     \label{fig:intro:node_addition_rule}
     % \end{subfigure} 
-    \caption{A rewriting system with two rules.}
+    \caption{Rule $\alpha$ deletes an edge labeled by $A$, and rule $\beta$ adds a fresh node.}
     \label{fig:intro:edge_deletion_and_node_addition_rule}
   \end{figure}
 % \end{center}
 
-\noindent Rule $\alpha$ deletes an arbitrary edge labeled by $A$, and rule $\beta$ introduces a fresh node. The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the notion of \emph{relative termination}.
 
 \section{Relative termination} 
 Relative termination was initially introduced for binary relations~\cite{klop1987term}: let $\mathcal{A}$ and $\mathcal{B}$ be two binary relations, $\mathcal{A}$ is said to be terminating relative to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with \( (x_i,x_{i+1}) \in \mathcal{A} \) or \( (x_i,x_{i+1}) \in \mathcal{B} \) for all \( i \in \mathbb{N} \), there are only finitely many \( i \in \mathbb{N} \) such that \( (x_i,x_{i+1}) \in \mathcal{A} \).
@@ -790,7 +767,7 @@ Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{
 \begin{center}
     \resizebox{0.85\textwidth}{!}{
 \begin{tikzpicture}
-      \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
+      \graphbox{$\mathcal{L}$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
           \coordinate (o) at (0mm,-3mm); 
           \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
           \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
@@ -798,12 +775,12 @@ Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{
           \draw[->] (l1) -- (l3) node[midway,above] {$a$};
           \draw[->] (l3) -- (l2) node[midway,above] {$a$};
       }     
-      \graphbox{$K$}{40mm}{0mm}{24mm}{20mm}{2mm}{-5mm}{
+      \graphbox{$\mathcal{K}$}{40mm}{0mm}{24mm}{20mm}{2mm}{-5mm}{
           \coordinate (o) at (5mm,-3mm); 
           \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$}; 
           \node[draw,circle] (l2) at ($(l1)+(1,0)$) {$2$};
       }    
-      \graphbox{$R$}{70mm}{0mm}{45mm}{20mm}{2mm}{-5mm}{
+      \graphbox{$\mathcal{R}$}{70mm}{0mm}{45mm}{20mm}{2mm}{-5mm}{
         \coordinate (o) at (0mm,-3mm); 
         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};

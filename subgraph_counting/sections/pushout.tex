@@ -1,5 +1,5 @@
  The concepts and notation in this section follow the treatments in~\cite{pierce1991basic,barr1990category}.
-
+\todo{todo: c'est bien. Modifier les autres sections.}
 \begin{definition}
     \label{def:cat}
     A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : V(C) \to E(C) \) and a partial function \( \star: E(C) \times E(C) \to E(C) \) such that 
@@ -15,11 +15,14 @@
 \begin{definition}
     A category \(\mathcal{C}\) is said to be \textbf{locally small} if for all objects \(X,Y\) in \(\mathcal{C}\), the collection $\opn{Hom}(X,Y)$ of morphisms from \(X\) to \(Y\) is a set (called a \textbf{hom-set}). For a locally small category, $\opn{Mono}(X,Y)$ denotes the set of all monomorphisms from $X$ to $Y$.
 \end{definition}
- Throughout this section, we fix a locally small category \( \mathcal{C} \).
+\textbf{Throughout this section, we fix a locally small category \( \mathcal{C} \).}
 \begin{example}
-    Consider the unlabeled graph shown in~\autoref{fig:preliminaries:category}. 
-        \begin{figure}[H]
-        \centering
+    Consider the unlabeled graph shown below.
+    %  in~\autoref{fig:preliminaries:category}. 
+     It can be considered as a category where the objects are the nodes and the morphisms are the paths between nodes; composition is path concatenation. The identity of a node is the self-loop of the node. There are at least three morphisms from the left node to itself: the identity morphism (the self-loop), the path that traverses the self-loop twice, and the path that goes to the right node and back. 
+        % \begin{figure}[H]
+        % \centering
+        \begin{center}
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{16mm}{-10mm}{-8mm}{
                 \node[draw,circle] (1) at (0,0) {};
@@ -30,10 +33,10 @@
                 \draw[->] (2) edge[bend left] node[midway, below] {} (1)   ;
             }
         \end{tikzpicture}
-        \caption{}
-        \label{fig:preliminaries:category}
-    \end{figure}
-    It can be considered as a category where the objects are the nodes and the morphisms are the paths between nodes; composition is path concatenation. The identity of a node is the self-loop of the node. There are at least three morphisms from the left node to itself: the identity morphism (the self-loop), the path that traverses the self-loop twice, and the path that goes to the right node and back.
+    %     \caption{}
+    %     \label{fig:preliminaries:category}
+    % \end{figure}
+        \end{center}
 \end{example}
 
 % cat notation * 
@@ -76,12 +79,15 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
 \). 
 \end{definition}
 \begin{example}
-Consider the diagram in the category \textbf{Graph} shown in~\autoref{fig:preliminaries:span_cospan}. $(\alpha, \beta)$ is a span, and $(\beta', \alpha')$ is a cospan.
+Consider the diagram in the category \textbf{Graph} shown below.
+%  in~\autoref{fig:preliminaries:span_cospan}. 
+ $(\alpha, \beta)$ is a span, and $(\beta', \alpha')$ is a cospan.
 \end{example}
 
 
-\begin{figure}[H]
-   \centering
+% \begin{figure}[H]
+%    \centering
+\begin{center}
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
@@ -133,9 +139,10 @@ Consider the diagram in the category \textbf{Graph} shown in~\autoref{fig:prelim
             % \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:preliminaries:span_cospan}
-\end{figure}
+    \end{center}
+%         \caption{}
+%         \label{fig:preliminaries:span_cospan}
+% \end{figure}
 
 \begin{definition}[\cite{barr1990category}]
     \label{def:cat:diagram}
@@ -176,11 +183,14 @@ Consider the diagram in the category \textbf{Graph} shown in~\autoref{fig:prelim
 \end{definition}
 
 \begin{example}
-    A commutative diagram in the category \textbf{Graph} of finite directed edge-labeled multigraphs is illustrated in~\autoref{fig:preliminaries:commutative_diagram}. The symbol $\mathop{=}$ in the center of the diagram
+    A commutative diagram in the category \textbf{Graph} of finite directed edge-labeled multigraphs is illustrated below.
+    %  in~\autoref{fig:preliminaries:commutative_diagram}. 
+     The symbol $\mathop{=}$ in the center of the diagram
     is used to indicate that the two paths from node 1 to node 2 are equal.
  
-    \begin{figure}[H]
-        \centering
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
@@ -232,9 +242,10 @@ Consider the diagram in the category \textbf{Graph} shown in~\autoref{fig:prelim
             \node () at (57mm,-6mm) {$\mathop{=}$};
         \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:preliminaries:commutative_diagram}
-    \end{figure}
+    \end{center}
+    %     \caption{}
+    %     \label{fig:preliminaries:commutative_diagram}
+    % \end{figure}
 \end{example}
 
 \begin{notation}
@@ -245,10 +256,12 @@ Consider the diagram in the category \textbf{Graph} shown in~\autoref{fig:prelim
 The pushout is a construction in category theory that can often be thought of as the construction of a new structure from two given structures by gluing them along a common interface structure.
 \begin{definition}
     \label{def:cat:po} 
-    A \textbf{pushout} of a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \), as shown in~\autoref{fig:preliminaries:pushout_sdfkjasdlgjfl}
+    A \textbf{pushout} of a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \), shown in the following diagram,
+    %  in~\autoref{fig:preliminaries:pushout_sdfkjasdlgjfl}
     is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \star \gamma' = \beta \star \gamma \) holds, then there exists a unique morphism \(\delta : D \to E\) such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \).
-    \begin{figure}[H]
-        \centering
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                     \node (i) at (0,0) {A};
@@ -266,9 +279,10 @@ The pushout is a construction in category theory that can often be thought of as
                     \draw[->,dashed] (h) -- (d') node [midway]{$ \delta $};
                 \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:preliminaries:pushout_sdfkjasdlgjfl}
-    \end{figure}
+    %     \caption{}
+    %     \label{fig:preliminaries:pushout_sdfkjasdlgjfl}
+    % \end{figure}
+            \end{center}
 The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \textbf{pushout square}, with \(D\) as the \textbf{pushout object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pushout}.
 \end{definition} 
 
@@ -358,9 +372,12 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
 \end{proposition}
 
 \begin{example}
-    The diagram in~\autoref{fig:preliminaries:pushout_injective} is a pushout square in the category \textbf{Graph}. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
-    \begin{figure}[H]
-        \centering
+    The diagram shown below
+    %  in~\autoref{fig:preliminaries:pushout_injective} 
+     is a pushout square in the category \textbf{Graph}. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
@@ -412,16 +429,22 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
             \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
-        \caption{Pushout square with injective morphisms.}
-        \label{fig:preliminaries:pushout_injective}
-    \end{figure}
+    \end{center}
+    %     \caption{Pushout square with injective morphisms.}
+    %     \label{fig:preliminaries:pushout_injective}
+    % \end{figure}
 \end{example}
 
 \begin{example}
-    The diagram in~\autoref{fig:preliminaries:pushout_non_injective} is a pushout square in the category \textbf{Graph}. In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
+    \label{ex:cat:pushout_non_injective_ssss}
+    Consider the diagram in the category \textbf{Graph} shown below.
+    % The diagram 
+    % in~\autoref{fig:preliminaries:pushout_non_injective} is a pushout square in the category \textbf{Graph}. 
+    In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
 
-    \begin{figure}[H]
-        \centering 
+    % \begin{figure}[H]
+    %     \centering 
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
@@ -476,17 +499,20 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
             \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
-        \caption{Pushout square with a non-injective morphism.}
-        \label{fig:preliminaries:pushout_non_injective}
-    \end{figure} 
+    \end{center}
+    %     \caption{Pushout square with a non-injective morphism.}
+    %     \label{fig:preliminaries:pushout_non_injective}
+    % \end{figure} 
 \end{example}
 The \emph{pullback}, defined below, is the dual construction of the pushout in category theory, and it can be thought of as construction of the interface structure along which two structures are glued together. 
 \begin{definition} 
     \label{def:cat:pb}
-   A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \), as shown in~\autoref{fig:preliminaries:pullback_ssdsfd},
+   A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \), shown below,
+%    in~\autoref{fig:preliminaries:pullback_ssdsfd},
 is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \star \beta' = \gamma \star \alpha'\) holds, then there exists a unique morphism \(\delta: E \to A\) such that $\gamma' = \delta \star \alpha$ and $\gamma = \delta \star \beta$. 
-    \begin{figure}[H]
-        \centering  
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.4\textwidth}{!}{
                     \begin{tikzpicture}
                         \node (i) at (0,0) {A};
@@ -504,23 +530,29 @@ is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) 
                         \draw[->, dashed] (d') -- (i) node [midway]{$\delta$};
                     \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:preliminaries:pullback_ssdsfd}
-    \end{figure}
+    %     \caption{}
+    %     \label{fig:preliminaries:pullback_ssdsfd}
+    % \end{figure}
+                \end{center}
 The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \textbf{pullback square}, with \(A\) as the \textbf{pullback object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pullback}.
 \end{definition} 
 In the category \textbf{Graph} pullbacks always exist and are computed pointwise: take the pullback in \textbf{Set} of the node sets and of the edge sets, and equip the resulting graph with source, target and labeling maps induced componentwise; the projection graph homomorphisms are the corresponding componentwise projections and satisfy the universal property.
 \begin{example} 
+    \label{ex:cat:pbfsdljkgjasssss}
     In the category \textbf{Set},
     the pullback 
     of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) is the span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) where
     the pullback object $A$ is the set $A = \set{(b,c) \mid \beta (c) = \alpha (b)} \subseteq B \times C$; $\alpha$ and $\beta$ are defined as the corresponding projections, e.g., $\alpha((b, c)) = b$ and $\beta((b, c)) = c$.
 
-    Consider the cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) shown in~\autoref{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg}. 
-    The span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) shown in~\autoref{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg} is the pullback of this cospan.
+    Consider the diagram shown below. 
+    % shown in~\autoref{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg}. 
+    The span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \)
+    % shown in~\autoref{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg} 
+    is the pullback of the cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \).
     Indeed, the pullback object can be taken as the set $A' = \set{(1_B,1_C),(2_B,2_C)} \subseteq B \times C$, and the morphisms $\alpha'' \colon A' \to B$ and $\beta'' \colon A' \to C$ are defined as the corresponding projections, e.g., $\alpha''((x,y)) = x$ and $\beta''((x,y)) = y$. Note that $A$ is isomorphic to $A'$, which is expected because the pullback of a cospan is unique up to isomorphism.
-      \begin{figure}[H]
-      \centering 
+    %   \begin{figure}[H]
+    %   \centering 
+    \begin{center}
       \resizebox{0.7\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{\( A\)}{40mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
@@ -567,16 +599,18 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
           \node () at (77mm,-33mm) {\( \overset{\alpha'}{\rightarrowtail} \)};
       \end{tikzpicture}
       }
-      \caption{}
-      \label{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg}
-  \end{figure}
+    \end{center}
+%       \caption{}
+%       \label{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg}
+%   \end{figure}
 \end{example}
 
 \begin{example}
-    Consider the diagram shown in~\autoref{fig:preliminaries:pullback} in the category \textbf{Graph}.
+    Consider the diagram in the category \textbf{Graph}, shown below.
     The span $L \overset{\alpha}{\leftarrow} K \overset{\beta}{\rightarrow} C$ is a pullback of the cospan $L \overset{\beta'}{\rightarrow} G \overset{\alpha'}{\leftarrow} C$.
-    \begin{figure}[H]
-        \centering
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.9\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
@@ -631,9 +665,10 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
             \node () at (57mm,-6mm) {$PB$};
         \end{tikzpicture}
         }
-        \caption{Pullback.}
-        \label{fig:preliminaries:pullback}
-    \end{figure} 
+    \end{center}
+    %     \caption{Pullback.}
+    %     \label{fig:preliminaries:pullback}
+    % \end{figure} 
 
  
     % Specifically, for a possible span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) to satisfy \(\gamma' \star \beta' = \gamma \star \alpha'\), graph $E$ must not contain any edges as $\alpha'$ and $\beta'$ do not map any edges from $C$ and $L$ to a common edge in $G$.
@@ -846,7 +881,7 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
     %     \label{fig:preliminaries:three_squares} 
     % \end{figure}
 \end{example} 
-An important phenomenon about pushouts and pullbacks in the category \textbf{Graph} is stated in the following proposition. For examples, consider the diagrams in~\autoref{fig:preliminaries:pushout_non_injective} and~\autoref{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg}
+An important phenomenon about pushouts and pullbacks in the category \textbf{Graph} is stated in the following proposition. For examples, consider the diagrams in~\autoref{ex:cat:pushout_non_injective_ssss} and~\autoref{ex:cat:pbfsdljkgjasssss}.
 \begin{proposition}[\text{\cite[Lemma 13]{lack2004adhesive}}]
     \label{prop:pb_eq_po}
     In the category \textbf{Graph}, pushouts along monomorphisms are also pullbacks. 

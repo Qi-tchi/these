@@ -77,9 +77,12 @@ To perform a rewriting step using a DPO rewriting rule $L \overset{l}{\leftarrow
 To rewrite an object $G$, one matches the left-hand side \(L\) into \(G\) by a morphism \(m:L\to G\) and then constructs the resulting object from a diagram consisting of two pushout squares; these two pushouts are the origin of the name \enquote{double-pushout}.
 \begin{definition} 
   \label{def:rewriting_step}
-    A diagram in a category consisting of two pushout squares arranged as shown in~\autoref{fig:preliminaries:a_rewriting_step_slkjdfsljsdl} is called a \textbf{double-pushout (DPO) diagram}.
-      \begin{figure}[H]
-        \centering
+    A diagram in a category consisting of two pushout squares arranged as shown below
+    %  in~\autoref{fig:preliminaries:a_rewriting_step_slkjdfsljsdl} 
+    is called a \textbf{double-pushout (DPO) diagram}.
+    %   \begin{figure}[H]
+    %     \centering
+    \begin{center}
           \resizebox{0.4\textwidth}{!}{
           \begin{tikzpicture}
             % [node distance=11mm]
@@ -101,9 +104,10 @@ To rewrite an object $G$, one matches the left-hand side \(L\) into \(G\) by a m
           \end{tikzpicture}
         % \end{center}
         }
-        \caption{}
-        \label{fig:preliminaries:a_rewriting_step_slkjdfsljsdl}
-      \end{figure}
+    \end{center}
+    %     \caption{}
+    %     \label{fig:preliminaries:a_rewriting_step_slkjdfsljsdl}
+    %   \end{figure}
       It is a \textbf{witness} for the \textbf{rewriting step} from \( G \) to \( H \) using 
       a rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) and a \textbf{match}, denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). The pushout squares $KLGC$ and $KRHC$ are denoted by $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$, respectively.
   \end{definition}
@@ -251,9 +255,13 @@ The rule removes the orange part of the occurrence of $L$ in $G$ to obtain the c
 The result graph $H$ is obtained by gluing the context graph $C$ and the graph $R$ via the interface graph.
 
 
-In category \textbf{Graph}, the pushout of two arrows always exists by~\autoref{prop:pushout_graph_always_exists}. Therefore, consider the DPO diagram shown in~\autoref{fig:preliminaries:a_gadsfsddfsmework}. Once the left pushout square is constructed, the right pushout square can always be constructed and is unique up to isomorphism because of the universal property.
-\begin{figure}[H]
-      \centering
+In category \textbf{Graph}, the pushout of two arrows always exists by~\autoref{prop:pushout_graph_always_exists}. Therefore, consider the DPO diagram shown
+below.
+%   in~\autoref{fig:preliminaries:a_gadsfsddfsmework}. 
+ Once the left pushout square is constructed, the right pushout square can always be constructed and is unique up to isomorphism because of the universal property.
+% \begin{figure}[H]
+%       \centering
+\begin{center}
       \resizebox{0.3\textwidth}{!}{
       \begin{tikzpicture}
             \node (I) at (0,0) {$K$};
@@ -277,13 +285,16 @@ In category \textbf{Graph}, the pushout of two arrows always exists by~\autoref{
             (H);
         \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:preliminaries:a_gadsfsddfsmework}
-\end{figure}
+    \end{center}
+%         \caption{}
+%         \label{fig:preliminaries:a_gadsfsddfsmework}
+% \end{figure}
 
-However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square cannot always be constructed. For example, consider the same rewriting rule, shown in~\autoref{fig:preliminaries:a_rewrdfagiting_rule_sfdsgdfa}.
-\begin{figure}[H]
-      \centering 
+However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square cannot always be constructed. For example, consider the same rewriting rule, shown below.
+%  in~\autoref{fig:preliminaries:a_rewrdfagiting_rule_sfdsgdfa}.
+% \begin{figure}[H]
+%       \centering
+\begin{center}
       \resizebox{0.7\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
@@ -317,9 +328,10 @@ However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square c
           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
       }
-      \caption{}
-      \label{fig:preliminaries:a_rewrdfagiting_rule_sfdsgdfa}
-  \end{figure}
+\end{center} 
+%       \caption{}
+%       \label{fig:preliminaries:a_rewrdfagiting_rule_sfdsgdfa}
+%   \end{figure}
 Consider $G'$ in~\autoref{fig:intro:dangling_edge}. $G'$ is obtained from $G$ in~\autoref{fig:preliminaries:a_rewriting_step} by adding an edge from node $3$ to node $6$ (shown in red). This graph has the occurrence \raisebox{2pt}{
             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
             \node [draw,circle] (z) at (-1,0) {$1$};
@@ -384,9 +396,9 @@ Consider $G'$ in~\autoref{fig:intro:dangling_edge}. $G'$ is obtained from $G$ in
                     \node[draw,circle,dashed,orange] (l3) at ($(l1) + (1,0)$) {3};
                     \draw[->,red] (l3) -- (l4) node[midway,above] {$a$};
                 }    
-                \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
-                \node () at (77mm,-8mm) {\( \rightarrowtail \)}; % K -> R
-                \node () at (15mm,-18mm) {\(\downarrowtail \)};
+                \node () at (37mm,-8mm) {\( \overset{l}{\leftarrowtail} \)}; % K -> L
+                \node () at (77mm,-8mm) {\( \overset{r}{\rightarrowtail} \)}; % K -> R
+                \node () at (15mm,-18mm) {\(m\ \downarrowtail \)};
             \end{tikzpicture}
         }       
         \caption{} 
@@ -397,9 +409,13 @@ There is another requirement for the existence of a pushout complement. To give 
 \[
 L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R
 \]
-in \(\mathbf{Graph}\) and the match \(L \overset{m}{\rightarrow} G\) shown in Figure~\autoref{fig:preliminaries:a_match_dangling_edge_condition}. The rule deletes a node of the graph, and the match identifies the three nodes of \(L\) with a single node of \(G\).
-    \begin{figure}[H]
-        \centering
+in \(\mathbf{Graph}\) and the match \(L \overset{m}{\rightarrow} G\) shown
+below.
+%  in Figure~\autoref{fig:preliminaries:a_match_dangling_edge_condition}. 
+ The rule deletes a node of the graph, and the match identifies the three nodes of \(L\) with a single node of \(G\).
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.9\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
@@ -425,14 +441,15 @@ in \(\mathbf{Graph}\) and the match \(L \overset{m}{\rightarrow} G\) shown in Fi
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(0mm,-5mm)$) {$1\ 2\ 3$};
                 }    
-                \node () at (37mm,-8mm) {\( \leftarrowtail \)}; % K -> L
-                \node () at (77mm,-8mm) {\( \rightarrowtail \)}; % K -> R
-                \node () at (15mm,-18mm) {\(\downarrow \)};
+                \node () at (37mm,-8mm) {\( \overset{l}{\leftarrowtail} \)}; % K -> L
+                \node () at (77mm,-8mm) {\( \overset{r}{\rightarrowtail} \)}; % K -> R
+                \node () at (15mm,-18mm) {\(m\ \downarrowtail \)};
             \end{tikzpicture}
-        }       
-        \caption{} 
-        \label{fig:preliminaries:a_match_dandfjasfkas} 
-    \end{figure}
+        } 
+        \end{center}      
+    %     \caption{} 
+    %     \label{fig:preliminaries:a_match_dandfjasfkas} 
+    % \end{figure}
 Since there are no edges, it suffices to consider the pushout square of the nodes. Throughout this example we denote a node \(n\) of a graph \(X\) by \(n_X\) to avoid ambiguity. There are two cases, depending on how the nodes of \(K\) map into \(C\). 
 If nodes in $K$ are mapped to different nodes in $C$, then
         $\sim$ is the smallest equivalence relation including $\set{(1_L,1_C),(2_L,2_C)}$ and $D = \set{1_L,2_L,3_L,1_C,2_C,\cdots}$.
