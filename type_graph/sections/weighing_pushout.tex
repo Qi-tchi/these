@@ -1,18 +1,20 @@
-Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a weighted type graph over a well-founded commutative semiring such that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. By \autoref{rem:wf:weight_of_object_geq_1}, for all objects \( G \) subject to rewriting, \(w_\mathcal{T}(G) \succeq_S 1_\mathcal{S} \).
+Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a weighted type graph over a well-founded commutative semiring such that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. By~\autoref{rem:wf:weight_of_object_geq_1}, for all objects \( G \) subject to rewriting, \(w_\mathcal{T}(G) \succeq_S 1_\mathcal{S} \).
 The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succ_S w_\mathcal{T}(H)\), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succeq_S w_\mathcal{T}(H) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
-In this section, we first introduce the notions of \emph{morphism measurement excluding morphisms in a set}(\autoref{def:weight_excluding_pre}) and \emph{weight of a morphism relative to a morphism-ruler set excluding some specific morphisms}(\autoref{def:weight_excluding}),
+In this section, we first introduce the notions of \emph{morphism measurement excluding morphisms in a set}(Definition~\ref{def:weight_excluding_pre}) and \emph{weight of a morphism relative to a morphism-ruler set excluding some specific morphisms}(Definition~\ref{def:weight_excluding}),
 to reduce notational overhead (following Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}).
-We then recall the notions of traceability of objects (\autoref{def:traceability}) and relative monicity of morphisms (\autoref{def:relative_monicity}),
-which are used to define the notion of weighable pushout squares (\autoref{def:weighable}). With the notion of a weighable pushout square, we recall a result from Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} which shows that the weight of the pushout object of a weighable pushout square can be bounded by the weights of the other objects in the pushout square.
+We then recall the notions of traceability of objects (Definition~\ref{def:traceability}) and relative monicity of morphisms (Definition~\ref{def:relative_monicity}),
+which are used to define the notion of weighable pushout squares (Definition~\ref{def:weighable}). With the notion of a weighable pushout square, we recall a result from Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} which shows that the weight of the pushout object of a weighable pushout square can be bounded by the weights of the other objects in the pushout square.
 
 For any set \( \Gamma \subseteq \operatorname{Hom}(A, G) \),
-    we define $\Gamma'$ as the set consisting of all morphisms \( \iota : X \to G \) admitting morphisms \( \zeta \colon X \to A \) and \( \alpha \in \Gamma \) such that the diagram shown in~\autoref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler_dfsdfsdsa} is commutative.  Formally,  
-    \[
+    we define $\Gamma'$ as the set consisting of all morphisms \( \iota : X \to G \) admitting morphisms \( \zeta \colon X \to A \) and \( \alpha \in \Gamma \) such that $\zeta \star \alpha = \iota$ holds, i.e., such that
+     the diagram $XAG$ shown in Figure~\ref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler_dfsdfsdsa} is commutative.  Formally,  
+    \(
     \Gamma' \overset{\operatorname{def}}{=} \left\{ \iota \in \operatorname{Hom}(X, G)~\middle|~\exists \alpha \in \Gamma,~\exists \zeta:X \to A,~\zeta \star \alpha = \iota \right\}. 
-    \]
-    \begin{figure}[H]
-    \centering
+    \)
+    % \begin{figure}[H]
+    % \centering
+    \begin{center}
         \begin{tikzpicture}[scale=0.8]
             \node (X) at (0,0) {\(X \)};
             \node (A) at (2,1) {\( A \)};
@@ -25,9 +27,10 @@ For any set \( \Gamma \subseteq \operatorname{Hom}(A, G) \),
             \draw[ ->] (X) -- (T) node[midway, below ] {$e$};
             \draw[<-] (T) -- (G) node[midway, below] {$h$};
         \end{tikzpicture}
-    \caption{}
-    \label{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler_dfsdfsdsa}
-\end{figure} 
+%     \caption{}
+%     \label{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler_dfsdfsdsa}
+% \end{figure} 
+    \end{center}
     
 
 \begin{definition} 
@@ -48,41 +51,40 @@ For any set \( \Gamma \subseteq \operatorname{Hom}(A, G) \),
     w(e)^{m_e(h-\Gamma)}
             \]
 \end{definition}
-Consider the pushout square shown in~\autoref{fig:preliminaries:pushout_square_traceable_sdldfsfsfsdfkfjsladkj}. Informally, any subgraph of the pushout object \(D\) is either the image of \(B\) or the image of \(C\), or is obtained by gluing together parts of the images of \(B\) and \(C\). This intuition is made precise in~\autoref{def:traceability}.
-\begin{figure}[H]
-    \centering
-     \resizebox{0.4\textwidth}{!}{
-    \begin{tikzpicture}
-      \node (A) at (0,0) {$A$};
-      \node (B) at (2,0) {$B$}; 
-      \node  (C) at (0,-2) {$C$}; 
-      \node  (D) at (2,-2) {$D$}; 
-      \node  (X) at (4,-2) {$X$};
-      \begin{scope}[nodes=rectangle]          
-      \draw [->] (A) to node [above,label,pos=0.5] {$\alpha$} (B);
-      \draw [->] (A) to node [left,label,pos=0.5] {$\beta$} (C);
-      \draw [->] (B) to node [right,label,pos=0.45] {$\beta'$} (D); 
-      \draw [->] (C) to node [below,label,pos=0.45] {$\alpha'$} (D);
-    %   \draw [->] (X) to node [below,label,pos=0.4] {$h$} (D);
-      \end{scope}
-      \node at ($(A)!.5!(D)$) {$\delta$};
-    \end{tikzpicture}
-    }
-    \caption{}
-    \label{fig:preliminaries:pushout_square_traceable_sdldfsfsfsdfkfjsladkj}
-\end{figure}
+% Consider the pushout square shown below.
+% %  in Figure~\ref{fig:preliminaries:pushout_square_traceable_sdldfsfsfsdfkfjsladkj}. Informally, 
+%  Any subgraph of the pushout object \(D\) is either the image of \(B\) or the image of \(C\), or is obtained by gluing together parts of the images of \(B\) and \(C\). This intuition is made precise in Definition~\ref{def:traceability}. \todo{todo to do: ????}
+% \begin{figure}[H]
+%     \centering
+%      \resizebox{0.4\textwidth}{!}{
+%     \begin{tikzpicture}
+%       \node (A) at (0,0) {$A$};
+%       \node (B) at (2,0) {$B$}; 
+%       \node  (C) at (0,-2) {$C$}; 
+%       \node  (D) at (2,-2) {$D$}; 
+%       \node  (X) at (4,-2) {$X$};
+%       \begin{scope}[nodes=rectangle]          
+%       \draw [->] (A) to node [above,label,pos=0.5] {$\alpha$} (B);
+%       \draw [->] (A) to node [left,label,pos=0.5] {$\beta$} (C);
+%       \draw [->] (B) to node [right,label,pos=0.45] {$\beta'$} (D); 
+%       \draw [->] (C) to node [below,label,pos=0.45] {$\alpha'$} (D);
+%     %   \draw [->] (X) to node [below,label,pos=0.4] {$h$} (D);
+%       \end{scope}
+%       \node at ($(A)!.5!(D)$) {$\delta$};
+%     \end{tikzpicture}
+%     }
+%     \caption{}
+%     \label{fig:preliminaries:pushout_square_traceable_sdldfsfsfsdfkfjsladkj}
+% \end{figure}
 
 \begin{definition}[\cite{endrullis2024generalized_arxiv_v2}]
     \label{def:traceability}
 Let $\Delta$ be a class of pushout squares. 
-An object $X$ is said to be \textbf{traceable along $\Delta$} if for every diagram $\delta$ in $\Delta$, shown in~\autoref{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}, and $h:X \to D$,       
- the following hold
-    \begin{enumerate}[label=(\alph*)]
-        \item\label{traceable:a} there exists a morphism $f : X \to B$ such that $h = f \star \beta'$, or
-        \item\label{traceable:b} there exists a morphism $g : X \to C$ such that $h = g \star \alpha'$.
-    \end{enumerate}
-    \begin{figure}[H]
-    \centering
+An object $X$ is said to be \textbf{traceable along $\Delta$} if for every diagram $\delta$ in $\Delta$, as shown below:
+% in Figure~\ref{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}, and $h:X \to D$,      
+% \begin{figure}[H]
+%     \centering
+\begin{center}
      \resizebox{0.4\textwidth}{!}{
     \begin{tikzpicture}
       \node (A) at (0,0) {$A$};
@@ -100,9 +102,15 @@ An object $X$ is said to be \textbf{traceable along $\Delta$} if for every diagr
       \node at ($(A)!.5!(D)$) {$\delta$};
     \end{tikzpicture}
     }
-    \caption{}
-    \label{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}
-\end{figure}
+\end{center}
+%     \caption{}
+%     \label{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}
+% \end{figure} 
+ the following hold
+    \begin{enumerate}[label=(\alph*)]
+        \item\label{traceable:a} there exists a morphism $f : X \to B$ such that $h = f \star \beta'$, or
+        \item\label{traceable:b} there exists a morphism $g : X \to C$ such that $h = g \star \alpha'$.
+    \end{enumerate}
     If additionally, 
     whenever \ref{traceable:a} and \ref {traceable:b} hold,
     \begin{enumerate}[label=(\alph*),resume]
@@ -111,7 +119,7 @@ An object $X$ is said to be \textbf{traceable along $\Delta$} if for every diagr
     \end{enumerate}
     then we say that $X$ is \emph{strongly traceable} along $\Delta$.
 \end{definition}
-Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strongly traceable along a pushout square as illustrated above, if whenever $X$ occurs in $D$, it occurs either in $B$ or in $C$, and if it occurs in both, then it occurs in $A$ as well.
+Intuitively, in the category \textbf{Graph}, a graph $X$ is $\beta$-strongly traceable along a pushout square as illustrated above, if whenever $X$ occurs in $D$, it occurs either in $B$ or in $C$, and if it occurs in both, then it occurs in $A$ as well.
 
 \begin{remark}[\cite{endrullis2024generalized_arxiv_v2}]
     \label{remark:traceability_graph}
@@ -137,9 +145,11 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
 \end{remark}
 
 \begin{example}
-    Consider the DPO diagram shown in~\autoref{fig:nwf:two_pushout_squares}.
-    \begin{figure}[H]
-        \centering 
+    Consider the following DPO diagram.
+    %  shown in Figure~\ref{fig:nwf:two_pushout_squares}.
+    \begin{center}
+    % \begin{figure}[H]
+    %     \centering 
       \resizebox{0.7\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
@@ -209,9 +219,8 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
           \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
       \end{tikzpicture}
       }
-      \caption{}
-      \label{fig:nwf:two_pushout_squares}
-  \end{figure}
+    \end{center}
+
    The graph 
    \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) {};
@@ -227,7 +236,7 @@ Consider the category \textbf{Graph}. Intuitively, a graph $X$ is $\beta$-strong
 \end{example}
 
 % \begin{example} 
-%     Consider the rewriting step shown in~\autoref{fig:nwf:rewriting_step_traceability}.
+%     Consider the rewriting step shown in Figure~\ref{fig:nwf:rewriting_step_traceability}.
 %     The graph \begin{tikzpicture}
 %         \node[draw, circle] (x) at (0,0) {};
 %         \node[draw, circle] (y) at (1,0) {};
@@ -398,9 +407,10 @@ To see this, let \(X\in\Gamma\) and let \(g,h\colon X\to G\) satisfy \(g \star f
    
 \end{definition}
 
-    Consider a DPO diagram shown in~\autoref{fig:nwf:dpo_diagram_sdfslafgjsl} that defines a rewriting step \( G \Rightarrow_{\rho,\mathfrak{F}} H \). 
-    \begin{figure}[H]
-        \centering
+    Consider the following DPO diagram
+    %  shown in Figure~\ref{fig:nwf:dpo_diagram_sdfslafgjsl} 
+     that defines a rewriting step \( G \Rightarrow_{\rho,\mathfrak{F}} H \). 
+    \begin{center}
         \resizebox{0.4\textwidth}{!}{
         \begin{tikzpicture}
             % [node distance=11mm]
@@ -421,10 +431,8 @@ To see this, let \(X\in\Gamma\) and let \(g,h\colon X\to G\) satisfy \(g \star f
             \node [at=($(I)!.5!(H)$)] {\normalfont PO};
         \end{tikzpicture}
     } 
-    \caption{}
-    \label{fig:nwf:dpo_diagram_sdfslafgjsl}
-\end{figure}
-    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in \autoref{def:weighable}), then, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
+    \end{center}
+    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in Definition~\ref{def:weighable}), then, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
 
 \begin{flalign*}
     w_\mathcal{T}(G) 

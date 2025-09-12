@@ -25,7 +25,7 @@
      
      There are two cases: if $b$ and $c$ are two nodes then let \( S \) be the singleton graph with a unique node \( u \), otherwise\textemdash$b$ and $c$ must be two edges with the same label $l$\textemdash let \( S \) be the graph with two distinct nodes and a unique edge \( u \) labeled by $l$.
      
-     Define morphisms \( h_{SB}: S \to B \) and \( h_{SC}: S \to C \) such that \( h_{SB}(u) = b \) and \( h_{SC}(u) = c \). We have \( h_{SB} \star h_{BD} = h_{SC} \star h_{CD} \). The pushout square \( ACDB \) along monomorphisms is also a pullback square by~\autoref{prop:pb_eq_po}, and the universal property of the pullback guarantees the existence of a unique morphism \( h_{SA}: S \to A \) such that \( h_{SA} \star h_{AB} = h_{SB} \) and \( h_{SA} \star h_{AC} = h_{SC} \). Let \( a = h_{SA}(u) \). We have \( a \in A \), and by composition: 
+     Define morphisms \( h_{SB}: S \to B \) and \( h_{SC}: S \to C \) such that \( h_{SB}(u) = b \) and \( h_{SC}(u) = c \). We have \( h_{SB} \star h_{BD} = h_{SC} \star h_{CD} \). The pushout square \( ACDB \) along monomorphisms is also a pullback square by Proposition~\ref{prop:pb_eq_po}, and the universal property of the pullback guarantees the existence of a unique morphism \( h_{SA}: S \to A \) such that \( h_{SA} \star h_{AB} = h_{SB} \) and \( h_{SA} \star h_{AC} = h_{SC} \). Let \( a = h_{SA}(u) \). We have \( a \in A \), and by composition: 
      \begin{itemize}
         \item \(h_{AB}(a) = (h_{SA} \star h_{AB})(u) = h_{SB}(u) = b \)
         \item \(h_{AC}(a) = (h_{SA} \star h_{AC})(u) = h_{SC}(u) = c\)
@@ -115,11 +115,11 @@
         \\
         h_{AK'} \star h_{K'K} = h_{AK} 
     \end{flalign*}
-    From~\eqref{hakhkchacp}, we obtain 
+    From Equation~\eqref{hakhkchacp}, we obtain 
     \begin{flalign}
         h_{AK} \star h_{KC} \star h_{CH}= h_{AC'} \star h_{C'C} \star h_{CH} \label{hakhkchchhacp}
     \end{flalign}
-    From~\eqref{hakhkchchhacp} and commutativity of $C'CHX$ and $KCHR$, we have $h_{KC} \star h_{CH} = h_{KR} \star h_{RH}$ and $h_{C'C} \star h_{CH} = h_{C'X} \star h_{XH}$ and deduce  
+    From Equation~\eqref{hakhkchchhacp} and commutativity of $C'CHX$ and $KCHR$, we have $h_{KC} \star h_{CH} = h_{KR} \star h_{RH}$ and $h_{C'C} \star h_{CH} = h_{C'X} \star h_{XH}$ and deduce  
      \begin{flalign}
         h_{AK} \star h_{KR} \star h_{RH}= h_{AC'} \star h_{C'X} \star h_{XH} \label{hakhkrhrhhacp}
      \end{flalign}
@@ -148,7 +148,7 @@
             \end{tikzpicture}
         }
         \end{center} 
-    Since $R'XHR$ is a pullback square, by the universal property~\autoref{def:cat:pb}, there exists a unique morphism $h_{AR'} \colon A \to R'$ such that 
+    Since $R'XHR$ is a pullback square, by the universal property Definition~\ref{def:cat:pb}, there exists a unique morphism $h_{AR'} \colon A \to R'$ such that 
     \begin{flalign}
         h_{AR'} \star h_{R'R} = h_{AK} \star h_{KR}  \label{harprprakkr}
         \\
@@ -180,11 +180,11 @@
         \\
         h_{AK'} \star h_{K'R'} = h_{AR'} \label{hakpkprparp}
     \end{flalign}
-    We have $h_{AK'} \star h_{K'C'} = h_{AC'}$ by~\eqref{hakphkpcphacp}, and $h_{AK'} \star h_{K'K} = h_{AK}$ because $h_{KR}$ is injective and the following holds:
+    We have $h_{AK'} \star h_{K'C'} = h_{AC'}$ by Equation~\eqref{hakphkpcphacp}, and $h_{AK'} \star h_{K'K} = h_{AK}$ because $h_{KR}$ is injective and the following holds:
     \begin{flalign*}
         (h_{AK'} \star h_{K'K}) \star h_{KR} &= h_{AK} \star h_{K'R'} \star h_{R'R} \hspace{0.5cm} &\text{by commutativity of $K'KRR'$}\\
-        &= h_{AR'} \star h_{R'R} &\text{by~\eqref{hakpkprparp}} \\
-        &= h_{AK} \star h_{KR} &\text{by~\eqref{harprprakkr}}
+        &= h_{AR'} \star h_{R'R} &\text{by Equation~\eqref{hakpkprparp}} \\
+        &= h_{AK} \star h_{KR} &\text{by Equation~\eqref{harprprakkr}}
     \end{flalign*}
     Now, we show the unicity of such a morphism from $A$ to $K'$. 
     Let $h_{AK'}' \colon A \to K'$ be a morphism  such that 
@@ -253,7 +253,7 @@
         The square $K'C'XR'$ is a pushout.
 \end{lemma}
 \begin{proof}
-    \textbf{Graph} is adhesive by~\autoref{prop:graph_adhesive}. By~\autoref{def:adhesive_cat}, pushouts along monomorphisms are VK squares in \textbf{Graph}. The square $KCHR$ is a pushout along monomorphisms in \textbf{Graph}. Hence $KCHR$ is VK square. By~\autoref{def:vk_square}, the square $K'C'XR'$ is pushout if the squares $C'CHX$ and $R'XHR$ are pullbacks. By assumption, the squares $C'CHX$ and $R'XHR$ are pullbacks. Therefore, $K'C'XR'$ is pushout.
+    \textbf{Graph} is adhesive by Proposition~\ref{prop:graph_adhesive}. By Definition~\ref{def:adhesive_cat}, pushouts along monomorphisms are VK squares in \textbf{Graph}. The square $KCHR$ is a pushout along monomorphisms in \textbf{Graph}. Hence $KCHR$ is VK square. By Definition~\ref{def:vk_square}, the square $K'C'XR'$ is pushout if the squares $C'CHX$ and $R'XHR$ are pullbacks. By assumption, the squares $C'CHX$ and $R'XHR$ are pullbacks. Therefore, $K'C'XR'$ is pushout.
 \end{proof} 
 
 \begin{lemma}
@@ -278,7 +278,7 @@
     Suppose, by contradiction, that there exists neither a node (resp. an edge) $r'$ in $R'$ such that $h_{R'X}(r') = x$ nor a node (resp. an edge) $c'$ in $C'$ such that $h_{C'X}(c') = x$.
 
     Let $G$ be a graph with two distinct nodes (resp. edges) $y$ and $y'$.
-    By the universal property of pushout square~\autoref{def:cat:po}, there exists a unique morphism $h_{XG}:X \rightarrowtail G$ such that $h_{C'G} = h_{C'X} \star h_{XG}$ and  $h_{R'G} = h_{R'X} \star h_{XG}$.
+    By the universal property of pushout square Definition~\ref{def:cat:po}, there exists a unique morphism $h_{XG}:X \rightarrowtail G$ such that $h_{C'G} = h_{C'X} \star h_{XG}$ and  $h_{R'G} = h_{R'X} \star h_{XG}$.
     \begin{center}
         \begin{tikzpicture}
             \node (g) at (-4,-4) {$G$};
@@ -346,7 +346,7 @@
     %  $h_{C'C} \star h_{CG} = h_{C'X} \star h_{XG}$ and  $h_{R'L} \star h_{LG} = h_{R'X} \star h_{XG}$.
 \end{lemma}
 \begin{proof}
-    There exists a unique morphism $h_{XG}:X \to G$, by~\autoref{def:cat:po}, because $K'C'XR'$ is a pushout\todo{$K'C'XR'$ PO} and 
+    There exists a unique morphism $h_{XG}:X \to G$, by Definition~\ref{def:cat:po}, because $K'C'XR'$ is a pushout\todo{$K'C'XR'$ PO} and 
     $h_{K'C'} \star h_{C'C} \star h_{CG}
     =h_{K'R'} \star h_{R'L} \star h_{LG}$.
     % the following hold
@@ -385,7 +385,7 @@
     \end{center}
     It remains to show that $h_{XG}$ is injective.
     
-    Let $x_1,x_2$ be two elements in the graph $X$ such that $x_1 \neq x_2$. Since $K'R'XC'$ is a pushout\todo{$K'R'XC'$ P.O.} square, by~\autoref{lem:xinXcpinCrpinR}, there are 4 possible cases:
+    Let $x_1,x_2$ be two elements in the graph $X$ such that $x_1 \neq x_2$. Since $K'R'XC'$ is a pushout\todo{$K'R'XC'$ P.O.} square, by Lemma~\ref{lem:xinXcpinCrpinR}, there are 4 possible cases:
     \begin{enumerate}
         \item there are $c_1, c_2 \in C'$ such that $h_{C'X}(c_1) = x_1$ and $h_{C'X}(c_2) = x_2$;
         \item there are $r_1, r_2 \in R'$ such that $h_{R'X}(r_1) = x_1$ and $h_{R'X}(r_2) = x_2$;
@@ -487,8 +487,8 @@
                                      &= h_{CG}(h_{C'C}(c')) & \\
                                     %  &= h_{CG}(c) & \\
                                      &\neq 
-                                    %  h_{LG}(l) & \text{by~\autoref{lem:b_c_same_img_exist_a} and $c\notin \operatorname{Im}(h_{KC})$}  
-                                    h_{LG}(h_{R'L}(r')) & \text{by~\autoref{lem:b_c_same_img_exist_a} and $h_{C'C}(c') \notin \operatorname{Im}(h_{KC})$}   
+                                    %  h_{LG}(l) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and $c\notin \operatorname{Im}(h_{KC})$}  
+                                    h_{LG}(h_{R'L}(r')) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and $h_{C'C}(c') \notin \operatorname{Im}(h_{KC})$}   
                                     \\
                                      &= (h_{R'L} \star h_{LG})(r') 
                                      \\
@@ -562,7 +562,7 @@
                 %         \draw [->] (x) -- (g) node[midway,above] {!};
                 %     \end{tikzpicture}
                 % \end{center}
-                Since $K'C'CK$ is also a pullback square by~\autoref{prop:pb_eq_po} and $h_{KC}(k_1) = h_{C'C}(c')$ and $h_{C'C}(c') =  h_{C'C}(c')$, there is $k' \in K'$ such that $h_{K'K}(k') = k_1$ and $h_{K'C'}(k') = c'$.
+                Since $K'C'CK$ is also a pullback square by Proposition~\ref{prop:pb_eq_po} and $h_{KC}(k_1) = h_{C'C}(c')$ and $h_{C'C}(c') =  h_{C'C}(c')$, there is $k' \in K'$ such that $h_{K'K}(k') = k_1$ and $h_{K'C'}(k') = c'$.
  
                 We have $h_{K'R'}(k') = r'$ because $h_{R'L}$ is injective, $h_{R'L}(r') = h_{R'L}(r')$ and 
                 \begin{flalign*}
@@ -571,7 +571,7 @@
                   =&(h_{K'K} \star h_{KL})(k') & \text{by commutativity of $K'R'LK$}\\
                   =&(h_{KL})(h_{K'K}(k'))\\
                   =&(h_{KL})(k_1)\\
-                  =&(h_{KL})(k_2) & \text{by assumption~\eqref{k1eqk2}}
+                  =&(h_{KL})(k_2) & \text{by assumption Equation~\eqref{k1eqk2}}
                 %  \\
                 %   =& l
                 \end{flalign*}
@@ -601,7 +601,7 @@
                             \\
                             &= (h_{KC} \star h_{CG})(k_1) & 
                             \\
-                            &\neq (h_{KC} \star h_{CG})(k_2)  & \text{by injectivity of $h_{KC}\star h_{CG}$ and~\eqref{k1neqk2}} 
+                            &\neq (h_{KC} \star h_{CG})(k_2)  & \text{by injectivity of $h_{KC}\star h_{CG}$ and Equation~\eqref{k1neqk2}} 
                             \\
                             &= (h_{KL} \star h_{LG})(k_2) & \text{by commutativity of $KLGC$}
                             \\
@@ -729,13 +729,13 @@
     \end{center}
     where $K'R'XC'$, $K''R''XC''$, $K'KCC'$, $K''KCC''$, $R'RHX$ and $R''RHX$ are pullbacks.
 
-    By~\autoref{kpcpck_pullback}, $K'KRR'$ and $K''KCC''$ are pullbacks. 
+    By Lemma~\ref{kpcpck_pullback}, $K'KRR'$ and $K''KCC''$ are pullbacks. 
 
-    By~\autoref{kpcpxrp_po}, $K'R'XC'$ and $K''R''XC''$ are pushout.
+    By Lemma~\ref{kpcpxrp_po}, $K'R'XC'$ and $K''R''XC''$ are pushout.
 
     Since $\rho$ is $X$-non-increasing under $\Psi$, there are $\Psi(R'): R' \rightarrowtail L$ and $\Psi(R''):R'' \rightarrowtail L$ such that $K'R'LK$ and $K''R''LK$ are pullbacks.
 
-    By~\autoref{lem:g_monic}, we have the following commutative diagram
+    By Lemma~\ref{lem:g_monic}, we have the following commutative diagram
     \begin{center}
         \begin{tikzpicture} 
             \node (k) at (0,0) {K};
@@ -798,7 +798,7 @@
     because otherwise $x$ would be a non-isolated node and we can take an incident edge of $x$.
 
     \noindent
-    Since $K'R'XC'$ and $K''R''XC''$ are pushouts, by~\autoref{lem:xinXcpinCrpinR}, there are 4 possible cases:
+    Since $K'R'XC'$ and $K''R''XC''$ are pushouts, by Lemma~\ref{lem:xinXcpinCrpinR}, there are 4 possible cases:
     \begin{enumerate}
         \item there are $c' \in C', c'' \in C''$ such that $h_{C'X}(c') = h_{C'X}(c'') = x$;
         \item  there are $r' \in R', r'' \in R''$ such that $h_{R'X}(r') = h_{R'X}(r'') = x$
@@ -839,7 +839,7 @@
            =&(h_{C'X} \star h_{XH}')(c') \\
            =&(h_{C'C} \star h_{CH})(c') &\text{By commutativity of $C'XHC$}\\
            =&h_{CH}(h_{C'C}(c')) \\
-           =&h_{CH}(h_{C''C}(c'')) & \text{ by~\eqref{cpccp_eq_cppccpp}}\\
+           =&h_{CH}(h_{C''C}(c'')) & \text{ by Equation~\eqref{cpccp_eq_cppccpp}}\\
            =&(h_{C''C} \star h_{CH})(c'') \\
            =&(h_{C''X} \star h_{XH}'')(c'') &\text{By commutativity of $C''CHX$}\\
            =&h_{XH}''(h_{C''X}(c'')) \\
@@ -893,7 +893,7 @@
                         &= (h_{C'X} \star h_{XG}')(c')  \\
                         &= (h_{C'C} \star h_{CG})(c') & \text{by commutativity of $C'CGX$} \\
                         &= h_{CG}(h_{C'C}(c')) &  \\
-                        &\neq h_{CG}(h_{C''C}(c'')) & \text{by~\eqref{cpccp_neq_cppccpp} and the injectivity of $h_{CG}$} \\
+                        &\neq h_{CG}(h_{C''C}(c'')) & \text{by Equation~\eqref{cpccp_neq_cppccpp} and the injectivity of $h_{CG}$} \\
                         &= (h_{C''C} \star h_{CG})(c'') &  \\
                         &= (h_{C''X} \star h_{XG}'')(c'') & \text{by commutativity of $C''CGX$} \\
                         &= h_{XG}''(h_{C''X}(c'')) \\
@@ -904,7 +904,7 @@
         \begin{flalign}
             h_{R'R}(r') \neq h_{R''R}(r'') \label{rprrppr}
         \end{flalign}  
-        by an argument analogous to the argument for $h_{C'C}(c') \neq h_{C''C}(c'')$ in the previous case. Since $\rho$ is $X$-non-increasing,~\eqref{rprrppr} and~\eqref{x_isolated_or_edge} hold, we have \todo{use : x is either an isolated node or an edge}       
+        by an argument analogous to the argument for $h_{C'C}(c') \neq h_{C''C}(c'')$ in the previous case. Since $\rho$ is $X$-non-increasing, Equation~\eqref{rprrppr} and Equation~\eqref{x_isolated_or_edge} hold, we have \todo{use : x is either an isolated node or an edge}       
         \begin{flalign}
             h_{R'L}(r') \neq h_{R''L}(r'') \label{rplrprpplrpp}
         \end{flalign}  
@@ -971,7 +971,7 @@
                          &= (h_{R'X} \star h_{XG}')(r')  \\
                          &= (h_{R'L} \star h_{LG})(r') & \text{by commutativity of $R'XGL$} \\
                          &= h_{LG}(h_{R'L}(r')) &  \\
-                         &\neq h_{LG}(h_{R''L}(r'')) &  \text{By injectivity of $h_{LG}$ and~\eqref{rplrprpplrpp}}\\
+                         &\neq h_{LG}(h_{R''L}(r'')) &  \text{By injectivity of $h_{LG}$ and Equation~\eqref{rplrprpplrpp}}\\
                          &= (h_{R''L} \star h_{LG})(r'') &  \\
                          &= (h_{R''X} \star h_{XG}'')(r'') & \text{by commutativity of $R''XGL$} \\
                          &= h_{XG}''(h_{R''X}(r'')) \\
@@ -1045,7 +1045,7 @@
          =&h_{C''X}(c'')\\
          =&x
         \end{flalign*}
-        which contradicts the assumption~\eqref{assumption_norpp}.
+        which contradicts the assumption Equation~\eqref{assumption_norpp}.
         
         Thus, the following holds
         \begin{flalign}
@@ -1058,7 +1058,7 @@
                          &= (h_{C''X} \star h_{XG}')(c'') \\
                          &= (h_{C''C} \star h_{CG})(c'') & \text{by commutativity of $C''CGX$} \\
                          &= h_{CG}(h_{C''C}(c'')) &  \\
-                         &\neq  h_{LG}(h_{R'L}(r')) & \text{by~\autoref{lem:b_c_same_img_exist_a} and the assumption~\eqref{assump_c_notin_imhkc}} \\
+                         &\neq  h_{LG}(h_{R'L}(r')) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and the assumption Equation~\eqref{assump_c_notin_imhkc}} \\
                          &= (h_{R'L} \star h_{LG})(r') \\
                          &= (h_{R'X} \star h_{XG}'')(r') & \text{by commutativity of $R'XGL$} \\
                          &= h_{XG}''(h_{R'X}(r'))\\
@@ -1076,7 +1076,7 @@
     %                                  &= (h_{C''X} \star h_{XG}')(c'') \\
     %                                  &= (h_{C''C} \star h_{CG})(c'') & \text{by commutativity of $C''CGX$} \\
     %                                  &= h_{CG}(h_{C''C}(c'')) &  \\
-    %                                  &\neq  h_{LG}(h_{R'L}(r')) & \text{by~\autoref{lem:b_c_same_img_exist_a} and the assumption~\eqref{assump_c_notin_imhkc}} \\
+    %                                  &\neq  h_{LG}(h_{R'L}(r')) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and the assumption Equation~\eqref{assump_c_notin_imhkc}} \\
     %                                  &= (h_{R'L} \star h_{LG})(r') \\
     %                                  &= (h_{R'X} \star h_{XG}'')(r') & \text{by commutativity of $R'XGL$} \\
     %                                  &= h_{XG}''(h_{R'X}(r'))\\
@@ -1086,7 +1086,7 @@
     %             \begin{flalign}
     %                 h_{R'R}(r') \notin \operatorname{Im}(h_{KR}) \label{rprrp_im_kr}
     %             \end{flalign} 
-    %             Since $\rho$ is $X$-non-increasing, by the assumption~\eqref{rprrp_im_kr}, (\autoref{def:creates_more_x_on_the_left})$h_{R'L}$ does not identify non-interface elements with interface elements. Therefore, the following holds 
+    %             Since $\rho$ is $X$-non-increasing, by the assumption Equation~\eqref{rprrp_im_kr}, (Definition~\ref{def:creates_more_x_on_the_left})$h_{R'L}$ does not identify non-interface elements with interface elements. Therefore, the following holds 
     %             \begin{flalign}
     %                 h_{R'L}(r') \notin \operatorname{Im}(h_{KL}) \label{lnotinhkl}
     %             \end{flalign} 
@@ -1136,7 +1136,7 @@
     %                                  &= (h_{R'X} \star h_{XG}')(r') \\
     %                                  &= (h_{R'L} \star h_{LG})(r') & \text{by commutativity of $R'LGX$} \\
     %                                  &= h_{LG}(h_{R'L}(r')) &  \\
-    %                                  &= h_{CG}(h_{C''C}(c'')) & \text{by~\autoref{lem:b_c_same_img_exist_a} and the assumption~\eqref{lnotinhkl}}  \\
+    %                                  &= h_{CG}(h_{C''C}(c'')) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and the assumption Equation~\eqref{lnotinhkl}}  \\
     %                                  &= (h_{C''C} \star h_{CG})(c'') \\
     %                                  &= (h_{C''X} \star h_{XG}'')(c'') & \text{by commutativity of $C''XGC$} \\
     %                                  &= h_{XG}''(h_{C''X}(c''))\\
@@ -1249,18 +1249,18 @@
     %                             &= h_{R'X}(r') &  \text{by definition of $k'$}\\
     %                             &= x& \text{by definition of $r'$}
     %                     \end{flalign*}
-    %             which contradic the assumption~\eqref{assumption_norpp}.
+    %             which contradic the assumption Equation~\eqref{assumption_norpp}.
 
     %             Hence \begin{flalign}
     %                 k_1 \neq k_2 \label{k1_neq_k2}
     %             \end{flalign}
 
-    %             From~\eqref{k1_neq_k2}, we have 
+    %             From Equation~\eqref{k1_neq_k2}, we have 
     %             \begin{flalign}
     %                 h_{KR}(k_1) \neq h_{KR}(k_2) \label{hkrk1_neq_hkrk2}
     %             \end{flalign} 
 
-    %             Since~\eqref{hkrk1_neq_hkrk2} holds and $\rho$ is $X$-non-increasing, we have 
+    %             Since Equation~\eqref{hkrk1_neq_hkrk2} holds and $\rho$ is $X$-non-increasing, we have 
     %             \begin{flalign}
     %                 h_{KL}(k_1) \neq h_{KR}(k_2) \label{hkrk1_neq_hkrk2}
     %             \end{flalign} 
@@ -1277,7 +1277,7 @@
     %                         \\
     %                         &= (h_{KC} \star h_{CG})(k_1) & 
     %                         \\
-    %                         &\neq (h_{KC} \star h_{CG})(k_2) & \text{by~\eqref{k1_neq_k2} and injectivity of $h_{KC} \star h_{CG}$} 
+    %                         &\neq (h_{KC} \star h_{CG})(k_2) & \text{by Equation~\eqref{k1_neq_k2} and injectivity of $h_{KC} \star h_{CG}$} 
     %                         \\
     %                         &= (h_{KL} \star h_{LG})(k_2) & 
     %                         \\

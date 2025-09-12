@@ -13,12 +13,12 @@
 \newpage  
 \section*{Resumé}
 \input{sections/resume}  
- 
+  
 \newpage  
 \section*{Acknowledgements} 
 \input{sections/acknowledgements}
 \newpage       
- 
+  
   
 \tableofcontents   
 \newpage      
@@ -36,10 +36,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Preliminaries}
 \label{chap:preliminaries}
-In this chapter we recall definitions related to the double-pushout approach to edge-labeled multigraph rewriting and to relative termination. 
-\section{Binary Relations}
-\label{Preliminaries:BinaryRelations}
-\input{sections/binary_relation}
+We recall definitions related to the double-pushout approach to edge-labeled multigraph rewriting and to relative termination. 
+% \section{Binary Relations}
+% \label{Preliminaries:BinaryRelations}
+% \input{sections/binary_relation}
 \section{Directed Edge-labeled Multigraph} 
 \label{Preliminaries:Graphs}
 \input{subgraph_counting/sections/graph} 
@@ -142,11 +142,12 @@ Systems using Morphism Counting}
 \input{subgraph_counting/sections/conclusion}
 
 \section{Appendix}
+\label{subgraph_counting:sec:appendix}
 \subsection*{Adhesive Category and VK-square}
 \input{shared_paragrahs/adhesive}
 \subsection*{Auxiliary lemmas}
 \input{subgraph_counting/sections/newproofs}
-\subsection*{Proofs of~\autoref{subgraph_counting:lem:decomp_w_u},~\autoref{subgraph_counting:lem:xlnlmxrnr},~\autoref{subgraph_counting:lem:w_u_l_not_geq_r_not} and~\autoref{subgraph_counting:lem:w_g_geq_w_h_leq}}
+\subsection*{Proofs of Lemma~\ref{subgraph_counting:lem:decomp_w_u}, Lemma~\ref{subgraph_counting:lem:xlnlmxrnr}, Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not} and Lemma~\ref{subgraph_counting:lem:w_g_geq_w_h_leq}}
 \label{subgraph_counting:sec:appendix:a}
 \input{subgraph_counting/sections/appendix_weighing_pushout_object}
 
@@ -173,9 +174,9 @@ Systems using Morphism Counting with antipatterns}
 This dissertation focused on automated techniques for proving the relative termination of DPO graph rewriting systems on edge-labeled directed multigraphs.
 
 We first extended an existing technique, the type graph method, to non-well-founded semirings, enabling more efficient implementation of the method in some cases.
-We then developed a new machine-checkable sufficient condition, called morphism counting, for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs, based on counting monomorphisms from specific subgraphs to the graph before and after transformation. This technique can handle cases, such as~\autoref{subgraph_counting:ex_contrib_variant}, that existing interpretation-based approaches cannot.
+We then developed a new machine-checkable sufficient condition, called morphism counting, for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs, based on counting monomorphisms from specific subgraphs to the graph before and after transformation. This technique can handle cases, such asExample~\ref{subgraph_counting:ex_contrib_variant}, that existing interpretation-based approaches cannot.
 Finally, we extended our morphism counting method to count specific subgraphs that are not included in forbidden contexts. This extension successfully proves termination for systems like the ones presented
-in~\autoref{antipattern:ex:grs_aca} and~\autoref{antipattern:ex:endrullis:d3:termination} which prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and the morphism counting method presented in Chapter~\ref{chap:subgraph_counting} fail to handle.
+in Example~\ref{antipattern:ex:grs_aca} and Example~\ref{antipattern:ex:endrullis:d3:termination} which prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and the morphism counting method presented in Chapter~\ref{chap:subgraph_counting} fail to handle.
 
 The implementation of the type graph method and our extension, along with our morphism counting technique and its extension, was integrated into a unified tool, called LyonParallel.
  

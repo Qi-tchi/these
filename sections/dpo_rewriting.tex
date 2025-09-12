@@ -1,6 +1,7 @@
 The algebraic approach of double-pushout (DPO) rewriting was introduced by Ehrig et al. in~\cite{ehrig1973graph}. It is not restricted to graphs, but can be defined in any category that has some properties~\cite{ehrig2006fundamentals,lack2004adhesive}. This section recalls the definition of DPO rewriting, following the treatment of Endrullis and Overbeek in~\cite{endrullis2024generalized_icgt}.
 
-Throughout this section, let \(\mathcal{C}\) be a category.
+Throughout this section,
+we fix a category \( \mathcal{C} \).
  A DPO rewriting rule is given by two morphisms \(l: K \to L\) and \(r: K \to R\). \(L\) encodes the rule's preconditions, \(R\) specifies the postconditions, and \(K\) is the interface—the subobject common to \(L\) and \(R\) that is preserved by the rule and links \(L\) and \(R\) to the surrounding context.
 \begin{definition} 
   \label{def:grs:dpo_rule}
@@ -14,7 +15,7 @@ The work \enquote{injective} and \enquote{monic} are used interchangeably in thi
 
 \begin{example}
   \label{ex:grsaa}
-  Consider the DPO rewriting rule shown in~\autoref{fig:preliminaries:a_rewriting_rule} from \cite[Example 6]{bruggink2014termination}. 
+  Consider the DPO rewriting rule shown in Figure~\ref{fig:preliminaries:a_rewriting_rule} from \cite[Example 6]{bruggink2014termination}. 
   It is an injective rule.
   It replaces an occurrence of the graph 
 \raisebox{2pt}{
@@ -34,7 +35,7 @@ The work \enquote{injective} and \enquote{monic} are used interchangeably in thi
             \draw[->] (x)--(y) node[midway, above] {$b$};
             \draw[->] (y)--(w) node[midway, above] {$a$};
         }}}, keeping the extreme nodes unchanged.   
-To perform a rewriting step using a DPO rewriting rule $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ to an object $G$, we need to find a match $m:L \to G$. The rule is then applied by constructing the diagram with double pushout shown in \autoref{def:rewriting_step} and once the pushout squares are constructed, one says that the object $G$ rewrites to $H$ using the rule $\rho$ and the match $m$.
+To perform a rewriting step using a DPO rewriting rule $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ to an object $G$, we need to find a match $m:L \to G$. The rule is then applied by constructing the diagram with double pushout shown in Definition~\ref{def:rewriting_step} and once the pushout squares are constructed, one says that the object $G$ rewrites to $H$ using the rule $\rho$ and the match $m$.
 \begin{figure}[H]
       \centering 
       \resizebox{0.8\textwidth}{!}{
@@ -78,7 +79,7 @@ To rewrite an object $G$, one matches the left-hand side \(L\) into \(G\) by a m
 \begin{definition} 
   \label{def:rewriting_step}
     A diagram in a category consisting of two pushout squares arranged as shown below
-    %  in~\autoref{fig:preliminaries:a_rewriting_step_slkjdfsljsdl} 
+    %  in Figure~\ref{fig:preliminaries:a_rewriting_step_slkjdfsljsdl} 
     is called a \textbf{double-pushout (DPO) diagram}.
     %   \begin{figure}[H]
     %     \centering
@@ -116,7 +117,7 @@ The graph $\mathcal{G}$ is thus decomposed into the occurrence of $\mathcal{L}$ 
 Then, one modifies the occurrence of $\mathcal{L}$ (by removing some nodes and edges and adding some fresh nodes and edges while keeping the interface graph unchanged, and identifying nodes in the interface graph)
 to obtain an occurrence of $\mathcal{R}$. Finally, the result graph is obtained by gluing the occurrence of $\mathcal{R}$ with $\mathcal{C}$ via the interface graph $\mathcal{K}$.
 
-As an example, consider the DPO rewriting rule shown in~\autoref{fig:preliminaries:a_rewriting_rule_sfdsgdfa} and the DPO diagram in~\autoref{fig:preliminaries:a_rewriting_step}.
+As an example, consider the DPO rewriting rule shown in Figure~\ref{fig:preliminaries:a_rewriting_rule_sfdsgdfa} and the DPO diagram in Figure~\ref{fig:preliminaries:a_rewriting_step}.
 \begin{figure}[H]
       \centering 
       \resizebox{0.7\textwidth}{!}{
@@ -255,9 +256,9 @@ The rule removes the orange part of the occurrence of $L$ in $G$ to obtain the c
 The result graph $H$ is obtained by gluing the context graph $C$ and the graph $R$ via the interface graph.
 
 
-In category \textbf{Graph}, the pushout of two arrows always exists by~\autoref{prop:pushout_graph_always_exists}. Therefore, consider the DPO diagram shown
+In category \textbf{Graph}, the pushout of two arrows always exists by Proposition~\ref{prop:pushout_graph_always_exists}. Therefore, consider the DPO diagram shown
 below.
-%   in~\autoref{fig:preliminaries:a_gadsfsddfsmework}. 
+%   in Figure~\ref{fig:preliminaries:a_gadsfsddfsmework}. 
  Once the left pushout square is constructed, the right pushout square can always be constructed and is unique up to isomorphism because of the universal property.
 % \begin{figure}[H]
 %       \centering
@@ -291,7 +292,7 @@ below.
 % \end{figure}
 
 However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square cannot always be constructed. For example, consider the same rewriting rule, shown below.
-%  in~\autoref{fig:preliminaries:a_rewrdfagiting_rule_sfdsgdfa}.
+%  in Figure~\ref{fig:preliminaries:a_rewrdfagiting_rule_sfdsgdfa}.
 % \begin{figure}[H]
 %       \centering
 \begin{center}
@@ -332,14 +333,14 @@ However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square c
 %       \caption{}
 %       \label{fig:preliminaries:a_rewrdfagiting_rule_sfdsgdfa}
 %   \end{figure}
-Consider $G'$ in~\autoref{fig:intro:dangling_edge}. $G'$ is obtained from $G$ in~\autoref{fig:preliminaries:a_rewriting_step} by adding an edge from node $3$ to node $6$ (shown in red). This graph has the occurrence \raisebox{2pt}{
+Consider $G'$ in Figure~\ref{fig:intro:dangling_edge}. $G'$ is obtained from $G$ in Figure~\ref{fig:preliminaries:a_rewriting_step} by adding an edge from node $3$ to node $6$ (shown in red). This graph has the occurrence \raisebox{2pt}{
             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
             \node [draw,circle] (z) at (-1,0) {$1$};
             \node [draw,circle,orange] (x) at (0,0) {$3$};
             \node[draw,circle] (y) at (1,0) {$2$};
             \draw[->,orange] (z)--(x) node[midway, above] {$a$};
             \draw[->,orange] (x)--(y) node[midway, above] {$a$};
-        }}} of $L$ in $G'$. However, since node $3$ does not exist in $C$, the edge from node $3$ to node $6$ becomes dangling, making the construction of $C$ impossible and preventing the rule application on that occurrence of $L$. Concretely, nodes in \(m(L)\setminus (l\star m)(K)\) are removed when the rule is applied, while edges in \(G\setminus m(L)\) remain, which can produce dangling edges. Therefore no node of (G) outside the image of \(m\) should be incident to a node of \(m(L)\) outside the image of \(l\star m\). This requirement is precisely the dangling-edge condition in~\autoref{prop:existence_of_pushout_complement}.
+        }}} of $L$ in $G'$. However, since node $3$ does not exist in $C$, the edge from node $3$ to node $6$ becomes dangling, making the construction of $C$ impossible and preventing the rule application on that occurrence of $L$. Concretely, nodes in \(m(L)\setminus (l\star m)(K)\) are removed when the rule is applied, while edges in \(G\setminus m(L)\) remain, which can produce dangling edges. Therefore no node of (G) outside the image of \(m\) should be incident to a node of \(m(L)\) outside the image of \(l\star m\). This requirement is precisely the dangling-edge condition in Proposition~\ref{prop:existence_of_pushout_complement}.
 
     \begin{figure}[H]
         \centering
@@ -411,7 +412,7 @@ L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R
 \]
 in \(\mathbf{Graph}\) and the match \(L \overset{m}{\rightarrow} G\) shown
 below.
-%  in Figure~\autoref{fig:preliminaries:a_match_dangling_edge_condition}. 
+%  in Figure Figure~\ref{fig:preliminaries:a_match_dangling_edge_condition}. 
  The rule deletes a node of the graph, and the match identifies the three nodes of \(L\) with a single node of \(G\).
     % \begin{figure}[H]
     %     \centering
@@ -450,24 +451,28 @@ below.
     %     \caption{} 
     %     \label{fig:preliminaries:a_match_dandfjasfkas} 
     % \end{figure}
-Since there are no edges, it suffices to consider the pushout square of the nodes. Throughout this example we denote a node \(n\) of a graph \(X\) by \(n_X\) to avoid ambiguity. There are two cases, depending on how the nodes of \(K\) map into \(C\). 
+Since there are no edges, it suffices to consider the pushout square of the nodes. Throughout this example, a node \(n\) of a graph \(X\) is denoted by \(n_X\) to avoid ambiguity. There are two cases, depending on how the nodes of \(K\) map into \(C\). 
 If nodes in $K$ are mapped to different nodes in $C$, then
         $\sim$ is the smallest equivalence relation including $\set{(1_L,1_C),(2_L,2_C)}$ and $D = \set{1_L,2_L,3_L,1_C,2_C,\cdots}$.
 If nodes in $K$ are mapped to the same node $1_C$ in $C$, then
         $\sim$ is the smallest equivalence relation including $\set{(1_L,1_C),(2_L,1_C)}$ and $D = \set{1_L,2_L,3_L,1_C,\cdots}$.
-In both cases \(3_L\notin[1_L]_\sim\). Hence \(D/\!\sim\) contains at least two distinct elements and cannot be isomorphic to \(G\). The condition that prevents this situation is the identification condition in Proposition~\autoref{prop:existence_of_pushout_complement}.
+In both cases \(3_L\notin[1_L]_\sim\). Hence \(D/\!\sim\) contains at least two distinct elements and cannot be isomorphic to \(G\). The condition that prevents this situation is the identification condition in Proposition Proposition~\ref{prop:existence_of_pushout_complement}.
 
 Finally, the following proposition from~\cite{corradini1997algebraic} characterizes the conditions under which pushout complements exist.
 \begin{proposition} 
     \label{prop:existence_of_pushout_complement}
-    Let $K \overset{l}{\rightarrow} L$ and $L \overset{m}{\rightarrow} G$ be two morphisms in the category \textbf{Graph}. There exist two morphisms $K \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} G$ such that $K \overset{l}{\rightarrow} L \overset{m}{\rightarrow} G$ and $K \overset{u}{\rightarrow} L \overset{l'}{\rightarrow} G$ form a pushout square as shown in~\autoref{fig:preliminaries:a_pushout_square_complement} if and only if the following conditions are satisfied:
+    Let $K \overset{l}{\rightarrow} L$ and $L \overset{m}{\rightarrow} G$ be two morphisms in the category \textbf{Graph}. There exist two morphisms $K \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} G$ such that $K \overset{l}{\rightarrow} L \overset{m}{\rightarrow} G$ and $K \overset{u}{\rightarrow} L \overset{l'}{\rightarrow} G$ form a pushout square, as shown 
+    below, 
+    % in Figure~\ref{fig:preliminaries:a_pushout_square_complement} 
+    if and only if the following conditions are satisfied:
     \begin{enumerate} 
         \item{Dangling edge condition:} 
         No edge in \(G\setminus m(L)\) is incident to any node in \(m(L) \setminus (l \star m)(K)\);
         \item{Identification condition: } There is no $x,y \in L_V \cup L_E$ such that $x \neq y$, $m(x) = m(y)$ and $y \notin l(K_V \cup K_E)$.
     \end{enumerate} 
-    \begin{figure}[H]
-        \centering
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.2\textwidth}{!}{
             \begin{tikzpicture}
                 \node (I) at (0,0) {$K$};
@@ -481,15 +486,16 @@ Finally, the following proposition from~\cite{corradini1997algebraic} characteri
                 \node [at=($(I)!.5!(G)$)] {\normalfont PO};
             \end{tikzpicture}
         } 
-        \caption{}
-        \label{fig:preliminaries:a_pushout_square_complement}
-    \end{figure}
+        \end{center}
+    %     \caption{}
+    %     \label{fig:preliminaries:a_pushout_square_complement}
+    % \end{figure}
 \end{proposition}
  
 %  In this example, edge $3 \overset{a}{\rightarrow} 6$ is in $G_E \setminus m(L_E)$, and it is incident to the node $3$ which is in $m(L_V \setminus l(K_V))$. When node $3$ is removed, the edge from node $3$ to node $6$ will be dangling. Intuitively, edges in $G_E \setminus m(L_E)$.
 
-%     To give an intuition on the second condition, suppose that there is a graph C and morphisms $\beta$ and $\alpha'$ such that the diagram in~\autoref{fig:preliminaries:a_pushout_square_diagram_1} is a pushout square.
-%    We have the commutative diagram in~\autoref{fig:preliminaries:a_pushout_square_diagram} where the morphism $\gamma$ maps all nodes in $C$ to the node 1 in $E$.
+%     To give an intuition on the second condition, suppose that there is a graph C and morphisms $\beta$ and $\alpha'$ such that the diagram in Figure~\ref{fig:preliminaries:a_pushout_square_diagram_1} is a pushout square.
+%    We have the commutative diagram in Figure~\ref{fig:preliminaries:a_pushout_square_diagram} where the morphism $\gamma$ maps all nodes in $C$ to the node 1 in $E$.
 
 % \begin{figure}[H]
 %     \centering
@@ -594,7 +600,7 @@ Finally, the following proposition from~\cite{corradini1997algebraic} characteri
 There are several variants of DPO rewriting. Typically both the match (m) and the morphism (l) are required to be monomorphisms, and some variants impose additional constraints on the left pushout—for example, that the pushout complement be minimal or initial~\cite{braatz2011delete,behr2021concurrency,behr2023fundamentals}. Because these choices affect which rewriting steps are permitted and hence properties such as termination, following Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}, we employ the definition which is parametric in the variation of DPO under consideration.
 \begin{definition}[\cite{endrullis2024generalized_icgt}]
   \label{def:rewriting_framework} 
-    A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to classes of DPO diagrams. Specifically, for every rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \), class $\mathfrak{F}(\rho)$ consists of DPO diagrams, shown in~\autoref{fig:preliminaries:a_rewriting_framework}, which are witnesses of rewriting steps using the rule \( \rho \).
+    A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to classes of DPO diagrams. Specifically, for every rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \), class $\mathfrak{F}(\rho)$ consists of DPO diagrams, shown in Figure~\ref{fig:preliminaries:a_rewriting_framework}, which are witnesses of rewriting steps using the rule \( \rho \).
  \begin{figure}[H]
       \centering
       \resizebox{0.4\textwidth}{!}{
@@ -631,5 +637,5 @@ There are several variants of DPO rewriting. Typically both the match (m) and th
     omit $\mathfrak{F}$ and 
     write $\Rightarrow_{\rho}$ and $\Rightarrow_{\mathcal{R}}$.
   \end{definition}
-% Let \(\mathfrak{F}\) denote the DPO rewriting framework that associates each rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) with the collection of all DPO diagrams of the form shown in~\autoref{fig:preliminaries:a_rewriting_framework}.
-Throughout this work, we will use the notation \(\mathfrak{M}\) to denote the DPO rewriting framework that associates each rule with the class of all DPO diagrams of the form shown in~\autoref{fig:preliminaries:a_rewriting_framework} with monic match $m$.
+% Let \(\mathfrak{F}\) denote the DPO rewriting framework that associates each rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) with the collection of all DPO diagrams of the form shown in Figure~\ref{fig:preliminaries:a_rewriting_framework}.
+Hereafter, \(\mathfrak{M}\) denotes the DPO rewriting framework that associates each rule with the class of all DPO diagrams of the form shown in Figure~\ref{fig:preliminaries:a_rewriting_framework} with monic match $m$.

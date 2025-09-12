@@ -1,5 +1,5 @@
 % In this section, we present a method for termination analysis of DPO graph rewriting systems with injective rules and monic matches. 
-% Since it is an interpretation method~\cite{nipkow1998term}, we first define the weight of a graph in~\autoref{def:graph_weight}. 
+% Since it is an interpretation method~\cite{nipkow1998term}, we first define the weight of a graph in Definition~\ref{def:graph_weight}. 
 % With this definition, we explain the general idea of the method and identify the key challenge in~\autoref{sec:general_idea}. 
 % In~\autoref{sec:non-increasing}, we introduce the concept of non-increasing rules. 
 % Using this concept, a solution to this challenge is then proposed in~\autoref{sec:solution_to_the_key_challenge}. 
@@ -35,13 +35,13 @@ For some ruler-graphs, the change in the number of monomorphism when applying a 
         \draw[->] (x) -- (y) node[midway, above] {$x$};
     } consisting of two nodes and a single labeled edge between them.  
     
-However, systems like~\autoref{subgraph_counting:ex:grsaa_rx} require more complex ruler-graphs such as \tikz[baseline=-0.5ex]{
+However, systems like Example~\ref{subgraph_counting:ex:grsaa_rx} require more complex ruler-graphs such as \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) {};
         \node[draw,circle] (y) at (1,0) {};
         \node[draw,circle] (z) at (2,0) {};
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[->] (y) -- (z) node[midway, above] {$a$};
-    } as shown in~\autoref{subgraph_counting:ex:termination:grsaa}.
+    } as shown in Example~\ref{subgraph_counting:ex:termination:grsaa}.
     For such ruler-graph, the change in the number of monomorphisms when applying a rewriting rule is unpredictable in general, because the number of monomorphisms from such ruler-graph depends on the context graph\textemdash a challenge that we address in later sections.
     
 To combine measurements from multiple ruler-graphs (analogous to combining measurements of physical objects from multiple rulers), we introduce:
@@ -49,7 +49,7 @@ To combine measurements from multiple ruler-graphs (analogous to combining measu
     \label{subgraph_counting:def:weight_function}
     A \textbf{weight function} for a set of ruler-graphs \( \mathbb{X} \) is a map \( s_{\mathbb{X}} \colon \mathbb{X} \to \mathbb{N} \) assigning a weight in $\mathbb{N}$ to each ruler-graph. The weight of a monomorphism from a ruler-graph $X$ is defined to be $s_\mathbb{X}(X)$. 
 \end{definition}
-Assigning different weights to measurements from distinct ruler-graphs enhences the technique, as demonstrated in~\autoref{ex:overbeek_5d6}.
+Assigning different weights to measurements from distinct ruler-graphs enhences the technique, as demonstrated in Example~\ref{ex:overbeek_5d6}.
 \begin{definition} 
     \label{subgraph_counting:def:graph_weight}  
     Let \( \mathbb{X} \) be a set of ruler-graphs, 
@@ -62,13 +62,13 @@ Assigning different weights to measurements from distinct ruler-graphs enhences 
 \section{General idea and key challenge}
 \label{subgraph_counting:sec:general_idea}
 For the remainder of this section, we assume: a set \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) of injective DPO rewriting rules, a set \( \mathbb{X} \) of ruler-graphs, and a weight function \( s_{\mathbb{X}} \).  Let \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) denote a rule in \( \mathcal{R} \) and \( X \in \mathbb{X} \). 
-Recall that \(\mathfrak{M}\), defined in~\autoref{def:rewriting_framework}, denotes the DPO rewriting framework that associates each rule with the collection of all DPO diagrams witnessing rewriting steps using the rule, where the matches are monic.
+Recall that \(\mathfrak{M}\), defined in Definition~\ref{def:rewriting_framework}, denotes the DPO rewriting framework that associates each rule with the collection of all DPO diagrams witnessing rewriting steps using the rule, where the matches are monic.
 
 The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{M}} \) terminates relative to $\Rightarrow_{\mathcal{B},\mathfrak{M}}$ if the following hold: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) > w_{s_\mathbb{X}}(H) \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H) \). However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
 Thus, we aim to provide a rule-based sufficient condition for termination.
 % \begin{remark}
 %     To simplify our presentation, we treat the following three notions interchangeably when the monomorphism \( h: A \to B \) is understood: the domain graph \( A \), the monomorphism \( h: A \to B \), the image \( h(A) \subseteq B \) (an occurrence of \( A \) in \( B \)).
-%     Consequently, in a rewriting step defined by the diagram in~\autoref{def:rewriting_step}, we streamline descriptions involving subgraph images. Rather than stating that there is an occurrence of a ruler-graph \( X \) formed by the image of subgraphs \( R' \subseteq R \) and \( C' \subseteq C \) around the image of \( K' \subseteq K \), we simply say \( X \) is formed by \( R' \) and \( C' \) around \( K' \). Rather than stating that $b \notin h(A)$, we simply say that $b \notin A$.
+%     Consequently, in a rewriting step defined by the diagram in Definition~\ref{def:rewriting_step}, we streamline descriptions involving subgraph images. Rather than stating that there is an occurrence of a ruler-graph \( X \) formed by the image of subgraphs \( R' \subseteq R \) and \( C' \subseteq C \) around the image of \( K' \subseteq K \), we simply say \( X \) is formed by \( R' \) and \( C' \) around \( K' \). Rather than stating that $b \notin h(A)$, we simply say that $b \notin A$.
 % \end{remark}
 \begin{notation}
     \label{subgraph_counting:notation:mono_sets}
@@ -207,7 +207,7 @@ Thus, we have:
     \card{\operatorname{Mono}(X,H,\lnot r',m')} \\
     &+\card{\operatorname{Mono}(X,H,\lnot r',\lnot m')}
 \end{flalign*}
-\noindent Using~\autoref{subgraph_counting:lem:decomp_w_u} 
+\noindent Using Lemma~\ref{subgraph_counting:lem:decomp_w_u} 
 (see \iflongversion
 \textsection~\ref{subgraph_counting:proof:dcomp_w_u} 
 \else
@@ -727,9 +727,12 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
 
 \begin{example}
     \label{subgraph_counting:ex:grsaa_rx}
-    Consider the injective DPO rule from~\cite[Example 6]{bruggink2014termination} shown in~\autoref{fig:subgraph_counting:grfksfdfgsdgsd}.  
-    \begin{figure}[H]
-        \centering
+    Consider the injective DPO rule from~\cite[Example 6]{bruggink2014termination} shown 
+    below.
+    % in Figure~\ref{fig:subgraph_counting:grfksfdfgsdgsd}.  
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture}
             \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
@@ -765,9 +768,10 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
             % \draw[>->] (51mm,2mm) -- (52mm,3mm);
         \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:subgraph_counting:grfksfdfgsdgsd}
-    \end{figure}
+    %     \caption{}
+    %     \label{fig:subgraph_counting:grfksfdfgsdgsd}
+    % \end{figure}
+    \end{center}
     Let $X$ be \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) { };
         \node[draw,circle] (y) at (1,0) { };
@@ -775,14 +779,14 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[->] (y) -- (z) node[midway, above] {$a$};
     } and $R' \in D(R,X)$. 
-    $R'$ is neither the empty graph nor isomorphic to $X$, by Conditions 2 and 3 of~\autoref{subgraph_counting:def:rx}. 
+    $R'$ is neither the empty graph nor isomorphic to $X$, by Conditions 2 and 3 of Definition~\ref{subgraph_counting:def:rx}. 
     Therefore, $R'$ must contain an interface node (either node 
     \tikz[baseline=-0.5ex]{ 
             \node[draw,circle] (y) at (1,0) {1};
     } or node 
     \tikz[baseline=-0.5ex]{ 
             \node[draw,circle] (y) at (1,0) {2};
-    }), because if it contains no interface node, Condition 1 of~\autoref{subgraph_counting:def:rx} would be violated due to $X$'s connectivity.
+    }), because if it contains no interface node, Condition 1 of Definition~\ref{subgraph_counting:def:rx} would be violated due to $X$'s connectivity.
     Additionally, $R'$ must contain node 
     \tikz[baseline=-0.5ex]{ 
             \node[draw,circle] (y) at (1,0) {4};
@@ -818,9 +822,12 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
             \draw[->] (x) -- (y) node[midway, above] {$b$};
     }
     by Condition 1.
-    The graph illustrated in~\autoref{fig:subgraph_counting:rx_counter_exdfsdfadfs} is not in $D(R,X)$ because it violates Condition 1.
-    \begin{figure}[H]
-        \centering
+    The graph illustrated below
+    % in Figure~\ref{fig:subgraph_counting:rx_counter_exdfsdfadfs} 
+    is not in $D(R,X)$ because it violates Condition 1.
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
@@ -834,13 +841,16 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                 }    
             \end{tikzpicture}
         } 
-        \caption{}
-        \label{fig:subgraph_counting:rx_counter_exdfsdfadfs}
-    \end{figure}
-    Thus, $D(R,X)$ consists of the four graphs $R'_1$, $R'_2$, $R'_3$ and $R'_4$ shown in~\autoref{fig:subgraph_counting:decompdfjasdkjfgdsakjh}.
-    For each graph, the construction of the pullback square in Condition 1 is demonstrated in~\autoref{example:grs_aa:has_more_left} and the construction of the pushout square required by Condition 1 is straightforward. 
-    \begin{figure}[H]
-        \centering
+    %     \caption{}
+    %     \label{fig:subgraph_counting:rx_counter_exdfsdfadfs}
+    % \end{figure}
+        \end{center}
+    Thus, $D(R,X)$ consists of the four graphs $R'_1$, $R'_2$, $R'_3$ and $R'_4$ which are shown below.
+    % in Figure~\ref{fig:subgraph_counting:decompdfjasdkjfgdsakjh}.
+    For each graph, the construction of the pullback square in Condition 1 is demonstrated in Example~\ref{example:grs_aa:has_more_left} and the construction of the pushout square required by Condition 1 is straightforward. 
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.24\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_1$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
@@ -884,9 +894,10 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                 }    
             \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:subgraph_counting:decompdfjasdkjfgdsakjh}
-    \end{figure}
+    \end{center}    
+    %     \caption{}
+    %     \label{fig:subgraph_counting:decompdfjasdkjfgdsakjh}
+    % \end{figure}
 \end{example} 
  
 \begin{example}
@@ -898,8 +909,10 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
             \node[draw,circle] (z) at (2,0) { };
             \draw[->] (x) -- (y)   {};
             \draw[->] (y) -- (z)   {};
-    }. Consider the rule shown in~\autoref{fig:subgraph_counting:rx_counter_exdfs}.
-    \begin{figure}[H]
+    }. Consider the rule shown below.
+    % in Figure~\ref{fig:subgraph_counting:rx_counter_exdfs}.
+    % \begin{figure}[H]
+    \begin{center}
         \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
@@ -932,10 +945,11 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                 \node () at (67mm,-8mm) {$\rightarrowtail$};
             \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:subgraph_counting:rx_counter_exdfs}
-    \end{figure}
-    Let $R' \in D(R,X)$. $R'$ must contain node 3, otherwise it would be a subgraph of $r(K)$, violating Condition 2 of~\autoref{subgraph_counting:def:rx}. Node 3 must be connected to an interface node, otherwise Condition 1 of~\autoref{subgraph_counting:def:rx} would be violated. Therefore, $R'$ must include \raisebox{2pt}{\scalebox{0.6}{\tikz[baseline=-0.5ex]{
+    %     \caption{}
+    %     \label{fig:subgraph_counting:rx_counter_exdfs}
+    % \end{figure}
+    \end{center}
+    Let $R' \in D(R,X)$. $R'$ must contain node 3, otherwise it would be a subgraph of $r(K)$, violating Condition 2 of Definition~\ref{subgraph_counting:def:rx}. Node 3 must be connected to an interface node, otherwise Condition 1 of Definition~\ref{subgraph_counting:def:rx} would be violated. Therefore, $R'$ must include \raisebox{2pt}{\scalebox{0.6}{\tikz[baseline=-0.5ex]{
         \node [draw,circle] (x) at (0,0) {2};
         \node[draw,circle] (y) at (1,0) {3};
         \draw[->] (x) -- (y) {};
@@ -953,7 +967,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
         \draw[->] (x) -- (y) {};
     }}}.
 \end{example}
-We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\rho$ is $X$-non-increasing, then for any rewriting step using $\rho$, there exists an injective mapping from the set of \( X \)-occurrences implicitly created by the step to the set of \( X \)-occurrences implicitly destroyed by the step. This will be proved in~\autoref{subgraph_counting:lem:w_u_l_not_geq_r_not}.
+We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\rho$ is $X$-non-increasing, then for any rewriting step using $\rho$, there exists an injective mapping from the set of \( X \)-occurrences implicitly created by the step to the set of \( X \)-occurrences implicitly destroyed by the step. This will be proved in Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}.
 \begin{definition}[Non-increasing rule]
     \label{subgraph_counting:def:creates_more_x_on_the_left}
     Let \(\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a graph. 
@@ -1090,27 +1104,68 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
 %     %  \end{enumerate}
 %     %  \todo{est il util d'avoir "or arrow?" c'est une partie de edge injective, non ?}
 % \end{definition} 
-The first condition ensures that whenever $R' \in D(R,X)$ forms an $X$-occurrence in the result graph $H$, this occurrence has a corresponding $X$-occurrence relative to the morphism $h_{R'L}$ (as defined in~\autoref{def:x_occurrence}) in the host graph $G$.
-The second condition guarantees that any $X$-occurrence implicitly created by the rewriting step has its corresponding $X$-occurrence not included in the context (Consequently, its corresponding $X$-occurrence is implicitly destroyed by the rewriting step). Counterexamples are provided in~\autoref{subgraph_counting:ex:cond_2_necessaire} and~\autoref{subgraph_counting:ex:cond_2_necessaire2}.
+The first condition ensures that whenever $R' \in D(R,X)$ forms an $X$-occurrence in the result graph $H$, this occurrence has a corresponding $X$-occurrence relative to the morphism $h_{R'L}$ (as defined in Definition~\ref{def:x_occurrence}) in the host graph $G$.
+The second condition guarantees that any $X$-occurrence implicitly created by the rewriting step has its corresponding $X$-occurrence not included in the context (Consequently, its corresponding $X$-occurrence is implicitly destroyed by the rewriting step). Counterexamples are provided in Example~\ref{subgraph_counting:ex:cond_2_necessaire} and Example~\ref{subgraph_counting:ex:cond_2_necessaire2}.
 The third and fourth conditions ensure that distinct $X$-occurrences created implicitly have distinct corresponding $X$-occurrences.
-Counterexamples for these conditions are given in~\autoref{subgraph_counting:ex:cond3_necessaire} and~\autoref{subgraph_counting:ex:cond4_necessaire}.
+Counterexamples for these conditions are given in Example~\ref{subgraph_counting:ex:cond3_necessaire} and Example~\ref{subgraph_counting:ex:cond4_necessaire}.
 
 The following example shows an $X$-non-increasing rule. 
 \begin{example}
     \label{example:grs_aa:has_more_left}
-    Consider the rule presented
-    in~\autoref{subgraph_counting:ex:grsaa_rx}. Let $X$ be the graph \tikz[baseline=-0.5ex]{
+    Consider the rule illustrated below and previously presented
+    in Example~\ref{subgraph_counting:ex:grsaa_rx}.
+    \begin{center}
+        \resizebox{0.7\textwidth}{!}{
+        \begin{tikzpicture}
+            \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (0mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+            }     
+            \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (5mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+            }    
+            \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (-5mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+            }    
+
+            \node () at (37mm,-8mm) {$\leftarrowtail$};
+            \node () at (67mm,-8mm) {$\rightarrowtail$};
+
+            % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+        \end{tikzpicture}
+        }
+    \end{center}
+    Let $X$ be the graph \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) { };
         \node[draw,circle] (y) at (1,0) { };
         \node[draw,circle] (z) at (2,0) { };
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[<-] (z) -- (y) node[midway, above] {$a$};
     }.
-    By~\autoref{subgraph_counting:ex:grsaa_rx}, the set \( D(R,X) \) consists of exactly four graphs: $R'_1$, $R'_2$, $R'_3$ and $R'_4$.
-    The rule is $X$-non-increasing because the diagrams in~\autoref{fig:subgraph_counting:decodkfjasddgsf} can be constructed, and $h_{R'_1L}, h_{R'_2L}, h_{R'_3L}$ and $h_{R'_4L}$ satisfy all conditions in~\autoref{subgraph_counting:def:creates_more_x_on_the_left}. 
+    As explained in Example~\ref{subgraph_counting:ex:grsaa_rx}, the set \( D(R,X) \) consists of exactly four graphs: $R'_1$, $R'_2$, $R'_3$ and $R'_4$.
+    The rule is $X$-non-increasing because the following diagrams
+    %  in Figure~\ref{fig:subgraph_counting:decodkfjasddgsf} 
+     can be constructed, and $h_{R'_1L}, h_{R'_2L}, h_{R'_3L}$ and $h_{R'_4L}$ satisfy all conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}. 
     %1
-    \begin{figure}[H]
-        \centering
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_1$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
@@ -1380,9 +1435,10 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (67mm,-28mm) {$\rightarrowtail$};
             \end{tikzpicture}
         } 
-        \caption{}
-        \label{fig:subgraph_counting:decodkfjasddgsf}
-    \end{figure}
+    %     \caption{}
+    %     \label{fig:subgraph_counting:decodkfjasddgsf}
+    % \end{figure}
+    \end{center}
     % with the following morphisms $h_{R'L}$ and $h_{R''L}$:
     % \begin{center}
     %     \resizebox{0.6\textwidth}{!}{
@@ -1427,16 +1483,17 @@ The following example shows an $X$-non-increasing rule.
     %             \end{tikzpicture}
     %         }
     %     \end{center}
-    % To illustrate the property captured by~\autoref{def:creates_more_x_on_the_left},
+    % To illustrate the property captured by Definition~\ref{def:creates_more_x_on_the_left},
     % consider the rewriting step defined by the DPO diagram below. Whenever an element $R' \in D(R,X)$ forms an \( X \)-occurrence in $H$ that is included neither in \( R \) nor $C$ with $C' \subseteq C$, the graph
     % \( \operatorname{\Psi(R')} \subseteq L\) forms an \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor $C$.
     % Furthermore, distinct $X$-occurrences in $H$ that are included neither in \( R \) nor $C$ have distinct corresponding $X$-occurrences in $G$ that are included neither in \( L \) nor $C$.
-    To illustrate the $X$-non-increasing property captured by~\autoref{subgraph_counting:def:creates_more_x_on_the_left},
-    consider the rewriting step defined by the DPO diagram in~\autoref{fig:subgraph_counting:decdfjaskldjf}. Whenever \( R'_i \) (for \( 1 \leq i \leq 4 \)) forms an \( X \)-occurrence $x$ in $H$ that is included neither in \( R \) nor $C$ with a subgraph $C' \subseteq C \cap x \subseteq C$, the graph
-    \( \operatorname{\Psi(R')} \subseteq L\) forms a \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor $C$.
-    Furthermore, distinct $X$-occurrences in $H$ that are included neither in \( R \) nor $C$ have distinct corresponding $X$-occurrences in $G$ that are included neither in \( L \) nor $C$.
-    \begin{figure}[H]
-        \centering 
+    To illustrate the $X$-non-increasing property captured by Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left},
+    consider the rewriting step defined by the DPO diagram 
+    shown below.
+    % in Figure~\ref{fig:subgraph_counting:decdfjaskldjf}. 
+    % \begin{figure}[H]
+    %     \centering 
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture}
             \graphbox{\( L \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
@@ -1513,9 +1570,13 @@ The following example shows an $X$-non-increasing rule.
             \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
         \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:subgraph_counting:decdfjaskldjf}
-    \end{figure}
+    %     \caption{}
+    %     \label{fig:subgraph_counting:decdfjaskldjf}
+    % \end{figure}
+    \end{center}
+    Whenever \( R'_i \) (for \( 1 \leq i \leq 4 \)) forms an \( X \)-occurrence $x$ in $H$ that is included neither in \( R \) nor $C$ with a subgraph $C' \subseteq C \cap x \subseteq C$, the graph
+    \( \operatorname{\Psi(R')} \subseteq L\) forms a \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor $C$.
+    Furthermore, distinct $X$-occurrences in $H$ that are included neither in \( R \) nor $C$ have distinct corresponding $X$-occurrences in $G$ that are included neither in \( L \) nor $C$.
 \end{example}
 
 % cond 2 necessaire  1
@@ -1528,9 +1589,12 @@ The following example shows an $X$-non-increasing rule.
             \node[draw,circle] (z) at (2,0) {};
             \draw[->] (x) -- (y)   {};
             \draw[->] (y) -- (z)   {};
-    }. The rewriting rule shown in~\autoref{fig:subgraph_counting:rx_counter_ex} is potentially $X$-increasing.
-    \begin{figure}[H]
-        \centering
+    }. The rewriting rule shown below
+    % in Figure~\ref{fig:subgraph_counting:rx_counter_ex} 
+    is potentially $X$-increasing.
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
@@ -1563,16 +1627,15 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (67mm,-8mm) {$\rightarrowtail$};
             \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:subgraph_counting:rx_counter_ex}
-    \end{figure}
-    As shown in~\autoref{subgraph_counting:ex:rx_counter_ex}, \( D(R,X) \) contains the graph $R'$:
+      \end{center}
+
+    As shown in Example~\ref{subgraph_counting:ex:rx_counter_ex}, \( D(R,X) \) contains the graph $R'$:
     \raisebox{2pt}{
         \scalebox{0.6}{\tikz[baseline=-0.5ex]{
         \node [draw,circle] (x) at (0,0) {2};
         \node[draw,circle] (y) at (1,0) {3};
         \draw[->] (x) -- (y) {};
-    }}}. The unique monomorphism $h_{R'L}:R' \rightarrowtail L$ fails the second condition of~\autoref{subgraph_counting:def:creates_more_x_on_the_left}. 
+    }}}. The unique monomorphism $h_{R'L}:R' \rightarrowtail L$ fails the second condition of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}. 
     %  as illustrated below 
     % \begin{center}
     %     \resizebox{0.6\textwidth}{!}{
@@ -1609,9 +1672,12 @@ The following example shows an $X$-non-increasing rule.
             \node[draw,circle] (z) at (2,0) {};
             \draw[->] (x) -- (y)   {};
             % \draw[->] (y) -- (z)   {};
-    }. The rewriting rule shown in~\autoref{fig:subgraph_counting:degkdjfqaaacodkfjasddgsf} is potentially $X$-increasing.
-    \begin{figure}[H]
-        \centering
+    }. The rewriting rule shown below
+    % in Figure~\ref{fig:subgraph_counting:degkdjfqaaacodkfjasddgsf} 
+    is potentially $X$-increasing.
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
@@ -1634,15 +1700,16 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (67mm,-8mm) {$\rightarrowtail$};
             \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:subgraph_counting:degkdjfqaaacodkfjasddgsf}
-    \end{figure}
+    %     \caption{}
+    %     \label{fig:subgraph_counting:degkdjfqaaacodkfjasddgsf}
+    % \end{figure}
+    \end{center}
     The set \( D(R,X) \) contains $R'$:
     \raisebox{2pt}{ \scalebox{0.6}{\tikz[baseline=-0.5ex]{
         \node [draw,circle] (x) at (0,0) {1};
         \node[draw,circle] (y) at (1,0) {3};
     }}}.  
-    Despite the existence of a unique monomorphism $h_{R'L}: R' \rightarrowtail L$ preserving interface elements, this rule fails the second condition of~\autoref{subgraph_counting:def:creates_more_x_on_the_left}.
+    Despite the existence of a unique monomorphism $h_{R'L}: R' \rightarrowtail L$ preserving interface elements, this rule fails the second condition of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}.
     For any rewriting step using this rule, the corresponding $X$-occurrence relative to $h_{R'L}$ of any implicitly created $X$-occurrence is included in the context.
 \end{example}
 \begin{example}
@@ -1654,9 +1721,12 @@ The following example shows an $X$-non-increasing rule.
             \node[draw,circle] (z) at (2,0) { };
             \draw[->] (x) -- (y)   {};
             \draw[->] (y) -- (z) {};
-    }. The rewriting rule shown in~\autoref{fig:subgraph_counting:decodkfjasdddfsfdsagsf} is potentially $X$-increasing.
-    \begin{figure}[H]
-        \centering
+    }. The rewriting rule shown below
+    % in Figure~\ref{fig:subgraph_counting:decodkfjasdddfsfdsagsf} 
+    is potentially $X$-increasing.
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.6\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{30mm}{20mm}{0}{0}{
@@ -1682,9 +1752,10 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (75mm,-12mm) {$\rightarrowtail$};
             \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:subgraph_counting:decodkfjasdddfsfdsagsf}
-    \end{figure}
+    %     \caption{}
+    %     \label{fig:subgraph_counting:decodkfjasdddfsfdsagsf}
+    % \end{figure}
+    \end{center}
     The set \( D(R,X) \) contains exactly two elements $R'$:
     \raisebox{2pt}{ 
         \scalebox{0.6}{\tikz[baseline=-0.5ex]{
@@ -1697,7 +1768,7 @@ The following example shows an $X$-non-increasing rule.
         \node[draw,circle] (y) at (1,0) {z};
         \draw[->] (x) -- (y) {};
     }}}. 
-    Despite unique monomorphisms \( h_{R'L}: R' \rightarrowtail L \) and \( h_{R''L}: R'' \rightarrowtail L \) preserving interface elements, they fail the third condition of~\autoref{subgraph_counting:def:creates_more_x_on_the_left}. 
+    Despite unique monomorphisms \( h_{R'L}: R' \rightarrowtail L \) and \( h_{R''L}: R'' \rightarrowtail L \) preserving interface elements, they fail the third condition of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}. 
     For any rewriting step using this rule, implicitly created $X$-occurrences with the same subgraph of the context have the same corresponding $X$-occurrence. 
 \end{example}
  
@@ -1709,9 +1780,12 @@ The following example shows an $X$-non-increasing rule.
             \node[draw,circle] (y) at (1,0) { };
             \node[draw,circle] (z) at (2,0) { };
             \draw[->] (x) -- (y)   {};
-    }, which has an isolated node. The rewriting rule shown in~\autoref{fig:subgraph_counting:decodkfjasddgdfsgassf} is potentially $X$-increasing.
-    \begin{figure}[H]
-        \centering
+    }, which has an isolated node. The rewriting rule shown below
+    % in Figure~\ref{fig:subgraph_counting:decodkfjasddgdfsgassf} 
+    is potentially $X$-increasing.
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.6\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{30mm}{20mm}{0}{0}{
@@ -1730,9 +1804,10 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (75mm,-10mm) {$\rightarrowtail$};
             \end{tikzpicture}
         }
-        \caption{}
-        \label{fig:subgraph_counting:decodkfjasddgdfsgassf}
-    \end{figure}
+    %     \caption{}
+    %     \label{fig:subgraph_counting:decodkfjasddgdfsgassf}
+    % \end{figure}
+    \end{center}
     The set \( D(R,X) \) contains exactly two elements $R'$:
     \raisebox{2pt}{\scalebox{0.6}{\tikz[baseline=-0.5ex]{
         \node [draw,circle] (x) at (0,0) {x};
@@ -1744,7 +1819,7 @@ The following example shows an $X$-non-increasing rule.
         \node[draw,circle] (y) at (1,0) {w};
         % \draw[->] (x) -- (y) {};
     }}}. 
-    There are unique monomorphisms $h_{R'L}:R' \rightarrowtail L$ and $h_{R''L}:R'' \rightarrowtail L$ preserving interface elements, but they fail the fourth condition of~\autoref{subgraph_counting:def:creates_more_x_on_the_left}.
+    There are unique monomorphisms $h_{R'L}:R' \rightarrowtail L$ and $h_{R''L}:R'' \rightarrowtail L$ preserving interface elements, but they fail the fourth condition of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}.
     For any rewriting step using this rule, implicitly created $X$-occurrences with the same subgraph of the context have the same corresponding $X$-occurrence.
 \end{example}
 

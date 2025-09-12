@@ -1,4 +1,4 @@
-We define the following sets of monomorphisms from $X$ to $G$ to facilitate the discussion of the termination criterion. They are almost identical to the ones defined in~\autoref{subgraph_counting:notation:mono_sets}. The only difference is that the first parameter is a ruler-graph $\mathcal{X}=(X,f)$ defined in~\autoref{antipattern:def:ruler_graph} instead of the underlying graph $X$.
+We define the following sets of monomorphisms from $X$ to $G$ to facilitate the discussion of the termination criterion. They are almost identical to the ones defined in Notation~\ref{subgraph_counting:notation:mono_sets}. The only difference is that the first parameter is a ruler-graph $\mathcal{X}=(X,f)$ defined in Definition~\ref{antipattern:def:ruler_graph} instead of the underlying graph $X$.
 \begin{notation}
     \label{antipattern:notation:mono_sets}
      \ \newline
@@ -180,12 +180,11 @@ Under the assumptions of the above two lemmas, we can estimate the following ine
     Formally,  $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}) = \emptyset$ if $\mathcal{X} = (X)$, and if $\mathcal{X} = (X, f:X \rightarrowtail F)$, then a monomorphism $h_{XL}:X \rightarrowtail L$ is in $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ iff the following hold:
     \begin{itemize}
         \item there does not exist $h_{FL}:F \rightarrowtail L$ such that $f \star h_{FL} = h_{XL}$,
-         \item there exists a graph $C$ and a monomorphism $h_{KC}:K \overset{u}{\rightarrowtail} C$ such that, let $L \overset{m}{\rightarrowtail} G \overset{l'}{\leftarrowtail} C$ be the pushout of the span $L \overset{l}{\leftarrowtail} K \overset{u}{\rightarrowtail} C$, as illustrated in~\autoref{fig:antipattern:def:gamma_l_rho_x},
+         \item there exists a graph $C$ and a monomorphism $h_{KC}:K \overset{u}{\rightarrowtail} C$ such that, let $L \overset{m}{\rightarrowtail} G \overset{l'}{\leftarrowtail} C$ be the pushout of the span $L \overset{l}{\leftarrowtail} K \overset{u}{\rightarrowtail} C$, as illustrated in Figure~\ref{fig:antipattern:def:gamma_l_rho_x},
          there exist a monomorphism $h_{FG} : F \rightarrowtail G$ such that 
         %  $h_{XL} \star h_{LG} = h_{XF} \star h_{FG}$
          $h_{XL} \star m = h_{XF} \star h_{FG}$. 
-      \begin{figure}
-        \centering
+      \begin{center}
         \resizebox{0.3\textwidth}{!}{
             \begin{tikzpicture}
                     \node (k) at (0,1) {K};
@@ -204,9 +203,10 @@ Under the assumptions of the above two lemmas, we can estimate the following ine
                     \node () [at=($(l)!0.5!(c)$)] {$PO$};
                 \end{tikzpicture}
          }
-         \caption{}
-         \label{fig:antipattern:def:gamma_l_rho_x}
-            \end{figure}
+        %  \caption{}
+        %  \label{fig:antipattern:def:gamma_l_rho_x}
+        %     \end{figure}
+        \end{center}
     \end{itemize}
     Furthermore, we define $\Lambda(\mathcal{X},\rho) \overset{\operatorname{def}}{=} (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
     \card{\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})}) -
@@ -275,7 +275,7 @@ Furthermore, since $X$ and the forbidden context (if exists) are finite graphs, 
         \Lambda(\mathcal{X},\rho)
     \end{flalign*}
 \end{lemma}
- Thus, by the unnumbered equation preceding~\autoref{antipattern:def:gamma_l_rho_x},  we can conclude that
+ Thus, by the unnumbered equation preceding Definition~\ref{antipattern:def:gamma_l_rho_x},  we can conclude that
  \begin{flalign}
          \card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} - 
      \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}} 
@@ -295,7 +295,7 @@ Consequently, we have
    \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}} \right)
    \\
    \geq&\sum_{\mathcal{X} \in \mathbb{X}}^{}s_\mathbb{X}(X) * \Lambda(\mathcal{X},\rho)
-   & \text{by~\eqref{eq:mono_x_g_nf_mono_x_h_nf_geq}}
+   & \text{by Equation~\eqref{eq:mono_x_g_nf_mono_x_h_nf_geq}}
 %    \\
 %    =&\sum_{\mathcal{X} \in \mathbb{X}}^{}s_\mathbb{X}(X) * \card{\operatorname{Mono}(X,G)} -  
 %    \sum_{\mathcal{X} \in \mathbb{X}}^{}s_\mathbb{X}(X) *  \card{\operatorname{Mono}(X,H)}  

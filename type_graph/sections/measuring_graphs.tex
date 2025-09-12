@@ -42,12 +42,23 @@
 
 % Analogous to measuring a physical object, a morphism ruler measures a morphism.
 % Let \(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) be a weighted type graph and \(G\) an object of the category $\mathcal{C}$. Consider the morphism-ruler \(e\colon X\to T\) and the morphism \(h\colon G\to T\) in~\ref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler}. The measurement of \(h\) relative to \(e\) is the number of morphisms \(\iota\colon X\to G\) with \(h\circ\iota = e\). 
-In this section, we recall the definition of morphism weight and object weight relative to a type graph from~\cite{endrullis2024generalized_icgt}.
+In this section, we recall the definition of morphism weight and object weight relative to a type graph presented in~\cite{endrullis2024generalized_icgt}.
 % Analogous to measuring a physical object, a morphism ruler measures a morphism by counting the maps \(\iota\) that make the triangle in Figure~\ref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler} commute. Concretely, given a morphism-ruler \(e\colon X\to T\) and a morphism \(h\colon G\to T\), the measurement of \(h\) relative to \(e\) is the number of morphisms \(\iota\colon X\to G\) with \(h\circ\iota = e\).
 
-    % Analogous to the measurement of a physical object, a morphism-ruler measures a morphism, and provides a measurement, which is the number of $\iota$ that make the commutative triangle shown in~\autoref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler}.
-    \begin{figure}[H]
-        \centering
+    % Analogous to the measurement of a physical object, a morphism-ruler measures a morphism, and provides a measurement, which is the number of $\iota$ that make the commutative triangle shown in Figure~\ref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler}.
+\begin{notation}[\cite{endrullis2024generalized_arxiv_v2}]
+Let \(A,B,C\) be objects. For morphism $\alpha\colon A\to B$, we introduce the notation 
+          $$\set{ \alpha \star - = \gamma } \overset{\operatorname{def}}{=} \{ \beta \in \operatorname{Hom}(B, C) \mid \alpha \star \beta = \gamma \}$$ 
+For morphism $\beta\colon B\to C$, we introduce the notation
+          $$\set{ - \star \beta = \gamma }  \overset{\operatorname{def}}{=} \{ \alpha \in \operatorname{Hom}(A, B) \mid \alpha \star \beta = \gamma \}$$
+For morphism set $E \subseteq \operatorname{Hom}(A,B)$ and morphism $\beta\colon B\to C$, we introduce the notation
+          $$E \star \beta \overset{\operatorname{def}}{=} \set{ \alpha \star \beta \mid \alpha \in E }$$
+\end{notation}
+Analogous to measuring a physical object, a morphism ruler measures a morphism (Definition~\ref{def:measurement_of_a_morphism_relative_to_a_morphism_ruler}).
+Let \(\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)\) be a weighted type graph and let \(G\) be an object of the category \(\mathcal{C}\).
+Given a morphism-ruler \(e\colon X\to T\) and a morphism \(h\colon G\to T\) as shown below:
+\begin{center}
+        % \centering
             \begin{tikzpicture}
                 \node (a) at (0,0) {$X$};
                 \node (c) at (4,0) {$G$};
@@ -57,21 +68,11 @@ In this section, we recall the definition of morphism weight and object weight r
                 \draw[->] (c) -- (d) node[midway, below] {$h$};
                 % \node (d) at (2,-0.5) {=};
             \end{tikzpicture}
-        \caption{}
-        \label{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler}
-    \end{figure}  
-\begin{notation}[\cite{endrullis2024generalized_arxiv_v2}]
-Let \(A,B,C\) be objects. For morphism $\alpha\colon A\to B$, we introduce the notation 
-          $$\set{ \alpha \star - = \gamma } \overset{\operatorname{def}}{=} \{ \beta \in \operatorname{Hom}(B, C) \mid \alpha \star \beta = \gamma \}$$ 
-For morphism $\beta\colon B\to C$, we introduce the notation
-          $$\set{ - \star \beta = \gamma }  \overset{\operatorname{def}}{=} \{ \alpha \in \operatorname{Hom}(A, B) \mid \alpha \star \beta = \gamma \}$$
-For morphism set $E \subseteq \operatorname{Hom}(A,B)$ and morphism $\beta\colon B\to C$, we introduce the notation
-          $$E \star \beta \overset{\operatorname{def}}{=} \set{ \alpha \star \beta \mid \alpha \in E }$$
-\end{notation}
-Analogous to measuring a physical object, a morphism ruler measures a morphism (\autoref{def:measurement_of_a_morphism_relative_to_a_morphism_ruler}).
-Let \(\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)\) be a weighted type graph and let \(G\) be an object of the category \(\mathcal{C}\).
-Given a morphism-ruler \(e\colon X\to T\) and a morphism \(h\colon G\to T\) as shown in~\autoref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler},
-the measurement of \(h\) relative to \(e\) is the number of morphisms \(g \colon X\to G\) with \(h\circ g = e\). 
+        % \caption{}
+        % \label{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler}
+    \end{center}  
+% in Figure~\ref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler},
+The measurement of \(h\) relative to \(e\) is the number of morphisms \(g \colon X\to G\) with \(h\circ g = e\). 
 \begin{definition} 
     \label{def:measurement_of_a_morphism_relative_to_a_morphism_ruler}
     The \emph{measurement} of a morphism \( h:G \to T \) relative to a morphism-ruler \( e: X \to T \), denoted by $m_e(h)$, is defined as:
@@ -81,7 +82,7 @@ the measurement of \(h\) relative to \(e\) is the number of morphisms \(g \colon
                 \card{\{- \star h = e\}}
                 \)
 \end{definition}
-Combining the measurements of a morphism provided by all morphism-rulers with the help of a weight function $w$ gives the weight of the morphism (\autoref{def:weight_of_a_morphism_relative_to_a_type_graph}).
+Combining the measurements of a morphism provided by all morphism-rulers with the help of a weight function $w$ gives the weight of the morphism (Definition~\ref{def:weight_of_a_morphism_relative_to_a_type_graph}).
  We define the exponentiation operation for elements of the semiring before defining formally the morphism weight.
 \begin{notation} 
     \label{wfs:def:exponentiation}
@@ -106,9 +107,11 @@ Finally, the weight of an object is defined as the semiring sum of the weights o
 \end{definition}
 
 \begin{example}
-    Consider the two morphisms shown in~\autoref{fig:example:two_weighted_type_graph_morphisms}
-    \begin{figure}[H]
-        \centering
+    Consider the two morphisms shown below
+    %  Figure~\ref{fig:example:two_weighted_type_graph_morphisms}
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture}
           \graphbox{\( L \)}{-50mm}{0mm}{40mm}{39mm}{2mm}{-6mm}{
@@ -152,12 +155,16 @@ Finally, the weight of an object is defined as the semiring sum of the weights o
                 \node () at (-5mm,-15mm) {$\overset{h_{11}^2}{\to}$};
             \end{tikzpicture}
             }
-            \caption{}
-            \label{fig:example:two_weighted_type_graph_morphisms}
-      \end{figure}
-       and the weighted type graph shown in~\autoref{fig:weighted_type_graph_instance_sfsdsfs}.
-    \begin{figure}[H]
-        \centering
+    \end{center}
+    %         \caption{}
+    %         \label{fig:example:two_weighted_type_graph_morphisms}
+    %   \end{figure}
+       and the weighted type graph shown 
+       below 
+    %    in Figure~\ref{fig:weighted_type_graph_instance_sfsdsfs}.
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
                 \node[draw,circle] (1) at (0,0) {1};
@@ -168,9 +175,10 @@ Finally, the weight of an object is defined as the semiring sum of the weights o
                 \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
             }
         \end{tikzpicture}
-        \caption{}
-        \label{fig:weighted_type_graph_instance_sfsdsfs}
-    \end{figure}
+    %     \caption{}
+    %     \label{fig:weighted_type_graph_instance_sfsdsfs}
+    % \end{figure}
+    \end{center}
     We have \begin{itemize}
         \item $ w_\mathcal{T}(h_{11}^1) = w(e_{13a})^{m_{e_{13a}}(h_{11}^1)} \odot w(e_{31a})^{m_{e_{31a}}(h_{11}^1)} =
      1^1 * 1^1 = 1$

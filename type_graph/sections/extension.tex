@@ -5,8 +5,11 @@
 \subsection{Measuring objects by counting morphisms}
 \begin{example}
     \label{nwf:example:weighted_type_graph}
-     In \textbf{Graph}, the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ where $\mathcal{S}$ is the real arithmetic semiring $(\mathbb{R}^+, +, *, 0_{\mathbb{R}^+}, 1_{\mathbb{R}^+}, <, \operatorname{id}_{\mathbb{R}^+})$,
-     $T$ as the graph illustrated below (without superscripts), $\mathbb{E}=\{e_{11a},e_{12a},e_{21a},e_{11b}\}$ as the set of morphism-rulers where 
+     In \textbf{Graph}, the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ where
+     \begin{itemize}
+        \item $\mathcal{S}$ is the real arithmetic semiring $(\mathbb{R}^+, +, *, 0_{\mathbb{R}^+}, 1_{\mathbb{R}^+}, <, \operatorname{id}_{\mathbb{R}^+})$,
+        \item $T$ is the graph illustrated in Figure~\ref{fig:nwf:weighted_type_graph_sss} without superscripts on the edge labels,
+        \item $\mathbb{E}=\{e_{11a},e_{12a},e_{21a},e_{11b}\}$ as the set of morphism-rulers where 
      $e_{uvl}$ has domain 
      \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) {};
@@ -18,7 +21,9 @@
         \node[draw, circle] (y) at (1,0) {$\mathrm{v}$};
         \draw[->]  (x) -- (y) node [midway,above] {$l$};
     \end{tikzpicture} in the graph $T$,
-    and $w(e) = 1.0$ for all $e \in \mathbb{E}$, is visualized in~\autoref{fig:nwf:weighted_type_graph_sss}.
+    \item $w(e) = 1.0$ for all $e \in \mathbb{E}$.
+     \end{itemize} 
+\noindent $\mathcal{T}$ is visualized in Figure~\ref{fig:nwf:weighted_type_graph_sss}.
     \begin{figure}[H] 
         \centering
         \begin{tikzpicture}
@@ -37,9 +42,8 @@
 \end{example}
 
 \begin{example}
-    Consider the morphisms shown in~\autoref{fig:nwf:rewriting_step_tracsdfdsaf} and the weighted type graph $\mathcal{T}$ from \autoref{nwf:example:weighted_type_graph}.
-    \begin{figure}[H]
-        \centering
+    Consider the weighted type graph $\mathcal{T}$ from Example~\ref{nwf:example:weighted_type_graph} and the morphisms shown in below:
+    \begin{center}
         \resizebox{0.49\textwidth}{!}{
         \begin{tikzpicture}
           \graphbox{\( L \)}{-50mm}{0mm}{40mm}{39mm}{2mm}{-6mm}{
@@ -61,6 +65,7 @@
             \node () at (-5mm,-15mm) {$\overset{h_{11}^1}{\to}$};
         \end{tikzpicture}
         }
+
         \resizebox{0.49\textwidth}{!}{
             \begin{tikzpicture}
               \graphbox{\(L\)}{-50mm}{0mm}{40mm}{39mm}{2mm}{-6mm}{
@@ -82,14 +87,19 @@
                 \node () at (-5mm,-15mm) {$\overset{h_{11}^2}{\to}$};
             \end{tikzpicture}
             }
-        \caption{}
-        \label{fig:nwf:rewriting_step_tracsdfdsaf}
-      \end{figure}
-    We have $ w_\mathcal{T}(h_{11}^1) = w(e_{13a})^{m_{e_{13a}}(h_{11}^1)} \odot w(e_{31a})^{m_{e_{31a}}(h_{11}^1)} =
-     1.0^1 * 1.0^1 = 1.0$ and $
-        w_\mathcal{T}(h_{11}^2) 
+        % \caption{}
+        % \label{fig:nwf:rewriting_step_tracsdfdsaf}
+      \end{center}
+    We have 
+    \begin{flalign*}
+        &w_\mathcal{T}(h_{11}^1) \\
+      = &w(e_{13a})^{m_{e_{13a}}(h_{11}^1)} \odot w(e_{31a})^{m_{e_{31a}}(h_{11}^1)} \\
+      = &1.0^1 * 1.0^1 = 1.0
+        w_\mathcal{T}(h_{11}^2)\\ 
         % = 1.0^1 * 1.0^1 
-        = 1.0$
+      = &1.0\\
+    \end{flalign*}
+
 \end{example}
 
 
@@ -104,7 +114,7 @@
 Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let \(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) be a weighted type graph over the strongly monotonic measurable semiring $\mathcal{S}$.
 The following proposition ensures that every morphism to a type graph $(T,S,\mathbb{E}, w)$ has a weight different from $0_S$ and greater than or equal to $1_S$.
 %  then the weight of a morphism to a type graph is greater than $1_S$ too. 
-This will be used in \autoref{nwf:thm:termination_grs}.
+This will be used in Theorem~\ref{nwf:thm:termination_grs}.
 \begin{proposition}  
     \label{prop_endrullis_2d7}
     Let $(S, \oplus, \odot, 0_S, 1_S, \prec, \mu)$ be a strongly monotonic measurable semiring. We have for all $x,y\in S$:
@@ -136,7 +146,7 @@ This will be used in \autoref{nwf:thm:termination_grs}.
              0_S &= a \odot 0_S & \text{$0_S$ is annihilator for $\odot$}\\
                  &= a \odot (x \odot y) &\text{by assumption on $x \odot y$}\\ 
                  &= a \odot x \odot y &\text{by associativity} \\
-                 &\prec b \odot x \odot y &\text{by Axiom~\eqref{ax:s4} and $x,y\neq 0_S$}\\
+                 &\prec b \odot x \odot y &\text{by Axiom Equation~\eqref{ax:s4} and $x,y\neq 0_S$}\\
                  &= b \odot (x \odot y)  &\text{by associativity}  \\
                  &= b \odot 0_S &\text{by assumption on $x \odot y$} \\
                  &= 0_S
@@ -152,12 +162,12 @@ This will be used in \autoref{nwf:thm:termination_grs}.
           \end{flalign*}
           If $1_S \prec x$ then $
         %   1_S \preceq y = 
-          1_S \odot y \prec x \odot y$ by Axiom~\eqref{ax:s4} since $y \neq 0$ by assumption.
+          1_S \odot y \prec x \odot y$ by Axiom Equation~\eqref{ax:s4} since $y \neq 0$ by assumption.
         \item \ref*{eq:prop_neq0_plus_neq0}:  
-        By Axiom~\eqref{ax:s4}, we have $a \odot x \prec b \odot x$ and $a\odot y \prec b \odot y $. 
+        By Axiom Equation~\eqref{ax:s4}, we have $a \odot x \prec b \odot x$ and $a\odot y \prec b \odot y $. 
         \begin{flalign*}
             a \odot \left(x  \oplus y \right) &= \left( a \odot x \right)  \oplus \big(a \odot y \big)  & \text{by distributivity}\\
-            & \prec \left(b \odot x \right)   \oplus \left( b \odot y \right)  & \text{by Axiom~\eqref{ax:s2}}\\
+            & \prec \left(b \odot x \right)   \oplus \left( b \odot y \right)  & \text{by Axiom Equation~\eqref{ax:s2}}\\
             & = b \odot \left(x  \oplus y \right) & \text{by distributivity}
         \end{flalign*} 
         if $x  \oplus y = 0_S$ then we have $0_S = a \odot 0_S = a \odot \left(x  \oplus y\right) \prec b \odot \left(x  \oplus y\right) = b \odot 0_S = 0_S$ which contradicts the irreflexivity of $\prec$. 
@@ -182,8 +192,8 @@ This will be used in \autoref{nwf:thm:termination_grs}.
 
     Suppose that for all $x \in \mathcal{S}$, if $ 1_\mathcal{S} \preceq x \neq 0_\mathcal{S}$ then $\mu(x) \geq_{\mathbb{R}^+} \mu(1_\mathcal{S})$ and $\mu(x) \in \mathbb{R}$. 
     By definition of a weighted type graph, $1_\mathcal{S} \leq w(e)\neq 0_\mathcal{S}$ for all $e\in\mathbb{E}$.
-    Therefore, by the proposition above and the definition of the weight of a morphism (\autoref{def:weight_of_a_morphism_relative_to_a_type_graph}), for all morphisms \( h \) from a finite graph $G$ to $\mathcal{T}$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(h) \succeq 1_\mathcal{S} \). 
-    By the above proposition, Axiom \eqref{ax:s0} and the definition of the weight of an object (\autoref{def:weight_of_an_object_relative_to_a_type_graph}), we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(G) \succeq 1_\mathcal{S} \). By assumption, we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} \mu(1_\mathcal{S}) = 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} 1 \) if $\mathcal{S}$ is the arithmetic semiring.
+    Therefore, by the proposition above and the definition of the weight of a morphism (Definition~\ref{def:weight_of_a_morphism_relative_to_a_type_graph}), for all morphisms \( h \) from a finite graph $G$ to $\mathcal{T}$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(h) \succeq 1_\mathcal{S} \). 
+    By the above proposition, Axiom \eqref{ax:s0} and the definition of the weight of an object (Definition~\ref{def:weight_of_an_object_relative_to_a_type_graph}), we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(G) \succeq 1_\mathcal{S} \). By assumption, we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} \mu(1_\mathcal{S}) = 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} 1 \) if $\mathcal{S}$ is the arithmetic semiring.
 
 Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) terminates relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \geq \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
@@ -191,7 +201,7 @@ Suppose additionally that for every graph $G$ subject to rewriting, we have $\op
 \noindent
 \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
     Consider a DPO diagram (illustrated on the right) that defines a rewriting step \( G \Rightarrow_{\rho,\mathfrak{F}} H \). 
-    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in \autoref{def:weighable}), then, by \cite{endrullis2024generalized_arxiv_v2}[Lemma 4.13], we obtain:
+    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in Definition~\ref{def:weighable}), then, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
 \end{minipage}%
 \hfill
 \begin{minipage}{0.29\textwidth}
@@ -227,7 +237,7 @@ Suppose additionally that for every graph $G$ subject to rewriting, we have $\op
 %          \overset{def}{=} \bigoplus_{t_K: K \rightarrow T} \bigoplus_{\substack{t_H: H \rightarrow T\\ t_K = r \star m' \star t_H}} w_\mathcal{T}(t_H)
 % \end{flalign*}
 
-% If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in \autoref{def:weighable}), then, by \cite[Lemma 5.10]{endrullis2024generalized_lmcs}, we derive the following assertions:
+% If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in Definition~\ref{def:weighable}), then, by \cite[Lemma 5.10]{endrullis2024generalized_lmcs}, we derive the following assertions:
 % \begin{flalign*}
 %     w_\mathcal{T}(G) 
 %         & = \bigoplus_{t_K: K \rightarrow T} \bigoplus_{\substack{t_G: G \rightarrow T\\ t_K = l \star m \star t_G}} w_\mathcal{T}(m \star t_G) \odot (l' \star t_G - u) \\
@@ -316,7 +326,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
 % \begin{proof}
 %     See the \hyperref[proof_termination_grs]{Appendix}.
 % \end{proof}
-
+ 
 \begin{proof} 
     \label{nwf:proof_termination_grs}
     From the definition of weighted type graph, we have 
@@ -338,8 +348,8 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
                 \underset{\alpha \in \{- \star h = e\}}{\bigodot}w(e) 
             \right)
             \right )\\
-    \end{flalign*} 
-    By Equation~\eqref{thm_eq_we_neq0_geq1},~\autoref{prop_endrullis_2d7},~\autoref{def:bigodot} and $1_S \neq 0_S$, for every $h \in \operatorname{Hom}(G,T)$, we have
+    \end{flalign*}  
+    By Equation~\eqref{thm_eq_we_neq0_geq1}, Proposition~\ref{prop_endrullis_2d7}, Definition~\ref{def:bigodot} and $1_S \neq 0_S$, for every $h \in \operatorname{Hom}(G,T)$, we have
     \begin{flalign}
         1_S \preceq 
         \underset{e \in \mathbb{E}}{\bigodot} 
@@ -348,8 +358,8 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
                 \right) 
         \neq 0_S
     \end{flalign}
-    Since $G$ be a graph admitting a match of a DPO rewriting rule, by~\autoref{prop_endrullis_2d7} and~\autoref{def:real_strongly_monotonic_semiring}\eqref{ax:s0}, we have $$1_S \preceq w_\mathcal{T}(G) \neq 0_S$$
-    % By \autoref{prop_endrullis_2d7} and \eqref{ax:s0}, we have 
+    Since $G$ be a graph admitting a match of a DPO rewriting rule, by Proposition~\ref{prop_endrullis_2d7} and Definition~\ref{def:real_strongly_monotonic_semiring}\eqref{ax:s0}, we have $$1_S \preceq w_\mathcal{T}(G) \neq 0_S$$
+    % By~\autoref{prop_endrullis_2d7} and \eqref{ax:s0}, we have 
     % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \Rightarrow_\mathcal{R} H) \rightarrow (1_S \preceq w_\mathcal{T}(G) \neq 0_S)$$
     By Assumption~\ref{thm1:hyp4}, we have 
     % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \Rightarrow_\mathcal{R} H) \rightarrow (\mu(w_\mathcal{T}(G)) \geq \mu(1_S))$$
@@ -357,11 +367,11 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
  
     % Let $G \in \mathcal{C}_0$ be an object. By Assumption \ref{thm1:hyp4}, we have $\mu(w_\mathcal{T}(G)) \in \mathbb{R}$ and $\mu(w_\mathcal{T}(G)) \geq \mu(1_S)$.
 
-    By~\autoref{nwf:lem:decreasing_step}, every rewriting step with rules in $\mathcal{A}$ strictly decreases the weight by at least $\delta$ and no rewriting step with rules in $\mathcal{B}$ increases the weight.
+    By Example~\ref{nwf:lem:decreasing_step}, every rewriting step with rules in $\mathcal{A}$ strictly decreases the weight by at least $\delta$ and no rewriting step with rules in $\mathcal{B}$ increases the weight.
     Consequently, there is no infinite rewriting chain with an infinite rewriting steps with rules in $\mathcal{A}$ from $G$.
 \end{proof}
 \begin{example}
     \label{nwf:example:termination}
-    Termination of the DPO rule in \autoref{ex:grsaa} can be established using \autoref{nwf:thm:termination_grs} together with the weighted type graph in \autoref{nwf:example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta = 0.5$ by \autoref{nwf:example:decreasing_rule}.
+    Termination of the DPO rule in Example~\ref{ex:grsaa} can be established using Theorem~\ref{nwf:thm:termination_grs} together with the weighted type graph in Example~\ref{nwf:example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta = 0.5$ by Example~\ref{nwf:example:decreasing_rule}.
 \end{example}
 

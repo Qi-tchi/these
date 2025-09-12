@@ -2,23 +2,26 @@ While the type graph method~\cite{bruggink2014termination, bruggink2015proving,e
 In contrast, our criterion only requires checking simpler conditions.
 \begin{example}
     \label{subgraph_counting:ex:termination:grsaa}
-    Consider the rewriting rule $\rho$ in~\autoref{subgraph_counting:ex:grsaa_rx}, let $X$ be the graph \tikz[baseline=-0.5ex]{
+    Consider the rewriting rule $\rho$ in Example~\ref{subgraph_counting:ex:grsaa_rx}, let $X$ be the graph \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) { };
         \node[draw,circle] (y) at (1,0) { }; 
         \node[draw,circle] (z) at (2,0) { };
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[<-] (z) -- (y) node[midway, above] {$a$};
-    }, $\mathbb{X} = \{X\}$ and $s_\mathbb{X}(X) = 1$. The rule is $X$-non-increasing as shown in~\autoref{example:grs_aa:has_more_left}. 
+    }, $\mathbb{X} = \{X\}$ and $s_\mathbb{X}(X) = 1$. The rule is $X$-non-increasing as shown in Example~\ref{example:grs_aa:has_more_left}. 
     Since \(w_{s_\mathbb{X}}(\operatorname{lhs}(\rho)) = 1 > 0 = w_{s_\mathbb{X}}(\operatorname{rhs}(\rho)) \),
-    it terminates by~\autoref{subgraph_counting:thm:termination_grs}.
+    it terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 \end{example}
 We consider an example for which the techniques from \cite{bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,plump2018modular,overbeek2024termination_lmcs} fail.
 \begin{example} 
     \label{subgraph_counting:ex_contrib_variant}
-    The rewriting rule shown in~\autoref{fig:subgraph_counting:ex_confdkjfakljl} is a variant of a rule presented in \cite[Example 6]{plump2018modular}, obtained by removing all edges in the interface:
+    The rewriting rule shown below 
+    % in Figure~\ref{fig:subgraph_counting:ex_confdkjfakljl} 
+    is a variant of a rule presented in \cite[Example 6]{plump2018modular}, obtained by removing all edges in the interface:
      
-    \begin{figure}[H]
-        \centering
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.6\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
@@ -70,10 +73,11 @@ We consider an example for which the techniques from \cite{bruggink2014terminati
                 % \node () at (79mm,2mm) {$\searrowtail$};
             \end{tikzpicture}
             }
-            \caption{}
-            \label{fig:subgraph_counting:ex_confdkjfakljl}
-    \end{figure}
-        %     \caption{Diagram of~\autoref{ex_contrib_variant}}
+          \end{center}
+    %         \caption{}
+    %         \label{fig:subgraph_counting:ex_confdkjfakljl}
+    % \end{figure}
+        %     \caption{Diagram of Example~\ref{ex_contrib_variant}}
         %     \label{fig:contrib_variant}
         % \end{figure}
         Let $X$ be the ruler-graph 
@@ -99,17 +103,20 @@ We consider an example for which the techniques from \cite{bruggink2014terminati
             \draw[->] (x) -- (y) node[midway, above] {$s$};
         }}}. 
         Each \( R'_i \) admits a unique monomorphism \( h_{R'_i L} \colon R'_i \rightarrowtail L \) preserving interface elements. 
-        Therefore, the rule is $X$-non-increasing under $h_{R'_1L}$ and $h_{R'_2L}$. This is because all conditions in~\autoref{subgraph_counting:def:creates_more_x_on_the_left} are satisfied.
+        Therefore, the rule is $X$-non-increasing under $h_{R'_1L}$ and $h_{R'_2L}$. This is because all conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are satisfied.
         Since \(w_{s_\mathbb{X}}(L) = 1 > 0 = w_{s_\mathbb{X}}(R)\).
-        It follows that the system terminates by~\autoref{subgraph_counting:thm:termination_grs}.
+        It follows that the system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 \end{example}
 
 The following example demonstrates the usefulness of a weight function that assigns distinct weight to measurements from different ruler-graphs.
 \begin{example} 
     \label{ex:overbeek_5d6}
-    Consider the rewriting rules presented in \cite[Example 5.6]{overbeek2024termination_lmcs} illustrated in~\autoref{fig:subgraph_counting:ex_overbdfjkahsdfkjfhew}.
-    \begin{figure}[H]
-          \centering
+    Consider the rewriting rules presented in \cite[Example 5.6]{overbeek2024termination_lmcs} illustrated 
+    below.
+    % in Figure~\ref{fig:subgraph_counting:ex_overbdfjkahsdfkjfhew}.
+    % \begin{figure}[H]
+    %       \centering
+    \begin{center}
         \begin{center} 
           $\rho = $\scalebox{0.7}{\input{subgraph_counting/tikz/OE_ex5d6_rho.tex}}
         \end{center}
@@ -117,9 +124,10 @@ The following example demonstrates the usefulness of a weight function that assi
         $\tau = $\scalebox{0.7}{\input{subgraph_counting/tikz/OE_ex5d6_tau.tex}
         }
         \end{center}
-        \caption{}
-        \label{fig:subgraph_counting:ex_overbdfjkahsdfkjfhew}
-  \end{figure}
+  %       \caption{}
+  %       \label{fig:subgraph_counting:ex_overbdfjkahsdfkjfhew}
+  % \end{figure}
+      \end{center}
      Let $X$ be the ruler-graph
     \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) { };
@@ -129,18 +137,18 @@ The following example demonstrates the usefulness of a weight function that assi
         \node[draw,circle] (x) at (0,0) { };
         \draw[->] (x) edge [loop right] node {$b$} (x);
     } and $\mathbb{X} = \{X, Y\}$.
-    The sets $D(R_\rho, X)$, $D(R_\rho, Y)$, $D(R_\tau, X)$ and $D(R_\tau, Y)$ are all empty. Therefore, both rules $\rho$ and $\tau$ are $X$- and $Y$-non-increasing as all conditions in~\autoref{subgraph_counting:def:creates_more_x_on_the_left} are met.
+    The sets $D(R_\rho, X)$, $D(R_\rho, Y)$, $D(R_\tau, X)$ and $D(R_\tau, Y)$ are all empty. Therefore, both rules $\rho$ and $\tau$ are $X$- and $Y$-non-increasing as all conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are met.
     
     For $s_\mathbb{X}(X) = 5$ and $s_\mathbb{X}(Y) = 3$, we have $
     w_{s_\mathbb{X}}(L_\rho) = 10 > 9 = w_{s_\mathbb{X}}(R_\rho)
     $ and $
     w_{s_\mathbb{X}}(L_\tau) = 6 > 5 = w_{s_\mathbb{X}}(R_\tau)$.
-    Therefore, the system terminates by~\autoref{subgraph_counting:thm:termination_grs}.
+    Therefore, the system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 
   However, for $s_\mathbb{X}'(X) = 1$ and $s_\mathbb{X}'(Y) = 1$, we have
     \(
         w_{s_\mathbb{X}'}(L_\rho) = 2 \not > 3 = w_{s_\mathbb{X}'}(R_\rho)
-    \) which prevents us from applying~\autoref{subgraph_counting:thm:termination_grs} to prove termination of the rewriting system.
+    \) which prevents us from applying Theorem~\ref{subgraph_counting:thm:termination_grs} to prove termination of the rewriting system.
 \end{example}
 
 % \begin{example}[Limitation] 
@@ -185,7 +193,7 @@ The following example demonstrates the usefulness of a weight function that assi
 %   \end{center}
 %   \noindent
 %   \begin{minipage}{0.7\textwidth}
-%     To prove its termination with our method, a ruler-graph $X$ containing an edge labeled by $f$ must be used, because the number of occurrences of every graph containing only edges labeled by $a$ and $b$ does not change by any rewriting step using $\rho$. But in this case, condition \eqref{def:non_increasing:edge_injective} of~\autoref{def:creates_more_x_on_the_left} cannot be satisfied.
+%     To prove its termination with our method, a ruler-graph $X$ containing an edge labeled by $f$ must be used, because the number of occurrences of every graph containing only edges labeled by $a$ and $b$ does not change by any rewriting step using $\rho$. But in this case, condition \eqref{def:non_increasing:edge_injective} of Definition~\ref{def:creates_more_x_on_the_left} cannot be satisfied.
 %   \end{minipage}
 %   \begin{minipage}{0.3\textwidth}
 %     \hfill
@@ -212,9 +220,11 @@ The following example demonstrates the usefulness of a weight function that assi
 
 \begin{example}
   \label{ex_endrullis_6d3_endrullis_5d8}
-  Consider the rule presented in~\cite[Example 6.3]{endrullis2024generalized_arxiv_v2} shown in~\autoref{fig:subgraph_counting:ex_endrullis_6d3_endrullis_5d8}.
-  \begin{figure}[H]
-      \centering
+  Consider the rule presented in~\cite[Example 6.3]{endrullis2024generalized_arxiv_v2} illustrated below.
+  %  in Figure~\ref{fig:subgraph_counting:ex_endrullis_6d3_endrullis_5d8}.
+  % \begin{figure}[H]
+  %     \centering
+  \begin{center}
       \resizebox{0.6\textwidth}{!}{
           \begin{tikzpicture}
               \graphbox{$L$}{0mm}{0mm}{35mm}{25mm}{2mm}{-8mm}{
@@ -250,9 +260,10 @@ The following example demonstrates the usefulness of a weight function that assi
               % \node () at (79mm,2mm) {$\searrowtail$};
           \end{tikzpicture}
       }
-      \caption{}
-      \label{fig:subgraph_counting:ex_endrullis_6d3_endrullis_5d8}
-  \end{figure}
+  %     \caption{}
+  %     \label{fig:subgraph_counting:ex_endrullis_6d3_endrullis_5d8}
+  % \end{figure}
+  \end{center}
 
   Let $X$ be the graph 
   \tikz[baseline=-0.5ex]{
@@ -268,13 +279,13 @@ The following example demonstrates the usefulness of a weight function that assi
       }}
   in $D(X, R)$. 
    Since $w_{s_\mathbb{X}}(L) = 1 > 0 = w_{s_\mathbb{X}}(R)
-      $, the rule terminates by~\autoref{subgraph_counting:thm:termination_grs}.
+      $, the rule terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 \end{example}
 
 
 \begin{example} 
   \label{ex:overbeek_5d5}
-  Consider the rewriting rule presented in~\cite[Example 5.5]{overbeek2024termination_lmcs} shown in~\autoref{fig:subgraph_counting:overbeek_5d5}.
+  Consider the rewriting rule presented in~\cite[Example 5.5]{overbeek2024termination_lmcs} shown in Figure~\ref{fig:subgraph_counting:overbeek_5d5}.
   % \begin{figure}[H] 
   %     \center
   \begin{figure}[H]
@@ -318,16 +329,18 @@ The following example demonstrates the usefulness of a weight function that assi
       \caption{}
       \label{fig:subgraph_counting:overbeek_5d5}
   \end{figure}
-  %     \caption{Diagram of~\autoref{ex_overbeek}}
+  %     \caption{Diagram of Example~\ref{ex_overbeek}}
   %     \label{fig:overbeek}
   % \end{figure}
-    Its termination in the DPO rewriting framework with monic matches can be proved by our approach using the same argument for~\autoref{ex_endrullis_6d3_endrullis_5d8}. 
+    Its termination in the DPO rewriting framework with monic matches can be proved by our approach using the same argument for Example~\ref{ex_endrullis_6d3_endrullis_5d8}. 
 \end{example}
 
 \begin{example}
   \label{ex:plump_ex4}
-  Our method cannot prove the termination of the DPO rewriting system with monic matches presented in~\cite[Example 4]{plump2018modular} shown in~\autoref{fig:subgraph_counting:ex_plump_ex4}.
-  \begin{figure}[H]
+  Our method cannot prove the termination of the DPO rewriting system with monic matches presented in~\cite[Example 4]{plump2018modular} illustrated
+  below.
+  %  in Figure~\ref{fig:subgraph_counting:ex_plump_ex4}.
+  % \begin{figure}[H]
 \begin{center}
   $r_1 = ${ 
    \begin{tikzpicture}[baseline=-20mm]
@@ -439,9 +452,9 @@ The following example demonstrates the usefulness of a weight function that assi
        \end{tikzpicture}
    }
    \end{center}
-   \caption{}
-   \label{fig:subgraph_counting:ex_plump_ex4}
-  \end{figure}
+  %  \caption{}
+  %  \label{fig:subgraph_counting:ex_plump_ex4}
+  % \end{figure}
   The rule $r_3$ can be eliminated by considering occurrences of \tikz[baseline=-0.5ex]{
     \node[draw,circle] (x) at (0,0) { };
     \node[draw,circle] (y) at (1,0) { };
@@ -458,10 +471,11 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
 
 \begin{example}
   \label{ex:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8}
-  Consider the DPO rewriting system presented in~\cite[Example 3.8]{plump1995ontermination} shown in~\autoref{fig:subgraph_counting:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8}.
+  Consider the DPO rewriting system presented in~\cite[Example 3.8]{plump1995ontermination} shown below.
+  % in Figure~\ref{fig:subgraph_counting:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8}.
 
-  \begin{figure}[H]
-    \centering
+  % \begin{figure}[H]
+  %   \centering
 \begin{center}
  $\rho = ${ 
   \begin{tikzpicture}[baseline=-20mm]
@@ -517,9 +531,9 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
       \end{tikzpicture}
   }
   \end{center}
-  \caption{}
-  \label{fig:subgraph_counting:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8}
-\end{figure}
+%   \caption{}
+%   \label{fig:subgraph_counting:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8}
+% \end{figure}
   Let $X$ be  \tikz[baseline=-0.5ex]{
       \node[draw,circle] (x) at (0,0) { };
       \node[draw,circle] (y) at (1,0) { };
@@ -537,15 +551,17 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
       \node[draw,circle] (y) at (1,0) {};
       \draw[->] (x) -- (y) node[midway, above] {$c$};
   }. We have $D(R_\tau,Y) = \emptyset$. Therefore, $\tau$ is $Y$-non-increasing. Moreover, we have $|\operatorname{Mono}(Y,L)| = 1 > 0 = |\operatorname{Mono}(Y,R)|$.
-  Thus, this rewriting systems terminates by~\autoref{subgraph_counting:thm:termination_grs}.
+  Thus, this rewriting systems terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 \end{example} 
 
 
 \begin{example}
   \label{ex:overbeek_5d3}
-  Consider the rewriting rules presented in~\cite[Example 5.3]{overbeek2024termination_lmcs} shown in~\autoref{fig:subgraph_counting:ex_overbeek_5d3}.
-  \begin{figure}[H]
-    \centering
+  Consider the rewriting rules presented in~\cite[Example 5.3]{overbeek2024termination_lmcs} shown 
+  below.
+  % in Figure~\ref{fig:subgraph_counting:ex_overbeek_5d3}.
+  % \begin{figure}[H]
+  %   \centering
 \begin{center}
   $\rho = ${ 
   \begin{tikzpicture} 
@@ -587,23 +603,25 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
       \end{scope}
     \end{tikzpicture}
   \end{center}
-  \caption{}
-  \label{fig:subgraph_counting:ex_overbeek_5d3}
-\end{figure}
+%   \caption{}
+%   \label{fig:subgraph_counting:ex_overbeek_5d3}
+% \end{figure}
   Let $X$ be 
   \tikz[baseline=-0.5ex]{
       \node[draw,circle] (x) at (0,0) { };
       \node[draw,circle] (y) at (1,0) { };
       \draw[->] (x) to (y);
-  }. Both rules are $X$-non-increasing, and $|\operatorname{Mono}(X,L)| = 1 > 0 = |\operatorname{Mono}(X,R)|$ holds for both rules. Thus, this rewriting system terminates by~\autoref{subgraph_counting:thm:termination_grs}.
+  }. Both rules are $X$-non-increasing, and $|\operatorname{Mono}(X,L)| = 1 > 0 = |\operatorname{Mono}(X,R)|$ holds for both rules. Thus, this rewriting system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 \end{example}
 
 \begin{example} 
   \label{ex:endrullis2024_6d2}  
-  Consider the rewriting rule presented in~\cite[Example 6.2]{endrullis2024generalized_arxiv_v2} shown in~\autoref{fig:subgraph_counting:ex_endrullis2024_6d2}.
+  Consider the rewriting rule presented in~\cite[Example 6.2]{endrullis2024generalized_arxiv_v2} illustrated below.
+  %  in Figure~\ref{fig:subgraph_counting:ex_endrullis2024_6d2}.
 
-  \begin{figure}[H]
-    \centering
+  % \begin{figure}[H]
+  %   \centering
+  \begin{center}
   \begin{tikzpicture}  
      \graphbox{$L$}{0mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{  
          \node[draw,circle]  (x) at (-6mm,0mm) {$1$};  
@@ -621,9 +639,10 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
         \draw[->]  (x) to (y);  
        }    
  \end{tikzpicture}  
- \caption{}
- \label{fig:subgraph_counting:ex_endrullis2024_6d2}
-\end{figure}
+\end{center}
+%  \caption{}
+%  \label{fig:subgraph_counting:ex_endrullis2024_6d2}
+% \end{figure}
 
  Our method can prove its termination with the ruler-graph \tikz[baseline=-0.5ex]{
   \node[draw,circle] (x) at (0,0) {};
@@ -633,10 +652,11 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
 
 \begin{example}[Limitation]
   \label{ex:plump95_4d1}
- Consider a rule presented in~\cite[Example 4.1]{plump1995ontermination} shown in~\autoref{fig:subgraph_counting:ex_plump95_4d1}.
-
-  \begin{figure}[H]
-    \centering
+ Consider a rule presented in~\cite[Example 4.1]{plump1995ontermination} shown below.
+%  in Figure~\ref{fig:subgraph_counting:ex_plump95_4d1}.
+  % \begin{figure}[H]
+  %   \centering
+\begin{center}
       \resizebox{0.7\textwidth}{!}{
     $\rho = $  \begin{tikzpicture}[baseline=-20mm]
       \graphbox{$L$}{0mm}{0}{32mm}{40mm}{0}{0}{
@@ -671,12 +691,13 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
         }   
   \end{tikzpicture}
       }
-    \caption{}
-    \label{fig:subgraph_counting:ex_plump95_4d1}
-  \end{figure}
+  %   \caption{}
+  %   \label{fig:subgraph_counting:ex_plump95_4d1}
+  % \end{figure}
+\end{center}
 \noindent
 \begin{minipage}{0.7\textwidth}
-  To prove its termination with our method, a ruler-graph $X$ containing an edge labeled by $f$ must be used, because the number of occurrences of every graph containing only edges labeled by $a$ and $b$ does not change by any rewriting step using $\rho$. But in this case, condition~\eqref{def:non_increasing_rule_img_edges_distinct} of~\autoref{subgraph_counting:def:creates_more_x_on_the_left} cannot be satisfied.
+  To prove its termination with our method, a ruler-graph $X$ containing an edge labeled by $f$ must be used, because the number of occurrences of every graph containing only edges labeled by $a$ and $b$ does not change by any rewriting step using $\rho$. But in this case, condition Equation~\eqref{def:non_increasing_rule_img_edges_distinct} of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} cannot be satisfied.
 \end{minipage}
 \begin{minipage}{0.3\textwidth}
   \hfill
@@ -701,12 +722,14 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
 
 \begin{example}[Limitation]
     \label{ex:endrullis:d3:limitation}  
-    Our method fails to prove termination for the rewriting rule from \cite[Example D.3]{endrullis2024generalized_arxiv_v2} shown in~\autoref{fig:subgraph_counting:ex_endrullis_d3_limitation}.
+    Our method fails to prove termination for the rewriting rule from \cite[Example D.3]{endrullis2024generalized_arxiv_v2} shown below.
+    %  in Figure~\ref{fig:subgraph_counting:ex_endrullis_d3_limitation}.
     % because our approach cannot take into account antipatterns(see~\cite[Remark 6.2]{overbeek2024termination_lmcs}).
     This occurs because, for any system $\mathcal{R}$, rewriting step $G \Rightarrow_{\mathcal{R},\mathfrak{M}} H$, set of ruler-graphs $\mathbb{X}$, and weight function $s_\mathbb{X}$, we have $w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H)$ because there exists an injective graph homomorphism from $G$ to $H$.
     
-    \begin{figure}[H]
-      \centering
+    % \begin{figure}[H]
+    %   \centering
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
     \begin{tikzpicture}  
        \graphbox{$L$}{0mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{  
@@ -723,16 +746,19 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
          }    
    \end{tikzpicture}
         }  
-        \caption{}
-        \label{fig:subgraph_counting:ex_endrullis_d3_limitation}
-    \end{figure}
+    %     \caption{}
+    %     \label{fig:subgraph_counting:ex_endrullis_d3_limitation}
+    % \end{figure}
+  \end{center}
   \end{example} 
 
 \begin{example}[Limitation]
     \label{ex:overbeek:5d2:limitation}
-    Consider a rewriting rule given by Overbeek and Endrullis in~\cite[Example 5.2]{overbeek2024termination_lmcs} shown in~\autoref{fig:subgraph_counting:ex_overbeek_5d2}.
-  \begin{figure}[H]
-    \centering
+    Consider a rewriting rule given by Overbeek and Endrullis in~\cite[Example 5.2]{overbeek2024termination_lmcs} shown below.
+    % in Figure~\ref{fig:subgraph_counting:ex_overbeek_5d2}.
+  % \begin{figure}[H]
+  %   \centering
+  \begin{center} 
     \begin{tikzpicture}
         \graphbox{$L$}{0mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{
             \node[draw,circle]  (x) at (-6mm,0mm) {$1$};
@@ -749,20 +775,22 @@ But our method cannot eliminate $r_1$ and $r_2$. However, combined with the tech
             \draw[->]  (x) edge [loop right] (x);
           }  
     \end{tikzpicture} 
-    \caption{}
-    \label{fig:subgraph_counting:ex_overbeek_5d2}
-  \end{figure}
+  %   \caption{}
+  %   \label{fig:subgraph_counting:ex_overbeek_5d2}
+  % \end{figure}
+  \end{center}
     The termination of this rule is not in the scope of our method due to its non-node-injective right-hand side morphism. It can be proved using the method proposed by Overbeek et al. in~\cite{overbeek2024termination_lmcs}.
 \end{example}
  
 \begin{example}[Limitation]
   \label{ex:overbeek:5d6_bis:limitation} 
-  Consider the DPO rewriting system with monic matches shown in~\autoref{fig:subgraph_counting:ex_overbeek_5d6_bis} from~\cite[Example 5.6]{overbeek2024termination_lmcs} with $\rho$ replaced by $\rho'$.
-  \begin{figure}[H]
-    \centering
+  Consider the DPO rewriting system with monic matches shown below
+  % in Figure~\ref{fig:subgraph_counting:ex_overbeek_5d6_bis} 
+  from~\cite[Example 5.6]{overbeek2024termination_lmcs} with $\rho$ replaced by $\rho'$.
+  \begin{center}
     $\rho' = $\scalebox{0.9} { \input{subgraph_counting/tikz/OE_ex5d6_rho_bis.tex}}
-    \caption{}
-    \label{fig:subgraph_counting:ex_overbeek_5d6_bis}
-  \end{figure} 
+    % \caption{}
+    % \label{fig:subgraph_counting:ex_overbeek_5d6_bis}
+  \end{center} 
   Its termination is not in the scope of our method due to its non-node-injective left-hand side morphism. 
 \end{example}
