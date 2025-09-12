@@ -344,7 +344,9 @@ This enables a uniform definition of graph transformation, and leads to an elega
                 \end{tikzpicture}
     }
             % \end{center}
-    \caption{A DPO graph rewriting rule which replaces an occurrence of \(\mathcal{L}\) by an occurrence of \(\mathcal{R}\) while preserving the two extremal nodes.}
+    \caption{A DPO graph rewriting rule which replaces an occurrence of \(\mathcal{L}\) by an occurrence of \(\mathcal{R}\).
+    % while preserving the two extremal nodes.
+    }
     \label{fig:intro:graph_transformation_rule_0_dpo}
     \end{figure} 
 
@@ -464,11 +466,11 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
                     \draw[<-] (l1) -- (l6) node[midway,left] {$b$};
                     % \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                 }   
-    \end{tikzpicture}
+    \end{tikzpicture} 
     \caption{Graph $\mathcal{G}'$}
     \label{fig:intro:dangling_edge}
     \end{subfigure}
-    \caption{}
+    \caption{Application of the rule shown in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}: (a) host graph $\mathcal{G}$ with a unique occurrence of $\mathcal{L}$, (b) result $\mathcal{H}$, (c) decomposition of $\mathcal{G}$ into occurrence of $\mathcal{L}$ (in orange and black), interface K (black), and context C (in blue and black), (d) a graph $\mathcal{G}'$ where the rule is not applicable because deleting the middle node would create a dangling edge (in red), violating the dangling condition.}
     \label{fig:intro:example_dpo_application_sfjsdlgjadlsss}
 \end{figure}
 
@@ -752,7 +754,8 @@ The method assigns weights to morphisms targeting a weighted type graph over a w
 
 Chapter~\ref{chap:subgraph_counting} introduces a new automated technique for relative termination of DPO graph rewriting with injective rules on edge-labeled multigraphs.
 The method is based on counting injective graph homomorphisms: let $\mathcal{A}$ and $\mathcal{B}$ be two sets of rewriting rules, if the number of injective homomorphisms from a chosen set of pattern graphs into the host graph strictly decreases when a rule from $\mathcal{A}$ is applied, and the number does not increase when any rule from $\mathcal{B}$ is applied, then rules in $\mathcal{A}$ can only be applied finitely many times. This technique can handle some cases that prior interpretation-based approaches cannot.
-Proofs of all propositions, lemmas, and theorems have been moved to Appendix~\ref{subgraph_counting:sec:appendix} to improve readability.
+Proofs of all propositions, lemmas, and theorems of this chapter
+ have been moved to Appendix~\ref{subgraph_counting:sec:appendix} to improve readability.
 % This work resulted in the following publication:
 % \begin{itemize}
 %     \item Qiu, Q. (2025). Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting. In: Endrullis, J., Tichy, M. (eds) Graph Transformation. ICGT 2025. Lecture Notes in Computer Science, vol 15720. Springer, Cham. \url{https://doi.org/10.1007/978-3-031-94706-3_1}
@@ -800,8 +803,8 @@ Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{
 %   \label{fig:intro:graph_transformation_rule_anti_pattern__}
 %  \end{figure} 
 In this example, the number of injective graph homomorphisms from every pattern graph increases with each application of the rewriting rule. Therefore, the method introduced in Chapter~\ref{chap:subgraph_counting} cannot be applied. However, if we restrict our attention to occurrences of pattern graphs that are not part of a larger occurrence of a specific graph, the number of such occurrences decreases with each application of the rewriting rule. 
-Proofs of all propositions, lemmas, and theorems have been moved to Appendix~\ref{antipattern:sec:appendix} to improve readability.
+Proofs of all propositions, lemmas, and theorems of this chapter have been moved to Appendix~\ref{antipattern:sec:appendix} to improve readability.
 
-A purely theoretical contribution to automated proving would make little sense if it did not lead to a software tool that implements it.
+A purely theoretical contribution to automated reasoning would make little sense if it did not lead to a software tool that implements it.
 
 Chapter~\ref{chap:lyonparallel} introduces the termination tool \textbf{LyonParallel} for DPO edge-labeled multigraph rewriting, which integrates the existing type graph method, our extension, and our morphism counting technique and its extension.  

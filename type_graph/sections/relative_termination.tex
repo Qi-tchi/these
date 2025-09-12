@@ -125,9 +125,8 @@ For a set of rewriting rules \(\mathcal{R}\) (and a DPO rewriting framework \(\m
 For example of a non-terminating rule set, consider the set with the unique rule shown in Figure~\ref{fig:preliminaries:graph_transformation_rule_nonterminating} and the infinite rewriting chain shown in Figure~\ref{fig:preliminaries:sequence_of_transformation_infinite}. 
 For example of a terminating rule set, consider the set with the unique rule, shown below,
 % in Figure~\ref{fig:intro:edge_deletion_andffsfjsssdkdsglkadjl}, 
-which deletes an edge. Any rewriting chain using this rule is finite, because each rewriting step decreases the number of edges by one and a graph has only finitely many edges by definition.
- \begin{figure}[H]
-    \centering
+which deletes an edge. 
+    \begin{center}
      \resizebox{0.85\textwidth}{!}{ 
                 \begin{tikzpicture}[baseline=-3ex]
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -157,15 +156,11 @@ which deletes an edge. Any rewriting chain using this rule is finite, because ea
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
                 \end{tikzpicture}
                 }
-                \caption{}
-                \label{fig:intro:edge_deletion_andffsfjsssdkdsglkadjl}
-        \end{figure}
+            \end{center}
+Any rewriting chain using this rule is finite, because each rewriting step decreases the number of edges by one and a graph has only finitely many edges by definition.
 
-However, in many cases, an interesting property can be proved even if the whole rule set is not terminating. For example, consider the graph transformation system with two rules shown in Figure~\ref{fig:intro:edge_deletion_and_node_addition_ruledfakdsjflsdaj}: rule $\alpha$ deletes an arbitrary edge labeled by $A$, and rule $\beta$ introduces a fresh node.
-  \begin{figure}[H]
-        \centering
-%   \begin{subfigure}{0.3\textwidth}
-%         % \centering
+However, in many cases, an interesting property can be proved even if the whole rule set is not terminating. For example, consider the graph transformation system with two rules shown below. Rule $\alpha$ deletes an arbitrary edge labeled by $A$, and rule $\beta$ introduces a fresh node.
+\begin{center}
         $\alpha$ = {
              \resizebox{0.7\textwidth}{!}{
              \begin{tikzpicture}[baseline=-7ex]
@@ -222,9 +217,7 @@ However, in many cases, an interesting property can be proved even if the whole 
     %     \caption{A graph transformation rule for node addition}
     %     \label{fig:intro:node_addition_rule}
     % \end{subfigure} 
-    \caption{}
-    \label{fig:intro:edge_deletion_and_node_addition_ruledfakdsjflsdaj}
-  \end{figure}
+            \end{center}
 The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the more general property called \emph{relative termination}, which was originally introduced by Klop in~\cite{klop1987term} for binary relations, and has been studied and employed in the context of rewriting systems~\cite{geser1990relative,kassing2024dependency,endrullis2024generalized_icgt,zantema2014termination,bruggink2014termination,bruggink2015proving}. 
 
 \begin{definition}

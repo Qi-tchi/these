@@ -1,4 +1,8 @@
-\begin{definition} 
+We work with directed, edge-labelled graphs admitting parallel edges. This notion differs from that of Barr and Wells \cite{barr1990category}, whose directed multigraphs with loops lack edge labels; from that of König et al. \cite{konig2018atutorial}, since we permit the collections of nodes and edges to be proper classes; and from that of Ehrig et al. \cite{ehrig1997handbook1}, where both nodes and edges are labelled, whereas here only edges are labelled.
+
+Other notions of graphs appear in the literature for distinct purposes, including hypergraphs \cite{plump1993hypergraph}, attributed graphs \cite{ehrig2006fundamentals}, and polygraphs \cite{ara2023polygraphs}. Our choice reflects that a category (discussed in the next section) can be seen, in the style of Barr and Wells \cite{barr1990category}, as a directed edge-labelled multigraph endowed with extra structure, with object and morphism collections allowed to be proper classes.
+
+\begin{definition}
     \label{def:graph}
      Let \(\Sigma\) be a finite set of labels. A \textbf{directed edge-labeled multigraph} is a structure \((V, E, \opn{dom}, \opn{cod},\lambda)\) where
     \begin{itemize}
@@ -26,12 +30,15 @@ A directed edge-labeled multigraph may have multiple edges from one node to anot
 
 
 \begin{example}
-    Consider the graph shown in Figure~\ref{fig:preliminaries:labeled_graph}.
+    Consider the graph shown 
+    below.
+    % in Figure~\ref{fig:preliminaries:labeled_graph}.
     It has two nodes which are marked with numbers to facilitate discussion, but in general, nodes are not labeled.
     There are five edges: two loops on node $1$ labeled \(a\) and \(b\), two edges from node $1$ to node $2$ both labeled \(a\), and one edge from node $2$ to node $1$ labeled \(a\). Note that the two edges from node $1$ to node $2$ are distinct edges, even though they share the same source, target, and label.
 
-    \begin{figure}[H]
-       \centering
+    % \begin{figure}[H]
+    %    \centering
+    \begin{center}
        \resizebox{0.4\textwidth}{!}{
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
@@ -45,9 +52,11 @@ A directed edge-labeled multigraph may have multiple edges from one node to anot
             }
         \end{tikzpicture}
        }
-        \caption{Labeled graph.}
-        \label{fig:preliminaries:labeled_graph}
-    \end{figure}
+    %     \caption{Labeled graph.}
+    %     \label{fig:preliminaries:labeled_graph}
+    % \end{figure}
+    \end{center}
+
 
 \end{example}
   A homomorphism of labeled graphs is a homomorphism of unlabeled graphs that preserves the labels assigned to the edges. 

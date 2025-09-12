@@ -49,7 +49,8 @@ For example, consider graphs $K$,$L$, and $R$ shown in Figure~\ref{fig:implement
 Their representation in Ocaml can be constructed by the following code:
 \begin{minted}{ocaml}
     let graph_K = MGraph.fromList [1;2] []
-    let graph_L = Mgraph.fromList [1;2;3] [(1,"a",3,1);(3,"a",2,2)]
+    let graph_L = Mgraph.fromList [1;2;3] 
+                    [(1,"a",3,1);(3,"a",2,2)]
     let graph_R = Mgraph.fromList [1;2;4;5] 
                     [(1,"a",4,1);(4,"b",5,2);(5,"a",2,3)]
 \end{minted}
@@ -73,7 +74,7 @@ For example, consider morphisms $l$ and $r$ shown in Figure~\ref{fig:implemented
 A DPO \textbf{rewriting rule} is represented by a structure with 2 fields: a left-hand side homomorphism and a right-hand side homomorphism. The representation of a rewriting rule can be constructed using the function
  $$\colorbox{Ivory2}{$GraphRewritingSystem.DPOrule.fromHomos$}$$
 given the representations of the left- and right-hand side homomorphisms.
-For example, the representation of the rewriting rule illustrated in Figure~\ref{fig:implemented:grsaa_0} is constructed using the following OCaml expression, which creates the representation of a DPO rule from the representations of the left and right morphisms: 
+For example, the representation of the rewriting rule, previously presented and illustrated in Figure~\ref{fig:implemented:grsaa_0}, is constructed using the following OCaml expression, which creates the representation of a DPO rule from the representations of the left and right morphisms: 
 \begin{minted}{ocaml}
     let rl = GraphRewritingSystem.DPOrule.fromHomos 
                 morphism_l morphism_r
@@ -83,11 +84,11 @@ A DPO graph \textbf{rewriting system} is represented by a structure with 3 field
 can be constructed using the function 
 $$\colorbox{Ivory2}{$GraphRewritingSystem.fromRulesListAndName$}$$ given three arguments: a list of rewriting rules and the name of the system; the third parameter is \colorbox{Ivory2}{$false$} by default.
 
-For example, the DPO graph rewriting system that contains the single rule illustrated in Figure~\ref{fig:implemented:grsaa_0} is represented by the following OCaml expression. 
+For example, the DPO graph rewriting system that contains the single rule, previously presented and illustrated in Figure~\ref{fig:implemented:grsaa_0}, is represented by the following OCaml expression. 
 \begin{minted}{ocaml}
-let bruggink14_ex_4_and_6 =
-  GraphRewritingSystem.fromRulesListAndName 
-  [rl] "bruggink14_ex_4_and_6"
+    let bruggink14_ex_4_and_6 =
+        GraphRewritingSystem.fromRulesListAndName 
+            [rl] "bruggink14_ex_4_and_6"
 \end{minted}
 The function \colorbox{Ivory2}{$GraphRewritingSystem.fromRulesListAndName$} produces a system named \colorbox{Ivory2}{$bruggink14\_ex\_4\_and\_6$} from the singleton list \colorbox{Ivory2}{$[rl]$}.
 
@@ -146,7 +147,8 @@ Its representation in Ocaml
         can be constructed using the following code:
 \begin{figure}[H]
 \begin{minted}{ocaml} 
-    let graph_X = MGraph.fromList [1;2;3] [(1,"a",3,1);(3,"a",2,2)]
+    let graph_X = MGraph.fromList 
+                    [1;2;3] [(1,"a",3,1);(3,"a",2,2)]
     let ruler_graph_aa_notin_aca = 
         let graph_F = MGraph.fromList 
                 [1;2;3] [(1,"a",3,1);(3,"c",3,3);(3,"a",2,2)] in
