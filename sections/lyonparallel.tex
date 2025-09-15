@@ -114,9 +114,11 @@ Consider a ruler graph $(X, f)$ where $X$ is graph \raisebox{2pt}{
             \draw[->] (z)--(x) node[midway, above] {$a$};
             \draw[->] (x)--(y) node[midway, above] {$a$};
         }}} 
-and the injective graph homomorphism is shown in Figure~\ref{fig:intro:graph_transformation_rule_anti_patternsfs}.
- \begin{figure}[H]
-    \centering
+and the injective graph homomorphism is shown below:
+%  in Figure~\ref{fig:intro:graph_transformation_rule_anti_patternsfs}.
+%  \begin{figure}[H]
+%     \centering
+\begin{center}
     \resizebox{0.6\textwidth}{!}{
 \begin{tikzpicture}
       \graphbox{$L$}{30mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
@@ -140,9 +142,10 @@ and the injective graph homomorphism is shown in Figure~\ref{fig:intro:graph_tra
       \node () at (67mm,-10mm) {$\rightarrowtail$};
   \end{tikzpicture}
     }
-  \caption{}
-  \label{fig:intro:graph_transformation_rule_anti_patternsfs}
- \end{figure} 
+%   \caption{}
+%   \label{fig:intro:graph_transformation_rule_anti_patternsfs}
+%  \end{figure} 
+\end{center}
 Its representation in Ocaml
         can be constructed using the following code:
 \begin{figure}[H]
@@ -247,13 +250,13 @@ The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewr
 select_system_by_name bruggink14_ex_4_and_6
 \end{minted}
 
-The REPL provides the command \colorbox{Ivory2}{$rulergraphs$} to list available ruler-graphs. User-defined ruler-graphs can be added to this list using the the method presented in the previous section. The ruler-graph shown in Figure~\ref{fig:implemented:ruler_graph_representation} is predefined in the tool and appears in the list of available ruler-graphs.
- 
+
 \subsection{Termination Analysis using the Morphism Counting Method}
-Consider the graph rewriting system presented inExample~\ref{subgraph_counting:ex_contrib_variant} whose termination cannot be proven using existing interpretation-based approaches. Its unique rule is illustrated in Figure~\ref{fig:subgraph_counting:ex_confdkjfakljlfdsfsdfs}.
- 
-    \begin{figure}[H]
-        \centering
+Consider the graph rewriting system presented inExample~\ref{subgraph_counting:ex_contrib_variant} whose termination cannot be proven using existing interpretation-based approaches. Its unique rule is illustrated below:
+%  in Figure~\ref{fig:subgraph_counting:ex_confdkjfakljlfdsfsdfs}.
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
         \resizebox{0.7\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
@@ -305,9 +308,10 @@ Consider the graph rewriting system presented inExample~\ref{subgraph_counting:e
                 % \node () at (79mm,2mm) {$\searrowtail$};
             \end{tikzpicture}
             }
-            \caption{}
-            \label{fig:subgraph_counting:ex_confdkjfakljlfdsfsdfs}
-    \end{figure}
+    %         \caption{}
+    %         \label{fig:subgraph_counting:ex_confdkjfakljlfdsfsdfs}
+    % \end{figure}
+        \end{center}
 
 The following sequence of commands select the system, then use the morphism counting method without forbidden patterns presented in Chapter~\ref{chap:subgraph_counting} to analyse the relative termination of the system.
 \begin{minted}[style=bw]{bash}
@@ -321,17 +325,23 @@ The following command summarizes the result of the termination analysis.
 
 The message displayed contains \colorbox{Ivory2}{$Terminating:\ yes$} when the method has proved the rule's relative termination with respect to the empty set; otherwise the message contains \colorbox{Ivory2}{$Terminating:\ unknown$} and \colorbox{Ivory2}{$Remaining\ Rules:$}, followed by a list of rules to be analyzed.
 
-Our implementation automatically tries every subgraph of the left-hand-side graphs of the system's rules as a candidate rule-graph until one succeeds. The chosen rule graph is then displayed in the analysis summary. For the system considered in this section, the summary contains the information shown in Figure~\ref{fig:kdsljsssmkkggnn}, which describes the employed rule graph; the ruler-graph is illustrated in Figure~\ref{fig:dkgnnnaqqmmamnv}.
-\begin{figure}[H]
+Our implementation automatically tries every subgraph of the left-hand-side graphs of the system's rules as a candidate rule-graph until one succeeds. The chosen rule graph is then displayed in the analysis summary. For the system considered, the summary contains the information, shown below, which describes the employed rule graph.
+% \begin{figure}[H]
+\begin{center}
     \begin{minted}[style=bw]{bash}
         rule graph : nodes : [ 1;2;3 ]
         arrows : [ (1,s,3,1);(2,s,3,3) ]
     \end{minted}
-    \caption{}
-    \label{fig:kdsljsssmkkggnn}
-\end{figure}
-\begin{figure}[H]
-    \centering
+%     \caption{}
+%     \label{fig:kdsljsssmkkggnn}
+% \end{figure}
+\end{center}
+% in Figure~\ref{fig:kdsljsssmkkggnn},  
+The ruler-graph is illustrated below.
+%  in Figure~\ref{fig:dkgnnnaqqmmamnv}.
+% \begin{figure}[H]
+%     \centering
+\begin{center}
     \resizebox{0.2\textwidth}{!}{
         \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
@@ -344,14 +354,17 @@ Our implementation automatically tries every subgraph of the left-hand-side grap
                 }
         \end{tikzpicture}
     }
-    \caption{}
-    \label{fig:dkgnnnaqqmmamnv}
-\end{figure}
+%     \caption{}
+%     \label{fig:dkgnnnaqqmmamnv}
+% \end{figure}
+    \end{center}
 
 \subsection{Termination Analysis using the Morphism Counting with Antipattern}
-Consider the graph rewriting system shown in Example~\ref{antipattern:ex:grs_aca}, whose termination cannot be proven either by the morphism counting method without forbidden patterns introduced in Chapter~\ref{chap:subgraph_counting} or by the subgraph counting method presented in~\cite{overbeek2024termination_lmcs}. Its unique rule is illustrated in Figure~\ref{fig:intro:graph_transformation_rule_anti_pattern___}.
- \begin{figure}[H]
-    \centering
+Consider the graph rewriting system shown in Example~\ref{antipattern:ex:grs_aca}, whose termination cannot be proven either by the morphism counting method without forbidden patterns introduced in Chapter~\ref{chap:subgraph_counting} or by the subgraph counting method presented in~\cite{overbeek2024termination_lmcs}. Its unique rule is illustrated below.
+%  in Figure~\ref{fig:intro:graph_transformation_rule_anti_pattern___}.
+%  \begin{figure}[H]
+%     \centering
+\begin{center}
 \begin{tikzpicture}
       \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
           \coordinate (o) at (0mm,-3mm); 
@@ -379,13 +392,16 @@ Consider the graph rewriting system shown in Example~\ref{antipattern:ex:grs_aca
       \node () at (37mm,-10mm) {$\leftarrowtail$};
       \node () at (67mm,-10mm) {$\rightarrowtail$};
   \end{tikzpicture}
-  \caption{}
-  \label{fig:intro:graph_transformation_rule_anti_pattern___}
- \end{figure}
+%   \caption{}
+%   \label{fig:intro:graph_transformation_rule_anti_pattern___}
+%  \end{figure}
+\end{center}
 The rule is predefined in the tool and can be selected with the REPL command:
  \begin{minted}[style=bw]{bash}
    >> select_system_by_name bruggink14_ex1
  \end{minted}
+The REPL provides the command \colorbox{Ivory2}{$rulergraphs$} to list available ruler-graphs. User-defined ruler-graphs can be added to this list using the the method presented in the previous section. The ruler-graph shown in Figure~\ref{fig:implemented:ruler_graph_representation} is predefined in the tool and appears in the list of available ruler-graphs.
+
 The ruler-graph shown in Figure~\ref{fig:implemented:ruler_graph_representation} is predefined and can be selected with the REPL command:
  \begin{minted}[style=bw]{bash}
    >> select_ruler_graph aa_not_in_aca
@@ -398,13 +414,14 @@ The following command displays a summary of the termination analysis.
  \begin{minted}[style=bw]{bash}
    >> recap
 \end{minted} 
-The message displayed
-contains the message \colorbox{Ivory2}{$Terminating:\ yes$}, which shows that the method applied successfully proved the relative termination of the rule with respect to the empty set of rules.
+The message displayed contains the message \colorbox{Ivory2}{$Terminating:\ yes$}, which shows that the method applied successfully proved the relative termination of the rule with respect to the empty set of rules.
 
 \subsection{Termination Analysis using the Type Graph Method}
-Consider the rewriting rule shown in Figure~\ref{fig:implemented:grsaa_0ssssdfss}.
-\begin{figure}[H]
-      \centering 
+Consider the rewriting rule shown below:
+% in Figure~\ref{fig:implemented:grsaa_0ssssdfss}.
+% \begin{figure}[H]
+%       \centering 
+\begin{center}
       \resizebox{0.8\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
@@ -438,9 +455,10 @@ Consider the rewriting rule shown in Figure~\ref{fig:implemented:grsaa_0ssssdfss
           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
       }
-      \caption{}
-      \label{fig:implemented:grsaa_0ssssdfss}
-  \end{figure}
+%       \caption{}
+%       \label{fig:implemented:grsaa_0ssssdfss}
+%   \end{figure}
+    \end{center}
 The following command selects this system.
  \begin{minted}[style=bw]{bash}
    >> select_system_by_name bruggink14_ex_4_and_6
@@ -462,8 +480,10 @@ For example, we can have the following command which launch the type graph metho
 Type graph method with different semirings will be launched parallelly and cooperate with each other. When a non-empty subset $A$ of rules is proved to be terminating relative to the set of remaining rules $B$, a new iteration starts with the set of rules $B$.
 
 The command \colorbox{Ivory2}{$recap$} displays a summary of the termination analysis. The summary contains \colorbox{Ivory2}{$Terminating:\ yes$} and \colorbox{Ivory2}{$Remaining\ Rules:\ none$}, showing that the method successfully proved the rule's relative termination with respect to the empty rule set.
-The summary contains also the information in Figure~\ref{fig:implemented:type_graph_summarydfsaldkfjsdl}. 
-\begin{figure}[H]
+The summary contains also the information shown below.
+%  in Figure~\ref{fig:implemented:type_graph_summarydfsaldkfjsdl}. 
+% \begin{figure}[H]
+\begin{center}
     \begin{minted}[style=bw]{bash} 
         1 rule eliminated : rule 0 
         0 rule remaind : None
@@ -480,12 +500,15 @@ The summary contains also the information in Figure~\ref{fig:implemented:type_gr
         0--b->0 : 1
         1--a->0 : 2
     \end{minted}
-    \caption{}
-    \label{fig:implemented:type_graph_summarydfsaldkfjsdl}
-\end{figure}
-The first block indicates that the rule whose representation is indexed by \colorbox{Ivory2}{0} (here the system's unique rule) can be eliminated using the type graph method over the real arctic semiring; no rules remain to be analyzed. The second block gives the information for constructing the type graph: two nodes and 5 edges with rational weights. The third block shows an equivalent type graph with integer weights obtained by multiplying the rational weights by their least common multiple. These type graphs are shown in Figure~\ref{fig:implemented:type_gdfdgggggg}.
- \begin{figure}[H]
-    \centering
+%     \caption{}
+%     \label{fig:implemented:type_graph_summarydfsaldkfjsdl}
+% \end{figure}
+\end{center}
+The first block indicates that the rule whose representation is indexed by \colorbox{Ivory2}{0} (here the system's unique rule) can be eliminated using the type graph method over the real arctic semiring; no rules remain to be analyzed. The second block gives the information for constructing the type graph: two nodes and 5 edges with rational weights. The third block shows an equivalent type graph with integer weights obtained by multiplying the rational weights by their least common multiple. These type graphs are shown below:
+% in Figure~\ref{fig:implemented:type_gdfdgggggg}.
+%  \begin{figure}[H]
+%     \centering
+\begin{center}
     \resizebox{0.6\textwidth}{!}{
     \begin{tikzpicture}
       \graphbox{$L$}{20mm}{0mm}{45mm}{25mm}{2mm}{-5mm}{
@@ -512,9 +535,10 @@ The first block indicates that the rule whose representation is indexed by \colo
       \node () at (67mm,-10mm) {$\rightarrowtail$};
   \end{tikzpicture}
     }
-  \caption{}
-  \label{fig:implemented:type_gdfdgggggg}
- \end{figure}
+%   \caption{}
+%   \label{fig:implemented:type_gdfdgggggg}
+%  \end{figure}
+\end{center}
 
 
 % The system can be selected by using the command \colorbox{Ivory2}{select 3} which select the system with number \textit{3}. The REPL will display the following message to confirm the selection:

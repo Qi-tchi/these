@@ -1,8 +1,9 @@
-
+We extend the type graph method to non-well-founded semirings.
 \subsection{Strongly monotonic measurable semiring}
 \label{sec:strongly_monotonic_measurable_semiring}
 \input{type_graph/sections/strongly_monotonic_measurable_semiring.tex}
 \subsection{Measuring objects by counting morphisms}
+The definitions of weighted type graph and the weight of a morphism and an object relative to a weighted type graph are the same as in \textsection~\ref{sec:weighted_type_graph} and \textsection~\ref{sec:type_graph:wf:measuring_graphs}.
 \begin{example}
     \label{nwf:example:weighted_type_graph}
      In \textbf{Graph}, the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ where
@@ -117,7 +118,7 @@ The following proposition ensures that every morphism to a type graph $(T,S,\mat
 This will be used in Theorem~\ref{nwf:thm:termination_grs}.
 \begin{proposition}  
     \label{prop_endrullis_2d7}
-    Let $(S, \oplus, \odot, 0_S, 1_S, \prec, \mu)$ be a strongly monotonic measurable semiring. We have for all $x,y\in S$:
+    Let $(S, \oplus, \odot, 0_S, 1_S, \prec, \mu)$ be a strongly monotonic measurable semiring and $\preceq$ be the reflexive closure of $\prec$. We have for all $x,y\in S$:
     \begin{align*}
         0_S \neq x \land 0_S \neq y 
         &\Rightarrow 0_S \neq x \odot y 
@@ -146,7 +147,7 @@ This will be used in Theorem~\ref{nwf:thm:termination_grs}.
              0_S &= a \odot 0_S & \text{$0_S$ is annihilator for $\odot$}\\
                  &= a \odot (x \odot y) &\text{by assumption on $x \odot y$}\\ 
                  &= a \odot x \odot y &\text{by associativity} \\
-                 &\prec b \odot x \odot y &\text{by Axiom Equation~\eqref{ax:s4} and $x,y\neq 0_S$}\\
+                 &\prec b \odot x \odot y &\text{by Axiom~\eqref{ax:s4} and $x,y\neq 0_S$}\\
                  &= b \odot (x \odot y)  &\text{by associativity}  \\
                  &= b \odot 0_S &\text{by assumption on $x \odot y$} \\
                  &= 0_S
@@ -162,12 +163,12 @@ This will be used in Theorem~\ref{nwf:thm:termination_grs}.
           \end{flalign*}
           If $1_S \prec x$ then $
         %   1_S \preceq y = 
-          1_S \odot y \prec x \odot y$ by Axiom Equation~\eqref{ax:s4} since $y \neq 0$ by assumption.
+          1_S \odot y \prec x \odot y$ by Axiom~\eqref{ax:s4} since $y \neq 0_S$ by assumption.
         \item \ref*{eq:prop_neq0_plus_neq0}:  
-        By Axiom Equation~\eqref{ax:s4}, we have $a \odot x \prec b \odot x$ and $a\odot y \prec b \odot y $. 
+        By Axiom~\eqref{ax:s4}, we have $a \odot x \prec b \odot x$ and $a\odot y \prec b \odot y $. 
         \begin{flalign*}
             a \odot \left(x  \oplus y \right) &= \left( a \odot x \right)  \oplus \big(a \odot y \big)  & \text{by distributivity}\\
-            & \prec \left(b \odot x \right)   \oplus \left( b \odot y \right)  & \text{by Axiom Equation~\eqref{ax:s2}}\\
+            & \prec \left(b \odot x \right)   \oplus \left( b \odot y \right)  & \text{by Axiom~\eqref{ax:s2}}\\
             & = b \odot \left(x  \oplus y \right) & \text{by distributivity}
         \end{flalign*} 
         if $x  \oplus y = 0_S$ then we have $0_S = a \odot 0_S = a \odot \left(x  \oplus y\right) \prec b \odot \left(x  \oplus y\right) = b \odot 0_S = 0_S$ which contradicts the irreflexivity of $\prec$. 

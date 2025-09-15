@@ -55,7 +55,7 @@
 % ~\autoref{sec:type_graph:related_work} discusses empirical results obtained using the tool. 
 %~\autoref{sec:type_graph:conclusion} presents brief remarks and outlines future research directions. The missing proofs can be found in the Appendix.
 
-Chapter~\ref{chap:nwf} extends a existing method for termination of DPO graph rewriting systems, called type graph method. Throughout this chapter, we fix a finite set $\Sigma$ of edge labels.
+Chapter~\ref{chap:nwf} extends a existing method for termination of DPO graph rewriting systems, called type graph method~\footnote{The result has appeared in the workshop paper~\cite{qiu2025termination_nwf_v2_acceptedgcm}}. 
 
 The weighted type graph method was first introduced by Hans, Konig and Bruggink in~\cite{zantema2014termination} for cycle rewriting. Their subsequent work in~\cite{bruggink2014termination} generalized it for DPO rewriting on edge-labeled directed multigraphs with injective rules and injective matches; later, it was extended to general DPO rewriting on edge-labeled multigraphs by Bruggink et al. in~\cite{bruggink2015proving}; and it was adapted to broader categories and DPO variants by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}. 
 
@@ -71,6 +71,8 @@ The method assigns weights to morphisms targeting a weighted type graph over a w
       \item For each edge, decide if it exists in the weighted type graph;  if an edge exists, assign a weight (a natural number) to it.
       \item Check if the weighted type graph satisfies the required conditions.
     \end{enumerate}
+    where $\Sigma$ is a fixed 
+    finite set of edge labels of the rewriting system that will be used throughout this chapter.
     Despite these constraints, searching for weighted type graphs that witness termination of a DPO rewriting system on edge-labeled directed multigraphs
     remains challenging. 
     Let $n = k^2 \cdot | \Sigma |$.
@@ -101,6 +103,6 @@ The SMT solver Z3 can solve practical instances of this problem more easily usin
 For a weighted type graph over the real arithmetic semiring $\mathfrak{N}'$, the task reduces to checking the satisfiability of 
 an existential non-linear real arithmetic formula\textemdash a task that is decidable~\cite{collins1974quantifier,z3realarithmetic}.
 
-We have implemented both our approach and the approach proposed by Endrullis et al.~\cite{endrullis2024generalized_arxiv_v2} for DPO rewriting on edge-labeled directed multigraphs in a unified tool, written in OCaml, and employs Z3~\cite{de2008z3} to solve the constraint systems.
+% We have implemented both our approach and the approach proposed by Endrullis et al.~\cite{endrullis2024generalized_arxiv_v2} for DPO rewriting on edge-labeled directed multigraphs in a unified tool, written in OCaml, and employs Z3~\cite{de2008z3} to solve the constraint systems.
 
-we will first introduce the type graph method presented in~\cite{endrullis2024generalized_icgt}, then we will present our extension of the type graph method to non-well-founded semirings.
+We first introduce the type graph method from~\cite{endrullis2024generalized_icgt} in \textsection~\ref{sec:type_graph:preliminaries} and then present our extension of that method to non-well-founded semirings in \textsection~\ref{sec:type_graph:extension_nwf}.

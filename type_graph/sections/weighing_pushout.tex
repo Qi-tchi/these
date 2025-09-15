@@ -1,14 +1,16 @@
-Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a weighted type graph over a well-founded commutative semiring such that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. By~\autoref{rem:wf:weight_of_object_geq_1}, for all objects \( G \) subject to rewriting, \(w_\mathcal{T}(G) \succeq_S 1_\mathcal{S} \).
-The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succ_S w_\mathcal{T}(H)\), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succeq_S w_\mathcal{T}(H) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
+% Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a weighted type graph over a well-founded commutative semiring such that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. By~\autoref{rem:wf:weight_of_object_geq_1}, for all objects \( G \) subject to rewriting, \(w_\mathcal{T}(G) \succeq_S 1_\mathcal{S} \).
+% The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succ_S w_\mathcal{T}(H)\), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( w_\mathcal{T}(G) \succeq_S w_\mathcal{T}(H) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
-In this section, we first introduce the notions of \emph{morphism measurement excluding morphisms in a set}(Definition~\ref{def:weight_excluding_pre}) and \emph{weight of a morphism relative to a morphism-ruler set excluding some specific morphisms}(Definition~\ref{def:weight_excluding}),
+We first introduce the notions of \emph{morphism measurement excluding morphisms in a set}(Definition~\ref{def:weight_excluding_pre}) and \emph{weight of a morphism relative to a morphism-ruler set excluding some specific morphisms}(Definition~\ref{def:weight_excluding}),
 to reduce notational overhead (following Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}).
 We then recall the notions of traceability of objects (Definition~\ref{def:traceability}) and relative monicity of morphisms (Definition~\ref{def:relative_monicity}),
 which are used to define the notion of weighable pushout squares (Definition~\ref{def:weighable}). With the notion of a weighable pushout square, we recall a result from Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} which shows that the weight of the pushout object of a weighable pushout square can be bounded by the weights of the other objects in the pushout square.
 
 For any set \( \Gamma \subseteq \operatorname{Hom}(A, G) \),
     we define $\Gamma'$ as the set consisting of all morphisms \( \iota : X \to G \) admitting morphisms \( \zeta \colon X \to A \) and \( \alpha \in \Gamma \) such that $\zeta \star \alpha = \iota$ holds, i.e., such that
-     the diagram $XAG$ shown in Figure~\ref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler_dfsdfsdsa} is commutative.  Formally,  
+     the diagram $XAG$ shown below
+    %  in Figure~\ref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler_dfsdfsdsa} 
+     is commutative.  Formally,  
     \(
     \Gamma' \overset{\operatorname{def}}{=} \left\{ \iota \in \operatorname{Hom}(X, G)~\middle|~\exists \alpha \in \Gamma,~\exists \zeta:X \to A,~\zeta \star \alpha = \iota \right\}. 
     \)
