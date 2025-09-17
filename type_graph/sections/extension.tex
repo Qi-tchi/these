@@ -1,12 +1,11 @@
-We extend the type graph method to non-well-founded semirings.
-\subsection{Strongly monotonic measurable semiring}
-\label{sec:strongly_monotonic_measurable_semiring}
-\input{type_graph/sections/strongly_monotonic_measurable_semiring.tex}
+% We extend the type graph method to non-well-founded semirings.
+% \subsection{Strongly monotonic measurable semiring}
+% \label{sec:strongly_monotonic_measurable_semiring}
 \subsection{Measuring objects by counting morphisms}
 The definitions of weighted type graph and the weight of a morphism and an object relative to a weighted type graph are the same as in \textsection~\ref{sec:weighted_type_graph} and \textsection~\ref{sec:type_graph:wf:measuring_graphs}.
 \begin{example}
     \label{nwf:example:weighted_type_graph}
-     In \textbf{Graph}, the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ where
+     Consider the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ in \textbf{Graph} where
      \begin{itemize}
         \item $\mathcal{S}$ is the real arithmetic semiring $(\mathbb{R}^+, +, *, 0_{\mathbb{R}^+}, 1_{\mathbb{R}^+}, <, \operatorname{id}_{\mathbb{R}^+})$,
         \item $T$ is the graph illustrated in Figure~\ref{fig:nwf:weighted_type_graph_sss} without superscripts on the edge labels,
@@ -24,7 +23,7 @@ The definitions of weighted type graph and the weight of a morphism and an objec
     \end{tikzpicture} in the graph $T$,
     \item $w(e) = 1.0$ for all $e \in \mathbb{E}$.
      \end{itemize} 
-\noindent $\mathcal{T}$ is visualized in Figure~\ref{fig:nwf:weighted_type_graph_sss}.
+\noindent It is visualized in Figure~\ref{fig:nwf:weighted_type_graph_sss}.
     \begin{figure}[H] 
         \centering
         \begin{tikzpicture}
@@ -40,10 +39,8 @@ The definitions of weighted type graph and the weight of a morphism and an objec
         \caption{}
         \label{fig:nwf:weighted_type_graph_sss}
     \end{figure}
-\end{example}
 
-\begin{example}
-    Consider the weighted type graph $\mathcal{T}$ from Example~\ref{nwf:example:weighted_type_graph} and the morphisms shown in below:
+    Consider the following morphisms:
     \begin{center}
         \resizebox{0.49\textwidth}{!}{
         \begin{tikzpicture}
@@ -93,12 +90,15 @@ The definitions of weighted type graph and the weight of a morphism and an objec
       \end{center}
     We have 
     \begin{flalign*}
-        &w_\mathcal{T}(h_{11}^1) \\
+        w_\mathcal{T}(h_{11}^1)
       = &w(e_{13a})^{m_{e_{13a}}(h_{11}^1)} \odot w(e_{31a})^{m_{e_{31a}}(h_{11}^1)} \\
-      = &1.0^1 * 1.0^1 = 1.0
-        w_\mathcal{T}(h_{11}^2)\\ 
-        % = 1.0^1 * 1.0^1 
-      = &1.0\\
+      = &1.0^1 * 1.0^1 = 1.0.
+    \end{flalign*}
+    and
+    \begin{flalign*}
+        w_\mathcal{T}(h_{11}^2)
+       =&1.0^1 * 1.0^1 \\
+       =&1.0.
     \end{flalign*}
 
 \end{example}
@@ -111,35 +111,34 @@ The definitions of weighted type graph and the weight of a morphism and an objec
 
 
 
-\subsection{Estimating weights of pushout objects}
+\subsection{Precise and upperbound of weights of pushout objects}
 Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let \(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) be a weighted type graph over the strongly monotonic measurable semiring $\mathcal{S}$.
 The following proposition ensures that every morphism to a type graph $(T,S,\mathbb{E}, w)$ has a weight different from $0_S$ and greater than or equal to $1_S$.
 %  then the weight of a morphism to a type graph is greater than $1_S$ too. 
-This will be used in Theorem~\ref{nwf:thm:termination_grs}.
+% This will be used in Theorem~\ref{nwf:thm:termination_grs}.
 \begin{proposition}  
     \label{prop_endrullis_2d7}
     Let $(S, \oplus, \odot, 0_S, 1_S, \prec, \mu)$ be a strongly monotonic measurable semiring and $\preceq$ be the reflexive closure of $\prec$. We have for all $x,y\in S$:
     \begin{align*}
         0_S \neq x \land 0_S \neq y 
-        &\Rightarrow 0_S \neq x \odot y 
+        &\Rightarrow 0_S \neq x \odot y,
         \tag{S10} \label{eq:prop_neq0_mul_neq0}  
         \\
         1_S \preceq x \land 1_S \preceq y \land 0_S \neq x \land 0_S \neq y  
         &\Rightarrow
-         1_S \preceq x \odot y 
+         1_S \preceq x \odot y,
          \tag{S11} \label{eq:prop_neg0_ge1_mul_ge1}  
          \\
          0_S \neq x \land 0_S \neq y   
-         &\Rightarrow 0_S \neq x \oplus y
+         &\Rightarrow 0_S \neq x \oplus y.
          \tag{S12} \label{eq:prop_neq0_plus_neq0}  
     \end{align*}
 \end{proposition}
 
 \begin{proof}
     \label{proof_prop_endrullis_2d7}
-    Let $x,y \in S$ such that $x, y \neq 0_S$. By definition, $\prec$ is not empty, therefore there exist $a, b \in S$ such that $a \prec b$.
+    Let $x,y \in S$ such that $x, y \neq 0_S$. By definition, $\prec$ is not empty, therefore, there are $a, b \in S$ such that $a \prec b$. $\prec$ is irreflexive, because $\mu: (S, \prec) \to (\overline{\mathbb{R}}, <_{\overline{\mathbb{R}}})$ is a homomorphism. 
     \begin{itemize}
-        \item $\prec$ is irreflexive, because $\mu: (S, \prec) \to (\overline{\mathbb{R}}, <_{\overline{\mathbb{R}}})$ is a homomorphism.
         \item \ref*{eq:prop_neq0_mul_neq0}:  
         Suppose $(x \odot y)=0_S$. 
         We have 
@@ -199,66 +198,30 @@ This will be used in Theorem~\ref{nwf:thm:termination_grs}.
 Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) terminates relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \geq \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
 
-\noindent
-\begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
-    Consider a DPO diagram (illustrated on the right) that defines a rewriting step \( G \Rightarrow_{\rho,\mathfrak{F}} H \). 
-    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in Definition~\ref{def:weighable}), then, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
-\end{minipage}%
-\hfill
-\begin{minipage}{0.29\textwidth}
-    \hfill
-    \resizebox{0.85\textwidth}{!}{
-    \begin{tikzpicture}
-        % [node distance=11mm]
-        \node (I) at (0,0) {$K$};
-        \node (L) at (-2,0) {$L$};
-        \node (R) at (2,0) {$R$};
-        \node (G) at (-2,-2) {$G$};
-        \node (C) at (0,-2) {$C$};
-        \node (H) at (2,-2) {$H$};
-        \draw [->] (I) to  node [midway,below] {$l$} (L);
-        \draw [->] (I) to  node [midway,below] {$r$} (R);
-        \draw [->] (L) to node [midway,right] {$m$} (G);
-        \draw [->] (I) to node [midway,right] {$u$} (C);
-        \draw [->] (R) to node [midway,left] {$m'$} (H);
-        \draw [->] (C) to node [midway,above] {$l'$} (G);
-        \draw [->] (C) to node [midway,above] {$r'$} (H);
-        \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-        \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-      \end{tikzpicture}
-    }
-\end{minipage}
-
-% \begin{flalign*}
-%     w_\mathcal{T}(G) 
-%         & \overset{def}{=} \bigoplus_{t_G: G \rightarrow T} w_\mathcal{T}(t_G) 
-%         \overset{def}{=} \bigoplus_{t_K: K \rightarrow T} \bigoplus_{\substack{t_G: G \rightarrow T\\ t_K = l \star m \star t_G}} w_\mathcal{T}(t_G) \\
-%     w_\mathcal{T}(H) 
-%         &\overset{def}{=} \bigoplus_{t_H: H \rightarrow T} w_\mathcal{T}(t_H) 
-%          \overset{def}{=} \bigoplus_{t_K: K \rightarrow T} \bigoplus_{\substack{t_H: H \rightarrow T\\ t_K = r \star m' \star t_H}} w_\mathcal{T}(t_H)
-% \end{flalign*}
-
-% If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in Definition~\ref{def:weighable}), then, by \cite[Lemma 5.10]{endrullis2024generalized_lmcs}, we derive the following assertions:
-% \begin{flalign*}
-%     w_\mathcal{T}(G) 
-%         & = \bigoplus_{t_K: K \rightarrow T} \bigoplus_{\substack{t_G: G \rightarrow T\\ t_K = l \star m \star t_G}} w_\mathcal{T}(m \star t_G) \odot (l' \star t_G - u) \\
-%     w_\mathcal{T}(H) 
-%         &  \preceq \bigoplus_{t_K: K \rightarrow T} \bigoplus_{\substack{t_H: H \rightarrow T\\ t_K = r \star m' \star t_H}} w_\mathcal{T}(m' \star t_H) \odot (r' \star t_H - u)
-% \end{flalign*}
-% By \cite[Theorem 5.12]{endrullis2024generalized_lmcs}, it follows:
-% \begin{flalign*}
-%     w_\mathcal{T}(G) 
-%         & = \bigoplus_{t_K: K \rightarrow T} 
-%         \bigoplus_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
-%         \bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
-%             w_\mathcal{T}(t_L) \odot w_\mathcal{T}(t_C - u) \\
-%     w_\mathcal{T}(H) 
-%         &  \preceq \bigoplus_{t_K: K \rightarrow T} 
-%         \bigoplus_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
-%         \bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
-%             w_\mathcal{T}(t_R) \odot w_\mathcal{T}(t_C - u) \\
-% \end{flalign*}
-% By \cite[Theorem 5.13]{endrullis2024generalized_lmcs}, we have the following assertions: 
+Consider the following DPO diagram that defines a rewriting step \( G \Rightarrow_{\rho,\mathfrak{F}} H \). 
+\begin{center}
+        \resizebox{0.3\textwidth}{!}{
+            \begin{tikzpicture}
+                % [node distance=11mm]
+                \node (I) at (0,0) {$K$};
+                \node (L) at (-2,0) {$L$};
+                \node (R) at (2,0) {$R$};
+                \node (G) at (-2,-2) {$G$};
+                \node (C) at (0,-2) {$C$};
+                \node (H) at (2,-2) {$H$};
+                \draw [->] (I) to  node [midway,below] {$l$} (L);
+                \draw [->] (I) to  node [midway,below] {$r$} (R);
+                \draw [->] (L) to node [midway,right] {$m$} (G);
+                \draw [->] (I) to node [midway,right] {$u$} (C);
+                \draw [->] (R) to node [midway,left] {$m'$} (H);
+                \draw [->] (C) to node [midway,above] {$l'$} (G);
+                \draw [->] (C) to node [midway,above] {$r'$} (H);
+                \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+                \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+            \end{tikzpicture}
+        }
+    \end{center}
+    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
 \begin{flalign*}
     w_\mathcal{T}(G) 
         & = \bigoplus_{t_K: K \rightarrow T} 
@@ -266,7 +229,7 @@ Suppose additionally that for every graph $G$ subject to rewriting, we have $\op
           w_\mathcal{T}(t_C - u) \right ) 
           \odot
         \left (\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
-        w_\mathcal{T}(t_L) \right )
+        w_\mathcal{T}(t_L) \right ),
          \\
     w_\mathcal{T}(H) 
         &  \preceq \bigoplus_{t_K: K \rightarrow T} 
@@ -274,7 +237,7 @@ Suppose additionally that for every graph $G$ subject to rewriting, we have $\op
          w_\mathcal{T}(t_C - u) \right ) 
          \odot 
          \left ( \bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
-            w_\mathcal{T}(t_R) \right ) \\
+            w_\mathcal{T}(t_R) \right ). \\
 \end{flalign*}
 According to these results, a termination criterion will be established by comparing the weights 
 $\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}

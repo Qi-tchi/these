@@ -18,8 +18,8 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\Rightarrow_{\
 \end{definition}
 
 \begin{example}
-    Consider the rewriting rules in Figure~\ref{fig:preliminaries:graph_transformation_rule_nonterminating}, which
-    replaces an occurrence of the graph 
+    \label{example:preliminaries:dggdfgnkfsjksfkjsf}
+    Consider the rewriting rule shown below. It replaces an occurrence of the graph 
 \raisebox{2pt}{
             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
             \node [draw,circle] (z) at (-1,0) {};
@@ -35,8 +35,9 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\Rightarrow_{\
             \draw[->] (z)--(x) node[midway, above] {$b$};
             \draw[->] (x)--(y) node[midway, above] {$a$};
         }}}, keeping the extreme nodes unchanged.
-    \begin{figure}[H]
-        \centering
+    % \begin{figure}[H]
+    %     \centering
+    \begin{center}
             \resizebox{0.85\textwidth}{!}{
                 \begin{tikzpicture}[baseline=-3ex]
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -68,10 +69,10 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\Rightarrow_{\
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
                 \end{tikzpicture}
                 }
-        \caption{}
-        \label{fig:preliminaries:graph_transformation_rule_nonterminating}
-    \end{figure} 
-  
+    %     \caption{}
+    %     \label{fig:preliminaries:graph_transformation_rule_nonterminating}
+    % \end{figure} 
+            \end{center} 
     A looping rewriting chain using this rule is shown in Figure~\ref{fig:preliminaries:sequence_of_transformation_infinite}, in which the subgraph to be replaced at each transformation step is highlighted in red.
        
         \begin{figure}[H]
@@ -120,9 +121,10 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\Rightarrow_{\
         \end{figure}
 \end{example}
 
-For a set of rewriting rules \(\mathcal{R}\) (and a DPO rewriting framework \(\mathfrak{F}\)), the impossibility of transforming any object infinitely with the non-deterministic strategy \enquote{apply rules as long as possible} using rules from \(\mathcal{R}\) (in the framework \(\mathfrak{F}\)) is called \emph{termination} in the literature~\cite{middeldorp1997simple}. This property corresponds to program termination on all inputs in conventional programming languages, and is undecidable in general~\cite{plump1998terminationundecidable}.
+For a set of rewriting rules \(\mathcal{R}\) (and a DPO rewriting framework \(\mathfrak{F}\)), the impossibility of transforming any object indefinitely with the non-deterministic strategy \enquote{apply rules as long as possible} using rules from \(\mathcal{R}\) (in the framework \(\mathfrak{F}\)) is called \emph{termination}~\cite{middeldorp1997simple}. This property corresponds to program termination on all inputs in conventional programming languages, and is undecidable in general~\cite{plump1998terminationundecidable}.
 
-For example of a non-terminating rule set, consider the set with the unique rule shown in Figure~\ref{fig:preliminaries:graph_transformation_rule_nonterminating} and the infinite rewriting chain shown in Figure~\ref{fig:preliminaries:sequence_of_transformation_infinite}. 
+For example of a non-terminating rule set, consider the set consisting of the rule and the infinite rewriting chain in Example~\ref{example:preliminaries:dggdfgnkfsjksfkjsf}.
+% set with the rule and the infinite rewriting chain shown in Figure~\ref{fig:preliminaries:sequence_of_transformation_infinite}. 
 For example of a terminating rule set, consider the set with the unique rule, shown below,
 % in Figure~\ref{fig:intro:edge_deletion_andffsfjsssdkdsglkadjl}, 
 which deletes an edge. 
@@ -159,7 +161,8 @@ which deletes an edge.
             \end{center}
 Any rewriting chain using this rule is finite, because each rewriting step decreases the number of edges by one and a graph has only finitely many edges by definition.
 
-However, in many cases, an interesting property can be proved even if the whole rule set is not terminating. For example, consider the graph transformation system with two rules shown below. Rule $\alpha$ deletes an arbitrary edge labeled by $A$, and rule $\beta$ introduces a fresh node.
+However, in many cases, an interesting property can be proved even if the whole rule set is not terminating. 
+Take the system with rules $\alpha$ and $\beta$ shown below. Rule~$\alpha$ removes one edge per application; rule~$\beta$ introduces a new node. 
 \begin{center}
         $\alpha$ = {
              \resizebox{0.7\textwidth}{!}{
@@ -168,7 +171,7 @@ However, in many cases, an interesting property can be proved even if the whole 
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                        \draw[->] (l1) -- (l2) node[midway,above] {$A$};
+                        \draw[->] (l1) -- (l2) node[midway,above] {};
                     } 
             
                     \graphbox{\( \mathcal{K} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -218,8 +221,7 @@ However, in many cases, an interesting property can be proved even if the whole 
     %     \label{fig:intro:node_addition_rule}
     % \end{subfigure} 
             \end{center}
-The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the more general property called \emph{relative termination}, which was originally introduced by Klop in~\cite{klop1987term} for binary relations, and has been studied and employed in the context of rewriting systems~\cite{geser1990relative,kassing2024dependency,endrullis2024generalized_icgt,zantema2014termination,bruggink2014termination,bruggink2015proving}. 
-
+Because $\beta$ can always be re-applied to generate additional nodes, infinite rewriting sequences exist. Conversely, $\alpha$ is applicable only finitely many times: every firing strictly decreases the number of edges, and no rule increases it. Since the initial graph is finite, the possibility of non-termination stems exclusively from $\beta$. This attribution illustrates the broader idea of \emph{relative termination} as introduced by Klop~\cite{klop1987term} and explored in~\cite{geser1990relative,kassing2024dependency,endrullis2024generalized_icgt,zantema2014termination,bruggink2014termination,bruggink2015proving}.
 \begin{definition}
 Let $A$ be a collection of objects and let $R$ and $S$ be binary relations on $A$. 
 We say that $R$ is \textbf{terminating relative to} $S$ (or that $R$ \textbf{terminates relative to} $S$) if 
@@ -227,7 +229,7 @@ any $(R \cup S)$-chain contains only finitely many $R$-steps.
 In particular, $R$ is \textbf{terminating} (or terminates) if it is terminating relative to the empty relation $\emptyset$.
 \end{definition}
 
-For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the empty relation, since any $(> \cup \emptyset)$-chain contains only finitely many $>$-steps. The relation $>$ is also terminating relative to $\geq$ on $\mathbb{N}$, since any $(> \cup \geq)$-chain can only contain finitely many $>$-steps. 
+For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the empty relation, since any $(> \cup\ \emptyset)$-chain contains only finitely many $>$-steps. The relation $>$ is also terminating relative to $\geq$ on $\mathbb{N}$, since any $(> \cup \geq)$-chain can only contain finitely many $>$-steps. 
 
 Note that termination and well-foundedness are the same property of a binary relation $\to$ described from two perspectives. Operationally, we read $x \to y$ as \enquote{$x$ can be transformed to $y$}; the absence of infinite $\rightarrow$-chains therefore means that any transformation sequence starting from an initial object $x$ is finite, i.e. every computation or rewrite sequence eventually terminates. Structurally, we read $x \to y$ as \enquote{$x$ is constructed from $y$}; the absence of infinite $\to$-chains then implies that every object $x$ can be traced back along a finite chain to an element that is not constructed from any other, so the structure is well-founded. In this thesis we adopt the operational viewpoint and use the term termination.
 

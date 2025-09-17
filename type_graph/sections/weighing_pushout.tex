@@ -6,9 +6,10 @@ to reduce notational overhead (following Endrullis and Overbeek~\cite{endrullis2
 We then recall the notions of traceability of objects (Definition~\ref{def:traceability}) and relative monicity of morphisms (Definition~\ref{def:relative_monicity}),
 which are used to define the notion of weighable pushout squares (Definition~\ref{def:weighable}). With the notion of a weighable pushout square, we recall a result from Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} which shows that the weight of the pushout object of a weighable pushout square can be bounded by the weights of the other objects in the pushout square.
 
+\todo{todo to do: pourquoi melange les lettres grecques et latines?}
 For any set \( \Gamma \subseteq \operatorname{Hom}(A, G) \),
     we define $\Gamma'$ as the set consisting of all morphisms \( \iota : X \to G \) admitting morphisms \( \zeta \colon X \to A \) and \( \alpha \in \Gamma \) such that $\zeta \star \alpha = \iota$ holds, i.e., such that
-     the diagram $XAG$ shown below
+     the diagram $\opn{XAG}$ shown below
     %  in Figure~\ref{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler_dfsdfsdsa} 
      is commutative.  Formally,  
     \(
@@ -41,16 +42,15 @@ For any set \( \Gamma \subseteq \operatorname{Hom}(A, G) \),
     The \textbf{measurement of a morphism \( h:G \to T \) relative to a morphism-ruler \( e: X \to T \), excluding morphisms in \( \Gamma' \)}, denoted by $m_e(h-\Gamma)$, is defined as:
     \[
         m_e(h-\Gamma) \overset{\operatorname{def}}{=} 
-            \card{\set{- \star h = e} \setminus \Gamma'}
+            \card{\set{- \star h = e} \setminus \Gamma'}.
     \]
 \end{definition}
 \begin{definition}
     \label{def:weight_excluding}
-    weight of a morphism $h: G \to T$ relative to a set $\mathbb{E}$ of morphism-rulers excluding morphisms
     Let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a weighted type graph. The \textbf{weight of a morphism $h: G \to T$ relative to a set $\mathbb{E}$ of morphism-rulers excluding morphisms in \( \Gamma' \)} is defined as the semiring product of $w(e)^{w_e(h-\Gamma)}$ for $e \in \mathbb{E}$:
     \[ 
         w_\mathcal{T}(h-\Gamma) \overset{\operatorname{def}}{=} \underset{e \in \mathbb{E}}{\bigodot} 
-    w(e)^{m_e(h-\Gamma)}
+    w(e)^{m_e(h-\Gamma)}.
             \]
 \end{definition}
 % Consider the pushout square shown below.
@@ -108,20 +108,20 @@ An object $X$ is said to be \textbf{traceable along $\Delta$} if for every diagr
 %     \caption{}
 %     \label{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}
 % \end{figure} 
- the following hold
+  one of the following conditions holds:
     \begin{enumerate}[label=(\alph*)]
-        \item\label{traceable:a} there exists a morphism $f : X \to B$ such that $h = f \star \beta'$, or
-        \item\label{traceable:b} there exists a morphism $g : X \to C$ such that $h = g \star \alpha'$.
+        \item\label{traceable:a} there is a morphism $f : X \to B$ such that $h = f \star \beta'$, or
+        \item\label{traceable:b} there is a morphism $g : X \to C$ such that $h = g \star \alpha'$.
     \end{enumerate}
     If additionally, 
     whenever \ref{traceable:a} and \ref {traceable:b} hold,
     \begin{enumerate}[label=(\alph*),resume]
         \item 
-        there exists a morphism $k : X \to A$ such that $h = k \star \alpha \star \beta' $,
+        there is a morphism $k : X \to A$ such that $h = k \star \alpha \star \beta' $,
     \end{enumerate}
-    then we say that $X$ is \emph{strongly traceable} along $\Delta$.
+    then we say that $X$ is \textbf{strongly traceable} along $\Delta$.
 \end{definition}
-Intuitively, in the category \textbf{Graph}, a graph $X$ is $\beta$-strongly traceable along a pushout square as illustrated above, if whenever $X$ occurs in $D$, it occurs either in $B$ or in $C$, and if it occurs in both, then it occurs in $A$ as well.
+Intuitively, in the category \textbf{Graph}, a graph $X$ is $\beta$-strongly traceable along a pushout square, if whenever $X$ occurs in $D$, it occurs either in $B$ or in $C$, and if it occurs in both, then it occurs in $A$ as well.
 
 \begin{remark}[\cite{endrullis2024generalized_arxiv_v2}]
     \label{remark:traceability_graph}
@@ -147,7 +147,7 @@ Intuitively, in the category \textbf{Graph}, a graph $X$ is $\beta$-strongly tra
 \end{remark}
 
 \begin{example}
-    Consider the following DPO diagram.
+    Consider the following DPO diagram:
     %  shown in Figure~\ref{fig:nwf:two_pushout_squares}.
     \begin{center}
     % \begin{figure}[H]
@@ -352,14 +352,14 @@ The following concepts are restricted versions of the concept of monicity.
             \textbf{monic for $S$} 
             if $g \star f = h \star f$ implies $g = h$ for all $g, h \in S$;
         \item 
-            \textbf{$X$-monic} if $f$ is monic for $\operatorname{Hom}(X, A)$.
-        \item \textbf{$X$-monic outside of $u$}, if $f$ is monic for \( \operatorname{Hom}(X,A) \setminus \left ( \operatorname{Hom}(X,C) \star u \right ) \).
+            \textbf{$X$-monic} if $f$ is monic for $\operatorname{Hom}(X, A)$;
+        \item \textbf{$X$-monic outside of $u$}, if $f$ is monic for \( \operatorname{Hom}(X,A) \setminus \left ( \operatorname{Hom}(X,C) \star u \right ) \);
         \item  \textbf{$\Gamma$-monic} if $f$ is $X$-monic for every $X \in \Gamma$.
     \end{itemize}
 \end{definition} 
 \begin{example}[Edge-Monicity \cite{endrullis2024generalized_arxiv_v2}]
  
- Let \(f\colon G\to H\) be a morphism in \(\mathbf{Graph}\) that does not identify distinct edges, but may identify distinct nodes. Then \(f\) need not be monic. Indeed, if \(u\neq v\) are nodes of \(G\) with \(f(u)=f(v)\), let \(K\) be the graph consisting of a single node and no edges, and let \(g,h\colon K\to G\) send that node to \(u\) and \(v\), respectively. Then \(g\neq h\) while \(f\circ g=f\circ h\), so \(f\) is not monic.
+ Let \(f\colon G\to H\) be a morphism in \(\mathbf{Graph}\) that does not identify distinct edges, but may identify distinct nodes. Then \(f\) is not necessarily monic. Indeed, if \(u\neq v\) are nodes of \(G\) with \(f(u)=f(v)\), let \(K\) be the graph consisting of a single node and no edges, and let \(g,h\colon K\to G\) send that node to \(u\) and \(v\), respectively. Then \(g\neq h\) while \(f\circ g=f\circ h\), so \(f\) is not monic.
 
 Nevertheless \(f\) is \(\Gamma\)-monic, where
 \[
@@ -413,7 +413,7 @@ To see this, let \(X\in\Gamma\) and let \(g,h\colon X\to G\) satisfy \(g \star f
     %  shown in Figure~\ref{fig:nwf:dpo_diagram_sdfslafgjsl} 
      that defines a rewriting step \( G \Rightarrow_{\rho,\mathfrak{F}} H \). 
     \begin{center}
-        \resizebox{0.4\textwidth}{!}{
+        \resizebox{0.3\textwidth}{!}{
         \begin{tikzpicture}
             % [node distance=11mm]
             \node (I) at (0,0) {$K$};
@@ -434,7 +434,8 @@ To see this, let \(X\in\Gamma\) and let \(g,h\colon X\to G\) satisfy \(g \star f
         \end{tikzpicture}
     } 
     \end{center}
-    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$ (concepts defined in Definition~\ref{def:weighable}), then, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
+    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
+    \todo{todo to do: rapelle le lemma}
 
 \begin{flalign*}
     w_\mathcal{T}(G) 

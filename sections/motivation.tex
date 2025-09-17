@@ -366,8 +366,8 @@ consider the graph transformation rule, shown in the following Figure~\ref{fig:i
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
                         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
-                        \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                        \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+                        \draw (l1) -- (l3) node[midway,above] {$a$};
+                        \draw (l3) -- (l2) node[midway,above] {$a$};
                     } 
                     \graphbox{\( \mathcal{K} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -389,8 +389,19 @@ consider the graph transformation rule, shown in the following Figure~\ref{fig:i
 \end{figure}
 \noindent The graph $\mathcal{G}$ shown in Figure~\ref{fig:intro:graph_G} can be rewritten to yield the graph $\mathcal{H}$ shown in Figure~\ref{fig:intro:graph_H} by applying the following DPO graph rewriting rule, defined earlier,
 % in Figure~\ref{fig:intro:graph_transformation_rule_dpo} 
-to the unique occurrence of $\mathcal{L}$ in $\mathcal{G}$.
-Specifically, $\mathcal{G}$ can be decomposed, as shown in Figure~\ref{fig:intro:decomposition_of_G}, into the occurrence of $\mathcal{L}$ (elements shown in orange and black) and the context graph $\mathcal{C}$ (elements shown in blue and black). The interface graph is the subgraph shown in black in Figure~\ref{fig:intro:decomposition_of_G}. The rule removes the orange part of the occurrence of $\mathcal{L}$ to obtain an occurrence of $\mathcal{R}$. 
+to the unique occurrence 
+\raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {1};
+            \node [draw,circle] (x) at (0,0) {3};
+            \node[draw,circle] (y) at (1,0) {2};
+            \draw (z)--(x) node[midway, above] {$a$};
+            \draw (x)--(y) node[midway, above] {$a$};
+        }}}
+of $\mathcal{L}$ in $\mathcal{G}$.
+Specifically, in this occurrence the subgraph matched to the interface graph $\mathcal{K}$ is the subgraph shown in black in Figure~\ref{fig:intro:decomposition_of_G}; the graph $\mathcal{G}$ is decomposed, as shown in Figure~\ref{fig:intro:decomposition_of_G}, into the occurrence of $\mathcal{L}$ (elements shown in orange and black) and the context graph $\mathcal{C}$ (elements shown in blue and black) gluing via the interface graph (elements shown in black).
+%  The interface graph is the subgraph shown in black in Figure~\ref{fig:intro:decomposition_of_G}. 
+ The rule removes the orange part of the occurrence of $\mathcal{L}$ to obtain an occurrence of $\mathcal{R}$. 
 The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal{R}$ and the context graph $\mathcal{C}$ via the interface graph.
 \begin{figure}[H]
     \centering
@@ -458,12 +469,12 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
                     \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {$6$};
-                    \draw[->,red] (l3) -- (l4) node[midway,above] {$b$};
-                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                    \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-                    \draw[->] (l2) -- (l4) node[midway,right] {$b$};
+                    \draw[red] (l3) -- (l4) node[midway,above] {$b$};
+                    \draw (l1) -- (l3) node[midway,above] {$a$};
+                    \draw (l3) -- (l2) node[midway,above] {$a$};
+                    \draw (l2) -- (l4) node[midway,right] {$b$};
                     \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {$7$};
-                    \draw[<-] (l1) -- (l6) node[midway,left] {$b$};
+                    \draw (l1) -- (l6) node[midway,left] {$b$};
                     % \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                 }   
     \end{tikzpicture} 
@@ -491,7 +502,7 @@ Since graph transformation rules in a system are applied repeatedly (and nondete
 
 \section{Termination} 
 Termination is a property of algorithms that ensures they eventually halt. In the context of DPO graph rewriting systems, it ensures that no graph can be transformed indefinitely under a given set of rewriting rules. 
-For example, the following rule terminates because each application reduces the number of nodes in a graph by one.
+For example, the previously discussed rule shown below terminates because each application reduces the number of nodes in a graph by one.
 
 \begin{center}
     \resizebox{0.85\textwidth}{!}{
@@ -501,8 +512,8 @@ For example, the following rule terminates because each application reduces the 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
                         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
-                        \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                        \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+                        \draw (l1) -- (l3) node[midway,above] {$a$};
+                        \draw (l3) -- (l2) node[midway,above] {$a$};
                     } 
                     \graphbox{\( \mathcal{K} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -631,7 +642,7 @@ Most exploit the tree structure of terms, a feature absent in general graphs, ma
 % Therefore, new techniques are needed for proving termination of DPO graph rewriting systems.  
 Moreover, termination may not be the most pertinent property for our purposes. 
 
-For example, consider the graph transformation system with two rules shown in Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}. Rule $\alpha$ deletes an arbitrary edge labeled by $A$, and rule $\beta$ introduces a fresh node. The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the notion of \emph{relative termination}.
+For example, consider the graph transformation system with two rules shown in Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}. Rule $\alpha$ deletes an arbitrary edge, and rule $\beta$ introduces a fresh node. The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the notion of \emph{relative termination}.
 
 % \begin{center}
 % in the following Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}
@@ -646,7 +657,7 @@ For example, consider the graph transformation system with two rules shown in Fi
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                        \draw[->] (l1) -- (l2) node[midway,above] {$A$};
+                        \draw[->] (l1) -- (l2) node[midway,above] {};
                     } 
             
                     \graphbox{\( \mathcal{K} \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -695,7 +706,7 @@ For example, consider the graph transformation system with two rules shown in Fi
     %     \caption{A graph transformation rule for node addition}
     %     \label{fig:intro:node_addition_rule}
     % \end{subfigure} 
-    \caption{Rule $\alpha$ deletes an edge labeled by $A$, and rule $\beta$ adds a fresh node.}
+    \caption{Rule $\alpha$ deletes an edge, and rule $\beta$ adds a fresh node.}
     \label{fig:intro:edge_deletion_and_node_addition_rule}
   \end{figure}
 % \end{center}

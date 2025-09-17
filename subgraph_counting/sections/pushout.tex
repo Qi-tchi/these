@@ -1,4 +1,4 @@
-Pushouts play a central role in the double-pushout approach to graph rewriting considered in this thesis (recalled in the next section). The concepts and notation in this section follow the treatments in~\cite{pierce1991basic,barr1990category}.
+Pushouts play a central role in the double-pushout approach to graph rewriting considered in this thesis (recalled in the next section). The concepts and notation in this section follow the treatments of Pierce~\cite{pierce1991basic} and Barr and Wells~\cite{barr1990category}.
 \begin{definition}
     \label{def:cat}
     A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : V(C) \to E(C) \) and a partial function \( \star: E(C) \times E(C) \to E(C) \) such that 
@@ -78,14 +78,10 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
 \). 
 \end{definition}
 \begin{example}
-Consider the diagram in the category \textbf{Graph} shown below.
+Consider the following diagram in the category \textbf{Graph}. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
 %  in Figure~\ref{fig:preliminaries:span_cospan}. 
  $(\alpha, \beta)$ is a span, and $(\beta', \alpha')$ is a cospan.
-\end{example}
 
-
-% \begin{figure}[H]
-%    \centering
 \begin{center}
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture} 
@@ -139,9 +135,7 @@ Consider the diagram in the category \textbf{Graph} shown below.
         \end{tikzpicture}
         }
     \end{center}
-%         \caption{}
-%         \label{fig:preliminaries:span_cospan}
-% \end{figure}
+\end{example}
 
 \begin{definition}[\cite{barr1990category}]
     \label{def:cat:diagram}
@@ -182,13 +176,10 @@ Consider the diagram in the category \textbf{Graph} shown below.
 \end{definition}
 
 \begin{example}
-    A commutative diagram in the category \textbf{Graph} of finite directed edge-labeled multigraphs is illustrated below.
-    %  in Figure~\ref{fig:preliminaries:commutative_diagram}. 
+    A commutative diagram in the category \textbf{Graph} of finite, directed, edge-labeled multigraphs is illustrated below. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
      The symbol $\mathop{=}$ in the center of the diagram
-    is used to indicate that the two paths from node 1 to node 2 are equal.
- 
-    % \begin{figure}[H]
-    %     \centering
+    is used to indicate that the diagram is commutative,
+    i.e. the two paths from node 1 to node 2 are equal.
     \begin{center}
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture} 
@@ -242,14 +233,11 @@ Consider the diagram in the category \textbf{Graph} shown below.
         \end{tikzpicture}
         }
     \end{center}
-    %     \caption{}
-    %     \label{fig:preliminaries:commutative_diagram}
-    % \end{figure}
 \end{example}
 
 \begin{notation}   
     When the context makes it clear, \( h_{AB} \) denotes a morphism \( h : A \to B \), and we refer to diagrams by listing their nodes, as is standard in geometry. 
-    For example, the diagram shown in Definition~\ref{def:cat:po} is denoted by \( ACDB \) or \( ABDC \).
+    % For example, the diagram shown in Definition~\ref{def:cat:po} is denoted by \( ACDB \) or \( ABDC \).
 \end{notation}   
 
 The pushout is a construction in category theory that can often be thought of as the construction of a new structure from two given structures by gluing them along a common interface structure.
@@ -368,13 +356,13 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
 
 \begin{proposition}{\cite[p.188]{corradini1997algebraic}}
     \label{prop:pushout_graph_always_exists}
-    In category \textbf{Graph} the pushout of two arrows always exists: It can be computed componentwise (as a pushout in \textbf{Set}) for the nodes and for the edges, and the source, target, and labeling mappings are uniquely determined.
+    In category \textbf{Graph}, the pushout of two arrows always exists: It can be computed componentwise (as a pushout in \textbf{Set}) for the nodes and for the edges, and the source, target, and labeling mappings are uniquely determined.
 \end{proposition}
 
 \begin{example}
-    The diagram shown below
+    The diagram in the category \textbf{Graph} shown below
     %  in Figure~\ref{fig:preliminaries:pushout_injective} 
-     is a pushout square in the category \textbf{Graph}. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
+     is a pushout square. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. In this example, both $\alpha$ and $\beta$ are injective morphisms. Therefore, the pushout object $G$ can be constructed easily by taking the interface graph $K$ and adding elements from $L$ and $C$ which are not present in $K$.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -437,7 +425,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
 
 \begin{example}
     \label{ex:cat:pushout_non_injective_ssss}
-    Consider the diagram in the category \textbf{Graph} shown below.
+    Consider the diagram in the category \textbf{Graph} shown below. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
     % The diagram 
     % in Figure~\ref{fig:preliminaries:pushout_non_injective} is a pushout square in the category \textbf{Graph}. 
     In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
@@ -500,14 +488,12 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
         \end{tikzpicture}
         }
     \end{center}
-    %     \caption{Pushout square with a non-injective morphism.}
-    %     \label{fig:preliminaries:pushout_non_injective}
-    % \end{figure} 
 \end{example}
-The \emph{pullback}, defined below, is the dual construction of the pushout in category theory, and it can be thought of as construction of the interface structure along which two structures are glued together. 
+The \emph{pullback} is the dual construction of the pushout, and it can be thought of as construction of the interface structure along which two structures are glued together. 
 \begin{definition} 
     \label{def:cat:pb}
-   A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \), shown below,
+   A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \)
+%    , shown below,
 %    in Figure~\ref{fig:preliminaries:pullback_ssdsfd},
 is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \star \beta' = \gamma \star \alpha'\) holds, then there exists a unique morphism \(\delta: E \to A\) such that $\gamma' = \delta \star \alpha$ and $\gamma = \delta \star \beta$. 
     % \begin{figure}[H]
@@ -536,22 +522,14 @@ is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) 
                 \end{center}
 The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \textbf{pullback square}, with \(A\) as the \textbf{pullback object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pullback}.
 \end{definition} 
-In the category \textbf{Graph} pullbacks always exist and are computed pointwise: take the pullback in \textbf{Set} of the node sets and of the edge sets, and equip the resulting graph with source, target and labeling maps induced componentwise; the projection graph homomorphisms are the corresponding componentwise projections and satisfy the universal property.
+In the category \textbf{Graph} pullbacks always exist and are computed pointwise: take the pullback in \textbf{Set} of the node sets and of the edge sets, and equip the resulting graph with source, target and labeling maps induced componentwise; the projection graph homomorphisms are the corresponding componentwise projections and they satisfy the universal property.
 \begin{example} 
     \label{ex:cat:pbfsdljkgjasssss}
     In the category \textbf{Set},
     the pullback 
     of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) is the span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) where
     the pullback object $A$ is the set $A = \set{(b,c) \mid \beta (c) = \alpha (b)} \subseteq B \times C$; $\alpha$ and $\beta$ are defined as the corresponding projections, e.g., $\alpha((b, c)) = b$ and $\beta((b, c)) = c$.
-
-    Consider the diagram shown below. 
-    % shown in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg}. 
-    The span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \)
-    % shown in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg} 
-    is the pullback of the cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \).
-    Indeed, the pullback object can be taken as the set $A' = \set{(1_B,1_C),(2_B,2_C)} \subseteq B \times C$, and the morphisms $\alpha'' \colon A' \to B$ and $\beta'' \colon A' \to C$ are defined as the corresponding projections, e.g., $\alpha''((x,y)) = x$ and $\beta''((x,y)) = y$. Note that $A$ is isomorphic to $A'$, which is expected because the pullback of a cospan is unique up to isomorphism.
-    %   \begin{figure}[H]
-    %   \centering 
+    Consider the following diagram:
     \begin{center}
       \resizebox{0.7\textwidth}{!}{
       \begin{tikzpicture}
@@ -599,14 +577,16 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
           \node () at (77mm,-33mm) {\( \overset{\alpha'}{\rightarrowtail} \)};
       \end{tikzpicture}
       }
-    \end{center}
-%       \caption{}
-%       \label{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg}
-%   \end{figure}
+    \end{center} 
+    The span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \)
+    % shown in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg} 
+    is the pullback of the cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \).
+    Indeed, the pullback object can be taken as the set $A' = \set{(1_B,1_C),(2_B,2_C)} \subseteq B \times C$, and the morphisms $\alpha'' \colon A' \to B$ and $\beta'' \colon A' \to C$ are defined as the corresponding projections, e.g., $\alpha''((x,y)) = x$ and $\beta''((x,y)) = y$. Note that $A$ is isomorphic to $A'$, which is expected because the pullback of a cospan is unique up to isomorphism.
 \end{example}
 
 \begin{example}
-    Consider the diagram in the category \textbf{Graph}, shown below.
+    \label{ex:cat:pbfsdljkgjasssss2222ssss}
+    Consider the diagram in the category \textbf{Graph}, shown below. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
     The span $L \overset{\alpha}{\leftarrow} K \overset{\beta}{\rightarrow} C$ is a pullback of the cospan $L \overset{\beta'}{\rightarrow} G \overset{\alpha'}{\leftarrow} C$.
     % \begin{figure}[H]
     %     \centering
@@ -666,223 +646,10 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
         \end{tikzpicture}
         }
     \end{center}
-    %     \caption{Pullback.}
-    %     \label{fig:preliminaries:pullback}
-    % \end{figure} 
-
- 
-    % Specifically, for a possible span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) to satisfy \(\gamma' \star \beta' = \gamma \star \alpha'\), graph $E$ must not contain any edges as $\alpha'$ and $\beta'$ do not map any edges from $C$ and $L$ to a common edge in $G$.
-    %  For all graph $E$ without edges and all morphisms $\gamma': E \rightarrow L $ and $\gamma : E \rightarrow C$, we have \(\gamma' \star \beta' = \gamma \star \alpha'\). Three examples of such spans are illustrated in Figure~\ref{fig:preliminaries:three_squares}.
-    % \begin{figure}[H]
-    %     \centering
-    %         \resizebox{0.7\textwidth}{!}{
-    %         \begin{tikzpicture} 
-    %             \graphbox{\( E_1 \)}{-50mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
-    %                 \coordinate (o) at (0mm,-8mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             }  
-    %             \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
-    %                 \coordinate (o) at (0mm,-8mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                 \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %                 \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
-    %                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
-    %                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
-    %             } 
-        
-    %             \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
-    %                 \coordinate (o) at (0mm,-8mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             }  
-
-    %             \graphbox{\( C \)}{40mm}{-20mm}{34mm}{35mm}{2mm}{-3mm}{
-    %                 \coordinate (o) at (0mm,-14mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
-    %                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                 \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
-    %                 \draw[->,blue] (l1) -- (l4) node[midway,right] {$a$};
-    %                 % \draw[->,blue] (l1) edge[loop above] node[midway, above] {$a$} (l1) ;
-    %                 \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
-    %                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
-    %             }
-
-    %             \graphbox{\(G  \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
-    %                 \coordinate (o) at (0mm,-20mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
-    %                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                 \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
-    %                 \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
-    %                 \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
-    %                 \draw[->,red] (l1) edge[bend left] node[midway,left] {$a$} (l3);
-    %                 \draw[->,red] (l3) edge[bend left] node[midway,right] {$a$} (l1);
-    %                 \draw[->,blue] (l1) edge  node[midway,right] {$a$} (l4);
-    %                 \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
-    %                 \draw[<-,blue] (l1) edge node[midway,left] {$a$} (l6) ;
-    %                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %             }   
-    %             % E to K
-    %             \draw[>->] (-15mm,-6mm) -- node[above] {$\delta_1$} (-1mm,-6mm);
-    %             % E to L
-    %             \draw[>->] (-33mm,5mm) -- node[above] {$\gamma'_1$} (33mm,15mm);
-    %             % K to L  
-    %             \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
-    %             % C to G
-    %             \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
-    %             % K to C
-    %             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
-    %             % E to C
-    %             \draw[->] (-33mm,-17mm) -- node[below] {$\gamma_1$} (33mm,-28mm);
-    %             % L to G
-    %             \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
-    %             % \node () at (57mm,-6mm) {$PB$};
-    %         \end{tikzpicture}
-    %         }
-
-    %         \vspace{5mm}
-    %         \resizebox{0.7\textwidth}{!}{
-    %         \begin{tikzpicture} 
-    %             \graphbox{\( E_2 \)}{-50mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
-    %                 \coordinate (o) at (0mm,-8mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             }  
-    %             \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
-    %                 \coordinate (o) at (0mm,-8mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                 \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %                 \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
-    %                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
-    %                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
-    %             } 
-        
-    %             \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
-    %                 \coordinate (o) at (0mm,-8mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             }  
-
-    %             \graphbox{\( C \)}{40mm}{-20mm}{34mm}{35mm}{2mm}{-3mm}{
-    %                 \coordinate (o) at (0mm,-14mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
-    %                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                 \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
-    %                 \draw[->,blue] (l1) -- (l4) node[midway,right] {$a$};
-    %                 % \draw[->,blue] (l1) edge[loop above] node[midway, above] {$a$} (l1) ;
-    %                 \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
-    %                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
-    %             }
-
-    %             \graphbox{\(G  \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
-    %                 \coordinate (o) at (0mm,-20mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
-    %                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                 \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
-    %                 \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
-    %                 \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
-    %                 \draw[->,red] (l1) edge[bend left] node[midway,left] {$a$} (l3);
-    %                 \draw[->,red] (l3) edge[bend left] node[midway,right] {$a$} (l1);
-    %                 \draw[->,blue] (l1) edge  node[midway,right] {$a$} (l4);
-    %                 \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
-    %                 \draw[<-,blue] (l1) edge node[midway,left] {$a$} (l6) ;
-    %                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %             }   
-    %             % E to K
-    %             \draw[>->] (-15mm,-6mm) -- node[above] {$\delta_2$} (-1mm,-6mm);
-    %             % E to L
-    %             \draw[>->] (-33mm,5mm) -- node[above] {$\gamma'_2$} (33mm,15mm);
-    %             % K to L  
-    %             \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
-    %             % C to G
-    %             \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
-    %             % K to C
-    %             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
-    %             % E to C
-    %             \draw[->] (-33mm,-17mm) -- node[below] {$\gamma_2$} (33mm,-28mm);
-    %             % L to G
-    %             \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
-    %             % \node () at (57mm,-6mm) {$PB$};
-    %         \end{tikzpicture}
-    %         }
-
-    %         \vspace{5mm}
-    %         \resizebox{0.7\textwidth}{!}{
-    %         \begin{tikzpicture} 
-    %             \graphbox{\( E_3 \)}{-50mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
-    %                 \coordinate (o) at (0mm,-8mm); 
-    %                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l2) at ($(o)+(10mm,0mm)$) {2};
-    %             }  
-    %             \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
-    %                 \coordinate (o) at (0mm,-8mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                 \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %                 \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
-    %                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
-    %                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
-    %             } 
-        
-    %             \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
-    %                 \coordinate (o) at (0mm,-8mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             }  
-
-    %             \graphbox{\( C \)}{40mm}{-20mm}{34mm}{35mm}{2mm}{-3mm}{
-    %                 \coordinate (o) at (0mm,-14mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
-    %                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                 \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
-    %                 \draw[->,blue] (l1) -- (l4) node[midway,right] {$a$};
-    %                 % \draw[->,blue] (l1) edge[loop above] node[midway, above] {$a$} (l1) ;
-    %                 \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
-    %                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
-    %             }
-
-    %             \graphbox{\(G  \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
-    %                 \coordinate (o) at (0mm,-20mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
-    %                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                 \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
-    %                 \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
-    %                 \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
-    %                 \draw[->,red] (l1) edge[bend left] node[midway,left] {$a$} (l3);
-    %                 \draw[->,red] (l3) edge[bend left] node[midway,right] {$a$} (l1);
-    %                 \draw[->,blue] (l1) edge  node[midway,right] {$a$} (l4);
-    %                 \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
-    %                 \draw[<-,blue] (l1) edge node[midway,left] {$a$} (l6) ;
-    %                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %             }   
-    %             % E to K
-    %             \draw[>->] (-15mm,-6mm) -- node[above] {$\delta_3$} (-1mm,-6mm);
-    %             % E to L
-    %             \draw[>->] (-33mm,5mm) -- node[above] {$\gamma'_3$} (33mm,15mm);
-    %             % K to L  
-    %             \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
-    %             % C to G
-    %             \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
-    %             % K to C
-    %             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
-    %             % E to C
-    %             \draw[->] (-33mm,-17mm) -- node[below] {$\gamma_3$} (33mm,-28mm);
-    %             % L to G
-    %             \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
-    %             % \node () at (57mm,-6mm) {$=$};
-    %         \end{tikzpicture}
-    %         }
-    %     \caption{}
-    %     \label{fig:preliminaries:three_squares} 
-    % \end{figure}
 \end{example} 
-An important phenomenon about pushouts and pullbacks in the category \textbf{Graph} is stated in the following proposition. For examples, consider the diagrams in Example~\ref{ex:cat:pushout_non_injective_ssss} and Example~\ref{ex:cat:pbfsdljkgjasssss}.
+An interesting phenomenon about pushouts and pullbacks in the category \textbf{Graph} is stated in the following proposition. 
 \begin{proposition}[\text{\cite[Lemma 13]{lack2004adhesive}}]
     \label{prop:pb_eq_po}
     In the category \textbf{Graph}, pushouts along monomorphisms are also pullbacks. 
 \end{proposition}
+This proposition is illustrated in Example~\ref{ex:cat:pushout_non_injective_ssss} and Example~\ref{ex:cat:pbfsdljkgjasssss2222ssss}.

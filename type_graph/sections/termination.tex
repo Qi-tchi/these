@@ -3,7 +3,7 @@
 % It is crucial to ensure that the weight of any object subject to rewriting is greater than or equal to $1_\mathcal{S}$.
 % This issue is addressed by the existence of a context closure. Specifically, it ensures that every graph that can be rewritten using that rule admits some morphism into the weighted type graph, and thus the weight of the morphism, which is the sum of the weights of the morphisms into the type graph, is greater than or equal to \(1_S\) by the following~\autoref{lem:wf:morphism_weight_geq_1_neq_0}.
 
-It is crucial to ensure that the weight of any object subject to rewriting is not $0_S$, because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +)\), \(0_S\) is the smallest element \(-\infty\).
+It is crucial to ensure that the weight of any object subject to rewriting is not $0_S$, because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural tropical semiring \((\mathbb{N} \cup \{+\infty\}, \min, +)\), the element \(0_S\) is the greatest element \(+\infty\), while in the natural arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +)\), the element \(0_S\) is the smallest element \(-\infty\).
 This issue is addressed by the existence of a context closure defined as follows:
 
 % \begin{lemma}[Lemma 4.5~\cite{endrullis2024generalized_arxiv_v4}]
@@ -21,14 +21,11 @@ This issue is addressed by the existence of a context closure defined as follows
 
 \begin{definition}[\cite{endrullis2024generalized_arxiv_v2}]
     \label{def:context_closure}  
-    \ \newline 
-\begin{minipage}{0.65\textwidth}
     Let $\mathcal{T}=(T,\mathbb{E},\mathcal{S},w)$ be a finitary weighted type graph, \(\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R ) \) a DPO rewriting rule and $\mathfrak{F}$ a rewriting framework. 
-    A \textbf{context closure} for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$ is a morphism $c:L \rightarrow T$ such that for every DPO diagram in $\mathfrak{F}(\rho)$ (shown on the right) 
+    A \textbf{context closure} for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$ is a morphism $c:L \rightarrow T$ such that for every DPO diagram in $\mathfrak{F}(\rho)$ shown below,
     there is $\alpha : G \rightarrow T$ such that $m \star \alpha = c$.
-\end{minipage}
-\begin{minipage}{0.35\textwidth}
     \begin{center}
+        \resizebox{0.3\textwidth}{!}{
         \begin{tikzpicture}[node distance=11mm]
           \node (I) at (0,0) {$K$};
           \node (L) at (-1,0) {$L$};
@@ -45,8 +42,8 @@ This issue is addressed by the existence of a context closure defined as follows
           \draw [->] (C) to (G);
           \draw [->] (C) to (H);
         \end{tikzpicture}
+        }
       \end{center}
-\end{minipage}
 \end{definition}
 \begin{example}
     \label{wf:example:context_closure}
@@ -143,38 +140,7 @@ This issue is addressed by the existence of a context closure defined as follows
         \node () at (-5mm,-15mm) {$\overset{c}{\to}$};
     \end{tikzpicture}
     }
-\end{center}    
-%     \caption{}
-%     \label{fig:nwf:context_closure_grsaa}
-%   \end{figure}
-% \begin{figure}[H]
-%     \centering
-    \begin{center}
-    \resizebox{0.6\textwidth}{!}{
-    \begin{tikzpicture}
-      \graphbox{\( L \)}{-50mm}{0mm}{40mm}{40mm}{2mm}{-8mm}{
-        \coordinate (o) at (0mm,-10mm); 
-        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-        \draw[] (l1) -- (l3) node[midway,above] {$a$}; 
-        \draw[] (l3) -- (l2) node[midway,above] {$a$};
-    } 
-        \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
-            % \node[draw,circle] (1) at (0,0) {$1\ 2\ 3$};
-            % \node[draw,circle] (2) at (2,0) {};
-            \coordinate (o) at (2mm,-3mm); 
-            \node[draw,circle] (1) at ($(o)+(0,0mm)$) {$1\ 2\ 3$};
-            \node[draw,circle] (2) at ($(o)+(2,0)$) {};
-            \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
-            \draw[->] (1) edge[loop below] node[midway, below] {$b^{1}$} (1) ;
-            \draw[->] (1) edge[bend left] node[midway, above] {$a^{1}$}  (2)  ;
-            \draw[->] (2) edge[bend left] node[midway, below] {$a^{1}$} (1)   ;
-        }
-        \node () at (-5mm,-15mm) {$\overset{c}{\to}$};
-    \end{tikzpicture}
-    }
-    \end{center}
+\end{center}  
 \end{example} 
 
 \subsection{Decreasing rules}
@@ -187,13 +153,13 @@ The following definition of decreasing rules from~\cite{endrullis2024generalized
     Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \preceq),w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule.
 
     \noindent
-    The rule $\rho$ is said to be \textbf{weakly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if 
+    The rule $\rho$ is said to be \textbf{weakly decreasing} with respect to $\mathcal{T}$ in $\mathfrak{F}$ if 
             for every $t_K : K \to T$, the following inequality holds:
                 $$ 
                   w_\mathcal{T}(\{l \star - = t_K\}) \succeq w_\mathcal{T}(\{r\star - = t_K\}).$$
            
     \noindent
-    The rule $\rho$ is said to be \textbf{uniformly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following conditions hold:
+    The rule $\rho$ is said to be \textbf{uniformly decreasing} with respect to $\mathcal{T}$ in $\mathfrak{F}$ if the following conditions holds:
         \begin{itemize}
             \item[]- there is a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$, 
             \item[]- for every $t_K : K \to T$,
@@ -206,7 +172,7 @@ The following definition of decreasing rules from~\cite{endrullis2024generalized
          
     \noindent
    If $S$ is moreover strictly monotonic, we say the rule $\rho$ is
-            \textbf{closure decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
+            \textbf{closure decreasing} with respect to $\mathcal{T}$ in $\mathfrak{F}$ if the following holds:
             \begin{itemize}
                 \item[]- $\rho$ is weakly decreasing,
                 \item[]- there is a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$,
@@ -279,8 +245,7 @@ The following definition of decreasing rules from~\cite{endrullis2024generalized
     %     \label{fig:nwf:weighted_type_graph_grsaa_2}
     % \end{figure}
     \end{center}
-     There are 4 morphisms $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}$ from $K$ to $T$ which are 
-     illustrated below:
+     There are 4 morphisms $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}$ from $K$ to $T$:
     %   in Figure~\ref{fig:nwf:grsaa_rule_morphisms}.
 
     % \begin{figure}[H]
@@ -377,7 +342,7 @@ The following definition of decreasing rules from~\cite{endrullis2024generalized
     %     \label{fig:nwf:grsaa_rule_morphisms}
     %   \end{figure}
     \end{center}
-    The set $\{l \star - = t_K^{11}\}$ consists of two morphisms $h_{11}^1$ and $h_{11}^2$ which are shown below:
+    The set $\{l \star - = t_K^{11}\}$ consists of two morphisms $h_{11}^1$ and $h_{11}^2$:
     % shown in Figure~\ref{fig:nwf:grsaa_rule_morphisms_22}.
     % \begin{figure}[H]
     %     \centering
@@ -436,8 +401,7 @@ The following definition of decreasing rules from~\cite{endrullis2024generalized
         =&(1^1 * 1^1) + (1^1 * 1^1)\\
         =&2.
     \end{flalign*}
-    The set $\{r \star - = t_K^{11}\}$ has one morphism $h_{11}^3$ which is
-     illustrated 
+    The set $\{r \star - = t_K^{11}\}$ has one morphism $h_{11}^3$:
     % in Example~\ref{wf:example:context_closure_grs_aa}.
     % \begin{figure}[H]
     %     \centering
@@ -511,12 +475,12 @@ The following definition of decreasing rules from~\cite{endrullis2024generalized
     \end{tikzpicture}
     }
 \end{center}
-    Since we have additionally: 
+    Since the following conditions hold:
         \begin{itemize}
             \item $t_K^{11} = l \star c$, and
             \item $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2 > 1 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$.
         \end{itemize}
-       We conclude that the rule is closure decreasing since the semiring is strictly monotonic.
+       we conclude that the rule is closure decreasing since the semiring is strictly monotonic.
 \end{example} 
  
 \subsection{Termination Criterion}
@@ -540,5 +504,5 @@ Finally, we can state the main result from~\cite{endrullis2024generalized_icgt}.
 \end{theorem} 
 \begin{example} 
     \label{wf:example:termination}
-    Termination of the DPO rule in Example~\ref{ex:grsaa} can be established using Theorem~\ref{wf:thm:termination_grs} together with the weighted type graph in Example~\ref{wf:example:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0_\mathbb{R},1_\mathbb{N},<,\leq)$. It is closure decreasing by Example~\ref{wf:example:decreasing_rule}.
+    Termination of the DPO rule in Example~\ref{ex:grsaa} can be established using Theorem~\ref{wf:thm:termination_grs} together with the weighted type graph in Example~\ref{wf:example:weighted_type_graph} over the natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0_\mathbb{R},1_\mathbb{N},<,\leq)$. It is closure decreasing as explained in Example~\ref{wf:example:decreasing_rule}.
 \end{example}

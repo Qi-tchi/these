@@ -2,8 +2,8 @@ Type graphs are weighted over semirings which are algebraic structures as define
 \begin{definition} 
     A \textbf{monoid} $(S, \cdot, e)$ is a set $S$ equipped with a binary operation $\cdot : S \times S \rightarrow S$ and having a special element $e$ such that:
     \begin{itemize}
-        \item {$\cdot$ is associative:} $ (x \cdot y) \cdot z = x \cdot (y \cdot z)$
-        \item {$e$ is an identity element:} $  e \cdot x = x = x \cdot e$
+        \item {$\cdot$ is associative:} $ (x \cdot y) \cdot z = x \cdot (y \cdot z)$,
+        \item {$e$ is an identity element:} $  e \cdot x = x = x \cdot e$.
     \end{itemize}
     A \textbf{commutative monoid} is a monoid where $\cdot$ is commutative: $x \cdot y = y \cdot x$.
 \end{definition}
@@ -12,14 +12,14 @@ Type graphs are weighted over semirings which are algebraic structures as define
     \label{def_semiring}
         A \textbf{semiring} is a 5-tuple $(S,\oplus,\odot,0,1)$ satisfying the following conditions:
          \begin{itemize}
-            \item {$(S,\oplus,0)$ is a commutative monoid} 
-            \item {$(S,\odot,1)$ is a monoid} 
+            \item {$(S,\oplus,0)$ is a commutative monoid},
+            \item {$(S,\odot,1)$ is a monoid},
             \item {$\odot$ is distributive over $\oplus$:}
             \begin{itemize}
-                \item $a \odot ( b \oplus c) = (a \odot b) \oplus (a \odot c)$ 
-                \item $(b \oplus c) \odot a = (b \odot a) \oplus (c \odot a)$
+                \item $a \odot ( b \oplus c) = (a \odot b) \oplus (a \odot c)$, 
+                \item $(b \oplus c) \odot a = (b \odot a) \oplus (c \odot a)$,
             \end{itemize} 
-            \item {0 is an annihilator for $\odot$:} $x \odot 0= 0 =  0 \odot x $
+            \item {0 is an annihilator for $\odot$:} $x \odot 0= 0 =  0 \odot x $.
         \end{itemize}
         A semiring is said to be commutative if $(S,\odot,1)$ is a commutative monoid.
 \end{definition}
@@ -31,11 +31,11 @@ The following definition of well-founded semirings is from~\cite{endrullis2024ge
         \item a semiring $(S, \oplus, \odot, 0, 1)$, and
         \item non-empty orders $\prec, \preceq \subseteq S \times S$ for which $\prec \subseteq \preceq$ and $\preceq$ is reflexive,
     \end{itemize}
-    such that $\prec$ is terminating relative to $\preceq$, $0 \neq 1$ and for all $x,y,z,w \in S$ we have
+    such that $\succ$ is terminating relative to $\succeq$, $0 \neq 1$ and for all $x,y,z,w \in S$ we have
         \begin{align*}
             x \preceq x' \land y \preceq y' 
             &\Rightarrow
-            x \oplus y \preceq x' \oplus y'
+            x \oplus y \preceq x' \oplus y',
             &\tag{S1} \label{wfs:ax:s1} 
             \\   
             % x < y  
@@ -45,24 +45,24 @@ The following definition of well-founded semirings is from~\cite{endrullis2024ge
             % \\ w
             x \prec x' \land y \prec y'  
             &\Rightarrow
-            x \oplus y \prec x' \oplus y'
+            x \oplus y \prec x' \oplus y',
             &\tag{S2} \label{wfs:ax:s2} 
             \\
             x \preceq x' \land 1 \preceq y
             &\Rightarrow 
-            x \odot y \preceq x' \odot y \land y \odot x \preceq y \odot x' 
+            x \odot y \preceq x' \odot y \land y \odot x \preceq y \odot x',
             &\tag{S3} \label{wfs:ax:s3} 
             \\
             x \prec x' \land 1 \preceq y \neq 0 
             &\Rightarrow
-            x \odot y \prec x' \odot y \land y \odot x \prec y \odot x'
+            x \odot y \prec x' \odot y \land y \odot x \prec y \odot x'.
             &\tag{S4} \label{wfs:ax:s4}
         \end{align*}
       The semiring is \textbf{strictly monotonic} if it additionally satisfies 
         \begin{flalign*}
                 \hspace{5cm}x \prec x'  \land y \preceq y'
                 &\Rightarrow
-                x \oplus y \prec x' \oplus y 
+                x \oplus y \prec x' \oplus y. 
                 &\tag{S5} \label{wfs:ax:s5} 
         \end{flalign*}
 \end{definition}
@@ -71,19 +71,19 @@ The following definition of well-founded semirings is from~\cite{endrullis2024ge
 
     The natural tropical semiring $\mathfrak{T} = (\mathbb{N} \cup \{+\infty\},\min, \mathop{+_\mathbb{N}}, +\infty, 0_\mathbb{N}, <_\mathbb{N}, \leq_\mathbb{N})$ is an instance of the well-founded semiring where
     \begin{flalign*}
-        S & \longmapsto \mathbb{N} \cup \{+\infty\}
+        S & \longmapsto \mathbb{N} \cup \{+\infty\},
         \\
-        \mathop{\oplus} & \longmapsto \mathop{\min}
+        \mathop{\oplus} & \longmapsto \mathop{\min},
         \\
-        \mathop{\odot} & \longmapsto \mathop{+_\mathbb{N}}
+        \mathop{\odot} & \longmapsto \mathop{+_\mathbb{N}},
         \\
-        0_s & \longmapsto \mathop{+\infty}
+        0_s & \longmapsto \mathop{+\infty},
         \\
-        1_s & \longmapsto 0_\mathbb{N}
+        1_s & \longmapsto 0_\mathbb{N},
         \\
-        \mathop{\prec} & \longmapsto \mathop{<_\mathbb{N}}
+        \mathop{\prec} & \longmapsto \mathop{<_\mathbb{N}},
         \\
-        \mathop{\preceq} & \longmapsto \mathop{\leq_\mathbb{N}}
+        \mathop{\preceq} & \longmapsto \mathop{\leq_\mathbb{N}}.
     \end{flalign*}
     It is a well-founded semiring but not strictly monotonic because $2 <_\mathbb{N} 3$ but $2 \oplus 2 \isdef \min(2,2) = 2 \not <_\mathbb{N} 2 = \min(3,2) \isdef 3 \oplus 2$.
 \end{example}
@@ -93,19 +93,19 @@ The following definition of well-founded semirings is from~\cite{endrullis2024ge
 
     The natural arctic semiring $\mathfrak{A} = (\mathbb{N} \cup \{-\infty\},\max,+_\mathbb{N},-\infty, 0_\mathbb{N},<_\mathbb{N},\leq_\mathbb{N})$ is an instance of the well-founded semiring where
     \begin{flalign*}
-        S & \longmapsto \mathbb{N} \cup \{-\infty\}
+        S & \longmapsto \mathbb{N} \cup \{-\infty\},
         \\
-        \oplus & \longmapsto \mathop{\max}
+        \oplus & \longmapsto \mathop{\max},
         \\
-        \odot & \longmapsto \mathop{+_\mathbb{N}}
+        \odot & \longmapsto \mathop{+_\mathbb{N}},
         \\
-        0_s & \longmapsto \mathop{-\infty}
+        0_s & \longmapsto \mathop{-\infty},
         \\
-        1_s & \longmapsto 0_\mathbb{N}
+        1_s & \longmapsto 0_\mathbb{N},
         \\
-        \prec & \longmapsto \mathop{<_\mathbb{N}}
+        \prec & \longmapsto \mathop{<_\mathbb{N}},
         \\
-        \preceq & \longmapsto \mathop{\leq_\mathbb{N}}
+        \preceq & \longmapsto \mathop{\leq_\mathbb{N}}.
     \end{flalign*}
     It is a well-founded semiring but not strictly monotonic because $2 <_\mathbb{N} 3$ but $2 \oplus 3 \isdef \max(2,3) = 3 \not <_\mathbb{N} 3 = \max(3,3) \isdef 3 \oplus 3$.
 \end{example}
@@ -114,19 +114,19 @@ The following definition of well-founded semirings is from~\cite{endrullis2024ge
     % The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+,*,0,1,<,\leq)$ has domain $\mathbb{N}$, the binary function symbol $\oplus$ interpreted by $+$ and the binary function symbol $\odot$ interpreted by $*$, the constant symbols $0_s$ and $1_s$ interpreted by $0_\mathbb{N}$ and $1_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N}$. It is a strictly monotonic semiring.
     The natural arithmetic semiring $\mathfrak{N} = (\mathbb{N},+_\mathbb{N},*_\mathbb{N},0_\mathbb{N},1_\mathbb{N},<_\mathbb{N},\leq_\mathbb{N}) $ is an instance of the strictly monotonic semiring where
     \begin{flalign*}
-        S & \longmapsto \mathbb{N}
+        S & \longmapsto \mathbb{N},
         \\
-        \oplus & \longmapsto \mathop{+_\mathbb{N}}
+        \oplus & \longmapsto \mathop{+_\mathbb{N}},
         \\
-        \odot & \longmapsto \mathop{*_\mathbb{N}}
+        \odot & \longmapsto \mathop{*_\mathbb{N}},
         \\
-        0_s & \longmapsto 0_\mathbb{N}
+        0_s & \longmapsto 0_\mathbb{N},
         \\
-        1_s & \longmapsto 1_\mathbb{N}
+        1_s & \longmapsto 1_\mathbb{N},
         \\
-        \prec & \longmapsto \mathop{<_\mathbb{N}}
+        \prec & \longmapsto \mathop{<_\mathbb{N}},
         \\
-        \preceq & \longmapsto \mathop{\leq_\mathbb{N}}
+        \preceq & \longmapsto \mathop{\leq_\mathbb{N}}.
     \end{flalign*}
     It is a strictly monotonic semiring.
 \end{example}
@@ -135,11 +135,19 @@ The following definition of well-founded semirings is from~\cite{endrullis2024ge
     \label{def:bigodot}
 Let $(S, \oplus, \odot, 0, 1)$ be a semiring. We extend naturally the binary operations $\oplus$ and $\odot$ to finite sets $E \subseteq S$ by letting
     \begin{itemize}
-        \item $\bigodot \emptyset \isdef 1$ and $\bigodot \left( E \cup \{x\} \right) \isdef \left( \bigodot E \right) \odot x$;
+        \item $\bigodot \emptyset \isdef 1$ and $\bigodot \left( E \cup \{x\} \right) \isdef \left( \bigodot E \right) \odot x$,
         \item $\bigoplus \emptyset \isdef 0$ and $\bigoplus \left( E \cup \{x\} \right) \isdef \left( \bigoplus E \right) \oplus x$.
     \end{itemize}
 \end{notation}
-
+ We define the exponentiation operation for elements of the semiring before defining formally the morphism weight.
+\begin{notation} 
+    \label{wfs:def:exponentiation}
+Let $(S, \oplus, \odot, 0_S, 1_S)$ be a semiring. We define the \textbf{exponentiation operation} for all $x \in S$ and $n \in \mathbb{N}$ by
+   \begin{itemize}
+        \item $ x^0 \isdef 1_S$,
+        \item $x^{n+1} \isdef x^n \odot x$.
+   \end{itemize}
+\end{notation}
 % \begin{notation}
 %     Let $S$ be a strongly monotonic measurable semiring. We write $0_s$, $1_s$ and $\mu_s$ to denote the additive and multiplicative neutral elements of $S$ and the homomorphism, respectively.
 % \end{notation}
