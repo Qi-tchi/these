@@ -8,9 +8,8 @@
 \section{Measuring graphs by counting morphisms from specific graphs}
 \label{subgraph_counting:sec:interpretation}
 Let $\mathcal{R} = \mathcal{A} \cup \mathcal{B}$ be a set of injective rules.
-Define $\opn{Sub}(\opn{left}(\mathcal{R}))$ as the set of all subgraphs of left-hand sides graphs of rules in $\mathcal{R}$.
-We call the elements of $\opn{Sub}(\opn{left}(\mathcal{R}))$~\textbf{ruler-graphs}. Like using rulers to measure physical objects, we use ruler-graphs (special reference structures) to measure graphs.
-Each ruler-graph in a set $\mathbb{X}$ provides a measure for a graph
+Define $\opn{Sub}(\opn{left}(\mathcal{R}))$ as the set of all subgraphs of left-hand sides of rules in $\mathcal{R}$.
+We call the elements of $\opn{Sub}(\opn{left}(\mathcal{R}))$~\textbf{ruler-graphs}. Ruler-graphs in a set $\mathbb{X}$ provide a measure for a graph
 G, and the total weight of G is determined by a weighted linear
 combination of these measures.
 
@@ -22,18 +21,25 @@ combination of these measures.
     \).
 \end{definition} 
 Counting monomorphisms from ruler-graphs before and after a rewriting step provides a termination criterion: 
-    If there exists a ruler-graph $X$ such that every rewriting step using a rule in $\mathcal{A}$ strictly decreases the number monomorphism from $X$, and every rewriting step using a rule in $\mathcal{B}$ never increases it, then the rewriting relation induced by $\mathcal{A}$ terminates relative to the rewriting relation induced by $\mathcal{B}$.
+    If there is a ruler-graph $X$ such that every rewriting step using a rule in $\mathcal{A}$ strictly decreases the number monomorphism from $X$, and every rewriting step using a rule in $\mathcal{B}$ never increases it, then the rewriting relation induced by $\mathcal{A}$ terminates relative to the rewriting relation induced by $\mathcal{B}$.
  
-For some ruler-graphs, the change in the number of monomorphism when applying a rewriting step using an injective rule is precisely computable by simply counting the numbers of monomorphisms from these ruler-graphs in the left- and right-hand side graphs. Examples include: the ruler-graph \tikz[baseline=-0.5ex]{
+For some ruler-graphs, the change in the number of monomorphism when applying a rewriting step using an injective rule is precisely computable by simply counting the numbers of monomorphisms from these ruler-graphs in the left- and right-hand side graphs. 
+
+Examples include: 
+\begin{itemize}
+    \item  the ruler-graph \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) {};
-    } consisting of a single node; the ruler-graph \tikz[baseline=-0.5ex]{
+    } consisting of a single node;
+    \item the ruler-graph \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) {};
         \draw[->] (x) edge[loop right] node[midway, right] {$x$} (x) ;
-    } consisting of a single node and a single loop labeled by $x\in \Sigma$; the ruler-graph \tikz[baseline=-0.5ex]{
+    } consisting of a single node and a single loop labeled by $x\in \Sigma$; 
+    \item the ruler-graph \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) { };
         \node[draw,circle] (y) at (1,0) { };
         \draw[->] (x) -- (y) node[midway, above] {$x$};
     } consisting of two nodes and a single labeled edge between them.  
+\end{itemize}
     
 However, systems like Example~\ref{subgraph_counting:ex:grsaa_rx} require more complex ruler-graphs such as \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) {};
@@ -41,15 +47,17 @@ However, systems like Example~\ref{subgraph_counting:ex:grsaa_rx} require more c
         \node[draw,circle] (z) at (2,0) {};
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[->] (y) -- (z) node[midway, above] {$a$};
-    } as shown in Example~\ref{subgraph_counting:ex:termination:grsaa}.
-    For such ruler-graph, the change in the number of monomorphisms when applying a rewriting rule is unpredictable in general, because the number of monomorphisms from such ruler-graph depends on the context graph\textemdash a challenge that we address in later sections.
+    }, as we will demonstrate in Example~\ref{subgraph_counting:ex:termination:grsaa}.
+    For such ruler-graph, the change in the number of monomorphisms when applying a rewriting rule is unpredictable in general, because the number of monomorphisms 
+    % from such ruler-graph 
+    depends on the context graph\textemdash a challenge that we address in later sections.
     
-To combine measurements from multiple ruler-graphs (analogous to combining measurements of physical objects from multiple rulers), we introduce:
+To combine measurements from multiple ruler-graphs (analogous to combining measurements of physical objects from multiple rulers), we introduce a weight function that assigns a weight to each ruler-graph.
 \begin{definition} 
     \label{subgraph_counting:def:weight_function}
     A \textbf{weight function} for a set of ruler-graphs \( \mathbb{X} \) is a map \( s_{\mathbb{X}} \colon \mathbb{X} \to \mathbb{N} \) assigning a weight in $\mathbb{N}$ to each ruler-graph. The weight of a monomorphism from a ruler-graph $X$ is defined to be $s_\mathbb{X}(X)$. 
 \end{definition}
-Assigning different weights to measurements from distinct ruler-graphs enhences the technique, as demonstrated in Example~\ref{ex:overbeek_5d6}.
+Assigning different weights to measurements from distinct ruler-graphs enhences the technique, as we will demonstrate in Example~\ref{ex:overbeek_5d6}.
 \begin{definition} 
     \label{subgraph_counting:def:graph_weight}  
     Let \( \mathbb{X} \) be a set of ruler-graphs, 
@@ -723,7 +731,7 @@ We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along
 \end{definition}  
 The first condition of the definition ensures that any $R' \in D(R,X)$ can be glued along some common interface elements with a subgraph $C'$ of a context graph \( C \) to form an \( X \)-occurrence. The second and third conditions ensure that such $X$-occurrences are included neither in \( C \) nor in \( R \), thereby guaranteeing that they are implicit.
 
-% In another word, the set $D(R,X)$ contains all subgraphs $R''$ of $R$ which is not a subgraph of $K$ such that there exists a rewriting step defined by the diagram above such that $R'' \cup C''$ for a subgraph $C''$ of $C$ is an $X$-occurrence created by the rewriting step.
+% In another word, the set $D(R,X)$ contains all subgraphs $R''$ of $R$ which is not a subgraph of $K$ such that there is a rewriting step defined by the diagram above such that $R'' \cup C''$ for a subgraph $C''$ of $C$ is an $X$-occurrence created by the rewriting step.
 
 \begin{example}
     \label{subgraph_counting:ex:grsaa_rx}
@@ -967,7 +975,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
         \draw[->] (x) -- (y) {};
     }}}.
 \end{example}
-We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\rho$ is $X$-non-increasing, then for any rewriting step using $\rho$, there exists an injective mapping from the set of \( X \)-occurrences implicitly created by the step to the set of \( X \)-occurrences implicitly destroyed by the step. This will be proved in Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}.
+We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\rho$ is $X$-non-increasing, then for any rewriting step using $\rho$, there is an injective mapping from the set of \( X \)-occurrences implicitly created by the step to the set of \( X \)-occurrences implicitly destroyed by the step. This will be proved in Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}.
 \begin{definition}[Non-increasing rule]
     \label{subgraph_counting:def:creates_more_x_on_the_left}
     Let \(\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a graph. 
@@ -983,7 +991,7 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
     \begin{enumerate}
         \item For all $R' \in D(R,X)$, we can construct the diagram shown on the right, where all morphisms other than $\Psi(R')$, $l$ and $r$ are inclusion functions,
         % For all $R' \in D(R,X)$, in the diagram shown on the right, where $h_{R'R}$ is the inclusion function, both squares are pullbacks,
-        % For all $R' \in D(R,X)$, there exists a morphism \(h_{R'L}: R' \rightarrowtail L \) such that \trackedtext{both squares in the diagram shown on the right are pullbacks}, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions,
+        % For all $R' \in D(R,X)$, there is a morphism \(h_{R'L}: R' \rightarrowtail L \) such that \trackedtext{both squares in the diagram shown on the right are pullbacks}, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions,
         \item \label{def:non_increasing:non_clapse} For all $R' \in D(R,X)$, for all nodes and edges $x$ in $R'$, if $ x \notin \operatorname{Im}(r)$ then 
         $\Psi(R')(x) \notin \operatorname{Im}(l)$,
         % $h_{R'L}(r') \notin \operatorname{Im}(l)$,
@@ -1043,7 +1051,7 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
 %     \noindent
 %     \begin{minipage}{0.64\textwidth} 
 %     \begin{enumerate}
-%         \item For all $R' \in D(R,X)$, there exists a morphism \(h_{R'L}: R' \rightarrowtail L \) such that both squares in the diagram shown on the right are pullbacks, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions, 
+%         \item For all $R' \in D(R,X)$, there is a morphism \(h_{R'L}: R' \rightarrowtail L \) such that both squares in the diagram shown on the right are pullbacks, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions, 
 %         \item \label{def:non_increasing:non_clapse} For all $R' \in D(R,X)$, for all node or edge $r'$ in $R'$, if $ r' \notin \operatorname{Im}(r)$ then $h_{R'L}(r') \notin \operatorname{Im}(l)$,
 %         \item \label{def:non_increasing_rule_img_edges_distinct} For all $R',R'' \in D(R,X)$, for all edges $x \in R'$ and $y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$,
 %         \item If $X$ has isolated nodes, then for all $R',R'' \in D(R,X)$ and nodes $x \in R', y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$.
@@ -1094,7 +1102,7 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
 
 %     %  \begin{enumerate}
 %     %     % \item[(2)] \label{def:non_increasing:non_clapse} For all node or arrow $r'$ in $R'$, if $ r' \notin \operatorname{Im}(r)$ then $h_{R'L}(r') \notin \operatorname{Im}(l)$,
-%     %     % \item there exists a morphism $h_{R_XL}$ such that
+%     %     % \item there is a morphism $h_{R_XL}$ such that
 %     %     %     \( h_{R'R_X} \star h_{R_XL} = h_{R'L} \) for all $R' \in D(R,X)$;
 %     %     % \item[(3)] \label{def:non_increasing:edge_injective} For all $R',R'' \in D(R,X)$, for all edges $x \in R'$ and $y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$,
 %     %     %  \item $h$  is edge-injective 

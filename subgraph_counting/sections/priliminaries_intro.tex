@@ -1,11 +1,11 @@
-\subsection{DPO rewriting with injective rules and matches} 
-We focus on DPO rewriting with injective rules and matches. While Definition~\ref{def:rewriting_inclusion} of injective rewriting rules and rewriting steps may appear more restrictive, they are equivalent to those introduced in \textsection~\ref{sec:dpo}. This equivalence arises because algebraic graph rewriting via double pushouts is defined up to isomorphism. Our preference for these definitions stems from their practical advantage: they provide a clearer view of how the number of monomorphisms from specific graphs changes before and after a rewriting step.
+While~\autoref*{def:rewriting_inclusion}\todo{ref incorrect} of injective rewriting rules and rewriting steps may appear more restrictive, they are equivalent to those introduced in \textsection~\ref{sec:dpo}. This equivalence arises because algebraic graph rewriting via double pushouts is defined up to isomorphism. Our preference for these definitions stems from their practical advantage: they provide a clearer view of how the number of monomorphisms from specific graphs changes after a rewriting step. 
  
 \begin{definition}
     \label{def:rewriting_inclusion}
-    A rewriting rule $\varphi = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ consists of two \textbf{inclusions} $l$ and $r$.  
+    An \textbf{inclusion} is a function $f$ such that $\opn{dom}(f) \subseteq \opn{codom}(f)$ and $f(x) = x$ for every $x \in \opn{dom}(f)$.
+    A rewriting rule $\varphi = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ consists of two inclusions $l$ and $r$.  
     Two rules $\varphi' = (L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ and $\varphi$ are \textbf{equivalent} if there exist isomorphisms $a,b,c$ such that 
-    $l' \star a = b \star l$ and $r' \star c = b \star r$, i.e. the following diagram illustrated below is commutative:    
+    $l' \star a = b \star l$ and $r' \star c = b \star r$, i.e. the following diagram is commutative:    
     % the commutative diagram illustrated in Figure~\ref{fig:subgraph_counting:general_rewriting_step_sdfsl_sdfjlsdkjfl} can be constructed:
             \begin{center}
                     \resizebox{0.40\textwidth}{!}{
@@ -30,8 +30,7 @@ We focus on DPO rewriting with injective rules and matches. While Definition~\re
                     % \caption{}
                     % \label{fig:subgraph_counting:general_rewriting_step_sdfsl_sdfjlsdkjfl}
                 \end{center}
-    A rewriting step $G \Rightarrow_\varphi H$ is a double-pushout as shown
-    below:
+    A rewriting step $G \Rightarrow_\varphi H$ is a double-pushout:
     %  in Figure~\ref{fig:subgraph_counting:gedfadsdsfdsfds}
 %   with injective match $m :L' \rightarrowtail G$:
          \begin{center}
@@ -57,11 +56,11 @@ We focus on DPO rewriting with injective rules and matches. While Definition~\re
       where all arrows are inclusions and $L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R'$ is equivalent to $\varphi$.
 \end{definition}
 
-\subsection{Pre-graphs}
-Graphs in double-pushouts that define rewriting steps in \textbf{Graph} can be decomposed into unions of pre-graphs. Pre-graphs model finite directed edge-labeled multigraphs that may contain dangling edges.
+\subsection{pregraphs}
+Graphs in double-pushouts that define rewriting steps in \textbf{Graph} can be decomposed into unions of pregraphs. pregraphs model finite directed edge-labeled multigraphs that may contain dangling edges.
 \begin{definition}
-    \label{def:pre-graph}
-    A pre-graph $G$ consists of
+    \label{def:pregraph}
+    A pregraph $G$ consists of
     \begin{itemize}
         \item a finite set of nodes, denoted by $V(G)$,
         \item a subset $V_{\nexists}(G) \subseteq V(G)$ of missing nodes
@@ -74,7 +73,7 @@ The set of existing nodes, $V(G) \setminus V_{\nexists}(G)$, is denoted by $V_\e
 
  \begin{example}
     \label{def:pregraph}
-     A pre-graph with node-set $\{1,3\}$, a missing node $2$, and 3 dangling edges is illustrated below:
+     A pregraph with node-set $\{1,2,3\}$, a missing node $2$, and 3 dangling edges is illustrated below:
      \begin{center}
         \resizebox{0.5\textwidth}{!}{
         \begin{tikzpicture}
@@ -92,12 +91,12 @@ The set of existing nodes, $V(G) \setminus V_{\nexists}(G)$, is denoted by $V_\e
         \end{tikzpicture} 
     }
     \end{center}
- \end{example}
+ \end{example} 
  
  A homomorphism of pregraphs is a mapping between two pregraphs that preserves structure and respects missing and existing nodes.
  \begin{definition} 
     \label{def:pregraph:homomorphism}
-    Let \( G \) and \( H \) be pre-graphs. A \textbf{homomorphism of pre-graphs} $h: G \to H$ consists a pair of functions $h_V: V(G) \to V(H) $ and $h_E: E(G) \to E(H)$ such that
+    Let \( G \) and \( H \) be pregraphs. A \textbf{homomorphism of pregraphs} $h: G \to H$ consists a pair of functions $h_V: V(G) \to V(H) $ and $h_E: E(G) \to E(H)$ such that
     \begin{itemize}
         \item for every edge \( a \colon s \to t \) in \( G \), the edge \( h_E(a) \) in $H$ has source \( h_V(s) \) and target \( h_V(t) \),
         \item for all $s \in V_{\nexists}(G)$, we have $h_V(s) \in V_{\nexists}(H)$,
@@ -107,11 +106,19 @@ The set of existing nodes, $V(G) \setminus V_{\nexists}(G)$, is denoted by $V_\e
 
 \begin{definition} 
     \label{def:pregraph:composition}
-    Let $f: (G,\lambda) \to (G',\lambda')$ and $g: (G',\lambda') \to (G'',\lambda'')$ be homomorphisms of pre-graphs. Their composition, denoted by $g \circ f$, is the homomorphism defined by the component-wise composition of functions $g_V \circ f_V$ and $g_E \circ f_E$.
+    Let $f: (G,\lambda) \to (G',\lambda')$ and $g: (G',\lambda') \to (G'',\lambda'')$ be homomorphisms of pregraphs. Their composition, denoted by $g \circ f$, is the homomorphism defined by the component-wise composition of functions $g_V \circ f_V$ and $g_E \circ f_E$.
 \end{definition}
-
-We define two operations on pre-graphs that will be used in the following discussion.
-The \textbf{union} $C \cup R$ of two sub pre-graphs $C \subseteq G$ and $R \subseteq G$ is a pre-graph with 
+\begin{definition} 
+    \label{def:subpregraph} Let $G$ be a pregraph. A pregraph $H$ is a \textbf{subpregraph} of $G$, written $H \rightarrowtail G$, if all of the following conditions hold:
+     \begin{itemize} 
+            \item $V(H) \subseteq V(G)$, \item $V_{\nexists}(H) = V(H) \cap V_{\nexists}(G)$, 
+            \item $E(H) \subseteq E(G)$, 
+            \item the source and target functions of $H$ are the restrictions of those of $G$ to $E(H)$,
+            \item the edge-labeling function of $H$ is the restriction $l_H = {l_G}_{|_{E(H)}}$. 
+        \end{itemize} 
+\end{definition}
+We define two operations on pregraphs that will be used in the following discussion.
+The \textbf{union} $C \cup R$ of two subpregraphs $C \subseteq G$ and $R \subseteq G$ is a pregraph with 
 \begin{itemize}
     \item Node set: $ V(C) \cup V(R) $,
     \item Missing nodes:
@@ -125,7 +132,7 @@ The \textbf{union} $C \cup R$ of two sub pre-graphs $C \subseteq G$ and $R \subs
     \item Target function: $ \opn{dst}_C \cup \opn{dst}_R $,  
     \item Edge-labeling function: $ l_C \cup l_R $.   
 \end{itemize} 
-An example is illustrated below where the pre-graphs $C$, $R$ and their union $C \cup R$ are shown:
+The definition is illustrated below:
 % in Figure~\ref{fig:subgraph_counting:union_of_pregraphs}.
 % \begin{figure}[H]
 %     \centering
@@ -172,7 +179,7 @@ An example is illustrated below where the pre-graphs $C$, $R$ and their union $C
              
         \end{tikzpicture}
     }
-    % \caption{Union of pre-graphs}
+    % \caption{Union of pregraphs}
     % \label{fig:subgraph_counting:union_of_pregraphs}
     % \end{figure}
     \end{center}
@@ -229,11 +236,11 @@ An example is illustrated below where the pre-graphs $C$, $R$ and their union $C
     %     \end{tikzpicture}
     %     }         
     % \end{center}
-The \textbf{relative complement} of $R$ in $H$ where $R \subseteq H$, denoted by $H \setminus R$, is the pre-graph with
+The \textbf{relative complement} of $R$ in $H$ where $R \subseteq H$, denoted by $H \setminus R$, is the pregraph with
 \begin{itemize}
-    \item Edges $X = E(H) \setminus E(R)$,
-    \item Nodes $Y =  \bigcup \{\{\opn{src}(e), \opn{dst}(e)\} \mid e \in X \}$ where $\bigcup$ returns the union of all sets in the set,  
-    \item Missing nodes $
+    \item Edge set: $X \isdef E(H) \setminus E(R)$,
+    \item Node set: $Y \isdef \bigcup_{e \in X} \{\opn{src}(e), \opn{dst}(e)\}$,
+    \item Set of missing nodes: $
    ( V_{\nexists}(H)  \cup
         (
                   V_\exists(H) 
@@ -343,8 +350,8 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
     % \label{fig:subgraph_counting:pushoutsquare}
     % \end{figure}
     \end{center}
-    Since all arrows are inclusions, by Definition~\ref{def:rewriting_inclusion}, graphs can be decomposed as unions of pre-graphs as illustrated below, 
-     where $K, L', R',C'$ are pre-graphs and $L = L' \cup K$, $R = R' \cup K$, $C = C' \cup K$, $G = L' \cup K \cup C'$, $H = R' \cup K \cup C'$.
+    Since all arrows are inclusions, by Definition~\ref*{def:rewriting_inclusion}\todo{todo to do: ref incorrect}, graphs can be decomposed as unions of pregraphs as illustrated below, 
+     where $K, L', R',C'$ are pregraphs and $L = L' \cup K$, $R = R' \cup K$, $C = C' \cup K$, $G = L' \cup K \cup C'$, $H = R' \cup K \cup C'$.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -440,7 +447,7 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
     \end{center}
 \begin{definition}
     \label{def:x_occurrence}
-     Let $X$ be a subgraph of $L$.  An \textbf{$X$-occurrence} in a graph $G$ is an \textbf{monomorphism} from $X$ to $G$. An $X$-occurrence in $G$ is 
+     Let $X$ be a subgraph of $L$.  An \textbf{$X$-occurrence} in a graph $G$ is a \textbf{monomorphism} from $X$ to $G$. An $X$-occurrence in $G$ is 
     \begin{itemize}
         \item \textbf{shared} if its image is included in $C$,
         \item \textbf{explicit} if its image is  included in $L$,
@@ -453,7 +460,11 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
         \item \textbf{implicit} if its image has elements in both $C'$ and $R'$.
     \end{itemize} 
 
-    Intuitively, the rewriting step implicitly creates the implicit $X$-occurrences in $H$ and implicitly destroys implicit $X$-occurrences in $G$. Given an implicit $X$-occurrence $x$ in $H$, its image can be decomposed as the union $R_x \cup C_x$, where $R_x = \opn{Im}(x) \cap R$ (the part of the image overlapping the right-hand side R ), and $C_x = \opn{Im}(x) \cap C$ (the part overlapping the context C ). For every graph monomorphism $h : R_x \rightarrowtail L$ that preserves interface elements (i.e., \( h(k) = k \) for all \( k \in K \)), we define the \textbf{corresponding $X$-occurrence of $x$ relative to $h$} as the $X$-occurrence $y$ in $G$ given by:
+    Intuitively, the rewriting step implicitly creates the implicit $X$-occurrences in $H$ and implicitly destroys implicit $X$-occurrences in $G$. 
+    
+    Given an implicit $X$-occurrence $x$ in $H$, its image can be decomposed as the union $R_x \cup C_x$, where $R_x = \opn{Im}(x) \cap R$ (the part of the image overlapping the right-hand side R), and $C_x = \opn{Im}(x) \cap C$ (the part overlapping the context C).
+    
+    For every graph monomorphism $h : R_x \rightarrowtail L$ that preserves interface elements (i.e., \( h(k) = k \) for all \( k \in K \)), we define the \textbf{corresponding $X$-occurrence of $x$ relative to $h$} as the $X$-occurrence $y$ in $G$ given by:
         $$
         y(z) = 
         \begin{cases}
@@ -482,7 +493,7 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
         \draw[->] (x) -- node[midway,above] {$a$} (y) ;
         \draw[->] (y) -- node[midway,above] {$a$} (z) ;
 }.
-Consider the $X$-occurrences in the decomposition of a rewriting step using the rule in Example~\ref{ex:grsaa} shown below:
+Consider the $X$-occurrences in the decomposition of a rewriting step using the rule in Example~\ref{ex:grsaa} and recalled below:
 % in Figure~\ref{fig:subgraph_counting:occurrdlfdjslfkjsa}.
     % \begin{figure}[H]
     %   \centering
@@ -524,9 +535,9 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
 %       \label{fig:subgraph_counting:occurrdlfdjslfkjsa}
 %   \end{figure}
     \end{center}
-    This decomposition is illustrated below
+   We illustrate the aforementioned decomposition
     % in Figure~\ref{fig:subgraph_counting:occurrendfsdadsgces_of_x} 
-    using the visual notation for graph homomorphisms introduced in Notation~\ref{notation:graph_homomorphism}, with distinct pre-graphs highlighted in different colors.
+    using the visual notation for graph homomorphisms introduced in Notation~\ref{notation:graph_homomorphism}, with distinct pregraphs highlighted in different colors.
 % \begin{figure}[H]
 %     \centering
     \begin{center}
@@ -645,7 +656,7 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
     } 
  
     \item 0 explicit occurrence in $H$,
-    \item 1 implicit occurrences in $H$: 
+    \item 1 implicit occurrence in $H$: 
     \tikz[baseline=-0.5ex]{ 
         \node[red,draw,circle] (x) at (0,0) {5};  
         \node[draw,circle] (y) at (1,0) {2};

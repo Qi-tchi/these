@@ -294,12 +294,12 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
 \begin{proof} 
     \label{nwf:proof_termination_grs}
     From the definition of weighted type graph, we have 
-    $$\text{for all}~e\in\mathbb{E}, w(e) \neq 0_S$$ 
-    From Asumption~\ref{thm1:hyp3}, we have 
-    $$\text{for all}~e\in\mathbb{E},1_S \preceq w(e)$$
+    $$\text{for all}~e\in\mathbb{E}, w(e) \neq 0_S.$$ 
+    From~\ref{thm1:hyp3}, we have 
+    $$\text{for all}~e\in\mathbb{E},1_S \preceq w(e).$$
     Therefore, we have 
     \begin{flalign}
-        \text{for all}~e\in\mathbb{E},1_S \preceq w(e)\neq 0_S \label{thm_eq_we_neq0_geq1}
+        \text{for all}~e\in\mathbb{E},1_S \preceq w(e)\neq 0_S. \label{thm_eq_we_neq0_geq1}
     \end{flalign} 
     Let $G$ be a graph admitting a match of a DPO rewriting rule. We have 
     \begin{flalign*}
@@ -313,7 +313,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
             \right)
             \right )\\
     \end{flalign*}  
-    By Equation~\eqref{thm_eq_we_neq0_geq1}, Proposition~\ref{prop_endrullis_2d7}, Definition~\ref{def:bigodot} and $1_S \neq 0_S$, for every $h \in \operatorname{Hom}(G,T)$, we have
+    By~\eqref{thm_eq_we_neq0_geq1}, Proposition~\ref{prop_endrullis_2d7}, Definition~\ref{def:bigodot} and $1_S \neq 0_S$, for every \\$h \in \operatorname{Hom}(G,T)$, we have
     \begin{flalign}
         1_S \preceq 
         \underset{e \in \mathbb{E}}{\bigodot} 
@@ -322,7 +322,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
                 \right) 
         \neq 0_S
     \end{flalign}
-    Since $G$ be a graph admitting a match of a DPO rewriting rule, by Proposition~\ref{prop_endrullis_2d7} and Definition~\ref{def:real_strongly_monotonic_semiring}\eqref{ax:s0}, we have $$1_S \preceq w_\mathcal{T}(G) \neq 0_S$$
+    Since $G$ is a graph admitting a match of a DPO rewriting rule, by Proposition~\ref{prop_endrullis_2d7} and Definition~\ref*{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s0}, we have $$1_S \preceq w_\mathcal{T}(G) \neq 0_S$$
     % By~\autoref{prop_endrullis_2d7} and \eqref{ax:s0}, we have 
     % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \Rightarrow_\mathcal{R} H) \rightarrow (1_S \preceq w_\mathcal{T}(G) \neq 0_S)$$
     By Assumption~\ref{thm1:hyp4}, we have 
@@ -331,11 +331,11 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
  
     % Let $G \in \mathcal{C}_0$ be an object. By Assumption \ref{thm1:hyp4}, we have $\mu(w_\mathcal{T}(G)) \in \mathbb{R}$ and $\mu(w_\mathcal{T}(G)) \geq \mu(1_S)$.
 
-    By Example~\ref{nwf:lem:decreasing_step}, every rewriting step with rules in $\mathcal{A}$ strictly decreases the weight by at least $\delta$ and no rewriting step with rules in $\mathcal{B}$ increases the weight.
+    By Lemma~\ref{nwf:lem:decreasing_step}, every rewriting step with rules in $\mathcal{A}$ strictly decreases the weight by at least $\delta$ and no rewriting step with rules in $\mathcal{B}$ increases the weight.
     Consequently, there is no infinite rewriting chain with an infinite rewriting steps with rules in $\mathcal{A}$ from $G$.
 \end{proof}
 \begin{example}
     \label{nwf:example:termination}
-    Termination of the DPO rule in Example~\ref{ex:grsaa} can be established using Theorem~\ref{nwf:thm:termination_grs} together with the weighted type graph in Example~\ref{nwf:example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta = 0.5$ by Example~\ref{nwf:example:decreasing_rule}.
+    Termination of the DPO rule in Example~\ref{ex:grsaa} can be established using Theorem~\ref{nwf:thm:termination_grs} together with the weighted type graph in Example~\ref{nwf:example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta = 0.5$ as explained in Example~\ref{nwf:example:decreasing_rule}.
 \end{example}
 
