@@ -81,22 +81,9 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
 \begin{notation}
     \label{subgraph_counting:notation:mono_sets}
     % The disjoint union of two sets \( S \) and \( S' \) will be denoted by \( S \uplus S' \). Let \( X, A, B, G \) be graphs, and let \( \alpha \colon A \to G \) and \( \beta \colon B \to G \) be morphisms. We define the following sets of monomorphisms of $X$ in $G$: 
-\ \newline
-\noindent
-\begin{minipage}{0.69\textwidth}
-\vspace{2mm}
-\noindent  The disjoint union of two sets \( S \) and \( S' \) will be denoted by \( S \uplus S' \). Let \( X, A, B, G \) be graphs, and let \( \alpha \colon A \to G \) and \( \beta \colon B \to G \) be morphisms as illustrated on the right. We define the following sets of monomorphisms from $X$ in $G$ based on their interaction with $\alpha$ and $\beta$:    
-\end{minipage}%
-\begin{minipage}{0.30\textwidth}
-    \hfill
-        \resizebox{0.9\textwidth}{!}{
-        % \begin{tikzpicture}
-        %     \node (B) at (2,0) {$A$}; 
-        %     \node (C) at (0,2) {$B$}; 
-        %     \node (D) at (0,0) {$G$}; 
-        %     \draw [>->] (B) to node [below,label,pos=0.45] {$\alpha$} (D); 
-        %     \draw [>->] (C) to node [left,label,pos=0.45] {$\beta$} (D);
-        % \end{tikzpicture}
+ The disjoint union of two sets \( S \) and \( S' \) will be denoted by \( S \uplus S' \). Let \( X, A, B, G \) be graphs, and let \( \alpha \colon A \to G \) and \( \beta \colon B \to G \) be morphisms shown below:
+\begin{center}
+        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
             \node (X) at (-1.5,-1) {$X$};
             \node (B) at (2,0) {$A$}; 
@@ -109,11 +96,12 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
             \draw [>->,dashed] (X) to node [above,label,pos=0.45] {$\eta$} (C);
         \end{tikzpicture}
         }
-\end{minipage} 
+\end{center}
+ We define the following sets of monomorphisms from $X$ in $G$ based on their interaction with $\alpha$ and $\beta$:    
     \begin{align*}
-        \operatorname{Mono}(X,G,\alpha) &= \left\{ \iota \colon X \rightarrowtail G \;\middle|\; \exists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha \right\}
+        \operatorname{Mono}(X,G,\alpha) &= \left\{ \iota \colon X \rightarrowtail G \;\middle|\; \exists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha \right\},
         \\
-        \operatorname{Mono}(X,G,\lnot \alpha) &= \left\{ \iota \colon X \rightarrowtail G \;\middle|\; \nexists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha \right\}
+        \operatorname{Mono}(X,G,\lnot \alpha) &= \left\{ \iota \colon X \rightarrowtail G \;\middle|\; \nexists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha \right\},
         \\
         \operatorname{Mono}(X,G,\lnot \alpha, \beta) &= \left\{ 
             \iota \colon X \rightarrowtail G \;\middle|\; 
@@ -121,7 +109,7 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
                     &(\nexists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha) \\ 
                     &\land (\exists \eta \colon X \rightarrowtail B.\, \iota = \eta \star \beta)
                 \end{aligned}
-        \right\}
+        \right\},
         \\
         \operatorname{Mono}(X,G,\lnot \alpha, \lnot \beta) &= \left\{ 
             \iota \colon X \rightarrowtail G \;\middle|\; 
@@ -129,36 +117,13 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
                     &(\nexists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha) \\
                     &\land (\nexists \eta \colon X \rightarrowtail B.\, \iota = \eta \star \beta)
                 \end{aligned}
-        \right\}
+        \right\}.
     \end{align*}
 \end{notation}
-\noindent
-\begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
-\noindent Consider a rewriting step \( G \Rightarrow_{\rho,\mathfrak{M}} H \) defined by the DPO diagram illustrated on the right. The sets of monomorphisms \( \operatorname{Mono}(X,G) \) and \( \operatorname{Mono}(X,H) \) can be decomposed into the following disjoint unions:
-\end{minipage}%
-\begin{minipage}{0.29\textwidth}
-    \hfill
-    % \begin{tikzpicture}
-    %     % [node distance=15mm]
-    %     \node (I) {$K$};
-    %     \node (L) [left of=I] {$L$};
-    %     \node (R) [right of=I] {$R$};
-    %     \node (G) [below of=L] {$G$};
-    %     \node (C) [below of=I] {$C$};
-    %     \node (H) [below of=R] {$H$};
-    %     \draw [>->] (I) to  node [midway,below] {$l$} (L);
-    %     \draw [>->] (I) to  node [midway,below] {$r$} (R);
-    %     \draw [>->] (L) to node [midway,right] {$m$} (G);
-    %     \draw [>->] (I) to  node [midway,right] {} (C);
-    %     \draw [>->] (R) to  node [midway,right] {$m'$} (H);
-    %     \draw [>->] (C) to node [midway,above] {$l'$} (G);
-    %     \draw [>->] (C) to node [midway,above] {$r'$} (H);
-    %     % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-    %     % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-    %   \end{tikzpicture}
-    \resizebox{0.9\textwidth}{!}{
+Consider a rewriting step \( G \Rightarrow_{\rho,\mathfrak{M}} H \) defined by the DPO diagram illustrated below:
+\begin{center}
+    \resizebox{0.3\textwidth}{!}{
      \begin{tikzpicture}
-            % [node distance=15mm]
             \node (I) at (0,0) {$K$};
             \node (L)  at (-2,0) {$L$};
             \node (R)  at (2,0) {$R$};
@@ -169,7 +134,6 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
             \draw [>->] (I) to  node [midway,below] {$r$} (R);
             \draw [>->] (L) to node [midway,right] {$m$} (G);
             \draw [>->] (I) to  node [midway,right] 
-            % {$u$}
             {} (C);
             \draw [>->] (R) to  node [midway,right] 
             {$m'$}
@@ -182,106 +146,92 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
             % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
         \end{tikzpicture}
     }
-\end{minipage}
-
-
+\end{center}
+ The sets of monomorphisms \( \operatorname{Mono}(X,G) \) and \( \operatorname{Mono}(X,H) \) can be decomposed into the following disjoint unions:
 \begin{flalign*}
     \operatorname{Mono}(X,G) &= 
     \operatorname{Mono}(X,G,l')
     \uplus
     \operatorname{Mono}(X,G,\lnot l',m) 
     \uplus
-    \operatorname{Mono}(X,G,\lnot l',\lnot m)
+    \operatorname{Mono}(X,G,\lnot l',\lnot m),
     \\
     \operatorname{Mono}(X,H) &= 
     \operatorname{Mono}(X,H,r')
     \uplus
     \operatorname{Mono}(X,H,\lnot r',m') 
     \uplus
-    \operatorname{Mono}(X,H,\lnot r',\lnot m')
+    \operatorname{Mono}(X,H,\lnot r',\lnot m').
 \end{flalign*}
-Thus, we have:
+Thus, the following equalities hold:
 \begin{flalign*}
     \card{\operatorname{Mono}(X,G)} ={} &
     \card{\operatorname{Mono}(X,G,l')}
     +
-    \card{\operatorname{Mono}(X,G,\lnot l',m)} \\
+    \card{\operatorname{Mono}(X,G,\lnot l',m)}
+     \\
     &+
-    \card{\operatorname{Mono}(X,G,\lnot l',\lnot m)}
+    \card{\operatorname{Mono}(X,G,\lnot l',\lnot m)},
     \\
     \card{\operatorname{Mono}(X,H)} ={} &
     \card{\operatorname{Mono}(X,H,r')} 
     +
     \card{\operatorname{Mono}(X,H,\lnot r',m')} \\
-    &+\card{\operatorname{Mono}(X,H,\lnot r',\lnot m')}
+    &+\card{\operatorname{Mono}(X,H,\lnot r',\lnot m')}.
 \end{flalign*}
-\noindent Using Lemma~\ref{subgraph_counting:lem:decomp_w_u} 
-(see \iflongversion
-\textsection~\ref{subgraph_counting:proof:dcomp_w_u} 
-\else
-\cite[Lemma 27]{qiu2025termination}
-\fi for a proof), we derive:
+\noindent By Lemma~\ref{subgraph_counting:lem:decomp_w_u}, the following equalities hold:
 \begin{flalign*}
 &\card{\operatorname{Mono}(X,G)} =
 \card{\operatorname{Mono}(X,C)}
 +
 \card{\operatorname{Mono}(X,L, \lnot l)}
 +
-\card{\operatorname{Mono}(X,G, \lnot l',\lnot m)} 
+\card{\operatorname{Mono}(X,G, \lnot l',\lnot m)},
  \\
  &\card{\operatorname{Mono}(X,H)} =
  \card{\operatorname{Mono}(X,C)}
  +
  \card{ \operatorname{Mono}(X,R, \lnot r) }
  +
- \card{ \operatorname{Mono}(X,H, \lnot r',\lnot m')}  
+ \card{ \operatorname{Mono}(X,H, \lnot r',\lnot m')}.  
 \end{flalign*}
 \begin{lemma}
     \label{subgraph_counting:lem:decomp_w_u}
-    \ \newline
-    \noindent
-    \begin{minipage}{0.69\textwidth}
-        Let $X$ be a ruler-graph. For a pushout square as shown on the right, we have 
-        % $\card{\operatorname{Mono}(X, B)} = \card{\operatorname{Mono}(X, D, \beta')}$ and $\card{\operatorname{Mono}(X, C, \lnot \beta)} = \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}$.
-        \begin{flalign*}
-            \card{\operatorname{Mono}(X, B)} &= \card{\operatorname{Mono}(X, D, \beta')}
-            \\
-            \card{\operatorname{Mono}(X, C, \lnot \beta)} &= \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}
-        \end{flalign*}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.29\textwidth}
-        \hfill
-        \begin{tikzpicture}
-            \node (A) {$A$};
-            \node [below of=A] (B) {$B$}; 
-            \node [left of=A] (C) {$C$}; 
-            \node [left of=B] (D) {$D$}; 
-            \begin{scope}[nodes=rectangle]          
+        Let $X$ be a ruler-graph. For a pushout square as shown below:
+        \begin{center}
+        \resizebox{0.2\textwidth}{!}{
+            \begin{tikzpicture}
+            \node (A) at (0,0) {$A$};
+            \node (B) at (0,-2) {$B$}; 
+            \node (C) at (-2,0) {$C$}; 
+            \node (D) at (-2,-2) {$D$}; 
             \draw [>->] (A) to node [right,label,pos=0.5] {$\alpha$} (B);
             \draw [>->] (A) to node [above,label,pos=0.5] {$\beta$} (C);
             \draw [>->] (B) to node [below,label,pos=0.45] {$\beta'$} (D); 
             \draw [>->] (C) to node [left,label,pos=0.45] {$\alpha'$} (D);
-            \end{scope}
         \end{tikzpicture}
-    \end{minipage} 
+        }
+        \end{center}
+         the following equalities hold:
+        % $\card{\operatorname{Mono}(X, B)} = \card{\operatorname{Mono}(X, D, \beta')}$ and $\card{\operatorname{Mono}(X, C, \lnot \beta)} = \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}$.
+        \begin{flalign*}
+            \card{\operatorname{Mono}(X, B)} &= \card{\operatorname{Mono}(X, D, \beta')},
+            \\
+            \card{\operatorname{Mono}(X, C, \lnot \beta)} &= \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}.
+        \end{flalign*}
 \end{lemma}
 Therefore, we obtain:
 \begin{flalign*}
-      &\card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)} \\
+      \card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)}
      =& \card{\operatorname{Mono}(X,L, \lnot l)}- \card{\operatorname{Mono}(X,R, \lnot r)}  + \\ 
      &\card{\operatorname{Mono}(X,G, \lnot l',\lnot m)} - 
      \card{\operatorname{Mono}(X,H, \lnot r',\lnot m') } 
 \end{flalign*}
-By Lemma~\ref{subgraph_counting:lem:xlnlmxrnr} (see \iflongversion
-    \textsection~\ref{subgraph_counting:proof:lem:xlnlmxrnr}
-    \else
-   ~\cite[Lemma 28]{qiu2025termination}
-    \fi for a proof), it can be simplified to:
+By Lemma~\ref{subgraph_counting:lem:xlnlmxrnr}, it can be simplified to:
 \begin{flalign*}
-     &\card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)} \\
-    = & \card{\operatorname{Mono}(X,L)}- \card{\operatorname{Mono}(X,R)}  + \\ 
-      & \card{\operatorname{Mono}(X,G, \lnot l',\lnot m)} - 
+     \card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)}
+    = &\card{\operatorname{Mono}(X,L)}- \card{\operatorname{Mono}(X,R)}  + \\ 
+      &\card{\operatorname{Mono}(X,G, \lnot l',\lnot m)} - 
     \card{\operatorname{Mono}(X,H, \lnot r',\lnot m') } 
 \end{flalign*}
 \begin{lemma}
@@ -295,25 +245,24 @@ By Lemma~\ref{subgraph_counting:lem:xlnlmxrnr} (see \iflongversion
 \end{lemma}
 Consequently, the weight difference satisfies:
 \begin{flalign*}
-     &w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H)\\
+     w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H)
     \overset{\operatorname{def}}{=}&\sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(G) - \sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(H)\\
     \overset{\operatorname{def}}{=}&\sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * |\operatorname{Mono}(X,G)| - \sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * |\operatorname{Mono}(X,H)|\\
     =&\sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * \left( \card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)} \right)\\
     =&\sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * \left(  \card{\operatorname{Mono}(X,L)}- \card{\operatorname{Mono}(X,R)} \right)+\\
        & \sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * \left( 
      \card{\operatorname{Mono}(X,G, \lnot l',\lnot m)} - 
-    \card{\operatorname{Mono}(X,H, \lnot r',\lnot m') } \right)
+    \card{\operatorname{Mono}(X,H, \lnot r',\lnot m') } \right).
 \end{flalign*}
 Since $\sum_{X \in \mathbb{X}}^{}s(X) * \left(  \card{\operatorname{Mono}(X,L)}- \card{\operatorname{Mono}(X,R)} \right)$ can be precisely computed, the key challenge is to establish a lower bound for
 \begin{flalign*}
     % \label{ineq:key_challenge}
     \sum_{X \in \mathbb{X}}^{} s_\mathbb{X}(X) * 
          \left ( \card{\operatorname{Mono}(X,G, \lnot l',\lnot m)} - 
-     \card{\operatorname{Mono}(X,H, \lnot r',\lnot m') } \right ) 
+     \card{\operatorname{Mono}(X,H, \lnot r',\lnot m') } \right ).
     % \label{ineq:ge0_sss}
 \end{flalign*} 
-
-
+In the next section, we introduce the concept of non-increasing rules, which helps to address this challenge.
 \section{Non-increasing rules}
 \label{subgraph_counting:sec:non-increasing}
 % \noindent
@@ -697,46 +646,41 @@ We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along
     %  such that $l$ is edge-injective and $r$ is node-injective.
     The set \(D(R,X)\) consists of all subgraphs \( R' \subseteq R \)
     satisfying the following conditions:
-    \newline
-    \noindent
-    \begin{minipage}{0.69\textwidth}\setlength{\parindent}{1em}
     \begin{itemize}
-        \item a diagram as shown on the right where \(h_{K'K} \colon K' \rightarrowtail K \) and \(h_{R'R} \colon R' \rightarrowtail R \) are inclusion functions can be constructed,
         \item $R'$ is not a subgraph of $r(K)$,
-        \item $R'$ is not isomorphic to $X$.
+        \item $R'$ is not isomorphic to $X$,
+        \item the following diagram where \(h_{K'K} \colon K' \rightarrowtail K \) and \(h_{R'R} \colon R' \rightarrowtail R \) are inclusion functions can be constructed:
+        \begin{center}
+            \resizebox{0.4\textwidth}{!}{
+                \begin{tikzpicture}[node distance=11mm]
+                    \node (k) {K};
+                    \node (r) [above=of k] {R};
+                    \node (r') [right=of r] {$R'$};
+                    \node (k') [right=of k] {K'};
+                    \node (x)  [right=of r'] {X};
+                    \node (c') [below=of x] {C'};
+                    \node () [at=($(r)!0.5!(k')$)] {$PB$};
+                    \node () [at=($(x)!0.5!(k')$)] {$PO$};
+                    \draw[>->] (k) -- (r) node[pos= .5, left] {$r$}; 
+                    \draw[>->] (r') -- (r) node[pos= .5, above] {$h_{R'R}$};
+                    \draw[>->] (k') -- (k) node[pos= .5, below] {$h_{K'K}$};
+                    \draw[>->] (k') -- (r');
+                    \draw[>->] (k') -- (c');
+                    \draw[>->] (c') -- (x);
+                    \draw[>->] (r') -- (x);
+                \end{tikzpicture}
+            }
+        \end{center}
     \end{itemize}
-    \end{minipage}
-    \begin{minipage}{0.29\textwidth}
-        \hfill
-        \resizebox{0.9\textwidth}{!}{
-        \begin{tikzpicture}[node distance=11mm]
-            \node (k) {K};
-            \node (r) [above=of k] {R};
-            \node (r') [right=of r] {$R'$};
-            \node (k') [right=of k] {K'};
-            \node (x)  [right=of r'] {X};
-            \node (c') [below=of x] {C'};
-            \node () [at=($(r)!0.5!(k')$)] {$PB$};
-            \node () [at=($(x)!0.5!(k')$)] {$PO$};
-            \draw[>->] (k) -- (r) node[pos= .5, left] {$r$}; 
-            \draw[>->] (r') -- (r) node[pos= .5, above] {$h_{R'R}$};
-            \draw[>->] (k') -- (k) node[pos= .5, below] {$h_{K'K}$};
-            \draw[>->] (k') -- (r');
-            \draw[>->] (k') -- (c');
-            \draw[>->] (c') -- (x);
-            \draw[>->] (r') -- (x);
-        \end{tikzpicture}
-        }
-    \end{minipage}
 \end{definition}  
-The first condition of the definition ensures that any $R' \in D(R,X)$ can be glued along some common interface elements with a subgraph $C'$ of a context graph \( C \) to form an \( X \)-occurrence. The second and third conditions ensure that such $X$-occurrences are included neither in \( C \) nor in \( R \), thereby guaranteeing that they are implicit.
+The first and second conditions ensure that such $X$-occurrences are included neither in \( C \) nor in \( R \), thereby guaranteeing that they are implicit.
+The third condition ensures that any $R' \in D(R,X)$ can be glued along some common interface elements with a subgraph $C'$ of a context graph \( C \) to form an \( X \)-occurrence. 
 
 % In another word, the set $D(R,X)$ contains all subgraphs $R''$ of $R$ which is not a subgraph of $K$ such that there is a rewriting step defined by the diagram above such that $R'' \cup C''$ for a subgraph $C''$ of $C$ is an $X$-occurrence created by the rewriting step.
 
 \begin{example}
     \label{subgraph_counting:ex:grsaa_rx}
-    Consider the injective DPO rule from~\cite[Example 6]{bruggink2014termination} shown 
-    below.
+    Consider the following injective DPO rule from~\cite[Example 6]{bruggink2014termination}:
     % in Figure~\ref{fig:subgraph_counting:grfksfdfgsdgsd}.  
     % \begin{figure}[H]
     %     \centering
@@ -787,21 +731,26 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[->] (y) -- (z) node[midway, above] {$a$};
     } and $R' \in D(R,X)$. 
+
     $R'$ is neither the empty graph nor isomorphic to $X$, by Conditions 2 and 3 of Definition~\ref{subgraph_counting:def:rx}. 
-    Therefore, $R'$ must contain an interface node (either node 
-    \tikz[baseline=-0.5ex]{ 
-            \node[draw,circle] (y) at (1,0) {1};
-    } or node 
-    \tikz[baseline=-0.5ex]{ 
-            \node[draw,circle] (y) at (1,0) {2};
-    }), because if it contains no interface node, Condition 1 of Definition~\ref{subgraph_counting:def:rx} would be violated due to $X$'s connectivity.
-    Additionally, $R'$ must contain node 
-    \tikz[baseline=-0.5ex]{ 
-            \node[draw,circle] (y) at (1,0) {4};
-    } or node 
-    \tikz[baseline=-0.5ex]{ 
-            \node[draw,circle] (y) at (1,0) {5};
-    } to avoid being a subgraph of $r(K)$ (Condition 2). 
+    Therefore, $R'$ must contain an interface node (either node $1$ 
+    % \tikz[baseline=-0.5ex]{ 
+    %         \node[draw,circle] (y) at (1,0) {1};
+    % }
+     or node $2$
+    % \tikz[baseline=-0.5ex]{ 
+    %         \node[draw,circle] (y) at (1,0) {2};
+    % }
+    ), because if it contains no interface node, Condition 1 of Definition~\ref{subgraph_counting:def:rx} would be violated due to $X$'s connectivity.
+    Additionally, $R'$ must contain node $4$
+    % \tikz[baseline=-0.5ex]{ 
+    %         \node[draw,circle] (y) at (1,0) {4};
+    % }
+     or node $5$
+    % \tikz[baseline=-0.5ex]{ 
+    %         \node[draw,circle] (y) at (1,0) {5};
+    % } 
+    to avoid being a subgraph of $r(K)$ (Condition 2). 
     Therefore, $R'$ must contain either 
     \tikz[baseline=-0.5ex]{ 
             \node[draw,circle] (x) at (0,0) {1}; 
@@ -814,23 +763,23 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
             \node[draw,circle] (y) at (1,0) {2};
             \draw[->] (x) -- (y) node[midway, above] {$a$};
     }
-    , because if node 
-        \tikz[baseline=-0.5ex]{ 
-            \node[draw,circle] (y) at (1,0) {4};
-    }
-     or node 
-        \tikz[baseline=-0.5ex]{ 
-            \node[draw,circle] (x) at (0,0) {5}; 
-    }
+    , because if node $4$
+    %     \tikz[baseline=-0.5ex]{ 
+    %         \node[draw,circle] (y) at (1,0) {4};
+    % }
+     or node $5$
+    %     \tikz[baseline=-0.5ex]{ 
+    %         \node[draw,circle] (x) at (0,0) {5}; 
+    % }
     is isolated, Condition 1 would be violated due to $X$'s connectivity.
-    Furthermore, $R'$ must not contain 
+    Also, $R'$ must not contain 
             \tikz[baseline=-0.5ex]{ 
             \node[draw,circle] (x) at (0,0) {4}; 
             \node[draw,circle] (y) at (1,0) {5};
             \draw[->] (x) -- (y) node[midway, above] {$b$};
     }
     by Condition 1.
-    The graph illustrated below
+    The following graph
     % in Figure~\ref{fig:subgraph_counting:rx_counter_exdfsdfadfs} 
     is not in $D(R,X)$ because it violates Condition 1.
     % \begin{figure}[H]
@@ -853,13 +802,9 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
     %     \label{fig:subgraph_counting:rx_counter_exdfsdfadfs}
     % \end{figure}
         \end{center}
-    Thus, $D(R,X)$ consists of the four graphs $R'_1$, $R'_2$, $R'_3$ and $R'_4$ which are shown below.
-    % in Figure~\ref{fig:subgraph_counting:decompdfjasdkjfgdsakjh}.
-    For each graph, the construction of the pullback square in Condition 1 is demonstrated in Example~\ref{example:grs_aa:has_more_left} and the construction of the pushout square required by Condition 1 is straightforward. 
-    % \begin{figure}[H]
-    %     \centering
+    Thus, $D(R,X)$ consists of the four graphs $R'_1$, $R'_2$, $R'_3$ and $R'_4$:
     \begin{center}
-        \resizebox{0.24\textwidth}{!}{
+        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_1$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -870,7 +815,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                 }    
             \end{tikzpicture}
         }
-        \resizebox{0.24\textwidth}{!}{
+        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_2$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -881,7 +826,8 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                 }    
             \end{tikzpicture}
         } 
-        \resizebox{0.24\textwidth}{!}{
+
+        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_3$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -891,7 +837,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                 }   
         \end{tikzpicture}
         } 
-        \resizebox{0.24\textwidth}{!}{
+        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_4$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -902,10 +848,10 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
                 }    
             \end{tikzpicture}
         }
-    \end{center}    
-    %     \caption{}
-    %     \label{fig:subgraph_counting:decompdfjasdkjfgdsakjh}
-    % \end{figure}
+    \end{center}
+    For each of them, the construction of the pullback square in Condition 1 is demonstrated in Example~\ref{example:grs_aa:has_more_left} and the construction of the pushout square required by Condition 1 is straightforward. 
+        
+ 
 \end{example} 
  
 \begin{example}
@@ -917,7 +863,7 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
             \node[draw,circle] (z) at (2,0) { };
             \draw[->] (x) -- (y)   {};
             \draw[->] (y) -- (z)   {};
-    }. Consider the rule shown below.
+    }. Consider the following rule:
     % in Figure~\ref{fig:subgraph_counting:rx_counter_exdfs}.
     % \begin{figure}[H]
     \begin{center}
@@ -962,72 +908,45 @@ The first condition of the definition ensures that any $R' \in D(R,X)$ can be gl
         \node[draw,circle] (y) at (1,0) {3};
         \draw[->] (x) -- (y) {};
     }}}.
-    The graph $R$ is not in $D(R,X)$ because it violates Condition 1. Thus, the set \( D(R,X) \) consists of $R'_1$:
+    The graph $R$ is not in $D(R,X)$ because it violates Condition 1. Thus, the set \( D(R,X) \) consists of the following graphs:
+    \begin{itemize}
+        \item $R'_1$:
     \raisebox{2pt}{\scalebox{0.6}{\tikz[baseline=-0.5ex]{
         \node [draw,circle] (x) at (0,0) {2};
         \node[draw,circle] (y) at (1,0) {3};
         \draw[->] (x) -- (y) {};
-    }}} and $R'_2$:
+    }}},  
+        \item $R'_2$:
     \raisebox{2pt}{\scalebox{0.6}{\tikz[baseline=-0.5ex]{
         \node [draw,circle] (node1) at (-1,0) {1};
         \node [draw,circle] (x) at (0,0) {2};
         \node[draw,circle] (y) at (1,0) {3};
         \draw[->] (x) -- (y) {};
     }}}.
+    \end{itemize} 
 \end{example}
-We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\rho$ is $X$-non-increasing, then for any rewriting step using $\rho$, there is an injective mapping from the set of \( X \)-occurrences implicitly created by the step to the set of \( X \)-occurrences implicitly destroyed by the step. This will be proved in Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}.
-\begin{definition}[Non-increasing rule]
+We introduce the concept of non-increasing occurrences. Intuitively, if a rule $\rho$ is $X$-non-increasing, then for any rewriting step using $\rho$, there is an injective mapping from the set of \( X \)-occurrences implicitly created by the step to the set of \( X \)-occurrences implicitly destroyed by the step. This intuition is made precise in Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}.
+\begin{definition}[$X$-non-increasing rule]
     \label{subgraph_counting:def:creates_more_x_on_the_left}
+    % Let \(\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a graph. 
+    % Let \( \Psi \) be a function associating $R' \in D(R,X)$ to a homomorphism in $\operatorname{Mono}(R',L)$.
+    % We say that \textbf{the number of occurrences of $X$ is non-increasing from left to right in any $\rho$-rewriting step under the mapping \(\Psi\)}
+    % (or that $\rho$ is $X$-\textbf{non-increasing} under $\Psi$. When $\Psi$ is clear from context or irrelevant to the discussion, we may simply say that $\rho$ is $X$-\textbf{non-increasing}.)
     Let \(\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a graph. 
     Let \( \Psi \) be a function associating $R' \in D(R,X)$ to a homomorphism in $\operatorname{Mono}(R',L)$.
-    We say that \textbf{the number of occurrences of $X$ is non-increasing from left to right in any $\rho$-rewriting step under the mapping \(\Psi\)}
-    (or that $\rho$ is $X$-\textbf{non-increasing} under $\Psi$. When $\Psi$ is clear from context or irrelevant to the discussion, we may simply say that $\rho$ is $X$-\textbf{non-increasing}.)
-    % (or simply $\rho$ is $X$-non-increasing under \(\Psi\), or $\rho$ is $X$-non-increasing when \(\Psi\) is clear from the context or irrelevant to the discussion)
+    Rule $\rho$ is said to be $X$-\textbf{non-increasing} under $\Psi$ 
     if the following four conditions hold:
-    \newline
-    \vspace{1mm}
-    \noindent
-    \begin{minipage}{0.64\textwidth} 
     \begin{enumerate}
-        \item For all $R' \in D(R,X)$, we can construct the diagram shown on the right, where all morphisms other than $\Psi(R')$, $l$ and $r$ are inclusion functions,
-        % For all $R' \in D(R,X)$, in the diagram shown on the right, where $h_{R'R}$ is the inclusion function, both squares are pullbacks,
-        % For all $R' \in D(R,X)$, there is a morphism \(h_{R'L}: R' \rightarrowtail L \) such that \trackedtext{both squares in the diagram shown on the right are pullbacks}, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions,
-        \item \label{def:non_increasing:non_clapse} For all $R' \in D(R,X)$, for all nodes and edges $x$ in $R'$, if $ x \notin \operatorname{Im}(r)$ then 
-        $\Psi(R')(x) \notin \operatorname{Im}(l)$,
-        % $h_{R'L}(r') \notin \operatorname{Im}(l)$,
-        \item \label{def:non_increasing_rule_img_edges_distinct} For all $R',R'' \in D(R,X)$, for all edges $x$ in $R'$ and $y$ in $R''$, if $x \neq y$, then $\Psi(R')(x) \neq \Psi(R'')(y)$,
-        \item If $X$ has isolated nodes, then for all $R',R'' \in D(R,X)$ and nodes $x$ and $y$ in $R'$ and $R''$ respectively, if $x \neq y$, then $\Psi(R')(x) \neq \Psi(R'')(y)$.
-    \end{enumerate} 
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.4\textwidth}
-        % \hfill
-        \begin{center}
-            % \resizebox{0.9\textwidth}{!}{ 
-                % \begin{tikzpicture}[rotate=90]
-                %     \node (k) {K}; 
-                %     \node (k') [above=of k] {$K'$};
-                %     \node (l) [left=of k] {$L$};
-                %     \node (rb) [above=of l] {$R'$};
-                %     \node (r) [right=of k] {$R$};
-                %     \node (rb') [above=of r] {$R'$};
-                %     \draw[<-<]  (l) -- (k) node [midway,below] {$l$};
-                %     \draw[<-<]  (r) -- (k) node [midway,below] {$r$};
-                %     \draw[>->]  (k') -- (rb');
-                %     \draw[>->]  (rb') -- (r);
-                %     \draw[>->]  (k') -- (rb);
-                %     \draw[>->]  (k') -- (k);
-                %     \draw[>->]  (rb) -- (l) node [midway,above,sloped] {$h_{R'L}$};
-                %     \node () [at=($(k)!0.5!(rb)$)] {$PB$};
-                %     \node () [at=($(k)!0.5!(rb')$)] {$PB$};
-                % \end{tikzpicture}
+        \item For all $R' \in D(R,X)$, we can construct the following diagram where all morphisms other than $\Psi(R')$, $l$ and $r$ are inclusion functions:
+      \begin{center}
+        \resizebox{0.3\textwidth}{!}{
                 \begin{tikzpicture} 
-                    \node (k) {K}; 
-                    \node (k') [left=of k] {$K'$};
-                    \node (l) [above=of k] {$L$};
-                    \node (rb) [left=of l] {$R'$};
-                    \node (r) [below=of k] {$R$};
-                    \node (rb') [left=of r] {$R'$};
+                    \node (k) at (0,0) {$K$}; 
+                    \node (k') at (-2,0) {$K'$};
+                    \node (l) at (0,2) {$L$};
+                    \node (rb) at (-2,2) {$R'$};
+                    \node (r) at (0,-2) {$R$};
+                    \node (rb') at (-2,-2) {$R'$};
                     \draw[<-<]  (l) -- (k) node [midway,right] {$l$};
                     \draw[<-<]  (r) -- (k) node [midway,right] {$r$};
                     \draw[>->]  (k') -- (rb');
@@ -1038,9 +957,17 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
                     \node () [at=($(k)!0.5!(rb)$)] {$PB$};
                     \node () [at=($(k)!0.5!(rb')$)] {$PB$}; 
                 \end{tikzpicture}
-            % }
+        }
         \end{center}
-    \end{minipage}
+        % For all $R' \in D(R,X)$, in the diagram shown on the right, where $h_{R'R}$ is the inclusion function, both squares are pullbacks,
+        % For all $R' \in D(R,X)$, there is a morphism \(h_{R'L}: R' \rightarrowtail L \) such that \trackedtext{both squares in the diagram shown on the right are pullbacks}, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions,
+        \item \label{def:non_increasing:non_clapse} For all $R' \in D(R,X)$, for all nodes and edges $x$ in $R'$, if $ x \notin \operatorname{Im}(r)$ then 
+        $\Psi(R')(x) \notin \operatorname{Im}(l)$,
+        % $h_{R'L}(r') \notin \operatorname{Im}(l)$,
+        \item \label{def:non_increasing_rule_img_edges_distinct} For all $R',R'' \in D(R,X)$, for all edges $x$ in $R'$ and $y$ in $R''$, if $x \neq y$, then $\Psi(R')(x) \neq \Psi(R'')(y)$,
+        \item If $X$ has isolated nodes, then for all $R',R'' \in D(R,X)$ and nodes $x$ and $y$ in $R'$ and $R''$ respectively, if $x \neq y$, then $\Psi(R')(x) \neq \Psi(R'')(y)$.
+    \end{enumerate} 
+    When $\Psi$ is clear from context or irrelevant to the discussion, we may simply say that $\rho$ is $X$-\textbf{non-increasing}.
 \end{definition}
 % \begin{definition}[Non-increasing rule]
 %     \label{def:creates_more_x_on_the_left}
@@ -1113,9 +1040,9 @@ We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\r
 %     %  \todo{est il util d'avoir "or arrow?" c'est une partie de edge injective, non ?}
 % \end{definition} 
 The first condition ensures that whenever $R' \in D(R,X)$ forms an $X$-occurrence in the result graph $H$, this occurrence has a corresponding $X$-occurrence relative to the morphism $h_{R'L}$ (as defined in Definition~\ref{def:x_occurrence}) in the host graph $G$.
-The second condition guarantees that any $X$-occurrence implicitly created by the rewriting step has its corresponding $X$-occurrence not included in the context (Consequently, its corresponding $X$-occurrence is implicitly destroyed by the rewriting step). Counterexamples are provided in Example~\ref{subgraph_counting:ex:cond_2_necessaire} and Example~\ref{subgraph_counting:ex:cond_2_necessaire2}.
+The second condition guarantees that any $X$-occurrence implicitly created by the rewriting step has its corresponding $X$-occurrence not included in the context (Consequently, its corresponding $X$-occurrence is implicitly destroyed by the rewriting step). Example~\ref{subgraph_counting:ex:cond_2_necessaire} and Example~\ref{subgraph_counting:ex:cond_2_necessaire2} show the necessity of this condition.
 The third and fourth conditions ensure that distinct $X$-occurrences created implicitly have distinct corresponding $X$-occurrences.
-Counterexamples for these conditions are given in Example~\ref{subgraph_counting:ex:cond3_necessaire} and Example~\ref{subgraph_counting:ex:cond4_necessaire}.
+Example~\ref{subgraph_counting:ex:cond3_necessaire} and Example~\ref{subgraph_counting:ex:cond4_necessaire} show the necessity of these conditions.
 
 The following example shows an $X$-non-increasing rule. 
 \begin{example}
@@ -1240,7 +1167,7 @@ The following example shows an $X$-non-increasing rule.
             \end{tikzpicture}
         } 
 
-        \vspace{3mm}
+        \vspace{5mm}
     % 2
         \resizebox{0.7\textwidth}{!}{
             \begin{tikzpicture}
@@ -1308,7 +1235,7 @@ The following example shows an $X$-non-increasing rule.
             \end{tikzpicture}
         } 
         
-        \vspace{3mm}
+        \vspace{5mm}
     %3
         \resizebox{0.7\textwidth}{!}{
             \begin{tikzpicture}
@@ -1376,7 +1303,7 @@ The following example shows an $X$-non-increasing rule.
             \end{tikzpicture}
         } 
 
-        \vspace{3mm}
+        \vspace{5mm}
     %4
         \resizebox{0.7\textwidth}{!}{
             \begin{tikzpicture}
@@ -1496,8 +1423,7 @@ The following example shows an $X$-non-increasing rule.
     % \( \operatorname{\Psi(R')} \subseteq L\) forms an \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor $C$.
     % Furthermore, distinct $X$-occurrences in $H$ that are included neither in \( R \) nor $C$ have distinct corresponding $X$-occurrences in $G$ that are included neither in \( L \) nor $C$.
     To illustrate the $X$-non-increasing property captured by Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left},
-    consider the rewriting step defined by the DPO diagram 
-    shown below.
+    consider the rewriting step defined by the DPO diagram below.
     % in Figure~\ref{fig:subgraph_counting:decdfjaskldjf}. 
     % \begin{figure}[H]
     %     \centering 
@@ -1582,9 +1508,9 @@ The following example shows an $X$-non-increasing rule.
     %     \label{fig:subgraph_counting:decdfjaskldjf}
     % \end{figure}
     \end{center}
-    Whenever \( R'_i \) (for \( 1 \leq i \leq 4 \)) forms an \( X \)-occurrence $x$ in $H$ that is included neither in \( R \) nor $C$ with a subgraph $C' \subseteq C \cap x \subseteq C$, the graph
-    \( \operatorname{\Psi(R')} \subseteq L\) forms a \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor $C$.
-    Furthermore, distinct $X$-occurrences in $H$ that are included neither in \( R \) nor $C$ have distinct corresponding $X$-occurrences in $G$ that are included neither in \( L \) nor $C$.
+    Whenever \( R'_i \) (for \( 1 \leq i \leq 4 \)) forms an \( X \)-occurrence $x$ in $H$ that is included neither in \( R \) nor in $C$ with a subgraph $C' \subseteq C \cap x \subseteq C$, the graph
+    \( \operatorname{\Psi(R')} \subseteq L\) forms a \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor in $C$.
+    Furthermore, distinct $X$-occurrences in $H$ that are included neither in \( R \) nor in $C$ have distinct corresponding $X$-occurrences in $G$ that are included neither in \( L \) nor in $C$.
 \end{example}
 
 % cond 2 necessaire  1
@@ -1599,7 +1525,7 @@ The following example shows an $X$-non-increasing rule.
             \draw[->] (y) -- (z)   {};
     }. The rewriting rule shown below
     % in Figure~\ref{fig:subgraph_counting:rx_counter_ex} 
-    is potentially $X$-increasing.
+    is not necessarily $X$-non-increasing.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -1682,7 +1608,7 @@ The following example shows an $X$-non-increasing rule.
             % \draw[->] (y) -- (z)   {};
     }. The rewriting rule shown below
     % in Figure~\ref{fig:subgraph_counting:degkdjfqaaacodkfjasddgsf} 
-    is potentially $X$-increasing.
+    is not necessarily $X$-non-increasing.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -1731,7 +1657,7 @@ The following example shows an $X$-non-increasing rule.
             \draw[->] (y) -- (z) {};
     }. The rewriting rule shown below
     % in Figure~\ref{fig:subgraph_counting:decodkfjasdddfsfdsagsf} 
-    is potentially $X$-increasing.
+    is not necessarily $X$-non-increasing.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -1790,7 +1716,7 @@ The following example shows an $X$-non-increasing rule.
             \draw[->] (x) -- (y)   {};
     }, which has an isolated node. The rewriting rule shown below
     % in Figure~\ref{fig:subgraph_counting:decodkfjasddgdfsgassf} 
-    is potentially $X$-increasing.
+    is not necessarily $X$-non-increasing.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -1834,31 +1760,17 @@ The following example shows an $X$-non-increasing rule.
 
 \section{Solution to the key challenge}
 \label{subgraph_counting:sec:solution_to_the_key_challenge}
-The following lemma (see \iflongversion
-% \hyperref[proof:lem:w_u_l_not_geq_r_not]{Section C}
-\textsection~\ref{proof:lem:w_u_l_not_geq_r_not}
-\else
-\cite[Lemma 40]{qiu2025termination}
-\fi for a proof) ensures that if $\rho$ is $X$-non-increasing, then, for any rewriting step using $\rho$, 
-more X-occurrences are implicitly destroyed than implicitly created by the rewriting step.
 % the cardinality of the set of \( X \)-occurrences implicitly destroyed by the rewriting step is at least as large as the cardinality of the set of \( X \)-occurrences implicitly created by the rewriting step.
 % There are more implicitly destroyed X-occurrences than implicitly created X-occurrences.
-
+Using the notion of X-non-increasing, we state the following lemma.
+ It formalizes the intuition that if $\rho$ is $X$-non-increasing, then, for any rewriting step using $\rho$, 
+more X-occurrences are implicitly destroyed than implicitly created by the rewriting step.
 \begin{lemma} 
     \label{subgraph_counting:lem:w_u_l_not_geq_r_not}
-    \ \newline 
-    \noindent 
-    \begin{minipage}{0.7\textwidth}
         Let $X$ be a ruler-graph and $\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ an injective DPO rewriting rule.
-        Suppose that $\rho$ is $X$-non-increasing. For every rewriting step induced by the DPO diagram (shown on the right), we have 
-        \[
-            |\operatorname{Mono}(X, G, \lnot m, \lnot l')| \geq |\operatorname{Mono}(X, H, \lnot m', \lnot r')|
-        \]
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.29\textwidth}
-        \hfill
-        \resizebox{0.9\textwidth}{!}{ 
+        Suppose that $\rho$ is $X$-non-increasing. For every rewriting step induced by the following DPO diagram:
+        \begin{center}
+        \resizebox{0.3\textwidth}{!}{ 
                 \begin{tikzpicture}
             \node (k) at (0,1) {K};
             \node (l) at (-2,1) {L};
@@ -1877,5 +1789,9 @@ more X-occurrences are implicitly destroyed than implicitly created by the rewri
             \node () [at=($(r)!0.5!(c)$)] {$PO$};
         \end{tikzpicture}
         }
-    \end{minipage}
+        \end{center}
+       The following inequality holds:
+        \[
+            |\operatorname{Mono}(X, G, \lnot m, \lnot l')| \geq |\operatorname{Mono}(X, H, \lnot m', \lnot r')|
+        \]
 \end{lemma}

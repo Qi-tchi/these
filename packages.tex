@@ -3,7 +3,6 @@
 % ,disable
 ]
 {todonotes}
-
 \usepackage{marginnote}
 \setlength{\marginparwidth}{2cm}
 \usepackage[dvipsnames,x11names]{xcolor}
@@ -12,39 +11,21 @@ algorithm2e,cancel,verbatim,
 listings,float,amsmath,amssymb,enumitem,array,
 subfiles,bussproofs,
 rotating,MnSymbol,mathtools,subcaption,caption}
-\pgfplotsset{compat=1.18}
 \usetikzlibrary{automata, positioning,graphs,shapes, arrows, calc}
 % CORRECT LOCATION (preamble):
 \usepackage{csquotes}
-\usepackage[
-colorlinks=true,
-linkcolor=PineGreen, 
-citecolor=PineGreen,
-urlcolor=PineGreen,
-pdfborder={0 0 0}
-]{hyperref}
+
 \hyphenation{ma-chine-check-a-ble} 
 \hyphenation{dou-ble-push-out}
 %%%%%%% careful : order is important begin
 \usepackage{amsthm}
 \usepackage{thmtools}
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{idea}[theorem]{Idea}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{Plan}[theorem]{Plan}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{notation}[theorem]{Notation}
 % \usepackage[section]{placeins}
 \usepackage{minted}
 
 
 
-\newcommand{\set}[1]{\{#1\}} 
+
 \newcommand{\graphbox}[8]{
   \begin{scope}[xshift=#2,yshift=#3]
     \draw [rounded corners=2mm] (0,0) rectangle (#4,-#5);
@@ -54,15 +35,13 @@ pdfborder={0 0 0}
     \end{scope}
   \end{scope}
 }
+\newcommand{\set}[1]{\{#1\}} 
 \newcommand{\card}[1]{|#1|}
 \newcommand{\homset}[2]{\operatorname{Hom}(#1,#2)} 
 \newcommand{\isdef}{\overset{\operatorname{def}}{=}}
 \newcommand{\cat}[1]{\mathcal{#1}}
 \newcommand{\f}[1]{\mathfrak{#1}}
-\newcommand{\rs}[1]{\mathcal{#1}}
 \newcommand{\opn}[1]{\operatorname{#1}}
-%arrow
-\newcommand{\itrs}{\overset{i}{\to}} 
 
 \usepackage{tocloft}
 
@@ -72,7 +51,6 @@ pdfborder={0 0 0}
 \setlength{\cftsecindent}{30pt} %  space before sec titles
 \setlength{\cftsubsecindent}{40pt} %  space before subsec titles
 \setlength{\cftsubsubsecindent}{50pt} %  space before subsubsec titles
-
 
 \newcommand{\textdef}{\text{$\operatorname{Def.}$}}
 \newcommand{\pbpop}{$\operatorname{PBPO}^+$}
@@ -102,10 +80,36 @@ pdfborder={0 0 0}
 \usepackage{makecell}    
 \usepackage{nicematrix}  
 \usepackage{wrapfig}     
-\usepackage{lipsum}      
+\usepackage{lipsum}  
 
-% 
-
-% \usepackage{diagbox,colortbl,tikz,graphicx,algorithm2e,cancel,verbatim,
-% listings,float,amsthm,amsmath,amssymb,enumitem,array,subfiles,bussproofs,
-% rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
+% reference 1/3
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{idea}[theorem]{Idea}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{Plan}[theorem]{Plan}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{notation}[theorem]{Notation}
+% reference 2/3
+\renewcommand{\theHdefinition}{\thechapter.\arabic{definition}}
+\renewcommand{\theHtheorem}{\thechapter.\arabic{theorem}} 
+\renewcommand{\theHcorollary}{\thechapter.\arabic{corollary}}
+\renewcommand{\theHlemma}{\thechapter.\arabic{lemma}}
+\renewcommand{\theHproposition}{\thechapter.\arabic{proposition}}
+\renewcommand{\theHremark}{\thechapter.\arabic{remark}}
+\renewcommand{\theHexample}{\thechapter.\arabic{example}}
+\renewcommand{\theHPlan}{\thechapter.\arabic{Plan}}
+\renewcommand{\theHclaim}{\thechapter.\arabic{claim}}
+\renewcommand{\theHnotation}{\thechapter.\arabic{notation}}
+% reference 3/3
+\usepackage[
+colorlinks=true,
+linkcolor=PineGreen, 
+citecolor=PineGreen,
+urlcolor=PineGreen,
+pdfborder={0 0 0}
+]{hyperref}

@@ -1,44 +1,44 @@
-\noindent Our technique is described for DPO rewriting with injective matches due to their expressiveness \cite{habel2001double}, but it also extends to non-injective matches.
+\noindent Our technique is described for DPO rewriting with injective matches due to their expressiveness, but it also extends to non-injective matches~\cite{habel2001double}.
 
-\begin{definition}[\cite{habel2001double}] 
-    \ \newline 
-    \noindent
-    \begin{minipage}{0.7\textwidth}
-        Given a rule $\rho = L \leftarrow K \rightarrow R$, a rule $\rho' = (L' \leftarrow K' \rightarrow R')$ is called a \textbf{quotient rule} of $\rho$ if there exists a DPO diagram (shown on the right)
-    where all vertical graph morphisms are surjective. The set of quotient rules of $\rho$ is denoted by $Q(\rho)$, and 
-    for a rule set $\mathcal{A}$, we write $Q(\mathcal{A}) = \bigcup_{\rho\in\mathcal{A}} Q(\rho)$.
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.29\textwidth}
-        \hfill
-        \begin{tikzpicture}[scale=0.7]
-            \node (k) at (0,0) {K};
-            \node (l) at (-2,0) {L};
-            \node (r) at (2,0) {R};
-            \node (k') at (0,-2) {K'};
-            \node (l') at (-2,-2) {L'};
-            \node (r') at (2,-2)  {R'};
-            \draw[->] (k) -> (l);
-            \draw[->] (k) -> (r); 
-            \draw[->] (k') -> (l'); 
-            \draw[->] (k') -> (r'); 
-            \draw[->] (k) -> (k'); 
-            \draw[->] (l) -> (l'); 
-            \draw[->] (r) -> (r'); 
-            \node () [at=($(l)!0.5!(k')$)] {$PO$};
-            \node () [at=($(r)!0.5!(k')$)] {$PO$};
-        \end{tikzpicture}
-    \end{minipage}
-\end{definition}
+% \begin{definition}[\cite{habel2001double}] 
+%     \ \newline 
+%     \noindent
+%     \begin{minipage}{0.7\textwidth}
+%         Given a rule $\rho = L \leftarrow K \rightarrow R$, a rule $\rho' = (L' \leftarrow K' \rightarrow R')$ is called a \textbf{quotient rule} of $\rho$ if there exists a DPO diagram (shown on the right)
+%     where all vertical graph morphisms are surjective. The set of quotient rules of $\rho$ is denoted by $Q(\rho)$, and 
+%     for a rule set $\mathcal{A}$, we write $Q(\mathcal{A}) = \bigcup_{\rho\in\mathcal{A}} Q(\rho)$.
+%     \end{minipage}
+%     \hfill
+%     \begin{minipage}{0.29\textwidth}
+%         \hfill
+%         \begin{tikzpicture}[scale=0.7]
+%             \node (k) at (0,0) {K};
+%             \node (l) at (-2,0) {L};
+%             \node (r) at (2,0) {R};
+%             \node (k') at (0,-2) {K'};
+%             \node (l') at (-2,-2) {L'};
+%             \node (r') at (2,-2)  {R'};
+%             \draw[->] (k) -> (l);
+%             \draw[->] (k) -> (r); 
+%             \draw[->] (k') -> (l'); 
+%             \draw[->] (k') -> (r'); 
+%             \draw[->] (k) -> (k'); 
+%             \draw[->] (l) -> (l'); 
+%             \draw[->] (r) -> (r'); 
+%             \node () [at=($(l)!0.5!(k')$)] {$PO$};
+%             \node () [at=($(r)!0.5!(k')$)] {$PO$};
+%         \end{tikzpicture}
+%     \end{minipage}
+% \end{definition}
 
-\begin{lemma}[\cite{habel2001double}]
-    Let $\rho$ be a DPO rewriting rule. For any graphs $G$ and $H$,
-    $G \Rightarrow_{\rho,\mathfrak{F}} H$ if and only if $G \Rightarrow_{Q(\rho),\mathfrak{M}} H$.
-\end{lemma}
-\begin{corollary}
-    \label{cor:termination}
-    Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules. 
-    The rewriting relation $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ terminates relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ 
-    if 
-    $\Rightarrow_{Q(\mathcal{A}),\mathfrak{M}}$ terminates relative to $\Rightarrow_{Q(\mathcal{B}),\mathfrak{M}}$.
-\end{corollary}
+% \begin{lemma}[\cite{habel2001double}]
+%     Let $\rho$ be a DPO rewriting rule. For any graphs $G$ and $H$,
+%     $G \Rightarrow_{\rho,\mathfrak{F}} H$ if and only if $G \Rightarrow_{Q(\rho),\mathfrak{M}} H$.
+% \end{lemma}
+% \begin{corollary}
+%     \label{cor:termination}
+%     Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules. 
+%     The rewriting relation $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ terminates relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ 
+%     if 
+%     $\Rightarrow_{Q(\mathcal{A}),\mathfrak{M}}$ terminates relative to $\Rightarrow_{Q(\mathcal{B}),\mathfrak{M}}$.
+% \end{corollary}

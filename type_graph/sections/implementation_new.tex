@@ -31,19 +31,16 @@ The search proceeds as follows:
 
 This procedure amounts to checking the satisfiability of an existential Presburger arithmetic, Peano arithmetic, linear real arithmetic, or non-linear real arithmetic formula depending on the semiring $S$ considered.
 
-\emph{Z3 Modeling.}
+\paragraph{Z3 Modeling.}
 The type graph $T$ is modeled in Z3 by defining 
-\begin{itemize}
-    \item a boolean variable $x_{u,v,l} \in \mathbb{B}$ for every directed labeled edge $u\overset{l}{\to} v$ in the type graph, where $u,v\in\{1,...,k\}$ are nodes and $l \in \Sigma$ is an edge label.
-\end{itemize}  
-The variable $x_{u,v,l}$ has the value \textit{true} if the directed edge $u\overset{l}{\to} v$ exists in the result type graph, \textit{false} otherwise. \todo{todo to do:les reels sous quelle modelisation?}
+a boolean variable $x_{u,v,l} \in \mathbb{B}$ for every directed labeled edge $u\overset{l}{\to} v$ in the type graph, where $u,v\in\{1,...,k\}$ are nodes and $l \in \Sigma$ is an edge label. 
+The variable $x_{u,v,l}$ has the value \textit{true} if the directed edge $u\overset{l}{\to} v$ exists in the result type graph, \textit{false} otherwise. 
 
 The weight function $w$ and the set $\mathbb{E}$ of morphism-rulers are modeled by defining 
-\begin{itemize}
-    \item a variable $y_{u,v,l}$ in $\mathbb{N}$ or $\mathbb{R}_{\geq 0}$, depending on the semiring $\mathcal{S}$ considered,
+a variable $y_{u,v,l}$ of Z3's \textit{Real} sort or \textit{Int} sort (the solver's default theory for real numbers and integers), depending on the semiring $\mathcal{S}$ considered,
  for every pair $u,v\in\{1,...,k\}$ of nodes and edge label $l \in \Sigma$. 
-\end{itemize} 
-The variable $y_{u,v,l}$ represents the weight of the directed labeled edge $u\overset{l}{\to} v$ in the resulting weighted type graph, but only if edge $u\overset{l}{\to} v$ exists (i.e. $x_{u,v,l}$ has the value \textit{true}).
+The variable $y_{u,v,l}$ represents the weight of the directed labeled edge $u\overset{l}{\to} v$ in the resulting weighted type graph, but only if edge $u\overset{l}{\to} v$ exists (i.e. $x_{u,v,l}$ has the value \textit{true}). 
+They are constrained to be non-negative.
 
 A variable $\delta \in \mathbb{R}_{>0}$ is defined to ensure that there is
 a partition of the rule set $\mathcal{R}$ into a non-empty subset $\mathcal{A}$ and a subset $\mathcal{B}$ such that all rules in $\mathcal{A}$ are either $\delta$-uniformly decreasing or $\delta$-closure decreasing, and all rules in $\mathcal{B}$ are weakly decreasing.

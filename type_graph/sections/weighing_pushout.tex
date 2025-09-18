@@ -409,6 +409,46 @@ To see this, let \(X\in\Gamma\) and let \(g,h\colon X\to G\) satisfy \(g \star f
    
 \end{definition}
 
+
+The following lemma shows that, under certain constraints, exact weights of pushout object can be precisely computed or upperbounded.
+\begin{lemma}[\text{\cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}}]
+    \label{lem_4d13}
+    Let $\mathcal{T} = (T,\mathbb{E}, S, w)$ be a finitary weighted type graph. Consider the pushout square $\delta$ illustrated on the right. 
+
+    \begin{center} 
+        \resizebox{0.3\textwidth}{!}{
+        \begin{tikzpicture}[node distance=12mm]
+            \node (A) {$A$};
+            \node (B) [right of=A] {$B$};
+            \node (C) [below of=A] {$C$};
+            \node (D) [right of=C] {$D$};
+            
+            \draw [->] (A) to node [above, label] {$\alpha$} (B);
+            \draw [->] (A) to node [left, label] {$\beta$} (C);
+            \draw [->] (B) to node [right, label] {$\beta'$} (D);
+            \draw [->] (C) to node [below, label] {$\alpha'$} (D);
+            
+            \node [at=($(A)!.5!(D)$)] {$\delta$};
+        \end{tikzpicture}
+        }
+  \end{center}
+  We define
+     \[k = \underset{t_A:A \rightarrow T}{\bigoplus}
+            \left ( 
+                \underset{\substack{t_C:C \rightarrow T\\
+                                            t_A = \beta \star t_C }}{\bigoplus}
+                        w_\mathcal{T}(t_C - \beta)     
+                 \right ) 
+            \odot 
+                w_\mathcal{T}(\set{\alpha \star - = t_A})
+    \]
+    The following conditions hold:
+    \begin{enumerate}[label=(\Alph*)]
+        \item  $w_\mathcal{T}(D)=k$ if $\delta$ is weighable with $\mathcal{T}$.
+        \item  $w_\mathcal{T}(D)\preceq k$ if $\delta$ is bounded above by $\mathcal{T}$  and \(w(e) \succeq 1_S\) for all $e \in \mathbb{E}$.
+    \end{enumerate}
+\end{lemma}
+
     Consider the following DPO diagram
     %  shown in Figure~\ref{fig:nwf:dpo_diagram_sdfslafgjsl} 
      that defines a rewriting step \( G \Rightarrow_{\rho,\mathfrak{F}} H \). 
@@ -434,8 +474,7 @@ To see this, let \(X\in\Gamma\) and let \(g,h\colon X\to G\) satisfy \(g \star f
         \end{tikzpicture}
     } 
     \end{center}
-    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
-    \todo{todo to do: rapelle le lemma}
+    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$, by \cite{lem_4d13}, we obtain:
 
 \begin{flalign*}
     w_\mathcal{T}(G) 
