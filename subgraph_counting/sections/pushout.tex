@@ -1,14 +1,14 @@
 Pushouts play a central role in the double-pushout approach to graph rewriting considered in this thesis (recalled in the next section). The concepts and notation in this section follow the treatments of Pierce~\cite{pierce1991basic} and Barr and Wells~\cite{barr1990category}.
 \begin{definition}
     \label{def:cat}
-    A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : V(C) \to E(C) \) and a partial function \( \star: E(C) \times E(C) \to E(C) \) such that 
+    A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : V(C)  \mathop{\to} E(C) \) and a partial function \( \star: E(C) \mathop{\times} E(C)  \mathop{\to} E(C) \) such that 
         \begin{itemize}
-            \item for all edges \( f:X \to Y \) and \( g:Y \to Z \), the edge \( f \star g :X \to Z \) is defined; 
-            \item  for every node \( X \), \( u(X) \) is an edge from \( X \) to \( X \);
-            \item for every \( f:X \to Y \), we have \(u(X) \star f = f = f \star u(Y)\);
-            \item for all edges \( f \), \( g \) and \(h\), we have \( (f \star g) \star h = f \star (g \star h) \) whenever either side is defined.
+            \item for all edges \( f:X  \mathop{\to} Y \) and \( g:Y  \mathop{\to} Z \), the edge \( f \mathop{\star} g :X  \mathop{\to} Z \) is defined; 
+            \item  for every node \( X \), \( u(X) \) is an edge from \( X \) to \( X \); 
+            \item for every \( f:X  \mathop{\to} Y \), we have \(u(X) \mathop{\star} f \mathop{=} f \mathop{=} f \mathop{\star} u(Y)\);
+            \item for all edges \( f \), \( g \) and \(h\), we have \( (f \mathop{\star} g) \mathop{\star} h \mathop{=} f \mathop{\star} (g \mathop{\star} h) \) whenever either side is defined.
         \end{itemize}
-    Edges are called \textbf{morphisms}. The function $\star$ is called \textbf{composition}. For all \( X \in V(C) \), the edge \( u(X) \) is denoted by \( \operatorname{id}_X \) and is called the \textbf{identity} of the object \( X \).
+    Edges are called \textbf{morphisms}. The function $\star$ is called \textbf{composition}. For all \( X \mathop{\in} V(C) \), the edge \( u(X) \) is denoted by \( \operatorname{id}_X \) and is called the \textbf{identity} of the object \( X \).
     % \( C \) is called the \textbf{underlying graph} of the category \( \mathcal{C} \).
 \end{definition}    
 \begin{definition}
@@ -40,17 +40,17 @@ Pushouts play a central role in the double-pushout approach to graph rewriting c
 
 % cat notation * 
 \begin{notation}
-    The composition of morphisms \( f : X \to Y \) and \( g : Y \to Z \) is written in diagrammatic order as \( f \star g \), rather than in functional order \( g \circ f \) as is common in litterature. The advantage is that, when reading from left to right, the morphisms appear in the same order as in the corresponding diagram, making the reasoning accompanying diagrams more intuitive. 
+    The composition of morphisms \( f : X  \mathop{\to} Y \) and \( g : Y  \mathop{\to} Z \) is written in diagrammatic order as \( f \mathop{\star} g \), rather than in functional order \( g \circ f \) as is common in litterature. The advantage is that, when reading from left to right, the morphisms appear in the same order as in the corresponding diagram, making the reasoning accompanying diagrams more intuitive. 
 \end{notation}  
 
 \begin{definition} 
     \label{def:cat:homo}
-    A morphism \( f : X \to Y \) is said to be a \textbf{monomorphism} (is \textbf{monic}) if given any morphisms \( g,h: Z \to X  \), \( g \star f = h \star f \) implies \( g = h \). 
+    A morphism \( f : X  \mathop{\to} Y \) is said to be a \textbf{monomorphism} (is \textbf{monic}) if given any morphisms \( g,h: Z  \mathop{\to} X  \), \( g \mathop{\star} f \mathop{=} h \mathop{\star} f \) implies \( g \mathop{=} h \). 
     In this case, we write $f : X \rightarrowtail Y$ to indicate that $f$ is a monomorphism.
 \end{definition} 
 
 \begin{example}
-The category \(\mathbf{Set}\) has sets as objects and total functions between them as morphisms. For \(f\colon A\to B\) and \(g\colon B\to C\), composition is given by \(g\circ f\), and the identity morphism on a set \(A\) is the identity function \(\mathrm{id}_A\).
+The category \(\mathbf{Set}\) has sets as objects and total functions between them as morphisms. For \(f\mathop{\colon} A \mathop{\to} B\) and \(g\mathop{\colon} B \mathop{\to} C\), composition is given by \(g\circ f\), and the identity morphism on a set \(A\) is the identity function \(\mathrm{id}_A\).
 \end{example}
 
 \begin{example} 
@@ -59,20 +59,20 @@ The category \(\mathbf{Set}\) has sets as objects and total functions between th
 \end{example}
 
 % \begin{definition}[Span \cite{lowe2010graph}]
-%     A pair \( (\alpha : A \to B,~\beta : A \to C) \) of morphisms with a common domain is called a \textbf{span}, denoted by \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \).
+%     A pair \( (\alpha : A  \mathop{\to} B,~\beta : A  \mathop{\to} C) \) of morphisms with a common domain is called a \textbf{span}, denoted by \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \).
 % \end{definition}
  
 % \begin{definition}[Cospan]
-%     A pair \( (\beta' : B \to D,~\alpha' : C \to D) \) of morphisms with a common codomain is called a \textbf{cospan}, denoted by \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \). 
+%     A pair \( (\beta' : B  \mathop{\to} D,~\alpha' : C  \mathop{\to} D) \) of morphisms with a common codomain is called a \textbf{cospan}, denoted by \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \). 
 % \end{definition} 
 A span (resp. cospan) is a couple of morphisms with a common domain (resp. codomain).
 \begin{definition}
-An ordered pair \((\alpha : A \to B,\, \beta : A \to C)\) of morphisms with a common domain is called a \textbf{span} \cite{lowe2010graph}, denoted by
+An ordered pair \((\alpha : A  \mathop{\to} B,\, \beta : A  \mathop{\to} C)\) of morphisms with a common domain is called a \textbf{span} \cite{lowe2010graph}, denoted by
 \(
 B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C
 \). 
 % An example of a span $(\alpha, \beta)$ is shown below.
-Likewise, an ordered pair \((\beta' : B \to D,\, \alpha' : C \to D)\) of morphisms with a common codomain is called a \textbf{cospan}, denoted by
+Likewise, an ordered pair \((\beta' : B  \mathop{\to} D,\, \alpha' : C  \mathop{\to} D)\) of morphisms with a common codomain is called a \textbf{cospan}, denoted by
 \(
 B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
 \). 
@@ -89,7 +89,7 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -99,16 +99,16 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
             }  
-            \graphbox{\(G = L \cup C \)}{90mm}{5mm}{34mm}{27mm}{2mm}{-3mm}{
+            \graphbox{\(G \mathop{=} L \mathop{\cup} C \)}{90mm}{5mm}{34mm}{27mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
-                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
-                \node[draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }   
@@ -117,10 +117,10 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                \node[ draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[ draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }      
             % K to L
@@ -139,7 +139,7 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
 
 \begin{definition}[\cite{barr1990category}]
     \label{def:cat:diagram}
-    Let $\mathcal{C}$ be a category, and \( G \) an unlabeled graph. A \textbf{diagram} (of shape \( G \)) is a homomorphism of unlabeled graphs \( h : G \to \mathcal{C} \) where \( \mathcal{C} \) is considered as an unlabeled graph. A diagram is said to be \textbf{commutative} if, for all nodes \( u \), \( v \), and any two paths from \( u \) to \( v \) in the unlabeled graph \( G \):
+    Let $\mathcal{C}$ be a category, and \( G \) an unlabeled graph. A \textbf{diagram} (of shape \( G \)) is a homomorphism of unlabeled graphs \( h : G  \mathop{\to} \mathcal{C} \) where \( \mathcal{C} \) is considered as an unlabeled graph. A diagram is said to be \textbf{commutative} if, for all nodes \( u \), \( v \), and any two paths from \( u \) to \( v \) in the unlabeled graph \( G \):
 
     \begin{center}
     \resizebox{12cm}{!}{
@@ -172,7 +172,7 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
     }
     \end{center}
     \noindent
-    the equality \( h(s_1) \star h(s_2) \star \dots  \star h(s_{n-1}) = h(t_1) \star h(t_2) \star \dots  \star h(t_{m-1}) \) holds.
+    the equality \( h(s_1) \mathop{\star} h(s_2) \mathop{\star} \dots  \mathop{\star} h(s_{n-1}) \mathop{=} h(t_1) \mathop{\star} h(t_2) \mathop{\star} \dots  \mathop{\star} h(t_{m-1}) \) holds.
 \end{definition}
 
 \begin{example}
@@ -187,7 +187,7 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -197,16 +197,16 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
             }  
-            \graphbox{\(G = L \cup C \)}{90mm}{5mm}{34mm}{27mm}{2mm}{-3mm}{
+            \graphbox{\(G \mathop{=} L \mathop{\cup} C \)}{90mm}{5mm}{34mm}{27mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
-                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
-                \node[draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }   
@@ -215,10 +215,10 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                \node[ draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[ draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }      
             % K to L
@@ -236,7 +236,7 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
 \end{example}
 
 \begin{notation}   
-    When the context makes it clear, \( h_{AB} \) denotes a morphism \( h : A \to B \), and we refer to diagrams by listing their nodes, as is standard in geometry. 
+    When the context makes it clear, \( h_{AB} \) denotes a morphism \( h : A  \mathop{\to} B \), and we refer to diagrams by listing their nodes, as is standard in geometry. 
     % For example, the diagram shown in Definition~\ref{def:cat:po} is denoted by \( ACDB \) or \( ABDC \).
 \end{notation}   
 
@@ -245,7 +245,7 @@ The pushout is a construction in category theory that can often be thought of as
     \label{def:cat:po} 
     A \textbf{pushout} of a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \), shown in the following diagram,
     %  in Figure~\ref{fig:preliminaries:pushout_sdfkjasdlgjfl}
-    is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \star \gamma' = \beta \star \gamma \) holds, then there exists a unique morphism \(\delta : D \to E\) such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \).
+    is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \), and for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \mathop{\star} \gamma' \mathop{=} \beta \mathop{\star} \gamma \) holds, then there exists a unique morphism \(\delta : D  \mathop{\to} E\) such that \( \gamma' \mathop{=} \beta' \mathop{\star} \delta \) and \( \gamma \mathop{=} \alpha' \mathop{\star} \delta \).
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -278,14 +278,14 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
      Pushouts of two morphisms always exist in \(\mathbf{Set}\), and (up to isomorphism) can be described as follows. Let
     \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) be a span. Its pushout is the cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) where the pushout object of \((\alpha,\beta)\) is the set
     \[
-    D \;=\; (B + C)/{\sim}
+    D \;=\; (B\mathop{+}C)/{\sim}
     \]
-    where \(B + C\) denotes the disjoint union of $B$ and $C$ and \(\sim\) is the smallest equivalence relation that includes \(\set{(\alpha(a),\beta(b))\mid a \in A }\). The maps
-    \(\beta' \colon B\to D\) and \(\alpha' \colon C\to D\) send each element to its equivalence class.
+    where \(B\mathop{+}C\) denotes the disjoint union of $B$ and $C$ and \(\sim\) is the smallest equivalence relation that includes \(\set{(\alpha(a),\beta(b))\mid a \mathop{\in} A }\). The maps
+    \(\beta' \mathop{\colon} B \mathop{\to} D\) and \(\alpha' \mathop{\colon} C \mathop{\to} D\) send each element to its equivalence class.
 
     %  Consider the functions \(b\) and \(c\) shown in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkjflg} in the category \(\mathbf{Set}\). Each set is drawn as a box; elements of a set are represented by circles. The numbers inside circles indicate how the functions map those elements. 
     %  The element labeled by $n$ in set $X$ is denoted by $n_X$ to avoid ambiguity.
-    %  The equivalence relation \(\sim\) is the set \(\set{(1_B,1_C),(2_B,2_C)}\). The disjoint union of \(B\) and \(C\) is $D = \set{1_B,2_B,4_B,1_C,2_C,3_C}$. The quotient set $D/{\sim}$ is $\set{[1_B],[2_B],[3_C],[4_B]}$, where $[x]$ denotes the equivalence class of $x$. Note that $[1_C] = [1_B]$ and $[2_C] = [2_B]$, and $\set{[1_B],[2_B],[3_C],[4_B]}$ is isomorphic to $\set{1_D,2_D,3_D,4_D}$.
+    %  The equivalence relation \(\sim\) is the set \(\set{(1_B,1_C),(2_B,2_C)}\). The disjoint union of \(B\) and \(C\) is $D \mathop{=} \set{1_B,2_B,4_B,1_C,2_C,3_C}$. The quotient set $D/{\sim}$ is $\set{[1_B],[2_B],[3_C],[4_B]}$, where $[x]$ denotes the equivalence class of $x$. Note that $[1_C] \mathop{=} [1_B]$ and $[2_C] \mathop{=} [2_B]$, and $\set{[1_B],[2_B],[3_C],[4_B]}$ is isomorphic to $\set{1_D,2_D,3_D,4_D}$.
     For example, consider the functions \(\alpha\) and \(\beta\) in the category \(\mathbf{Set}\) in the diagram, illustrated in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkjflg}.
     In this diagram, each set is drawn as a box and its elements are represented by circles. The numbers inside circles indicate how the functions map those elements.
     \begin{figure}[H]
@@ -301,8 +301,8 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
               \coordinate (o) at (-5mm,-8mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            %   \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+            %   \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
             %   \draw[ ] (l1) -- (l3) node[midway,above] {$a$};
             %   \draw[ ] (l3) -- (l4) node[midway,above] {$b$};
             %   \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
@@ -311,8 +311,8 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            %   \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-              \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {3};
+            %   \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
+              \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {3};
             %   \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
             %   \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
           }    
@@ -320,10 +320,10 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
               \coordinate (o) at (-5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            %   \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-            %   \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-              \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {3};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+            %   \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+            %   \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+              \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {3};
             %   \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
             %   \draw[] (l1) -- (l3) node[midway,above] {$a$};
             %   \draw[] (l3) -- (l4) node[midway,above] {$b$};
@@ -344,14 +344,14 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
  
     The disjoint union of \(B\) and \(C\) is
     \[ 
-    D' = \{1_B,2_B,4_B,1_C,2_C,3_C\},
+    D' \mathop{=} \{1_B,2_B,4_B,1_C,2_C,3_C\},
     \]
     and the quotient \(D'/\sim\) is
     \[
-    D'/\sim = \{[1_B],[2_B],[3_C],[4_B]\},
+    D'/\sim \mathop{=} \{[1_B],[2_B],[3_C],[4_B]\},
     \]
     We have \([1_C]=[1_B]\) and \([2_C]=[2_B]\), and the maps
-    \(\beta'' \colon B\to D'\) and \(\alpha'' \colon C\to D'\) send each element to its equivalence class. Note that \(\{[1_B],[2_B],[3_C],[4_B]\}\) is isomorphic to \(D\), shown in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkjflg}, which is expected because the pushout of a span is unique up to isomorphism.
+    \(\beta'' \mathop{\colon} B \mathop{\to} D'\) and \(\alpha'' \mathop{\colon} C \mathop{\to} D'\) send each element to its equivalence class. Note that \(\{[1_B],[2_B],[3_C],[4_B]\}\) is isomorphic to \(D\), shown in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkjflg}, which is expected because the pushout of a span is unique up to isomorphism.
 \end{example}
 
 \begin{proposition}{\cite[p.188]{corradini1997algebraic}}
@@ -372,7 +372,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -386,12 +386,12 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
-                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
-                \node[draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }   
@@ -400,10 +400,10 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                \node[ draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[ draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }      
             % K to L
@@ -440,7 +440,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -456,12 +456,12 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
-                \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
-                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \node[draw,circle,red] (l3) at ($(l1)+(0,1.4)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l1)+(1,-1)$) {6};
                 \draw[->,red] (l1) edge[bend left] node[midway,left] {$a$} (l3);
                 \draw[->,red] (l3) edge[bend left] node[midway,right] {$a$} (l1);
                 \draw[->,blue] (l1) edge  node[midway,right] {$a$} (l4);
-                \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \node[draw,circle,blue] (l6) at ($(l1)+(-1,-1)$) {7};
                 \draw[<-,blue] (l1) edge node[midway,left] {$a$} (l6) ;
                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }   
@@ -470,10 +470,10 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \coordinate (o) at (0mm,-14mm); 
                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \node[draw,circle,blue] (l4) at ($(l1)+(1,-1)$) {6};
                 \draw[->,blue] (l1) -- (l4) node[midway,right] {$a$};
                 % \draw[->,blue] (l1) edge[loop above] node[midway, above] {$a$} (l1) ;
-                \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \node[ draw,circle,blue] (l6) at ($(l1)+(-1,-1)$) {7};
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }
             % K to L  
@@ -495,7 +495,7 @@ The \emph{pullback} is the dual construction of the pushout, and it can be thoug
    A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \)
 %    , shown below,
 %    in Figure~\ref{fig:preliminaries:pullback_ssdsfd},
-is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \star \beta' = \gamma \star \alpha'\) holds, then there exists a unique morphism \(\delta: E \to A\) such that $\gamma' = \delta \star \alpha$ and $\gamma = \delta \star \beta$. 
+is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \mathop{\star} \beta' \mathop{=} \gamma \mathop{\star} \alpha'\) holds, then there exists a unique morphism \(\delta: E  \mathop{\to} A\) such that $\gamma' \mathop{=} \delta \mathop{\star} \alpha$ and $\gamma \mathop{=} \delta \mathop{\star} \beta$. 
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -528,7 +528,7 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
     In the category \textbf{Set},
     the pullback 
     of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) is the span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) where
-    the pullback object $A$ is the set $A = \set{(b,c) \mid \beta (c) = \alpha (b)} \subseteq B \times C$; $\alpha$ and $\beta$ are defined as the corresponding projections, e.g., $\alpha((b, c)) = b$ and $\beta((b, c)) = c$.
+    the pullback object $A$ is the set $A \mathop{=} \set{(b,c) \mid \beta (c) \mathop{=} \alpha (b)} \mathop{\subseteq} B \mathop{\times} C$; $\alpha$ and $\beta$ are defined as the corresponding projections, e.g., $\alpha((b, c)) \mathop{=} b$ and $\beta((b, c)) \mathop{=} c$.
     Consider the following diagram:
     \begin{center}
       \resizebox{0.7\textwidth}{!}{
@@ -542,8 +542,8 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
               \coordinate (o) at (-5mm,-8mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            %   \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+            %   \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
             %   \draw[ ] (l1) -- (l3) node[midway,above] {$a$};
             %   \draw[ ] (l3) -- (l4) node[midway,above] {$b$};
             %   \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
@@ -552,8 +552,8 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            %   \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-              \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {3};
+            %   \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
+              \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {3};
             %   \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
             %   \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
           }    
@@ -561,10 +561,10 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
               \coordinate (o) at (-5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            %   \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-            %   \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-              \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {3};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+            %   \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+            %   \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+              \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {3};
             %   \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
             %   \draw[] (l1) -- (l3) node[midway,above] {$a$};
             %   \draw[] (l3) -- (l4) node[midway,above] {$b$};
@@ -581,7 +581,7 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
     The span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \)
     % shown in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkdfsdfjflg} 
     is the pullback of the cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \).
-    Indeed, the pullback object can be taken as the set $A' = \set{(1_B,1_C),(2_B,2_C)} \subseteq B \times C$, and the morphisms $\alpha'' \colon A' \to B$ and $\beta'' \colon A' \to C$ are defined as the corresponding projections, e.g., $\alpha''((x,y)) = x$ and $\beta''((x,y)) = y$. Note that $A$ is isomorphic to $A'$, which is expected because the pullback of a cospan is unique up to isomorphism.
+    Indeed, the pullback object can be taken as the set $A' \mathop{=} \set{(1_B,1_C),(2_B,2_C)} \mathop{\subseteq} B \mathop{\times} C$, and the morphisms $\alpha'' \mathop{\colon} A'  \mathop{\to} B$ and $\beta'' \mathop{\colon} A'  \mathop{\to} C$ are defined as the corresponding projections, e.g., $\alpha''((x,y)) \mathop{=} x$ and $\beta''((x,y)) \mathop{=} y$. Note that $A$ is isomorphic to $A'$, which is expected because the pullback of a cospan is unique up to isomorphism.
 \end{example}
 
 \begin{example}
@@ -598,7 +598,7 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -614,12 +614,12 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
-                \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
-                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \node[draw,circle,red] (l3) at ($(l1)+(0,1.4)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l1)+(1,-1)$) {6};
                 \draw[->,red] (l1) edge[bend left] node[midway,left] {$a$} (l3);
                 \draw[->,red] (l3) edge[bend left] node[midway,right] {$a$} (l1);
                 \draw[->,blue] (l1) edge  node[midway,right] {$a$} (l4);
-                \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \node[draw,circle,blue] (l6) at ($(l1)+(-1,-1)$) {7};
                 \draw[<-,blue] (l1) edge node[midway,left] {$a$} (l6) ;
                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }   
@@ -628,10 +628,10 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
                 \coordinate (o) at (0mm,-14mm); 
                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+                \node[draw,circle,blue] (l4) at ($(l1)+(1,-1)$) {6};
                 \draw[->,blue] (l1) -- (l4) node[midway,right] {$a$};
                 % \draw[->,blue] (l1) edge[loop above] node[midway, above] {$a$} (l1) ;
-                \node[ draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+                \node[ draw,circle,blue] (l6) at ($(l1)+(-1,-1)$) {7};
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }
             % K to L  

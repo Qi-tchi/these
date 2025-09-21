@@ -2,27 +2,27 @@
     \label{def:graph:unlabeled}
     An \textbf{unlabeled graph} \( G \) consists of a collection of \textbf{nodes} (also called \textbf{objects}) and a collection of \textbf{edges}, each equipped with a \textbf{source} (or \textbf{domain}) node and a \textbf{target} (or \textbf{codomain}) node. 
     For an unlabeled graph \( G \), we denote by \( G_0 \) its collection of nodes, \( G_1 \) its collection of edges, \( \operatorname{dom}:G_1{\to}G_0 \) the domain function, and \( \operatorname{cod}:G_1{\to}G_0 \) the codomain function. An unlabeled graph is \textbf{finite} if \( G_0 \) and \( G_1 \) are both finite sets.
-    We write \( a: s \to t \) to indicate that \( a \) is a directed edge from \( s \) to \( t \). 
+    We write \( a: s \mathop{\to} t \) to indicate that \( a \) is a directed edge from \( s \) to \( t \). 
 \end{definition}   
 % A homomorphism of unlabeled graphs is a mapping between the nodes and edges of two graphs that preserves the graph structure.
 \begin{definition}
     \label{def:unlabeled_graph:homomorphism}
-    Let \( G \) and \( H \) be unlabeled graphs. A \textbf{homomorphism of unlabeled graphs} $h: G \to H$ is a pair of functions $h_0: G_0 \to H_0 $ and $h_1: G_1 \to H_1$ such that for every edge \( a: s \to t \) in \( G \), we have \( h_1(a) : h_0(s) \to h_0(t) \) in \( H \).
+    Let \( G \) and \( H \) be unlabeled graphs. A \textbf{homomorphism of unlabeled graphs} $h: G \mathop{\to} H$ is a pair of functions $h_0: G_0 \mathop{\to} H_0 $ and $h_1: G_1 \mathop{\to} H_1$ such that for every edge \( a: s \mathop{\to} t \) in \( G \), we have \( h_1(a) : h_0(s) \mathop{\to} h_0(t) \) in \( H \).
 \end{definition}
 \begin{definition}
     \label{def:graph}
-    Let \(\Sigma\) be a finite set of labels. A \textbf{labeled graph} is an ordered pair \((G,\lambda)\) where \( G \) is an unlabeled graph and \( \lambda : G_1 \rightarrow \Sigma\) is an edge-labeling function. 
+    Let \(\Sigma\) be a finite set of labels. A \textbf{labeled graph} is an ordered pair \((G,\lambda)\) where \( G \) is an unlabeled graph and \( \lambda : G_1 \mathop{\rightarrow} \Sigma\) is an edge-labeling function. 
     It is called \textbf{finite} if its underlying unlabeled graph is finite.  
 \end{definition}
 By $a : s\overset{l}{\rightarrow} t$, we denote the arrow $a$ labeled by $l$ from $s$ to $t$. Unless otherwise specified, the term \enquote{graph} refers to the graphs finite. Note that unlabeled graphs can be regarded as labeled graphs. A homomorphism of labeled graphs is a homomorphism of unlabeled graphs that preserves the labels assigned to the edges.
 \begin{definition}
     \label{def:graph:homomorphism}
-    Let \( (G,\lambda) \) and \( (H,\lambda') \) be labeled graphs. A \textbf{homomorphism of labeled graphs} $h:(G,\lambda) \rightarrow (H,\lambda')$ is a homomorphism of unlabeled graphs such that for each edge \( a \) in \( G \), we have \( \lambda (a) = \lambda' (h_1 (a)) \).
+    Let \( (G,\lambda) \) and \( (H,\lambda') \) be labeled graphs. A \textbf{homomorphism of labeled graphs} $h:(G,\lambda) \mathop{\rightarrow} (H,\lambda')$ is a homomorphism of unlabeled graphs such that for each edge \( a \) in \( G \), we have \( \lambda (a) \mathop{=} \lambda' (h_1 (a)) \).
 \end{definition}
 \begin{notation}
     We use the notation from~\cite[Notation 1]{overbeek2023apbpotutorial} to visualize edge-labeled graph homomorphisms. Labeled graphs are enclosed in boxes with their names displayed in the top-left corner. Nodes and edges are assigned subsets of \(\mathbb{N}\) as identifiers, and these identifiers are chosen such that: (i) Each node or edge \( y \) in the codomain graph is assigned the union of the identifiers of all nodes or edges in the domain graph that are mapped to \( y \); (ii) The graph homomorphism is uniquely determined by this assignment.
     
-    \noindent To further improve readability, we represent sets by listing their elements. Additionally, we omit identifiers when doing so does not cause confusion. This is illustrated in the following representation of a homomorphism \( h: G \to H \).
+    \noindent To further improve readability, we represent sets by listing their elements. Additionally, we omit identifiers when doing so does not cause confusion. This is illustrated in the following representation of a homomorphism \( h: G \mathop{\to} H \).
     
     \begin{center}
         \resizebox{0.45\textwidth}{!}{

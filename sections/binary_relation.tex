@@ -2,34 +2,34 @@ This section recalls the definition of binary relations and some related concept
 A collection is not necessarily a set. A well known example is the collection of all sets which is not a set. For simplicity, we use similar notation for collections as for sets.  
 \begin{notation}
     Let $C$ and $D$ be collections of objects. 
-    we write $c \in C$ to mean that \enquote{$c$ is an element of C}, 
-    and $X \subseteq C$ to mean that $X$ is a collection of elements of $C$,
-    $C \cup D$ denotes the smallest collection including $C$ and $D$,
-    $C \cap D$ denotes the smallest collection contains all elements in $C$ that are also in $D$,
-    $C \times D$ denotes the collection of ordered pairs $(c,d)$ with $c \in C$ and $d \in D$.
+    we write $c \mathop{\in} C$ to mean that \enquote{$c$ is an element of C}, 
+    and $X \mathop{\subseteq} C$ to mean that $X$ is a collection of elements of $C$,
+    $C \mathop{\cup} D$ denotes the smallest collection including $C$ and $D$,
+    $C \mathop{\cap} D$ denotes the smallest collection contains all elements in $C$ that are also in $D$,
+    $C \mathop{\times} D$ denotes the collection of ordered pairs $(c,d)$ with $c \mathop{\in} C$ and $d \mathop{\in} D$.
   \end{notation} 
   % \begin{definition}[Binary relation]
   %   \label{def:binary_relation:binary_relation}
-  %   Let $D$ be a collection of objects. A mathematical structure \( (D, \mathcal{R}) \) where $\mathcal{R}$ is a collection of objects from $D \times D$ is called a \textbf{binary relation} on $D$. 
+  %   Let $D$ be a collection of objects. A mathematical structure \( (D, \mathcal{R}) \) where $\mathcal{R}$ is a collection of objects from $D \mathop{\times} D$ is called a \textbf{binary relation} on $D$. 
     
-  %   For an object in $(x,y) \in \mathcal{R}$ with first element $x \in D$ and second element $y\in D$, we write $x \mathcal{R} y$, $\mathcal{R}(x,y)$ or $(x,y) \in \mathcal{R}$. 
+  %   For an object in $(x,y) \mathop{\in} \mathcal{R}$ with first element $x \mathop{\in} D$ and second element $y\in D$, we write $x \mathcal{R} y$, $\mathcal{R}(x,y)$ or $(x,y) \mathop{\in} \mathcal{R}$. 
     
   %   When $D$ is irrelevant, we say simply that $\mathcal{R}$ is a binary relation.
   % \end{definition}
   % Binary relations on collections of objects instead of on sets.
 \begin{definition}
     \label{def:binary_relation:binary_relation}
-    Let $S$ be a collection of objects. A \textbf{binary relation} on $S$ is a mathematical structure \((S,\to)\) with \(\to \subseteq S\times S\). For \(x,y\in S\) we write \(x\to y\) to mean \((x,y)\) is an element of \(\to\). When the underlying collection \(S\) is clear from context or irrelevant to the discussion, we simply say that \(\to\) is a binary relation.
+    Let $S$ be a collection of objects. A \textbf{binary relation} on $S$ is a mathematical structure \((S,\to)\) with \( \mathop{\to} \mathop{\subseteq} S\times S\). For \(x,y\in S\) we write \(x \mathop{\to} y\) to mean \((x,y)\) is an element of \(\to\). When the underlying collection \(S\) is clear from context or irrelevant to the discussion, we simply say that \(\to\) is a binary relation.
   \end{definition}
-  Examples of binary relations are the empty set, the set $\set{(2,4),(1,3),(3,5)}$, \((\mathbb{N}, \geq)\), \((\mathbb{N}, >)\), and \((\mathbb{N}, =)\).
+  Examples of binary relations are the empty set, the set $\set{(2,4),(1,3),(3,5)}$, \((\mathbb{N}, \mathop{\geq})\), \((\mathbb{N}, >)\), and \((\mathbb{N}, =)\).
   \begin{definition}
     \label{def:binary_relation:reflexivity_transitivity}
     Let \(\to\) be a binary relation on a collection \(S\). It is said to be
     \begin{itemize}
-      \item \textbf{reflexive} if $a \to a$ for all $a \in S$;
-      \item \textbf{irreflexive} if for all $a \in S$, $a \to a$ does not hold;
-      \item \textbf{symmetric} if for all $a,b \in S$, $a \to b$ implies $b \to a$;
-      \item \textbf{transitive} if for all $a,b,c \in S$, $a \to b$ and $b \to c$ implies $a \to c$.
+      \item \textbf{reflexive} if $a \mathop{\to} a$ for all $a \mathop{\in} S$;
+      \item \textbf{irreflexive} if for all $a \mathop{\in} S$, $a \mathop{\to} a$ does not hold;
+      \item \textbf{symmetric} if for all $a,b \mathop{\in} S$, $a \mathop{\to} b$ implies $b \mathop{\to} a$;
+      \item \textbf{transitive} if for all $a,b,c \mathop{\in} S$, $a \mathop{\to} b$ and $b \mathop{\to} c$ implies $a \mathop{\to} c$.
     \end{itemize}
   \end{definition}
 Some examples of binary relations with these properties are as follows.
@@ -46,14 +46,14 @@ Some examples of binary relations with these properties are as follows.
 
 \begin{definition} 
     \label{def:binary_relation:closure}
-    % The \textbf{transitive closure} of $\to$, denoted $\to^+$, is the smallest transitive relation that includes \( \to \).
-    % The \textbf{symmetric closure} of $\to$, denoted $\leftrightarrow$, is the smallest symmetric relation that includes \( \to \).
-    % The \textbf{reflexive transitive closure} of $\to$, denoted $\to^*$, is the smallest reflexive and transitive relation that includes \( \to \).
+    % The \textbf{transitive closure} of $\to$, denoted $\to^+$, is the smallest transitive relation that includes \( \mathop{\to} \).
+    % The \textbf{symmetric closure} of $\to$, denoted $\leftrightarrow$, is the smallest symmetric relation that includes \( \mathop{\to} \).
+    % The \textbf{reflexive transitive closure} of $\to$, denoted $\to^*$, is the smallest reflexive and transitive relation that includes \( \mathop{\to} \).
     An equivalence relation is a binary relation that is \textbf{reflexive, symmetric, and transitive}. 
-    Let \( \to \) be a binary relation. The \textbf{equivalence relation generated by \(\to\)} is the smallest equivalence relation that includes \(\to\).
+    Let \( \mathop{\to} \) be a binary relation. The \textbf{equivalence relation generated by \(\to\)} is the smallest equivalence relation that includes \(\to\).
 \end{definition} 
 % For example, 
-% the relation \(\geq\) on \(\mathbb{N}\) is the reflexive transitive closure of the binary relation \(\set{(n+1, n) \mid n \in \mathbb{N}}\).
+% the relation \(\geq\) on \(\mathbb{N}\) is the reflexive transitive closure of the binary relation \(\set{(n+1, n) \mid n \mathop{\in} \mathbb{N}}\).
 For example, consider the binary relation $\set{(2,4),(1,3),(3,5)}$. The equivalence relation $\sim$ generated by this relation is 
 \begin{flalign*}
     \set{&(1,1),(2,2),(3,3),(4,4),(5,5),(1,3),(3,1),\\
@@ -68,15 +68,15 @@ Because every equivalence relation generated by $\sim$, it includes
 \end{itemize} 
 Given an equivalence relation, one may naturally consider the induced partition of the underlying collection into equivalence classes.
 \begin{definition}
-   Let \(S\) be a collection of objects and \(\sim\) be an equivalence relation on \(S\). For an element \(x\) in \(S\), the \textbf{equivalence class} of \(x\) in \(S\) with respect to \(\sim\) is the collection that consists of all elements \(y \in S\) such that \(y \sim x\), and is denoted by \([x]_{\sim}\).
+   Let \(S\) be a collection of objects and \(\sim\) be an equivalence relation on \(S\). For an element \(x\) in \(S\), the \textbf{equivalence class} of \(x\) in \(S\) with respect to \(\sim\) is the collection that consists of all elements \(y \mathop{\in} S\) such that \(y \sim x\), and is denoted by \([x]_{\sim}\).
       We may simply write \([x]\) instead of \([x]_{\sim}\) when the equivalence relation is clear from context.
    The collection of all equivalence classes in \(S\) with respect to \(\sim\) is called the \textbf{quotient collection}, and is  
     denoted by
    \(S/{\sim}\).
 
 \end{definition}
-For example, consider the set $S \isdef \set{1,2,3,4}$ and the binary relation $\sim \isdef \set{(2,4),(1,3)}$. The equivalence class of $[1]$ and $[3]$ are $\set{1,3}$, because $(1,3) \in S$. 
-The equivalence class shared by $[2]$ and $[4]$ are $\set{2,4}$, because $(2,4) \in S$.
+For example, consider the set $S \isdef \set{1,2,3,4}$ and the binary relation $\sim \isdef \set{(2,4),(1,3)}$. The equivalence class of $[1]$ and $[3]$ are $\set{1,3}$, because $(1,3) \mathop{\in} S$. 
+The equivalence class shared by $[2]$ and $[4]$ are $\set{2,4}$, because $(2,4) \mathop{\in} S$.
  Finally, the quotient set $S/{\sim}$ is $\set{[1],[2]}$.
 
 \begin{definition}
@@ -84,19 +84,19 @@ The equivalence class shared by $[2]$ and $[4]$ are $\set{2,4}$, because $(2,4) 
     Let \(\to\) be a binary relation. 
     A \textbf{\(\to\)-chain} is either
       \begin{itemize}
-          \item a finite sequence \((s_i)_{i=0}^n\) with \(n \in \mathbb{N}\) such that \(s_i \to s_{i+1}\) for every \(0 \leq i \leq n-1\); it will be denoted by \(s_0 \to s_1 \to \cdots \to s_n\); or
-          \item an infinite sequence \((s_n)_{n \in \mathbb{N}}\) such that \(s_n \to s_{n+1}\) for every \(n \in \mathbb{N}\); it will be denoted by \(s_0 \to s_1 \to \cdots\).
+          \item a finite sequence \((s_i)_{i=0}^n\) with \(n \mathop{\in} \mathbb{N}\) such that \(s_i \mathop{\to} s_{i+1}\) for every \(0 \leq i \leq n-1\); it will be denoted by \(s_0 \mathop{\to} s_1 \mathop{\to} \cdots \mathop{\to} s_n\); or
+          \item an infinite sequence \((s_n)_{n \mathop{\in} \mathbb{N}}\) such that \(s_n \mathop{\to} s_{n+1}\) for every \(n \mathop{\in} \mathbb{N}\); it will be denoted by \(s_0 \mathop{\to} s_1 \mathop{\to} \cdots\).
       \end{itemize}
-      In a \(\to\)-chain \((s_i)\), each adjacent pair \(s_i \to s_{i+1}\) is a \textbf{\(\to\)-step}.
-      A finite \(\to\)-chain \((s_i)_{i=0}^n\) is denoted by \(s_0 \to s_1 \to s_2 \to \cdots \to s_n \). 
-      A finite \(\to\)-chain \((s_n)_{n \in \mathbb{N}}\) is denoted by \(s_0 \to s_1 \to s_2 \to \cdots \).
+      In a \(\to\)-chain \((s_i)\), each adjacent pair \(s_i \mathop{\to} s_{i+1}\) is a \textbf{\(\to\)-step}.
+      A finite \(\to\)-chain \((s_i)_{i=0}^n\) is denoted by \(s_0 \mathop{\to} s_1 \mathop{\to} s_2 \mathop{\to} \cdots \mathop{\to} s_n \). 
+      A finite \(\to\)-chain \((s_n)_{n \mathop{\in} \mathbb{N}}\) is denoted by \(s_0 \mathop{\to} s_1 \mathop{\to} s_2 \mathop{\to} \cdots \).
 
 \end{definition}
-An example of an infinite \(\geq\)-chain is the sequence \(3 \geq 2 \geq 1 \geq 1 \cdots\). An example of a finite \(>\)-chain is the sequence \(2 > 1 > 0\).
+An example of an infinite \(\geq\)-chain is the sequence \(3 \mathop{\geq} 2 \mathop{\geq} 1 \mathop{\geq} 1 \cdots\). An example of a finite \(>\)-chain is the sequence \(2 \mathop{>} 1 \mathop{>} 0\).
 \begin{definition} 
     \label{def:binary_relation:well_founded}
     A binary relation $\to$ is said to be \textbf{well-founded} if there is no infinite $\to$-chain. 
 \end{definition}
 \todo{todo: $\to$ or $\leftarrow$?}
 An example of a well-founded relation is the usual order
-\(>\) on \(\mathbb{N}\). An example of a non well-founded relation is \(\geq\) on \(\mathbb{N}\), because there is an infinite \(\geq\)-chain \(3 \geq 2 \geq 1 \geq 1 \cdots\).
+\(>\) on \(\mathbb{N}\). An example of a non well-founded relation is \(\geq\) on \(\mathbb{N}\), because there is an infinite \(\geq\)-chain \(3 \mathop{\geq} 2 \mathop{\geq} 1 \mathop{\geq} 1 \cdots\).

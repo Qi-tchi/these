@@ -10,16 +10,16 @@
 % %     \begin{itemize}
 % %         \item a finite graph $T$,
 % %         \item a set $\mathbb{E}$ of morphisms to $T$,
-% %         \item a weight function  $w : \mathbb{E} \rightarrow \mathbb{N}$
+% %         \item a weight function  $w : \mathbb{E} \mathop{\rightarrow} \mathbb{N}$
 % %     \end{itemize} 
 % % \end{definition} 
 
 % % \begin{definition}[Weighted Type Graph  \text{\cite{endrullis2023generalized}}]
 % %     \label{def:t_sigm_x}
-% %     Let $X$ be a $\Sigma$-labelled connected graph with at least one arrow. Define the weighted type graph $\mathcal{T}^X_\Sigma = (T, \{e\}, w)$ as follows:
+% %     Let $X$ be a $\Sigma$-labelled connected graph with at least one arrow. Define the weighted type graph $\mathcal{T}^X_\Sigma \mathop{=} (T, \{e\}, w)$ as follows:
 % %     \begin{itemize}
-% %         \item The graph $T$ consists of a single node $v$, along with the set $\{(v, s, v) \mid s \in \Sigma\}$ as its set of arrows,
-% %         \item The unique morphism $e: X \to T$ is assigned the weight $1 \in \mathbb{N}$.
+% %         \item The graph $T$ consists of a single node $v$, along with the set $\{(v, s, v) \mid s \mathop{\in} \Sigma\}$ as its set of arrows,
+% %         \item The unique morphism $e: X \mathop{\to} T$ is assigned the weight $1 \mathop{\in} \mathbb{N}$.
 % %     \end{itemize} 
 % % \end{definition}
 % % To prove the relative termination of linear DPO graph rewriting systems, we use a class of concrete type graphs.
@@ -27,9 +27,9 @@
 %     \label{def:t_sigm_x}
 %     Let $X$ be a connected 
 %     % $\Sigma$-labelled 
-%     graph with at least one arrow. Define the weighted type graph $\mathcal{T}^X_\Sigma$ as the graph consists of a single node $v$, along with the set $\{(v, s, v) \mid s \in \Sigma\}$ as its set of arrows.
+%     graph with at least one arrow. Define the weighted type graph $\mathcal{T}^X_\Sigma$ as the graph consists of a single node $v$, along with the set $\{(v, s, v) \mid s \mathop{\in} \Sigma\}$ as its set of arrows.
 %     % ,
-%     %     \item The unique morphism $e: X \to T$ is assigned the weight $1 \in \mathbb{N}$.
+%     %     \item The unique morphism $e: X \mathop{\to} T$ is assigned the weight $1 \mathop{\in} \mathbb{N}$.
 %     % \end{itemize}
 % \end{definition}
 
@@ -48,26 +48,26 @@
 %     % \end{center}
 %     \begin{itemize}
 %         \item
-%         % For $\alpha : A \to B$ and $\gamma : A \to C$, we define 
+%         % For $\alpha : A \mathop{\to} B$ and $\gamma : A \mathop{\to} C$, we define 
 %         \(
-%         \set{ \alpha \star - = \gamma } \overset{def}{=} \set{ \beta \in \operatorname{Hom}(B,C) \mid \alpha \star \beta = \gamma} 
+%         \set{ \alpha \mathop{\star} - \mathop{=} \gamma } \overset{def}{=} \set{ \beta \mathop{\in} \operatorname{Hom}(B,C) \mid \alpha \mathop{\star} \beta \mathop{=} \gamma} 
 %         \); 
 %         \item        
-%             % For $\alpha : B \to C$ and $x : A \to C$, we define 
+%             % For $\alpha : B \mathop{\to} C$ and $x : A \mathop{\to} C$, we define 
 %             \(
-%             \set{ - \star \beta = \gamma } \overset{def}{=} \set{ \alpha \in \operatorname{Hom}(A,B) \mid \alpha \star \beta = \gamma } 
+%             \set{ - \mathop{\star} \beta \mathop{=} \gamma } \overset{def}{=} \set{ \alpha \mathop{\in} \operatorname{Hom}(A,B) \mid \alpha \mathop{\star} \beta \mathop{=} \gamma } 
 %             \)
 %             ; 
 %         \item
-%             % For $\alpha : B \to C$ and a
+%             % For $\alpha : B \mathop{\to} C$ and a
 %             % set
-%             For all $S \subseteq \operatorname{Hom}(A,B)$, we define
+%             For all $S \mathop{\subseteq} \operatorname{Hom}(A,B)$, we define
 %             \(
-%                 S \star \beta \overset{def}{=} \set{ \alpha \star \beta \mid \alpha \in S }
+%                 S \mathop{\star} \beta \overset{def}{=} \set{ \alpha \mathop{\star} \beta \mid \alpha \mathop{\in} S }
 %             \).
 %     \end{itemize}
 % \end{remark}
-% % The following definitions are adapted from \cite{endrullis2023generalized}. Intuitively, given a weighted type graph $\mathcal{T}^X_\Sigma$, a graph $G$ will be interpreted as the unique homomorphism $\phi : G \to T$, which will be interpreted as the number of graph homomorphisms from $X$ to $G$. The fundamental difference between the type graph method and many other existing termination methods is that instead of counting the number of graph occurrences, the type graph method counts the number graph homomorphisms which contain more informations. 
+% % The following definitions are adapted from \cite{endrullis2023generalized}. Intuitively, given a weighted type graph $\mathcal{T}^X_\Sigma$, a graph $G$ will be interpreted as the unique homomorphism $\phi : G \mathop{\to} T$, which will be interpreted as the number of graph homomorphisms from $X$ to $G$. The fundamental difference between the type graph method and many other existing termination methods is that instead of counting the number of graph occurrences, the type graph method counts the number graph homomorphisms which contain more informations. 
 
 
 
@@ -80,14 +80,14 @@
 % %         \[
 % %         w_{\mathcal{T}^X_\Sigma}(G) \overset{\operatorname{def}}{=} \left| \operatorname{Hom}(X, G) \right|
 % %         \]
-% %         \item For $\Gamma \subseteq \homset{A}{G}$, the \textbf{weight of $\phi:G\to T$ excluding morphisms in $\Gamma' \overset{def}{=}\set{\iota \in \operatorname{Hom}(X,G) \mid \exists \alpha \in \Gamma. \exists \zeta.  ~\zeta * \alpha=\iota}$}, is defined as the number of morphisms from \( X \) to \( G \) that are not contained in $\Gamma'$:
+% %         \item For $\Gamma \mathop{\subseteq} \homset{A}{G}$, the \textbf{weight of $\phi:G \mathop{\to} T$ excluding morphisms in $\Gamma' \overset{def}{=}\set{\iota \mathop{\in} \operatorname{Hom}(X,G) \mid \exists \alpha \mathop{\in} \Gamma. \exists \zeta.  ~\zeta * \alpha=\iota}$}, is defined as the number of morphisms from \( X \) to \( G \) that are not contained in $\Gamma'$:
 % %         \[
 % %         w_{\mathcal{T}^X_\Sigma}(\phi - \Gamma) \overset{\operatorname{def}}{=} 
-% %         \left|\operatorname{Hom}(X,G) \setminus \Gamma' \right|
+% %         \left|\operatorname{Hom}(X,G) \mathop{\setminus} \Gamma' \right|
 % %         \]  
-% %         % Let \(\Gamma\) be a set of morphisms to \(G\). Let \(\Gamma'\) be the set \(\{ k \in \operatorname{Hom}(X, G) \mid \exists g \in \Gamma,  \exists f, f \star g = k\} \) of morphisms in \( \homset{X}{G} \) factorisable through some morphisms in \(\Gamma\). The \textbf{weight of the morphism \(h : G \to T\) excluding \( \Gamma' \)} relative to \(\mathcal{T}^X_\Sigma\) is defined as
+% %         % Let \(\Gamma\) be a set of morphisms to \(G\). Let \(\Gamma'\) be the set \(\{ k \mathop{\in} \operatorname{Hom}(X, G) \mid \exists g \mathop{\in} \Gamma,  \exists f, f \mathop{\star} g \mathop{=} k\} \) of morphisms in \( \homset{X}{G} \) factorisable through some morphisms in \(\Gamma\). The \textbf{weight of the morphism \(h : G \mathop{\to} T\) excluding \( \Gamma' \)} relative to \(\mathcal{T}^X_\Sigma\) is defined as
 % %         % \[
-% %         % w_{\mathcal{T}^X_\Sigma}(h - \Gamma) \overset{\operatorname{def}}{=} \left|Hom(X,G) \setminus \Gamma'\right|
+% %         % w_{\mathcal{T}^X_\Sigma}(h - \Gamma) \overset{\operatorname{def}}{=} \left|Hom(X,G) \mathop{\setminus} \Gamma'\right|
 % %         % \]  
 % %         \begin{center}
 % %             \begin{tikzpicture}
@@ -104,10 +104,10 @@
 % % \end{definition}
 
 
-% The \textbf{weight of a morphism \( \phi : G \rightarrow T \)} relative to \(\mathcal{T}^X_\Sigma\) is defined as the number of morphisms from \( X \) to \( G \). The weight of a graph $G$ relative to $T_\Sigma$ is defined as the weight of the
+% The \textbf{weight of a morphism \( \phi : G \mathop{\rightarrow} T \)} relative to \(\mathcal{T}^X_\Sigma\) is defined as the number of morphisms from \( X \) to \( G \). The weight of a graph $G$ relative to $T_\Sigma$ is defined as the weight of the
 % unique morphism from $G$ to $T_\Sigma$.
 
-% For $\Gamma \subseteq \homset{A}{G}$, the \textbf{weight of $\phi:G\to T$ excluding morphisms in $\Gamma' \overset{def}{=}\set{\iota \in \operatorname{Hom}(X,G) \mid \exists \alpha \in \Gamma. \exists \zeta.  ~\zeta \star \alpha=\iota}$}, is defined as the number of morphisms from \( X \) to \( G \) that are not contained in $\Gamma'$
+% For $\Gamma \mathop{\subseteq} \homset{A}{G}$, the \textbf{weight of $\phi:G \mathop{\to} T$ excluding morphisms in $\Gamma' \overset{def}{=}\set{\iota \mathop{\in} \operatorname{Hom}(X,G) \mid \exists \alpha \mathop{\in} \Gamma. \exists \zeta.  ~\zeta \mathop{\star} \alpha=\iota}$}, is defined as the number of morphisms from \( X \) to \( G \) that are not contained in $\Gamma'$
 % \begin{center}
 %     \begin{tikzpicture}
 %         \node (a) at (0,0) {X};
@@ -123,7 +123,7 @@
 %     \label{def:weight_t_sigma_x}
 %         \begin{itemize}
 %             \item
-%         The \textbf{weight of a morphism \( \phi : G \rightarrow T \)} relative to \(\mathcal{T}^X_\Sigma\) is defined as
+%         The \textbf{weight of a morphism \( \phi : G \mathop{\rightarrow} T \)} relative to \(\mathcal{T}^X_\Sigma\) is defined as
 %         \[
 %         w_{\mathcal{T}^X_\Sigma}(\phi) \overset{\operatorname{def}}{=} \left| \operatorname{Hom}(X, G) \right|
 %         \]
@@ -148,26 +148,26 @@
 %         w_{\mathcal{T}^X_\Sigma}(G) \overset{\operatorname{def}}{=} w_{\mathcal{T}^X_\Sigma}(\phi)
 %         \]
       
-%         \item For $\Gamma \subseteq \homset{A}{G}$, the \textbf{weight of $\phi:G\to T$ excluding morphisms in $\Gamma' \overset{def}{=}\set{\iota \in \operatorname{Hom}(X,G) \mid \exists \alpha \in \Gamma. \exists \zeta.  ~\zeta \star \alpha=\iota}$}, is defined as 
+%         \item For $\Gamma \mathop{\subseteq} \homset{A}{G}$, the \textbf{weight of $\phi:G \mathop{\to} T$ excluding morphisms in $\Gamma' \overset{def}{=}\set{\iota \mathop{\in} \operatorname{Hom}(X,G) \mid \exists \alpha \mathop{\in} \Gamma. \exists \zeta.  ~\zeta \mathop{\star} \alpha=\iota}$}, is defined as 
 %         \[
 %         w_{\mathcal{T}^X_\Sigma}(\phi - \Gamma) \overset{\operatorname{def}}{=} 
-%         \left|\operatorname{Hom}(X,G) \setminus \Gamma' \right|
+%         \left|\operatorname{Hom}(X,G) \mathop{\setminus} \Gamma' \right|
 %         \]
-%         % Let \(\Gamma\) be a set of morphisms to \(G\). Let \(\Gamma'\) be the set \(\{ k \in \operatorname{Hom}(X, G) \mid \exists g \in \Gamma,  \exists f, f \star g = k\} \) of morphisms in \( \homset{X}{G} \) factorisable through some morphisms in \(\Gamma\). The \textbf{weight of the morphism \(h : G \to T\) excluding \( \Gamma' \)} relative to \(\mathcal{T}^X_\Sigma\) is defined as
+%         % Let \(\Gamma\) be a set of morphisms to \(G\). Let \(\Gamma'\) be the set \(\{ k \mathop{\in} \operatorname{Hom}(X, G) \mid \exists g \mathop{\in} \Gamma,  \exists f, f \mathop{\star} g \mathop{=} k\} \) of morphisms in \( \homset{X}{G} \) factorisable through some morphisms in \(\Gamma\). The \textbf{weight of the morphism \(h : G \mathop{\to} T\) excluding \( \Gamma' \)} relative to \(\mathcal{T}^X_\Sigma\) is defined as
 %         % \[
-%         % w_{\mathcal{T}^X_\Sigma}(h - \Gamma) \overset{\operatorname{def}}{=} \left|Hom(X,G) \setminus \Gamma'\right|
+%         % w_{\mathcal{T}^X_\Sigma}(h - \Gamma) \overset{\operatorname{def}}{=} \left|Hom(X,G) \mathop{\setminus} \Gamma'\right|
 %         % \]  
 
-%     %     \item The \textbf{weight of $\phi:G\to T$ excluding $\set{\iota \in \set{- * \phi = e} \mid \exists \alpha \in \Gamma. \exists \zeta.  ~\zeta * \alpha=\iota}$}, for $\Gamma \subseteq \homset{A}{G}$, is 
+%     %     \item The \textbf{weight of $\phi:G \mathop{\to} T$ excluding $\set{\iota \mathop{\in} \set{- * \phi \mathop{=} e} \mid \exists \alpha \mathop{\in} \Gamma. \exists \zeta.  ~\zeta * \alpha=\iota}$}, for $\Gamma \mathop{\subseteq} \homset{A}{G}$, is 
 %     %     \[
 %     %     w_{\mathcal{T}^X_\Sigma}(\phi - \Gamma) \overset{\operatorname{def}}{=} 
 %     %     \left|\set{
-%     %             \iota \in \set{-*\phi=e} \mid \not \exists \alpha \in \Gamma. \exists \zeta.~ \zeta * \alpha = \iota 
+%     %             \iota \mathop{\in} \set{-*\phi=e} \mid \not \exists \alpha \mathop{\in} \Gamma. \exists \zeta.~ \zeta * \alpha \mathop{=} \iota 
 %     %         }\right|
 %     %     \]  
-%     %     % Let \(\Gamma\) be a set of morphisms to \(G\). Let \(\Gamma'\) be the set \(\{ k \in \operatorname{Hom}(X, G) \mid \exists g \in \Gamma,  \exists f, f \star g = k\} \) of morphisms in \( \homset{X}{G} \) factorisable through some morphisms in \(\Gamma\). The \textbf{weight of the morphism \(h : G \to T\) excluding \( \Gamma' \)} relative to \(\mathcal{T}^X_\Sigma\) is defined as
+%     %     % Let \(\Gamma\) be a set of morphisms to \(G\). Let \(\Gamma'\) be the set \(\{ k \mathop{\in} \operatorname{Hom}(X, G) \mid \exists g \mathop{\in} \Gamma,  \exists f, f \mathop{\star} g \mathop{=} k\} \) of morphisms in \( \homset{X}{G} \) factorisable through some morphisms in \(\Gamma\). The \textbf{weight of the morphism \(h : G \mathop{\to} T\) excluding \( \Gamma' \)} relative to \(\mathcal{T}^X_\Sigma\) is defined as
 %     %     % \[
-%     %     % w_{\mathcal{T}^X_\Sigma}(h - \Gamma) \overset{\operatorname{def}}{=} \left|Hom(X,G) \setminus \Gamma'\right|
+%     %     % w_{\mathcal{T}^X_\Sigma}(h - \Gamma) \overset{\operatorname{def}}{=} \left|Hom(X,G) \mathop{\setminus} \Gamma'\right|
 %     %     % \]  
 %     %     \begin{center}
 %     %     \begin{tikzpicture}
@@ -202,11 +202,11 @@
 
 % The type graph method is a powerful technique initially developed in \cite{zantema2014termination} for cycle rewriting, later extended to graph rewriting by \cite{bruggink2014termination, bruggink2015proving}, and generalized by \cite{endrullis2023generalized} for different variants of the DPO graph rewriting setting and for more categories.
 
-% This method is essentially an interpretation method \cite{nipkow1998term} for proving termination. It operates by first fixing a finite graph \(T\), called the \emph{type graph}, and an ordered set \((S, \geq)\) which serve as a basis for associating weights to graphs. The process unfolds as follows:
+% This method is essentially an interpretation method \cite{nipkow1998term} for proving termination. It operates by first fixing a finite graph \(T\), called the \emph{type graph}, and an ordered set \((S, \mathop{\geq})\) which serve as a basis for associating weights to graphs. The process unfolds as follows:
 % \begin{itemize}
 %     \item Interpretation as Morphisms: A graph \( G \) is interpreted as a finite set of morphisms from \( G \) to \( T \).
-%     \item Weight Association: Each morphism \( f: G \rightarrow T \) is assigned a weight from \(S\). This transforms the finite set of morphisms into a finite set of elements in \( S \).
-%     \item Aggregation: An aggregator $\alpha : \mathcal{P}(S) \to S$ combines the finite set of weights into a single element in \( S \).
+%     \item Weight Association: Each morphism \( f: G \mathop{\rightarrow} T \) is assigned a weight from \(S\). This transforms the finite set of morphisms into a finite set of elements in \( S \).
+%     \item Aggregation: An aggregator $\alpha : \mathcal{P}(S) \mathop{\to} S$ combines the finite set of weights into a single element in \( S \).
 % \end{itemize}
 % By following this interpretation, each graph is assigned a weight in \( S \), enabling comparisons of graphs based on their aggregated weights.
 
@@ -214,13 +214,13 @@
 
 The \textbf{type graph method} is a technique initially developed for the cycle rewriting in \cite{zantema2014termination}, later extended to DPO graph rewriting in \cite{bruggink2014termination, bruggink2015proving}, and further generalized for various DPO graph rewriting variants and categories in \cite{endrullis2023generalized}.
 
-This method is an interpretation approach \cite[see][]{nipkow1998term} for proving termination. It begins by fixing a finite \emph{type graph} \(T\) and an ordered set \((S, \geq)\), whose elements are called \emph{weights}, to associate weights to graphs. The interpretation of G is the sum of the weights of all morphisms from G to T.
+This method is an interpretation approach \cite[see][]{nipkow1998term} for proving termination. It begins by fixing a finite \emph{type graph} \(T\) and an ordered set \((S, \mathop{\geq})\), whose elements are called \emph{weights}, to associate weights to graphs. The interpretation of G is the sum of the weights of all morphisms from G to T.
 %  The process involves:
 
 % \begin{itemize}
 %     \item \textbf{Morphism Interpretation}: A graph \( G \) is represented as a finite set of morphisms from \( G \) to \( T \).
-%     \item \textbf{Weight Assignment}: Each morphism \( f: G \rightarrow T \) is assigned a weight from \( S \), converting the set of morphisms into weights.
-%     \item \textbf{Aggregation}: An aggregator function \( \alpha : \mathcal{P}(S) \to S \) combines the set of weights into a single element in \( S \).
+%     \item \textbf{Weight Assignment}: Each morphism \( f: G \mathop{\rightarrow} T \) is assigned a weight from \( S \), converting the set of morphisms into weights.
+%     \item \textbf{Aggregation}: An aggregator function \( \alpha : \mathcal{P}(S) \mathop{\to} S \) combines the set of weights into a single element in \( S \).
 % \end{itemize}
 
 To prove the relative termination of linear DPO graph rewriting systems, we employ a restricted version of the type graph method as presented in \cite{endrullis2023generalized}. Specifically, each graph is interpreted as a unique morphism to a finite type graph \( T_\Sigma \) (see Definition~\ref{def:t_sigm_x}), which is assigned a weight from the ordered set \((\mathbb{N}, \leq)\).
@@ -229,7 +229,7 @@ To prove the relative termination of linear DPO graph rewriting systems, we empl
     \label{def:t_sigm_x}
     Let $\Sigma$ be a set of edge labels and \( X \) a connected graph.
     A \textbf{flower type graph} \( \mathcal{T}_\Sigma^X \) is a graph comprising a single node \( v \) and a collection of loops on \( v \), with one loop for each edge label in \( \Sigma \).
-    % A \textbf{flower type graph} \( \mathcal{T}_\Sigma^X = (\mathcal{T}, e : X \to T) \) consists of 
+    % A \textbf{flower type graph} \( \mathcal{T}_\Sigma^X \mathop{=} (\mathcal{T}, e : X \mathop{\to} T) \) consists of 
     % \begin{itemize}
     %     \item a set of edge labels$\Sigma$,
     %     \item a connected graph \( X \),
@@ -241,28 +241,28 @@ Give a connected graph $X$ and a set of
 \begin{remark}[Notation]
     For enhanced readability, we adopt the notation from \cite[Notation 3.3]{endrullis2023generalized}:
     \begin{itemize}
-        \item For morphisms \( \alpha : A \to B \) and \( \gamma : A \to C \), we define
+        \item For morphisms \( \alpha : A \mathop{\to} B \) and \( \gamma : A \mathop{\to} C \), we define
         \[
-            \set{ \alpha \star - = \gamma } \overset{\operatorname{def}}{=} \{ \beta \in \operatorname{Hom}(B, C) \mid \alpha \star \beta = \gamma \}.
+            \set{ \alpha \mathop{\star} - \mathop{=} \gamma } \overset{\operatorname{def}}{=} \{ \beta \mathop{\in} \operatorname{Hom}(B, C) \mid \alpha \mathop{\star} \beta \mathop{=} \gamma \}.
         \]
-        \item For morphisms \( \beta : B \to C \) and \( \gamma : A \to C \), we define
+        \item For morphisms \( \beta : B \mathop{\to} C \) and \( \gamma : A \mathop{\to} C \), we define
         \[
-            \set{ - \star \beta = \gamma } \overset{\operatorname{def}}{=} \{ \alpha \in \operatorname{Hom}(A, B) \mid \alpha \star \beta = \gamma \}.
+            \set{ - \mathop{\star} \beta \mathop{=} \gamma } \overset{\operatorname{def}}{=} \{ \alpha \mathop{\in} \operatorname{Hom}(A, B) \mid \alpha \mathop{\star} \beta \mathop{=} \gamma \}.
         \]
-        \item For a set \( S \subseteq \operatorname{Hom}(A, B) \) and a morphism \( \beta : B \to C \), we define
+        \item For a set \( S \mathop{\subseteq} \operatorname{Hom}(A, B) \) and a morphism \( \beta : B \mathop{\to} C \), we define
         \[
-            S \star \beta \overset{\operatorname{def}}{=} \set{ \alpha \star \beta \mid \alpha \in S }.
+            S \mathop{\star} \beta \overset{\operatorname{def}}{=} \set{ \alpha \mathop{\star} \beta \mid \alpha \mathop{\in} S }.
         \]
     \end{itemize}
 \end{remark}
 
-Given a type graph \( \mathcal{T}_\Sigma^X\), the weight of a graph \( G \) is determined by the weight of the unique morphism \( \phi : G \to \mathcal{T}_\Sigma^X\), which is equal to the number of morphisms from \( X \) to \( G \).
+Given a type graph \( \mathcal{T}_\Sigma^X\), the weight of a graph \( G \) is determined by the weight of the unique morphism \( \phi : G \mathop{\to} \mathcal{T}_\Sigma^X\), which is equal to the number of morphisms from \( X \) to \( G \).
 
 \begin{definition}[Weighing morphisms and objects \cite{endrullis2023generalized}] 
     \label{def:weight_t_sigma_x}
     Let $\Sigma$ be a set of edge labels, \( X \) a connected graph and $\mathcal{T}_\Sigma^X$ the the type graph.
     \begin{itemize}
-        \item The \textbf{weight of the morphism} \( \phi : G \to \mathcal{T}_\Sigma^X\) is defined as
+        \item The \textbf{weight of the morphism} \( \phi : G \mathop{\to} \mathcal{T}_\Sigma^X\) is defined as
         \[ 
             w_{\mathcal{T}_\Sigma^X}(\phi) \overset{\operatorname{def}}{=} \left| \operatorname{Hom}(X, G) \right|.
         \]
@@ -273,11 +273,11 @@ Given a type graph \( \mathcal{T}_\Sigma^X\), the weight of a graph \( G \) is d
     \end{itemize}
 \end{definition}
 
-In certain scenarios, it is necessary to exclude specific morphisms when calculating the weight of a morphism. Given a set \( \Gamma \subseteq \operatorname{Hom}(A, G) \), we define\todo{}
+In certain scenarios, it is necessary to exclude specific morphisms when calculating the weight of a morphism. Given a set \( \Gamma \mathop{\subseteq} \operatorname{Hom}(A, G) \), we define\todo{}
 \[
-    \Gamma' \overset{\operatorname{def}}{=} \left\{ \iota \in \operatorname{Hom}(X, G) \,\middle|\, \exists \alpha \in \Gamma,\, \exists \zeta,\, \zeta \star \alpha = \iota \right\}.
+    \Gamma' \overset{\operatorname{def}}{=} \left\{ \iota \mathop{\in} \operatorname{Hom}(X, G) \,\middle|\, \exists \alpha \mathop{\in} \Gamma,\, \exists \zeta,\, \zeta \mathop{\star} \alpha \mathop{=} \iota \right\}.
 \]
-This set comprises all morphisms from \( X \) to \( G \) that factor through some morphism \( \alpha \in \Gamma \). Equivalently, it comprises all morphisms from \( X \) to \( G \) that can be decomposed as \( \zeta \star \alpha \) with \( \alpha \in \Gamma \), as depicted below.
+This set comprises all morphisms from \( X \) to \( G \) that factor through some morphism \( \alpha \mathop{\in} \Gamma \). Equivalently, it comprises all morphisms from \( X \) to \( G \) that can be decomposed as \( \zeta \mathop{\star} \alpha \) with \( \alpha \mathop{\in} \Gamma \), as depicted below.
 
 \begin{center}
     \begin{tikzpicture}
@@ -287,17 +287,17 @@ This set comprises all morphisms from \( X \) to \( G \) that factor through som
         \draw[ ->] (X) -- (A) node[midway, left] {\( \zeta \)};
         \draw[ ->] (X) -- (G) node[midway, below] {\( \iota \)};
         \draw[->] (A) -- (G) node[midway, above] {\( \alpha \)};
-        \node at (2,0.5) {\( = \)};
+        \node at (2,0.5) {\( \mathop{=} \)};
     \end{tikzpicture}
 \end{center}
 
-The weight of the morphism \( \phi : G \to \mathcal{T}_\Sigma^X\) excluding morphisms in \( \Gamma' \) is defined as the number of morphisms from \( X \) to \( G \) that do not factor through any \( \alpha \in \Gamma \).
+The weight of the morphism \( \phi : G \mathop{\to} \mathcal{T}_\Sigma^X\) excluding morphisms in \( \Gamma' \) is defined as the number of morphisms from \( X \) to \( G \) that do not factor through any \( \alpha \mathop{\in} \Gamma \).
 
 \begin{definition}[Weight excluding specific morphisms \cite{endrullis2023generalized}]
     \label{def:weight_excluding}
     The \textbf{weight of \( \phi \) excluding morphisms in \( \Gamma' \)} is defined as
     \[
-        w_{\mathcal{T}_\Sigma^X}(\phi - \Gamma) \overset{\operatorname{def}}{=} \left| \operatorname{Hom}(X, G) \setminus \Gamma' \right|
+        w_{\mathcal{T}_\Sigma^X}(\phi - \Gamma) \overset{\operatorname{def}}{=} \left| \operatorname{Hom}(X, G) \mathop{\setminus} \Gamma' \right|
     \]
 \end{definition}
 

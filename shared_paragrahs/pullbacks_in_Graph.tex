@@ -18,9 +18,9 @@
 
 
 % In the category \(\mathbf{Graph}\), pullbacks and pushouts always exist, and their construction is straightforward when dealing with monomorphisms (injective graph homomorphisms). 
-% Let $\uplus$ denote the disjoint union operation. For two sets \(A\) and \(B\), their disjoint union \(A \uplus B\) is defined as the set of ordered pairs \( (x, i) \) where \( x \in A \) if \( i = 1 \) and \( x \in B \) if \( i = 2 \). Formally, we have:
+% Let $\uplus$ denote the disjoint union operation. For two sets \(A\) and \(B\), their disjoint union \(A \uplus B\) is defined as the set of ordered pairs \( (x, i) \) where \( x \mathop{\in} A \) if \( i \mathop{=} 1 \) and \( x \mathop{\in} B \) if \( i \mathop{=} 2 \). Formally, we have:
 % $
-% A \uplus B = \{ (x, 1) : x \in A \} \cup \{ (x, 2) : x \in B \}.
+% A \uplus B \mathop{=} \{ (x, 1) : x \mathop{\in} A \} \mathop{\cup} \{ (x, 2) : x \mathop{\in} B \}.
 % $ 
 % By possibly renaming nodes, a span of injective graph homomorphisms can be represented as
 % $
@@ -40,9 +40,9 @@
 % $ where $\alpha$ and $\beta$ are inclusion function.
 % Both constructions share the same underlying commutative diagram, where the monomorphisms are inclusion functions. This diagram is depicted below:
 In the category \(\mathbf{Graph}\), pullbacks always exist, and their construction is straightforward when dealing with monomorphisms (injective graph homomorphisms). 
-% Let $\uplus$ denote the disjoint union operation. For two sets \(A\) and \(B\), their disjoint union \(A \uplus B\) is defined as the set of ordered pairs \( (x, i) \) where \( x \in A \) if \( i = 1 \) and \( x \in B \) if \( i = 2 \). Formally, we have:
+% Let $\uplus$ denote the disjoint union operation. For two sets \(A\) and \(B\), their disjoint union \(A \uplus B\) is defined as the set of ordered pairs \( (x, i) \) where \( x \mathop{\in} A \) if \( i \mathop{=} 1 \) and \( x \mathop{\in} B \) if \( i \mathop{=} 2 \). Formally, we have:
 % $
-% A \uplus B = \{ (x, 1) : x \in A \} \cup \{ (x, 2) : x \in B \}.
+% A \uplus B \mathop{=} \{ (x, 1) : x \mathop{\in} A \} \mathop{\cup} \{ (x, 2) : x \mathop{\in} B \}.
 % $ 
 We denote $X\uplus Y$ the union of two disjoint sets. 
 Similarly, a cospan of injective graph homomorphisms, possibly with renamed nodes, takes the form
@@ -90,8 +90,8 @@ The diagram is depicted below:
                     \coordinate (o) at (-5mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[red,draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[red,draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[red,draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[red,draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[red] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[red] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[red] (l4) -- (l2) node[midway,above] {$a$};
@@ -100,9 +100,9 @@ The diagram is depicted below:
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                    \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                     \draw[blue] (l2) -- (l4) node[midway,right] {$a$};
-                    \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                     \draw[blue] (l1) -- (l6) node[midway,left] {$a$};
                 }    
   
@@ -110,10 +110,10 @@ The diagram is depicted below:
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle,red] (l4) at ($(l1) + (2,0)$) {5};
-                    \node[blue,draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                    \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle,red] (l4) at ($(l1)+(2,0)$) {5};
+                    \node[blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                    \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                     \draw[blue] (l1) -- (l6) node[midway,left] {$a$};
                     \draw[red] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[red] (l3) -- (l4) node[midway,above] {$b$};
@@ -135,51 +135,51 @@ The diagram is depicted below:
 
 The compositions \( \beta' \circ \alpha \) and \( \alpha' \circ \beta \) both map elements from \( A \) to \( A \uplus B' \uplus C' \) via inclusion function.
 Since all maps are inclusions and \( A \), \( B' \), and \( C' \) are disjoint, the square commutes $
-     \beta' \circ \alpha = \alpha' \circ \beta 
+     \beta' \circ \alpha \mathop{=} \alpha' \circ \beta 
 $. 
 
-To demonstrate that Figure~\ref{fig:pb_decomp} is a pullback square, suppose we have an object \( X \) and morphisms \( f: X \to A \uplus B' \) and \( g: X \to A \uplus C' \) such that
+To demonstrate that Figure~\ref{fig:pb_decomp} is a pullback square, suppose we have an object \( X \) and morphisms \( f: X \mathop{\to} A \uplus B' \) and \( g: X \mathop{\to} A \uplus C' \) such that
 $
-\alpha' \circ f = \beta' \circ g.
+\alpha' \circ f \mathop{=} \beta' \circ g.
 $
-Our goal is to prove that there exists a unique morphism \( h: X \to A \) such that
+Our goal is to prove that there exists a unique morphism \( h: X \mathop{\to} A \) such that
 $
-\alpha \circ h = f \quad \text{and} \quad \beta \circ h = g.
+\alpha \circ h \mathop{=} f \quad \text{and} \quad \beta \circ h \mathop{=} g.
 $
 
-Since \( \alpha' \) and \( \beta' \) are inclusion maps into \( A \uplus B' \uplus C' \), and \( \alpha' \circ f = \beta' \circ g \), it follows that for all \( x \in X \),
+Since \( \alpha' \) and \( \beta' \) are inclusion maps into \( A \uplus B' \uplus C' \), and \( \alpha' \circ f \mathop{=} \beta' \circ g \), it follows that for all \( x \mathop{\in} X \),
 $
-f(x) = g(x) \in A \uplus B' \uplus C'.
+f(x) \mathop{=} g(x) \mathop{\in} A \uplus B' \uplus C'.
 $
-Because \( B' \) and \( C' \) are disjoint and their images under \( \alpha' \) and \( \beta' \) are also disjoint in \( A \uplus B' \uplus C' \), the only way \( \alpha' \circ f(x) = \beta' \circ g(x) \) is if both \( f(x) \) and \( g(x) \) are in \( A \) and map to the same element in \( A \uplus B' \uplus C' \).
-Therefore, \( f(x), g(x) \in A \) and \( f(x) = g(x) \).
-We can now define \( h: X \to A \) by
+Because \( B' \) and \( C' \) are disjoint and their images under \( \alpha' \) and \( \beta' \) are also disjoint in \( A \uplus B' \uplus C' \), the only way \( \alpha' \circ f(x) \mathop{=} \beta' \circ g(x) \) is if both \( f(x) \) and \( g(x) \) are in \( A \) and map to the same element in \( A \uplus B' \uplus C' \).
+Therefore, \( f(x), g(x) \mathop{\in} A \) and \( f(x) \mathop{=} g(x) \).
+We can now define \( h: X \mathop{\to} A \) by
 $
-h(x) = f(x) = g(x) \quad \text{for all } x \in X.
+h(x) \mathop{=} f(x) \mathop{=} g(x) \quad \text{for all } x \mathop{\in} X.
 $
 
 
 We need to verify that
 $
-\alpha \circ h = f \quad \text{and} \quad \beta \circ h = g.
+\alpha \circ h \mathop{=} f \quad \text{and} \quad \beta \circ h \mathop{=} g.
 $
 Since \( \alpha \) and \( \beta \) are inclusion maps of \( A \) into \( A \uplus B' \) and \( A \uplus C' \), respectively, it follows that
 $
-\alpha \circ h(x) = \alpha(f(x)) = f(x), \quad \text{since } h(x) = f(x) \text{ and } \alpha \text{ is inclusion}.
+\alpha \circ h(x) \mathop{=} \alpha(f(x)) \mathop{=} f(x), \quad \text{since } h(x) \mathop{=} f(x) \text{ and } \alpha \text{ is inclusion}.
 $
 Similarly,
 $
-\beta \circ h(x) = \beta(g(x)) = g(x).
+\beta \circ h(x) \mathop{=} \beta(g(x)) \mathop{=} g(x).
 $
 
-Suppose there exists another morphism \( h': X \to A \) satisfying \( \alpha \circ h' = f \) and \( \beta \circ h' = g \). Then for all \( x \in X \),
+Suppose there exists another morphism \( h': X \mathop{\to} A \) satisfying \( \alpha \circ h' \mathop{=} f \) and \( \beta \circ h' \mathop{=} g \). Then for all \( x \mathop{\in} X \),
 $
-f(x) = \alpha \circ h'(x), \quad g(x) = \beta \circ h'(x).
+f(x) \mathop{=} \alpha \circ h'(x), \quad g(x) \mathop{=} \beta \circ h'(x).
 $
-Since \( \alpha \) and \( \beta \) are inclusions, \( \alpha \circ h'(x) = h'(x) \) in \( A \uplus B' \) and \( \beta \circ h'(x) = h'(x) \) in \( A \uplus C' \). Therefore,
+Since \( \alpha \) and \( \beta \) are inclusions, \( \alpha \circ h'(x) \mathop{=} h'(x) \) in \( A \uplus B' \) and \( \beta \circ h'(x) \mathop{=} h'(x) \) in \( A \uplus C' \). Therefore,
 $
-f(x) = h'(x) = g(x).
+f(x) \mathop{=} h'(x) \mathop{=} g(x).
 $
-But we already have \( h(x) = f(x) = g(x) \), so \( h'(x) = h(x) \) for all \( x \in X \). Thus, \( h \) is unique.
+But we already have \( h(x) \mathop{=} f(x) \mathop{=} g(x) \), so \( h'(x) \mathop{=} h(x) \) for all \( x \mathop{\in} X \). Thus, \( h \) is unique.
 
-Since there exists a unique morphism \( h: X \to A \) such that \( \alpha \circ h = f \) and \( \beta \circ h = g \), the diagram in Figure~\ref{fig:pb_decomp} satisfies the universal property of the pullback. Therefore, the diagram is indeed a pullback square.
+Since there exists a unique morphism \( h: X \mathop{\to} A \) such that \( \alpha \circ h \mathop{=} f \) and \( \beta \circ h \mathop{=} g \), the diagram in Figure~\ref{fig:pb_decomp} satisfies the universal property of the pullback. Therefore, the diagram is indeed a pullback square.

@@ -162,8 +162,8 @@ over Non-well-founded Semirings}
       % \end{center}
       
 
-      \item Rules $\varphi = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ consist of two graph morphisms $l: K \to L$ and $r: K \to R$.
-      \item Rewriting steps $G \Rightarrow_\varphi H$ are double-pushouts:
+      \item Rules $\varphi \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ consist of two graph morphisms $l: K \mathop{\to} L$ and $r: K \mathop{\to} R$.
+      \item Rewriting steps $G \mathop{\Rightarrow}_\varphi H$ are double-pushouts:
          \begin{center}
           \resizebox{0.45\textwidth}{!}{
               \begin{tikzpicture}
@@ -194,7 +194,7 @@ over Non-well-founded Semirings}
     \item $\mathcal{R}$ : set of DPO graph rewriting rules
     \item impossibility of transforming any graph $G_0$ indefinitely
       \begin{center}
-        $G_0 \Rightarrow_\mathcal{R} G_1 \Rightarrow_\mathcal{R} G_2 \Rightarrow_\mathcal{R} \cdots$
+        $G_0 \mathop{\Rightarrow}_\mathcal{R} G_1 \mathop{\Rightarrow}_\mathcal{R} G_2 \mathop{\Rightarrow}_\mathcal{R} \cdots$
       \end{center}
       with the non-deterministic strategy
           \begin{center}
@@ -223,7 +223,7 @@ over Non-well-founded Semirings}
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                         \draw[->] (l3) -- (l2) node[midway,above] {$b$};
                     } 
@@ -238,8 +238,8 @@ over Non-well-founded Semirings}
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
                         \draw[->] (l1) -- (l3) node[midway,above] {$b$};
                         \draw[->] (l3) -- (l4) node[midway,above] {$a$};
                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -263,7 +263,7 @@ over Non-well-founded Semirings}
                 \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
                 \draw[->] (z) -- node[midway,left] {$b$} (x) ;
             } 
-            $\Rightarrow$ 
+            $\mathop{\Rightarrow}$ 
             \tikz[baseline=-0.5ex]{ 
                 \node (x) at (0,0) {$\bullet$};  
                 \node (y) at (1,0) {$\bullet$};
@@ -272,7 +272,7 @@ over Non-well-founded Semirings}
                 \draw[->,red] (y) -- node[midway,right] {$a$} (z) ;
                 \draw[->,red] (z) -- node[midway,left] {$b$} (x) ;
             }
-            $\Rightarrow$ 
+            $\mathop{\Rightarrow}$ 
             \tikz[baseline=-0.5ex]{ 
                 \node (x) at (0,0) {$\bullet$};  
                 \node (y) at (1,0) {$\bullet$};
@@ -281,7 +281,7 @@ over Non-well-founded Semirings}
                 \draw[->] (y) -- node[midway,right] {$b$} (z) ;
                 \draw[->,red] (z) -- node[midway,left] {$a$} (x) ;
             }
-            $\Rightarrow$ 
+            $\mathop{\Rightarrow}$ 
             \tikz[baseline=-0.5ex]{ 
                 \node (x) at (0,0) {$\bullet$};   
                 \node (y) at (1,0) {$\bullet$};
@@ -301,7 +301,7 @@ over Non-well-founded Semirings}
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[->] (l1) -- (l2) node[midway,above] {$a$};
                     } 
             
@@ -315,8 +315,8 @@ over Non-well-founded Semirings}
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
                         \draw[->] (l1) -- (l4) node[midway,above] {$b$};
                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                     }    
@@ -338,7 +338,7 @@ over Non-well-founded Semirings}
                 \draw[->] (y) -- node[midway,right] {$b$} (z) ;
                 \draw[->] (z) -- node[midway,left] {$b$} (x) ;
             } 
-            $\Rightarrow$ 
+            $\mathop{\Rightarrow}$ 
             \tikz[baseline=-0.5ex]{ 
                 \node (x) at (0,0) {$\bullet$};  
                 \node (y) at (1,0) {$\bullet$};
@@ -359,7 +359,7 @@ over Non-well-founded Semirings}
 %               \coordinate (o) at (0mm,-3mm); 
 %               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%               \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %           }     
@@ -367,7 +367,7 @@ over Non-well-founded Semirings}
 %               \coordinate (o) at (5mm,-3mm); 
 %               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-%               % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+%               % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
 %               % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %               % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %           }    
@@ -375,8 +375,8 @@ over Non-well-founded Semirings}
 %               \coordinate (o) at (-5mm,-3mm); 
 %               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%               \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%               \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%               \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
 %               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -404,7 +404,7 @@ over Non-well-founded Semirings}
 % \end{frame}
 
 % \begin{frame}
-%   for each rewriting step $G \Rightarrow H$, $w(G) - w(H) > 1$.
+%   for each rewriting step $G \mathop{\Rightarrow} H$, $w(G) - w(H) \mathop{>} 1$.
 % \end{frame}
 
 \begin{frame}{Type Graph Method with Weighted Type Graphs over Well-founded Semirings}
@@ -417,7 +417,7 @@ over Non-well-founded Semirings}
       \item Assigns weights to graphs according to \( T \)
       \item Weights are \alert{well-founded}
       \item A rewriting system \alert{terminates} if every rewriting step
-      % $G \Rightarrow_\mathcal{R} H$ 
+      % $G \mathop{\Rightarrow}_\mathcal{R} H$ 
       strictly decreases the weight.
       \item The \alert{existence} of suitable weighted type graphs is \alert{undecidable} in general
     \end{itemize}
@@ -442,7 +442,7 @@ over Non-well-founded Semirings}
     
      
 
-    % \textcolor{blue}{Terminating} if every step $G \Rightarrow_\mathcal{R} H$ strictly decreases the weight.
+    % \textcolor{blue}{Terminating} if every step $G \mathop{\Rightarrow}_\mathcal{R} H$ strictly decreases the weight.
 
     % Undecidable in general
 
@@ -453,12 +453,12 @@ over Non-well-founded Semirings}
      Previous work~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving} search for a weighted type graph \( T \) with
       \begin{itemize}
         \item weights in $\mathbb{N}$
-        \item $k \in \mathbb{N}$ nodes
+        \item $k \mathop{\in} \mathbb{N}$ nodes
         \item no parallel edges of the same label 
         % from $\Sigma$
-          % \item a graph $G$ is interpreted as $w_T(G) \in \mathbb{N} \cup \{\infty\}$ 
-          % \item $w_T(G) \in \mathbb{N}$ for all $G \Rightarrow H$ 
-          % \item terminating if $w_T(G) - w_T(H) > 0$ for all $G \Rightarrow H$
+          % \item a graph $G$ is interpreted as $w_T(G) \mathop{\in} \mathbb{N} \mathop{\cup} \{\infty\}$ 
+          % \item $w_T(G) \mathop{\in} \mathbb{N}$ for all $G \mathop{\Rightarrow} H$ 
+          % \item terminating if $w_T(G) - w_T(H) \mathop{>} 0$ for all $G \mathop{\Rightarrow} H$
       \end{itemize}
       Problem reduced to solving an integer program
                 \begin{itemize}
@@ -478,10 +478,10 @@ over Non-well-founded Semirings}
     % Our tool: 
     %   \begin{itemize}
     %       \item weights in $\mathbb{R}^+$
-    %       % \item a graph $G$ is interpreted as $w_T(G) \in \mathbb{R}^+ \cup \{\infty\}$
-    %       % \item $w_T(G) \in \mathbb{R}^+$ for all $G \Rightarrow H$
-    %       \item terminating if there is $\delta > 0$ and 
-    %           \\ \hspace{2.3cm}$w_T(G) - w_T(H) > \delta$ for all $G \Rightarrow H$
+    %       % \item a graph $G$ is interpreted as $w_T(G) \mathop{\in} \mathbb{R}^+ \mathop{\cup} \{\infty\}$
+    %       % \item $w_T(G) \mathop{\in} \mathbb{R}^+$ for all $G \mathop{\Rightarrow} H$
+    %       \item terminating if there is $\delta \mathop{>} 0$ and 
+    %           \\ \hspace{2.3cm}$w_T(G) - w_T(H) \mathop{>} \delta$ for all $G \mathop{\Rightarrow} H$
     %       \item Complexity : $O(2^{k^2|\Sigma|})$ or  decidable
     %   \end{itemize}
 \end{frame}
@@ -529,10 +529,10 @@ over Non-well-founded Semirings}
 
     % \begin{itemize}
     %     \item $S$ : set 
-    %     \item $\otimes$, $\oplus$ : binary operations on $S$
-    %     \item $0$, $1$ : neutral elements for $\oplus$, $\otimes$
+    %     \item $\otimes$, $\mathop{\oplus}$ : binary operations on $S$
+    %     \item $0$, $1$ : neutral elements for $\mathop{\oplus}$, $\otimes$
     %     \item $\prec$: a strict order 
-    %     \item $\preceq$ : a reflexive order
+    %     \item $\mathop{\preceq}$ : a reflexive order
     %     \item satisfies some conditions
     % \end{itemize}
 
@@ -545,7 +545,7 @@ over Non-well-founded Semirings}
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }     
@@ -553,7 +553,7 @@ over Non-well-founded Semirings}
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-              % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
               % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
@@ -561,8 +561,8 @@ over Non-well-founded Semirings}
               \coordinate (o) at (-5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -574,7 +574,7 @@ over Non-well-founded Semirings}
       }
   \end{center}
 
-    % Real Arithmetic Semiring $\mathcal{S} = (\mathbb{R}^+, +, *, 0, 1, <, \leq)$:
+    % Real Arithmetic Semiring $\mathcal{S} \mathop{=} (\mathbb{R}^+, +, *, 0, 1, <, \leq)$:
     % \begin{itemize}
     %   \item $\mathbb{R}^+$ : positive real numbers
     %   \item the usual addition $+$ and multiplication $*$
@@ -610,13 +610,13 @@ over Non-well-founded Semirings}
     %   \end{itemize}
 \end{frame}
 
-\begin{frame}{Weight $w_T(h)$ of Morphism $h : L \to T$}
+\begin{frame}{Weight $w_T(h)$ of Morphism $h : L \mathop{\to} T$}
 
-  Weight function $w : \opn{Edges}(T) \to \mathbb{N}$ 
+  Weight function $w : \opn{Edges}(T) \mathop{\to} \mathbb{N}$ 
 
   The weight $ w_T(h) $ is defined as:  
 $$
-w_T(h) \overset{def}{=} \prod_{e \in \opn{Edges}(L)} w(h(e)),
+w_T(h) \overset{def}{=} \prod_{e \mathop{\in} \opn{Edges}(L)} w(h(e)),
 $$  
 the product of the weights of the images of the edges in $L$.
 
@@ -633,7 +633,7 @@ the product of the weights of the images of the edges in $L$.
             \coordinate (o) at (0mm,-10mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
             \draw[] (l1) -- (l3) node[midway,above] {$a$};
             \draw[] (l3) -- (l2) node[midway,above] {$a$};
         } 
@@ -649,7 +649,7 @@ the product of the weights of the images of the edges in $L$.
         \end{tikzpicture}
         }
 
-        $ w_T(h) = 1 * 1 = 1$
+        $ w_T(h) \mathop{=} 1 * 1 \mathop{=} 1$
 
    
 \end{frame}
@@ -657,7 +657,7 @@ the product of the weights of the images of the edges in $L$.
 
 \begin{frame}{Weight $w_T$ of Graph $L$} 
   
- $w_T(L)$: the sum of the weights $w_T(h)$ of all morphisms \( h : L \to T \)
+ $w_T(L)$: the sum of the weights $w_T(h)$ of all morphisms \( h : L \mathop{\to} T \)
 
 Example : 
 
@@ -667,7 +667,7 @@ Example :
                             \coordinate (o) at (0mm,-10mm); 
                             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                             \draw[] (l1) -- (l3) node[midway,above] {$a$};
                             \draw[] (l3) -- (l2) node[midway,above] {$a$};
                         } 
@@ -741,7 +741,7 @@ Example :
 %               \coordinate (o) at (0mm,-10mm); 
 %               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%               \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %               \draw[] (l1) -- (l3) node[midway,above] {$a$};
 %               \draw[] (l3) -- (l2) node[midway,above] {$a$};
 %           } 
@@ -762,7 +762,7 @@ Example :
 %             \coordinate (o) at (0mm,-10mm); 
 %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %             \draw[] (l1) -- (l3) node[midway,above] {$a$};
 %             \draw[] (l3) -- (l2) node[midway,above] {$a$};
 %         } 
@@ -785,7 +785,7 @@ Example :
 %             \coordinate (o) at (0mm,-10mm); 
 %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %             \draw[] (l1) -- (l3) node[midway,above] {$a$};
 %             \draw[] (l3) -- (l2) node[midway,above] {$a$};
 %         } 
@@ -806,7 +806,7 @@ Example :
 %                 \coordinate (o) at (0mm,-10mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                 \draw[] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[] (l3) -- (l2) node[midway,above] {$a$};
 %             } 
@@ -829,7 +829,7 @@ Example :
 %             \coordinate (o) at (0mm,-10mm); 
 %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %             \draw[] (l1) -- (l3) node[midway,above] {$a$};
 %             \draw[] (l3) -- (l2) node[midway,above] {$a$};
 %         } 
@@ -850,7 +850,7 @@ Example :
 %                 \coordinate (o) at (0mm,-10mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                 \draw[] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[] (l3) -- (l2) node[midway,above] {$a$};
 %             } 
@@ -868,7 +868,7 @@ Example :
 %             }
 %       \end{center}
       
-      $w_T(L) = 1 + 1 + 1 + 1 + 1 = 5$
+      $w_T(L) \mathop{=} 1\mathop{+}1\mathop{+}1\mathop{+}1\mathop{+}1 \mathop{=} 5$
 \end{frame}
 
 
@@ -879,9 +879,9 @@ Example :
 
 For our running example $\alpha$,
 
-there must be a morphism $\alert{c} : L \to T$ such that
+there must be a morphism $\alert{c} : L \mathop{\to} T$ such that
 
-  for all $G \Rightarrow_\alpha H$ defined by:
+  for all $G \mathop{\Rightarrow}_\alpha H$ defined by:
 
       \begin{center}
         \begin{tikzpicture}[rotate=90]
@@ -903,7 +903,7 @@ there must be a morphism $\alert{c} : L \to T$ such that
           \draw [->] (C) to (H);
         \end{tikzpicture}
       \end{center}
-  there is a morphism $\alert{a} : G \to T$ such that \alert{$c = a \circ m$}:
+  there is a morphism $\alert{a} : G \mathop{\to} T$ such that \alert{$c \mathop{=} a \circ m$}:
    \begin{center}
         \begin{tikzpicture}[rotate=90]
           \node (I) {}; 
@@ -916,7 +916,7 @@ there must be a morphism $\alert{c} : L \to T$ such that
         \end{tikzpicture}
       \end{center}
 
-  It guarantees: for all $G \Rightarrow_\alpha H$, the weight of $G$ is defined and $w_T(G) \in \mathbb{N}$
+  It guarantees: for all $G \mathop{\Rightarrow}_\alpha H$, the weight of $G$ is defined and $w_T(G) \mathop{\in} \mathbb{N}$
 \end{frame}
 
 \begin{frame}{Example}
@@ -930,7 +930,7 @@ there must be a morphism $\alert{c} : L \to T$ such that
               \coordinate (o) at (0mm,-8mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
               \draw[] (l1) -- (l3) node[midway,above] {$a$};
               \draw[] (l3) -- (l2) node[midway,above] {$a$};
           } 
@@ -943,8 +943,8 @@ there must be a morphism $\alert{c} : L \to T$ such that
               \coordinate (o) at (-5mm,-8mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
               \draw[ ] (l1) -- (l3) node[midway,above] {$a$};
               \draw[ ] (l3) -- (l4) node[midway,above] {$b$};
               \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
@@ -953,31 +953,31 @@ there must be a morphism $\alert{c} : L \to T$ such that
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-              \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+              \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
               \draw[] (l1) -- (l3) node[midway,above] {$a$};
               \draw[] (l3) -- (l2) node[midway,above] {$a$};
               \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
-              \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+              \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
               \draw[] (l1) -- (l6) node[midway,left] {$a$};
           }    
           \graphbox{\( C  \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+              \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
               \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
-              \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+              \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
               \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
           }    
           \graphbox{\( H \)}{80mm}{-22mm}{45mm}{22mm}{2mm}{-3mm}{
               \coordinate (o) at (-5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-              \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-              \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+              \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+              \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
               \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
               \draw[] (l1) -- (l3) node[midway,above] {$a$};
               \draw[] (l3) -- (l4) node[midway,above] {$b$};
@@ -1014,7 +1014,7 @@ there must be a morphism $\alert{c} : L \to T$ such that
               \coordinate (o) at (0mm,-8mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
               \draw[] (l1) -- (l3) node[midway,above] {$a$};
               \draw[] (l3) -- (l2) node[midway,above] {$a$};
           } 
@@ -1022,12 +1022,12 @@ there must be a morphism $\alert{c} : L \to T$ such that
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-              \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+              \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
               \draw[] (l1) -- (l3) node[midway,above] {$a$};
               \draw[] (l3) -- (l2) node[midway,above] {$a$};
               \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
-              \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+              \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
               \draw[] (l1) -- (l6) node[midway,left] {$a$};
           }    
           \graphbox{$T$}{-60mm}{-3mm}{40mm}{40mm}{-10mm}{-17mm}{
@@ -1050,17 +1050,17 @@ there must be a morphism $\alert{c} : L \to T$ such that
 \end{frame}
 
 \begin{frame}
-  Since for all $G \Rightarrow_\alpha H$, we have $w_T(G) \in \mathbb{N}$, it remains to show that every rewriting step strictly decreases the weight.
+  Since for all $G \mathop{\Rightarrow}_\alpha H$, we have $w_T(G) \mathop{\in} \mathbb{N}$, it remains to show that every rewriting step strictly decreases the weight.
 \end{frame}
 
-% \begin{frame}{Condition on Weighted Type Graph: for every rewriting step $G \Rightarrow H$, there exists a morphism $h : G \to T$.}
+% \begin{frame}{Condition on Weighted Type Graph: for every rewriting step $G \mathop{\Rightarrow} H$, there exists a morphism $h : G \mathop{\to} T$.}
   
 
-%   Consequence: for all $G \Rightarrow H$, $G$ has a weight and $w(G) \geq 0$.
+%   Consequence: for all $G \mathop{\Rightarrow} H$, $G$ has a weight and $w(G) \mathop{\geq} 0$.
 %   % \begin{definition}
-%   %   % Let $T = (T,\mathbb{E}, S, w)$ be a type graph, \(\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R ) \) a DPO rewriting rule and $\mathfrak{F}$ a rewriting framework. 
-%   %   A \textbf{context closure} for a rule $\rho$ and a $T$ is a morphism $c:L \rightarrow T$ such that for every possible DPO diagram depicted below,
-%   %   there exists $\alpha : G \rightarrow T$ such that $m \star \alpha = c$.
+%   %   % Let $T \mathop{=} (T,\mathbb{E}, S, w)$ be a type graph, \(\rho \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R ) \) a DPO rewriting rule and $\mathfrak{F}$ a rewriting framework. 
+%   %   A \textbf{context closure} for a rule $\rho$ and a $T$ is a morphism $c:L \mathop{\rightarrow} T$ such that for every possible DPO diagram depicted below,
+%   %   there exists $\alpha : G \mathop{\rightarrow} T$ such that $m \mathop{\star} \alpha \mathop{=} c$.
 %   %   \begin{center}
 %   %       \begin{tikzpicture}[rotate=90]
 %   %         \node (I) {$K$}; 
@@ -1088,9 +1088,9 @@ there must be a morphism $\alert{c} : L \to T$ such that
 
 % \begin{frame}{ 
 %   every rewriting step strictly decreases the weight if:
-%   % $w_T(G) > w_T(H)$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi = L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ if
+%   % $w_T(G) \mathop{>} w_T(H)$ for every rewriting step $G \mathop{\Rightarrow}_\varphi H$ using rule $\varphi \mathop{=} L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ if
 %   }
-%   %  For $G \Rightarrow H$ defined by
+%   %  For $G \mathop{\Rightarrow} H$ defined by
 
 %   %  \begin{center}
 %   %     \resizebox{0.3\textwidth}{!}{
@@ -1115,7 +1115,7 @@ there must be a morphism $\alert{c} : L \to T$ such that
 %   % \end{center}
 % % It suffices to show
 % % \begin{theorem}
-%   for every $t_K: K \rightarrow T$, 
+%   for every $t_K: K \mathop{\rightarrow} T$, 
 
 % \begin{flalign*}
 %   &\text{the sum of the weights of the morphisms $t_L$ that extend $t_K$} 
@@ -1125,19 +1125,19 @@ there must be a morphism $\alert{c} : L \to T$ such that
 %   &\text{the sum of the weights of the morphisms $t_R$ that extend $t_K$}
 % \end{flalign*}
 
-% %  $$ \sum ( w_T \{t_L :L \to T \mid \text{$t_L$ extends $t_K$}\} )
-% %        -  \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
-% %             w_T(t_R) \geq 0 $$ 
+% %  $$ \sum ( w_T \{t_L :L \mathop{\to} T \mid \text{$t_L$ extends $t_K$}\} )
+% %        -  \sum_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} t_R \circ r}}
+% %             w_T(t_R) \mathop{\geq} 0 $$ 
 
-% %     $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K =  t_L \circ l }}
-% %         w_T(t_L) -  \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
-% %             w_T(t_R) \geq 0 $$ 
+% %     $$ \sum_{\substack{t_L: L \mathop{\rightarrow} T\\ t_K \mathop{=}  t_L \circ l }}
+% %         w_T(t_L) -  \sum_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} t_R \circ r}}
+% %             w_T(t_R) \mathop{\geq} 0 $$ 
 
-% % for some $t_K: K \rightarrow T$,
-% % $$ \sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
-% %         w_T(t_L) - \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
-% %             w_T(t_R) > \delta $$ 
-% for some $t_K: K \rightarrow T$,
+% % for some $t_K: K \mathop{\rightarrow} T$,
+% % $$ \sum_{\substack{t_L: L \mathop{\rightarrow} T\\ t_K \mathop{=} t_L \circ l}}
+% %         w_T(t_L) - \sum_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} t_R \circ r}}
+% %             w_T(t_R) \mathop{>} \delta $$ 
+% for some $t_K: K \mathop{\rightarrow} T$,
 % \begin{flalign*}
 %   &\text{the sum of the weights of the morphisms $t_L$ that extend $t_K$} 
 %   \\
@@ -1148,25 +1148,25 @@ there must be a morphism $\alert{c} : L \to T$ such that
 % % \end{theorem}   
 % % then 
 % %   \begin{center}
-% %     $w_T(G) - w_T(H) > \delta$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi$
+% %     $w_T(G) - w_T(H) \mathop{>} \delta$ for every rewriting step $G \mathop{\Rightarrow}_\varphi H$ using rule $\varphi$
 % %   \end{center}
 %   by \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}.
 %   % \resizebox{0.9\textwidth}{!}{
 %   %   \begin{flalign*}
 %   %     w_T(G) 
-%   %         & = \sum_{t_K: K \rightarrow T} 
-%   %         \left ( \sum_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
+%   %         & \mathop{=} \sum_{t_K: K \mathop{\rightarrow} T} 
+%   %         \left ( \sum_{\substack{t_C: C \mathop{\rightarrow} T\\ t_K \mathop{=} u \mathop{\star} t_C}}
 %   %           w_T(t_C - u) \right ) 
 %   %           \times
-%   %         \left (\sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
+%   %         \left (\sum_{\substack{t_L: L \mathop{\rightarrow} T\\ t_K \mathop{=} t_L \circ l}}
 %   %         w_T(t_L) \right )
 %   %         \\
 %   %     w_T(H) 
-%   %         &  \preceq \sum_{t_K: K \rightarrow T} 
-%   %         \left ( \sum_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
+%   %         &  \mathop{\preceq} \sum_{t_K: K \mathop{\rightarrow} T} 
+%   %         \left ( \sum_{\substack{t_C: C \mathop{\rightarrow} T\\ t_K \mathop{=} u \mathop{\star} t_C}}
 %   %         w_T(t_C - u) \right ) 
-%   %         \times 
-%   %         \left ( \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
+%   %         \mathop{\times} 
+%   %         \left ( \sum_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} t_R \circ r}}
 %   %             w_T(t_R) \right ) \\
 %   % \end{flalign*}
 %   % }
@@ -1175,10 +1175,10 @@ there must be a morphism $\alert{c} : L \to T$ such that
 
 \begin{frame}{ 
   Termination Condition
-  % $w_T(G) > w_T(H)$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi = L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ if
+  % $w_T(G) \mathop{>} w_T(H)$ for every rewriting step $G \mathop{\Rightarrow}_\varphi H$ using rule $\varphi \mathop{=} L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ if
   }
 
-  For every morphism $t_K: K \rightarrow T$, we define
+  For every morphism $t_K: K \mathop{\rightarrow} T$, we define
 \begin{itemize}
   \item $S(t_k,L)$ : the sum of the weights of the morphisms $t_L$ that extend $t_K$
   \item $S(t_k,R)$ : the sum of the weights of the morphisms $t_R$ that extend $t_K$
@@ -1186,40 +1186,40 @@ there must be a morphism $\alert{c} : L \to T$ such that
   
 By \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}, every rewriting step strictly decreases the weight if 
 \begin{itemize}
-  \item for every $t_K: K \rightarrow T$, 
+  \item for every $t_K: K \mathop{\rightarrow} T$, 
   $$ S(t_K,L) \mathop{\geq} S(t_K,R) $$.
-   \item for some $t_K: K \rightarrow T$,
+   \item for some $t_K: K \mathop{\rightarrow} T$,
   $$ S(t_K,L) \mathop{>} S(t_K,R) $$.
 \end{itemize} 
 % \end{theorem}   
 % then 
 %   \begin{center}
-%     $w_T(G) - w_T(H) > \delta$ for every rewriting step $G \Rightarrow_\varphi H$ using rule $\varphi$
+%     $w_T(G) - w_T(H) \mathop{>} \delta$ for every rewriting step $G \mathop{\Rightarrow}_\varphi H$ using rule $\varphi$
 %   \end{center}
 
   % \resizebox{0.9\textwidth}{!}{
   %   \begin{flalign*}
   %     w_T(G) 
-  %         & = \sum_{t_K: K \rightarrow T} 
-  %         \left ( \sum_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
+  %         & \mathop{=} \sum_{t_K: K \mathop{\rightarrow} T} 
+  %         \left ( \sum_{\substack{t_C: C \mathop{\rightarrow} T\\ t_K \mathop{=} u \mathop{\star} t_C}}
   %           w_T(t_C - u) \right ) 
   %           \times
-  %         \left (\sum_{\substack{t_L: L \rightarrow T\\ t_K = t_L \circ l}}
+  %         \left (\sum_{\substack{t_L: L \mathop{\rightarrow} T\\ t_K \mathop{=} t_L \circ l}}
   %         w_T(t_L) \right )
   %         \\
   %     w_T(H) 
-  %         &  \preceq \sum_{t_K: K \rightarrow T} 
-  %         \left ( \sum_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
+  %         &  \mathop{\preceq} \sum_{t_K: K \mathop{\rightarrow} T} 
+  %         \left ( \sum_{\substack{t_C: C \mathop{\rightarrow} T\\ t_K \mathop{=} u \mathop{\star} t_C}}
   %         w_T(t_C - u) \right ) 
-  %         \times 
-  %         \left ( \sum_{\substack{t_R: R \rightarrow T\\ t_K = t_R \circ r}}
+  %         \mathop{\times} 
+  %         \left ( \sum_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} t_R \circ r}}
   %             w_T(t_R) \right ) \\
   % \end{flalign*}
   % }
 \end{frame}
 
 \begin{frame}{Example}
-  There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \rightarrow T$ as depicted below:
+  There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \mathop{\rightarrow} T$ as depicted below:
 
     \begin{center}
         \resizebox{0.49\textwidth}{!}{
@@ -1228,7 +1228,7 @@ By \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}, every rewriting step st
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -1249,7 +1249,7 @@ By \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}, every rewriting step st
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -1272,7 +1272,7 @@ By \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}, every rewriting step st
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -1293,7 +1293,7 @@ By \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}, every rewriting step st
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -1319,7 +1319,7 @@ By \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}, every rewriting step st
             \coordinate (o) at (0mm,-10mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
             \draw[] (l1) -- (l3) node[midway,above] {$a$};
             \draw[] (l3) -- (l2) node[midway,above] {$a$};
         } 
@@ -1340,7 +1340,7 @@ By \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}, every rewriting step st
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -1356,8 +1356,8 @@ By \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}, every rewriting step st
             \end{tikzpicture}
             }
       \end{center}
-We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
-        =(1 * 1) + (1 * 1)
+We have $S(t_k^{11},L) \mathop{=} w_\mathcal{T}(h_{11}^1)\mathop{+}w_\mathcal{T}(h_{11}^2)
+        =(1 * 1)+(1 * 1)
         =2$
 
        \begin{center}
@@ -1367,8 +1367,8 @@ We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
             \coordinate (o) at (-5mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+            \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
             \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1385,13 +1385,13 @@ We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
         \end{tikzpicture}
         }
       \end{center}
-    we have $S(t_k^{11},R) = w_\mathcal{T}(h_{11}^3) = 1 * 1 * 1  = 1$.
+    we have $S(t_k^{11},R) \mathop{=} w_\mathcal{T}(h_{11}^3) \mathop{=} 1 * 1 * 1  \mathop{=} 1$.
 
-    Therefore, for $t_K^{11}$, we have: $S(t_k^{11},L) = 2 > 1 = S(t_k^{11},R)$.
+    Therefore, for $t_K^{11}$, we have: $S(t_k^{11},L) \mathop{=} 2 \mathop{>} 1 \mathop{=} S(t_k^{11},R)$.
 \end{frame}
 
 \begin{frame}{Example}
-  There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \rightarrow T$ as depicted below:
+  There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \mathop{\rightarrow} T$ as depicted below:
 
     \begin{center}
         \resizebox{0.49\textwidth}{!}{
@@ -1400,7 +1400,7 @@ We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -1421,7 +1421,7 @@ We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -1444,7 +1444,7 @@ We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -1465,7 +1465,7 @@ We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -1492,7 +1492,7 @@ We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
 
 
 \begin{frame}{Idea}
-  Since $w_T(G) \geq 0$ for all $G \Rightarrow_\alpha H$ by definition of the type graph method.
+  Since $w_T(G) \mathop{\geq} 0$ for all $G \mathop{\Rightarrow}_\alpha H$ by definition of the type graph method.
 
   We can replace the condition
   \begin{center}
@@ -1500,15 +1500,15 @@ We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
   \end{center}
       by 
   \begin{center}
-      \enquote{each rewriting step decreases the weight by a constant $\delta > 0$}
+      \enquote{each rewriting step decreases the weight by a constant $\delta \mathop{>} 0$}
   \end{center}
 
   \begin{proposition}
   A rule $\alpha$ terminates, if 
 
    \begin{enumerate}
-      \item there exists $\delta \in \mathbb{R}$, $\delta > 0$
-      \item $w_T(G) - w_T(H) \geq \delta$ for every rewriting step $G \Rightarrow_\alpha H$
+      \item there exists $\delta \mathop{\in} \mathbb{R}$, $\delta \mathop{>} 0$
+      \item $w_T(G) - w_T(H) \mathop{\geq} \delta$ for every rewriting step $G \mathop{\Rightarrow}_\alpha H$
    \end{enumerate} 
   \end{proposition}
 
@@ -1518,10 +1518,10 @@ We have $S(t_k^{11},L) = w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2)
   
 Every rewriting step strictly decreases the weight if 
 \begin{itemize}
-  \item for every $t_K: K \rightarrow T$, 
+  \item for every $t_K: K \mathop{\rightarrow} T$, 
   $$ S(t_K,L) \mathop{\geq} S(t_K,R) $$.
-   \item for some $t_K: K \rightarrow T$,
-  $$ S(t_K,L) \mathop{\geq} S(t_K,R) + \delta$$.
+   \item for some $t_K: K \mathop{\rightarrow} T$,
+  $$ S(t_K,L) \mathop{\geq} S(t_K,R)\mathop{+}\delta$$.
 \end{itemize} 
 \end{frame}
 \begin{frame}{
@@ -1544,7 +1544,7 @@ Every rewriting step strictly decreases the weight if
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }     
@@ -1552,7 +1552,7 @@ Every rewriting step strictly decreases the weight if
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-              % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
               % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
@@ -1560,8 +1560,8 @@ Every rewriting step strictly decreases the weight if
               \coordinate (o) at (-5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1635,10 +1635,10 @@ Every rewriting step strictly decreases the weight if
   % Analyse: 
   %     \begin{itemize}
   %         % \item weights in $\mathbb{R}^+$
-  %         % \item a graph $G$ is interpreted as $w_T(G) \in \mathbb{R}^+ \cup \{\infty\}$
-  %         % \item $w_T(G) \in \mathbb{R}^+$ for all $G \Rightarrow H$
-  %         \item terminating if there is $\delta > 0$ and 
-  %             \\ \hspace{2.3cm}$w_T(G) - w_T(H) > \delta$ for all $G \Rightarrow H$
+  %         % \item a graph $G$ is interpreted as $w_T(G) \mathop{\in} \mathbb{R}^+ \mathop{\cup} \{\infty\}$
+  %         % \item $w_T(G) \mathop{\in} \mathbb{R}^+$ for all $G \mathop{\Rightarrow} H$
+  %         \item terminating if there is $\delta \mathop{>} 0$ and 
+  %             \\ \hspace{2.3cm}$w_T(G) - w_T(H) \mathop{>} \delta$ for all $G \mathop{\Rightarrow} H$
   %         \item 
     Mixed Integer Program: 
       \begin{itemize}

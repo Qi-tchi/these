@@ -3,18 +3,18 @@
 %     Let \(\mathcal{R}\) be a set of rewriting rules and let $\mathfrak{F}$ be a DPO rewriting framework.
 %     An \textbf{$(\mathcal{R},\mathfrak{F})$-rewriting sequence} is either  
 %     \begin{itemize}
-%         \item a finite sequence \(s_0,s_1,\hdots, s_m\) of objects such that \( s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\text{ for each } 0 \leq n \leq m-1\), or
-%         \item an infinite sequence \(s_0,s_1,\hdots\) of objects such that \(s_n \Rightarrow_{\mathcal{R},\mathfrak{F}} s_{n+1}\) for each \(n \in \mathbb{N}\).
+%         \item a finite sequence \(s_0,s_1,\hdots, s_m\) of objects such that \( s_n \mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}} s_{n+1}\text{ for each } 0 \leq n \leq m-1\), or
+%         \item an infinite sequence \(s_0,s_1,\hdots\) of objects such that \(s_n \mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}} s_{n+1}\) for each \(n \mathop{\in} \mathbb{N}\).
 %     \end{itemize}
 %     An $(\mathcal{R},\mathfrak{F})$-rewriting sequence from \( s_0 \) will be denoted by:
 %     \[
-%     s_0 \Rightarrow_{\mathcal{R},\mathfrak{F}} s_1 \Rightarrow_{\mathcal{R},\mathfrak{F}} s_2 \Rightarrow_{\mathcal{R},\mathfrak{F}} \cdots 
+%     s_0 \mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}} s_1 \mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}} s_2 \mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}} \cdots 
 %     \]
 % \end{definition}
 Given a DPO rewriting framework \(\mathfrak{F}\), a rule set \(\mathcal{R}\) defines the binary relation \enquote{object $X$ can be rewritten to object $Y$ using rules from the rule set} on the objects of the category $\mathcal{C}$.
 \begin{definition}\label{def:rewriting-chain}
 Let \(\mathcal{R}\) be a rule set and let \(\mathfrak{F}\) be a DPO rewriting framework.
-An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\Rightarrow_{\mathcal{R},\mathfrak{F}}\)-chain. Hence, when the context is clear, we simply call it a \textbf{rewriting chain}.
+An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}\)-chain. Hence, when the context is clear, we simply call it a \textbf{rewriting chain}.
 \end{definition}
 
 \begin{example}
@@ -44,7 +44,7 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\Rightarrow_{\
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                         \draw[->] (l3) -- (l2) node[midway,above] {$b$};
                     } 
@@ -59,8 +59,8 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\Rightarrow_{\
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
                         \draw[->] (l1) -- (l3) node[midway,above] {$b$};
                         \draw[->] (l3) -- (l4) node[midway,above] {$a$};
                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -88,7 +88,7 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\Rightarrow_{\
                 \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
                 \draw[->] (z) -- node[midway,left] {$b$} (x) ;
             } 
-            $\Rightarrow$ 
+            $\mathop{\Rightarrow}$ 
             \tikz[baseline=-0.5ex]{ 
                 \node[draw,circle] (x) at (0,0) {};  
                 \node[draw,circle] (y) at (1,0) {};
@@ -97,7 +97,7 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\Rightarrow_{\
                 \draw[->,red] (y) -- node[midway,right] {$a$} (z) ;
                 \draw[->,red] (z) -- node[midway,left] {$b$} (x) ;
             }
-            $\Rightarrow$ 
+            $\mathop{\Rightarrow}$ 
             \tikz[baseline=-0.5ex]{ 
                 \node[draw,circle] (x) at (0,0) {};  
                 \node[draw,circle] (y) at (1,0) {};
@@ -106,7 +106,7 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\Rightarrow_{\
                 \draw[->] (y) -- node[midway,right] {$b$} (z) ;
                 \draw[->,red] (z) -- node[midway,left] {$a$} (x) ;
             }
-            $\Rightarrow$
+            $\mathop{\Rightarrow}$
             \tikz[baseline=-0.5ex]{ 
                 \node[draw,circle] (x) at (0,0) {};   
                 \node[draw,circle] (y) at (1,0) {};
@@ -135,7 +135,7 @@ which deletes an edge.
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[->] (l1) -- (l2) node[midway,above] {$a$};
                     } 
             
@@ -149,8 +149,8 @@ which deletes an edge.
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
                         \draw[->] (l1) -- (l4) node[midway,above] {$b$};
                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                     }    
@@ -183,7 +183,7 @@ Take the system with rules $\alpha$ and $\beta$ shown below. Rule~$\alpha$ remov
                     \graphbox{\( \mathcal{R} \)}{80mm}{-3mm}{35mm}{15mm}{5mm}{2mm}{
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {$2$};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {$2$};
                     }    
                     \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
@@ -225,21 +225,21 @@ Because $\beta$ can always be re-applied to generate additional nodes, infinite 
 \begin{definition}
 Let $A$ be a collection of objects and let $R$ and $S$ be binary relations on $A$. 
 We say that $R$ is \textbf{terminating relative to} $S$ (or that $R$ \textbf{terminates relative to} $S$) if 
-any $(R \cup S)$-chain contains only finitely many $R$-steps.
+any $(R \mathop{\cup} S)$-chain contains only finitely many $R$-steps.
 In particular, $R$ is \textbf{terminating} (or terminates) if it is terminating relative to the empty relation $\emptyset$.
 \end{definition}
 
-For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the empty relation, since any $(> \cup\ \emptyset)$-chain contains only finitely many $>$-steps. The relation $>$ is also terminating relative to $\geq$ on $\mathbb{N}$, since any $(> \cup \geq)$-chain can only contain finitely many $>$-steps. 
+For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the empty relation, since any $(\mathop{>} \mathop{\cup} \emptyset)$-chain contains only finitely many $>$-steps. The relation $>$ is also terminating relative to $\geq$ on $\mathbb{N}$, since any $(\mathop{>} \mathop{\cup} \mathop{\geq})$-chain can only contain finitely many $>$-steps. 
 
-Note that termination and well-foundedness are the same property of a binary relation $\to$ described from two perspectives. Operationally, we read $x \to y$ as \enquote{$x$ can be transformed to $y$}; the absence of infinite $\rightarrow$-chains therefore means that any transformation sequence starting from an initial object $x$ is finite, i.e. every computation or rewrite sequence eventually terminates. Structurally, we read $x \to y$ as \enquote{$x$ is constructed from $y$}; the absence of infinite $\to$-chains then implies that every object $x$ can be traced back along a finite chain to an element that is not constructed from any other, so the structure is well-founded. In this thesis we adopt the operational viewpoint and use the term termination.
+Note that termination and well-foundedness are the same property of a binary relation $\to$ described from two perspectives. Operationally, we read $x \mathop{\to} y$ as \enquote{$x$ can be transformed to $y$}; the absence of infinite $\rightarrow$-chains therefore means that any transformation sequence starting from an initial object $x$ is finite, i.e. every computation or rewrite sequence eventually terminates. Structurally, we read $x \mathop{\to} y$ as \enquote{$x$ is constructed from $y$}; the absence of infinite $\to$-chains then implies that every object $x$ can be traced back along a finite chain to an element that is not constructed from any other, so the structure is well-founded. In this thesis we adopt the operational viewpoint and use the term termination.
 
 Relative termination 
 carries over to rewriting systems in a straightforward way via their associated rewriting relations.
 \begin{definition}
     \label{termination:def:relative_termination}
      Let $\mathcal{R}$ and $\mathcal{S}$ be sets of rewriting rules and let $\mathfrak{F}$ be a DPO rewriting framework. 
-     We say that $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\Rightarrow_{\mathcal{S}, \mathfrak{F}}$ if 
-     $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\Rightarrow_{\mathcal{S}, \mathfrak{F}}$.
+     We say that $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\mathop{\Rightarrow}_{\mathcal{S}, \mathfrak{F}}$ if 
+     $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\mathop{\Rightarrow}_{\mathcal{S}, \mathfrak{F}}$.
 \end{definition}
 In practice, to prove termination of a rewriting system $\mathcal{R}$, one partitions the set of rules into two disjoint subsets \( \mathcal{B} \) and \( \mathcal{A} \) with non-empty $\mathcal{A}$ such that \( \mathcal{A} \) terminates relative to \( \mathcal{B} \), if $\mathcal{B}$ is not empty then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.
  

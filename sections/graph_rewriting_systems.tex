@@ -15,7 +15,7 @@ In these approaches rules are applicable in any context: 1) no control over the 
 \begin{definition}[Rewriting rule, Match~\cite{ehrig1997algebraic}]
     \label{def:grs:dpo_rule}
   A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}, \( L \) is the \textbf{left-hand-side graph}, denoted \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side graph}, denoted \( \operatorname{rhs}(\rho) \). The rule is \textbf{left-monic} if the morphism \( l \) is monic, \textbf{right-monic} if the morphism \( r \) is monic, \textbf{monic} if it is left- and right-monic \todo{Do you consider rules where this is not the case?}  
-  A \textbf{match} of the rule in an graph \( G \) is a morphism \( m: L \rightarrow G \).   
+  A \textbf{match} of the rule in an graph \( G \) is a morphism \( m: L \mathop{\rightarrow} G \).   
   \end{definition}
 
   \begin{example}
@@ -28,7 +28,7 @@ In these approaches rules are applicable in any context: 1) no control over the 
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }     
@@ -36,7 +36,7 @@ In these approaches rules are applicable in any context: 1) no control over the 
                 \coordinate (o) at (5mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                 % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }    
@@ -44,8 +44,8 @@ In these approaches rules are applicable in any context: 1) no control over the 
                 \coordinate (o) at (-5mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -64,7 +64,7 @@ In these approaches rules are applicable in any context: 1) no control over the 
       \noindent
       \begin{minipage}{0.72\textwidth}
         A DPO diagram $\delta$ is a diagram as shown on the right.
-        This diagram $\delta$ is a \textbf{witness} for the \textbf{rewriting step} from \( G \) to \( H \) using the rule \( \rho \) and match \( m \), denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). We denote $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$ the pushout squares $KLGC$ and $KRHC$, respectively.
+        This diagram $\delta$ is a \textbf{witness} for the \textbf{rewriting step} from \( G \) to \( H \) using the rule \( \rho \) and match \( m \), denoted \( G \mathop{\Rightarrow}_\rho^m H \) or \( G \mathop{\Rightarrow}_\rho^\delta H \). We denote $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$ the pushout squares $KLGC$ and $KRHC$, respectively.
       \end{minipage}
       \hfill
       \begin{minipage}{0.28\textwidth}
@@ -104,7 +104,7 @@ In these approaches rules are applicable in any context: 1) no control over the 
                     \coordinate (o) at (0mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 } 
@@ -119,8 +119,8 @@ In these approaches rules are applicable in any context: 1) no control over the 
                     \coordinate (o) at (-5mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -130,12 +130,12 @@ In these approaches rules are applicable in any context: 1) no control over the 
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                    \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                    \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                     \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-                    \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                     \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                     \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                 }    
@@ -144,10 +144,10 @@ In these approaches rules are applicable in any context: 1) no control over the 
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                    \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                     \draw[->] (l2) -- (l4) node[midway,right] {$a$};
                     \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                    \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                     \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                 }    
         
@@ -155,10 +155,10 @@ In these approaches rules are applicable in any context: 1) no control over the 
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                    \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                    \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                    \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                     \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -184,11 +184,11 @@ In these approaches rules are applicable in any context: 1) no control over the 
   \end{definition}
 
 \begin{definition}[Rewriting relation]
-  The \textbf{rewriting relation $\Rightarrow_{\mathfrak{dpo},\mathfrak{F},\rho}$ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \Rightarrow_{\mathfrak{dpo},\mathfrak{F},\rho} H$ iff $G \Rightarrow_\rho^\delta H$ for some $\delta \in \mathfrak{F}(\rho)$. 
-    % for some $\delta \in \mathfrak{F}(\rho)$
-     The \textbf{DPO rewriting relation $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \Rightarrow_{\mathfrak{dpo}, \mathfrak{F},\mathcal{R}} H$ iff $G \Rightarrow_{\mathfrak{dpo},\mathfrak{F}, \rho} H$ for some $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
+  The \textbf{rewriting relation $\mathop{\Rightarrow}_{\mathfrak{dpo},\mathfrak{F},\rho}$ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \mathop{\Rightarrow}_{\mathfrak{dpo},\mathfrak{F},\rho} H$ iff $G \mathop{\Rightarrow}_\rho^\delta H$ for some $\delta \mathop{\in} \mathfrak{F}(\rho)$. 
+    % for some $\delta \mathop{\in} \mathfrak{F}(\rho)$
+     The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \mathop{\Rightarrow}_{\mathfrak{dpo}, \mathfrak{F},\mathcal{R}} H$ iff $G \mathop{\Rightarrow}_{\mathfrak{dpo},\mathfrak{F}, \rho} H$ for some $\rho \mathop{\in} \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
     suppress $\mathfrak{F}$ and 
-    write $\Rightarrow_{\mathfrak{dpo},\rho}$ and $\Rightarrow_{\mathfrak{dpo},\mathcal{R}}$.
+    write $\mathop{\Rightarrow}_{\mathfrak{dpo},\rho}$ and $\mathop{\Rightarrow}_{\mathfrak{dpo},\mathcal{R}}$.
 \end{definition}
 % % \input{shared_paragrahs/dpo_rewriting_framework_nac_f_and_m} 
 % Throughout this chapter, unless otherwise specified,
@@ -214,28 +214,28 @@ les autres differences
     \item[handbook] 
         As shown for example in [2], in category Graph, the pushout complement object of two morphisms <b,g> exsits iff the gluing condition is satisfied; moreover, it is unique if b is injective.
         \begin{proposition}[Existence of Pushout Complements]
-            Let $b : A \to B$ and $g : B \to D$ be two morphisms in $\mathbf{Graph}$. Then there exists a pushout complement $\langle C, c : A \to C, f : C \to D \rangle$ of $\langle b, g \rangle$ if and only if the following conditions are satisfied:
+            Let $b : A \mathop{\to} B$ and $g : B \mathop{\to} D$ be two morphisms in $\mathbf{Graph}$. Then there exists a pushout complement $\langle C, c : A \mathop{\to} C, f : C \mathop{\to} D \rangle$ of $\langle b, g \rangle$ if and only if the following conditions are satisfied:
             
             \begin{itemize}
-                \item \textbf{[Dangling condition]} No edge $e \in D_E - g_E(B_E)$ is incident to any node in $g_V(B_V - b_V(A_V))$.
-                \item \textbf{[Identification condition]} There is no $x, y \in B_V \cup B_E$ such that $x \neq y$, $g(x) = g(y)$ and $y \notin b(A_V \cup A_E)$.
+                \item \textbf{[Dangling condition]} No edge $e \mathop{\in} D_E - g_E(B_E)$ is incident to any node in $g_V(B_V - b_V(A_V))$.
+                \item \textbf{[Identification condition]} There is no $x, y \mathop{\in} B_V \mathop{\cup} B_E$ such that $x \mathop{\neq} y$, $g(x) \mathop{=} g(y)$ and $y \notin b(A_V \mathop{\cup} A_E)$.
             \end{itemize}
             
-            In this case, we say that $\langle b, g \rangle$ satisfies the \textit{gluing condition} (or $g$ satisfies the gluing condition with respect to $b$). If moreover morphism $b$ is injective, then the pushout complement is unique up to isomorphism, i.e., if $\langle C, c, f \rangle$ and $\langle C', c', f' \rangle$ are two pushout complements of $\langle b, g \rangle$, then there is an isomorphism $\varphi : C \to C'$ such that $\varphi \circ c = c'$ and $f' \circ \varphi = f$.
+            In this case, we say that $\langle b, g \rangle$ satisfies the \textit{gluing condition} (or $g$ satisfies the gluing condition with respect to $b$). If moreover morphism $b$ is injective, then the pushout complement is unique up to isomorphism, i.e., if $\langle C, c, f \rangle$ and $\langle C', c', f' \rangle$ are two pushout complements of $\langle b, g \rangle$, then there is an isomorphism $\varphi : C \mathop{\to} C'$ such that $\varphi \circ c \mathop{=} c'$ and $f' \circ \varphi \mathop{=} f$.
             \end{proposition}
         
     \item[adhesive categories] In D-p rewriting, a rewrite rule is given as a span 
     \begin{tikzcd}
         L & K \arrow[l] \arrow[r] & R
     \end{tikzcd}. 
-    Roughly, The intuition is that \( L \) forms the left-hand side of the rewrite rule, \( R \) forms the right-hand side and \( K \), common to both \( L \) and \( R \), is the sub-structure to be unchanged as the rule is applied. To apply the rule to a structure \( C \), one first needs to find a match \( L \to C \) of \( L \) within \( C \). The rule is then applied by constructing the missing parts (\( E, D \) and arrows) of the following diagram
+    Roughly, The intuition is that \( L \) forms the left-hand side of the rewrite rule, \( R \) forms the right-hand side and \( K \), common to both \( L \) and \( R \), is the sub-structure to be unchanged as the rule is applied. To apply the rule to a structure \( C \), one first needs to find a match \( L \mathop{\to} C \) of \( L \) within \( C \). The rule is then applied by constructing the missing parts (\( E, D \) and arrows) of the following diagram
     \begin{figure}[H]
         \begin{tikzcd}
             L \arrow[d]&  K \arrow[d] \arrow[l] \arrow[r] & R  \arrow[d]\\
             C  & E \arrow[l]  \arrow[r] & D
         \end{tikzcd} 
     \end{figure}
-    in a way which ensures that the two squares are pushout diagrams. Once such a diagram is constructed we may deduce that \( C \Rightarrow D \), that is, \( C \) rewrites to \( D \).
+    in a way which ensures that the two squares are pushout diagrams. Once such a diagram is constructed we may deduce that \( C \mathop{\Rightarrow} D \), that is, \( C \) rewrites to \( D \).
     
 \end{itemize}
 
@@ -245,7 +245,7 @@ les autres differences
     A \textbf{DPO Graph Rewriting System} is a DPO rewriting system on $\mathbf{Graph}$.  
 \end{definition}
 
-When a direct graph transformation with a production p and a match m is performed, all the vertices and edges which are matched by$ L \setminus K$ are removed from G. The removed part is not a graph, in general, but the remaining structure $D := (G \setminus m(L)) \cup  m(K)$ still has to be a graph. This means that the match $m$ has to satisfy a suitable gluing condition, which makes sure that the gluing of $L\setminus K$ and $D$ is equal to G. In the second step of a graph rewriting step, the graph $D$ is glued together with $R \setminus K$ to obtain the derived graph $H$ . For gluing newly created vertices and edges into D,the graph $m(K)$ and $r(K)$ are used: nodes and edges with the same pre-image will be unified.
+When a direct graph transformation with a production p and a match m is performed, all the vertices and edges which are matched by$ L \mathop{\setminus} K$ are removed from G. The removed part is not a graph, in general, but the remaining structure $D := (G \mathop{\setminus} m(L)) \mathop{\cup}  m(K)$ still has to be a graph. This means that the match $m$ has to satisfy a suitable gluing condition, which makes sure that the gluing of $L\mathop{\setminus} K$ and $D$ is equal to G. In the second step of a graph rewriting step, the graph $D$ is glued together with $R \mathop{\setminus} K$ to obtain the derived graph $H$ . For gluing newly created vertices and edges into D,the graph $m(K)$ and $r(K)$ are used: nodes and edges with the same pre-image will be unified.
 
 Trees form a sub-category of $\mathbf{Graph}$, denoted as $\mathbf{Tree}$.
 \begin{definition}[DPO Tree Rewriting System]
@@ -254,7 +254,7 @@ Trees form a sub-category of $\mathbf{Graph}$, denoted as $\mathbf{Tree}$.
 
 todo : Def functor F
 \begin{proposition} 
-   The functor $F: \mathbf{Tree} \to \mathbf{Trs}$ is isomorphic.
+   The functor $F: \mathbf{Tree} \mathop{\to} \mathbf{Trs}$ is isomorphic.
 \end{proposition}
 todo : def functor F
 \begin{proposition}
@@ -275,13 +275,13 @@ todo : def functor F
 \begin{definition}[Rewriting rule, Match~\cite{bottoni2010atermination}]
     \label{def:grs:dpo_nac_rule}
     A \textbf{DPO rewriting rule with a negative application condition} $\varphi$ is an ordered pair \( \left( n , \rho \right) \) where $n$ is a monomorphism and $\rho$ is an monic DPO rewriting rule
-     such that $\operatorname{codom}(\operatorname{lhs}(\rho)) = \operatorname{dom}(n)$.
+     such that $\operatorname{codom}(\operatorname{lhs}(\rho)) \mathop{=} \operatorname{dom}(n)$.
      
-     A rule is denoted \( N \overset{n}{\leftarrowtail} L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \) with $\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) $.
+     A rule is denoted \( N \overset{n}{\leftarrowtail} L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \) with $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) $.
 
-    A match of the rule in an object \( G \) is a monomorphism \( m: L \rightarrow G \) such that there is no monomorphism \( q: N \rightarrow G \) such that \( n \star q = m \), as illustrated below.
+    A match of the rule in an object \( G \) is a monomorphism \( m: L \mathop{\rightarrow} G \) such that there is no monomorphism \( q: N \mathop{\rightarrow} G \) such that \( n \mathop{\star} q \mathop{=} m \), as illustrated below.
 
-    A DPO diagram as shown below is a \textbf{witness} for a \textbf{rewriting step} from \( G \) to \( H \) using the rule $\varphi$ and match \( m \), denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). 
+    A DPO diagram as shown below is a \textbf{witness} for a \textbf{rewriting step} from \( G \) to \( H \) using the rule $\varphi$ and match \( m \), denoted \( G \mathop{\Rightarrow}_\rho^m H \) or \( G \mathop{\Rightarrow}_\rho^\delta H \). 
     % We denote $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$ the pushout squares $KLGC$ and $KRHC$, respectively.
 
 \begin{figure}[htbp]
@@ -313,7 +313,7 @@ todo : def functor F
         % Bent arrow from G to N
         \draw[>->, bend right,red,dashed] (N) to node[below] {q} (G);
 
-        \node at ($(N)!0.5!(G)$) {\textcolor{red}{$\neq$}};
+        \node at ($(N)!0.5!(G)$) {\textcolor{red}{$\mathop{\neq}$}};
         \node at ($(K)!0.5!(G)$) {$\mathrm{PO}$};
         \node at ($(K)!0.5!(H)$) {$\mathrm{PO}$};
       \end{tikzpicture}
@@ -329,7 +329,7 @@ todo : def functor F
         \coordinate (o) at (0mm,-3mm); 
         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
         \draw[->] (l3) -- (l2) node[midway,above] {$a$};
         \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
@@ -338,7 +338,7 @@ todo : def functor F
             \coordinate (o) at (0mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
         }     
@@ -346,7 +346,7 @@ todo : def functor F
             \coordinate (o) at (5mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-            % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+            % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
             % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
         }    
@@ -354,8 +354,8 @@ todo : def functor F
             \coordinate (o) at (-5mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+            \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
             \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -367,7 +367,7 @@ todo : def functor F
     \end{tikzpicture}
     }
 \end{center}
-  The rewriting step in Example~\ref{ex:rewriting_step_grs_aa} is not possible with this rule in DPO rewriting with negative application conditions, because there exists a monomorphism \( q: N \rightarrow G \) such that \( n \star q = m \) as shown in the diagram below.
+  The rewriting step in Example~\ref{ex:rewriting_step_grs_aa} is not possible with this rule in DPO rewriting with negative application conditions, because there exists a monomorphism \( q: N \mathop{\rightarrow} G \) such that \( n \mathop{\star} q \mathop{=} m \) as shown in the diagram below.
   \begin{center} 
     \resizebox{0.7\textwidth}{!}{
     \begin{tikzpicture}
@@ -375,7 +375,7 @@ todo : def functor F
         \coordinate (o) at (0mm,-3mm); 
         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
         \draw[->] (l3) -- (l2) node[midway,above] {$a$};
         \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
@@ -384,7 +384,7 @@ todo : def functor F
             \coordinate (o) at (0mm,-8mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
         } 
@@ -399,8 +399,8 @@ todo : def functor F
             \coordinate (o) at (-5mm,-8mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+            \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
             \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -410,12 +410,12 @@ todo : def functor F
             \coordinate (o) at (0mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-            \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+            \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-            \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+            \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
         }    
@@ -424,10 +424,10 @@ todo : def functor F
             \coordinate (o) at (0mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+            \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
             \draw[->] (l2) -- (l4) node[midway,right] {$a$};
             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-            \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+            \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
         }    
 
@@ -435,10 +435,10 @@ todo : def functor F
             \coordinate (o) at (-5mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-            \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-            \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+            \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+            \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+            \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -465,11 +465,11 @@ todo : def functor F
 \end{definition}
 
 \begin{definition}[Rewriting relation]
-  The \textbf{rewriting relation $\Rightarrow_{\mathfrak{dponac},\mathfrak{F},\rho}$ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \Rightarrow_{\mathfrak{dponac},\mathfrak{F},\rho} H$ iff $G \Rightarrow_\rho^\delta H$ for some $\delta \in \mathfrak{F}(\rho)$. 
-    % for some $\delta \in \mathfrak{F}(\rho)$
-     The \textbf{DPO rewriting relation $\Rightarrow_{\mathfrak{dponac},\mathfrak{F},\mathcal{R}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \Rightarrow_{\mathfrak{dponac}, \mathfrak{F},\mathcal{R}} H$ iff $G \Rightarrow_{\mathfrak{dponac},\mathfrak{F}, \rho} H$ for some $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
+  The \textbf{rewriting relation $\mathop{\Rightarrow}_{\mathfrak{dponac},\mathfrak{F},\rho}$ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \mathop{\Rightarrow}_{\mathfrak{dponac},\mathfrak{F},\rho} H$ iff $G \mathop{\Rightarrow}_\rho^\delta H$ for some $\delta \mathop{\in} \mathfrak{F}(\rho)$. 
+    % for some $\delta \mathop{\in} \mathfrak{F}(\rho)$
+     The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\mathfrak{dponac},\mathfrak{F},\mathcal{R}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \mathop{\Rightarrow}_{\mathfrak{dponac}, \mathfrak{F},\mathcal{R}} H$ iff $G \mathop{\Rightarrow}_{\mathfrak{dponac},\mathfrak{F}, \rho} H$ for some $\rho \mathop{\in} \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
     suppress $\mathfrak{F}$ and 
-    write $\Rightarrow_{\mathfrak{dponac},\rho}$ and $\Rightarrow_{\mathfrak{dponac},\mathcal{R}}$.
+    write $\mathop{\Rightarrow}_{\mathfrak{dponac},\rho}$ and $\mathop{\Rightarrow}_{\mathfrak{dponac},\mathcal{R}}$.
 \end{definition}
 
 \subsection{PBPO+ GRS}
@@ -512,13 +512,13 @@ todo : def functor F
 L is the pattern; L' restricts the shape of the context; pullback: duplication and filtering(extraction); pushout:merging and extension; strong matching: leftmost pullback square ensures that the context in $G_L$ is not mapped onto the pattern L in L'
 }
 
-The morphism \(l' : L' \leftarrow K'\) is used to define deletion and duplication operations on the type graph. The morphism \(r : K \to R\) subsequently specifies the identification and addition operations, particularly focused on \(l'^{-1}(t_L)\).
+The morphism \(l' : L' \mathop{\leftarrow} K'\) is used to define deletion and duplication operations on the type graph. The morphism \(r : K \mathop{\to} R\) subsequently specifies the identification and addition operations, particularly focused on \(l'^{-1}(t_L)\).
 % For PBPO\(^*\) matches, it is required that \(\alpha^{-1}(\operatorname{Im} t_L) \overset{iso}{=} L\). Such a match is called a \textit{strong match}, which distinguishes $PBPO+$ from $PBPO$, and is uniquely determined by the means of an adherence morphism.
 \begin{example}
     \url{https://www.youtube.com/watch?v=_gwz64o1eBQ&t=1352s} 30:20 an example of a rule which remove a single loop from a graph.
 \end{example}
 \begin{definition}[Match]
-  A \textbf{match} of a \pbpop rewriting rule \(\rho\) in an object \(G\) is an ordered pair of morphisms \(m:L\rightarrow G, \alpha: G \rightarrow L'\) such that the following square is a pullback square:
+  A \textbf{match} of a \pbpop rewriting rule \(\rho\) in an object \(G\) is an ordered pair of morphisms \(m:L\rightarrow G, \alpha: G \mathop{\rightarrow} L'\) such that the following square is a pullback square:
 
   \[
   \begin{tikzcd}[row sep=large, column sep=large]
@@ -544,7 +544,7 @@ L \arrow[r, "t_L"] & L'
 \arrow[phantom, from=1-1, to=2-2, "\mathrm{=}" description]
 \end{tikzcd}
 \]
-hold then $m' = m''$.
+hold then $m' \mathop{=} m''$.
 \end{proposition}
 
 \begin{definition}[\pbpop rewrite step~\cite{overbeek2023pbpo_JLAMP}]
@@ -552,7 +552,7 @@ hold then $m' = m''$.
 
   Let $G_L$ be an object and \(m, \alpha\) a match. 
   
- A diagram as illustrated below, where \(u : K \rightarrow G_K\) is the unique morphism satisfying \(t_K = u' \circ u\), is a \textbf{witness} of a \pbpop \textbf{rewrite step} from $G_L$ to $G_R$ using rule $\rho$ and match $m$, denoted \(G_L \Rightarrow^m_{\text{\pbpop},\rho} G_R\).
+ A diagram as illustrated below, where \(u : K \mathop{\rightarrow} G_K\) is the unique morphism satisfying \(t_K \mathop{=} u' \circ u\), is a \textbf{witness} of a \pbpop \textbf{rewrite step} from $G_L$ to $G_R$ using rule $\rho$ and match $m$, denoted \(G_L \mathop{\Rightarrow}^m_{\text{\pbpop},\rho} G_R\).
 
   \begin{tikzpicture} 
     % Nodes of the diagram
@@ -600,9 +600,9 @@ hold then $m' = m''$.
 \end{definition}
 
 \begin{definition}[Rewriting relation]
-  The \textbf{rewriting relation $\Rightarrow_{\text{\pbpop},\mathfrak{F},\rho} $ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G_L \Rightarrow_{\text{\pbpop},\mathfrak{F},\rho} G_R$ iff $G_L \Rightarrow^m_{\text{\pbpop},\rho} G_R$ for some match \(m\) and some witness \(w\) in \(\mathfrak{F}(\rho)\).
+  The \textbf{rewriting relation $\mathop{\Rightarrow}_{\text{\pbpop},\mathfrak{F},\rho} $ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G_L \mathop{\Rightarrow}_{\text{\pbpop},\mathfrak{F},\rho} G_R$ iff $G_L \mathop{\Rightarrow}^m_{\text{\pbpop},\rho} G_R$ for some match \(m\) and some witness \(w\) in \(\mathfrak{F}(\rho)\).
 
-    The \textbf{rewriting relation $\Rightarrow_{\text{\pbpop},\mathfrak{F},\mathcal{R}}$ induced by a set $\mathcal{R}$ of \pbpop rewriting rules in $\mathfrak{F}$} is given by: $G_L \Rightarrow_{\text{\pbpop},\mathfrak{F},\mathcal{R}} G_R$ iff $G_L \Rightarrow_{\text{\pbpop},\mathfrak{F},\rho} G_R$ for some rule $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we suppress $\mathfrak{F}$ and write $\Rightarrow_{\text{\pbpop},\rho}$ and $\Rightarrow_{\text{\pbpop},\mathcal{R}}$.
+    The \textbf{rewriting relation $\mathop{\Rightarrow}_{\text{\pbpop},\mathfrak{F},\mathcal{R}}$ induced by a set $\mathcal{R}$ of \pbpop rewriting rules in $\mathfrak{F}$} is given by: $G_L \mathop{\Rightarrow}_{\text{\pbpop},\mathfrak{F},\mathcal{R}} G_R$ iff $G_L \mathop{\Rightarrow}_{\text{\pbpop},\mathfrak{F},\rho} G_R$ for some rule $\rho \mathop{\in} \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we suppress $\mathfrak{F}$ and write $\mathop{\Rightarrow}_{\text{\pbpop},\rho}$ and $\mathop{\Rightarrow}_{\text{\pbpop},\mathcal{R}}$.
 \end{definition}
 
 
@@ -641,24 +641,24 @@ hold then $m' = m''$.
     \begin{example}[ \cite{overbeek2023pbpo_JLAMP}]
         In the category of unlabeled directed graphs, there exists a mono-partial morphism classifier $(T,\eta)$ where 
         \begin{itemize}
-            \item for all unlabeled graph $G=(V,A,s,t)$, we have $T(G) = (V_*,E_*,s_*,t_*)$ where $V_* = V \uplus \{*\}, E_* = E \uplus (V_* \times V_x), s_*(e) = s(e)$ if $e \in E$ and $\pi_1(e)$ otherwise, and $t_*(e) = t(e)$ if $e \in E$ and $\pi_2(e)$ otherwise.
+            \item for all unlabeled graph $G=(V,A,s,t)$, we have $T(G) \mathop{=} (V_*,E_*,s_*,t_*)$ where $V_* \mathop{=} V \uplus \{*\}, E_* \mathop{=} E \uplus (V_* \mathop{\times} V_x), s_*(e) \mathop{=} s(e)$ if $e \mathop{\in} E$ and $\pi_1(e)$ otherwise, and $t_*(e) \mathop{=} t(e)$ if $e \mathop{\in} E$ and $\pi_2(e)$ otherwise.
         \end{itemize}
         An example is given by 
         \begin{center}
-            $G \; = $
+            $G \; \mathop{=} $
             \begin{tikzcd}
             v \arrow[loop, distance=2em, in=215, out=145] \arrow[rr] &  & w
             \end{tikzcd}
             \quad and \quad 
-            $T(G) \; = \hspace{-3mm} $ % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiVpAF9T1Nd9CUAJnJVajFmwDunbiAzY8BIgEZSy0fWatEIADq6ARhBydRMKAHN4RUADMAThAC2SMiBwRX1BhAhoiggDsZLaMcDCiDHQGMAwACryKAiD2WBYAFiZcdo4uiG4eSMrZIA7OXu6eiMIgDFhg2iBQxjjmINQxYFBIALQAzMQlZXk1hYiqtfWNzTit3UO5SKNVNT5+RCFhEd7RsQkK-GypGSbeU2wzczI55ePUYxNr-igAnJsM4ZG78YmHOseZdqTBoXFptBa3ApVNxPALBUihD7bWrffZ8JT-NKAs4gnSXcGyYYVB4dGBdJADHHTMHzQmLO6VCqdbqISnA6mzAk3Eb3aFU0Gc2ncoq8pak8msmHnPE00wcIA
+            $T(G) \; \mathop{=} \hspace{-3mm} $ % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiVpAF9T1Nd9CUAJnJVajFmwDunbiAzY8BIgEZSy0fWatEIADq6ARhBydRMKAHN4RUADMAThAC2SMiBwRX1BhAhoiggDsZLaMcDCiDHQGMAwACryKAiD2WBYAFiZcdo4uiG4eSMrZIA7OXu6eiMIgDFhg2iBQxjjmINQxYFBIALQAzMQlZXk1hYiqtfWNzTit3UO5SKNVNT5+RCFhEd7RsQkK-GypGSbeU2wzczI55ePUYxNr-igAnJsM4ZG78YmHOseZdqTBoXFptBa3ApVNxPALBUihD7bWrffZ8JT-NKAs4gnSXcGyYYVB4dGBdJADHHTMHzQmLO6VCqdbqISnA6mzAk3Eb3aFU0Gc2ncoq8pak8msmHnPE00wcIA
             \begin{tikzcd}
             v \arrow[loop, distance=2em, in=215, out=145] \arrow[rr] \arrow[rd, dotted, bend right] \arrow[dotted, loop, distance=4em, in=240, out=140, looseness=3] \arrow[rr, dotted, bend left] &                                                                                                & w \arrow[dotted, loop, distance=2em, in=35, out=325] \arrow[ll, dotted, bend left] \arrow[ld, dotted, bend left] \\
-                                                                                                                                                              & \star \arrow[ru, dotted] \arrow[dotted, loop, distance=2em, in=305, out=235] \arrow[lu, dotted] &                                                                                                       
+                                                                                                                                                              & \mathop{\star} \arrow[ru, dotted] \arrow[dotted, loop, distance=2em, in=305, out=235] \arrow[lu, dotted] &                                                                                                       
             \end{tikzcd},
         \end{center}
     
-        where the dotted edges represent the edges $e \in V_\star \times V_\star$.
-        It can be seen that for any partial homomorphism $\psi: H \to G$ defined on subgraph $H' \subseteq H$, there exists exactly one homomorphism $\psi_\star : H \to T(G)$ such that $\psi_\star(x) = \psi(x)$ for $x \in V_{H'} \cup E_{H'}$ and $\psi_\star(x) \notin V_{G} \cup E_{G}$ for $x \notin V_{H'} \cup E_{H'}$. Equivalently, $\psi_\star$ is the unique morphism $\varphi_{m,f} : H \to T(G)$ making
+        where the dotted edges represent the edges $e \mathop{\in} V_\star \mathop{\times} V_\star$.
+        It can be seen that for any partial homomorphism $\psi: H \mathop{\to} G$ defined on subgraph $H' \mathop{\subseteq} H$, there exists exactly one homomorphism $\psi_\star : H \mathop{\to} T(G)$ such that $\psi_\star(x) \mathop{=} \psi(x)$ for $x \mathop{\in} V_{H'} \mathop{\cup} E_{H'}$ and $\psi_\star(x) \notin V_{G} \mathop{\cup} E_{G}$ for $x \notin V_{H'} \mathop{\cup} E_{H'}$. Equivalently, $\psi_\star$ is the unique morphism $\varphi_{m,f} : H \mathop{\to} T(G)$ making
             \begin{center}
                 % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbAELdeIDNjwEiZYePrNWiEAEE5fJYKKj11TVJ0AVABTSAlN3EwoAc3hFQAMwBOEALZIoiA4EEgAzNQ4dFgMbAAWEBAA1iDmktogADpZMNEA+rLUDHQARjAMAAr8ykIgWGDYsAYgvgFIZCFhiABMUTFxOokpaRJabIHFZRXVRio6DU2sPN5+gYidoUHp4zpeoyXlVTXGC41YzSuta0h9XRE7ltlZaHQ+AMYlcHDA-lzAXi4B2mxzmdUWF2WFC4QA
                 \begin{tikzcd}[column sep=15mm]
@@ -668,7 +668,7 @@ hold then $m' = m''$.
             \end{center}
         a pullback square, where $H \stackrel{m}{\hookleftarrow} H' \stackrel{f}{\to} G$ a partial map span representation of $\psi$, and $\eta_G$ and $m$ are inclusions.
         
-        The generalization to labeled graphs is straightforward: between any two nodes $u,v \in V_\star$ and for every label $l$, there is one $l$-labeled edge representing an undefined $l$-edge between $u$ and $v$.
+        The generalization to labeled graphs is straightforward: between any two nodes $u,v \mathop{\in} V_\star$ and for every label $l$, there is one $l$-labeled edge representing an undefined $l$-edge between $u$ and $v$.
     \end{example}
     
     The following theorem is an instance of \cite[Definition 71]{overbeek2023pbpo_JLAMP}.
@@ -692,7 +692,7 @@ hold then $m' = m''$.
     
         For any left-injective DPO rule $\rho$, $|\rho|$ is a well-defined $\mathrm{PBPO}^+$ rule. 
         
-        For any $G \to^{\rho}_{\mathrm{DPO}} H$, we have $G \to^{|\rho|}_{\mathrm{PBPO}^+} H$.  
+        For any $G \mathop{\to} ^{\rho}_{\mathrm{DPO}} H$, we have $G \mathop{\to} ^{|\rho|}_{\mathrm{PBPO}^+} H$.  
     \end{theorem}
     \begin{proof}
         \todo{todo}

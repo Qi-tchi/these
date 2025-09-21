@@ -6,19 +6,19 @@ In this section, we explore the dependency pair method from a different viewpoin
 \begin{theorem}[\cite{arts2000termination} Theorem 6]
 Let $\mathcal{R}$ be a term rewriting system. 
 
-Let $\leadsto_1$ be a binary relation stable under context and substitution on $T(\Sigma,\mathcal{X})^2$ such that $$(s,t) \leadsto (s',t') \text{ iff } t \to_\mathcal{R}^* s'$$
+Let $\leadsto_1$ be a binary relation stable under context and substitution on $T(\Sigma,\mathcal{X})^2$ such that $$(s,t) \leadsto (s',t') \text{ iff } t \mathop{\to} _\mathcal{R}^* s'$$
 
-Let $\leadsto_2$ be a binary relation stable under context and substitution on $T(\Sigma,\mathcal{X}) \times T(\Sigma,\mathcal{X})^2$ such that $r \leadsto_2 (s,t)$ iff 
+Let $\leadsto_2$ be a binary relation stable under context and substitution on $T(\Sigma,\mathcal{X}) \mathop{\times} T(\Sigma,\mathcal{X})^2$ such that $r \leadsto_2 (s,t)$ iff 
 \begin{itemize}
     \item $s$ is a subterm of $r$, and
     \item propre subterms of $s$ are all strongly normalizing.
 \end{itemize}
 
-Let $\leadsto \isdef \leadsto_1 \cup \leadsto_2$.
+Let $\leadsto \isdef \leadsto_1 \mathop{\cup} \leadsto_2$.
 The following three assertions are equivalent:
 \begin{itemize}
     \item $\mathcal{R}$ terminates.
-    \item $((T(\Sigma,\mathcal{X}) \times T(\Sigma,\mathcal{X})^2) \cup T(\Sigma,\mathcal{X})^2, \leadsto)$ terminates.
+    \item $((T(\Sigma,\mathcal{X}) \mathop{\times} T(\Sigma,\mathcal{X})^2) \mathop{\cup} T(\Sigma,\mathcal{X})^2, \leadsto)$ terminates.
     \item $(T(\Sigma,\mathcal{X})^2, \leadsto_2)$ terminates.
 \end{itemize} 
 \end{theorem}
@@ -29,18 +29,18 @@ In the literature, instead of taking the union of two sets with different types 
 \begin{definition}[Defined Symbols and Constructors \cite{arts2000termination}]
   Let $\mathcal{R}(\mathcal{F}, R)$ be a TRS. The set $D_{\mathcal{R}}$ of \emph{defined symbols} of $\mathcal{R}$ is defined as 
   \[
-  \{ \text{root}(l) \mid l \to r \in R \}
+  \{ \text{root}(l) \mid l \mathop{\to} r \mathop{\in} R \}
   \]
-  and the set $C_{\mathcal{R}}$ of \emph{constructors} of $\mathcal{R}$ is defined as $\mathcal{F} \setminus D_{\mathcal{R}}$.
+  and the set $C_{\mathcal{R}}$ of \emph{constructors} of $\mathcal{R}$ is defined as $\mathcal{F} \mathop{\setminus} D_{\mathcal{R}}$.
 \end{definition}
 
 
 \begin{definition}[Dependency Pair \cite{arts2000termination}]
   Let $\mathcal{R}(D, C, R)$ be a TRS. If 
   \[
-  f(s_1, \ldots, s_n) \to C[g(t_1, \ldots, t_m)]
+  f(s_1, \ldots, s_n) \mathop{\to} C[g(t_1, \ldots, t_m)]
   \]
-  is a rewrite rule of $R$ with $g \in D$, then 
+  is a rewrite rule of $R$ with $g \mathop{\in} D$, then 
   \[
   \langle F(s_1, \ldots, s_n), G(t_1, \ldots, t_m) \rangle
   \]
@@ -51,8 +51,8 @@ In the literature, instead of taking the union of two sets with different types 
 \begin{theorem}[\cite{arts2000termination} Theorem 7]
 $(T(\Sigma,\mathcal{X})^2, \leadsto_2)$ is terminating if and only if there exists a well-founded, weakly monotonic quasi-ordering $\geq$, where both $\geq$ and $>$ are stable under substitution, such that:
 \begin{itemize}
-    \item \( l \geq r \) for all rules $l \rightarrow r$ in $R$, and
-    \item \( s > t \) for all dependency pairs \( \langle s, t \rangle \).
+    \item \( l \mathop{\geq} r \) for all rules $l \mathop{\rightarrow} r$ in $R$, and
+    \item \( s \mathop{>} t \) for all dependency pairs \( \langle s, t \rangle \).
 \end{itemize} 
 \end{theorem}
     

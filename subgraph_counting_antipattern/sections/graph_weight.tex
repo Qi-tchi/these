@@ -1,25 +1,20 @@
-% Like using rulers to measure physical objects, we use ruler-graphs (special reference structures) to measure graphs.
-% Each ruler-graph in a set $\mathbb{X}$ provides a measure for a graph
-% G, and the total weight of G is determined by a weighted linear
-% combination of these measures.
-% \todo{explain the difference the concept of ruler-graph presented in this paper and the one in the paper of \cite{qiu2025termination_icgt}.}
-
-We use a definition of ruler-graph slightly more general than the one in Chapter~\ref{chap:subgraph_counting}.
+We generalize the concept of the ruler-graph presented in Chapter~\ref{chap:subgraph_counting}.
 
 \begin{definition}
     \label{antipattern:def:ruler_graph}
-    A \textbf{ruler-graph} is either $(X)$ or \( (X, f) \) where $X$ is a graph, called \emph{underlying graph}, and $f$ is a graph monomorphism with $\operatorname{dom}(f) = X$, called the \emph{forbidden context}.
+    A \textbf{ruler-graph} is either $(X)$ or \( (X, f) \) where $X$ is a graph (the \textbf{underlying graph}) and $f$ is a monomorphism into a graph $F$; $f$ is the \textbf{forbidden context}.
 \end{definition}
-For $\mathcal{X} = (X, f:X \rightarrowtail F)$, we will also called $F$ the forbidden context. The definition of measurement need some modifications to take into consideration the forbidden context. When the ruler-graph is just $(X)$, the measurement is the same as the one defined Definition~\ref{subgraph_counting:def:measurement} in Chapter~\ref{chap:subgraph_counting}. When it is $(X, f:X \rightarrowtail F)$, we exclude those monomorphisms whose images overlap with the forbidden context. These excluded monomorphisms are those that can be extended to a morphism $g: F \rightarrowtail G$. This leads us to the following slightly more general definition of measurement.
+For $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$, we also call $F$ the forbidden context for simplicity.
+The definition of measurement needs some modifications to take the forbidden context into account. When the ruler-graph is just $(X)$, the definition of measurement is the same as that in Definition~\ref{subgraph_counting:def:measurement} in Chapter~\ref{chap:subgraph_counting}. When $\mathcal{X}$ is $(X, f:X \rightarrowtail F)$, we exclude those monomorphisms whose images overlap with the forbidden context. These excluded monomorphisms are those that can be extended to a morphism $g: F \rightarrowtail G$. This leads us to the following definition.
 \begin{definition} 
     \label{antipattern:def:measurement}
     Let \( \mathcal{X}\) be a ruler-graph and \( G \) a graph. The \textbf{measurement} of \( G \) with respect to \( \mathcal{X}\), denoted \( m_\mathcal{X}(G) \), is defined as 
     \[
-        m_\mathcal{X}(G) =
+        m_\mathcal{X}(G) \isdef
         \begin{cases}
-            \card{\{h \in \operatorname{Mono}(X,G) \mid \nexists g.\,f \star g = h \}}, & \text{if } \mathcal{X} = (X, f), \\
-            \card{\operatorname{Mono}(X,G)}, & \text{if } \mathcal{X} = (X).
+            \card{\{h \mathop{\in} \operatorname{Mono}(X,G) \mid \nexists g.\,f \mathop{\star} g \mathop{=} h \}}, & \text{if } \mathcal{X} \mathop{=} (X, f), \\
+            \card{\operatorname{Mono}(X,G)}, & \text{if } \mathcal{X} \mathop{=} (X).
         \end{cases}
     \]
 \end{definition}
-The definitions of weight function and graph weights are identical to the ones defined in Definition~\ref{subgraph_counting:def:weight_function} and Definition~\ref{subgraph_counting:def:graph_weight} in Chapter~\ref{chap:subgraph_counting}, respectively, except that we use the new definition of measurement.
+The definitions of weight function and graph weights are identical to those in Definition~\ref{subgraph_counting:def:weight_function} and Definition~\ref{subgraph_counting:def:graph_weight} in Chapter~\ref{chap:subgraph_counting}, respectively, except that we use the new definition of measurement.

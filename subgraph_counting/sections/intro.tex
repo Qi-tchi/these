@@ -4,7 +4,7 @@ We presents a new automated method for relative termination of double-pushout (D
 
 The method, based on the interpretation method framework~\cite{nipkow1998term,contejean2005mechanically}, works as follows. Let \( \mathbb{X} \) denote a fixed set of graphs. We assign weights (natural numbers) to monomorphisms from graphs in \( \mathbb{X} \), and define the weight of a graph $G$ as the sum of the weights of all monomorphisms from graphs in \( \mathbb{X} \) to $G$. 
 
-Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \in \mathbb{X}$ and $G \Rightarrow H$ be a rewriting step defined by the double-pushouts diagram shown below. 
+Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \mathop{\in} \mathbb{X}$ and $G \mathop{\Rightarrow} H$ be a rewriting step defined by the double-pushouts diagram shown below. 
 % in Figure~\ref{fig:subgraph_counting:general_rewriting_step_sdfsl}.
 % \begin{figure}[H]
 %     \centering
@@ -55,7 +55,7 @@ For a monomorphism from $X$ to $G$, its image falls into exactly one of the foll
   The number of monomorphisms from $X$ to $G$ whose image is fully included in $m(L)$ can be precisely calculated, as can the number of monomorphisms from $X$ to $H$ whose image is fully included in $m'(R)$. Moreover, the number of monomorphisms from $X$ to $G$ equals to the that of monomorphisms to $H$. 
 
 To estimate the change in weight when applying a rewriting rule, we focus on 
-the monomorphisms in the third case. Specifically, our technique requires that, for every graph $X$ in $\mathbb{X}$ and every rewriting step $G \Rightarrow H$ using a rule from $\mathcal{A}$ or $\mathcal{B}$, there is an injective mapping from the set of monomorphisms $x : X \to H$ (where $\opn{Im}(x)$ is neither fully included in the right-hand side graph nor fully included in the context) to the set of monomorphisms from $y : X \to G$ (where $\opn{Im}(y)$ is neither fully included in the left-hand side graph nor fully included in the context). 
+the monomorphisms in the third case. Specifically, our technique requires that, for every graph $X$ in $\mathbb{X}$ and every rewriting step $G \mathop{\Rightarrow} H$ using a rule from $\mathcal{A}$ or $\mathcal{B}$, there is an injective mapping from the set of monomorphisms $x : X \mathop{\to} H$ (where $\opn{Im}(x)$ is neither fully included in the right-hand side graph nor fully included in the context) to the set of monomorphisms from $y : X \mathop{\to} G$ (where $\opn{Im}(y)$ is neither fully included in the left-hand side graph nor fully included in the context). 
 
 Suppose, additionally, that the following conditions hold: 
 \begin{itemize}
@@ -68,7 +68,7 @@ Consequently, the rewriting rules in \( \mathcal{A} \) can only be applied finit
 % Chapter~\ref{chap:subgraph_counting} presents an new automated method for relative termination~\cite{geser1990relative} of double-pushout (DPO) graph rewriting systems with injective rules~\cite{corradini1997algebraic,habel2001double,konig2018atutorial}.
 %  The method, based on the interpretation method framework~\cite{nipkow1998term}, works as follows. Let \( \mathbb{X} \) denote a fixed set of graphs. We assign weights (natural numbers) to monomorphisms from graphs in \( \mathbb{X} \), and define the weight of a graph $G$ as the sum of the weights of all monomorphisms from graphs in \( \mathbb{X} \) to $G$. 
 
-% Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \in \mathbb{X}$ and $G \Rightarrow H$ be a rewriting step defined by the double-pushouts diagram in Figure~\ref{fig:subgraph_counting:general_rewriting_step_sdfsl}.
+% Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \mathop{\in} \mathbb{X}$ and $G \mathop{\Rightarrow} H$ be a rewriting step defined by the double-pushouts diagram in Figure~\ref{fig:subgraph_counting:general_rewriting_step_sdfsl}.
 % \begin{figure}[H]
 %     \centering
 %  \resizebox{0.4\textwidth}{!}{
@@ -104,7 +104,7 @@ Consequently, the rewriting rules in \( \mathcal{A} \) can only be applied finit
 % For a monomorphism from $X$ to $G$, its image falls into exactly one of the following three mutually exclusive cases. First, the image may be fully included in $m(L)$. Second, the image may be fully included in $l'(C)$; Third, the image may be neither fully included in $m(L)$ nor fully included in $l'(C)$. Similary, for a monomorphism from $X$ to $H$, its image falls into exactly one of the following three mutually exclusive cases. First, the image may be fully included in $m'(R)$. Second, the image may be fully included in $r'(C)$; Third, the image may be neither fully included in $m'(R)$ nor fully included in $r'(C)$. The number of monomorphisms from $X$ to $G$ whose image is fully included in $m(L)$ can be precisely calculated, as can the number of monomorphisms from $X$ to $H$ whose image is fully included in $m'(R)$. Moreover, the number of monomorphisms from $X$ to $G$ equals to the that of monomorphisms to $H$. 
 
 % To estimate the change in weight when applying a rewriting rule, we focus on 
-% the monomorphisms in the third case. Specifically, our technique requires that, for every graph $X$ in $\mathbb{X}$ and every rewriting step $G \Rightarrow H$ using a rule from $\mathcal{A}$ or $\mathcal{B}$, there exists an injective mapping from the set of monomorphisms $x : X \to H$ (where $\opn{Im}(x)$ is neither fully included in the right-hand side graph nor fully included in the context) to the set of monomorphisms from $y : X \to G$ (where $\opn{Im}(y)$ is neither fully included in the left-hand side graph nor fully included in the context). 
+% the monomorphisms in the third case. Specifically, our technique requires that, for every graph $X$ in $\mathbb{X}$ and every rewriting step $G \mathop{\Rightarrow} H$ using a rule from $\mathcal{A}$ or $\mathcal{B}$, there exists an injective mapping from the set of monomorphisms $x : X \mathop{\to} H$ (where $\opn{Im}(x)$ is neither fully included in the right-hand side graph nor fully included in the context) to the set of monomorphisms from $y : X \mathop{\to} G$ (where $\opn{Im}(y)$ is neither fully included in the left-hand side graph nor fully included in the context). 
 
 % Suppose, additionally, that the following conditions hold: (i) For every rule in \( \mathcal{A} \), the left-hand side graph's weight is strictly greater than the right-hand side graph's weight; (ii) For every rule in \( \mathcal{B} \), the left-hand side graph's weight is greater than or equal to the right-hand side graph's weight. 
 

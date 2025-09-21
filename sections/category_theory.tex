@@ -1,23 +1,23 @@
 \begin{definition}[Category~\cite{pierce1991basic,barr1990category}]
     \label{def:cat}
-    A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : C_0 \to C_1 \) and a partial function \( \star: C_1 \times C_1 \to C_1 \) such that 
-        (i) for all edges \( f:X \to Y \) and \( g:Y \to Z \), the edge \( f \star g :X \to Z \) is defined; 
+    A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : C_0 \mathop{\to} C_1 \) and a partial function \( \star: C_1 \mathop{\times} C_1 \mathop{\to} C_1 \) such that 
+        (i) for all edges \( f:X \mathop{\to} Y \) and \( g:Y \mathop{\to} Z \), the edge \( f \mathop{\star} g :X \mathop{\to} Z \) is defined; 
         (ii) for every node \( X \), \( u(X) \) is an edge from \( X \) to \( X \);
-        (iii) for every \( f:X \to Y \), we have \(u(X) \star f = f = f \star u(Y)\);
-        (iv) for all edges \( f \), \( g \) and \(h\), we have \( (f \star g) \star h = f \star (g \star h) \) whenever either side is defined.
-    Edges are called \textbf{morphisms}. The function $\star$ is called \textbf{composition}. For all \( X \in C_0 \), the edge \( u(X) \) is denoted \( \operatorname{id}_X \) and is called the \textbf{identity} of the object \( X \).
+        (iii) for every \( f:X \mathop{\to} Y \), we have \(u(X) \mathop{\star} f \mathop{=} f \mathop{=} f \mathop{\star} u(Y)\);
+        (iv) for all edges \( f \), \( g \) and \(h\), we have \( (f \mathop{\star} g) \mathop{\star} h \mathop{=} f \mathop{\star} (g \mathop{\star} h) \) whenever either side is defined.
+    Edges are called \textbf{morphisms}. The function $\star$ is called \textbf{composition}. For all \( X \mathop{\in} C_0 \), the edge \( u(X) \) is denoted \( \operatorname{id}_X \) and is called the \textbf{identity} of the object \( X \).
     % \( C \) is called the \textbf{underlying graph} of the category \( \mathcal{C} \).
 \end{definition} 
 
 % cat notation * 
 \begin{notation}
-    The composition of morphisms \( f : X \to Y \) and \( g : Y \to Z \) is written in diagrammatic order as \( f \star g \), rather than in functional order \( g \circ f \). 
+    The composition of morphisms \( f : X \mathop{\to} Y \) and \( g : Y \mathop{\to} Z \) is written in diagrammatic order as \( f \mathop{\star} g \), rather than in functional order \( g \circ f \). 
     % The advantage is that, when reading from left to right, the morphisms appear in the same order as in the corresponding diagram, making the notation more intuitive for visual reasoning.
 \end{notation}  
 
 \begin{definition}[Monomorphism~\cite{pierce1991basic,barr1990category}]
     \label{def:cat:homo}
-    A morphism \( f : X \to Y \) is \textbf{monic} (or a \textbf{monomorphism}) if for all morphisms \( g \) and \( h \), if \( g \star f = h \star f \), then \( g = h \). A monomorphism is denoted by \( f : X \rightarrowtail Y \). The set of all monomorphisms from graph \( X \) to graph \( Y \) is denoted by \( \operatorname{Mono}(X, Y) \).
+    A morphism \( f : X \mathop{\to} Y \) is \textbf{monic} (or a \textbf{monomorphism}) if for all morphisms \( g \) and \( h \), if \( g \mathop{\star} f \mathop{=} h \mathop{\star} f \), then \( g \mathop{=} h \). A monomorphism is denoted by \( f : X \rightarrowtail Y \). The set of all monomorphisms from graph \( X \) to graph \( Y \) is denoted by \( \operatorname{Mono}(X, Y) \).
 \end{definition} 
 \begin{example}
      Finite edge-labeled directed multigraphs and their homomorphisms form a category, hereafter denoted \textbf{Graph}. Its objects are labeled graphs, its morphisms are graph homomorphisms, and the monomorphisms are injective homomorphisms.
@@ -25,18 +25,18 @@
 \begin{definition}[Category of Rewriting Systems]
     Rewriting systems and homomorphisms between them form a category, denoted $\mathcal{RS}$.   
   \end{definition}
-In category theory, a ordered pair \((\alpha : A \to B,\, \beta : A \to C)\) of morphisms with a common domain is called a \textbf{span} \cite{lowe2010graph}, denoted by
+In category theory, a ordered pair \((\alpha : A \mathop{\to} B,\, \beta : A \mathop{\to} C)\) of morphisms with a common domain is called a \textbf{span} \cite{lowe2010graph}, denoted by
 \(
 B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C.
 \)
-Likewise, an ordered pair \((\beta' : B \to D,\, \alpha' : C \to D)\) of morphisms with a common codomain is called a \textbf{cospan}, denoted by
+Likewise, an ordered pair \((\beta' : B \mathop{\to} D,\, \alpha' : C \mathop{\to} D)\) of morphisms with a common codomain is called a \textbf{cospan}, denoted by
 \(
 B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C.
 \)
 
 \begin{definition}[Diagram \cite{barr1990category}]
     \label{def:cat:diagram}
-    Let \( G \) be an unlabeled graph. A \textbf{diagram} (in \( \mathcal{C} \) of shape \( G \)) is a homomorphism of unlabeled graphs $ h : G \to C $ where \( C \) is the underlying unlabeled graph of the category \( \mathcal{C} \). A diagram is \textbf{commutative} if, for all nodes \( u \), \( v \), and any two paths from \( u \) to \( v \) in the unlabeled graph \( G \):
+    Let \( G \) be an unlabeled graph. A \textbf{diagram} (in \( \mathcal{C} \) of shape \( G \)) is a homomorphism of unlabeled graphs $ h : G \mathop{\to} C $ where \( C \) is the underlying unlabeled graph of the category \( \mathcal{C} \). A diagram is \textbf{commutative} if, for all nodes \( u \), \( v \), and any two paths from \( u \) to \( v \) in the unlabeled graph \( G \):
 
     \begin{center}
     \resizebox{12cm}{!}{
@@ -69,7 +69,7 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C.
     }
     \end{center}
     \noindent
-    the equality \( h(s_1) \star h(s_2) \star \dots  \star h(s_{n-1}) = h(t_1) \star h(t_2) \star \dots  \star h(t_{m-1}) \) holds.
+    the equality \( h(s_1) \mathop{\star} h(s_2) \mathop{\star} \dots  \mathop{\star} h(s_{n-1}) \mathop{=} h(t_1) \mathop{\star} h(t_2) \mathop{\star} \dots  \mathop{\star} h(t_{m-1}) \) holds.
 \end{definition}
 
 \begin{definition}[Pushout \cite{barr1990category}]
@@ -77,7 +77,7 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C.
     \ \newline
 \noindent
 \begin{minipage}{0.7\textwidth}  
-    A \textbf{pushout} of a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \), as shown on the right, is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \star \gamma' = \beta \star \gamma \) holds, then there exists a unique morphism \(\delta : D \to E\) such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \).
+    A \textbf{pushout} of a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \), as shown on the right, is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \), and for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \mathop{\star} \gamma' \mathop{=} \beta \mathop{\star} \gamma \) holds, then there exists a unique morphism \(\delta : D \mathop{\to} E\) such that \( \gamma' \mathop{=} \beta' \mathop{\star} \delta \) and \( \gamma \mathop{=} \alpha' \mathop{\star} \delta \).
 \end{minipage}
 \hfill
 \begin{minipage}{0.299\textwidth}
@@ -115,7 +115,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -129,12 +129,12 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
-                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
-                \node[draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }    
@@ -143,10 +143,10 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                \node[ draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[ draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }      
             % K to L
@@ -167,7 +167,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
     \ \newline
 \noindent
 \begin{minipage}{0.7\textwidth}  
-   A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \), as shown on the right, is defined as a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \star \beta' = \beta \star \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \star \beta' = \gamma \star \alpha'\) holds, then there exists a unique morphism \(\delta: E \to A\) such that $\gamma' = \delta \star \alpha$ and $\gamma = \delta \star \beta$. 
+   A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \), as shown on the right, is defined as a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \mathop{\star} \beta' \mathop{=} \gamma \mathop{\star} \alpha'\) holds, then there exists a unique morphism \(\delta: E \mathop{\to} A\) such that $\gamma' \mathop{=} \delta \mathop{\star} \alpha$ and $\gamma \mathop{=} \delta \mathop{\star} \beta$. 
 \end{minipage}
 \hfill
 \begin{minipage}{0.299\textwidth}
@@ -198,5 +198,5 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
     Consider the square in Example~\ref{ex:cat:po}. A pullback of the cospan \( C \overset{\alpha'}{\rightarrowtail} D \overset{\beta'}{\leftarrowtail} B \) is the span \( B \overset{\alpha}{\leftarrowtail} A \overset{\beta}{\rightarrowtail} C \), where pullback object \( A \) is the graph intersection of $B$ and $C$ and the morphisms \( \alpha \) and \( \beta \) are inclusion functions.
 \end{definition}
 \begin{notation}
-    When the context makes it clear, a morphism \( h : A \to B \) will be denoted by \( h_{AB} \), and diagrams will be referred to by their nodes, as is standard in geometry. For example, the diagram involving morphisms \( ( \alpha, \beta, \alpha', \beta' ) \) in Definition~\ref{def:cat:po} will be denoted by \( ACDB \) or \( ABDC \).
+    When the context makes it clear, a morphism \( h : A \mathop{\to} B \) will be denoted by \( h_{AB} \), and diagrams will be referred to by their nodes, as is standard in geometry. For example, the diagram involving morphisms \( ( \alpha, \beta, \alpha', \beta' ) \) in Definition~\ref{def:cat:po} will be denoted by \( ACDB \) or \( ABDC \).
 \end{notation}   

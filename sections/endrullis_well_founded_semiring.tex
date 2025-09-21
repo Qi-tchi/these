@@ -1,63 +1,63 @@
 \begin{definition}[Monoid]
     \label{def:monoid}
     \todo{to check and add reference}
-    A \textbf{monoid} is a triple \(\langle S, \cdot, e \rangle\) where \(S\) is a set, \(\cdot : S \times S \to S\) is a binary operation and \(e \in S\) is constant
-    satisfying for all \(a, b, c \in S\):
+    A \textbf{monoid} is a triple \(\langle S, \cdot, e \rangle\) where \(S\) is a set, \(\cdot : S \mathop{\times} S \mathop{\to} S\) is a binary operation and \(e \mathop{\in} S\) is constant
+    satisfying for all \(a, b, c \mathop{\in} S\):
     \begin{itemize}
-        \item \textbf{Associativity}: \((a \cdot b) \cdot c = a \cdot (b \cdot c)\),
-        \item \textbf{Identity}: \(a \cdot e = a = e \cdot a\).
+        \item \textbf{Associativity}: \((a \cdot b) \cdot c \mathop{=} a \cdot (b \cdot c)\),
+        \item \textbf{Identity}: \(a \cdot e \mathop{=} a \mathop{=} e \cdot a\).
     \end{itemize}
-    The monoid is \textbf{commutative} if \(a \cdot b = b \cdot a\) for all \(a, b \in S\).
+    The monoid is \textbf{commutative} if \(a \cdot b \mathop{=} b \cdot a\) for all \(a, b \mathop{\in} S\).
 \end{definition} 
 
 \begin{definition}[Semiring]
     \label{def:semiring}
     \todo{to check and to add some references}
-    A \textbf{semiring} is a tuple \(\langle S, \oplus, \odot, 0, 1 \rangle\) where:
+    A \textbf{semiring} is a tuple \(\langle S, \mathop{\oplus}, \mathop{\odot}, 0, 1 \rangle\) where:
     \begin{itemize}
-        \item  \(\langle S, \oplus, 0 \rangle\) forms a commutative monoid,
-        \item  \(\langle S, \odot, 1 \rangle\) forms a monoid,
-        \item  $0$ is an annihilator for $\odot$ : For all \(a \in S\),
+        \item  \(\langle S, \mathop{\oplus}, 0 \rangle\) forms a commutative monoid,
+        \item  \(\langle S, \mathop{\odot}, 1 \rangle\) forms a monoid,
+        \item  $0$ is an annihilator for $\mathop{\odot}$ : For all \(a \mathop{\in} S\),
               \(
-                  0 \odot a = 0 = a \odot 0
+                  0 \mathop{\odot} a \mathop{=} 0 \mathop{=} a \mathop{\odot} 0
               \),
-        \item $\odot$ distributes over $\oplus$: For all \(a, b, x \in S\),
+        \item $\mathop{\odot}$ distributes over $\mathop{\oplus}$: For all \(a, b, x \mathop{\in} S\),
               \begin{itemize}
-                \item $(a \oplus b) \odot x = (a \odot x) \oplus (b \odot x)$
-                \item $x \odot (a \oplus b) = (x \odot a) \oplus (x \odot b)$
+                \item $(a \mathop{\oplus} b) \mathop{\odot} x \mathop{=} (a \mathop{\odot} x) \mathop{\oplus} (b \mathop{\odot} x)$
+                \item $x \mathop{\odot} (a \mathop{\oplus} b) \mathop{=} (x \mathop{\odot} a) \mathop{\oplus} (x \mathop{\odot} b)$
               \end{itemize}                 
     \end{itemize}
-    The semiring is \textbf{commutative} if its multiplicative monoid \(\langle S, \odot, 1 \rangle\) is commutative.
+    The semiring is \textbf{commutative} if its multiplicative monoid \(\langle S, \mathop{\odot}, 1 \rangle\) is commutative.
 \end{definition}
 
 
 \begin{definition}[Well-founded semiring]
     \label{def:well_founded_semiring}
-    A \textbf{well-founded semiring} is a tuple \(\langle S, \oplus, \odot, 0, 1, \prec, \leq \rangle\) where:
+    A \textbf{well-founded semiring} is a tuple \(\langle S, \mathop{\oplus}, \mathop{\odot}, 0, 1, \prec, \leq \rangle\) where:
     \begin{itemize}
-        \item  \(\langle S, \oplus, \odot, 0, 1 \rangle\) is a semiring,
+        \item  \(\langle S, \mathop{\oplus}, \mathop{\odot}, 0, 1 \rangle\) is a semiring,
         \item \textbf{Order Relations}: 
             \begin{itemize}
-                \item \(\prec, \leq \subseteq S \times S\) are non-empty orders,
-                \item \(\prec \subseteq \leq\) (i.e., \(x \prec y \implies x \leq y\)),
+                \item \(\prec, \leq \mathop{\subseteq} S \mathop{\times} S\) are non-empty orders,
+                \item \(\mathop{\prec} \mathop{\subseteq} \leq\) (i.e., \(x \mathop{\prec} y \implies x \leq y\)),
                 \item \(\leq\) is reflexive.
             \end{itemize}
     \end{itemize}
     The structure satisfies:
     \begin{itemize}
-        \item \(\text{SN}(\succ / \geq)\) (strong normalization modulo \(\geq\)),
-        \item \(0 \neq 1\),
-        \item For all \(x, x', y, y' \in S\):
+        \item \(\text{SN}(\mathop{\succ} / \mathop{\geq})\) (strong normalization modulo \(\geq\)),
+        \item \(0 \mathop{\neq} 1\),
+        \item For all \(x, x', y, y' \mathop{\in} S\):
             \begin{align*}
-                x \leq x' \land y \leq y' &\implies x \oplus y \leq x' \oplus y' \tag{S1} \label{ax:S1} \\
-                x \prec x' \land y \prec y' &\implies x \oplus y \prec x' \oplus y' \tag{S2} \label{ax:S2} \\
-                x \leq x' \land 1 \leq y &\implies x \odot y \leq x' \odot y \tag{S3} \label{ax:S3} \\
-                x \prec x' \land 1 \leq y \neq 0 &\implies x \odot y \prec x' \odot y \tag{S4} \label{ax:S4}
+                x \leq x' \mathop{\land} y \leq y' &\implies x \mathop{\oplus} y \leq x' \mathop{\oplus} y' \tag{S1} \label{ax:S1} \\
+                x \mathop{\prec} x' \mathop{\land} y \mathop{\prec} y' &\implies x \mathop{\oplus} y \mathop{\prec} x' \mathop{\oplus} y' \tag{S2} \label{ax:S2} \\
+                x \leq x' \mathop{\land} 1 \leq y &\implies x \mathop{\odot} y \leq x' \mathop{\odot} y \tag{S3} \label{ax:S3} \\
+                x \mathop{\prec} x' \mathop{\land} 1 \leq y \mathop{\neq} 0 &\implies x \mathop{\odot} y \mathop{\prec} x' \mathop{\odot} y \tag{S4} \label{ax:S4}
             \end{align*}
     \end{itemize}
     The semiring is \textbf{strictly monotonic} if it additionally satisfies:
     \[
-        x \prec x' \land y \leq y' \implies x \oplus y \prec x' \oplus y' \tag{S5} \label{ax:S5}
+        x \mathop{\prec} x' \mathop{\land} y \leq y' \implies x \mathop{\oplus} y \mathop{\prec} x' \mathop{\oplus} y' \tag{S5} \label{ax:S5}
     \]
 \end{definition}
 
@@ -65,7 +65,7 @@
     \label{ex:semiring_examples}
     \textbf{Arithmetic semiring}: \(\langle \mathbb{N}, +, \cdot, 0, 1, <, \leq \rangle\) is strictly monotonic and well-founded.
 
-    \textbf{Tropical semiring}: \(\langle \mathbb{N} \cup \{\infty\}, \min, +, \infty, 0, <, \leq \rangle\) is well-founded but not strictly monotone.
+    \textbf{Tropical semiring}: \(\langle \mathbb{N} \mathop{\cup} \{\infty\}, \mathop{\min}, +, \infty, 0, <, \leq \rangle\) is well-founded but not strictly monotone.
 
-    \textbf{Arctic semiring}: \(\langle \mathbb{N} \cup \{-\infty\}, \max, +, -\infty, 0, <, \leq \rangle\) is well-founded but not strictly monotone.
+    \textbf{Arctic semiring}: \(\langle \mathbb{N} \mathop{\cup} \{\mathop{-\infty}\}, \max, +, \mathop{-\infty}, 0, <, \leq \rangle\) is well-founded but not strictly monotone.
 \end{example}

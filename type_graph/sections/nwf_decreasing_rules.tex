@@ -3,26 +3,26 @@
 \subsection{Decreasing rules}
 \label{nwf:sec:decreasing_rules}
 The definition below adapts the concept of decreasing rules by Endrullis and Overbeek~\cite{endrullis2024generalized_arxiv_v2}. The difference lies in the treatment of weight comparisons for uniformly decreasing and closure decreasing rules: instead of directly comparing weights, we evaluate the difference between weights relative to the homomorphism $\mu$ of the strongly monotonic measurable semirings.
-%  This difference must exceed a fixed positive constant $\delta \in \mathbb{R}_{>0}$.
+%  This difference must exceed a fixed positive constant $\delta \mathop{\in} \mathbb{R}_{>0}$.
 
 \begin{definition} 
     \label{nwf:def:decreasing_rule}
-    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule, and $\delta \in \mathbb{R}_{>0}$. 
+    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, (S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule, and $\delta \mathop{\in} \mathbb{R}_{>0}$. 
 
     \noindent
     The rule $\rho$ is \textbf{weakly decreasing} with respect to $\mathcal{T}$ in $\mathfrak{F}$ if 
-            for every $t_K : K \to T$,
+            for every $t_K : K \mathop{\to} T$,
                 $$ 
-                  w_\mathcal{T}(\{l \star - = t_K\}) \succeq w_\mathcal{T}(\{r\star - = t_K\}).$$
+                  w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K\}) \mathop{\succeq} w_\mathcal{T}(\{r\star - \mathop{=} t_K\}).$$
            
     \noindent
     The rule $\rho$ is \textbf{$\delta$-uniformly decreasing} with respect to $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
         \begin{itemize}
             \item[]- there is a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$, 
-            \item[]- for every $t_K : K \to T$,
+            \item[]- for every $t_K : K \mathop{\to} T$,
             \begin{itemize}
-                \item[] $\bullet$ $\{l \star - = t_K\} = \emptyset = \{r \star - = t_K\}$, or
-                \item[] $\bullet$ $\mu(w_\mathcal{T}(\{l \star - = t_K\}))  >_{\mathbb{R}^+}   \mu(w_\mathcal{T}(\{r \star - = t_K\})) + \delta$.
+                \item[] $\bullet$ $\{l \mathop{\star} - \mathop{=} t_K\} \mathop{=} \emptyset \mathop{=} \{r \mathop{\star} - \mathop{=} t_K\}$, or
+                \item[] $\bullet$ $\mu(w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K\}))  >_{\mathbb{R}^+}   \mu(w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K\}))\mathop{+}\delta$.
             \end{itemize}
         \end{itemize}  
          
@@ -33,7 +33,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 \item[]- $S$ is strictly monotonic measurable semiring,
                 \item[]- $\rho$ is weakly decreasing,
                 \item[]- there is a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$,
-                \item[]- $ \mu(w_\mathcal{T}(\{l \star - = t_K\}))  >_{\mathbb{R}^+}  \mu(w_\mathcal{T}(\{r \star - = t_K\}))  + \delta$ for $t_K = l \star c_\rho$.
+                \item[]- $ \mu(w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K\}))  >_{\mathbb{R}^+}  \mu(w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K\})) \mathop{+}\delta$ for $t_K \mathop{=} l \mathop{\star} c_\rho$.
             \end{itemize}
 \end{definition}
 
@@ -48,7 +48,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }     
@@ -56,7 +56,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-              % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
               % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
@@ -64,8 +64,8 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
               \coordinate (o) at (-5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -78,7 +78,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
   \end{center}
    and the following weighted type graph
     % in Example~\ref{nwf:example:weighted_type_graphd_grsaa_sdfsf} 
-    over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$:
+    over the real arithmetic semiring $\mathfrak{N}' \mathop{=} (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$:
     \begin{center}
         \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
@@ -99,7 +99,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -121,7 +121,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -143,7 +143,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -165,7 +165,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -183,7 +183,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
             % \caption{}
             % \label{fig:nwf:example:decreasing_rule_morphisms_grsaa_sfsdjl}
       \end{center}
-    The set $\{l \star - = t_K^{11}\}$ has two morphisms $h_{11}^1$ and $h_{11}^2$:
+    The set $\{l \mathop{\star} - \mathop{=} t_K^{11}\}$ has two morphisms $h_{11}^1$ and $h_{11}^2$:
     \begin{center}
         \resizebox{0.6\textwidth}{!}{
         \begin{tikzpicture}
@@ -191,7 +191,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
             \coordinate (o) at (0mm,-10mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
             \draw[] (l1) -- (l3) node[midway,above] {$a$};
             \draw[] (l3) -- (l2) node[midway,above] {$a$};
         } 
@@ -213,7 +213,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -230,13 +230,13 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
             }
         \end{center}
     Therefore, we have \begin{flalign*}
-        w_\mathcal{T}(\{l \star - = t_K^{11}\})
+        w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{11}\})
         =&w_\mathcal{T}(\{h_{11}^1, h_{11}^2\})\\
-        =&w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2) \\
-        =&(1.0^1 * 1.0^1) + (1.0^1 * 1.0^1)\\
+        =&w_\mathcal{T}(h_{11}^1)\mathop{+}w_\mathcal{T}(h_{11}^2) \\
+        =&(1.0^1 * 1.0^1)+(1.0^1 * 1.0^1)\\
         =&2.0.
     \end{flalign*}
-    The set $\{r \star - = t_K^{11}\}$ has one morphism $h_{11}^3$ which is illustrated below:
+    The set $\{r \mathop{\star} - \mathop{=} t_K^{11}\}$ has one morphism $h_{11}^3$ which is illustrated below:
     \begin{center}
         \resizebox{0.49\textwidth}{!}{
         \begin{tikzpicture}
@@ -244,8 +244,8 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
             \coordinate (o) at (-5mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+            \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
             \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -262,14 +262,14 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
         \end{tikzpicture}
         }
       \end{center}
-    Therefore, we have: $$w_\mathcal{T}(\{r \star - = t_K^{11}\}) = w_\mathcal{T}(h_{11}^3) = 1.0^1 * 1.0^1 * 1.0 ^ 1 = 1.0.$$
+    Therefore, we have: $$w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{11}\}) \mathop{=} w_\mathcal{T}(h_{11}^3) \mathop{=} 1.0^1 * 1.0^1 * 1.0 ^ 1 \mathop{=} 1.0.$$
     The following inequality holds:
-    $$w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{11}\}).$$
+    $$w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{11}\}) \mathop{=} 2.0 \mathop{\geq} 1.0 \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{11}\}).$$
     Similarly, we can check that 
         \begin{itemize}
-            \item $w_\mathcal{T}(\{l \star - = t_K^{12}\}) = 1.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{12}\})$, and
-            \item $w_\mathcal{T}(\{l \star - = t_K^{21}\}) = 1.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{21}\})$, and
-            \item $w_\mathcal{T}(\{l \star - = t_K^{22}\}) = 1.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{22}\})$.
+            \item $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{12}\}) \mathop{=} 1.0 \mathop{\geq} 1.0 \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{12}\})$, and
+            \item $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{21}\}) \mathop{=} 1.0 \mathop{\geq} 1.0 \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{21}\})$, and
+            \item $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{22}\}) \mathop{=} 1.0 \mathop{\geq} 1.0 \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{22}\})$.
         \end{itemize}
     Therefore, the rule is therefore weakly decreasing.
     
@@ -281,7 +281,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
         \coordinate (o) at (0mm,-10mm); 
         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
         \draw[] (l1) -- (l3) node[midway,above] {$a$};
         \draw[] (l3) -- (l2) node[midway,above] {$a$};
     } 
@@ -302,8 +302,8 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
   \end{center}
     Additionally, we have 
     \begin{itemize}
-        \item $t_K^{11} = l \star c$, and 
-        \item $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2.0 > 1.0 + \delta = w_\mathcal{T}(\{r \star - = t_K^{11}\}) + \delta$ for $0 < \delta < 1.0$.
+        \item $t_K^{11} \mathop{=} l \mathop{\star} c$, and 
+        \item $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{11}\}) \mathop{=} 2.0 \mathop{>} 1.0\mathop{+}\delta \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{11}\})\mathop{+}\delta$ for $0 < \delta < 1.0$.
     \end{itemize} 
     Thus, we conclude that the rule is $\delta$-closure decreasing with $0 < \delta < 1.0$ since the semiring is strictly monotonic measurable.
 \end{example} 
@@ -313,7 +313,7 @@ The following lemma by Endrullis and Overbeek ~\cite{endrullis2024generalized_ar
     \label{nwf:lem_4d13}
 \ \newline
 \begin{minipage}{0.7\textwidth}
-    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph. Consider the pushout square $\delta$ illustrated on the right. We define
+    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, (S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph. Consider the pushout square $\delta$ illustrated on the right. We define
 \end{minipage}
 \begin{minipage}{0.3\textwidth}
     \begin{center}{\normalfont
@@ -332,26 +332,26 @@ The following lemma by Endrullis and Overbeek ~\cite{endrullis2024generalized_ar
         \end{tikzpicture}
     }\end{center}
 \end{minipage}
-     \[k = \underset{t_A:A \rightarrow T}{\bigoplus}
+     \[k \mathop{=} \underset{t_A:A \mathop{\rightarrow} T}{\mathop{\bigoplus}}
             \left ( 
-                \underset{\substack{t_C:C \rightarrow T\\
-                                            t_A = \beta \star t_C }}{\bigoplus}
+                \underset{\substack{t_C:C \mathop{\rightarrow} T\\
+                                            t_A \mathop{=} \beta \mathop{\star} t_C }}{\mathop{\bigoplus}}
                         w_\mathcal{T}(t_C - \beta)     
                  \right ) 
-            \odot 
-                w_\mathcal{T}(\set{\alpha \star - = t_A})
+            \mathop{\odot} 
+                w_\mathcal{T}(\set{\alpha \mathop{\star} - \mathop{=} t_A})
     \]
     The following conditions hold
     \begin{enumerate}[label=(\Alph*)]
         \item  $w_\mathcal{T}(D)=k$ if $\delta$ is weighable with $\mathcal{T}$.
-        \item  $w_\mathcal{T}(D)\preceq k$ if $\delta$ is bounded above by $\mathcal{T}$  and \(w(e) \succeq 1_S\) for all $e \in \mathbb{E}$.
+        \item  $w_\mathcal{T}(D)\mathop{\preceq} k$ if $\delta$ is bounded above by $\mathcal{T}$  and \(w(e) \mathop{\succeq} 1_S\) for all $e \mathop{\in} \mathbb{E}$.
     \end{enumerate}
 \end{lemma}
 
 Adapted from \cite[Theorem C.3]{endrullis2024generalized_arxiv_v2} by Endrullis and Overbeek, the lemma below relates decreasing rules to weight reduction under specific constraints. 
 \begin{lemma}[Decreasing steps]
     \label{nwf:lem:decreasing_step}
-    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, $\rho$ a rewriting rule and $\Delta \in \mathfrak{F}(\rho)$ the following DPO diagram
+    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, (S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, $\rho$ a rewriting rule and $\Delta \mathop{\in} \mathfrak{F}(\rho)$ the following DPO diagram
     \begin{center}
         \resizebox{0.3\textwidth}{!}{
             \begin{tikzpicture}[node distance=11mm]
@@ -379,104 +379,104 @@ Adapted from \cite[Theorem C.3]{endrullis2024generalized_arxiv_v2} by Endrullis 
    \begin{itemize}
        \item $\operatorname{left}(\Delta)$ is weighable with \(\mathcal{T}\), and
        \item $\operatorname{right}(\Delta)$ is bounded above by \(\mathcal{T}\), and
-       \item $w(e) \succeq 1_S$ for all $e \in \mathbb{E}$.
+       \item $w(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$.
    \end{itemize}
 
    \noindent
   We have:
    \begin{itemize}
-       \item $\mu(w_\mathcal{T}(G)) \succeq \mu(w_\mathcal{T}(H))$ if $\rho$ is weakly decreasing,
-       \item $\mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta$ if $\rho$ is $\delta$-uniformly or $\delta$-closure decreasing for some $\delta >_{\mathbb{R}^+} 0$ and $w(e) \succeq 1_S$ for all $e \in \mathbb{E}$.
+       \item $\mu(w_\mathcal{T}(G)) \mathop{\succeq} \mu(w_\mathcal{T}(H))$ if $\rho$ is weakly decreasing,
+       \item $\mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H))\mathop{+}\delta$ if $\rho$ is $\delta$-uniformly or $\delta$-closure decreasing for some $\delta >_{\mathbb{R}^+} 0$ and $w(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$.
    \end{itemize}
 \end{lemma} 
 
 \begin{proof}
     \label{nwf:proof:decreasing_step}
-    \noindent For every \( t_K: K \rightarrow T \), we define
+    \noindent For every \( t_K: K \mathop{\rightarrow} T \), we define
 $
         S_{t_K} \overset{\operatorname{def}}{=}   
-        \underset{\substack{t_C:C \rightarrow T \\
-        t_K = h_{KC} \star t_C }}{\bigoplus} 
+        \underset{\substack{t_C:C \mathop{\rightarrow} T \\
+        t_K \mathop{=} h_{KC} \mathop{\star} t_C }}{\mathop{\bigoplus}} 
         w_\mathcal{T}(t_C - h_{KC})  
 $.
     
-    \noindent For all $t_K: K \to T$ and $X,Y \in S$, the following claims hold:
+    \noindent For all $t_K: K \mathop{\to} T$ and $X,Y \mathop{\in} S$, the following claims hold:
     \begin{enumerate}[label=(\alph*)] 
-        \item \label{s_nz} $S_{t_K} \ne 0_S$ if there is $t_C$ with $ t_K = h_{KC} \star t_C$.  
+        \item \label{s_nz} $S_{t_K} \ne 0_S$ if there is $t_C$ with $ t_K \mathop{=} h_{KC} \mathop{\star} t_C$.  
         \begin{proof}
-            By definition of weighted type graph, for all $e \in \mathbb{E}$, we have 
+            By definition of weighted type graph, for all $e \mathop{\in} \mathbb{E}$, we have 
             \begin{flalign}
-                w(e) \neq 0_S \label{eq_we_neq_0s1111}
+                w(e) \mathop{\neq} 0_S \label{eq_we_neq_0s1111}
             \end{flalign}
-            For every $t_C:C \to T$, we have 
+            For every $t_C:C \mathop{\to} T$, we have 
             \begin{flalign*}
                 &w_\mathcal{T}(t_C - h_{KC}) \\
-               =&\bigodot_{e\in \mathbb{E}} w_e(t_C - h_{KC}) 
+               =&\mathop{\bigodot}_{e\in \mathbb{E}} w_e(t_C - h_{KC}) 
                  \hspace{5.5cm}\text{by Definition~\ref{def:weight_excluding}}\\
-               =&\bigodot_{e\in \mathbb{E}} 
-                 \bigodot_{\substack{\alpha \in \{- * t_C = e\}\\
-                    \alpha \notin \left\{ \iota \in \operatorname{Hom}(X, C)~\middle|~\exists \zeta:X \to K,~\zeta \star h_{KC} = \iota \right\}
+               =&\mathop{\bigodot}_{e\in \mathbb{E}} 
+                 \mathop{\bigodot}_{\substack{\alpha \mathop{\in} \{- * t_C \mathop{=} e\}\\
+                    \alpha \notin \left\{ \iota \mathop{\in} \operatorname{Hom}(X, C)~\middle|~\exists \zeta:X \mathop{\to} K,~\zeta \mathop{\star} h_{KC} \mathop{=} \iota \right\}
                  }
                  } w(e)  \hspace{2cm} \text{by Definition~\ref{def:weight_excluding_pre}} 
                  \\
-               \neq&0_S \hspace{1.3cm}\text{by Equation~\eqref{eq_we_neq_0s1111}, Proposition~\ref{prop_endrullis_2d7}~\eqref{eq:prop_neq0_mul_neq0} and Definition~\ref{def:bigodot}}  
+               \mathop{\neq}&0_S \hspace{1.3cm}\text{by Equation~\eqref{eq_we_neq_0s1111}, Proposition~\ref{prop_endrullis_2d7}~\eqref{eq:prop_neq0_mul_neq0} and Definition~\ref{def:bigodot}}  
             \end{flalign*}
 
             Therefore, $S_{t_K} \overset{\operatorname{def}}{=}   
-            \underset{\substack{t_C:C \rightarrow T \\
-            t_K = h_{KC} \star t_C }}{\bigoplus} 
-            w_\mathcal{T}(t_C - h_{KC}) \neq 0_S$ if there is be a morphism such that $t_K = h_{KC} \star t_C$ by Proposition~\ref{prop_endrullis_2d7}~\eqref{eq:prop_neq0_plus_neq0}.
-            % For every $t_C:C \to T$ such that $t_K = h_{KC} \star t_C$, we have $w_\mathcal{T}(t_C - h_{KC}) \neq 0_S$ by \eqref{eq:prop_neq0_mul_neq0}. 
+            \underset{\substack{t_C:C \mathop{\rightarrow} T \\
+            t_K \mathop{=} h_{KC} \mathop{\star} t_C }}{\mathop{\bigoplus}} 
+            w_\mathcal{T}(t_C - h_{KC}) \mathop{\neq} 0_S$ if there is be a morphism such that $t_K \mathop{=} h_{KC} \mathop{\star} t_C$ by Proposition~\ref{prop_endrullis_2d7}~\eqref{eq:prop_neq0_plus_neq0}.
+            % For every $t_C:C \mathop{\to} T$ such that $t_K \mathop{=} h_{KC} \mathop{\star} t_C$, we have $w_\mathcal{T}(t_C - h_{KC}) \mathop{\neq} 0_S$ by \eqref{eq:prop_neq0_mul_neq0}. 
         \end{proof}
         
-        \item \label{s_ge1} $S_{t_K} \succeq 1_S$ if there is $t_C$ with $ t_K = h_{KC} \star t_C$ and $w_\mathcal{T}(e) \succeq 1_S$ for all $e \in \mathbb{E}$,
+        \item \label{s_ge1} $S_{t_K} \mathop{\succeq} 1_S$ if there is $t_C$ with $ t_K \mathop{=} h_{KC} \mathop{\star} t_C$ and $w_\mathcal{T}(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$,
         \begin{proof}
-            By the definition of weighted type graph, for all $e \in \mathbb{E}$, we have $w(e) \neq 0_S$.  
-            By assumption, we have $w_\mathcal{T}(e) \succeq 1_S$ for all $e \in \mathbb{E}$. Thus, we have 
+            By the definition of weighted type graph, for all $e \mathop{\in} \mathbb{E}$, we have $w(e) \mathop{\neq} 0_S$.  
+            By assumption, we have $w_\mathcal{T}(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$. Thus, we have 
             \begin{flalign}
-                1_S \preceq w(e) \neq 0_S \label{eq_we_neq_0s_geq1_0}
+                1_S \mathop{\preceq} w(e) \mathop{\neq} 0_S \label{eq_we_neq_0s_geq1_0}
             \end{flalign}
             By Proposition~\ref{prop_endrullis_2d7}~\eqref{eq:prop_neg0_ge1_mul_ge1}, we have
             \begin{flalign}
-                1_S \preceq w_\mathcal{T}(t_C - h_{KC}) \label{eq_we_neq_0s_geq1}
+                1_S \mathop{\preceq} w_\mathcal{T}(t_C - h_{KC}) \label{eq_we_neq_0s_geq1}
             \end{flalign}
 
             Therefore, $S_{t_K} \overset{\operatorname{def}}{=}   
-            \underset{\substack{t_C:C \rightarrow T \\
-            t_K = h_{KC} \star t_C }}{\bigoplus} 
-            w_\mathcal{T}(t_C - h_{KC}) \succeq 1_S$ if there is be a morphism such that $t_K = h_{KC} \star t_C$ by Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s1}.
+            \underset{\substack{t_C:C \mathop{\rightarrow} T \\
+            t_K \mathop{=} h_{KC} \mathop{\star} t_C }}{\mathop{\bigoplus}} 
+            w_\mathcal{T}(t_C - h_{KC}) \mathop{\succeq} 1_S$ if there is be a morphism such that $t_K \mathop{=} h_{KC} \mathop{\star} t_C$ by Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s1}.
         \end{proof}
         
-        % \item \label{claim:le} $Y \succeq X \implies  Y \odot S_{t_K} \succeq X \odot S_{t_K}$
+        % \item \label{claim:le} $Y \mathop{\succeq} X \implies  Y \mathop{\odot} S_{t_K} \mathop{\succeq} X \mathop{\odot} S_{t_K}$
         % \\ by Axiom \eqref{ax:s3}. \todo{to delete: inutile}
          
-        \item \label{claim:st} if there is $t_C$ with $t_K = h_{KC} \star t_C$ then
-        $$ \mu(Y) >_{\mathbb{R}^+} \mu(X) + \delta  \implies \mu(Y \odot S_{t_K}) >_{\mathbb{R}^+} \mu(X \odot S_{t_K})$$
-                % $$\left (\exists \alpha \geq \delta.~\mu(Y) > \mu(X) + \alpha \right ) \implies (\mu(Y \odot S_{t_K}) > \mu(X \odot S_{t_K}))$$
+        \item \label{claim:st} if there is $t_C$ with $t_K \mathop{=} h_{KC} \mathop{\star} t_C$ then
+        $$ \mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+}\delta  \implies \mu(Y \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(X \mathop{\odot} S_{t_K})$$
+                % $$\left (\exists \alpha \mathop{\geq} \delta.~\mu(Y) \mathop{>} \mu(X)\mathop{+}\alpha \right ) \implies (\mu(Y \mathop{\odot} S_{t_K}) \mathop{>} \mu(X \mathop{\odot} S_{t_K}))$$
         \begin{proof}
-           Suppose that there is $t_C$ with $t_K = h_{KC} \star t_C$. We have $S_{t_K} \neq 0_S$ by Claim~\ref{s_nz}, and we conclude by Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s4''}.
+           Suppose that there is $t_C$ with $t_K \mathop{=} h_{KC} \mathop{\star} t_C$. We have $S_{t_K} \mathop{\neq} 0_S$ by Claim~\ref{s_nz}, and we conclude by Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s4''}.
         \end{proof}
     
         \item \label{claim:sh_{DT}elta} 
-        if there is $t_C$ with $t_K = h_{KC} \star t_C$, and  $w_\mathcal{T}(e) \succeq 1_S$ for all $e \in \mathbb{E}$ then
-        % $$\left (\exists \alpha \geq \delta.~\mu(Y) > \mu(X) +  \alpha \right ) \implies (\exists \beta \geq \delta. \mu(Y \odot S_{t_K}) > \mu(X \odot S_{t_K})  + \beta)$$
-        $$\mu(Y) >_{\mathbb{R}^+} \mu(X) +  \delta \implies \mu(Y \odot S_{t_K}) >_{\mathbb{R}^+} \mu(X \odot S_{t_K})  + \delta $$
+        if there is $t_C$ with $t_K \mathop{=} h_{KC} \mathop{\star} t_C$, and  $w_\mathcal{T}(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$ then
+        % $$\left (\exists \alpha \mathop{\geq} \delta.~\mu(Y) \mathop{>} \mu(X)\mathop{+} \alpha \right ) \implies (\exists \beta \mathop{\geq} \delta. \mu(Y \mathop{\odot} S_{t_K}) \mathop{>} \mu(X \mathop{\odot} S_{t_K}) \mathop{+}\beta)$$
+        $$\mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+} \delta \implies \mu(Y \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(X \mathop{\odot} S_{t_K}) \mathop{+}\delta $$
         \begin{proof}
-            Suppose that there is $t_C$ with $t_K = h_{KC} \star t_C$. We have $1_S \preceq S_{t_K} \neq 0_S$ by Claim~\ref{s_nz} and Claim~\ref{s_ge1}, and we conclude by Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s4'}. 
+            Suppose that there is $t_C$ with $t_K \mathop{=} h_{KC} \mathop{\star} t_C$. We have $1_S \mathop{\preceq} S_{t_K} \mathop{\neq} 0_S$ by Claim~\ref{s_nz} and Claim~\ref{s_ge1}, and we conclude by Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s4'}. 
         \end{proof}
 
         \item \label{claim:0} 
-        if there is no $t_C$ with $t_K = h_{KC} \star t_C$ then  $S_{t_K} = 0_S$, thus
-        $$Y \odot S_{t_K} = 0_S = X \odot S_{t_K} $$
+        if there is no $t_C$ with $t_K \mathop{=} h_{KC} \mathop{\star} t_C$ then  $S_{t_K} \mathop{=} 0_S$, thus
+        $$Y \mathop{\odot} S_{t_K} \mathop{=} 0_S \mathop{=} X \mathop{\odot} S_{t_K} $$
     
         \item \label{claim:exist_st} 
-        If there is a context closure $t_L$ for $\rho$ and $T$ in $\mathfrak{F}$ , then, let $t_K = l \star t_L$, we have
-        $$ \mu(Y) >_{\mathbb{R}^+} \mu(X) + \delta \implies \mu(Y \odot S_{t_K}) >_{\mathbb{R}^+} \mu(X \odot S_{t_K})$$
+        If there is a context closure $t_L$ for $\rho$ and $T$ in $\mathfrak{F}$ , then, let $t_K \mathop{=} l \mathop{\star} t_L$, we have
+        $$ \mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+}\delta \implies \mu(Y \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(X \mathop{\odot} S_{t_K})$$
         \begin{proof}
             
-       By Definition~\ref{def:context_closure} of context closure, there is $t_G : G \rightarrow T$ such that 
+       By Definition~\ref{def:context_closure} of context closure, there is $t_G : G \mathop{\rightarrow} T$ such that 
         \begin{flalign*}
-             t_L = h_{LG} \star t_G \tag{1} \label{eq_tl_hlg_tg}
+             t_L \mathop{=} h_{LG} \mathop{\star} t_G \tag{1} \label{eq_tl_hlg_tg}
         \end{flalign*}
       i.e. we have the following commutative diagram:
      
@@ -502,113 +502,113 @@ $.
         \end{tikzpicture}
       \end{center}
     
-        Let $t_C \overset{\operatorname{def}}{=} h_{CG} \star t_G$ and $t_K \overset{\operatorname{def}}{=} l \star t_L$. We have\\
+        Let $t_C \overset{\operatorname{def}}{=} h_{CG} \mathop{\star} t_G$ and $t_K \overset{\operatorname{def}}{=} l \mathop{\star} t_L$. We have\\
         \begin{flalign*}
-              t_K  &=  l \star t_L &\text{by definition of $t_K$}
-            \\ &=   l \star (h_{LG}  \star t_G) & \text{by Equation~\eqref{eq_tl_hlg_tg}\text{ above}}
-            \\ &= (l \star h_{LG}) \star t_G &\text{by associativity }
-            \\ &= (h_{KC} \star h_{CG}) \star t_G & \text{by commutativity of $\square KLGC$}
-            \\ &= h_{KC} \star (h_{CG}  \star t_G) & \text{by associativity}
-            \\ & = h_{KC} \star t_C &\text{by definition of $t_C$}
+              t_K  &=  l \mathop{\star} t_L &\text{by definition of $t_K$}
+            \\ &=   l \mathop{\star} (h_{LG}  \mathop{\star} t_G) & \text{by Equation~\eqref{eq_tl_hlg_tg}\text{ above}}
+            \\ &= (l \mathop{\star} h_{LG}) \mathop{\star} t_G &\text{by associativity }
+            \\ &= (h_{KC} \mathop{\star} h_{CG}) \mathop{\star} t_G & \text{by commutativity of $\square KLGC$}
+            \\ &= h_{KC} \mathop{\star} (h_{CG}  \mathop{\star} t_G) & \text{by associativity}
+            \\ & \mathop{=} h_{KC} \mathop{\star} t_C &\text{by definition of $t_C$}
         \end{flalign*}
-        and the claim follows from Claim~\ref{claim:st}, since $t_C$ is a morphism such that $t_K = h_{KC} \star t_C$.
+        and the claim follows from Claim~\ref{claim:st}, since $t_C$ is a morphism such that $t_K \mathop{=} h_{KC} \mathop{\star} t_C$.
     \end{proof}
 
         \item \label{claim:exist_sh_{DT}elta} 
-        If there is a context closure $t_L$ for $\rho$ and $T$ in $\mathfrak{F}$, and $w_\mathcal{T}(e) \succeq 1_S$ for all $e \in \mathbb{E}$ then, let $t_K = l \star t_L$, we have 
-            % $$\left (\exists \alpha \geq \delta. Y \succ X +  \alpha \right ) \implies (\exists \beta \geq \delta. Y \odot S_{t_K} \succ X \odot S_{t_K}  + \beta)$$
-        $$\mu(Y) >_{\mathbb{R}^+} \mu(X) + \delta \implies \mu(Y \odot  S_{t_K}) \succ_{\mathbb{R}^+} \mu(X \odot  S_{t_K})  + \delta$$ 
+        If there is a context closure $t_L$ for $\rho$ and $T$ in $\mathfrak{F}$, and $w_\mathcal{T}(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$ then, let $t_K \mathop{=} l \mathop{\star} t_L$, we have 
+            % $$\left (\exists \alpha \mathop{\geq} \delta. Y \mathop{\succ} X\mathop{+} \alpha \right ) \implies (\exists \beta \mathop{\geq} \delta. Y \mathop{\odot} S_{t_K} \mathop{\succ} X \mathop{\odot} S_{t_K} \mathop{+}\beta)$$
+        $$\mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+}\delta \implies \mu(Y \mathop{\odot}  S_{t_K}) \mathop{\succ}_{\mathbb{R}^+} \mu(X \mathop{\odot}  S_{t_K}) \mathop{+}\delta$$ 
         \begin{proof}
             The proof is analogous to the proof of Claim~\ref{claim:exist_st} but with Claim~\ref{claim:sh_{DT}elta} instead of Claim~\ref{claim:st} in the end.
         \end{proof} 
     \end{enumerate}
     
-    \noindent For every \( t_K: K \rightarrow T \), let
+    \noindent For every \( t_K: K \mathop{\rightarrow} T \), let
     \begin{flalign*}
-        \Lambda_{t_K} &\overset{\operatorname{def}}{=}  w_\mathcal{T}(\{l \star - = t_K\})
+        \Lambda_{t_K} &\overset{\operatorname{def}}{=}  w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K\})
         \\
-        \Omega_{t_K} &\overset{\operatorname{def}}{=}  w_\mathcal{T}(\{r \star - = t_K\})
+        \Omega_{t_K} &\overset{\operatorname{def}}{=}  w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K\})
     \end{flalign*}
   By Lemma~\ref{nwf:lem_4d13}, we have 
         \begin{flalign*} 
             w_\mathcal{T}(G) &=
-                \underset{\substack{t_K: K \rightarrow T}}{\bigoplus}     \ \
-            (S_{t_K} \odot \Lambda_{t_K}),
+                \underset{\substack{t_K: K \mathop{\rightarrow} T}}{\mathop{\bigoplus}}     \ \
+            (S_{t_K} \mathop{\odot} \Lambda_{t_K}),
               \\
-            w_\mathcal{T}(H) &\preceq
-            \underset{\substack{t_K: K \rightarrow T}}{\bigoplus}     \ \
-                (S_{t_K} \odot \Omega_{t_K}).
+            w_\mathcal{T}(H) &\mathop{\preceq}
+            \underset{\substack{t_K: K \mathop{\rightarrow} T}}{\mathop{\bigoplus}}     \ \
+                (S_{t_K} \mathop{\odot} \Omega_{t_K}).
         \end{flalign*}
  
     \noindent We complete the proof of Lemma~\ref{nwf:lem:decreasing_step} by case analysis:
     \begin{enumerate}
-        \item  If $\rho$ is weakly decreasing, then, by Definition~\ref{nwf:def:decreasing_rule} of weakly decreasing rule, we have $\Lambda_{t_K} \succeq \Omega_{t_K}$
-        for every $t_K: K \rightarrow T$. 
-        By Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s3}, for every  $ t_K : K \rightarrow T$, we have 
+        \item  If $\rho$ is weakly decreasing, then, by Definition~\ref{nwf:def:decreasing_rule} of weakly decreasing rule, we have $\Lambda_{t_K} \mathop{\succeq} \Omega_{t_K}$
+        for every $t_K: K \mathop{\rightarrow} T$. 
+        By Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s3}, for every  $ t_K : K \mathop{\rightarrow} T$, we have 
                 \begin{flalign*} 
-                    S_{t_K} \odot \Lambda_{t_K} \succeq S_{t_K} \odot \Omega_{t_K}. \tag{NE} \label{steps:weightC:ge} 
+                    S_{t_K} \mathop{\odot} \Lambda_{t_K} \mathop{\succeq} S_{t_K} \mathop{\odot} \Omega_{t_K}. \tag{NE} \label{steps:weightC:ge} 
                 \end{flalign*}
-        Thus, we have $w_\mathcal{T}(G) \succeq w_\mathcal{T}(H)$, from Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s1}.
+        Thus, we have $w_\mathcal{T}(G) \mathop{\succeq} w_\mathcal{T}(H)$, from Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s1}.
         % \item
-        %     If $\rho$ is $\delta$-uniformly decreasing for some $\delta \in \mathbb{R}_{>0}$, then, by Definition~\ref{def:decreasing_rule} of $\delta$-uniformly decreasing rule,
-        %     for all $t_K : K \to T$, we have 
+        %     If $\rho$ is $\delta$-uniformly decreasing for some $\delta \mathop{\in} \mathbb{R}_{>0}$, then, by Definition~\ref{def:decreasing_rule} of $\delta$-uniformly decreasing rule,
+        %     for all $t_K : K \mathop{\to} T$, we have 
         %                     \begin{itemize}                                
-        %                         \item $\exists \alpha \geq \delta.~\mu(\Lambda_{t_K}) > \mu(\Omega_{t_K}) + \alpha$, or
-        %                         \item $\{l \star - = t_K\} = \emptyset = \{r \star - = t_K\}$
+        %                         \item $\exists \alpha \mathop{\geq} \delta.~\mu(\Lambda_{t_K}) \mathop{>} \mu(\Omega_{t_K})\mathop{+}\alpha$, or
+        %                         \item $\{l \mathop{\star} - \mathop{=} t_K\} \mathop{=} \emptyset \mathop{=} \{r \mathop{\star} - \mathop{=} t_K\}$
         %                     \end{itemize}
-        %     From \ref{claim:st} and \ref{claim:0}, for every \( t_K: K \rightarrow T \), we have
+        %     From \ref{claim:st} and \ref{claim:0}, for every \( t_K: K \mathop{\rightarrow} T \), we have
         %     \begin{enumerate}[label=(\roman*)]
-        %         \item $S_{t_K} \odot \Lambda_{t_K} = 0_S =  S_{t_K} \odot \Omega_{t_K}$, or        
-        %         \item  \label{it:strict} $ \mu(\Lambda_{t_K} \odot S_{t_K}) >  \mu(S_{t_K} \odot \Omega_{t_K})$
+        %         \item $S_{t_K} \mathop{\odot} \Lambda_{t_K} \mathop{=} 0_S \mathop{=}  S_{t_K} \mathop{\odot} \Omega_{t_K}$, or        
+        %         \item  \label{it:strict} $ \mu(\Lambda_{t_K} \mathop{\odot} S_{t_K}) \mathop{>}  \mu(S_{t_K} \mathop{\odot} \Omega_{t_K})$
         %     \end{enumerate}
-        %     To establish $ \mu(w_\mathcal{T}(G)) > \mu(w_\mathcal{T}(H))$, using \eqref{ax:s2}, 
-        %     it suffices to show that we have case~\ref{it:strict} for some $t_K : K \to T$.
+        %     To establish $ \mu(w_\mathcal{T}(G)) \mathop{>} \mu(w_\mathcal{T}(H))$, using \eqref{ax:s2}, 
+        %     it suffices to show that we have case~\ref{it:strict} for some $t_K : K \mathop{\to} T$.
         %     This follows from \ref{claim:exist_st} since we have a context closure for $\rho$ and $\mathcal{T}$, by assumption.
         \item  
-            Suppose that $\rho$ is $\delta$-uniformly decreasing for $\delta \in \mathbb{R}_{>0}$, and $w_\mathcal{T}(e) \succeq 1_S$ for all $e \in \mathbb{E}$. By Definition~\ref{nwf:def:decreasing_rule} of $\delta$-uniformly decreasing rule,
-            for all $t_K : K \to T$, we have  
+            Suppose that $\rho$ is $\delta$-uniformly decreasing for $\delta \mathop{\in} \mathbb{R}_{>0}$, and $w_\mathcal{T}(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$. By Definition~\ref{nwf:def:decreasing_rule} of $\delta$-uniformly decreasing rule,
+            for all $t_K : K \mathop{\to} T$, we have  
                             \begin{itemize}                                
-                                \item $\mu(\Lambda_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K}) + \delta$,
-                                % $\exists \alpha \geq \delta  .~\mu(\Lambda_{t_K}) > \mu(\Omega_{t_K}) + \alpha$, 
+                                \item $\mu(\Lambda_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K})\mathop{+}\delta$,
+                                % $\exists \alpha \mathop{\geq} \delta  .~\mu(\Lambda_{t_K}) \mathop{>} \mu(\Omega_{t_K})\mathop{+}\alpha$, 
                                  or
-                                \item $\{l \star - = t_K\} = \emptyset = \{r \star - = t_K\}$
+                                \item $\{l \mathop{\star} - \mathop{=} t_K\} \mathop{=} \emptyset \mathop{=} \{r \mathop{\star} - \mathop{=} t_K\}$
                             \end{itemize}
-            From Claim~\ref{claim:sh_{DT}elta} and Claim~\ref{claim:0}, for every \( t_K: K \rightarrow T \), we obtain
+            From Claim~\ref{claim:sh_{DT}elta} and Claim~\ref{claim:0}, for every \( t_K: K \mathop{\rightarrow} T \), we obtain
             \begin{enumerate}[label=(\roman*)]
-                \item $S_{t_K} \odot \Lambda_{t_K} = 0_S =  S_{t_K} \odot \Omega_{t_K}$, or
-                \item  \label{it:strich_{DT}elta}  $\mu(\Lambda_{t_K} \odot S_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K} \odot S_{t_K}) + \delta$
-                % $\exists \beta \geq \delta  .\  \mu(\Lambda_{t_K} \odot S_{t_K}) > \mu(\Omega_{t_K} \odot S_{t_K}) + \beta$
+                \item $S_{t_K} \mathop{\odot} \Lambda_{t_K} \mathop{=} 0_S \mathop{=}  S_{t_K} \mathop{\odot} \Omega_{t_K}$, or
+                \item  \label{it:strich_{DT}elta}  $\mu(\Lambda_{t_K} \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K} \mathop{\odot} S_{t_K})\mathop{+}\delta$
+                % $\exists \beta \mathop{\geq} \delta  .\  \mu(\Lambda_{t_K} \mathop{\odot} S_{t_K}) \mathop{>} \mu(\Omega_{t_K} \mathop{\odot} S_{t_K})\mathop{+}\beta$
             \end{enumerate}
-            To establish $ \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta$, using Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s2'}, 
-            it suffices to show that we have Case~\ref{it:strich_{DT}elta} for some $t_K : K \to T$.
+            To establish $ \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H))\mathop{+}\delta$, using Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s2'}, 
+            it suffices to show that we have Case~\ref{it:strich_{DT}elta} for some $t_K : K \mathop{\to} T$.
             This follows from Claim~\ref{claim:exist_sh_{DT}elta} since we have a context closure for $\rho$ and $\mathcal{T}$ by assumption.
             % \item
             % If $\rho$ is $\delta$-closure decreasing, 
-            % then it is also weakly decreasing and we obtain \eqref{steps:weightC:ge} for every $t_K : K \to T$.
-            % Since the semiring is strictly ordered museurable, it suffices to show that there exists some $t_K : K \to T$ such that
+            % then it is also weakly decreasing and we obtain \eqref{steps:weightC:ge} for every $t_K : K \mathop{\to} T$.
+            % Since the semiring is strictly ordered museurable, it suffices to show that there exists some $t_K : K \mathop{\to} T$ such that
             % \begin{align}
-            %    \mu( S_{t_K} \odot \Lambda_{t_K})  \succ \mu(S_{t_K} \odot \Omega_{t_K})
+            %    \mu( S_{t_K} \mathop{\odot} \Lambda_{t_K})  \mathop{\succ} \mu(S_{t_K} \mathop{\odot} \Omega_{t_K})
             %   \tag{$\star$} \label{steps:weightC:gt}
             % \end{align}
-            % in order to conclude $\mu(w_\mathcal{T}(G)) > \mu(w_\mathcal{T}(H))$ by Equation~\eqref{ax:s5}.
+            % in order to conclude $\mu(w_\mathcal{T}(G)) \mathop{>} \mu(w_\mathcal{T}(H))$ by Equation~\eqref{ax:s5}.
             % By Definition~\ref{def:decreasing_rule}, there is a context closure $t_L$ for $\rho$ and $T$, and 
-            % % $\exists \delta' \geq \delta  .\  \Lambda_{t_K} > \Omega_{t_K} + \delta'$
-            % $\mu(\Lambda_{t_K}) > \mu(\Omega_{t_K}) + \delta$
-            % for $t_K = l \star t_L$. Thus, we obtain  Equation~\eqref{steps:weightC:gt} by~\ref{claim:exist_st}.
+            % % $\exists \delta' \mathop{\geq} \delta  .\  \Lambda_{t_K} \mathop{>} \Omega_{t_K}\mathop{+}\delta'$
+            % $\mu(\Lambda_{t_K}) \mathop{>} \mu(\Omega_{t_K})\mathop{+}\delta$
+            % for $t_K \mathop{=} l \mathop{\star} t_L$. Thus, we obtain  Equation~\eqref{steps:weightC:gt} by~\ref{claim:exist_st}.
         \item
-            If $\rho$ is $\delta$-closure decreasing, and $w_\mathcal{T}(e) \succeq 1_S$ for all $e \in \mathbb{E}$ then it is also weakly decreasing and we obtain Inequality~\eqref{steps:weightC:ge} for every $t_K : K \to T$.
-            Since the semiring is a strictly monotonic museurable semiring,  by Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s2'} and Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s5'}, it suffices to show that there is some $t_K : K \to T$ such that 
+            If $\rho$ is $\delta$-closure decreasing, and $w_\mathcal{T}(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$ then it is also weakly decreasing and we obtain Inequality~\eqref{steps:weightC:ge} for every $t_K : K \mathop{\to} T$.
+            Since the semiring is a strictly monotonic museurable semiring,  by Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s2'} and Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s5'}, it suffices to show that there is some $t_K : K \mathop{\to} T$ such that 
             \begin{align}
-                % \exists \alpha \geq \delta.~
-                \mu(S_{t_K} \odot \Lambda_{t_K}) >_{\mathbb{R}^+} \mu(S_{t_K} \odot \Omega_{t_K}) + 
+                % \exists \alpha \mathop{\geq} \delta.~
+                \mu(S_{t_K} \mathop{\odot} \Lambda_{t_K}) >_{\mathbb{R}^+} \mu(S_{t_K} \mathop{\odot} \Omega_{t_K})\mathop{+}
                 \delta
                 % \alpha
               \tag{$\star\star$}\label{steps:weightC:gh_{DT}elta}
             \end{align}
-            in order to conclude $ \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta$.
+            in order to conclude $ \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H))\mathop{+}\delta$.
             There is a context closure $t_L$ for $\rho$ and $T$, and
-            $\mu(\Lambda_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K}) + \delta$
-            % $\exists \delta' \geq \delta  .\  \Lambda_{t_K} > \Omega_{t_K} + \delta'$
-            for $t_K = l \star t_L$. Thus, we obtain Inequality~\eqref{steps:weightC:gh_{DT}elta} by Claim~\ref{claim:exist_sh_{DT}elta}.
+            $\mu(\Lambda_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K})\mathop{+}\delta$
+            % $\exists \delta' \mathop{\geq} \delta  .\  \Lambda_{t_K} \mathop{>} \Omega_{t_K}\mathop{+}\delta'$
+            for $t_K \mathop{=} l \mathop{\star} t_L$. Thus, we obtain Inequality~\eqref{steps:weightC:gh_{DT}elta} by Claim~\ref{claim:exist_sh_{DT}elta}.
     \end{enumerate}
 \end{proof}  

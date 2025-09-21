@@ -10,62 +10,62 @@ For more information on set theory, the reader is refer to \cite{jech2006set}. B
 \begin{definition}[Language~\text{\cite[Def 1.1.1]{marker2006model}}]
   A \textbf{language} \( \mathcal{L} \) is given by specifying the following data:
   \begin{itemize}
-      \item  a set of function symbols \( \mathcal{F} \) and positive integers \( n_f \) for each \( f \in \mathcal{F} \);
-      \item  a set of relation symbols \( \mathcal{R} \) and positive integers \( n_R \) for each \( R \in \mathcal{R} \);
+      \item  a set of function symbols \( \mathcal{F} \) and positive integers \( n_f \) for each \( f \mathop{\in} \mathcal{F} \);
+      \item  a set of relation symbols \( \mathcal{R} \) and positive integers \( n_R \) for each \( R \mathop{\in} \mathcal{R} \);
       \item  a set of constant symbols \( \mathcal{C} \).
   \end{itemize}
 \end{definition}
 
 \begin{example}[\ \text{\cite{marker2006model}}]
-  Consider the structure of the natural numbers with addition and distinguished elements 0 and 1. The natural language for studying this structure is the language where we have a binary function symbol for addition and constant symbols for 0 and 1. We would write sentences such as $\forall x \exists y (x = y + y \lor x = y + y +1)$, which we interpret as the assertion that “every number is either even or 1 plus an even number.”
+  Consider the structure of the natural numbers with addition and distinguished elements 0 and 1. The natural language for studying this structure is the language where we have a binary function symbol for addition and constant symbols for 0 and 1. We would write sentences such as $\forall x \exists y (x \mathop{=} y\mathop{+}y \lor x \mathop{=} y\mathop{+}y +1)$, which we interpret as the assertion that “every number is either even or 1 plus an even number.”
 \end{example}
 
 \begin{definition}[Language of abstract rewriting systems]
   \label{def:l_ars}
-  The first order \textbf{language of abstract rewriting systems} is $\mathcal{L}_\text{RS} = (\rightarrow)$ where $\rightarrow$ is a binary relation symbol.
+  The first order \textbf{language of abstract rewriting systems} is $\mathcal{L}_\text{RS} \mathop{=} (\rightarrow)$ where $\rightarrow$ is a binary relation symbol.
 \end{definition}
 \begin{definition}[Structure~\text{\cite[Def 1.1.2]{marker2006model}}]
   An \( \mathcal{L} \)-\textbf{structure} \( \mathcal{M} \) is given by the following data:
  \begin{itemize}
      \item[i)] a nonempty set \( M \) called the \textit{universe, domain, or underlying set} of \( \mathcal{M} \);
-     \item[ii)] a function \( f^{\mathcal{M}} : M^{n_f} \to M \) for each \( f \in \mathcal{F} \);
-     \item[iii)] a set \( R^{\mathcal{M}} \subseteq M^{n_R} \) for each \( R \in \mathcal{R} \);
-     \item[iv)] an element \( c^{\mathcal{M}} \in M \) for each \( c \in \mathcal{C} \).
+     \item[ii)] a function \( f^{\mathcal{M}} : M^{n_f} \mathop{\to} M \) for each \( f \mathop{\in} \mathcal{F} \);
+     \item[iii)] a set \( R^{\mathcal{M}} \mathop{\subseteq} M^{n_R} \) for each \( R \mathop{\in} \mathcal{R} \);
+     \item[iv)] an element \( c^{\mathcal{M}} \mathop{\in} M \) for each \( c \mathop{\in} \mathcal{C} \).
  \end{itemize}
 \end{definition}
-We refer to \( f_{\mathcal{M}} \), \( R_{\mathcal{M}} \), and \( c_{\mathcal{M}} \) as the \textit{interpretations} of the symbols \( f \), \( R \), and \( c \). We often write the structure as \( \mathcal{M} = (M, f_{\mathcal{M}}, R_{\mathcal{M}}, c_{\mathcal{M}} : f \in \mathcal{F}, R \in \mathcal{R}, c \in \mathcal{C}) \). We will use the notation \( \mathcal{A}, \mathcal{B}, \mathcal{M}, \mathcal{N}, \dots \) to refer to the underlying sets of the structures \( A, B, M, N, \dots \).
+We refer to \( f_{\mathcal{M}} \), \( R_{\mathcal{M}} \), and \( c_{\mathcal{M}} \) as the \textit{interpretations} of the symbols \( f \), \( R \), and \( c \). We often write the structure as \( \mathcal{M} \mathop{=} (M, f_{\mathcal{M}}, R_{\mathcal{M}}, c_{\mathcal{M}} : f \mathop{\in} \mathcal{F}, R \mathop{\in} \mathcal{R}, c \mathop{\in} \mathcal{C}) \). We will use the notation \( \mathcal{A}, \mathcal{B}, \mathcal{M}, \mathcal{N}, \dots \) to refer to the underlying sets of the structures \( A, B, M, N, \dots \).
 \begin{definition}[Binary Relation]
-  Let $S$ and $T$ be two sets. A \textbf{binary relation} from $S$ to $T$ is a subset of $S \times T$. A binary relation on $S$ is a binary relation from $S$ to $S$.
+  Let $S$ and $T$ be two sets. A \textbf{binary relation} from $S$ to $T$ is a subset of $S \mathop{\times} T$. A binary relation on $S$ is a binary relation from $S$ to $S$.
 \end{definition} 
 
 \begin{definition}[Abstract Rewriting System]
   \label{def:ars}
-  An \textbf{rewriting system} is a $\mathcal{L}_\text{RS}$-structure $\mathcal{R} = (R,\to_\mathcal{R})$ where $R$ is a set and $\to_\mathcal{R}$ a binary relation on $R$. Elements $(x,y)$ in $\rightarrow_\mathcal{S}$, denoted $x \rightarrow_\mathcal{R} y$, will be called \textbf{rewriting steps}. 
+  An \textbf{rewriting system} is a $\mathcal{L}_\text{RS}$-structure $\mathcal{R} \mathop{=} (R,\to_\mathcal{R})$ where $R$ is a set and $\to_\mathcal{R}$ a binary relation on $R$. Elements $(x,y)$ in $\rightarrow_\mathcal{S}$, denoted $x \rightarrow_\mathcal{R} y$, will be called \textbf{rewriting steps}. 
 \end{definition}
 
 \begin{definition}[Reflexivity,
   %  Antisymmetry, 
    Transitivity]
-  A binary relation \(\to \subseteq S\) is said to be
+  A binary relation \( \mathop{\to} \mathop{\subseteq} S\) is said to be
   \begin{itemize}
       \item \textbf{reflexive} if \(
-          \forall a \in S, \, (a \to a)
+          \forall a \mathop{\in} S, \, (a \mathop{\to} a)
           \)
 %       \item \textbf{antisymmetric} if \(
-% \forall a, b \in A, \, (a \to b) \land (b \to a) \implies a = b.
+% \forall a, b \mathop{\in} A, \, (a \mathop{\to} b) \mathop{\land} (b \mathop{\to} a) \implies a \mathop{=} b.
 % \)
       \item \textbf{transitive} if \(
-\forall a, b, c \in S, \, (a \to b) \land (b \to c) \implies (a \to c).
+\forall a, b, c \mathop{\in} S, \, (a \mathop{\to} b) \mathop{\land} (b \mathop{\to} c) \implies (a \mathop{\to} c).
 \)
   \end{itemize}
 \end{definition}
 
 \begin{definition}[Reflexive-Transitive Closure]
-  The \textbf{reflexive transitive closure} of a binary relation $\to$, denoted $\to^*$, is the smallest reflexive and transitive relation that include \( \to \).
+  The \textbf{reflexive transitive closure} of a binary relation $\to$, denoted $\to^*$, is the smallest reflexive and transitive relation that include \( \mathop{\to} \).
 \end{definition}
 
 \begin{definition}[Rewriting Relation]
-   A rewriting system $\mathcal{R} = (R,\to_\mathcal{R})$ defines a \textbf{rewriting relation} $\to^{*}_{\mathcal{R}}$.
+   A rewriting system $\mathcal{R} \mathop{=} (R,\to_\mathcal{R})$ defines a \textbf{rewriting relation} $\to^{*}_{\mathcal{R}}$.
 \end{definition}
 
 \begin{definition}[Category of Rewriting Systems]
@@ -74,14 +74,14 @@ We refer to \( f_{\mathcal{M}} \), \( R_{\mathcal{M}} \), and \( c_{\mathcal{M}}
 
 \color{red}
 \begin{definition}[Rewriting System Generated by Rewriting Rules in a Rewriting Framework]
-  Let $A$ be a set and \( \mathfrak{F}: A \to \mathcal{P}(S^2) \) be a function.
-  The rewriting system $\mathcal{S} = (S, \to_{\mathcal{S}})$ generated by the set of \textbf{rewriting rules} \( R \subseteq A \) within the \textbf{rewriting framework} \( \mathfrak{F}\) is defined by
+  Let $A$ be a set and \( \mathfrak{F}: A \mathop{\to} \mathcal{P}(S^2) \) be a function.
+  The rewriting system $\mathcal{S} \mathop{=} (S, \mathop{\to} _{\mathcal{S}})$ generated by the set of \textbf{rewriting rules} \( R \mathop{\subseteq} A \) within the \textbf{rewriting framework} \( \mathfrak{F}\) is defined by
   \[
-      \to_\mathcal{S} = \bigcup_{\rho \in R} \mathfrak{F}(\rho)
+      \mathop{\to} _\mathcal{S} \mathop{=} \bigcup_{\rho \mathop{\in} R} \mathfrak{F}(\rho)
     \]
 
   \todo{match mechanism:reviser}
-  Let $M$ be a set, whose elements are called matches. Let \( \mathfrak{m}: R \times S \to \mathcal{P}(M) \) be a function such that for every \( (\rho,x) \in R \times S \), the set \( \mathfrak{m}(\rho, x) \) and the set $\{x \rightarrow_\mathcal{S} y \in \mathfrak{F}(\rho) \mid y \in S\}$ are in bijection. We say that \( \mathfrak{m} \) is a \textbf{match mechanism} and that elements in $\mathfrak{m}(\rho,x)$ are \textbf{matches} of the rule $\rho$ in the object $x$.
+  Let $M$ be a set, whose elements are called matches. Let \( \mathfrak{m}: R \mathop{\times} S \mathop{\to} \mathcal{P}(M) \) be a function such that for every \( (\rho,x) \mathop{\in} R \mathop{\times} S \), the set \( \mathfrak{m}(\rho, x) \) and the set $\{x \rightarrow_\mathcal{S} y \mathop{\in} \mathfrak{F}(\rho) \mid y \mathop{\in} S\}$ are in bijection. We say that \( \mathfrak{m} \) is a \textbf{match mechanism} and that elements in $\mathfrak{m}(\rho,x)$ are \textbf{matches} of the rule $\rho$ in the object $x$.
 
 \end{definition}
 \color{black}

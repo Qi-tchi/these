@@ -1,22 +1,22 @@
  The following definition modifies~\cite[\textdef~5.9]{endrullis2024generalized}.
 \begin{definition}[Decreasing Rules]
     \label{def:decreasing_rule}
-    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule, and $\delta \in \mathbb{R}_{>0}$. 
+    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, (S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, \(\mathfrak{F}\) a DPO rewriting framework, $\rho \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ a DPO rewriting rule, and $\delta \mathop{\in} \mathbb{R}_{>0}$. 
 
     \noindent
     The rule $\rho$ is \textbf{weakly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if 
-            for every $t_K : K \to T$,
+            for every $t_K : K \mathop{\to} T$,
                 $$ 
-                  w_\mathcal{T}(\{l \star - = t_K\}) \succeq w_\mathcal{T}(\{r\star - = t_K\})$$
+                  w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K\}) \mathop{\succeq} w_\mathcal{T}(\{r\star - \mathop{=} t_K\})$$
            
     \noindent
     The rule $\rho$ is \textbf{$\delta$-uniformly decreasing} w.r.t. $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
         \begin{itemize}
             \item[]- there exists a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$, 
-            \item[]- for every $t_K : K \to T$,
+            \item[]- for every $t_K : K \mathop{\to} T$,
             \begin{itemize}
-                \item[] $\bullet$ $\{l \star - = t_K\} = \emptyset = \{r \star - = t_K\}$, or
-                \item[] $\bullet$ $\mu(w_\mathcal{T}(\{l \star - = t_K\}))  >   \mu(w_\mathcal{T}(\{r \star - = t_K\})) + \delta$.
+                \item[] $\bullet$ $\{l \mathop{\star} - \mathop{=} t_K\} \mathop{=} \emptyset \mathop{=} \{r \mathop{\star} - \mathop{=} t_K\}$, or
+                \item[] $\bullet$ $\mu(w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K\}))  \mathop{>}   \mu(w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K\}))\mathop{+}\delta$.
             \end{itemize}
         \end{itemize}  
          
@@ -27,13 +27,13 @@
                 \item[]- $S$ is strictly monotonic measurable semiring,
                 \item[]- $\rho$ is weakly decreasing,
                 \item[]- there exists a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$,
-                \item[]- $ \mu(w_\mathcal{T}(\{l \star - = t_K\}))  >  \mu(w_\mathcal{T}(\{r \star - = t_K\}))  + \delta$ for $t_K = l \star c_\rho$.
+                \item[]- $ \mu(w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K\}))  \mathop{>}  \mu(w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K\})) \mathop{+}\delta$ for $t_K \mathop{=} l \mathop{\star} c_\rho$.
             \end{itemize}
 \end{definition}
 
 \begin{example}
     \label{example:decreasing_rule}
-    Consider the DPO rule in Example~\ref{ex:grsaa} and the weighted type graph in~\autoref{example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \rightarrow T$ as depicted below:
+    Consider the DPO rule in Example~\ref{ex:grsaa} and the weighted type graph in~\autoref{example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' \mathop{=} (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. There are $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}:K \mathop{\rightarrow} T$ as depicted below:
 
     \begin{center}
         \resizebox{0.49\textwidth}{!}{
@@ -42,7 +42,7 @@
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -63,7 +63,7 @@
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -84,7 +84,7 @@
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -105,7 +105,7 @@
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -121,7 +121,7 @@
             \end{tikzpicture}
             }
       \end{center}
-    The set $\{l \star - = t_K^{11}\}$ has two morphisms $h_{11}^1$ and $h_{11}^2$ as illustrated below:
+    The set $\{l \mathop{\star} - \mathop{=} t_K^{11}\}$ has two morphisms $h_{11}^1$ and $h_{11}^2$ as illustrated below:
     \begin{center}
         \resizebox{0.49\textwidth}{!}{
         \begin{tikzpicture}
@@ -129,7 +129,7 @@
             \coordinate (o) at (0mm,-10mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
             \draw[] (l1) -- (l3) node[midway,above] {$a$};
             \draw[] (l3) -- (l2) node[midway,above] {$a$};
         } 
@@ -150,7 +150,7 @@
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -167,13 +167,13 @@
             }
       \end{center}
     Therefore, we have \begin{flalign*}
-        w_\mathcal{T}(\{l \star - = t_K^{11}\})
+        w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{11}\})
         =&w_\mathcal{T}(\{h_{11}^1, h_{11}^2\})\\
-        \overset{\mathrm{def}}{=}&w_\mathcal{T}(h_{11}^1) + w_\mathcal{T}(h_{11}^2) \\
-        =&(1.0^1 * 1.0^1) + (1.0^1 * 1.0^1)\\
+        \overset{\mathrm{def}}{=}&w_\mathcal{T}(h_{11}^1)\mathop{+}w_\mathcal{T}(h_{11}^2) \\
+        =&(1.0^1 * 1.0^1)+(1.0^1 * 1.0^1)\\
         =&2.0
     \end{flalign*}
-    The set $\{r \star - = t_K^{11}\}$ has one morphism $h_{11}^3$ as illustrated below:
+    The set $\{r \mathop{\star} - \mathop{=} t_K^{11}\}$ has one morphism $h_{11}^3$ as illustrated below:
     \begin{center}
         \resizebox{0.49\textwidth}{!}{
         \begin{tikzpicture}
@@ -181,8 +181,8 @@
             \coordinate (o) at (-5mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-            \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+            \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
             \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -199,12 +199,12 @@
         \end{tikzpicture}
         }
       \end{center}
-    Therefore, we have: $w_\mathcal{T}(\{r \star - = t_K^{11}\}) = w_\mathcal{T}(h_{11}^3) = 1.0^1 * 1.0^1 * 1.0 ^ 1 = 1.0$. Thus, we have $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 2.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{11}\})$.
+    Therefore, we have: $w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{11}\}) \mathop{=} w_\mathcal{T}(h_{11}^3) \mathop{=} 1.0^1 * 1.0^1 * 1.0 ^ 1 \mathop{=} 1.0$. Thus, we have $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{11}\}) \mathop{=} 2.0 \mathop{\geq} 1.0 \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{11}\})$.
 
-    Similarly, we can check that $w_\mathcal{T}(\{l \star - = t_K^{12}\}) = 1.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{12}\})$,  $w_\mathcal{T}(\{l \star - = t_K^{21}\}) = 1.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{21}\})$, and $w_\mathcal{T}(\{l \star - = t_K^{22}\}) = 1.0 \geq 1.0 = w_\mathcal{T}(\{r \star - = t_K^{22}\})$. The rule is therefore weakly decreasing.
+    Similarly, we can check that $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{12}\}) \mathop{=} 1.0 \mathop{\geq} 1.0 \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{12}\})$,  $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{21}\}) \mathop{=} 1.0 \mathop{\geq} 1.0 \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{21}\})$, and $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{22}\}) \mathop{=} 1.0 \mathop{\geq} 1.0 \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{22}\})$. The rule is therefore weakly decreasing.
 
     There exists a context closure $c$ for the DPO rule in the weighted type graph, as shown in~\autoref{example:context_closure}.
-    Since we have additionally $t_K^{11} = l \star c$ and $w_\mathcal{T}(\{l \star - = t_K^{11}\}) = 1.0 > 1.0 + \delta$ for $\delta = 1.0$, the rule is $\delta$-closure decreasing with $\delta = 1.0$ since the semiring is strictly monotonic measurable.
+    Since we have additionally $t_K^{11} \mathop{=} l \mathop{\star} c$ and $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{11}\}) \mathop{=} 1.0 \mathop{>} 1.0\mathop{+}\delta$ for $\delta \mathop{=} 1.0$, the rule is $\delta$-closure decreasing with $\delta \mathop{=} 1.0$ since the semiring is strictly monotonic measurable.
 
 \end{example}
 
@@ -213,7 +213,7 @@ Adapted from \cite[Theorem C.3]{endrullis2024generalized}, the lemma below estab
     \label{lem:decreasing_step}
 \newline
 \begin{minipage}{0.7\textwidth}
-    Let $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, $\rho$ a rewriting rule and $\Delta \in \mathfrak{F}(\rho)$ a DPO diagram
+    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, (S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, $\rho$ a rewriting rule and $\Delta \mathop{\in} \mathfrak{F}(\rho)$ a DPO diagram
     (shown on the right)   such that the following conditions hold:
 \end{minipage}  
 \begin{minipage}{0.3\textwidth}
@@ -241,14 +241,14 @@ Adapted from \cite[Theorem C.3]{endrullis2024generalized}, the lemma below estab
    \begin{itemize}
        \item $\operatorname{left}(\Delta)$ is weighable with \(\mathcal{T}\), and
        \item $\operatorname{right}(\Delta)$ is bounded above by \(\mathcal{T}\), and
-       \item $w(e) \succeq 1_S$ for all $e \in \mathbb{E}$.
+       \item $w(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$.
    \end{itemize}
 
    \noindent
   We have:
    \begin{itemize}
-       \item $w_\mathcal{T}(G) \succeq w_\mathcal{T}(H)$ if $\rho$ is weakly decreasing, and
-       \item $\mu(w_\mathcal{T}(G)) > \mu(w_\mathcal{T}(H)) + \delta$ if $\rho$ is $\delta$-uniformly or $\delta$-closure decreasing for some $\delta >0$, and $w(e) \succeq 1_S$ for all $e \in \mathbb{E}$.
+       \item $w_\mathcal{T}(G) \mathop{\succeq} w_\mathcal{T}(H)$ if $\rho$ is weakly decreasing, and
+       \item $\mu(w_\mathcal{T}(G)) \mathop{>} \mu(w_\mathcal{T}(H))\mathop{+}\delta$ if $\rho$ is $\delta$-uniformly or $\delta$-closure decreasing for some $\delta >0$, and $w(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$.
    \end{itemize}
 \end{lemma} 
 \begin{proof}

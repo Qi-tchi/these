@@ -7,14 +7,14 @@
 We define binary relations and orders on a collection of objects instead of on a set. This is because later we will define rewriting relations as binary relations, and the collection of objects subject to be rewritten in a rewriting system is not necessarily a set. For example, the collection of finite directed edge-labeled graphs is not a set, but a class.
 
 \begin{notation}
-    Let $C$ and $C'$ be collections of objects. We denote $c \in C$ for~\enquote{$c$ is an element of C}, $C \cup C'$ the smallest collection contains all elements in $C$ and all elements in $C'$, $C \cap C'$ the smallest collection contains all elements in $C$ that are also in $C'$, $C * C'$ the collection of ordered pairs with first element in $C$ and second element in $C'$.  
+    Let $C$ and $C'$ be collections of objects. We denote $c \mathop{\in} C$ for~\enquote{$c$ is an element of C}, $C \mathop{\cup} C'$ the smallest collection contains all elements in $C$ and all elements in $C'$, $C \mathop{\cap} C'$ the smallest collection contains all elements in $C$ that are also in $C'$, $C * C'$ the collection of ordered pairs with first element in $C$ and second element in $C'$.  
   \end{notation} 
   
   \begin{definition}[Binary relation]
     \label{def:binary_relation:binary_relation}
     Let $D$ be a collection of objects. A mathematical structure \( (D, \mathcal{R}) \) where $\mathcal{R}$ is a collection of objects from $D * D$ is called a \textbf{binary relation} on $D$. 
     
-    For an object in $\mathcal{R}$ with first element $x \in D$ and second element $y\in D$, we write $x \mathcal{R} y$, $\mathcal{R}(x,y)$ or $(x,y) \in \mathcal{R}$. 
+    For an object in $\mathcal{R}$ with first element $x \mathop{\in} D$ and second element $y\in D$, we write $x \mathcal{R} y$, $\mathcal{R}(x,y)$ or $(x,y) \mathop{\in} \mathcal{R}$. 
     
     When $D$ is irrelevant, we say simply that $\mathcal{R}$ is a binary relation.
   \end{definition} 
@@ -23,37 +23,37 @@ We define binary relations and orders on a collection of objects instead of on a
     %  Antisymmetry, 
      Transitivity]
     \label{def:binary_relation:reflexivity_transitivity}
-    A binary relation \( \to \) on \(C\) is said to be \textbf{reflexive} if for every object \(a \in C\), we have \(a \to a\); \textbf{transitive} if for all objects \( a, b, c \in C\), \( a \to b \land (b \to c) \) implies \(a \to c\).
+    A binary relation \( \mathop{\to} \) on \(C\) is said to be \textbf{reflexive} if for every object \(a \mathop{\in} C\), we have \(a \mathop{\to} a\); \textbf{transitive} if for all objects \( a, b, c \mathop{\in} C\), \( a \mathop{\to} b \mathop{\land} (b \mathop{\to} c) \) implies \(a \mathop{\to} c\).
   %       \item \textbf{antisymmetric} if \(
-  % \forall a, b \in A, \, (a \to b) \land (b \to a) \implies a = b.
+  % \forall a, b \mathop{\in} A, \, (a \mathop{\to} b) \mathop{\land} (b \mathop{\to} a) \implies a \mathop{=} b.
   % \)
   \end{definition}
   
   \begin{definition}[$\mathcal{R}$-sequence]
     \label{def:binary_relation:sequence}
     Let \(\mathcal{R}\) be a binary relation on $S$.
-    A \textbf{\( \mathcal{R} \)-sequence} is either a finite sequence \( \left( s_i \right)_{0 \leq i \leq m} \) of elements in $S$ such that \(s_i \mathcal{R} s_{i+1}\) for each \( 0 \leq i \leq m-1\), or an infinite sequence \((s_i)_{i \in \mathbb{N}}\) of elements in $S$ such that \(s_n \mathcal{R} s_{n+1}\) for each \(i \in \mathbb{N}\).
+    A \textbf{\( \mathcal{R} \)-sequence} is either a finite sequence \( \left( s_i \right)_{0 \leq i \leq m} \) of elements in $S$ such that \(s_i \mathcal{R} s_{i+1}\) for each \( 0 \leq i \leq m-1\), or an infinite sequence \((s_i)_{i \mathop{\in} \mathbb{N}}\) of elements in $S$ such that \(s_n \mathcal{R} s_{n+1}\) for each \(i \mathop{\in} \mathbb{N}\).
 \end{definition}
 
 \begin{definition}[Well-founded binary relation]
     \label{def:binary_relation:well_founded}
     A binary relation $\to$ on a collection $S$ of object is said to be \textbf{well-founded} if there is no infinite $\to$-sequence. 
-    % In other words, there does not exist an infinite sequence of elements $ (s_i)_{i \in \mathbb{N}} $ where $s_i \in S $ such that $s_i \to s_{i+1}$ for $i \in \mathbb{N}$.
+    % In other words, there does not exist an infinite sequence of elements $ (s_i)_{i \mathop{\in} \mathbb{N}} $ where $s_i \mathop{\in} S $ such that $s_i \mathop{\to} s_{i+1}$ for $i \mathop{\in} \mathbb{N}$.
 \end{definition}
 
 \begin{definition}[Transitive closure]
     \label{def:binary_relation:transitive_closure}
-    The \textbf{transitive closure} of a binary relation $\to$, denoted $\to^+$, is the smallest transitive relation that include \( \to \).
+    The \textbf{transitive closure} of a binary relation $\to$, denoted $\to^+$, is the smallest transitive relation that include \( \mathop{\to} \).
   \end{definition}
   
   \begin{definition}[Reflexive-transitive closure]
     \label{def:binary_relation:reflexive_transitive_closure}
-    The \textbf{reflexive transitive closure} of a binary relation $\to$, denoted $\to^*$, is the smallest reflexive and transitive relation that include \( \to \).
+    The \textbf{reflexive transitive closure} of a binary relation $\to$, denoted $\to^*$, is the smallest reflexive and transitive relation that include \( \mathop{\to} \).
   \end{definition}
 
   \begin{definition}[Homomorphisms of binary relations]
     \label{def:binary_relation:homomorphism}
-    Let $\to_\mathcal{A}$ be a binary relation on a collection $A$ of objects and $\to_\mathcal{B}$ be a binary relation on a collection $B$ of objects. A \textbf{homomorphism} from $\to_\mathcal{A}$ to $\to_\mathcal{B}$ is a function \( h: A \to B \) such that for all \( a, b \in A \), if \( a \to_\mathcal{A} b \) then \( h(a) \to_\mathcal{B} h(b) \).
+    Let $\to_\mathcal{A}$ be a binary relation on a collection $A$ of objects and $\to_\mathcal{B}$ be a binary relation on a collection $B$ of objects. A \textbf{homomorphism} from $\to_\mathcal{A}$ to $\to_\mathcal{B}$ is a function \( h: A \mathop{\to} B \) such that for all \( a, b \mathop{\in} A \), if \( a \mathop{\to} _\mathcal{A} b \) then \( h(a) \mathop{\to} _\mathcal{B} h(b) \).
   \end{definition}
   
 \begin{proposition}[Proving well-foundedness]
@@ -72,7 +72,7 @@ We define binary relations and orders on a collection of objects instead of on a
         Let $D$ be a collection of objects.  
         A \textbf{rewriting relation} $(D, \rightarrow)$ on $D$ is defined as a binary relation on $D$.  
         The set $D$ is referred to as the \textbf{domain} of the rewriting relation.  
-        For all objects $x, y \in D$, if $x \rightarrow y$ then we say that $x$ \textbf{rewrites} to $y$ (or there exists a \textbf{rewriting step} from $x$ to $y$).
+        For all objects $x, y \mathop{\in} D$, if $x \mathop{\rightarrow} y$ then we say that $x$ \textbf{rewrites} to $y$ (or there exists a \textbf{rewriting step} from $x$ to $y$).
     \end{definition}
 
       In the litterature, a rewriting relation is also called abstract rewriting systems or abstract reduction systems \cite{nipkow1998term,terese2003term} and is usually defined on a set of objects. We defined it on a collection of objects to cope with rewriting systems on graphs, which form a collection of objects but not a set.
@@ -88,21 +88,21 @@ We define binary relations and orders on a collection of objects instead of on a
           
           \item $W$ is a collection of objects, called \textbf{witnesses of rewriting steps},  
           
-          \item $\mathfrak{M}$ is a function, called \textbf{match mechanism}, which associates to each $(r,d) \in \mathcal{R} \times D$ a set $\mathfrak{M}(r,d)$ of matches in $M$, called \textbf{matches of the rewriting rule $r$ in the object $d$}, 
+          \item $\mathfrak{M}$ is a function, called \textbf{match mechanism}, which associates to each $(r,d) \mathop{\in} \mathcal{R} \mathop{\times} D$ a set $\mathfrak{M}(r,d)$ of matches in $M$, called \textbf{matches of the rewriting rule $r$ in the object $d$}, 
            
-          \item $\mathfrak{W}$ is a function, called \textbf{witness function}, which associates to each $(r,d,m) \in \mathcal{R} \times D \times M$ a witness of rewriting step $\mathfrak{W}(r,d,m)$ in $W$, called \textbf{witness of the rewriting step defined by the match $m$ of the rule $r$ in the object $d$},
+          \item $\mathfrak{W}$ is a function, called \textbf{witness function}, which associates to each $(r,d,m) \mathop{\in} \mathcal{R} \mathop{\times} D \mathop{\times} M$ a witness of rewriting step $\mathfrak{W}(r,d,m)$ in $W$, called \textbf{witness of the rewriting step defined by the match $m$ of the rule $r$ in the object $d$},
 
           \item $\mathfrak{I}$ is a function, called \textbf{interpretation function},  
-              which associates to each witness $w \in W$, an element 
-              in $D \times D$, called \textbf{rewriting step witnessed by $w$}.
+              which associates to each witness $w \mathop{\in} W$, an element 
+              in $D \mathop{\times} D$, called \textbf{rewriting step witnessed by $w$}.
         \end{itemize} 
 
-        For every rule $\rho \in \mathcal{R}$, it induces a rewriting relation $\Rightarrow_\rho$ that is defined as follows: for all objects $s, t \in D$, the rewriting step $s \Rightarrow_\rho t$ exists
-          iff there exists a match $m \in \mathfrak{M}(\rho,s)$ of the rule in the object $s$ such that $\mathfrak{W}(r,s,m)$ witnesses the rewriting step, i.e. $\mathfrak{I}(\mathfrak{W}(r,s,m)) = (s,t)$. 
+        For every rule $\rho \mathop{\in} \mathcal{R}$, it induces a rewriting relation $\mathop{\Rightarrow}_\rho$ that is defined as follows: for all objects $s, t \mathop{\in} D$, the rewriting step $s \mathop{\Rightarrow}_\rho t$ exists
+          iff there exists a match $m \mathop{\in} \mathfrak{M}(\rho,s)$ of the rule in the object $s$ such that $\mathfrak{W}(r,s,m)$ witnesses the rewriting step, i.e. $\mathfrak{I}(\mathfrak{W}(r,s,m)) \mathop{=} (s,t)$. 
           
-          The \textbf{rewriting relation} $\Rightarrow_\mathcal{R}$ is defined as follows: for all objects $s, t \in D$, the rewriting step $s \Rightarrow_\mathcal{R} t$ exists iff $s \Rightarrow_\rho t$ for some rule $\rho \in \mathcal{R}$.
+          The \textbf{rewriting relation} $\mathop{\Rightarrow}_\mathcal{R}$ is defined as follows: for all objects $s, t \mathop{\in} D$, the rewriting step $s \mathop{\Rightarrow}_\mathcal{R} t$ exists iff $s \mathop{\Rightarrow}_\rho t$ for some rule $\rho \mathop{\in} \mathcal{R}$.
 
-          For a rewriting step $s \Rightarrow_\rho t$ with match $m$, we denote $s \Rightarrow_\rho^m t$ to indicate the match $m$ used to rewrite $s$ to $t$.
+          For a rewriting step $s \mathop{\Rightarrow}_\rho t$ with match $m$, we denote $s \mathop{\Rightarrow}_\rho^m t$ to indicate the match $m$ used to rewrite $s$ to $t$.
 
           When the context makes it clear, we say that $\mathcal{R}$ is a rewriting system.
       \end{definition}
@@ -118,16 +118,16 @@ We define binary relations and orders on a collection of objects instead of on a
         A \textbf{rewriting system in a rewriting framework} is defined as a mathematical structure $(D, \mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I},\mathfrak{F})$ where
         \begin{itemize}
           \item $(\mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I})$ is a rewriting system,
-          \item $\mathfrak{F}$ is a mapping, called \textbf{rewriting framework}, which associates to each rule $r \in R$, 
+          \item $\mathfrak{F}$ is a mapping, called \textbf{rewriting framework}, which associates to each rule $r \mathop{\in} R$, 
              a collection of witnesses in $W$.
         \end{itemize}
         
-        For every rule $\rho \in \mathcal{R}$, it induces a rewriting relation $\Rightarrow_{\mathfrak{F},\rho}$ that is defined as follows: for all objects $s, t \in D$, the rewriting step $s \Rightarrow_{\mathfrak{F},\rho} t$ exists
-          iff $s \Rightarrow_\rho^m t$ for some match $m \in \mathfrak{M}(\rho,s)$ and $\mathfrak{W}(r,s,m) \in \mathfrak{F}(\rho)$.
+        For every rule $\rho \mathop{\in} \mathcal{R}$, it induces a rewriting relation $\mathop{\Rightarrow}_{\mathfrak{F},\rho}$ that is defined as follows: for all objects $s, t \mathop{\in} D$, the rewriting step $s \mathop{\Rightarrow}_{\mathfrak{F},\rho} t$ exists
+          iff $s \mathop{\Rightarrow}_\rho^m t$ for some match $m \mathop{\in} \mathfrak{M}(\rho,s)$ and $\mathfrak{W}(r,s,m) \mathop{\in} \mathfrak{F}(\rho)$.
 
-          The \textbf{rewriting relation} $\Rightarrow_{\mathfrak{F},\mathcal{R}}$ is defined as follows: for all objects $s, t \in D$, the rewriting step $s \Rightarrow_{\mathfrak{F},\mathcal{R}} t$ exists iff $s \Rightarrow_{\mathfrak{F},\rho} t$ for some rule $\rho \in \mathcal{R}$.
+          The \textbf{rewriting relation} $\mathop{\Rightarrow}_{\mathfrak{F},\mathcal{R}}$ is defined as follows: for all objects $s, t \mathop{\in} D$, the rewriting step $s \mathop{\Rightarrow}_{\mathfrak{F},\mathcal{R}} t$ exists iff $s \mathop{\Rightarrow}_{\mathfrak{F},\rho} t$ for some rule $\rho \mathop{\in} \mathcal{R}$.
 
-          For a rewriting step $s \Rightarrow_{\mathfrak{F},\rho} t$ with match $m$, we denote $s \Rightarrow_{\mathfrak{F},\rho}^m t$ to indicate the match $m$ used to rewrite $s$ to $t$.
+          For a rewriting step $s \mathop{\Rightarrow}_{\mathfrak{F},\rho} t$ with match $m$, we denote $s \mathop{\Rightarrow}_{\mathfrak{F},\rho}^m t$ to indicate the match $m$ used to rewrite $s$ to $t$.
 
           When the context makes it clear, we say that $\mathcal{R}$ is a rewriting system.
       \end{definition}
@@ -139,13 +139,13 @@ We define binary relations and orders on a collection of objects instead of on a
       %   The structure $(\mathcal{R},\mathfrak{I},\mathfrak{F})$ where
       %   \begin{itemize}
       %     \item $\mathcal{R}$ is a set of objects, called \textbf{rewriting rules}, 
-      %     \item $\mathfrak{F}$ is a function, called \textbf{rewriting framework},  which associates to each rule $r \in R$, 
+      %     \item $\mathfrak{F}$ is a function, called \textbf{rewriting framework},  which associates to each rule $r \mathop{\in} R$, 
       %        a class of objects,
       %     \item $\mathfrak{I}$ is a function, called \textbf{interpretation function},  
-      %     which associates to each object $ w \in \mathcal{F}(r)$ with $r \in R$ an element 
-      %     in $D \times D$, called \textbf{rewriting step using rule $r$ witnessed by $w$},
+      %     which associates to each object $ w \mathop{\in} \mathcal{F}(r)$ with $r \mathop{\in} R$ an element 
+      %     in $D \mathop{\times} D$, called \textbf{rewriting step using rule $r$ witnessed by $w$},
       %   \end{itemize}
-      %    defines a rewriting relation $\to$ as follows: $\to = \bigcup_{\rho \in R} \mathfrak{I}(\mathfrak{F}(\rho))$.
+      %    defines a rewriting relation $\to$ as follows: $ \mathop{\to} \mathop{=} \bigcup_{\rho \mathop{\in} R} \mathfrak{I}(\mathfrak{F}(\rho))$.
       % \end{proposition}
       % }
       
@@ -176,7 +176,7 @@ We define binary relations and orders on a collection of objects instead of on a
     
     \begin{definition}[Relative termination of rewriting relations]
         \label{def:rewriting_relation:relative_termination}
-        Let \( \to \) and \( \leadsto \) be two rewriting relations. We say that \(\to\) is \textbf{terminating relative to} \(\leadsto\) if every \( \left(\to \cup \leadsto \right) \)-sequence contains only finitely many \(\to\)-steps.
+        Let \( \mathop{\to} \) and \( \leadsto \) be two rewriting relations. We say that \(\to\) is \textbf{terminating relative to} \(\leadsto\) if every \( \left( \mathop{\to} \mathop{\cup} \leadsto \right) \)-sequence contains only finitely many \(\to\)-steps.
     \end{definition}
     
     \begin{definition}[Relative termination of rewriting systems]
@@ -186,7 +186,7 @@ We define binary relations and orders on a collection of objects instead of on a
     \end{definition}
     
     % \begin{proposition}[Proving Relative Termination]
-    %     Let \((S, \to \cup \leadsto) \) be an abstract rewriting system. \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if there is a terminating rewriting system $(R,>)$ and a function $h : S \to R$ such that
+    %     Let \((S, \mathop{\to} \mathop{\cup} \leadsto) \) be an abstract rewriting system. \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if there is a terminating rewriting system $(R,>)$ and a function $h : S \mathop{\to} R$ such that
     %     \begin{itemize}
     %       \item $h$ is abstract rewriting system homomorphism from $(S,\to)$ to  $(R,>)$
     %       \item $h$ is abstract rewriting system homomorphism from $(S,\leadsto)$ to  $(R,\geq)$
@@ -195,7 +195,7 @@ We define binary relations and orders on a collection of objects instead of on a
     %   \end{proposition}
     \begin{definition}[Proving relative termination]
         \label{def:rewriting_system:proving_relative_termination}
-        Let \( \mathcal{A} \) and \( \mathcal{B} \) be two rewriting systems on $D$. Let $>$ and $\geq$ be two rewriting relations on $D'$ such that $>$ is terminating relative to $\geq$. If there exists a function $h : D \to D'$ such that: (1) $h$ is a homomorphism from the rewriting relation of \(\mathcal{A}\) to $>$, and (2) $h$ is a homomorphism from the rewriting relation of \(\mathcal{B}\) to $\geq$, then \(\mathcal{A}\) is terminating relative to \(\mathcal{B}\).
+        Let \( \mathcal{A} \) and \( \mathcal{B} \) be two rewriting systems on $D$. Let $>$ and $\geq$ be two rewriting relations on $D'$ such that $>$ is terminating relative to $\geq$. If there exists a function $h : D \mathop{\to} D'$ such that: (1) $h$ is a homomorphism from the rewriting relation of \(\mathcal{A}\) to $>$, and (2) $h$ is a homomorphism from the rewriting relation of \(\mathcal{B}\) to $\geq$, then \(\mathcal{A}\) is terminating relative to \(\mathcal{B}\).
     \end{definition}
     
     % \begin{definition}[Relative terminating rewriting systems]
@@ -205,12 +205,12 @@ We define binary relations and orders on a collection of objects instead of on a
     % \end{definition}
     
     % \begin{definition}[Relative termination]
-    % Let \((S, \to \cup \leadsto) \) be a rewriting system. We say that \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if every derivation $s_1 (\to \cup \leadsto) s_2 (\to \cup \leadsto) \hdots $ contains only finitely many $\to$-steps.
+    % Let \((S, \mathop{\to} \mathop{\cup} \leadsto) \) be a rewriting system. We say that \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if every derivation $s_1 ( \mathop{\to} \mathop{\cup} \leadsto) s_2 ( \mathop{\to} \mathop{\cup} \leadsto) \hdots $ contains only finitely many $\to$-steps.
     % \end{definition} 
     
     % \color{red}
     % \begin{definition}[Pre-order \cite{davey2002introduction}]
-    %   A reflexive and transitive binary relation $\geq$ on a set is called a pre-order. It give rise to a relation $>$ of strict inequality: $x > y$ iff $x \geq y$ and $x \neq y$. 
+    %   A reflexive and transitive binary relation $\geq$ on a set is called a pre-order. It give rise to a relation $>$ of strict inequality: $x \mathop{>} y$ iff $x \mathop{\geq} y$ and $x \mathop{\neq} y$. 
     % \end{definition} 
     
     % \begin{definition}[Partial Order]
@@ -222,49 +222,49 @@ We define binary relations and orders on a collection of objects instead of on a
     % \end{definition}
     
     % \begin{example}[Lexicographic Product \cite{nipkow1998term}]
-    %   Consider two rewriting systems $(A, >)$ and $(B, \succ)$. The lexicographic product $(A \times B, \gg)$ is defined by the relation \((x,y) \gg (x',y')\) if and only if \(x > x'\) or, \(x = x'\) and \(y \succ y'\). If \(>\) and \(\succ\) are strict partial orders, then \(\gg\) is also a strict partial order. Furthermore, if both \((A, >)\) and \((B, \succ)\) terminate, then the lexicographic product \((A \times B, \gg)\) will also terminate.
+    %   Consider two rewriting systems $(A, >)$ and $(B, \mathop{\succ})$. The lexicographic product $(A \mathop{\times} B, \gg)$ is defined by the relation \((x,y) \gg (x',y')\) if and only if \(x \mathop{>} x'\) or, \(x \mathop{=} x'\) and \(y \mathop{\succ} y'\). If \(>\) and \(\mathop{\succ}\) are strict partial orders, then \(\gg\) is also a strict partial order. Furthermore, if both \((A, >)\) and \((B, \mathop{\succ})\) terminate, then the lexicographic product \((A \mathop{\times} B, \gg)\) will also terminate.
     % \end{example}
     
     % \begin{example}[Finite Lexicographic Product \cite{nipkow1998term}]
-    %   By iteration, we can form lexicographic product over any number of rewriting systems $(A_i, >_i), i=1,\ldots,n$. For $n>1$, the lexicographic product $(A_1 \times (A_2 \times \ldots \times A_n),>_{1\ldots n})$ is the lexicographic product of $(A_1, >_1)$ and $(A_2 \times \ldots \times A_n,>{2\ldots n})$. Unwinding the recursion, we get 
-    %   $(x_1,\ldots,x_n) >_{1\ldots n} (x_1',\ldots, x_n')$ iff $\exists k < n.(\forall i < k. x_i = x_i') \land x_k >_k x_k'$.
-    %   If $(A_1,>_1), \ldots, (A_n,>_n)$ are strict partial orders, then so is $(A_1 \times \ldots \times A_n, >_{1\ldots n})$. 
-    %   If $(A_1,>_1), \ldots, (A_n,>_n)$ terminates, then so does $(A_1 \times \ldots \times A_n, >_{1\ldots n})$. 
+    %   By iteration, we can form lexicographic product over any number of rewriting systems $(A_i, >_i), i=1,\ldots,n$. For $n>1$, the lexicographic product $(A_1 \mathop{\times} (A_2 \mathop{\times} \ldots \mathop{\times} A_n),>_{1\ldots n})$ is the lexicographic product of $(A_1, >_1)$ and $(A_2 \mathop{\times} \ldots \mathop{\times} A_n,>{2\ldots n})$. Unwinding the recursion, we get 
+    %   $(x_1,\ldots,x_n) >_{1\ldots n} (x_1',\ldots, x_n')$ iff $\exists k < n.(\forall i < k. x_i \mathop{=} x_i') \mathop{\land} x_k >_k x_k'$.
+    %   If $(A_1,>_1), \ldots, (A_n,>_n)$ are strict partial orders, then so is $(A_1 \mathop{\times} \ldots \mathop{\times} A_n, >_{1\ldots n})$. 
+    %   If $(A_1,>_1), \ldots, (A_n,>_n)$ terminates, then so does $(A_1 \mathop{\times} \ldots \mathop{\times} A_n, >_{1\ldots n})$. 
     % \end{example}
     
     % \begin{example}[Finite Lexicographic Product \cite{nipkow1998term}]
-    %   A lexicographic product can be extended iteratively over any number of rewriting systems \((A_i, >_i)\) for \(i = 1, \ldots, n\). For \(n > 1\), the lexicographic product \((A_1 \times A_2 \times \dots \times A_n, >_{1\ldots n})\) is defined as the lexicographic product of \((A_1, >_1)\) and \((A_2 \times \dots \times A_n, >_{2\ldots n})\). Expanding this recursion, we have 
-    %   \((x_1, \dots, x_n) >_{1\ldots n} (x_1', \dots, x_n')\) if and only if there exists \(k < n\) such that \((\forall i < k . x_i = x_i') \land x_k >_k x_k'\).
-    %   If each \((A_1, >_1), \ldots, (A_n, >_n)\) is a strict partial order, then \((A_1 \times \dots \times A_n, >_{1\ldots n})\) is also a strict partial order. 
-    %   Moreover, if \((A_1, >_1), \ldots, (A_n, >_n)\) terminate, then the lexicographic product \((A_1 \times \dots \times A_n, >_{1\ldots n})\) also terminates.
+    %   A lexicographic product can be extended iteratively over any number of rewriting systems \((A_i, >_i)\) for \(i \mathop{=} 1, \ldots, n\). For \(n \mathop{>} 1\), the lexicographic product \((A_1 \mathop{\times} A_2 \mathop{\times} \dots \mathop{\times} A_n, >_{1\ldots n})\) is defined as the lexicographic product of \((A_1, >_1)\) and \((A_2 \mathop{\times} \dots \mathop{\times} A_n, >_{2\ldots n})\). Expanding this recursion, we have 
+    %   \((x_1, \dots, x_n) >_{1\ldots n} (x_1', \dots, x_n')\) if and only if there exists \(k < n\) such that \((\forall i < k . x_i \mathop{=} x_i') \mathop{\land} x_k >_k x_k'\).
+    %   If each \((A_1, >_1), \ldots, (A_n, >_n)\) is a strict partial order, then \((A_1 \mathop{\times} \dots \mathop{\times} A_n, >_{1\ldots n})\) is also a strict partial order. 
+    %   Moreover, if \((A_1, >_1), \ldots, (A_n, >_n)\) terminate, then the lexicographic product \((A_1 \mathop{\times} \dots \mathop{\times} A_n, >_{1\ldots n})\) also terminates.
     % \end{example}
     
     
     % \begin{example}[Strings of Arbitrary but Finite Length with Lexicographic Order \cite{nipkow1998term}]
-    %   Given an rewriting system \((A, >)\), the lexicographic order \((A^*, >_{lex})\) is defined as follows: \(x > x'\) if and only if \((|x| > |x'|) \lor (|x| = |x'| \land y \succ y')\).
-    %   If \(>\) is a strict partial order, then \(\gg\) is also a strict partial order. Furthermore, if both \((A, >)\) and \((B, \succ)\) are terminating rewriting systems, then their lexicographic product \((A \times B, \gg)\) also terminates.
+    %   Given an rewriting system \((A, >)\), the lexicographic order \((A^*, >_{lex})\) is defined as follows: \(x \mathop{>} x'\) if and only if \((|x| \mathop{>} |x'|) \lor (|x| \mathop{=} |x'| \mathop{\land} y \mathop{\succ} y')\).
+    %   If \(>\) is a strict partial order, then \(\gg\) is also a strict partial order. Furthermore, if both \((A, >)\) and \((B, \mathop{\succ})\) are terminating rewriting systems, then their lexicographic product \((A \mathop{\times} B, \gg)\) also terminates.
     % \end{example}
     
     % \begin{definition}[Multiset Order \cite{nipkow1998term}]
-    %   A \textbf{multiset} is a generalization of a set where elements can occur multiple times. Formally, it is defined as a function \( M: A \rightarrow \mathbb{N} \), where for each \(a \in A\), \(M(a)\) represents the number of times \(a\) appears in the multiset \(M\). The collection of all multisets over a set \(A\) is denoted by \(\mathcal{M}(A)\).
+    %   A \textbf{multiset} is a generalization of a set where elements can occur multiple times. Formally, it is defined as a function \( M: A \mathop{\rightarrow} \mathbb{N} \), where for each \(a \mathop{\in} A\), \(M(a)\) represents the number of times \(a\) appears in the multiset \(M\). The collection of all multisets over a set \(A\) is denoted by \(\mathcal{M}(A)\).
     
-    %   Given a strict partial order \(>\) on a set \(A\), the corresponding multiset order \(>_{mul}\) on \(\mathcal{M}(A)\) is defined as follows: \(M >_{mul} N\) if and only if there exist multisets \(X, Y \in \mathcal{M}(A)\) such that:
+    %   Given a strict partial order \(>\) on a set \(A\), the corresponding multiset order \(>_{mul}\) on \(\mathcal{M}(A)\) is defined as follows: \(M >_{mul} N\) if and only if there exist multisets \(X, Y \mathop{\in} \mathcal{M}(A)\) such that:
     %   \begin{itemize}
-    %       \item \(X \subseteq M\) and \(X \neq \emptyset\),
-    %       \item \(N = (M - X) \cup Y\), and
-    %       \item \(\forall y \in Y, \exists x \in X \text{ such that } x > y\).
+    %       \item \(X \mathop{\subseteq} M\) and \(X \mathop{\neq} \emptyset\),
+    %       \item \(N \mathop{=} (M - X) \mathop{\cup} Y\), and
+    %       \item \(\forall y \mathop{\in} Y, \exists x \mathop{\in} X \text{ such that } x \mathop{>} y\).
     %   \end{itemize}
     %   If the rewriting system \((A, >)\) terminates, then the multiset order \((\mathcal{M}(A), >_{mul})\) also terminates.
     % \end{definition}
     % \color{black}
 % In practice, it is often more convient to embed the rewriting system into a terminating rewriting system via a morphism that is the composition of a serie of morphisms.
 % \begin{corollary}[Proving termination]
-%   A rewriting system $\mathcal{R}$ is terminating if there is a terminating rewriting system $\mathcal{S}$ and functors $h_1,\ldots, h_n$ such that $h_1 \star \ldots \star h_n : \mathcal{R} \to \mathcal{S}$
+%   A rewriting system $\mathcal{R}$ is terminating if there is a terminating rewriting system $\mathcal{S}$ and functors $h_1,\ldots, h_n$ such that $h_1 \mathop{\star} \ldots \mathop{\star} h_n : \mathcal{R} \mathop{\to} \mathcal{S}$
 % \end{corollary}
 
    
 %   \begin{proposition}[Proving Relative Termination]
-%     Let \((S, \to \cup \leadsto) \) be an abstract rewriting system. \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if there is a terminating rewriting system $(R,>)$ and a function $h : S \to R$ such that
+%     Let \((S, \mathop{\to} \mathop{\cup} \leadsto) \) be an abstract rewriting system. \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if there is a terminating rewriting system $(R,>)$ and a function $h : S \mathop{\to} R$ such that
 %     \begin{itemize}
 %       \item $h$ is abstract rewriting system homomorphism from $(S,\to)$ to  $(R,>)$
 %       \item $h$ is abstract rewriting system homomorphism from $(S,\leadsto)$ to  $(R,\geq)$
@@ -284,7 +284,7 @@ We define binary relations and orders on a collection of objects instead of on a
         \label{def:graph:unlabeled}
         An \textbf{unlabeled graph} \( G \) consists of a collection of \textbf{nodes} (also called \textbf{objects}) and a collection of \textbf{edges}, each equipped with a \textbf{source} (or \textbf{domain}) node and a \textbf{target} (or \textbf{codomain}) node. 
         For an unlabeled graph \( G \), we denote by \( G_0 \) its collection of nodes, \( G_1 \) its collection of edges, \( \operatorname{dom}:G_1{\to}G_0 \) the domain function, and \( \operatorname{cod}:G_1{\to}G_0 \) the codomain function. An unlabeled graph is \textbf{finite} if \( G_0 \) and \( G_1 \) are both finite sets.
-        We write \( a: s \to t \) to indicate that \( a \) is a directed edge from \( s \) to \( t \). 
+        We write \( a: s \mathop{\to} t \) to indicate that \( a \) is a directed edge from \( s \) to \( t \). 
     \end{definition}   
     \begin{example}
       A unlabeled graph is a directed multigraph as illustrated below.
@@ -310,11 +310,11 @@ We define binary relations and orders on a collection of objects instead of on a
     % A homomorphism of unlabeled graphs is a mapping between the nodes and edges of two graphs that preserves the graph structure.
     \begin{definition}
         \label{def:unlabeled_graph:homomorphism}
-        Let \( G \) and \( H \) be unlabeled graphs. A \textbf{homomorphism of unlabeled graphs} $h: G \to H$ is a pair of functions $h_0: G_0 \to H_0 $ and $h_1: G_1 \to H_1$ such that for every edge \( a: s \to t \) in \( G \), we have \( h_1(a) : h_0(s) \to h_0(t) \) in \( H \).
+        Let \( G \) and \( H \) be unlabeled graphs. A \textbf{homomorphism of unlabeled graphs} $h: G \mathop{\to} H$ is a pair of functions $h_0: G_0 \mathop{\to} H_0 $ and $h_1: G_1 \mathop{\to} H_1$ such that for every edge \( a: s \mathop{\to} t \) in \( G \), we have \( h_1(a) : h_0(s) \mathop{\to} h_0(t) \) in \( H \).
     \end{definition}
     \begin{definition}
         \label{def:graph}
-        Let \(\Sigma\) be a finite set of labels. A \textbf{labeled graph} is an ordered pair \((G,\lambda)\) where \( G \) is an unlabeled graph and \( \lambda : G_1 \rightarrow \Sigma\) is an edge-labeling function. 
+        Let \(\Sigma\) be a finite set of labels. A \textbf{labeled graph} is an ordered pair \((G,\lambda)\) where \( G \) is an unlabeled graph and \( \lambda : G_1 \mathop{\rightarrow} \Sigma\) is an edge-labeling function. 
         It is called \textbf{finite} if its underlying unlabeled graph is finite.  
     \end{definition}
     \begin{example} An labeled graph is edge-labeled directed multigraph as illustrated below.
@@ -342,13 +342,13 @@ We define binary relations and orders on a collection of objects instead of on a
     A homomorphism of labeled graphs is a homomorphism of unlabeled graphs that preserves the labels assigned to the edges.
     \begin{definition}
         \label{def:graph:homomorphism}
-        Let \( (G,\lambda) \) and \( (H,\lambda') \) be labeled graphs. A \textbf{homomorphism of labeled graphs} $h:(G,\lambda) \rightarrow (H,\lambda')$ is a homomorphism of unlabeled graphs such that for each edge \( a \) in \( G \), we have \( \lambda (a) = \lambda' (h_1 (a)) \).
+        Let \( (G,\lambda) \) and \( (H,\lambda') \) be labeled graphs. A \textbf{homomorphism of labeled graphs} $h:(G,\lambda) \mathop{\rightarrow} (H,\lambda')$ is a homomorphism of unlabeled graphs such that for each edge \( a \) in \( G \), we have \( \lambda (a) \mathop{=} \lambda' (h_1 (a)) \).
     \end{definition}
     \begin{notation}
         We use the notation from~\cite[Notation 1]{overbeek2023apbpotutorial} to visualize edge-labeled graph homomorphisms. Labeled graphs are enclosed in boxes with their names displayed in the top-left corner. Nodes and edges are assigned subsets of \(\mathbb{N}\) as identifiers, and these identifiers are chosen such that: (i) Each node or edge \( y \) in the codomain graph is assigned the union of the identifiers of all nodes or edges in the domain graph that are mapped to \( y \); (ii) The graph homomorphism is uniquely determined by this assignment.
         
         \noindent To further improve readability, we represent sets by listing their elements. Additionally, we omit identifiers when doing so does not cause confusion. Furthermore, if a node has a unique loop, we omit the loop and represent the corresponding label as a node-label. 
-        This is illustrated in the following representation of a homomorphism \( h: G \to H \).
+        This is illustrated in the following representation of a homomorphism \( h: G \mathop{\to} H \).
         
         \begin{center}
             \resizebox{0.45\textwidth}{!}{
@@ -388,7 +388,7 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
 % \end{definition}  
 \begin{definition}[GLS rewriting rule]
   \label{def:gls_rule}
-  A \textbf{GLS rewriting rule} is an ordered pair of labeled graphs \( \rho = (U,\lambda) \to (U, \lambda') \) that share the same underlying unlabeled graph \( U \). The labeled graph \( (U, \lambda) \) is said to be the \textbf{left-hand side graph}, denoted $\opn{lhs}(\rho)$, and \( (U, \lambda')\) the \textbf{right-hand side graph}, denoted $\opn{rhs}(\rho)$.
+  A \textbf{GLS rewriting rule} is an ordered pair of labeled graphs \( \rho \mathop{=} (U,\lambda) \mathop{\to} (U, \lambda') \) that share the same underlying unlabeled graph \( U \). The labeled graph \( (U, \lambda) \) is said to be the \textbf{left-hand side graph}, denoted $\opn{lhs}(\rho)$, and \( (U, \lambda')\) the \textbf{right-hand side graph}, denoted $\opn{rhs}(\rho)$.
 \end{definition} 
 
 \begin{example}
@@ -417,7 +417,7 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
 \end{example}
 
 % \begin{definition}[Match]
-%   Let \(((U,\lambda),(U, \lambda')) \) be a graph relabeling rule. A \emph{match} of this rule in a labeled graph \( (G, \lambda_G) \) is a graph homomorphism \( m : (U,\lambda) \to (G, \lambda_G) \).
+%   Let \(((U,\lambda),(U, \lambda')) \) be a graph relabeling rule. A \emph{match} of this rule in a labeled graph \( (G, \lambda_G) \) is a graph homomorphism \( m : (U,\lambda) \mathop{\to} (G, \lambda_G) \).
 % \end{definition}
 
 \todo{W est necessaire?}
@@ -425,13 +425,13 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
   \label{def:gls:rewriting}
   % \textbf{GLS match mechanism} is a mapping that associates to \( (\rho, G) \) the set of all injective graph homomorphisms $m : \opn{lhs}(\rho) \rightarrowtail G$.
  
-  Let \( \rho = (L, \lambda_L) \to (R,\lambda_R) \) be a GLS rewriting rule, \( (G, \lambda_G) \) a graph.
+  Let \( \rho \mathop{=} (L, \lambda_L) \mathop{\to} (R,\lambda_R) \) be a GLS rewriting rule, \( (G, \lambda_G) \) a graph.
 
   A \textbf{GLS match} of \( \rho \) in \( G \) is an injective graph homomorphism \( m : (L, \lambda_L) \rightarrowtail (G, \lambda_G) \). 
   
-  Let $\lambda'_G$ be the labeling function on nodes and edges of \( G \) such that \( \lambda'_G(x) = \lambda_G(x) \) for all nodes and edges \( x \) in \( G \setminus \operatorname{Im}(m) \), and \( \lambda'_G(x) = \lambda_R(m^{-1}(x)) \) otherwise.
+  Let $\lambda'_G$ be the labeling function on nodes and edges of \( G \) such that \( \lambda'_G(x) \mathop{=} \lambda_G(x) \) for all nodes and edges \( x \) in \( G \mathop{\setminus} \operatorname{Im}(m) \), and \( \lambda'_G(x) \mathop{=} \lambda_R(m^{-1}(x)) \) otherwise.
 
-  Let $m' : (R, \lambda_R) \rightarrowtail (G, \lambda'_G)$ be the injective graph homomorphism with \( m(x) = m'(x) \) for all nodes and edges \( x \) in \( G \).
+  Let $m' : (R, \lambda_R) \rightarrowtail (G, \lambda'_G)$ be the injective graph homomorphism with \( m(x) \mathop{=} m'(x) \) for all nodes and edges \( x \) in \( G \).
 
   The pair $(m, m')$ of injective graph homomorphisms is a \textbf{witness} of the rewriting step from \( (G, \lambda_G) \) to \( (G, \lambda'_G) \) using the rule \( \rho \) and match \( m \).
 \end{definition}
@@ -484,13 +484,13 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
     
       Let $\mathcal{R}$ be a set of graph relabeling rules and $<$ a strict partial order on $\mathcal{R}$.
     
-      We defined a rewriting framework, denoted $\mathfrak{pgls}(\mathcal{R},<)$, as follows: for all $\rho \in \mathcal{R}$,
+      We defined a rewriting framework, denoted $\mathfrak{pgls}(\mathcal{R},<)$, as follows: for all $\rho \mathop{\in} \mathcal{R}$,
       $\mathfrak{pgls}(\mathcal{R},<)(\rho)$ is the classe of all witnesses of rewriting steps
       $\left(  m_\rho, m'_\rho \right)$ using the rule $\rho$
       such that there does not exist 
-      a rule $\sigma \in \mathcal{R}$ with $\sigma > \rho$ and a witness of a rewriting step
+      a rule $\sigma \mathop{\in} \mathcal{R}$ with $\sigma \mathop{>} \rho$ and a witness of a rewriting step
       $\left(  m_\sigma, m'_\sigma \right)$ using the rule $\sigma$ such that 
-      $\operatorname{Im}(m_\rho) \cap \operatorname{Im}(m_\sigma) \neq \emptyset$.
+      $\operatorname{Im}(m_\rho) \mathop{\cap} \operatorname{Im}(m_\sigma) \mathop{\neq} \emptyset$.
  
       The structure $(\mathbf{Graph},\mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I}, \mathfrak{pgls}(\mathcal{R},<))$, where $M, \mathfrak{M}, W , \mathfrak{W}, \mathfrak{I}$ are the match, match mechanism, witnesses, witness function and interpretation functions introduced in Definition~\ref{def:gls:rewriting}, defines a rewriting system, called \textbf{graph relabeling system with priority relation on rules (PGLS)}. 
 
@@ -500,14 +500,14 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
     \todo{example: ref,  explanation}
     \begin{example}
       \label{example:pgrs_spanning_tree}
-      Consider the GRS \(\mathcal{R}= \{r_1,r_2\}\) with \(\Sigma = \{N, A, 0, 1\}\) and \(r_1 > r_2\). The rules \(r_1\) and \(r_2\) are depicted below:
+      Consider the GRS \(\mathcal{R}= \{r_1,r_2\}\) with \(\Sigma \mathop{=} \{N, A, 0, 1\}\) and \(r_1 \mathop{>} r_2\). The rules \(r_1\) and \(r_2\) are depicted below:
       
       \begin{tikzpicture}
       \draw (-1,0) node[left] {$r_1$:};
       
       \node[draw,circle] (x_1) at (0,0) {$1$};
       \draw (0,0.3) node[above]{A};
-      \node[draw,circle, minimum size = 1pt] (x_2) at (2,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x_2) at (2,0) {$2$};
       \draw (2,0.3) node[above]{N};
       \draw[-] (x_1) -- (x_2);
       
@@ -515,7 +515,7 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
       
       \node[draw,circle] (x3) at (5,0) {$1$};
       \draw (5,0.3) node[above]{M};
-      \node[draw,circle, minimum size = 1pt] (x4) at (7,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x4) at (7,0) {$2$};
       \draw (7,0.3) node[above]{A};
       \draw[-] (x3) -- (x4);
       \end{tikzpicture}
@@ -525,7 +525,7 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
       
       \node[draw,circle] (x_1) at (0,0) {$1$};
       \draw (0,0.3) node[above]{M};
-      \node[draw,circle, minimum size = 1pt] (x_2) at (2,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x_2) at (2,0) {$2$};
       \draw (2,0.3) node[above]{A};
       \draw[-] (x_1) -- (x_2);
       
@@ -533,7 +533,7 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
       
       \node[draw,circle] (x3) at (5,0) {$1$};
       \draw (5,0.3) node[above]{A};
-      \node[draw,circle, minimum size = 1pt] (x4) at (7,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x4) at (7,0) {$2$};
       \draw (7,0.3) node[above]{F};
       \draw[-] (x3) -- (x4);
       \end{tikzpicture}
@@ -549,17 +549,17 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
       \cite{litovsky1999graph}
       
       \begin{definition}[Graph rewriting framework with forbidden contexts on rules]
-        Let $\mathcal{R}$ be a finit set of GLS rewriting rules and $f$ a function associating to every rule $(L \rightarrow R) \in \mathcal{R}$ a finite set of graph homomorphisms from $L$.
+        Let $\mathcal{R}$ be a finit set of GLS rewriting rules and $f$ a function associating to every rule $(L \mathop{\rightarrow} R) \mathop{\in} \mathcal{R}$ a finite set of graph homomorphisms from $L$.
       
-        We define a rewriting framework, denoted $\mathfrak{fcgls}(\mathcal{R},f)$, as follows: for $\rho = (L \rightarrow R) \in \mathcal{R}$, $\mathfrak{fcgls}(\mathcal{R},f)(\rho)$ is the classe of all GLS witnesses of rewriting steps
+        We define a rewriting framework, denoted $\mathfrak{fcgls}(\mathcal{R},f)$, as follows: for $\rho \mathop{=} (L \mathop{\rightarrow} R) \mathop{\in} \mathcal{R}$, $\mathfrak{fcgls}(\mathcal{R},f)(\rho)$ is the classe of all GLS witnesses of rewriting steps
         $\left(  m: L \rightarrowtail G, m'  \right)$ such that 
       
-        for all $(h : L \rightarrowtail F) \in f(\rho)$, there is no $g:F \rightarrowtail G$ such that $h \star g = m$.
+        for all $(h : L \rightarrowtail F) \mathop{\in} f(\rho)$, there is no $g:F \rightarrowtail G$ such that $h \mathop{\star} g \mathop{=} m$.
       \end{definition}
 
       
       \begin{definition}[Graph relabeling system with Forbidden Contexts]
-        Let $\mathcal{R}$ be a set of GLS rewriting rules and $f$ a function associating to every rule $(L \rightarrow R) \in \mathcal{R}$ a finite set of graph homomorphisms from $L$.
+        Let $\mathcal{R}$ be a set of GLS rewriting rules and $f$ a function associating to every rule $(L \mathop{\rightarrow} R) \mathop{\in} \mathcal{R}$ a finite set of graph homomorphisms from $L$.
 
         Let $M, \mathfrak{M}, W , \mathfrak{W}, \mathfrak{I}$ be the match, match mechanism, witness, witness function and interpretation functions introduced in Definition~\ref{def:gls:rewriting}.
       
@@ -627,7 +627,7 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
                 \end{tikzpicture}
       
       
-                \begin{tikzpicture}[scale = 0.8]
+                \begin{tikzpicture}[scale \mathop{=} 0.8]
                     \draw (-1,0) node[left] {$r_3$:};
                     
                     \node[draw,circle] (x_1) at (0,0) {1} ;
@@ -687,7 +687,7 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
       % A relabelling rule with forbidden contexts is a 4-tuple $R=(G_R,\lambda_R,\lambda'_R,F_R)$ such 
       % that $(G_R,\lambda_R,\lambda'_R)$.
           
-      % A graph relabelling system with forbidden contexts (FCGRS) is a triple $\mathcal{R} = (L,I,P)$ 
+      % A graph relabelling system with forbidden contexts (FCGRS) is a triple $\mathcal{R} \mathop{=} (L,I,P)$ 
       % defined as a GRS except that the set P is a set of relabelling rules with forbidden contexts. 
       % \end{definition}
       
@@ -696,17 +696,17 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
       %   Let $\mathcal{R}$ be a set of graph relabeling rules,  $>$ a strict partial order on $\mathcal{R}$, and $f$ a function associating to every rule $r$ a set of morphisms from $lhs(r)$ in \textbf{Graph}.  For all labeled graph $H$, for all $r\mathcal{R}$, let  
       %   \begin{flalign*}
       %     \f{F}_{fcpgls}(r) \isdef 
-      %     \f{F}_{pgls}(r) \cap \f{F}_{fcgls}(r)
+      %     \f{F}_{pgls}(r) \mathop{\cap} \f{F}_{fcgls}(r)
       %   \end{flalign*}
-      %   The rewriting system $(\textbf{Graph}, \to_\mathcal{R})$, g√©n√©rated by $\mathcal{R}$ and $\f{F}_{fcpgls}$ is called a \textbf{graph relabeling system with priorities and forbidden contexts} (FCPGLS).
+      %   The rewriting system $(\textbf{Graph}, \mathop{\to} _\mathcal{R})$, g√©n√©rated by $\mathcal{R}$ and $\f{F}_{fcpgls}$ is called a \textbf{graph relabeling system with priorities and forbidden contexts} (FCPGLS).
       % \end{definition}
        
-      % Let $G,G'$ be two graphs. A \textbf{graph homomorphism} consists of two functions $h_0 : G_v \to G_v'$ and $h_1: G_e \to G_e'$ such that 
-      % for all $x \in G_e$
+      % Let $G,G'$ be two graphs. A \textbf{graph homomorphism} consists of two functions $h_0 : G_v \mathop{\to} G_v'$ and $h_1: G_e \mathop{\to} G_e'$ such that 
+      % for all $x \mathop{\in} G_e$
       % \begin{itemize}
-      %       \item $G'_s( h_1(x)) = h_0(G_s(x))$ 
-      %       \item $G'_t( h_1(x)) = h_0(G_t(x))$  
-      %       \item $G'_l( h_1(x)) = G_l(x)$   
+      %       \item $G'_s( h_1(x)) \mathop{=} h_0(G_s(x))$ 
+      %       \item $G'_t( h_1(x)) \mathop{=} h_0(G_t(x))$  
+      %       \item $G'_l( h_1(x)) \mathop{=} G_l(x)$   
       % \end{itemize}
       
        
@@ -717,7 +717,7 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
     , it is possible to determine whether all reduction sequences starting from a given graph will eventually terminate. 
     
     \begin{proposition}
-      Let $\Sigma$ be a finite set of labels.  Let $\mathcal{R}$ be a graph relabeling system, a graph relabeling system with priorities or a graph relabeling system with forbidden contexts. The termination of $(\textbf{Graph}, \to_{\mathfrak{gls(\mathcal{R})}})$ is decidable.
+      Let $\Sigma$ be a finite set of labels.  Let $\mathcal{R}$ be a graph relabeling system, a graph relabeling system with priorities or a graph relabeling system with forbidden contexts. The termination of $(\textbf{Graph}, \mathop{\to} _{\mathfrak{gls(\mathcal{R})}})$ is decidable.
       \end{proposition}
       \begin{proof}
          Since the graph relabeling rules donnot modify the underlying unlabeled graph and the set of labels and the set of rules are finite, the set of accessible graphs from $G$ is finite. Furthermore, there are only finite possible rewriting sequences. If there is a rewriting sequence which has a cycle, then the graph relabeling system is not terminating, otherwise it terminates.
@@ -734,28 +734,28 @@ Graph-relabeling-systems introduced in \cite{litovsky1999graph} are rewriting sy
 \section{Terms}
 Terms on which first order term rewriting systems are defined are terms of a first order language.
 % \begin{definition}[Signature $\Sigma$~\cite{nipkow1998term}]
-%   A \textbf{signature} \( \Sigma \) is a set of function symbols and for each \( f \in \Sigma \) a non-negative integer \( n \) called the arity of \( f \).
+%   A \textbf{signature} \( \Sigma \) is a set of function symbols and for each \( f \mathop{\in} \Sigma \) a non-negative integer \( n \) called the arity of \( f \).
 % \end{definition}
 \begin{definition}[First order language~\text{\cite[Def 1.1.1]{marker2006model},\cite[Def 2.1.1]{terese2003term}}]
   A \textbf{language} \( \mathcal{L} \) is given by specifying the following data:
   \begin{itemize}
-      \item  a set of function symbols \( \mathcal{F} \) and positive integers \( n_f \) for each \( f \in \mathcal{F} \);
-      \item  a set of relation symbols \( \mathcal{R} \) and positive integers \( n_R \) for each \( R \in \mathcal{R} \);
+      \item  a set of function symbols \( \mathcal{F} \) and positive integers \( n_f \) for each \( f \mathop{\in} \mathcal{F} \);
+      \item  a set of relation symbols \( \mathcal{R} \) and positive integers \( n_R \) for each \( R \mathop{\in} \mathcal{R} \);
       \item  a set of constant symbols \( \mathcal{C} \).
   \end{itemize}
 \end{definition}
 % \begin{definition}[$\Sigma$-Terms]
 %   Let $\Sigma$ be a signature. The set $T(\Sigma)$ of $\Sigma$-terms is the smallest set such that 
 %   \begin{itemize}
-%     \item for all $n\geq 0$, all function symbols $f$ of arity n, and all $t_1,\hdots, t_n \in T(\Sigma, \mathcal{X})$, we have $f(t_1,...,t_n) \in T(\Sigma, \mathcal{X})$.
+%     \item for all $n\geq 0$, all function symbols $f$ of arity n, and all $t_1,\hdots, t_n \mathop{\in} T(\Sigma, \mathcal{X})$, we have $f(t_1,...,t_n) \mathop{\in} T(\Sigma, \mathcal{X})$.
 %   \end{itemize}
 % \end{definition}
 
 \begin{definition}[$(\Sigma,\mathcal{X})$-Terms~\text{\cite{nipkow1998term},\cite[Def 2.1.2]{terese2003term}}]
-  Let $\Sigma$ be a first order language and $\mathcal{X}$ be a countably infinite set of variable symbols such that $\Sigma \cap \mathcal{X} = \emptyset$. The set $T(\Sigma,\mathcal{X})$ of $(\Sigma,\mathcal{X})$-terms is the smallest set such that 
+  Let $\Sigma$ be a first order language and $\mathcal{X}$ be a countably infinite set of variable symbols such that $\Sigma \mathop{\cap} \mathcal{X} \mathop{=} \emptyset$. The set $T(\Sigma,\mathcal{X})$ of $(\Sigma,\mathcal{X})$-terms is the smallest set such that 
   \begin{itemize}
-  \item $\mathcal{X} \subseteq T(\Sigma,\mathcal{X})$, and
-  \item for all $n\geq 0$, all function symbols $f$ of arity n, and all $t_1,\hdots, t_n \in T(\Sigma, \mathcal{X})$, we have $f(t_1,...,t_n) \in T(\Sigma, \mathcal{X})$.
+  \item $\mathcal{X} \mathop{\subseteq} T(\Sigma,\mathcal{X})$, and
+  \item for all $n\geq 0$, all function symbols $f$ of arity n, and all $t_1,\hdots, t_n \mathop{\in} T(\Sigma, \mathcal{X})$, we have $f(t_1,...,t_n) \mathop{\in} T(\Sigma, \mathcal{X})$.
   \end{itemize}
 \end{definition}
 
@@ -766,7 +766,7 @@ Terms on which first order term rewriting systems are defined are terms of a fir
 A term rewriting system (TRS) is a rewriting system where the objects are $T(\Sigma,\mathcal{X})$-terms where $\Sigma$ is a set of function symbols and $\mathcal{X}$ is a set of variable symbols disjoint from $\Sigma$.
   
 \begin{definition}[term rewriting rule~\text{\cite[Def.2.2.1]{terese2003term}}]
-    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables. A \textbf{term rewriting rule} is an ordered pair $(l,r) \in T(\Sigma, \mathcal{X})^2$, denoted $l \to r$, such that
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables. A \textbf{term rewriting rule} is an ordered pair $(l,r) \mathop{\in} T(\Sigma, \mathcal{X})^2$, denoted $l \mathop{\to} r$, such that
     \begin{itemize}
       \item $l$ is not a variable, and
       \item every variable occurring in $r$ also occurs in $l$.
@@ -774,27 +774,27 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
   \end{definition}
   
   \begin{definition}[Position \cite{nipkow1998term} \cite{urbain2001approche}]
-    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variable symbols disjoint from $\Sigma$. Let $s \in T(\Sigma, \mathcal{X})$.
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variable symbols disjoint from $\Sigma$. Let $s \mathop{\in} T(\Sigma, \mathcal{X})$.
     The set of positions of subterms of $s$ is a set $\operatorname{Pos}(s)$ defined by induction as follows:
     \begin{itemize}
-      \item if $s \in \mathcal{X}$, then $\operatorname{Pos}(s) = \set{\epsilon}$
-      \item if $s = f(t_1,\hdots,t_n)$, 
-            then $\operatorname{Pos}(s) = \set{\epsilon} \cup \bigcup_{1 \leq k \leq n} \left \{kp\mid p \in \operatorname{Pos}(t_k) \right \}$
+      \item if $s \mathop{\in} \mathcal{X}$, then $\operatorname{Pos}(s) \mathop{=} \set{\epsilon}$
+      \item if $s \mathop{=} f(t_1,\hdots,t_n)$, 
+            then $\operatorname{Pos}(s) \mathop{=} \set{\epsilon} \mathop{\cup} \bigcup_{1 \leq k \leq n} \left \{kp\mid p \mathop{\in} \operatorname{Pos}(t_k) \right \}$
   \end{itemize}
-  A position of a subterm of $s$ is a word on alphabet $\mathbb{N}\setminus\set{0}$. 
+  A position of a subterm of $s$ is a word on alphabet $\mathbb{N}\mathop{\setminus}\set{0}$. 
     The concatenation of words $p$ and $q$ will be denoted $pq$.
   \end{definition}
 
   \begin{definition}[Subterm \cite{nipkow1998term} \cite{urbain2001approche}]
-    For $p \in \mathcal{Pos}(s)$, the \textbf{subterm of s at position p}, denoted by $s_{|p}$, is defined by induction on the length of p:
+    For $p \mathop{\in} \mathcal{Pos}(s)$, the \textbf{subterm of s at position p}, denoted by $s_{|p}$, is defined by induction on the length of p:
     \begin{itemize}
       \item $s_{|\epsilon} := s$, and
       \item $f(s_1,...,s_n)_{|iq} := \left(s_i\right)_{|q}$.
     \end{itemize} 
     
-    Note that, for $p = iq$, $p \in \mathcal{Pos}$ implies that s is of the form $s = f(s_1,...,s_n)$ with $i \le n$
+    Note that, for $p \mathop{=} iq$, $p \mathop{\in} \mathcal{Pos}$ implies that s is of the form $s \mathop{=} f(s_1,...,s_n)$ with $i \le n$
     
-    For $p \in \mathcal{Pos}(s)$, we denote by $s[t]_p$ the term that is obtained from s by \textbf{replacing the subterm at position p by t}:
+    For $p \mathop{\in} \mathcal{Pos}(s)$, we denote by $s[t]_p$ the term that is obtained from s by \textbf{replacing the subterm at position p by t}:
   \begin{itemize}
     \item $s[t]_\epsilon := t$
     \item $f(s_1,...,s_n)[t]_{iq} := f(s_1,...,s_i[t]_{q},...,s_n)$
@@ -804,17 +804,17 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
    
   \begin{definition}[Substitution]
     Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables.
-    A \text{substitution} is a function $\sigma : \mathcal{X} \rightarrow T(\Sigma, \mathcal{X})$ such that $\sigma(x) \not = x$ for only finitely many variables. Any substitution can be extended to a mapping on $T(\Sigma,\mathcal{X})$ by letting $\sigma(f(s_1,...,s_n)) \overset{\operatorname{def}}{=}f(\sigma(s_1),...,\sigma(s_n))$.
+    A \text{substitution} is a function $\sigma : \mathcal{X} \mathop{\rightarrow} T(\Sigma, \mathcal{X})$ such that $\sigma(x) \not \mathop{=} x$ for only finitely many variables. Any substitution can be extended to a mapping on $T(\Sigma,\mathcal{X})$ by letting $\sigma(f(s_1,...,s_n)) \overset{\operatorname{def}}{=}f(\sigma(s_1),...,\sigma(s_n))$.
   \end{definition}
 
    
   \begin{definition}[Term rewriting]
     \label{def:trs:rewriting}
-    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables. Let $\mathcal{R}$ be a set of TRS rewriting rules. Let $s \in T(\Sigma, \mathcal{X})$ and $\rho = (l \to r) \in \mathcal{R}$. Let $p$ be a match of $\rho$ in $s$.
+    Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables. Let $\mathcal{R}$ be a set of TRS rewriting rules. Let $s \mathop{\in} T(\Sigma, \mathcal{X})$ and $\rho \mathop{=} (l \mathop{\to} r) \mathop{\in} \mathcal{R}$. Let $p$ be a match of $\rho$ in $s$.
 
-      A \textbf{match} of $\rho$ in $s$ is a position $p \in \operatorname{Pos}(s)$ such that there exists a substitution $\sigma$ such that $s_{|p} = \sigma(l)$.
+      A \textbf{match} of $\rho$ in $s$ is a position $p \mathop{\in} \operatorname{Pos}(s)$ such that there exists a substitution $\sigma$ such that $s_{|p} \mathop{=} \sigma(l)$.
 
-    The triple $(\rho, s, p, \sigma)$ is a witness of the rewriting step $s \to_\rho^p t$ where $t = s[\sigma(r)]_p$.
+    The triple $(\rho, s, p, \sigma)$ is a witness of the rewriting step $s \mathop{\to} _\rho^p t$ where $t \mathop{=} s[\sigma(r)]_p$.
   \end{definition}
   
   \begin{definition}[TRS rewriting system]
@@ -827,23 +827,23 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
 
   % \begin{definition}[Term Rewriting System]
   %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
-  %   Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$.
-  %   For all $s \in T(\Sigma, \mathcal{X})$ and for all $l \to r \in \mathcal{R}$ we define
+  %   Let $\mathcal{R} \mathop{\subseteq} T(\Sigma,\mathcal{X})^2$.
+  %   For all $s \mathop{\in} T(\Sigma, \mathcal{X})$ and for all $l \mathop{\to} r \mathop{\in} \mathcal{R}$ we define
   %   % \begin{flalign*}
-  %   %   \operatorname{Acc}_{trs}(s,l \to r) \overset{\operatorname{def}}{=} 
+  %   %   \operatorname{Acc}_{trs}(s,l \mathop{\to} r) \overset{\operatorname{def}}{=} 
   %   %     \left \{ 
-  %   %         s[\sigma(r)]_p \mid p \in \operatorname{Pos}(s) \land \exists \sigma. s|_p = \sigma(l)
+  %   %         s[\sigma(r)]_p \mid p \mathop{\in} \operatorname{Pos}(s) \mathop{\land} \exists \sigma. s|_p \mathop{=} \sigma(l)
   %   %       \right \}
   %   % \end{flalign*}
   %   \begin{flalign*}
-  %     \f{F}_{trs}(l \to r) \overset{\operatorname{def}}{=} 
+  %     \f{F}_{trs}(l \mathop{\to} r) \overset{\operatorname{def}}{=} 
   %       \left \{ 
   %           (s,t) \mid 
-  %             \exists C \in T(\Sigma \cup \set{\square}, \mathcal{X}). \exists \sigma. 
-  %            s = C[\sigma(l)] \land C[\sigma(r)] = t
+  %             \exists C \mathop{\in} T(\Sigma \mathop{\cup} \set{\square}, \mathcal{X}). \exists \sigma. 
+  %            s \mathop{=} C[\sigma(l)] \mathop{\land} C[\sigma(r)] \mathop{=} t
   %         \right \}
   %   \end{flalign*}
-  %   The rewriting system $(T(\Sigma,\mathcal{X}), \to_\mathcal{R})$, generated by $\mathcal{R}$ and $\f{F}_{trs}$ is called a \textbf{term rewriting system}.
+  %   The rewriting system $(T(\Sigma,\mathcal{X}), \mathop{\to} _\mathcal{R})$, generated by $\mathcal{R}$ and $\f{F}_{trs}$ is called a \textbf{term rewriting system}.
   % \end{definition}
 
 
@@ -854,7 +854,7 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
   \begin{definition}[Term rewriting framework with innermost strategy]
     Let $\mathcal{R}$ be a set of TRS rules. 
   
-    We define the rewriting framework with innermost strategy, denoted $\mathfrak{trsi}$ as follows: for all $\rho \in \mathcal{R}$, $\mathfrak{trsi}(\rho)$ is the collection of all TRS witnesses of rewriting steps $(\rho, s, p, \sigma)$ such that there is no suffix position $p'$ of $p$ such that $s \to_\rho^{p'} t'$ for some $t' \in T(\Sigma,\mathcal{X})$.
+    We define the rewriting framework with innermost strategy, denoted $\mathfrak{trsi}$ as follows: for all $\rho \mathop{\in} \mathcal{R}$, $\mathfrak{trsi}(\rho)$ is the collection of all TRS witnesses of rewriting steps $(\rho, s, p, \sigma)$ such that there is no suffix position $p'$ of $p$ such that $s \mathop{\to} _\rho^{p'} t'$ for some $t' \mathop{\in} T(\Sigma,\mathcal{X})$.
   \end{definition}
   
   \begin{definition}[Term rewriting system with innermost strategy]
@@ -863,21 +863,21 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
     The rewriting system $(T(\Sigma,\mathcal{X}), \mathcal{R}, M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I}, \mathfrak{trsi})$ is called a \textbf{term rewriting system with innermost strategy (TRSI)}.
   \end{definition}
   % \begin{definition}[Innermost TRS]
-  %     % $s \underset{i}{\rightarrow} t$ if $s = C[\sigma(l)] \rightarrow_{l\rightarrow r}C[\sigma(r)] = t$ for some $l \rightarrow r \in R$, some context $C[.]$ and some substitution $\sigma$ such that no proper subterm of $\sigma(l)$  is reducible. 
+  %     % $s \underset{i}{\rightarrow} t$ if $s \mathop{=} C[\sigma(l)] \rightarrow_{l\rightarrow r}C[\sigma(r)] \mathop{=} t$ for some $l \mathop{\rightarrow} r \mathop{\in} R$, some context $C[.]$ and some substitution $\sigma$ such that no proper subterm of $\sigma(l)$  is reducible. 
   %     Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
-  %     Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
-  %     For all $l \to r \in \mathcal{R}$, we define
+  %     Let $\mathcal{R} \mathop{\subseteq} T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
+  %     For all $l \mathop{\to} r \mathop{\in} \mathcal{R}$, we define
   %     \begin{flalign*}
-  %       \mathfrak{F}_{itrs}(l \to r) \overset{def}{=} 
+  %       \mathfrak{F}_{itrs}(l \mathop{\to} r) \overset{def}{=} 
   %         \left \{ 
   %             (s, t) \mid
   %             \exists C 
-  %             % \in T(\Sigma \cup \set{\square},\mathcal{X})
+  %             % \mathop{\in} T(\Sigma \mathop{\cup} \set{\square},\mathcal{X})
   %             .
   %              \exists \sigma.
-  %             s = C[\sigma(l)] \land C[\sigma(r)] = t \land \not \exists l'. \sigma(l) \to_\mathcal{R} l'
-  %               % s = C[\sigma(l)] \rightarrow_{l\rightarrow r}C[\sigma(r)]
-  %             % p \in Pos(s) \land \exists \sigma. s|_p = \sigma(l) \land \not \exists p' \in Pos(s). p' > p \land \exists (l'\to r' \in \mathcal{R}). \exists \sigma'. s_p' = \sigma'(l')
+  %             s \mathop{=} C[\sigma(l)] \mathop{\land} C[\sigma(r)] \mathop{=} t \mathop{\land} \not \exists l'. \sigma(l) \mathop{\to} _\mathcal{R} l'
+  %               % s \mathop{=} C[\sigma(l)] \rightarrow_{l\rightarrow r}C[\sigma(r)]
+  %             % p \mathop{\in} Pos(s) \mathop{\land} \exists \sigma. s|_p \mathop{=} \sigma(l) \mathop{\land} \not \exists p' \mathop{\in} Pos(s). p' \mathop{>} p \mathop{\land} \exists (l' \mathop{\to} r' \mathop{\in} \mathcal{R}). \exists \sigma'. s_p' \mathop{=} \sigma'(l')
   %           \right \}
   %     \end{flalign*}
   %     The rewriting system generated by $\mathcal{R}$ and $\mathfrak{F}_{itrs}$ is called a term rewriting system and will be denoted by $(T(\Sigma,\mathcal{X}), \itrs_\mathcal{R}^*)$. 
@@ -888,8 +888,8 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
       \begin{itemize}
         \item $\Sigma_i$, $1 \leq i \leq n$, partition $\Sigma$,
         \item $\mathcal{R}_i$, $1 \leq i \leq n$, partition $\mathcal{R}$,
-        \item for all $1 \leq i \leq n$ and $\rho \in \mathcal{R}_i$, we have $\Lambda(\rho) \in \Sigma_i$ and $\rho$ is a rule on $T(\Sigma', \mathcal{X})$ where 
-        $\Sigma' = \bigcup \{ \Sigma_j | (\Sigma_j, \mathcal{R}) \preceq (\Sigma_i, \mathcal{R}) \}$.
+        \item for all $1 \leq i \leq n$ and $\rho \mathop{\in} \mathcal{R}_i$, we have $\Lambda(\rho) \mathop{\in} \Sigma_i$ and $\rho$ is a rule on $T(\Sigma', \mathcal{X})$ where 
+        $\Sigma' \mathop{=} \bigcup \{ \Sigma_j | (\Sigma_j, \mathcal{R}) \mathop{\preceq} (\Sigma_i, \mathcal{R}) \}$.
       \end{itemize}
     \end{definition}
   
@@ -899,12 +899,12 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
   
     % \begin{definition}[Hierarchical Innermost TRS \cite{urbain2001approche}]
     %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
-    %   Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
+    %   Let $\mathcal{R} \mathop{\subseteq} T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
     %   Let $\mathfrak{F}$ be a rewriting framework.
-    %   We say that the term rewriting system generated by $\mathcal{R}$ and $\mathfrak{F}$ is hierarchical if there exist $n \in \mathbb{N}$, $\Sigma_1 \subsetneq \Sigma_2 \subsetneq \ldots \subsetneq \Sigma_n = \Sigma$, and $\mathcal{R}_1 \subsetneq \mathcal{R}_2 \subsetneq \ldots \subsetneq \mathcal{R}_n = \mathcal{R}$ such that:
+    %   We say that the term rewriting system generated by $\mathcal{R}$ and $\mathfrak{F}$ is hierarchical if there exist $n \mathop{\in} \mathbb{N}$, $\Sigma_1 \subsetneq \Sigma_2 \subsetneq \ldots \subsetneq \Sigma_n \mathop{=} \Sigma$, and $\mathcal{R}_1 \subsetneq \mathcal{R}_2 \subsetneq \ldots \subsetneq \mathcal{R}_n \mathop{=} \mathcal{R}$ such that:
     %   \begin{itemize}
     %     \item Rules in $\mathcal{R}_k$ involve only symbols in $\Sigma_k$, for $1 \leq k \leq n$,
-    %     \item For $2 \leq k \leq n$ and for all rules $l \to r \in \mathcal{R}_k$, the left-hand side $l$ contains at least one symbol from $\Sigma_k \setminus \Sigma_{k-1}$.
+    %     \item For $2 \leq k \leq n$ and for all rules $l \mathop{\to} r \mathop{\in} \mathcal{R}_k$, the left-hand side $l$ contains at least one symbol from $\Sigma_k \mathop{\setminus} \Sigma_{k-1}$.
     %   \end{itemize}
     % \end{definition}
   
@@ -912,50 +912,50 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
     
     % %ac
     % \begin{definition}[Innermost AC Term Class Rewriting System]
-    %   $[s] \underset{i}{\rightarrow} [t]$ if $s = C[\sigma(l)]$ and $C[\sigma(r)] = t$ for some $[l] \rightarrow [r] \in R$, some context $C[\cdot]$ and some substitution $\sigma$ such that no proper subterm of $\sigma(l)$  is reducible. 
+    %   $[s] \underset{i}{\rightarrow} [t]$ if $s \mathop{=} C[\sigma(l)]$ and $C[\sigma(r)] \mathop{=} t$ for some $[l] \mathop{\rightarrow} [r] \mathop{\in} R$, some context $C[\cdot]$ and some substitution $\sigma$ such that no proper subterm of $\sigma(l)$  is reducible. 
     
     
     
     %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
-    %   Let $\mathcal{R} \subseteq (T(\Sigma,\mathcal{X})/E)^2$ be a set of term rewriting rules.
-    %   for all $[s] \in T(\Sigma, \mathcal{X})/E$ and for all $[l] \to [r] \in \mathcal{R}$ we define
+    %   Let $\mathcal{R} \mathop{\subseteq} (T(\Sigma,\mathcal{X})/E)^2$ be a set of term rewriting rules.
+    %   for all $[s] \mathop{\in} T(\Sigma, \mathcal{X})/E$ and for all $[l] \mathop{\to} [r] \mathop{\in} \mathcal{R}$ we define
     %   \begin{flalign*}
-    %     \operatorname{Acc}_{trs}([s],[l] \to [r]) \overset{def}{=} 
+    %     \operatorname{Acc}_{trs}([s],[l] \mathop{\to} [r]) \overset{def}{=} 
     %       \left \{ 
-    %           s[\sigma(r)]_p \mid p \in Pos(s) \land \exists \sigma. s|_p = \sigma(l) \land \not \exists p' \in Pos(s). p' > p \land \exists (l'\to r' \in \mathcal{R}). \exists \sigma'. s_p' = \sigma'(l')
+    %           s[\sigma(r)]_p \mid p \mathop{\in} Pos(s) \mathop{\land} \exists \sigma. s|_p \mathop{=} \sigma(l) \mathop{\land} \not \exists p' \mathop{\in} Pos(s). p' \mathop{>} p \mathop{\land} \exists (l' \mathop{\to} r' \mathop{\in} \mathcal{R}). \exists \sigma'. s_p' \mathop{=} \sigma'(l')
     %         \right \}
     %   \end{flalign*}
       
-    %   The rewriting system $(T(\Sigma,\mathcal{X}), \to_\mathcal{R})$, generated by $\mathcal{R}$ and $\operatorname{ACC}_{trs}$ is called a term rewriting system.
+    %   The rewriting system $(T(\Sigma,\mathcal{X}), \mathop{\to} _\mathcal{R})$, generated by $\mathcal{R}$ and $\operatorname{ACC}_{trs}$ is called a term rewriting system.
     % \end{definition}
     
     %ac
     % \begin{definition}[Innermost Term Class Rewriting System]
     %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
-    %   Let $\mathcal{R} \subseteq (T(\Sigma,\mathcal{X})/E)^2$ be a set of term rewriting rules.
-    %   for all $s \in T(\Sigma, \mathcal{X})/E$ and for all $l \to r \in \mathcal{R}$ we define
+    %   Let $\mathcal{R} \mathop{\subseteq} (T(\Sigma,\mathcal{X})/E)^2$ be a set of term rewriting rules.
+    %   for all $s \mathop{\in} T(\Sigma, \mathcal{X})/E$ and for all $l \mathop{\to} r \mathop{\in} \mathcal{R}$ we define
     %   \begin{flalign*}
-    %     \operatorname{Acc}_{trs/E}(s,l \to r) \overset{def}{=} 
+    %     \operatorname{Acc}_{trs/E}(s,l \mathop{\to} r) \overset{def}{=} 
     %       \left \{ 
-    %           [t] \mid \exists s' \in s. s' \to_i t 
-    %             % p \in Pos(s) \land \exists \sigma. s|_p = \sigma(l) \land \not \exists p' \in Pos(s). p' > p \land \exists (l'\to r' \in \mathcal{R}). \exists \sigma'. s_p' = \sigma'(l')
+    %           [t] \mid \exists s' \mathop{\in} s. s' \mathop{\to} _i t 
+    %             % p \mathop{\in} Pos(s) \mathop{\land} \exists \sigma. s|_p \mathop{=} \sigma(l) \mathop{\land} \not \exists p' \mathop{\in} Pos(s). p' \mathop{>} p \mathop{\land} \exists (l' \mathop{\to} r' \mathop{\in} \mathcal{R}). \exists \sigma'. s_p' \mathop{=} \sigma'(l')
     %         \right \}
     %   \end{flalign*}
       
-    %   The rewriting system $(T(\Sigma,\mathcal{X}), \to_\mathcal{R})$, generated by $\mathcal{R}$ and $\operatorname{ACC}_{trs/E}$ is called a term class rewriting system.
+    %   The rewriting system $(T(\Sigma,\mathcal{X}), \mathop{\to} _\mathcal{R})$, generated by $\mathcal{R}$ and $\operatorname{ACC}_{trs/E}$ is called a term class rewriting system.
     % \end{definition}
     
     %ac
     % \begin{definition}[AC HTRS \cite{urbain2001approche}]
     %   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
-    %   Let $\mathcal{R} \subseteq (T(\Sigma,\mathcal{X})/E)^2$ be a set of term rewriting rules. Let $\operatorname{ACC}$ be an accessibility function.
-    %   Let $(T(\Sigma,\mathcal{X}), \to_\mathcal{R})$ be the term rewriting system. generated by $\mathcal{R}$ and $\operatorname{ACC}_{trs/E}$.
-    %   If there are $n \in \mathbb{N}$, $\Sigma_1, \Sigma_2, \hdots, \Sigma_n $, and $\mathcal{R}_1, \mathcal{R}_2, \hdots, \mathcal{R}_n$ such that 
+    %   Let $\mathcal{R} \mathop{\subseteq} (T(\Sigma,\mathcal{X})/E)^2$ be a set of term rewriting rules. Let $\operatorname{ACC}$ be an accessibility function.
+    %   Let $(T(\Sigma,\mathcal{X}), \mathop{\to} _\mathcal{R})$ be the term rewriting system. generated by $\mathcal{R}$ and $\operatorname{ACC}_{trs/E}$.
+    %   If there are $n \mathop{\in} \mathbb{N}$, $\Sigma_1, \Sigma_2, \hdots, \Sigma_n $, and $\mathcal{R}_1, \mathcal{R}_2, \hdots, \mathcal{R}_n$ such that 
     %   \begin{itemize}
-    %     \item $\Sigma_1 \subsetneq \Sigma_2 \subsetneq \hdots \subsetneq \Sigma_n = \Sigma$
-    %     \item $\mathcal{R}_1 \subsetneq \mathcal{R}_2 \subsetneq \hdots \subsetneq \mathcal{R}_n = \mathcal{R}$
+    %     \item $\Sigma_1 \subsetneq \Sigma_2 \subsetneq \hdots \subsetneq \Sigma_n \mathop{=} \Sigma$
+    %     \item $\mathcal{R}_1 \subsetneq \mathcal{R}_2 \subsetneq \hdots \subsetneq \mathcal{R}_n \mathop{=} \mathcal{R}$
     %     \item rules in $\mathcal{R}_{k}$ have only symbols in $\Sigma_k$ for $1 \leq k \leq n$
-    %     \item for $2 \leq k \leq n$ and for all rules $l\to r \in \mathcal{R}_{k}$, for all $l' \in l$, we have $\Lambda(l') \in (\Sigma_k \setminus \Sigma_{i-1})$
+    %     \item for $2 \leq k \leq n$ and for all rules $l \mathop{\to} r \mathop{\in} \mathcal{R}_{k}$, for all $l' \mathop{\in} l$, we have $\Lambda(l') \mathop{\in} (\Sigma_k \mathop{\setminus} \Sigma_{i-1})$
     %   \end{itemize}
     % \end{definition}
     
@@ -979,68 +979,68 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
 \subsection{Rewriting Systems on Terms with Associative Commutative Symbols (ACTRS)}
 
 % Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
-% Let $\Sigma_{ac} \subseteq \Sigma_{c} \subseteq \Sigma$. We define $\mathcal{C}$ and $\mathcal{AC}$ as follows:
+% Let $\Sigma_{ac} \mathop{\subseteq} \Sigma_{c} \mathop{\subseteq} \Sigma$. We define $\mathcal{C}$ and $\mathcal{AC}$ as follows:
 
-% $$\mathcal{C} \isdef \{f(x,y) \to f(y,x) \mid f \in \Sigma_{c} \}$$
+% $$\mathcal{C} \isdef \{f(x,y) \mathop{\to} f(y,x) \mid f \mathop{\in} \Sigma_{c} \}$$
 
 % $$\mathcal{AC} \isdef 
-%          \{f(f(x,y),z) \to f(x,f(y,z)) \mid f \in \Sigma_{ac} \}$$
+%          \{f(f(x,y),z) \mathop{\to} f(x,f(y,z)) \mid f \mathop{\in} \Sigma_{ac} \}$$
 
-% Let $\to_\mathcal{AC}$ be the rewriting relation defined by $\mathcal{AC} \cup \mathcal{C}$.
+% Let $\to_\mathcal{AC}$ be the rewriting relation defined by $\mathcal{AC} \mathop{\cup} \mathcal{C}$.
 % \begin{definition}[ACTRS rule]
 %    A \textbf{ACTRS rule} is a TRS rule.
 % \end{definition}
 
 % \begin{definition}[Match]
-%     Let $[s] \in T(\Sigma, \mathcal{X})/\to_\mathcal{AC}$ and $\rho = l \to r$ be an ACTRS rule. 
-%     An ACTRS match of $\rho$ in $[s]$ is an ordered pair $(s',p)$ where $s' \in [s]$ and $p \in \operatorname{Pos}(s')$ such that there exists a substitution $\sigma$ such that $s'_{|p} = \sigma(l)$.
+%     Let $[s] \mathop{\in} T(\Sigma, \mathcal{X})/\to_\mathcal{AC}$ and $\rho \mathop{=} l \mathop{\to} r$ be an ACTRS rule. 
+%     An ACTRS match of $\rho$ in $[s]$ is an ordered pair $(s',p)$ where $s' \mathop{\in} [s]$ and $p \mathop{\in} \operatorname{Pos}(s')$ such that there exists a substitution $\sigma$ such that $s'_{|p} \mathop{=} \sigma(l)$.
 % \end{definition}
 
 % \begin{definition}[ACTRS Rewriting step]
-%     Let $[s] \in T(\Sigma, \mathcal{X})/\to_\mathcal{AC}$ and $\rho = l \to r$ be an ACTRS rule. Let $(s',p)$ be a match of $\rho$ in $[s]$.
+%     Let $[s] \mathop{\in} T(\Sigma, \mathcal{X})/\to_\mathcal{AC}$ and $\rho \mathop{=} l \mathop{\to} r$ be an ACTRS rule. Let $(s',p)$ be a match of $\rho$ in $[s]$.
 
-%     The structure $(s', p, \rho)$ is a \textbf{witness} for the \textbf{ACTRS rewriting step} $[s] \to_\mathcal{R} [t]$
-%      using the rule $\rho$ and match $(s',p)$ where $t \in T(\Sigma, \mathcal{X})$ such that $s' \to_{trs}^p t$.
+%     The structure $(s', p, \rho)$ is a \textbf{witness} for the \textbf{ACTRS rewriting step} $[s] \mathop{\to} _\mathcal{R} [t]$
+%      using the rule $\rho$ and match $(s',p)$ where $t \mathop{\in} T(\Sigma, \mathcal{X})$ such that $s' \mathop{\to} _{trs}^p t$.
 % \end{definition}
  
 \begin{definition}
   \label{def:trs:ac}
   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
-  Let $\Sigma_{ac} \subseteq \Sigma_{c} \subseteq \Sigma$. We define $\mathcal{C}$ and $\mathcal{AC}$ as follows:
+  Let $\Sigma_{ac} \mathop{\subseteq} \Sigma_{c} \mathop{\subseteq} \Sigma$. We define $\mathcal{C}$ and $\mathcal{AC}$ as follows:
   
-  $$\mathcal{C} \isdef \{f(x,y) \to f(y,x) \mid f \in \Sigma_{c} \}$$
+  $$\mathcal{C} \isdef \{f(x,y) \mathop{\to} f(y,x) \mid f \mathop{\in} \Sigma_{c} \}$$
   
   $$\mathcal{AC} \isdef 
-           \{f(f(x,y),z) \to f(x,f(y,z)) \mid f \in \Sigma_{ac} \}$$
-  Let $ \to_\mathcal{AC}$ be the TRS rewriting relation induced by $\mathcal{AC} \cup \mathcal{C}$.
+           \{f(f(x,y),z) \mathop{\to} f(x,f(y,z)) \mid f \mathop{\in} \Sigma_{ac} \}$$
+  Let $ \mathop{\to} _\mathcal{AC}$ be the TRS rewriting relation induced by $\mathcal{AC} \mathop{\cup} \mathcal{C}$.
 \end{definition}
 
 \begin{definition}[Rewriting of terms with associative and commutative symbols~\cite{urbain2001approche}]
   \label{def:trs:actrs}
   Let $\Sigma$ be a first order language and $\mathcal{X}$ be a set of variables disjoint from $\Sigma$.
-  Let $\mathcal{R}$ be a set of TRS rewriting rules, $\rho = l \to r \in \mathcal{R}$ and $s \in T(\Sigma, \mathcal{X})$.
+  Let $\mathcal{R}$ be a set of TRS rewriting rules, $\rho \mathop{=} l \mathop{\to} r \mathop{\in} \mathcal{R}$ and $s \mathop{\in} T(\Sigma, \mathcal{X})$.
 
-  An \textbf{ACTRS match} of $\rho$ in $s$ is $p \in \operatorname{Pos}(s)$ such that there exists a substitution $\sigma$ such that $s_{|p} \rightarrow_{\opn{AC}}^* \sigma(l)$. 
+  An \textbf{ACTRS match} of $\rho$ in $s$ is $p \mathop{\in} \operatorname{Pos}(s)$ such that there exists a substitution $\sigma$ such that $s_{|p} \rightarrow_{\opn{AC}}^* \sigma(l)$. 
 
   % The \textbf{ACTRS match mechanism} is the function $\mathcal{M}$ that associates to each pair $(\rho,s)$, where $\rho$ is an ACTRS rewriting rule and $s$ a term, the set of ACTRS matches of $\rho$ in $s$.
 
-  The quadruple $(\rho, s, p, \sigma)$ is a witness of the \textbf{ACTRS rewriting step} $(s, t)$ where $t = s[\sigma(r)]_p$
+  The quadruple $(\rho, s, p, \sigma)$ is a witness of the \textbf{ACTRS rewriting step} $(s, t)$ where $t \mathop{=} s[\sigma(r)]_p$
 
-  % The \textbf{ACTRS witness function} is the function $\mathfrak{W}$ that associates to each ACTRS match $(\rho, s, p, \sigma)$ the rewriting step $(s, t)$ where $t = s[\sigma(r)]_p$.
+  % The \textbf{ACTRS witness function} is the function $\mathfrak{W}$ that associates to each ACTRS match $(\rho, s, p, \sigma)$ the rewriting step $(s, t)$ where $t \mathop{=} s[\sigma(r)]_p$.
 \end{definition}
 
 % \begin{definition}[Term Rewriting modulo AC framework]
-%   Let $\mathcal{R} \subseteq T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
+%   Let $\mathcal{R} \mathop{\subseteq} T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
    
-%   For all $\rho \in \mathcal{R}$, we define the the rewriting framework $\f{F}_{actrs}(\rho)$ as follows:
+%   For all $\rho \mathop{\in} \mathcal{R}$, we define the the rewriting framework $\f{F}_{actrs}(\rho)$ as follows:
 %   \begin{flalign*}
 %     \f{F}_{actrs}(\rho) \isdef 
-%       \left \{ (s,t) \in T(\Sigma,\mathcal{X})^2 \mid 
+%       \left \{ (s,t) \mathop{\in} T(\Sigma,\mathcal{X})^2 \mid 
 %           \exists s', t'. 
-%           s \to_\mathcal{AC}^* s' \to_\rho t' \to_\mathcal{AC}^* t
+%           s \mathop{\to} _\mathcal{AC}^* s' \mathop{\to} _\rho t' \mathop{\to} _\mathcal{AC}^* t
 %         \right \}
 %   \end{flalign*}
-%   An element $(s,t) \in \f{F}_{actrs}(\rho)$ is called a \textbf{witness} for the rewriting step $[s] \to_\mathcal{R} [t]$ using the rule $\rho$ where $[s],[t] \in T(\Sigma,\mathcal{X})/\to_\mathcal{AC}$. 
+%   An element $(s,t) \mathop{\in} \f{F}_{actrs}(\rho)$ is called a \textbf{witness} for the rewriting step $[s] \mathop{\to} _\mathcal{R} [t]$ using the rule $\rho$ where $[s],[t] \mathop{\in} T(\Sigma,\mathcal{X})/\to_\mathcal{AC}$. 
 
 %   We denote by $\to_{\mathcal{R} /\mathcal{AC}}$ the rewriting relation induced by $\mathcal{R}$ in $\f{F}_{actrs}$.
 % \end{definition}
@@ -1055,8 +1055,8 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
 % \begin{definition}[Stability]
 %   Let $\to$ be a binary relation on $T(\Sigma, V)$. 
 %   \begin{itemize}
-%     \item The relation $\to$ is \emph{stable by substitutions} iff $s \to t$ implies $\sigma(s) \to \sigma(t)$ for all $s, t$ and $\sigma$.
-%     \item The relation $\to$ is \emph{stable by contexts} if $s \to s'$ implies $t[s]_p \to t[s']_p$ for all $\Sigma$-terms $t$ and positions $p \in \mathcal{Pos}(t)$.
+%     \item The relation $\to$ is \emph{stable by substitutions} iff $s \mathop{\to} t$ implies $\sigma(s) \mathop{\to} \sigma(t)$ for all $s, t$ and $\sigma$.
+%     \item The relation $\to$ is \emph{stable by contexts} if $s \mathop{\to} s'$ implies $t[s]_p \mathop{\to} t[s']_p$ for all $\Sigma$-terms $t$ and positions $p \mathop{\in} \mathcal{Pos}(t)$.
 %   \end{itemize}
 % \end{definition}
 
@@ -1072,7 +1072,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
 \begin{definition}[NTRS rewriting framework]
   Let $\mathcal{N}$ and $\mathcal{R}$ be sets of TRS rules.
 
-  We define the rewriting framework $\mathfrak{ntrs}(\mathcal{N},\mathcal{R})$ as follows: for all $\rho \in \mathcal{N}$, $\mathfrak{ntrs}(\mathcal{N},\mathcal{R})(\rho)$ is the collection of all ACTRS witnesses of rewriting steps; for all $\rho \in \mathcal{R}$, $\mathfrak{ntrs}(\mathcal{N},\mathcal{R})(\rho)$ is the collection of ACTRS witnesses of rewriting steps $(\rho, s, p, \sigma)$ such that $s$ is in $\to_\mathcal{N}$-normal form.
+  We define the rewriting framework $\mathfrak{ntrs}(\mathcal{N},\mathcal{R})$ as follows: for all $\rho \mathop{\in} \mathcal{N}$, $\mathfrak{ntrs}(\mathcal{N},\mathcal{R})(\rho)$ is the collection of all ACTRS witnesses of rewriting steps; for all $\rho \mathop{\in} \mathcal{R}$, $\mathfrak{ntrs}(\mathcal{N},\mathcal{R})(\rho)$ is the collection of ACTRS witnesses of rewriting steps $(\rho, s, p, \sigma)$ such that $s$ is in $\to_\mathcal{N}$-normal form.
 
   Let $M, \mathfrak{M}, W, \mathfrak{W}, \mathfrak{I}$ be the class of ACTRS matches, the match mechanism, the class of ACTRS witnesses, the witness mechanism and the interpretation function, respectively, defined in Definition~\ref{def:trs:actrs}.
 
@@ -1083,40 +1083,40 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
 % \begin{definition}
 %     Let $\mathcal{N}$ and $\mathcal{R}$ be sets of TRS rules.
 
-%     The rewriting relation $\to_\mathcal{R}^!$ is defined as follows: $s \to_\mathcal{R}^! t$ iff there exists a finite sequence of rewriting steps $s \to_\mathcal{R}^n t$ for some $n \in \mathbb{N}$ and $t \in T(\Sigma, \mathcal{X})$ is in $\to_\mathcal{R}$-normal form.
+%     The rewriting relation $\to_\mathcal{R}^!$ is defined as follows: $s \mathop{\to} _\mathcal{R}^! t$ iff there exists a finite sequence of rewriting steps $s \mathop{\to} _\mathcal{R}^n t$ for some $n \mathop{\in} \mathbb{N}$ and $t \mathop{\in} T(\Sigma, \mathcal{X})$ is in $\to_\mathcal{R}$-normal form.
 % \end{definition}
 
 % \begin{definition}[Normalized Term Rewriting System modulo AC]
 %         Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
-%         Let $\Sigma_{ac} \subseteq \Sigma_{c} \subseteq \Sigma$. 
+%         Let $\Sigma_{ac} \mathop{\subseteq} \Sigma_{c} \mathop{\subseteq} \Sigma$. 
         
-%         Let $\mathcal{R}\subseteq T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
+%         Let $\mathcal{R}\mathop{\subseteq} T(\Sigma,\mathcal{X})^2$ be a set of term rewriting rules.
 
-%         Let $(T(\Sigma,\mathcal{X}), \to_\mathcal{S})$ be a terminating term rewriting system.
+%         Let $(T(\Sigma,\mathcal{X}), \mathop{\to} _\mathcal{S})$ be a terminating term rewriting system.
 
-%          For every $\rho \in \mathcal{R}$, 
-%         %  let $(T(\Sigma,\mathcal{X}), \to_{\rho/AC})$ be the term rewriting system modulo AC induced by $\{\rho\} \subseteq \mathcal{R}$ in the framework $\f{F}_{actrs}$, we define
+%          For every $\rho \mathop{\in} \mathcal{R}$, 
+%         %  let $(T(\Sigma,\mathcal{X}), \mathop{\to} _{\rho/AC})$ be the term rewriting system modulo AC induced by $\{\rho\} \mathop{\subseteq} \mathcal{R}$ in the framework $\f{F}_{actrs}$, we define
 %         % \begin{flalign*}
 %         %   \f{F}_{nactrs}(\rho) \isdef 
 %         %     \left \{(s,t)\mid 
-%         %         \exists s'.~s \to_\mathcal{S}^!~s'~\to_\mathcal{\rho/AC}~t 
-%         %         % \exists C. \exists p \in Pos(C). \exists \sigma. 
-%         %         % s = C[\sigma(l)]_p \land
-%         %         % t = C[\sigma(r)]_p
+%         %         \exists s'.~s \mathop{\to} _\mathcal{S}^!~s'~\to_\mathcal{\rho/AC}~t 
+%         %         % \exists C. \exists p \mathop{\in} Pos(C). \exists \sigma. 
+%         %         % s \mathop{=} C[\sigma(l)]_p \land
+%         %         % t \mathop{=} C[\sigma(r)]_p
 %         %       \right \}
 %         % \end{flalign*}
 %         , we define
 %         \begin{flalign*}
 %           \f{F}_{nactrs}(\rho) \isdef 
 %             \left \{(s,t)\mid 
-%                 \exists s'.~s \to_\mathcal{S}^!~s'
-%                 \to_\mathcal{AC}^* s'' \to_\rho t' \to_\mathcal{AC}^* t
-%                 % \exists C. \exists p \in Pos(C). \exists \sigma. 
-%                 % s = C[\sigma(l)]_p \land
-%                 % t = C[\sigma(r)]_p
+%                 \exists s'.~s \mathop{\to} _\mathcal{S}^!~s'
+%                 \mathop{\to} _\mathcal{AC}^* s'' \mathop{\to} _\rho t' \mathop{\to} _\mathcal{AC}^* t
+%                 % \exists C. \exists p \mathop{\in} Pos(C). \exists \sigma. 
+%                 % s \mathop{=} C[\sigma(l)]_p \land
+%                 % t \mathop{=} C[\sigma(r)]_p
 %               \right \}
 %         \end{flalign*}
-%         The rewriting system induced by $\mathcal{R}$ in $\f{F}_{actrs}$, denoted by $(T(\Sigma,\mathcal{X}), \to_{\mathcal{R}\downarrow \mathcal{S}})$, is called an \textbf{normalized term rewriting system modulo AC}.
+%         The rewriting system induced by $\mathcal{R}$ in $\f{F}_{actrs}$, denoted by $(T(\Sigma,\mathcal{X}), \mathop{\to} _{\mathcal{R}\downarrow \mathcal{S}})$, is called an \textbf{normalized term rewriting system modulo AC}.
 %       \end{definition}
 
 % \begin{definition}[Normalized ACTRS]
@@ -1146,7 +1146,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
     \begin{definition}[Rewriting rule, Match~\cite{ehrig1997algebraic}]
         \label{def:grs:dpo_rule}
       A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}, \( L \) is the \textbf{left-hand-side graph}, denoted \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side graph}, denoted \( \operatorname{rhs}(\rho) \). The rule is \textbf{left-monic} if the morphism \( l \) is monic, \textbf{right-monic} if the morphism \( r \) is monic, \textbf{monic} if it is left- and right-monic \todo{Do you consider rules where this is not the case?}  
-      A \textbf{match} of the rule in an graph \( G \) is a morphism \( m: L \rightarrow G \).   
+      A \textbf{match} of the rule in an graph \( G \) is a morphism \( m: L \mathop{\rightarrow} G \).   
       \end{definition}
     
       \begin{example}
@@ -1159,7 +1159,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -1167,7 +1167,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
@@ -1175,8 +1175,8 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1195,7 +1195,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
           \noindent
           \begin{minipage}{0.72\textwidth}
             A DPO diagram $\delta$ is a diagram as shown on the right.
-            This diagram $\delta$ is a \textbf{witness} for the \textbf{rewriting step} from \( G \) to \( H \) using the rule \( \rho \) and match \( m \), denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). We denote $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$ the pushout squares $KLGC$ and $KRHC$, respectively.
+            This diagram $\delta$ is a \textbf{witness} for the \textbf{rewriting step} from \( G \) to \( H \) using the rule \( \rho \) and match \( m \), denoted \( G \mathop{\Rightarrow}_\rho^m H \) or \( G \mathop{\Rightarrow}_\rho^\delta H \). We denote $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$ the pushout squares $KLGC$ and $KRHC$, respectively.
           \end{minipage}
           \hfill
           \begin{minipage}{0.28\textwidth}
@@ -1235,7 +1235,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                         \coordinate (o) at (0mm,-8mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                         \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                     } 
@@ -1250,8 +1250,8 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                         \coordinate (o) at (-5mm,-8mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                         \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                         \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1261,12 +1261,12 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                         \coordinate (o) at (0mm,-3mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                        \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                        \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                         \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                         \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-                        \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                        \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                         \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                         \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                     }    
@@ -1275,10 +1275,10 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                         \coordinate (o) at (0mm,-3mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                        \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                         \draw[->] (l2) -- (l4) node[midway,right] {$a$};
                         \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                        \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                        \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                         \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                     }    
             
@@ -1286,10 +1286,10 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                         \coordinate (o) at (-5mm,-3mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                        \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                        \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                        \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                        \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                         \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                         \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -1316,11 +1316,11 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
     
     \trackedtext{
       \begin{definition}[Rewriting relation]
-        The \textbf{rewriting relation $\Rightarrow_{\mathfrak{dpo},\mathfrak{F},\rho}$ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \Rightarrow_{\mathfrak{dpo},\mathfrak{F},\rho} H$ iff $G \Rightarrow_\rho^\delta H$ for some $\delta \in \mathfrak{F}(\rho)$. 
-          % for some $\delta \in \mathfrak{F}(\rho)$
-          The \textbf{DPO rewriting relation $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \Rightarrow_{\mathfrak{dpo}, \mathfrak{F},\mathcal{R}} H$ iff $G \Rightarrow_{\mathfrak{dpo},\mathfrak{F}, \rho} H$ for some $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
+        The \textbf{rewriting relation $\mathop{\Rightarrow}_{\mathfrak{dpo},\mathfrak{F},\rho}$ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \mathop{\Rightarrow}_{\mathfrak{dpo},\mathfrak{F},\rho} H$ iff $G \mathop{\Rightarrow}_\rho^\delta H$ for some $\delta \mathop{\in} \mathfrak{F}(\rho)$. 
+          % for some $\delta \mathop{\in} \mathfrak{F}(\rho)$
+          The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \mathop{\Rightarrow}_{\mathfrak{dpo}, \mathfrak{F},\mathcal{R}} H$ iff $G \mathop{\Rightarrow}_{\mathfrak{dpo},\mathfrak{F}, \rho} H$ for some $\rho \mathop{\in} \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
           suppress $\mathfrak{F}$ and 
-          write $\Rightarrow_{\mathfrak{dpo},\rho}$ and $\Rightarrow_{\mathfrak{dpo},\mathcal{R}}$.
+          write $\mathop{\Rightarrow}_{\mathfrak{dpo},\rho}$ and $\mathop{\Rightarrow}_{\mathfrak{dpo},\mathcal{R}}$.
       \end{definition} 
     }
 
@@ -1351,28 +1351,28 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
         \item[handbook] 
             As shown for example in [2], in category Graph, the pushout complement object of two morphisms <b,g> exsits iff the gluing condition is satisfied; moreover, it is unique if b is injective.
             \begin{proposition}[Existence of Pushout Complements]
-                Let $b : A \to B$ and $g : B \to D$ be two morphisms in $\mathbf{Graph}$. Then there exists a pushout complement $\langle C, c : A \to C, f : C \to D \rangle$ of $\langle b, g \rangle$ if and only if the following conditions are satisfied:
+                Let $b : A \mathop{\to} B$ and $g : B \mathop{\to} D$ be two morphisms in $\mathbf{Graph}$. Then there exists a pushout complement $\langle C, c : A \mathop{\to} C, f : C \mathop{\to} D \rangle$ of $\langle b, g \rangle$ if and only if the following conditions are satisfied:
                 
                 \begin{itemize}
-                    \item \textbf{[Dangling condition]} No edge $e \in D_E - g_E(B_E)$ is incident to any node in $g_V(B_V - b_V(A_V))$.
-                    \item \textbf{[Identification condition]} There is no $x, y \in B_V \cup B_E$ such that $x \neq y$, $g(x) = g(y)$ and $y \notin b(A_V \cup A_E)$.
+                    \item \textbf{[Dangling condition]} No edge $e \mathop{\in} D_E - g_E(B_E)$ is incident to any node in $g_V(B_V - b_V(A_V))$.
+                    \item \textbf{[Identification condition]} There is no $x, y \mathop{\in} B_V \mathop{\cup} B_E$ such that $x \mathop{\neq} y$, $g(x) \mathop{=} g(y)$ and $y \notin b(A_V \mathop{\cup} A_E)$.
                 \end{itemize}
                 
-                In this case, we say that $\langle b, g \rangle$ satisfies the \textit{gluing condition} (or $g$ satisfies the gluing condition with respect to $b$). If moreover morphism $b$ is injective, then the pushout complement is unique up to isomorphism, i.e., if $\langle C, c, f \rangle$ and $\langle C', c', f' \rangle$ are two pushout complements of $\langle b, g \rangle$, then there is an isomorphism $\varphi : C \to C'$ such that $\varphi \circ c = c'$ and $f' \circ \varphi = f$.
+                In this case, we say that $\langle b, g \rangle$ satisfies the \textit{gluing condition} (or $g$ satisfies the gluing condition with respect to $b$). If moreover morphism $b$ is injective, then the pushout complement is unique up to isomorphism, i.e., if $\langle C, c, f \rangle$ and $\langle C', c', f' \rangle$ are two pushout complements of $\langle b, g \rangle$, then there is an isomorphism $\varphi : C \mathop{\to} C'$ such that $\varphi \circ c \mathop{=} c'$ and $f' \circ \varphi \mathop{=} f$.
                 \end{proposition}
             
         \item[adhesive categories] In D-p rewriting, a rewrite rule is given as a span 
         \begin{tikzcd}
             L & K \arrow[l] \arrow[r] & R
         \end{tikzcd}. 
-        Roughly, The intuition is that \( L \) forms the left-hand side of the rewrite rule, \( R \) forms the right-hand side and \( K \), common to both \( L \) and \( R \), is the sub-structure to be unchanged as the rule is applied. To apply the rule to a structure \( C \), one first needs to find a match \( L \to C \) of \( L \) within \( C \). The rule is then applied by constructing the missing parts (\( E, D \) and arrows) of the following diagram
+        Roughly, The intuition is that \( L \) forms the left-hand side of the rewrite rule, \( R \) forms the right-hand side and \( K \), common to both \( L \) and \( R \), is the sub-structure to be unchanged as the rule is applied. To apply the rule to a structure \( C \), one first needs to find a match \( L \mathop{\to} C \) of \( L \) within \( C \). The rule is then applied by constructing the missing parts (\( E, D \) and arrows) of the following diagram
         \begin{figure}[H]
             \begin{tikzcd}
                 L \arrow[d]&  K \arrow[d] \arrow[l] \arrow[r] & R  \arrow[d]\\
                 C  & E \arrow[l]  \arrow[r] & D
             \end{tikzcd} 
         \end{figure}
-        in a way which ensures that the two squares are pushout diagrams. Once such a diagram is constructed we may deduce that \( C \Rightarrow D \), that is, \( C \) rewrites to \( D \).
+        in a way which ensures that the two squares are pushout diagrams. Once such a diagram is constructed we may deduce that \( C \mathop{\Rightarrow} D \), that is, \( C \) rewrites to \( D \).
         
     \end{itemize}
     
@@ -1382,7 +1382,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
         A \textbf{DPO Graph Rewriting System} is a DPO rewriting system on $\mathbf{Graph}$.  
     \end{definition}
     
-    When a direct graph transformation with a production p and a match m is performed, all the vertices and edges which are matched by$ L \setminus K$ are removed from G. The removed part is not a graph, in general, but the remaining structure $D := (G \setminus m(L)) \cup  m(K)$ still has to be a graph. This means that the match $m$ has to satisfy a suitable gluing condition, which makes sure that the gluing of $L\setminus K$ and $D$ is equal to G. In the second step of a graph rewriting step, the graph $D$ is glued together with $R \setminus K$ to obtain the derived graph $H$ . For gluing newly created vertices and edges into D,the graph $m(K)$ and $r(K)$ are used: nodes and edges with the same pre-image will be unified.
+    When a direct graph transformation with a production p and a match m is performed, all the vertices and edges which are matched by$ L \mathop{\setminus} K$ are removed from G. The removed part is not a graph, in general, but the remaining structure $D := (G \mathop{\setminus} m(L)) \mathop{\cup}  m(K)$ still has to be a graph. This means that the match $m$ has to satisfy a suitable gluing condition, which makes sure that the gluing of $L\mathop{\setminus} K$ and $D$ is equal to G. In the second step of a graph rewriting step, the graph $D$ is glued together with $R \mathop{\setminus} K$ to obtain the derived graph $H$ . For gluing newly created vertices and edges into D,the graph $m(K)$ and $r(K)$ are used: nodes and edges with the same pre-image will be unified.
     
     Trees form a sub-category of $\mathbf{Graph}$, denoted as $\mathbf{Tree}$.
     \begin{definition}[DPO Tree Rewriting System]
@@ -1391,7 +1391,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
     
     todo : Def functor F
     \begin{proposition} 
-       The functor $F: \mathbf{Tree} \to \mathbf{Trs}$ is isomorphic.
+       The functor $F: \mathbf{Tree} \mathop{\to} \mathbf{Trs}$ is isomorphic.
     \end{proposition}
     todo : def functor F
     \begin{proposition}
@@ -1412,13 +1412,13 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
     \begin{definition}[Rewriting rule, Match~\cite{bottoni2010atermination}]
         \label{def:grs:dpo_nac_rule}
         A \textbf{DPO rewriting rule with a negative application condition} $\varphi$ is an ordered pair \( \left( n , \rho \right) \) where $n$ is a monomorphism and $\rho$ is an monic DPO rewriting rule
-         such that $\operatorname{codom}(\operatorname{lhs}(\rho)) = \operatorname{dom}(n)$.
+         such that $\operatorname{codom}(\operatorname{lhs}(\rho)) \mathop{=} \operatorname{dom}(n)$.
          
-         A rule is denoted \( N \overset{n}{\leftarrowtail} L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \) with $\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) $.
+         A rule is denoted \( N \overset{n}{\leftarrowtail} L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \) with $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) $.
     
-        A match of the rule in an object \( G \) is a monomorphism \( m: L \rightarrow G \) such that there is no monomorphism \( q: N \rightarrow G \) such that \( n \star q = m \), as illustrated below.
+        A match of the rule in an object \( G \) is a monomorphism \( m: L \mathop{\rightarrow} G \) such that there is no monomorphism \( q: N \mathop{\rightarrow} G \) such that \( n \mathop{\star} q \mathop{=} m \), as illustrated below.
     
-        A DPO diagram as shown below is a \textbf{witness} for a \textbf{rewriting step} from \( G \) to \( H \) using the rule $\varphi$ and match \( m \), denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). 
+        A DPO diagram as shown below is a \textbf{witness} for a \textbf{rewriting step} from \( G \) to \( H \) using the rule $\varphi$ and match \( m \), denoted \( G \mathop{\Rightarrow}_\rho^m H \) or \( G \mathop{\Rightarrow}_\rho^\delta H \). 
         % We denote $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$ the pushout squares $KLGC$ and $KRHC$, respectively.
     
     \begin{figure}[H]
@@ -1450,7 +1450,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
             % Bent arrow from G to N
             \draw[>->, bend right,red,dashed] (N) to node[below] {q} (G);
     
-            \node at ($(N)!0.5!(G)$) {\textcolor{red}{$\neq$}};
+            \node at ($(N)!0.5!(G)$) {\textcolor{red}{$\mathop{\neq}$}};
             \node at ($(K)!0.5!(G)$) {$\mathrm{PO}$};
             \node at ($(K)!0.5!(H)$) {$\mathrm{PO}$};
           \end{tikzpicture}
@@ -1466,7 +1466,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
             \coordinate (o) at (0mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
@@ -1475,7 +1475,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }     
@@ -1483,7 +1483,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                 \coordinate (o) at (5mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                 % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }    
@@ -1491,8 +1491,8 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                 \coordinate (o) at (-5mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1504,7 +1504,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
         \end{tikzpicture}
         }
     \end{center}
-      The rewriting step in Example~\ref{ex:rewriting_step_grs_aa} is not possible with this rule in DPO rewriting with negative application conditions, because there exists a monomorphism \( q: N \rightarrow G \) such that \( n \star q = m \) as shown in the diagram below.
+      The rewriting step in Example~\ref{ex:rewriting_step_grs_aa} is not possible with this rule in DPO rewriting with negative application conditions, because there exists a monomorphism \( q: N \mathop{\rightarrow} G \) such that \( n \mathop{\star} q \mathop{=} m \) as shown in the diagram below.
       \begin{center} 
         \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture}
@@ -1512,7 +1512,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
             \coordinate (o) at (0mm,-3mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
@@ -1521,7 +1521,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -1536,8 +1536,8 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                 \coordinate (o) at (-5mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1547,12 +1547,12 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-                \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                 \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }    
@@ -1561,10 +1561,10 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->] (l2) -- (l4) node[midway,right] {$a$};
                 \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
             }    
     
@@ -1572,10 +1572,10 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                 \coordinate (o) at (-5mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -1604,11 +1604,11 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
 
     \trackedtext{
       \begin{definition}[Rewriting relation]
-        The \textbf{rewriting relation $\Rightarrow_{\mathfrak{dponac},\mathfrak{F},\rho}$ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \Rightarrow_{\mathfrak{dponac},\mathfrak{F},\rho} H$ iff $G \Rightarrow_\rho^\delta H$ for some $\delta \in \mathfrak{F}(\rho)$. 
-          % for some $\delta \in \mathfrak{F}(\rho)$
-          The \textbf{DPO rewriting relation $\Rightarrow_{\mathfrak{dponac},\mathfrak{F},\mathcal{R}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \Rightarrow_{\mathfrak{dponac}, \mathfrak{F},\mathcal{R}} H$ iff $G \Rightarrow_{\mathfrak{dponac},\mathfrak{F}, \rho} H$ for some $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
+        The \textbf{rewriting relation $\mathop{\Rightarrow}_{\mathfrak{dponac},\mathfrak{F},\rho}$ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G \mathop{\Rightarrow}_{\mathfrak{dponac},\mathfrak{F},\rho} H$ iff $G \mathop{\Rightarrow}_\rho^\delta H$ for some $\delta \mathop{\in} \mathfrak{F}(\rho)$. 
+          % for some $\delta \mathop{\in} \mathfrak{F}(\rho)$
+          The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\mathfrak{dponac},\mathfrak{F},\mathcal{R}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: $G \mathop{\Rightarrow}_{\mathfrak{dponac}, \mathfrak{F},\mathcal{R}} H$ iff $G \mathop{\Rightarrow}_{\mathfrak{dponac},\mathfrak{F}, \rho} H$ for some $\rho \mathop{\in} \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we 
           suppress $\mathfrak{F}$ and 
-          write $\Rightarrow_{\mathfrak{dponac},\rho}$ and $\Rightarrow_{\mathfrak{dponac},\mathcal{R}}$.
+          write $\mathop{\Rightarrow}_{\mathfrak{dponac},\rho}$ and $\mathop{\Rightarrow}_{\mathfrak{dponac},\mathcal{R}}$.
       \end{definition}
     }
 
@@ -1661,14 +1661,14 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
     L is the pattern; L' restricts the shape of the context; pullback: duplication and filtering(extraction); pushout:merging and extension; strong matching: leftmost pullback square ensures that the context in $G_L$ is not mapped onto the pattern L in L'
     }
     
-    The morphism \(l' : L' \leftarrow K'\) is used to define deletion and duplication operations on the type graph. The morphism \(r : K \to R\) subsequently specifies the identification and addition operations, particularly focused on \(l'^{-1}(t_L)\).
+    The morphism \(l' : L' \mathop{\leftarrow} K'\) is used to define deletion and duplication operations on the type graph. The morphism \(r : K \mathop{\to} R\) subsequently specifies the identification and addition operations, particularly focused on \(l'^{-1}(t_L)\).
     % For PBPO\(^*\) matches, it is required that \(\alpha^{-1}(\operatorname{Im} t_L) \overset{iso}{=} L\). Such a match is called a \textit{strong match}, which distinguishes $PBPO+$ from $PBPO$, and is uniquely determined by the means of an adherence morphism.
     \begin{example}
         \url{https://www.youtube.com/watch?v=_gwz64o1eBQ&t=1352s} 30:20 an example of a rule which remove a single loop from a graph.
     \end{example}
     \begin{definition}[Match]
       \label{def:pbpop:match}
-      A \textbf{match} of a \pbpop rewriting rule \(\rho\) in an object \(G\) is an ordered pair of morphisms \(m:L\rightarrow G, \alpha: G \rightarrow L'\) such that the following square is a pullback square:
+      A \textbf{match} of a \pbpop rewriting rule \(\rho\) in an object \(G\) is an ordered pair of morphisms \(m:L\rightarrow G, \alpha: G \mathop{\rightarrow} L'\) such that the following square is a pullback square:
     
       \[
       \begin{tikzcd}[row sep=large, column sep=large]
@@ -1694,7 +1694,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
     \arrow[phantom, from=1-1, to=2-2, "\mathrm{=}" description]
     \end{tikzcd}
     \]
-    hold then $m' = m''$.
+    hold then $m' \mathop{=} m''$.
     \end{proposition}
     
     \begin{definition}[\pbpop rewrite step~\cite{overbeek2023pbpo_JLAMP}]
@@ -1703,7 +1703,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
     
       Let $G_L$ be an object and \(m, \alpha\) a match. 
       
-     A diagram as illustrated below, where \(u : K \rightarrow G_K\) is the unique morphism satisfying \(t_K = u' \circ u\), is a \textbf{witness} of a \pbpop \textbf{rewrite step} from $G_L$ to $G_R$ using rule $\rho$ and match $m$, denoted \(G_L \Rightarrow^m_{\text{\pbpop},\rho} G_R\).
+     A diagram as illustrated below, where \(u : K \mathop{\rightarrow} G_K\) is the unique morphism satisfying \(t_K \mathop{=} u' \circ u\), is a \textbf{witness} of a \pbpop \textbf{rewrite step} from $G_L$ to $G_R$ using rule $\rho$ and match $m$, denoted \(G_L \mathop{\Rightarrow}^m_{\text{\pbpop},\rho} G_R\).
     
       \begin{tikzpicture} 
         % Nodes of the diagram
@@ -1752,9 +1752,9 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
 
     \trackedtext{
       \begin{definition}[Rewriting relation]
-        The \textbf{rewriting relation $\Rightarrow_{\text{\pbpop},\mathfrak{F},\rho} $ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G_L \Rightarrow_{\text{\pbpop},\mathfrak{F},\rho} G_R$ iff $G_L \Rightarrow^m_{\text{\pbpop},\rho} G_R$ for some match \(m\) and some witness \(w\) in \(\mathfrak{F}(\rho)\).
+        The \textbf{rewriting relation $\mathop{\Rightarrow}_{\text{\pbpop},\mathfrak{F},\rho} $ induced by a rule $\rho$ in $\mathfrak{F}$} is defined as follows: $G_L \mathop{\Rightarrow}_{\text{\pbpop},\mathfrak{F},\rho} G_R$ iff $G_L \mathop{\Rightarrow}^m_{\text{\pbpop},\rho} G_R$ for some match \(m\) and some witness \(w\) in \(\mathfrak{F}(\rho)\).
         \\
-          The \textbf{rewriting relation $\Rightarrow_{\text{\pbpop},\mathfrak{F},\mathcal{R}}$ induced by a set $\mathcal{R}$ of \pbpop rewriting rules in $\mathfrak{F}$} is given by: $G_L \Rightarrow_{\text{\pbpop},\mathfrak{F},\mathcal{R}} G_R$ iff $G_L \Rightarrow_{\text{\pbpop},\mathfrak{F},\rho} G_R$ for some rule $\rho \in \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we suppress $\mathfrak{F}$ and write $\Rightarrow_{\text{\pbpop},\rho}$ and $\Rightarrow_{\text{\pbpop},\mathcal{R}}$.
+          The \textbf{rewriting relation $\mathop{\Rightarrow}_{\text{\pbpop},\mathfrak{F},\mathcal{R}}$ induced by a set $\mathcal{R}$ of \pbpop rewriting rules in $\mathfrak{F}$} is given by: $G_L \mathop{\Rightarrow}_{\text{\pbpop},\mathfrak{F},\mathcal{R}} G_R$ iff $G_L \mathop{\Rightarrow}_{\text{\pbpop},\mathfrak{F},\rho} G_R$ for some rule $\rho \mathop{\in} \mathcal{R}$. When $\mathfrak{F}$ is clear from the context, we suppress $\mathfrak{F}$ and write $\mathop{\Rightarrow}_{\text{\pbpop},\rho}$ and $\mathop{\Rightarrow}_{\text{\pbpop},\mathcal{R}}$.
       \end{definition}
     }
     
@@ -1801,24 +1801,24 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
         \begin{example}[ \cite{overbeek2023pbpo_JLAMP}]
             In the category of unlabeled directed graphs, there exists a mono-partial morphism classifier $(T,\eta)$ where 
             \begin{itemize}
-                \item for all unlabeled graph $G=(V,A,s,t)$, we have $T(G) = (V_*,E_*,s_*,t_*)$ where $V_* = V \uplus \{*\}, E_* = E \uplus (V_* \times V_x), s_*(e) = s(e)$ if $e \in E$ and $\pi_1(e)$ otherwise, and $t_*(e) = t(e)$ if $e \in E$ and $\pi_2(e)$ otherwise.
+                \item for all unlabeled graph $G=(V,A,s,t)$, we have $T(G) \mathop{=} (V_*,E_*,s_*,t_*)$ where $V_* \mathop{=} V \uplus \{*\}, E_* \mathop{=} E \uplus (V_* \mathop{\times} V_x), s_*(e) \mathop{=} s(e)$ if $e \mathop{\in} E$ and $\pi_1(e)$ otherwise, and $t_*(e) \mathop{=} t(e)$ if $e \mathop{\in} E$ and $\pi_2(e)$ otherwise.
             \end{itemize}
             An example is given by 
             \begin{center}
-                $G \; = $
+                $G \; \mathop{=} $
                 \begin{tikzcd}
                 v \arrow[loop, distance=2em, in=215, out=145] \arrow[rr] &  & w
                 \end{tikzcd}
                 \quad and \quad 
-                $T(G) \; = \hspace{-3mm} $ % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiVpAF9T1Nd9CUAJnJVajFmwDunbiAzY8BIgEZSy0fWatEIADq6ARhBydRMKAHN4RUADMAThAC2SMiBwRX1BhAhoiggDsZLaMcDCiDHQGMAwACryKAiD2WBYAFiZcdo4uiG4eSMrZIA7OXu6eiMIgDFhg2iBQxjjmINQxYFBIALQAzMQlZXk1hYiqtfWNzTit3UO5SKNVNT5+RCFhEd7RsQkK-GypGSbeU2wzczI55ePUYxNr-igAnJsM4ZG78YmHOseZdqTBoXFptBa3ApVNxPALBUihD7bWrffZ8JT-NKAs4gnSXcGyYYVB4dGBdJADHHTMHzQmLO6VCqdbqISnA6mzAk3Eb3aFU0Gc2ncoq8pak8msmHnPE00wcIA
+                $T(G) \; \mathop{=} \hspace{-3mm} $ % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiVpAF9T1Nd9CUAJnJVajFmwDunbiAzY8BIgEZSy0fWatEIADq6ARhBydRMKAHN4RUADMAThAC2SMiBwRX1BhAhoiggDsZLaMcDCiDHQGMAwACryKAiD2WBYAFiZcdo4uiG4eSMrZIA7OXu6eiMIgDFhg2iBQxjjmINQxYFBIALQAzMQlZXk1hYiqtfWNzTit3UO5SKNVNT5+RCFhEd7RsQkK-GypGSbeU2wzczI55ePUYxNr-igAnJsM4ZG78YmHOseZdqTBoXFptBa3ApVNxPALBUihD7bWrffZ8JT-NKAs4gnSXcGyYYVB4dGBdJADHHTMHzQmLO6VCqdbqISnA6mzAk3Eb3aFU0Gc2ncoq8pak8msmHnPE00wcIA
                 \begin{tikzcd}
                 v \arrow[loop, distance=2em, in=215, out=145] \arrow[rr] \arrow[rd, dotted, bend right] \arrow[dotted, loop, distance=4em, in=240, out=140, looseness=3] \arrow[rr, dotted, bend left] &                                                                                                & w \arrow[dotted, loop, distance=2em, in=35, out=325] \arrow[ll, dotted, bend left] \arrow[ld, dotted, bend left] \\
-                                                                                                                                                                  & \star \arrow[ru, dotted] \arrow[dotted, loop, distance=2em, in=305, out=235] \arrow[lu, dotted] &                                                                                                       
+                                                                                                                                                                  & \mathop{\star} \arrow[ru, dotted] \arrow[dotted, loop, distance=2em, in=305, out=235] \arrow[lu, dotted] &                                                                                                       
                 \end{tikzcd},
             \end{center}
         
-            where the dotted edges represent the edges $e \in V_\star \times V_\star$.
-            It can be seen that for any partial homomorphism $\psi: H \to G$ defined on subgraph $H' \subseteq H$, there exists exactly one homomorphism $\psi_\star : H \to T(G)$ such that $\psi_\star(x) = \psi(x)$ for $x \in V_{H'} \cup E_{H'}$ and $\psi_\star(x) \notin V_{G} \cup E_{G}$ for $x \notin V_{H'} \cup E_{H'}$. Equivalently, $\psi_\star$ is the unique morphism $\varphi_{m,f} : H \to T(G)$ making
+            where the dotted edges represent the edges $e \mathop{\in} V_\star \mathop{\times} V_\star$.
+            It can be seen that for any partial homomorphism $\psi: H \mathop{\to} G$ defined on subgraph $H' \mathop{\subseteq} H$, there exists exactly one homomorphism $\psi_\star : H \mathop{\to} T(G)$ such that $\psi_\star(x) \mathop{=} \psi(x)$ for $x \mathop{\in} V_{H'} \mathop{\cup} E_{H'}$ and $\psi_\star(x) \notin V_{G} \mathop{\cup} E_{G}$ for $x \notin V_{H'} \mathop{\cup} E_{H'}$. Equivalently, $\psi_\star$ is the unique morphism $\varphi_{m,f} : H \mathop{\to} T(G)$ making
                 \begin{center}
                     % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbAELdeIDNjwEiZYePrNWiEAEE5fJYKKj11TVJ0AVABTSAlN3EwoAc3hFQAMwBOEALZIoiA4EEgAzNQ4dFgMbAAWEBAA1iDmktogADpZMNEA+rLUDHQARjAMAAr8ykIgWGDYsAYgvgFIZCFhiABMUTFxOokpaRJabIHFZRXVRio6DU2sPN5+gYidoUHp4zpeoyXlVTXGC41YzSuta0h9XRE7ltlZaHQ+AMYlcHDA-lzAXi4B2mxzmdUWF2WFC4QA
                     \begin{tikzcd}[column sep=15mm]
@@ -1828,7 +1828,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
                 \end{center}
             a pullback square, where $H \stackrel{m}{\hookleftarrow} H' \stackrel{f}{\to} G$ a partial map span representation of $\psi$, and $\eta_G$ and $m$ are inclusions.
             
-            The generalization to labeled graphs is straightforward: between any two nodes $u,v \in V_\star$ and for every label $l$, there is one $l$-labeled edge representing an undefined $l$-edge between $u$ and $v$.
+            The generalization to labeled graphs is straightforward: between any two nodes $u,v \mathop{\in} V_\star$ and for every label $l$, there is one $l$-labeled edge representing an undefined $l$-edge between $u$ and $v$.
         \end{example}
         
         The following theorem is an instance of \cite[Definition 71]{overbeek2023pbpo_JLAMP}.
@@ -1852,7 +1852,7 @@ Normalized Term Rewriting Systems (Normalized TRSs), introduced by Claude March√
         
             For any left-injective DPO rule $\rho$, $|\rho|$ is a well-defined $\mathrm{PBPO}^+$ rule. 
             
-            For any $G \to^{\rho}_{\mathrm{DPO}} H$, we have $G \to^{|\rho|}_{\mathrm{PBPO}^+} H$.  
+            For any $G \mathop{\to} ^{\rho}_{\mathrm{DPO}} H$, we have $G \mathop{\to} ^{|\rho|}_{\mathrm{PBPO}^+} H$.  
         \end{theorem}
         \begin{proof}
             \todo{todo}

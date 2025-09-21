@@ -24,7 +24,7 @@ In practice, it is often more convient to embed the rewriting system into a term
 
 \begin{definition}[Relative termination of rewriting relations]
     \label{def:rewriting_relation:relative_termination}
-    Let \( \to \) and \( \leadsto \) be two rewriting relations. We say that \(\to\) is \textbf{terminating relative to} \(\leadsto\) if every \( \left(\to \cup \leadsto \right) \)-sequence contains only finitely many \(\to\)-steps.
+    Let \( \mathop{\to} \) and \( \leadsto \) be two rewriting relations. We say that \(\to\) is \textbf{terminating relative to} \(\leadsto\) if every \( \left( \mathop{\to} \mathop{\cup} \leadsto \right) \)-sequence contains only finitely many \(\to\)-steps.
 \end{definition}
 
 \begin{definition}[Relative termination of rewriting systems]
@@ -34,7 +34,7 @@ In practice, it is often more convient to embed the rewriting system into a term
 \end{definition}
 
 % \begin{proposition}[Proving Relative Termination]
-%     Let \((S, \to \cup \leadsto) \) be an abstract rewriting system. \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if there is a terminating rewriting system $(R,>)$ and a function $h : S \to R$ such that
+%     Let \((S, \mathop{\to} \mathop{\cup} \leadsto) \) be an abstract rewriting system. \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if there is a terminating rewriting system $(R,>)$ and a function $h : S \mathop{\to} R$ such that
 %     \begin{itemize}
 %       \item $h$ is abstract rewriting system homomorphism from $(S,\to)$ to  $(R,>)$
 %       \item $h$ is abstract rewriting system homomorphism from $(S,\leadsto)$ to  $(R,\geq)$
@@ -43,7 +43,7 @@ In practice, it is often more convient to embed the rewriting system into a term
 %   \end{proposition}
 \begin{definition}[Proving relative termination]
     \label{def:rewriting_system:proving_relative_termination}
-    Let \( \mathcal{A} \) and \( \mathcal{B} \) be two rewriting systems on $D$. Let $>$ and $\geq$ be two rewriting relations on $D'$ such that $>$ is terminating relative to $\geq$. If there exists a function $h : D \to D'$ such that: (1) $h$ is a homomorphism from the rewriting relation of \(\mathcal{A}\) to $>$, and (2) $h$ is a homomorphism from the rewriting relation of \(\mathcal{B}\) to $\geq$, then \(\mathcal{A}\) is terminating relative to \(\mathcal{B}\).
+    Let \( \mathcal{A} \) and \( \mathcal{B} \) be two rewriting systems on $D$. Let $>$ and $\geq$ be two rewriting relations on $D'$ such that $>$ is terminating relative to $\geq$. If there exists a function $h : D \mathop{\to} D'$ such that: (1) $h$ is a homomorphism from the rewriting relation of \(\mathcal{A}\) to $>$, and (2) $h$ is a homomorphism from the rewriting relation of \(\mathcal{B}\) to $\geq$, then \(\mathcal{A}\) is terminating relative to \(\mathcal{B}\).
 \end{definition}
 
 % \begin{definition}[Relative terminating rewriting systems]
@@ -53,12 +53,12 @@ In practice, it is often more convient to embed the rewriting system into a term
 % \end{definition}
 
 % \begin{definition}[Relative termination]
-% Let \((S, \to \cup \leadsto) \) be a rewriting system. We say that \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if every derivation $s_1 (\to \cup \leadsto) s_2 (\to \cup \leadsto) \hdots $ contains only finitely many $\to$-steps.
+% Let \((S, \mathop{\to} \mathop{\cup} \leadsto) \) be a rewriting system. We say that \((S,\to)\) is \textbf{terminating relative to} \((S, \leadsto)\) if every derivation $s_1 ( \mathop{\to} \mathop{\cup} \leadsto) s_2 ( \mathop{\to} \mathop{\cup} \leadsto) \hdots $ contains only finitely many $\to$-steps.
 % \end{definition} 
 
 % \color{red}
 % \begin{definition}[Pre-order \cite{davey2002introduction}]
-%   A reflexive and transitive binary relation $\geq$ on a set is called a pre-order. It give rise to a relation $>$ of strict inequality: $x > y$ iff $x \geq y$ and $x \neq y$. 
+%   A reflexive and transitive binary relation $\geq$ on a set is called a pre-order. It give rise to a relation $>$ of strict inequality: $x \mathop{>} y$ iff $x \mathop{\geq} y$ and $x \mathop{\neq} y$. 
 % \end{definition} 
 
 % \begin{definition}[Partial Order]
@@ -70,37 +70,37 @@ In practice, it is often more convient to embed the rewriting system into a term
 % \end{definition}
 
 % \begin{example}[Lexicographic Product \cite{nipkow1998term}]
-%   Consider two rewriting systems $(A, >)$ and $(B, \succ)$. The lexicographic product $(A \times B, \gg)$ is defined by the relation \((x,y) \gg (x',y')\) if and only if \(x > x'\) or, \(x = x'\) and \(y \succ y'\). If \(>\) and \(\succ\) are strict partial orders, then \(\gg\) is also a strict partial order. Furthermore, if both \((A, >)\) and \((B, \succ)\) terminate, then the lexicographic product \((A \times B, \gg)\) will also terminate.
+%   Consider two rewriting systems $(A, >)$ and $(B, \mathop{\succ})$. The lexicographic product $(A \mathop{\times} B, \gg)$ is defined by the relation \((x,y) \gg (x',y')\) if and only if \(x \mathop{>} x'\) or, \(x \mathop{=} x'\) and \(y \mathop{\succ} y'\). If \(>\) and \(\mathop{\succ}\) are strict partial orders, then \(\gg\) is also a strict partial order. Furthermore, if both \((A, >)\) and \((B, \mathop{\succ})\) terminate, then the lexicographic product \((A \mathop{\times} B, \gg)\) will also terminate.
 % \end{example}
 
 % \begin{example}[Finite Lexicographic Product \cite{nipkow1998term}]
-%   By iteration, we can form lexicographic product over any number of rewriting systems $(A_i, >_i), i=1,\ldots,n$. For $n>1$, the lexicographic product $(A_1 \times (A_2 \times \ldots \times A_n),>_{1\ldots n})$ is the lexicographic product of $(A_1, >_1)$ and $(A_2 \times \ldots \times A_n,>{2\ldots n})$. Unwinding the recursion, we get 
-%   $(x_1,\ldots,x_n) >_{1\ldots n} (x_1',\ldots, x_n')$ iff $\exists k < n.(\forall i < k. x_i = x_i') \land x_k >_k x_k'$.
-%   If $(A_1,>_1), \ldots, (A_n,>_n)$ are strict partial orders, then so is $(A_1 \times \ldots \times A_n, >_{1\ldots n})$. 
-%   If $(A_1,>_1), \ldots, (A_n,>_n)$ terminates, then so does $(A_1 \times \ldots \times A_n, >_{1\ldots n})$. 
+%   By iteration, we can form lexicographic product over any number of rewriting systems $(A_i, >_i), i=1,\ldots,n$. For $n>1$, the lexicographic product $(A_1 \mathop{\times} (A_2 \mathop{\times} \ldots \mathop{\times} A_n),>_{1\ldots n})$ is the lexicographic product of $(A_1, >_1)$ and $(A_2 \mathop{\times} \ldots \mathop{\times} A_n,>{2\ldots n})$. Unwinding the recursion, we get 
+%   $(x_1,\ldots,x_n) >_{1\ldots n} (x_1',\ldots, x_n')$ iff $\exists k < n.(\forall i < k. x_i \mathop{=} x_i') \mathop{\land} x_k >_k x_k'$.
+%   If $(A_1,>_1), \ldots, (A_n,>_n)$ are strict partial orders, then so is $(A_1 \mathop{\times} \ldots \mathop{\times} A_n, >_{1\ldots n})$. 
+%   If $(A_1,>_1), \ldots, (A_n,>_n)$ terminates, then so does $(A_1 \mathop{\times} \ldots \mathop{\times} A_n, >_{1\ldots n})$. 
 % \end{example}
 
 % \begin{example}[Finite Lexicographic Product \cite{nipkow1998term}]
-%   A lexicographic product can be extended iteratively over any number of rewriting systems \((A_i, >_i)\) for \(i = 1, \ldots, n\). For \(n > 1\), the lexicographic product \((A_1 \times A_2 \times \dots \times A_n, >_{1\ldots n})\) is defined as the lexicographic product of \((A_1, >_1)\) and \((A_2 \times \dots \times A_n, >_{2\ldots n})\). Expanding this recursion, we have 
-%   \((x_1, \dots, x_n) >_{1\ldots n} (x_1', \dots, x_n')\) if and only if there exists \(k < n\) such that \((\forall i < k . x_i = x_i') \land x_k >_k x_k'\).
-%   If each \((A_1, >_1), \ldots, (A_n, >_n)\) is a strict partial order, then \((A_1 \times \dots \times A_n, >_{1\ldots n})\) is also a strict partial order. 
-%   Moreover, if \((A_1, >_1), \ldots, (A_n, >_n)\) terminate, then the lexicographic product \((A_1 \times \dots \times A_n, >_{1\ldots n})\) also terminates.
+%   A lexicographic product can be extended iteratively over any number of rewriting systems \((A_i, >_i)\) for \(i \mathop{=} 1, \ldots, n\). For \(n \mathop{>} 1\), the lexicographic product \((A_1 \mathop{\times} A_2 \mathop{\times} \dots \mathop{\times} A_n, >_{1\ldots n})\) is defined as the lexicographic product of \((A_1, >_1)\) and \((A_2 \mathop{\times} \dots \mathop{\times} A_n, >_{2\ldots n})\). Expanding this recursion, we have 
+%   \((x_1, \dots, x_n) >_{1\ldots n} (x_1', \dots, x_n')\) if and only if there exists \(k < n\) such that \((\forall i < k . x_i \mathop{=} x_i') \mathop{\land} x_k >_k x_k'\).
+%   If each \((A_1, >_1), \ldots, (A_n, >_n)\) is a strict partial order, then \((A_1 \mathop{\times} \dots \mathop{\times} A_n, >_{1\ldots n})\) is also a strict partial order. 
+%   Moreover, if \((A_1, >_1), \ldots, (A_n, >_n)\) terminate, then the lexicographic product \((A_1 \mathop{\times} \dots \mathop{\times} A_n, >_{1\ldots n})\) also terminates.
 % \end{example}
 
 
 % \begin{example}[Strings of Arbitrary but Finite Length with Lexicographic Order \cite{nipkow1998term}]
-%   Given an rewriting system \((A, >)\), the lexicographic order \((A^*, >_{lex})\) is defined as follows: \(x > x'\) if and only if \((|x| > |x'|) \lor (|x| = |x'| \land y \succ y')\).
-%   If \(>\) is a strict partial order, then \(\gg\) is also a strict partial order. Furthermore, if both \((A, >)\) and \((B, \succ)\) are terminating rewriting systems, then their lexicographic product \((A \times B, \gg)\) also terminates.
+%   Given an rewriting system \((A, >)\), the lexicographic order \((A^*, >_{lex})\) is defined as follows: \(x \mathop{>} x'\) if and only if \((|x| \mathop{>} |x'|) \lor (|x| \mathop{=} |x'| \mathop{\land} y \mathop{\succ} y')\).
+%   If \(>\) is a strict partial order, then \(\gg\) is also a strict partial order. Furthermore, if both \((A, >)\) and \((B, \mathop{\succ})\) are terminating rewriting systems, then their lexicographic product \((A \mathop{\times} B, \gg)\) also terminates.
 % \end{example}
 
 % \begin{definition}[Multiset Order \cite{nipkow1998term}]
-%   A \textbf{multiset} is a generalization of a set where elements can occur multiple times. Formally, it is defined as a function \( M: A \rightarrow \mathbb{N} \), where for each \(a \in A\), \(M(a)\) represents the number of times \(a\) appears in the multiset \(M\). The collection of all multisets over a set \(A\) is denoted by \(\mathcal{M}(A)\).
+%   A \textbf{multiset} is a generalization of a set where elements can occur multiple times. Formally, it is defined as a function \( M: A \mathop{\rightarrow} \mathbb{N} \), where for each \(a \mathop{\in} A\), \(M(a)\) represents the number of times \(a\) appears in the multiset \(M\). The collection of all multisets over a set \(A\) is denoted by \(\mathcal{M}(A)\).
 
-%   Given a strict partial order \(>\) on a set \(A\), the corresponding multiset order \(>_{mul}\) on \(\mathcal{M}(A)\) is defined as follows: \(M >_{mul} N\) if and only if there exist multisets \(X, Y \in \mathcal{M}(A)\) such that:
+%   Given a strict partial order \(>\) on a set \(A\), the corresponding multiset order \(>_{mul}\) on \(\mathcal{M}(A)\) is defined as follows: \(M >_{mul} N\) if and only if there exist multisets \(X, Y \mathop{\in} \mathcal{M}(A)\) such that:
 %   \begin{itemize}
-%       \item \(X \subseteq M\) and \(X \neq \emptyset\),
-%       \item \(N = (M - X) \cup Y\), and
-%       \item \(\forall y \in Y, \exists x \in X \text{ such that } x > y\).
+%       \item \(X \mathop{\subseteq} M\) and \(X \mathop{\neq} \emptyset\),
+%       \item \(N \mathop{=} (M - X) \mathop{\cup} Y\), and
+%       \item \(\forall y \mathop{\in} Y, \exists x \mathop{\in} X \text{ such that } x \mathop{>} y\).
 %   \end{itemize}
 %   If the rewriting system \((A, >)\) terminates, then the multiset order \((\mathcal{M}(A), >_{mul})\) also terminates.
 % \end{definition}

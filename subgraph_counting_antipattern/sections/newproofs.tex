@@ -19,22 +19,22 @@
     }\end{center} 
     The following hold 
     \begin{enumerate}
-        \item  If $ b\in B $ and $ c \in C $ such that $ h_{BD}(b) = h_{CD}(c) $ then there is $ a \in A $ such that $ h_{AB}(a) = b $ and $ h_{AC}(a)= c $.
-        \item  For all \( b \in B \setminus h_{AB}(A) \) and \( c \in C \), we have \( \beta'(b) \neq \alpha'(c) \).
+        \item  If $ b\in B $ and $ c \mathop{\in} C $ such that $ h_{BD}(b) \mathop{=} h_{CD}(c) $ then there is $ a \mathop{\in} A $ such that $ h_{AB}(a) \mathop{=} b $ and $ h_{AC}(a)= c $.
+        \item  For all \( b \mathop{\in} B \mathop{\setminus} h_{AB}(A) \) and \( c \mathop{\in} C \), we have \( \beta'(b) \mathop{\neq} \alpha'(c) \).
     \end{enumerate}
 \end{lemma}
 \begin{proof}
-     Let \( b \in B \) and \( c \in C \) such that \( h_{BD}(b) = h_{CD}(c) \). 
+     Let \( b \mathop{\in} B \) and \( c \mathop{\in} C \) such that \( h_{BD}(b) \mathop{=} h_{CD}(c) \). 
      
      There are two cases: if $b$ and $c$ are two nodes then let \( S \) be the singleton graph with a unique node \( u \), otherwise\textemdash$b$ and $c$ must be two edges with the same label $l$\textemdash let \( S \) be the graph with two distinct nodes and a unique edge \( u \) labeled by $l$.
      
-     Define morphisms \( h_{SB}: S \to B \) and \( h_{SC}: S \to C \) such that \( h_{SB}(u) = b \) and \( h_{SC}(u) = c \). We have \( h_{SB} \star h_{BD} = h_{SC} \star h_{CD} \). The pushout square \( ACDB \) along monomorphisms is also a pullback square by Proposition~\ref{prop:pb_eq_po}, and the universal property of the pullback guarantees the existence of a unique morphism \( h_{SA}: S \to A \) such that \( h_{SA} \star h_{AB} = h_{SB} \) and \( h_{SA} \star h_{AC} = h_{SC} \). Let \( a = h_{SA}(u) \). We have \( a \in A \), and by composition: 
+     Define morphisms \( h_{SB}: S \mathop{\to} B \) and \( h_{SC}: S \mathop{\to} C \) such that \( h_{SB}(u) \mathop{=} b \) and \( h_{SC}(u) \mathop{=} c \). We have \( h_{SB} \mathop{\star} h_{BD} \mathop{=} h_{SC} \mathop{\star} h_{CD} \). The pushout square \( ACDB \) along monomorphisms is also a pullback square by Proposition~\ref{prop:pb_eq_po}, and the universal property of the pullback guarantees the existence of a unique morphism \( h_{SA}: S \mathop{\to} A \) such that \( h_{SA} \mathop{\star} h_{AB} \mathop{=} h_{SB} \) and \( h_{SA} \mathop{\star} h_{AC} \mathop{=} h_{SC} \). Let \( a \mathop{=} h_{SA}(u) \). We have \( a \mathop{\in} A \), and by composition: 
      \begin{itemize}
-        \item \(h_{AB}(a) = (h_{SA} \star h_{AB})(u) = h_{SB}(u) = b \)
-        \item \(h_{AC}(a) = (h_{SA} \star h_{AC})(u) = h_{SC}(u) = c\)
+        \item \(h_{AB}(a) \mathop{=} (h_{SA} \mathop{\star} h_{AB})(u) \mathop{=} h_{SB}(u) \mathop{=} b \)
+        \item \(h_{AC}(a) \mathop{=} (h_{SA} \mathop{\star} h_{AC})(u) \mathop{=} h_{SC}(u) \mathop{=} c\)
      \end{itemize} 
 
-    The second assertion is a direct consequentce of the first. Suppose, for contradiction, there exist \( b \in B \setminus h_{AB}(A) \) and \( c \in C \) such that \( h_{BD}(b) = h_{CD}(c) \). Since the first assertion holds, there must exist \( a \in A \) with \( h_{AB}(a) = b \) and \( h_{AC}(a) = c \). However, this contradicts the assumption that \( b \notin h_{AB}(A) \).
+    The second assertion is a direct consequentce of the first. Suppose, for contradiction, there exist \( b \mathop{\in} B \mathop{\setminus} h_{AB}(A) \) and \( c \mathop{\in} C \) such that \( h_{BD}(b) \mathop{=} h_{CD}(c) \). Since the first assertion holds, there must exist \( a \mathop{\in} A \) with \( h_{AB}(a) \mathop{=} b \) and \( h_{AC}(a) \mathop{=} c \). However, this contradicts the assumption that \( b \notin h_{AB}(A) \).
     \qed
 \end{proof}
 
@@ -74,9 +74,9 @@
         The squares $K'KCC'$ and $K'KRR'$ are pulllback square.
 \end{lemma}
 \begin{proof}
-    Let $K \leftarrow A \rightarrow C'$ be a span such that 
+    Let $K \mathop{\leftarrow} A \mathop{\rightarrow} C'$ be a span such that 
     \begin{flalign}
-        h_{AK} \star h_{KC} = h_{AC'} \star h_{C'C} \label{hakhkchacp}
+        h_{AK} \mathop{\star} h_{KC} \mathop{=} h_{AC'} \mathop{\star} h_{C'C} \label{hakhkchacp}
     \end{flalign}
     We have the following commutative diagram 
 
@@ -113,19 +113,19 @@
             \end{tikzpicture}
         }
         \end{center} 
-    We show first the existence of a morphism $h_{AK'} \colon A \to K'$ such that 
+    We show first the existence of a morphism $h_{AK'} \mathop{\colon} A \mathop{\to} K'$ such that 
     \begin{flalign*}
-        h_{AK'} \star h_{K'C'} = h_{AC'}  
+        h_{AK'} \mathop{\star} h_{K'C'} \mathop{=} h_{AC'}  
         \\
-        h_{AK'} \star h_{K'K} = h_{AK} 
+        h_{AK'} \mathop{\star} h_{K'K} \mathop{=} h_{AK} 
     \end{flalign*}
     From Equation~\eqref{hakhkchacp}, we obtain 
     \begin{flalign}
-        h_{AK} \star h_{KC} \star h_{CH}= h_{AC'} \star h_{C'C} \star h_{CH} \label{hakhkchchhacp}
+        h_{AK} \mathop{\star} h_{KC} \mathop{\star} h_{CH}= h_{AC'} \mathop{\star} h_{C'C} \mathop{\star} h_{CH} \label{hakhkchchhacp}
     \end{flalign}
-    From Equation~\eqref{hakhkchchhacp} and commutativity of $C'CHX$ and $KCHR$, we have $h_{KC} \star h_{CH} = h_{KR} \star h_{RH}$ and $h_{C'C} \star h_{CH} = h_{C'X} \star h_{XH}$ and deduce  
+    From Equation~\eqref{hakhkchchhacp} and commutativity of $C'CHX$ and $KCHR$, we have $h_{KC} \mathop{\star} h_{CH} \mathop{=} h_{KR} \mathop{\star} h_{RH}$ and $h_{C'C} \mathop{\star} h_{CH} \mathop{=} h_{C'X} \mathop{\star} h_{XH}$ and deduce  
      \begin{flalign}
-        h_{AK} \star h_{KR} \star h_{RH}= h_{AC'} \star h_{C'X} \star h_{XH} \label{hakhkrhrhhacp}
+        h_{AK} \mathop{\star} h_{KR} \mathop{\star} h_{RH}= h_{AC'} \mathop{\star} h_{C'X} \mathop{\star} h_{XH} \label{hakhkrhrhhacp}
      \end{flalign}
     Therefore, the following commutative diagram holds 
 
@@ -152,11 +152,11 @@
             \end{tikzpicture}
         }
         \end{center} 
-    Since $R'XHR$ is a pullback square, by the universal property Definition~\ref{def:cat:pb}, there exists a unique morphism $h_{AR'} \colon A \to R'$ such that 
+    Since $R'XHR$ is a pullback square, by the universal property Definition~\ref{def:cat:pb}, there exists a unique morphism $h_{AR'} \mathop{\colon} A \mathop{\to} R'$ such that 
     \begin{flalign}
-        h_{AR'} \star h_{R'R} = h_{AK} \star h_{KR}  \label{harprprakkr}
+        h_{AR'} \mathop{\star} h_{R'R} \mathop{=} h_{AK} \mathop{\star} h_{KR}  \label{harprprakkr}
         \\
-        h_{AR'} \star h_{R'X} = h_{AC'} \star h_{C'X} \label{harprpxacpcpx}
+        h_{AR'} \mathop{\star} h_{R'X} \mathop{=} h_{AC'} \mathop{\star} h_{C'X} \label{harprpxacpcpx}
     \end{flalign}
     We have thus the following commutative diagram 
 
@@ -178,26 +178,26 @@
                 \end{tikzpicture}
             }
         \end{center} 
-    Since $K'C'XR'$ is a pullback square, there exists a unique morphism $h_{AK'} \colon A \to K'$ such that 
+    Since $K'C'XR'$ is a pullback square, there exists a unique morphism $h_{AK'} \mathop{\colon} A \mathop{\to} K'$ such that 
     \begin{flalign}
-        h_{AK'} \star h_{K'C'} = h_{AC'}  \label{hakphkpcphacp}
+        h_{AK'} \mathop{\star} h_{K'C'} \mathop{=} h_{AC'}  \label{hakphkpcphacp}
         \\
-        h_{AK'} \star h_{K'R'} = h_{AR'} \label{hakpkprparp}
+        h_{AK'} \mathop{\star} h_{K'R'} \mathop{=} h_{AR'} \label{hakpkprparp}
     \end{flalign}
-    We have $h_{AK'} \star h_{K'C'} = h_{AC'}$ by Equation~\eqref{hakphkpcphacp}, and $h_{AK'} \star h_{K'K} = h_{AK}$ because $h_{KR}$ is injective and the following holds:
+    We have $h_{AK'} \mathop{\star} h_{K'C'} \mathop{=} h_{AC'}$ by Equation~\eqref{hakphkpcphacp}, and $h_{AK'} \mathop{\star} h_{K'K} \mathop{=} h_{AK}$ because $h_{KR}$ is injective and the following holds:
     \begin{flalign*}
-        (h_{AK'} \star h_{K'K}) \star h_{KR} &= h_{AK} \star h_{K'R'} \star h_{R'R} \hspace{0.5cm} &\text{by commutativity of $K'KRR'$}\\
-        &= h_{AR'} \star h_{R'R} &\text{by Equation~\eqref{hakpkprparp}} \\
-        &= h_{AK} \star h_{KR} &\text{by Equation~\eqref{harprprakkr}}
+        (h_{AK'} \mathop{\star} h_{K'K}) \mathop{\star} h_{KR} &= h_{AK} \mathop{\star} h_{K'R'} \mathop{\star} h_{R'R} \hspace{0.5cm} &\text{by commutativity of $K'KRR'$}\\
+        &= h_{AR'} \mathop{\star} h_{R'R} &\text{by Equation~\eqref{hakpkprparp}} \\
+        &= h_{AK} \mathop{\star} h_{KR} &\text{by Equation~\eqref{harprprakkr}}
     \end{flalign*}
     Now, we show the unicity of such a morphism from $A$ to $K'$. 
-    Let $h_{AK'}' \colon A \to K'$ be a morphism  such that 
+    Let $h_{AK'}' \mathop{\colon} A \mathop{\to} K'$ be a morphism  such that 
     \begin{flalign*}
-        h_{AK'}' \star h_{K'C'} = h_{AC'}  
+        h_{AK'}' \mathop{\star} h_{K'C'} \mathop{=} h_{AC'}  
         \\
-        h_{AK'}' \star h_{K'K} = h_{AK} 
+        h_{AK'}' \mathop{\star} h_{K'K} \mathop{=} h_{AK} 
     \end{flalign*}
-    From $h_{AK'} \star h_{K'C'} = h_{AC'}$, $h_{AK'}' \star h_{K'C'} = h_{AC'}$ and injectivity of $h_{K'C'}$, we deduce $h_{AK'} = h_{AK'}$.
+    From $h_{AK'} \mathop{\star} h_{K'C'} \mathop{=} h_{AC'}$, $h_{AK'}' \mathop{\star} h_{K'C'} \mathop{=} h_{AC'}$ and injectivity of $h_{K'C'}$, we deduce $h_{AK'} \mathop{=} h_{AK'}$.
 
     \qed
 \end{proof}
@@ -276,13 +276,13 @@
             \draw [>->] (k') -- (c');
         \end{tikzpicture}
     \end{center}
-     Let $x$ be a node (resp. an edge) in $X$. There is either a node (resp. an edge) $r'$ in $R'$ such that $h_{R'X}(r') = x$ or a node (resp. an edge) $c'$ in $C'$ such that $h_{C'X}(c') = x$.
+     Let $x$ be a node (resp. an edge) in $X$. There is either a node (resp. an edge) $r'$ in $R'$ such that $h_{R'X}(r') \mathop{=} x$ or a node (resp. an edge) $c'$ in $C'$ such that $h_{C'X}(c') \mathop{=} x$.
 \end{lemma}
 \begin{proof}
-    Suppose, by contradiction, that there exists neither a node (resp. an edge) $r'$ in $R'$ such that $h_{R'X}(r') = x$ nor a node (resp. an edge) $c'$ in $C'$ such that $h_{C'X}(c') = x$.
+    Suppose, by contradiction, that there exists neither a node (resp. an edge) $r'$ in $R'$ such that $h_{R'X}(r') \mathop{=} x$ nor a node (resp. an edge) $c'$ in $C'$ such that $h_{C'X}(c') \mathop{=} x$.
 
     Let $G$ be a graph with two distinct nodes (resp. edges) $y$ and $y'$.
-    By the universal property of pushout square Definition~\ref{def:cat:po}, there exists a unique morphism $h_{XG}:X \rightarrowtail G$ such that $h_{C'G} = h_{C'X} \star h_{XG}$ and  $h_{R'G} = h_{R'X} \star h_{XG}$.
+    By the universal property of pushout square Definition~\ref{def:cat:po}, there exists a unique morphism $h_{XG}:X \rightarrowtail G$ such that $h_{C'G} \mathop{=} h_{C'X} \mathop{\star} h_{XG}$ and  $h_{R'G} \mathop{=} h_{R'X} \mathop{\star} h_{XG}$.
     \begin{center}
         \begin{tikzpicture}
             \node (g) at (-4,-4) {$G$};
@@ -302,17 +302,17 @@
     \end{center}
     However, if we define two morphisms $f$ and $g$ by 
     \begin{flalign*}
-        f(z) &= h_{XG}(z) \text{if $z \neq x$}\\
+        f(z) &= h_{XG}(z) \text{if $z \mathop{\neq} x$}\\
         f(x) &= y \\
-        g(z) &= h_{XG}(z) \text{if $z \neq x$}\\
+        g(z) &= h_{XG}(z) \text{if $z \mathop{\neq} x$}\\
         g(x) &= y' \\
     \end{flalign*}
-    we have $f \neq g$ and 
+    we have $f \mathop{\neq} g$ and 
     \begin{flalign*}
-        h_{C'G} = h_{C'X} \star f\\
-        h_{R'G} = h_{R'X} \star f\\
-        h_{C'G} = h_{C'X} \star g\\
-        h_{R'G} = h_{R'X} \star g
+        h_{C'G} \mathop{=} h_{C'X} \mathop{\star} f\\
+        h_{R'G} \mathop{=} h_{R'X} \mathop{\star} f\\
+        h_{C'G} \mathop{=} h_{C'X} \mathop{\star} g\\
+        h_{R'G} \mathop{=} h_{R'X} \mathop{\star} g
     \end{flalign*}
     which is a contradiction.
 \end{proof}
@@ -346,18 +346,18 @@
             \draw [>->] (k') -- (k);
         \end{tikzpicture}
     \end{center}
-    There exists a unique monomorphism $h_{XG}:X \rightarrowtail G$ such that $h_{C'C} \star h_{CG} = h_{C'X} \star h_{XG}$ and  $h_{R'L} \star h_{LG} = h_{R'X} \star h_{XG}$.
+    There exists a unique monomorphism $h_{XG}:X \rightarrowtail G$ such that $h_{C'C} \mathop{\star} h_{CG} \mathop{=} h_{C'X} \mathop{\star} h_{XG}$ and  $h_{R'L} \mathop{\star} h_{LG} \mathop{=} h_{R'X} \mathop{\star} h_{XG}$.
 \end{lemma}
 \begin{proof}
-    There exists a unique morphism $h_{XG}:X \to G$, by Definition~\ref{def:cat:po}, because $K'C'XR'$ is a pushout\todo{$K'C'XR'$ PO} and 
-    $h_{K'C'} \star h_{C'C} \star h_{CG}
-    =h_{K'R'} \star h_{R'L} \star h_{LG}$.
+    There exists a unique morphism $h_{XG}:X \mathop{\to} G$, by Definition~\ref{def:cat:po}, because $K'C'XR'$ is a pushout\todo{$K'C'XR'$ PO} and 
+    $h_{K'C'} \mathop{\star} h_{C'C} \mathop{\star} h_{CG}
+    =h_{K'R'} \mathop{\star} h_{R'L} \mathop{\star} h_{LG}$.
     % the following hold
     % \begin{flalign*}
-    %     &h_{K'C'} \star h_{C'C} \star h_{CG} &\\ 
-    %    =&h_{K'K} \star h_{KC} \star h_{CG} &\hspace{2cm}\text{by commutativity of $K'C'CK$}\\
-    %    =&h_{K'K} \star h_{KL} \star h_{LG} &\text{by the commutativity of $KCGL$} \\
-    %    =&h_{K'R'} \star h_{R'L} \star h_{LG} &\text{by the commutativity of $K'KLR'$}
+    %     &h_{K'C'} \mathop{\star} h_{C'C} \mathop{\star} h_{CG} &\\ 
+    %    =&h_{K'K} \mathop{\star} h_{KC} \mathop{\star} h_{CG} &\hspace{2cm}\text{by commutativity of $K'C'CK$}\\
+    %    =&h_{K'K} \mathop{\star} h_{KL} \mathop{\star} h_{LG} &\text{by the commutativity of $KCGL$} \\
+    %    =&h_{K'R'} \mathop{\star} h_{R'L} \mathop{\star} h_{LG} &\text{by the commutativity of $K'KLR'$}
     % \end{flalign*}
     Therefore, the following commutative diagram holds
     \begin{center}
@@ -388,26 +388,26 @@
     \end{center}
     It remains to show that $h_{XG}$ is injective.
     
-    Let $x_1,x_2$ be two elements in the graph $X$ such that $x_1 \neq x_2$. Since $K'R'XC'$ is a pushout\todo{$K'R'XC'$ P.O.} square, by Lemma~\ref{lem:xinXcpinCrpinR}, there are 4 possible cases:
+    Let $x_1,x_2$ be two elements in the graph $X$ such that $x_1 \mathop{\neq} x_2$. Since $K'R'XC'$ is a pushout\todo{$K'R'XC'$ P.O.} square, by Lemma~\ref{lem:xinXcpinCrpinR}, there are 4 possible cases:
     \begin{enumerate}
-        \item there are $c_1, c_2 \in C'$ such that $h_{C'X}(c_1) = x_1$ and $h_{C'X}(c_2) = x_2$;
-        \item there are $r_1, r_2 \in R'$ such that $h_{R'X}(r_1) = x_1$ and $h_{R'X}(r_2) = x_2$;
-        \item there are $r' \in R'$ and $c' \in C'$ such that $h_{C'X}(c') = x_1$ and $h_{R'X}(r') = x_2$;
-        \item there are $r' \in R'$ and $c' \in C'$ such that $h_{C'X}(c') = x_2$ and $h_{R'X}(r') = x_1$;
+        \item there are $c_1, c_2 \mathop{\in} C'$ such that $h_{C'X}(c_1) \mathop{=} x_1$ and $h_{C'X}(c_2) \mathop{=} x_2$;
+        \item there are $r_1, r_2 \mathop{\in} R'$ such that $h_{R'X}(r_1) \mathop{=} x_1$ and $h_{R'X}(r_2) \mathop{=} x_2$;
+        \item there are $r' \mathop{\in} R'$ and $c' \mathop{\in} C'$ such that $h_{C'X}(c') \mathop{=} x_1$ and $h_{R'X}(r') \mathop{=} x_2$;
+        \item there are $r' \mathop{\in} R'$ and $c' \mathop{\in} C'$ such that $h_{C'X}(c') \mathop{=} x_2$ and $h_{R'X}(r') \mathop{=} x_1$;
     \end{enumerate}
-    Since the second and fourth cases are symmetric to the first and third case, respectively, it suffices to show that in the first and third cases, we have $h_{XG}(x_1) \neq h_{XG}(x_2)$. 
+    Since the second and fourth cases are symmetric to the first and third case, respectively, it suffices to show that in the first and third cases, we have $h_{XG}(x_1) \mathop{\neq} h_{XG}(x_2)$. 
     \begin{itemize}
-        \item[Case (1)] Suppose that there are $c_1, c_2 \in C'$ such that $h_{C'X}(c_1) = x_1$ and $h_{C'X}(c_2) = x_2$. 
+        \item[Case (1)] Suppose that there are $c_1, c_2 \mathop{\in} C'$ such that $h_{C'X}(c_1) \mathop{=} x_1$ and $h_{C'X}(c_2) \mathop{=} x_2$. 
         
-        We have $c_1 \neq c_2$ since $x_1 \neq x_2$ and $h_{C'X}$ is injective.
+        We have $c_1 \mathop{\neq} c_2$ since $x_1 \mathop{\neq} x_2$ and $h_{C'X}$ is injective.
         
         Therefore we have 
         \begin{flalign*}
             h_{XG}(x_1)&= h_{XG}(h_{C'X}(c_1)) & \text{by definition of $c_1$}\\
-                        &= (h_{C'X} \star h_{XG})(c_1)  \\
-                        &= (h_{C'C} \star h_{CG})(c_1) & \text{by commutativity of $C'CGX$} \\
-                        &\neq (h_{C'C} \star h_{CG})(c_2) & \text{by injectivity of $h_{C'C} \star h_{CG}$ and $c_1 \neq c_2$} \\
-                        &= (h_{C'X} \star h_{XG})(c_2) & \text{by commutativity of $C'CGX$} \\
+                        &= (h_{C'X} \mathop{\star} h_{XG})(c_1)  \\
+                        &= (h_{C'C} \mathop{\star} h_{CG})(c_1) & \text{by commutativity of $C'CGX$} \\
+                        &\mathop{\neq} (h_{C'C} \mathop{\star} h_{CG})(c_2) & \text{by injectivity of $h_{C'C} \mathop{\star} h_{CG}$ and $c_1 \mathop{\neq} c_2$} \\
+                        &= (h_{C'X} \mathop{\star} h_{XG})(c_2) & \text{by commutativity of $C'CGX$} \\
                         &= h_{XG}(h_{C'X}(c_2)) \\
                         &= h_{XG}(x_2) & \text{by definition of $c_2$}
         \end{flalign*}
@@ -438,15 +438,15 @@
         %         \draw [->] (x) -- (g) node[midway,above] {!};
         %     \end{tikzpicture}
         % \end{center}
-        % \item[(2)] Suppose that there are $r_1, r_2 \in R'$ such that $h_{R'X}(r_1) = x_1$ and $h_{R'X}(r_2) = x_2$. The proof of this case is analogous to the previous case.
+        % \item[(2)] Suppose that there are $r_1, r_2 \mathop{\in} R'$ such that $h_{R'X}(r_1) \mathop{=} x_1$ and $h_{R'X}(r_2) \mathop{=} x_2$. The proof of this case is analogous to the previous case.
 
-        % We have $r_1 \neq r_2$ because $x_1 \neq x_2$ and $h_{R'X}$ is injective, and
+        % We have $r_1 \mathop{\neq} r_2$ because $x_1 \mathop{\neq} x_2$ and $h_{R'X}$ is injective, and
         % \begin{flalign*}
         %     h_{XG}(x_1) &= h_{XG}(h_{R'X}(r_1)) & \text{by definition of $r_1$}\\
-        %                  &= (h_{R'X} \star h_{XG})(r_1)  \\
-        %                  &= (h_{R'L} \star h_{LG})(r_1) & \text{by commutativity of $R'XGL$} \\
-        %                  &\neq (h_{R'L} \star h_{LG})(r_2) & \text{by injectivity of $h_{R'L} \star h_{LG}$ and $r_1 \neq r_2$} \\
-        %                  &= (h_{R'X} \star h_{XG})(r_2) & \text{by commutativity of $R'XGL$} \\
+        %                  &= (h_{R'X} \mathop{\star} h_{XG})(r_1)  \\
+        %                  &= (h_{R'L} \mathop{\star} h_{LG})(r_1) & \text{by commutativity of $R'XGL$} \\
+        %                  &\mathop{\neq} (h_{R'L} \mathop{\star} h_{LG})(r_2) & \text{by injectivity of $h_{R'L} \mathop{\star} h_{LG}$ and $r_1 \mathop{\neq} r_2$} \\
+        %                  &= (h_{R'X} \mathop{\star} h_{XG})(r_2) & \text{by commutativity of $R'XGL$} \\
         %                  &= h_{XG}(h_{R'X}(r_2)) \\
         %                  &= h_{XG}(x_2) & \text{by definition of $r_2$}
         % \end{flalign*}
@@ -477,25 +477,25 @@
         %         \draw [->] (x) -- (g) node[midway,above] {!};
         %     \end{tikzpicture}
         % \end{center}
-        \item[Case (3)] Suppose that there are $r' \in R'$ and $c' \in C'$ such that $h_{C'X}(c') = x_1$ and $h_{R'X}(r') = x_2$.
-        % , or $h_{C'X}(c') = x_2$ and $h_{R'X}(r') = x_1$. By symmetry, we suppose that the first case holds. Let $c = h_{C'C}(c')$ and $l = h_{R'L}(r')$
+        \item[Case (3)] Suppose that there are $r' \mathop{\in} R'$ and $c' \mathop{\in} C'$ such that $h_{C'X}(c') \mathop{=} x_1$ and $h_{R'X}(r') \mathop{=} x_2$.
+        % , or $h_{C'X}(c') \mathop{=} x_2$ and $h_{R'X}(r') \mathop{=} x_1$. By symmetry, we suppose that the first case holds. Let $c \mathop{=} h_{C'C}(c')$ and $l \mathop{=} h_{R'L}(r')$
         
         We have three cases:
             \begin{itemize}
                 \item[(3.1)] Suppose that $h_{C'C}(c') \notin \operatorname{Im}(h_{KC})$. We have
                     \begin{flalign*}
                         h_{XG}(x_1) &= h_{XG}(h_{C'X}(c')) & \text{by definition of $c'$}\\
-                                     &= (h_{C'X} \star h_{XG})(c') \\
-                                     &= (h_{C'C} \star h_{CG})(c') & \text{by commutativity of $C'CGX$} \\
+                                     &= (h_{C'X} \mathop{\star} h_{XG})(c') \\
+                                     &= (h_{C'C} \mathop{\star} h_{CG})(c') & \text{by commutativity of $C'CGX$} \\
                                      &= h_{CG}(h_{C'C}(c')) & \\
                                     %  &= h_{CG}(c) & \\
-                                     &\neq 
+                                     &\mathop{\neq} 
                                     %  h_{LG}(l) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and $c\notin \operatorname{Im}(h_{KC})$}  
                                     h_{LG}(h_{R'L}(r')) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and $h_{C'C}(c') \notin \operatorname{Im}(h_{KC})$}   
                                     \\
-                                     &= (h_{R'L} \star h_{LG})(r') 
+                                     &= (h_{R'L} \mathop{\star} h_{LG})(r') 
                                      \\
-                                     &= (h_{R'X} \star h_{XG})(r') & \text{by commutativity of $R'XGL$} 
+                                     &= (h_{R'X} \mathop{\star} h_{XG})(r') & \text{by commutativity of $R'XGL$} 
                                      \\
                                      &= h_{XG}(h_{R'X}(r'))
                                      \\
@@ -530,7 +530,7 @@
                     % \end{center}
                 \item[(3.2)] Supppose $h_{R'L}(r') \notin \operatorname{Im}(h_{KL})$. This case is symmetric to the previous case.
                 % where $c \notin \operatorname{Im}(h_{KC})$.
-                \item[(3.3)] Suppose that there are $k_1, k_2 \in K$ such that $h_{KC}(k_1) = h_{C'C}(c')$ and $h_{KL}(k_2) = h_{R'L}(r')$. 
+                \item[(3.3)] Suppose that there are $k_1, k_2 \mathop{\in} K$ such that $h_{KC}(k_1) \mathop{=} h_{C'C}(c')$ and $h_{KL}(k_2) \mathop{=} h_{R'L}(r')$. 
                 
                 We cannot have $k_1=k_2$. 
                 
@@ -565,13 +565,13 @@
                 %         \draw [->] (x) -- (g) node[midway,above] {!};
                 %     \end{tikzpicture}
                 % \end{center}
-                Since $K'C'CK$ is also a pullback square by Proposition~\ref{prop:pb_eq_po} and $h_{KC}(k_1) = h_{C'C}(c')$ and $h_{C'C}(c') =  h_{C'C}(c')$, there is $k' \in K'$ such that $h_{K'K}(k') = k_1$ and $h_{K'C'}(k') = c'$.
+                Since $K'C'CK$ is also a pullback square by Proposition~\ref{prop:pb_eq_po} and $h_{KC}(k_1) \mathop{=} h_{C'C}(c')$ and $h_{C'C}(c') \mathop{=}  h_{C'C}(c')$, there is $k' \mathop{\in} K'$ such that $h_{K'K}(k') \mathop{=} k_1$ and $h_{K'C'}(k') \mathop{=} c'$.
  
-                We have $h_{K'R'}(k') = r'$ because $h_{R'L}$ is injective, $h_{R'L}(r') = h_{R'L}(r')$ and 
+                We have $h_{K'R'}(k') \mathop{=} r'$ because $h_{R'L}$ is injective, $h_{R'L}(r') \mathop{=} h_{R'L}(r')$ and 
                 \begin{flalign*}
                    &h_{R'L}(h_{K'R'}(k')) \hspace{2cm}&\\
-                  =&(h_{K'R'} \star h_{R'L})(k') &\\
-                  =&(h_{K'K} \star h_{KL})(k') & \text{by commutativity of $K'R'LK$}\\
+                  =&(h_{K'R'} \mathop{\star} h_{R'L})(k') &\\
+                  =&(h_{K'K} \mathop{\star} h_{KL})(k') & \text{by commutativity of $K'R'LK$}\\
                   =&(h_{KL})(h_{K'K}(k'))\\
                   =&(h_{KL})(k_1)\\
                   =&(h_{KL})(k_2) & \text{by assumption Equation~\eqref{k1eqk2}}
@@ -583,8 +583,8 @@
                      \begin{flalign*}
                          x_1 &= h_{C'X}(c')  & \text{by definition of $c'$}\\
                              &= h_{C'X}(h_{K'C'}(k')) & \text{by definition of $k'$}\\
-                             &= (h_{K'C'} \star h_{C'X})(k') &  \\
-                             &= (h_{K'R'} \star h_{R'X})(k') & \text{by the commutativity of $K'C'XR'$} \\
+                             &= (h_{K'C'} \mathop{\star} h_{C'X})(k') &  \\
+                             &= (h_{K'R'} \mathop{\star} h_{R'X})(k') & \text{by the commutativity of $K'C'XR'$} \\
                              &= h_{R'X}(h_{K'R'}(k')) &  \\
                              &= h_{R'X}(r') &  \text{by definition of $r'$}\\
                              &= x_2& \text{by definition of $x_2$}
@@ -592,21 +592,21 @@
 
                 Thus, the following inequality holds 
                 \begin{flalign}
-                    k_1 \neq k_2 \label{k1neqk2}
+                    k_1 \mathop{\neq} k_2 \label{k1neqk2}
                 \end{flalign}
 
                 \begin{flalign*}
                     h_{XG}(x_1) &= h_{XG}(h_{C'X}(c')) & \text{by definition of $c'$} \\
-                            &= (h_{C'X} \star h_{XG})(c') &  \\
-                            &= (h_{C'C} \star h_{CG})(c') & \text{by commutativity of $C'CGX$} \\
+                            &= (h_{C'X} \mathop{\star} h_{XG})(c') &  \\
+                            &= (h_{C'C} \mathop{\star} h_{CG})(c') & \text{by commutativity of $C'CGX$} \\
                             % &= (h_{CG})(c) & \text{by definition of $c$} \\
                             &= (h_{CG})(h_{KC}(k_1)) & \text{by definition of $k_1$} 
                             \\
-                            &= (h_{KC} \star h_{CG})(k_1) & 
+                            &= (h_{KC} \mathop{\star} h_{CG})(k_1) & 
                             \\
-                            &\neq (h_{KC} \star h_{CG})(k_2)  & \text{by injectivity of $h_{KC}\star h_{CG}$ and Equation~\eqref{k1neqk2}} 
+                            &\mathop{\neq} (h_{KC} \mathop{\star} h_{CG})(k_2)  & \text{by injectivity of $h_{KC}\star h_{CG}$ and Equation~\eqref{k1neqk2}} 
                             \\
-                            &= (h_{KL} \star h_{LG})(k_2) & \text{by commutativity of $KLGC$}
+                            &= (h_{KL} \mathop{\star} h_{LG})(k_2) & \text{by commutativity of $KLGC$}
                             \\
                             &= h_{LG}(h_{KL}(k_2)) & 
                             \\
@@ -614,9 +614,9 @@
                             % \\
                             &= h_{LG}(h_{R'L}(r')) & \text{by the definition of $k_2$}
                             \\
-                            &= (h_{R'L} \star h_{LG})(r') & 
+                            &= (h_{R'L} \mathop{\star} h_{LG})(r') & 
                             \\
-                            &= (h_{R'X} \star h_{XG})(r') & \text{by commutativity of $R'XLG$} \\
+                            &= (h_{R'X} \mathop{\star} h_{XG})(r') & \text{by commutativity of $R'XLG$} \\
                             &= h_{XG}(h_{R'X}(r'))\\
                                 &= h_{XG}(x_2) & \text{by definition of $r'$}
                 \end{flalign*}
@@ -656,7 +656,7 @@
 \begin{lemma}
     \label{lem:h_hp_diff_g_gp_diff}
     
-    Let $X$ be a graph. Let $\rho=(L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ be an injective DPO rewriting rule which is \(X\)-non-increasing under $\Psi$. Let $G \Rightarrow_{\rho,\mathcal{M}} H$ be a rewriting step defined by the following DPO diagram:
+    Let $X$ be a graph. Let $\rho=(L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ be an injective DPO rewriting rule which is \(X\)-non-increasing under $\Psi$. Let $G \mathop{\Rightarrow}_{\rho,\mathcal{M}} H$ be a rewriting step defined by the following DPO diagram:
 
     \begin{center}
         \begin{tikzpicture}
@@ -787,15 +787,15 @@
         \item $K'R'XC'$ is pushout and pullback;
         \item $K''R''XC''$ is pushout and pullback;
         \item $K'KCC'$ and $K''KCC''$ are pullback;
-        \item $h_{XG}':X \to G$ is the unique morphism such that $h_{C'C} \star h_{CG} = h_{C'X} \star h_{XG}'$ and  $h_{R'L} \star h_{LG} = h_{R'X} \star h_{XG}'$ where $h_{R'L} = \Psi(R')$;
-        \item $h_{XG}'':X \to G$ is the unique morphism such that $h_{C''C} \star h_{CG} = h_{C''X} \star h_{XG}''$ and  $h_{R''L} \star h_{LG} = h_{R''X} \star h_{XG}''$ where $h_{R''L} = \Psi(R'')$.
+        \item $h_{XG}':X \mathop{\to} G$ is the unique morphism such that $h_{C'C} \mathop{\star} h_{CG} \mathop{=} h_{C'X} \mathop{\star} h_{XG}'$ and  $h_{R'L} \mathop{\star} h_{LG} \mathop{=} h_{R'X} \mathop{\star} h_{XG}'$ where $h_{R'L} \mathop{=} \Psi(R')$;
+        \item $h_{XG}'':X \mathop{\to} G$ is the unique morphism such that $h_{C''C} \mathop{\star} h_{CG} \mathop{=} h_{C''X} \mathop{\star} h_{XG}''$ and  $h_{R''L} \mathop{\star} h_{LG} \mathop{=} h_{R''X} \mathop{\star} h_{XG}''$ where $h_{R''L} \mathop{=} \Psi(R'')$.
     \end{itemize}
-    If $h_{XH}' \neq h_{XH}''$ then $h_{XG}' \neq h_{XG}''$.
+    If $h_{XH}' \mathop{\neq} h_{XH}''$ then $h_{XG}' \mathop{\neq} h_{XG}''$.
 \end{lemma}
 \begin{proof}
-    Suppose that $h_{XH}' \neq h_{XH}''$. We are going to show $h_{XG}' \neq h_{XG}''$.
+    Suppose that $h_{XH}' \mathop{\neq} h_{XH}''$. We are going to show $h_{XG}' \mathop{\neq} h_{XG}''$.
 
-    From $h_{XH}' \neq h_{XH}''$, we deduce there exists an element $x \in X$ such that $h_{XH}(x) \neq h_{XH}''(x)$. We can suppose that \begin{flalign}
+    From $h_{XH}' \mathop{\neq} h_{XH}''$, we deduce there exists an element $x \mathop{\in} X$ such that $h_{XH}(x) \mathop{\neq} h_{XH}''(x)$. We can suppose that \begin{flalign}
         \text{$x$ is either an isolated nodes or an edge.} \label{x_isolated_or_edge}
     \end{flalign}  \todo{$x$ is either an isolated node or an edge}
     because otherwise $x$ would be a non-isolated node and we can take an incident edge of $x$.
@@ -803,50 +803,50 @@
     \noindent
     Since $K'R'XC'$ and $K''R''XC''$ are pushouts, by Lemma~\ref{lem:xinXcpinCrpinR}, there are 4 possible cases:
     \begin{enumerate}
-        \item there are $c' \in C', c'' \in C''$ such that $h_{C'X}(c') = h_{C'X}(c'') = x$;
-        \item  there are $r' \in R', r'' \in R''$ such that $h_{R'X}(r') = h_{R'X}(r'') = x$
-        \item there are arrows $r' \in R'$ and $c'' \in C''$ such that 
+        \item there are $c' \mathop{\in} C', c'' \mathop{\in} C''$ such that $h_{C'X}(c') \mathop{=} h_{C'X}(c'') \mathop{=} x$;
+        \item  there are $r' \mathop{\in} R', r'' \mathop{\in} R''$ such that $h_{R'X}(r') \mathop{=} h_{R'X}(r'') \mathop{=} x$
+        \item there are arrows $r' \mathop{\in} R'$ and $c'' \mathop{\in} C''$ such that 
         \begin{flalign*}
-            h_{C''X}(c'') = x
+            h_{C''X}(c'') \mathop{=} x
             \\
-            h_{R'X}(r') = x
+            h_{R'X}(r') \mathop{=} x
             \\
-            \nexists c' \in C'. h_{C'X}(c') = x 
+            \nexists c' \mathop{\in} C'. h_{C'X}(c') \mathop{=} x 
             \\
-            \nexists r'' \in R''. h_{R''X}(r'') = x 
+            \nexists r'' \mathop{\in} R''. h_{R''X}(r'') \mathop{=} x 
         \end{flalign*}
-        \item there are arrows $r'' \in R''$ and $c' \in C'$ such that 
+        \item there are arrows $r'' \mathop{\in} R''$ and $c' \mathop{\in} C'$ such that 
         \begin{flalign*}
-            h_{C'X}(c') = x
+            h_{C'X}(c') \mathop{=} x
             \\
-            h_{R''X}(r'') = x
+            h_{R''X}(r'') \mathop{=} x
             \\
-            \nexists c'' \in C''. h_{C''X}(c'') = x 
+            \nexists c'' \mathop{\in} C''. h_{C''X}(c'') \mathop{=} x 
             \\
-            \nexists r' \in R'. h_{R'X}(r') = x   
+            \nexists r' \mathop{\in} R'. h_{R'X}(r') \mathop{=} x   
         \end{flalign*}
     \end{enumerate}
 
-    We are going to show that in each case we have $h_{XG}'(x) \neq h_{XG}''(x)$. Since the fourth case is symmetric to the third case, it suffices to analyse the first three cases.
+    We are going to show that in each case we have $h_{XG}'(x) \mathop{\neq} h_{XG}''(x)$. Since the fourth case is symmetric to the third case, it suffices to analyse the first three cases.
 
     \begin{itemize}
-        \item[(1)] Suppose that there are $c' \in C', c'' \in C''$ such that $h_{C'X}(c') = h_{C'X}(c'') = x$. 
+        \item[(1)] Suppose that there are $c' \mathop{\in} C', c'' \mathop{\in} C''$ such that $h_{C'X}(c') \mathop{=} h_{C'X}(c'') \mathop{=} x$. 
         Suppose, by contradiction, that the following equality holds
         \begin{flalign}
-            h_{C'C}(c') = h_{C''C}(c'') \label{cpccp_eq_cppccpp}
+            h_{C'C}(c') \mathop{=} h_{C''C}(c'') \label{cpccp_eq_cppccpp}
         \end{flalign}
          we have the following contradiction:
         \begin{flalign*}
             &h_{XH}'(x) \\
            =&h_{XH}'(h_{C'X}(c')) \\
-           =&(h_{C'X} \star h_{XH}')(c') \\
-           =&(h_{C'C} \star h_{CH})(c') &\text{By commutativity of $C'XHC$}\\
+           =&(h_{C'X} \mathop{\star} h_{XH}')(c') \\
+           =&(h_{C'C} \mathop{\star} h_{CH})(c') &\text{By commutativity of $C'XHC$}\\
            =&h_{CH}(h_{C'C}(c')) \\
            =&h_{CH}(h_{C''C}(c'')) & \text{ by Equation~\eqref{cpccp_eq_cppccpp}}\\
-           =&(h_{C''C} \star h_{CH})(c'') \\
-           =&(h_{C''X} \star h_{XH}'')(c'') &\text{By commutativity of $C''CHX$}\\
+           =&(h_{C''C} \mathop{\star} h_{CH})(c'') \\
+           =&(h_{C''X} \mathop{\star} h_{XH}'')(c'') &\text{By commutativity of $C''CHX$}\\
            =&h_{XH}''(h_{C''X}(c'')) \\
-           = &h_{XH}''(x) \\
+           \mathop{=} &h_{XH}''(x) \\
         \end{flalign*}
         
         % \begin{center}
@@ -889,45 +889,45 @@
         % \end{center}
         Therefore, we have 
         \begin{flalign}
-            h_{C'C}(c') \neq h_{C''C}(c'') \label{cpccp_neq_cppccpp}
+            h_{C'C}(c') \mathop{\neq} h_{C''C}(c'') \label{cpccp_neq_cppccpp}
         \end{flalign} 
         \begin{flalign*}
             h_{XG}'(x)&= h_{XG}'(h_{C'X}(c')) & \text{by definition of $c'$}\\
-                        &= (h_{C'X} \star h_{XG}')(c')  \\
-                        &= (h_{C'C} \star h_{CG})(c') & \text{by commutativity of $C'CGX$} \\
+                        &= (h_{C'X} \mathop{\star} h_{XG}')(c')  \\
+                        &= (h_{C'C} \mathop{\star} h_{CG})(c') & \text{by commutativity of $C'CGX$} \\
                         &= h_{CG}(h_{C'C}(c')) &  \\
-                        &\neq h_{CG}(h_{C''C}(c'')) & \text{by Equation~\eqref{cpccp_neq_cppccpp} and the injectivity of $h_{CG}$} \\
-                        &= (h_{C''C} \star h_{CG})(c'') &  \\
-                        &= (h_{C''X} \star h_{XG}'')(c'') & \text{by commutativity of $C''CGX$} \\
+                        &\mathop{\neq} h_{CG}(h_{C''C}(c'')) & \text{by Equation~\eqref{cpccp_neq_cppccpp} and the injectivity of $h_{CG}$} \\
+                        &= (h_{C''C} \mathop{\star} h_{CG})(c'') &  \\
+                        &= (h_{C''X} \mathop{\star} h_{XG}'')(c'') & \text{by commutativity of $C''CGX$} \\
                         &= h_{XG}''(h_{C''X}(c'')) \\
                         &= h_{XG}''(x) & \text{by definition of $c''$}
         \end{flalign*}
  
-        \item[(2)] Suppose that there are $r' \in R', r'' \in R''$ such that $h_{R'X}(r') = h_{R'X}(r'') = x$. We have 
+        \item[(2)] Suppose that there are $r' \mathop{\in} R', r'' \mathop{\in} R''$ such that $h_{R'X}(r') \mathop{=} h_{R'X}(r'') \mathop{=} x$. We have 
         \begin{flalign}
-            h_{R'R}(r') \neq h_{R''R}(r'') \label{rprrppr}
+            h_{R'R}(r') \mathop{\neq} h_{R''R}(r'') \label{rprrppr}
         \end{flalign}  
-        by an argument analogous to the argument for $h_{C'C}(c') \neq h_{C''C}(c'')$ in the previous case. Since $\rho$ is $X$-non-increasing, Equation~\eqref{rprrppr} and Equation~\eqref{x_isolated_or_edge} hold, we have \todo{use : x is either an isolated node or an edge}       
+        by an argument analogous to the argument for $h_{C'C}(c') \mathop{\neq} h_{C''C}(c'')$ in the previous case. Since $\rho$ is $X$-non-increasing, Equation~\eqref{rprrppr} and Equation~\eqref{x_isolated_or_edge} hold, we have \todo{use : x is either an isolated node or an edge}       
         \begin{flalign}
-            h_{R'L}(r') \neq h_{R''L}(r'') \label{rplrprpplrpp}
+            h_{R'L}(r') \mathop{\neq} h_{R''L}(r'') \label{rplrprpplrpp}
         \end{flalign}  
 
         % Therefore, we have  
         % \begin{flalign*}
         %     h_{XG}'(x)&= h_{XG}'(h_{R'X}(r')) & \text{by definition of $r'$}\\
-        %         &= (h_{R'X} \star h_{XG}')(r')  \\
-        %         &= (h_{R'L} \star h_{LG})(r') & \text{by commutativity of $R'LGX$} \\
+        %         &= (h_{R'X} \mathop{\star} h_{XG}')(r')  \\
+        %         &= (h_{R'L} \mathop{\star} h_{LG})(r') & \text{by commutativity of $R'LGX$} \\
         %         &= h_{LG}(h_{R'L}(r')) &  \\
-        %         &\neq h_{LG}(h_{R''L}(r'')) & \text{by $h_{R'R}(r') \neq h_{R''R}(r'')$ and the injectivity of $h_{RG}$} \\
-        %         &= (h_{R''L} \star h_{LG})(r'') &  \\
-        %         &= (h_{R''X} \star h_{XG}'')(r'') & \text{by commutativity of $R''LGX$} \\
+        %         &\mathop{\neq} h_{LG}(h_{R''L}(r'')) & \text{by $h_{R'R}(r') \mathop{\neq} h_{R''R}(r'')$ and the injectivity of $h_{RG}$} \\
+        %         &= (h_{R''L} \mathop{\star} h_{LG})(r'') &  \\
+        %         &= (h_{R''X} \mathop{\star} h_{XG}'')(r'') & \text{by commutativity of $R''LGX$} \\
         %         &= h_{XG}''(h_{R''X}(r'')) \\
         %         &= h_{XG}''(x) & \text{by definition of $r''$}
         % \end{flalign*}
          
-        % \todo{$h_{R_XL}$ edge-injective} Since $h_{R_XL}$ is edge-injective by assumption, because it is $X$-non-increasing by assumption. Therefore, we have $h_{R'L}(r') \neq h_{R''L}(r'')$ because \( h_{R'R}(r') \neq h_{R''R}(r'') \). Hence, from~\ref{rprneqrppr}, we have 
+        % \todo{$h_{R_XL}$ edge-injective} Since $h_{R_XL}$ is edge-injective by assumption, because it is $X$-non-increasing by assumption. Therefore, we have $h_{R'L}(r') \mathop{\neq} h_{R''L}(r'')$ because \( h_{R'R}(r') \mathop{\neq} h_{R''R}(r'') \). Hence, from~\ref{rprneqrppr}, we have 
         % \begin{flalign}
-        %     h_{R'L}(r') \neq h_{R''L}(r'') \label{rplrprpplrpp}
+        %     h_{R'L}(r') \mathop{\neq} h_{R''L}(r'') \label{rplrprpplrpp}
         % \end{flalign}
         Hence, the following inequality holds
         
@@ -971,12 +971,12 @@
         % \end{center}
         \begin{flalign*}
             h_{XG}'(x) &= h_{XG}'(h_{R'X}(r')) & \text{by definition of $r'$}\\
-                         &= (h_{R'X} \star h_{XG}')(r')  \\
-                         &= (h_{R'L} \star h_{LG})(r') & \text{by commutativity of $R'XGL$} \\
+                         &= (h_{R'X} \mathop{\star} h_{XG}')(r')  \\
+                         &= (h_{R'L} \mathop{\star} h_{LG})(r') & \text{by commutativity of $R'XGL$} \\
                          &= h_{LG}(h_{R'L}(r')) &  \\
-                         &\neq h_{LG}(h_{R''L}(r'')) &  \text{By injectivity of $h_{LG}$ and Equation~\eqref{rplrprpplrpp}}\\
-                         &= (h_{R''L} \star h_{LG})(r'') &  \\
-                         &= (h_{R''X} \star h_{XG}'')(r'') & \text{by commutativity of $R''XGL$} \\
+                         &\mathop{\neq} h_{LG}(h_{R''L}(r'')) &  \text{By injectivity of $h_{LG}$ and Equation~\eqref{rplrprpplrpp}}\\
+                         &= (h_{R''L} \mathop{\star} h_{LG})(r'') &  \\
+                         &= (h_{R''X} \mathop{\star} h_{XG}'')(r'') & \text{by commutativity of $R''XGL$} \\
                          &= h_{XG}''(h_{R''X}(r'')) \\
                          &= h_{XG}''(x) & \text{by definition of $r''$}
         \end{flalign*}  
@@ -1019,31 +1019,31 @@
     
         %     \end{tikzpicture}
         % \end{center}
-        \item[(3)] Suppose, that there are arrows $r' \in R'$ and $c'' \in C''$ such that 
+        \item[(3)] Suppose, that there are arrows $r' \mathop{\in} R'$ and $c'' \mathop{\in} C''$ such that 
         \begin{flalign*}
-            h_{C''X}(c'') = x
+            h_{C''X}(c'') \mathop{=} x
             \\
-            h_{R'X}(r') = x
+            h_{R'X}(r') \mathop{=} x
             \\
-            \nexists c' \in C'. h_{C'X}(c') = x 
+            \nexists c' \mathop{\in} C'. h_{C'X}(c') \mathop{=} x 
         \end{flalign*}
         \begin{flalign}
-            \nexists r'' \in R''. h_{R''X}(r'') = x  \label{assumption_norpp}
+            \nexists r'' \mathop{\in} R''. h_{R''X}(r'') \mathop{=} x  \label{assumption_norpp}
         \end{flalign}
 
         Suppose, by contradiction, that we have \begin{flalign}
-            h_{C''C}(c'') \in \operatorname{Im}(h_{KC})  \label{assump_c_in_imhkc}
+            h_{C''C}(c'') \mathop{\in} \operatorname{Im}(h_{KC})  \label{assump_c_in_imhkc}
         \end{flalign} 
         Then,
-        there are $k_2 \in K$ such that $h_{KC}(k_2) = h_{C''C}(c'')$.
+        there are $k_2 \mathop{\in} K$ such that $h_{KC}(k_2) \mathop{=} h_{C''C}(c'')$.
 
-        There is $k'' \in K''$ such that $h_{K''K}(k'') = k_2$ and $h_{K''C''}(k'') = c''$ becase $K''C''CK$ is a pullback square and $h_{KC}(k_2) = h_{C''C}(c'')$.
+        There is $k'' \mathop{\in} K''$ such that $h_{K''K}(k'') \mathop{=} k_2$ and $h_{K''C''}(k'') \mathop{=} c''$ becase $K''C''CK$ is a pullback square and $h_{KC}(k_2) \mathop{=} h_{C''C}(c'')$.
 
-        We have $h_{K''R''}(k'') \in R''$ and 
+        We have $h_{K''R''}(k'') \mathop{\in} R''$ and 
         \begin{flalign*}
           &h_{R''X}(h_{K''R''}(k''))\\
-         =&(h_{K''R''} \star h_{R''X})(k'') \\
-         =&(h_{K''C''} \star h_{C''X})(k'') & \text{by commutativity of $K''R''XC''$}\\
+         =&(h_{K''R''} \mathop{\star} h_{R''X})(k'') \\
+         =&(h_{K''C''} \mathop{\star} h_{C''X})(k'') & \text{by commutativity of $K''R''XC''$}\\
          =&h_{C''X}(h_{K''C''}(k''))\\
          =&h_{C''X}(c'')\\
          =&x
@@ -1058,12 +1058,12 @@
         We deduce
         \begin{flalign*}
             h_{XG}'(x) &= h_{XG}'(h_{C''X}(c'')) & \text{by definition of $c''$}\\
-                         &= (h_{C''X} \star h_{XG}')(c'') \\
-                         &= (h_{C''C} \star h_{CG})(c'') & \text{by commutativity of $C''CGX$} \\
+                         &= (h_{C''X} \mathop{\star} h_{XG}')(c'') \\
+                         &= (h_{C''C} \mathop{\star} h_{CG})(c'') & \text{by commutativity of $C''CGX$} \\
                          &= h_{CG}(h_{C''C}(c'')) &  \\
-                         &\neq  h_{LG}(h_{R'L}(r')) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and the assumption Equation~\eqref{assump_c_notin_imhkc}} \\
-                         &= (h_{R'L} \star h_{LG})(r') \\
-                         &= (h_{R'X} \star h_{XG}'')(r') & \text{by commutativity of $R'XGL$} \\
+                         &\mathop{\neq}  h_{LG}(h_{R'L}(r')) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and the assumption Equation~\eqref{assump_c_notin_imhkc}} \\
+                         &= (h_{R'L} \mathop{\star} h_{LG})(r') \\
+                         &= (h_{R'X} \mathop{\star} h_{XG}'')(r') & \text{by commutativity of $R'XGL$} \\
                          &= h_{XG}''(h_{R'X}(r'))\\
                          &= h_{XG}''(x) & \text{by definition of $r'$}
         \end{flalign*} 
@@ -1076,12 +1076,12 @@
     %                 \end{flalign} then, we have 
     %                 \begin{flalign*}
     %                     h_{XG}'(x) &= h_{XG}'(h_{C''X}(c'')) & \text{by definition of $c''$}\\
-    %                                  &= (h_{C''X} \star h_{XG}')(c'') \\
-    %                                  &= (h_{C''C} \star h_{CG})(c'') & \text{by commutativity of $C''CGX$} \\
+    %                                  &= (h_{C''X} \mathop{\star} h_{XG}')(c'') \\
+    %                                  &= (h_{C''C} \mathop{\star} h_{CG})(c'') & \text{by commutativity of $C''CGX$} \\
     %                                  &= h_{CG}(h_{C''C}(c'')) &  \\
-    %                                  &\neq  h_{LG}(h_{R'L}(r')) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and the assumption Equation~\eqref{assump_c_notin_imhkc}} \\
-    %                                  &= (h_{R'L} \star h_{LG})(r') \\
-    %                                  &= (h_{R'X} \star h_{XG}'')(r') & \text{by commutativity of $R'XGL$} \\
+    %                                  &\mathop{\neq}  h_{LG}(h_{R'L}(r')) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and the assumption Equation~\eqref{assump_c_notin_imhkc}} \\
+    %                                  &= (h_{R'L} \mathop{\star} h_{LG})(r') \\
+    %                                  &= (h_{R'X} \mathop{\star} h_{XG}'')(r') & \text{by commutativity of $R'XGL$} \\
     %                                  &= h_{XG}''(h_{R'X}(r'))\\
     %                                  &= h_{XG}''(x) & \text{by definition of $r'$}
     %                 \end{flalign*} 
@@ -1136,12 +1136,12 @@
     %     % \end{center}
     %                 \begin{flalign*}
     %                     h_{XG}'(x) &= h_{XG}'(h_{R'X}(r')) & \text{by definition of $r'$}\\
-    %                                  &= (h_{R'X} \star h_{XG}')(r') \\
-    %                                  &= (h_{R'L} \star h_{LG})(r') & \text{by commutativity of $R'LGX$} \\
+    %                                  &= (h_{R'X} \mathop{\star} h_{XG}')(r') \\
+    %                                  &= (h_{R'L} \mathop{\star} h_{LG})(r') & \text{by commutativity of $R'LGX$} \\
     %                                  &= h_{LG}(h_{R'L}(r')) &  \\
     %                                  &= h_{CG}(h_{C''C}(c'')) & \text{by Lemma~\ref{lem:b_c_same_img_exist_a} and the assumption Equation~\eqref{lnotinhkl}}  \\
-    %                                  &= (h_{C''C} \star h_{CG})(c'') \\
-    %                                  &= (h_{C''X} \star h_{XG}'')(c'') & \text{by commutativity of $C''XGC$} \\
+    %                                  &= (h_{C''C} \mathop{\star} h_{CG})(c'') \\
+    %                                  &= (h_{C''X} \mathop{\star} h_{XG}'')(c'') & \text{by commutativity of $C''XGC$} \\
     %                                  &= h_{XG}''(h_{C''X}(c''))\\
     %                                  &= h_{XG}''(x) & \text{by definition of $c''$}
     %                 \end{flalign*}
@@ -1190,34 +1190,34 @@
     %             Suppose, 
     %             \color{red}
     %             that \begin{flalign}
-    %                 h_{R'R}(r') \in h_{KR}(K) 
+    %                 h_{R'R}(r') \mathop{\in} h_{KR}(K) 
     %                 \\
-    %                 h_{C''C}(c'') \in h_{KC}(K)
+    %                 h_{C''C}(c'') \mathop{\in} h_{KC}(K)
     %             \end{flalign}
     %             Thus,
-    %             there are $k_1, k_2 \in K$ such that $h_{KR}(k_1) = h_{R'R}(r')$ and $h_{KC}(k_2) = h_{C''C}(c'')$.
+    %             there are $k_1, k_2 \mathop{\in} K$ such that $h_{KR}(k_1) \mathop{=} h_{R'R}(r')$ and $h_{KC}(k_2) \mathop{=} h_{C''C}(c'')$.
     %             \color{black}
 
-    %             There is $k'' \in K''$ such that $h_{K''K}(k'') = k_2$ and $h_{K''C''}(k'') = c''$ becase $K''C''CK$ is a pullback square and $h_{KC}(k_2) = c = h_{C''C}(c'')$.
+    %             There is $k'' \mathop{\in} K''$ such that $h_{K''K}(k'') \mathop{=} k_2$ and $h_{K''C''}(k'') \mathop{=} c''$ becase $K''C''CK$ is a pullback square and $h_{KC}(k_2) \mathop{=} c \mathop{=} h_{C''C}(c'')$.
 
     %             We cannot have $k_1=k_2$. Suppose, by contradiction, that we have $k_1=k_2$. 
     %             \color{red} 
-    %             Let $r'' = h_{K''R''}(k'')$. We have 
+    %             Let $r'' \mathop{=} h_{K''R''}(k'')$. We have 
     %             \begin{flalign}
     %                 &h_{R''R}(r'')\\
     %                =&h_{R''R}(h_{K''R''}(k''))\\
-    %                =&(h_{K''R''} \star h_{R''R})(k'') & \text{by definition of $r''$}\\
-    %                =&(h_{K''K} \star h_{KR})(k'') &\text{by commutativity of $K''R''RK$}\\
+    %                =&(h_{K''R''} \mathop{\star} h_{R''R})(k'') & \text{by definition of $r''$}\\
+    %                =&(h_{K''K} \mathop{\star} h_{KR})(k'') &\text{by commutativity of $K''R''RK$}\\
     %                =&h_{KR}(h_{K''K}(k''))  \\
     %                =&h_{KR}(k_1) & \text{by definition of $k_1$} \\
     %                =&r
     %             \end{flalign}
     %             \color{black}
-    %             % We have therefore $h_{K''C''}(k'') = c''$ because $h_{C''C}$ is injective, $h_{C''C}(c'') = c$ and 
+    %             % We have therefore $h_{K''C''}(k'') \mathop{=} c''$ because $h_{C''C}$ is injective, $h_{C''C}(c'') \mathop{=} c$ and 
     %             % \begin{flalign*}
     %             %    &h_{C''C}(h_{K''C''}(k'')) \\
-    %             %   =&(h_{K''C''} \star h_{C''C})(k'')\\
-    %             %   =&(h_{K''K} \star h_{KC})(k'')\\
+    %             %   =&(h_{K''C''} \mathop{\star} h_{C''C})(k'')\\
+    %             %   =&(h_{K''K} \mathop{\star} h_{KC})(k'')\\
     %             %   =&h_{KC}(h_{K''K}(k''))\\
     %             %   =&h_{KC}(k_2)\\
     %             %   =&c
@@ -1226,8 +1226,8 @@
     %             \begin{flalign*}
     %               &h_{R''X}(r'')\\
     %              =&h_{R''X}(h_{K''R''}(k'')) \\
-    %              =&(h_{K''R''} \star h_{R''X})(k'') \\
-    %              =&(h_{K''C''} \star h_{C''X})(k'') & \text{by commutativity of $K''R''XC''$}\\
+    %              =&(h_{K''R''} \mathop{\star} h_{R''X})(k'') \\
+    %              =&(h_{K''C''} \mathop{\star} h_{C''X})(k'') & \text{by commutativity of $K''R''XC''$}\\
     %              =&h_{C''X}(h_{K''C''}(k''))\\
     %              =&h_{C''X}(c'')\\
     %              =&x
@@ -1236,8 +1236,8 @@
 
     %             \begin{flalign*}
     %                =&h_{R''X}(h_{K''R''}(k'')) \\
-    %                =&(h_{K''R''} \star h_{R''X})(k'') \\
-    %                =&(h_{K''C''} \star h_{C''X})(k'') & \text{by commutativity of $K''R''XC''$}\\
+    %                =&(h_{K''R''} \mathop{\star} h_{R''X})(k'') \\
+    %                =&(h_{K''C''} \mathop{\star} h_{C''X})(k'') & \text{by commutativity of $K''R''XC''$}\\
     %                =&h_{C''X}(h_{K''C''}(k''))\\
     %                =&h_{C''X}(c'')\\
     %                =&x
@@ -1246,8 +1246,8 @@
     %                     \begin{flalign*}
     %                         x &= h_{C''X}(c'')  & \text{by definition of $r''$}\\
     %                             &= h_{C''X}(h_{K'C''}(k')) & \text{by definition of $k'$}\\
-    %                             &= (h_{K'C''} \star h_{C''X})(k') &  \\
-    %                             &= (h_{K'R'} \star h_{R'X})(k') & \text{by the commutativity of $K'C'XR'$} \\
+    %                             &= (h_{K'C''} \mathop{\star} h_{C''X})(k') &  \\
+    %                             &= (h_{K'R'} \mathop{\star} h_{R'X})(k') & \text{by the commutativity of $K'C'XR'$} \\
     %                             &= h_{R'X}(h_{K'R'}(k')) &  \\
     %                             &= h_{R'X}(r') &  \text{by definition of $k'$}\\
     %                             &= x& \text{by definition of $r'$}
@@ -1255,42 +1255,42 @@
     %             which contradic the assumption Equation~\eqref{assumption_norpp}.
 
     %             Hence \begin{flalign}
-    %                 k_1 \neq k_2 \label{k1_neq_k2}
+    %                 k_1 \mathop{\neq} k_2 \label{k1_neq_k2}
     %             \end{flalign}
 
     %             From Equation~\eqref{k1_neq_k2}, we have 
     %             \begin{flalign}
-    %                 h_{KR}(k_1) \neq h_{KR}(k_2) \label{hkrk1_neq_hkrk2}
+    %                 h_{KR}(k_1) \mathop{\neq} h_{KR}(k_2) \label{hkrk1_neq_hkrk2}
     %             \end{flalign} 
 
     %             Since Equation~\eqref{hkrk1_neq_hkrk2} holds and $\rho$ is $X$-non-increasing, we have 
     %             \begin{flalign}
-    %                 h_{KL}(k_1) \neq h_{KR}(k_2) \label{hkrk1_neq_hkrk2}
+    %                 h_{KL}(k_1) \mathop{\neq} h_{KR}(k_2) \label{hkrk1_neq_hkrk2}
     %             \end{flalign} 
 
-    %             By assumption on $\rho$ \todo{assumption: non-increasing}, we have $h_{KL}(k_2) = h_{R'L}(r') = l$ for some $k_2 \in K$.
+    %             By assumption on $\rho$ \todo{assumption: non-increasing}, we have $h_{KL}(k_2) \mathop{=} h_{R'L}(r') \mathop{=} l$ for some $k_2 \mathop{\in} K$.
                 
     %             \begin{flalign*}
     %                 h_{XG}(x) &= h_{XG}(h_{C''X}(c'')) & \text{by definition of $c''$} \\
-    %                         &= (h_{C''X} \star h_{XG})(c') &  \\
-    %                         &= (h_{C''C} \star h_{CG})(c'') & \text{by commutativity of $C''CGX$} \\
+    %                         &= (h_{C''X} \mathop{\star} h_{XG})(c') &  \\
+    %                         &= (h_{C''C} \mathop{\star} h_{CG})(c'') & \text{by commutativity of $C''CGX$} \\
     %                         &= h_{CG}(h_{C''C}(c'')) &  \\
     %                         &= h_{CG}(c) & \text{by definition of $c$} \\
     %                         &= h_{CG}(h_{KC}(k_1)) & \text{by definition of $k_1$} 
     %                         \\
-    %                         &= (h_{KC} \star h_{CG})(k_1) & 
+    %                         &= (h_{KC} \mathop{\star} h_{CG})(k_1) & 
     %                         \\
-    %                         &\neq (h_{KC} \star h_{CG})(k_2) & \text{by Equation~\eqref{k1_neq_k2} and injectivity of $h_{KC} \star h_{CG}$} 
+    %                         &\mathop{\neq} (h_{KC} \mathop{\star} h_{CG})(k_2) & \text{by Equation~\eqref{k1_neq_k2} and injectivity of $h_{KC} \mathop{\star} h_{CG}$} 
     %                         \\
-    %                         &= (h_{KL} \star h_{LG})(k_2) & 
+    %                         &= (h_{KL} \mathop{\star} h_{LG})(k_2) & 
     %                         \\
     %                         &= h_{LG}(h_{KL}(k_2)) & 
     %                         \\
     %                         &= h_{LG}(h_{R'L}(r')) & 
     %                         \\
-    %                         &= (h_{R'L} \star h_{LG})(r') & 
+    %                         &= (h_{R'L} \mathop{\star} h_{LG})(r') & 
     %                         \\
-    %                         &= (h_{R'X} \star h_{XG})(r') & \text{by commutativity of $R'LGX$} \\
+    %                         &= (h_{R'X} \mathop{\star} h_{XG})(r') & \text{by commutativity of $R'LGX$} \\
     %                         &= h_{XG}(h_{R'X}(r'))\\
     %                             &= h_{XG}(x) & \text{by definition of $r'$}
     %             \end{flalign*}

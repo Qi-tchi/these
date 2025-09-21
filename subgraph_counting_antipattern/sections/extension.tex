@@ -5,9 +5,9 @@ The technique presented in the preceding section can be extended to non-injectiv
     \ \newline 
     \noindent
     \begin{minipage}{0.7\textwidth}
-        Given a rule $\rho = L \leftarrow K \rightarrow R$, a rule $\rho' = (L' \leftarrow K' \rightarrow R')$ is called a \textbf{quotient rule} of $\rho$ if there exists a DPO diagram (shown on the right)
+        Given a rule $\rho \mathop{=} L \mathop{\leftarrow} K \mathop{\rightarrow} R$, a rule $\rho' \mathop{=} (L' \mathop{\leftarrow} K' \mathop{\rightarrow} R')$ is called a \textbf{quotient rule} of $\rho$ if there exists a DPO diagram (shown on the right)
     where all vertical graph morphisms are surjective. The set of quotient rules of $\rho$ is denoted by $Q(\rho)$, and 
-    for a rule set $\mathcal{A}$, we write $Q(\mathcal{A}) = \bigcup_{\rho\in\mathcal{A}} Q(\rho)$.
+    for a rule set $\mathcal{A}$, we write $Q(\mathcal{A}) \mathop{=} \bigcup_{\rho\in\mathcal{A}} Q(\rho)$.
     \end{minipage}
     \hfill
     \begin{minipage}{0.29\textwidth}
@@ -34,42 +34,42 @@ The technique presented in the preceding section can be extended to non-injectiv
 
 \begin{lemma}[Quotient Lemma~\cite{habel2001double}]
     Let $\rho$ be a DPO rewriting rule. For any graphs $G$ and $H$,
-    $G \Rightarrow_{p,\mathfrak{F}} H$ if and only if $G \Rightarrow_{Q(p),\mathfrak{M}} H$.
+    $G \mathop{\Rightarrow}_{p,\mathfrak{F}} H$ if and only if $G \mathop{\Rightarrow}_{Q(p),\mathfrak{M}} H$.
 \end{lemma}
 \begin{corollary}
     \label{cor:termination}
     Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules. 
-    The rewriting relation $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ 
+    The rewriting relation $\mathop{\Rightarrow}_{\mathcal{A},\mathfrak{F}}$ is terminating relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}}$ 
     if 
-    $\Rightarrow_{Q(\mathcal{A}),\mathfrak{M}}$ is terminating relative to $\Rightarrow_{Q(\mathcal{B}),\mathfrak{M}}$.
-    % If there is a set $\mathbb{X}$ of subgraphs of left-hand-side graphs of rewriting rules in \(\mathcal{A} \cup \mathcal{B}\) and a weight function $w:\mathbb{X} \to \mathbb{N}$ such that  
+    $\mathop{\Rightarrow}_{Q(\mathcal{A}),\mathfrak{M}}$ is terminating relative to $\mathop{\Rightarrow}_{Q(\mathcal{B}),\mathfrak{M}}$.
+    % If there is a set $\mathbb{X}$ of subgraphs of left-hand-side graphs of rewriting rules in \(\mathcal{A} \mathop{\cup} \mathcal{B}\) and a weight function $w:\mathbb{X} \mathop{\to} \mathbb{N}$ such that  
     % \begin{itemize}
-    %     \item \todo{util?} for every graph $X \in \mathbb{X}$, for every rule \(\rho \in Q(\mathcal{A} \cup \mathcal{B})\), the rule $\rho$ is $X$-non-increasing,
-    %     \item For every rule \(\left( L \overset{}{\leftarrowtail} K \overset{}{\rightarrowtail} R \right) \in Q(\mathcal{A})\),
-    %     \[\sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,L)| > \sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,R)|\]
-    %     \item For every rule \(\left( L \overset{}{\leftarrowtail} K \overset{}{\rightarrowtail} R \right) \in Q(\mathcal{B})\), 
-    %     \[\sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,L)| \geq \sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,R)|\]
-    %     % \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \in Q(\mathcal{A})\),
-    %     % \[\sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,L, \lnot l)| > \sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,R, \lnot r)|\]
-    %     % \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \in Q(\mathcal{B})\), 
-    %     % \[\sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,L, \lnot l)| \geq \sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,R, \lnot r)|\]
+    %     \item \todo{util?} for every graph $X \mathop{\in} \mathbb{X}$, for every rule \(\rho \mathop{\in} Q(\mathcal{A} \mathop{\cup} \mathcal{B})\), the rule $\rho$ is $X$-non-increasing,
+    %     \item For every rule \(\left( L \overset{}{\leftarrowtail} K \overset{}{\rightarrowtail} R \right) \mathop{\in} Q(\mathcal{A})\),
+    %     \[\sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,L)| \mathop{>} \sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,R)|\]
+    %     \item For every rule \(\left( L \overset{}{\leftarrowtail} K \overset{}{\rightarrowtail} R \right) \mathop{\in} Q(\mathcal{B})\), 
+    %     \[\sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,L)| \mathop{\geq} \sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,R)|\]
+    %     % \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \mathop{\in} Q(\mathcal{A})\),
+    %     % \[\sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,L, \lnot l)| \mathop{>} \sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,R, \lnot r)|\]
+    %     % \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \mathop{\in} Q(\mathcal{B})\), 
+    %     % \[\sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,L, \lnot l)| \mathop{\geq} \sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,R, \lnot r)|\]
     % \end{itemize}
-    % then $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
+    % then $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}}$ is terminating relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}}$.
 \end{corollary}
 
 % \begin{corollary}
 %     \label{cor:termination}
-%     Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules. If there is a set $\mathbb{X}$ of subgraphs of left-hand-side graphs of rewriting rules in \(\mathcal{A} \cup \mathcal{B}\) and a weight function $w:\mathbb{X} \to \mathbb{N}$ such that  
+%     Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules. If there is a set $\mathbb{X}$ of subgraphs of left-hand-side graphs of rewriting rules in \(\mathcal{A} \mathop{\cup} \mathcal{B}\) and a weight function $w:\mathbb{X} \mathop{\to} \mathbb{N}$ such that  
 %     \begin{itemize}
-%         \item \todo{util?} for every graph $X \in \mathbb{X}$, for every rule \(\rho \in Q(\mathcal{A} \cup \mathcal{B})\), the rule $\rho$ is $X$-non-increasing,
-%         \item For every rule \(\left( L \overset{}{\leftarrowtail} K \overset{}{\rightarrowtail} R \right) \in Q(\mathcal{A})\),
-%         \[\sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,L)| > \sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,R)|\]
-%         \item For every rule \(\left( L \overset{}{\leftarrowtail} K \overset{}{\rightarrowtail} R \right) \in Q(\mathcal{B})\), 
-%         \[\sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,L)| \geq \sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,R)|\]
-%         % \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \in Q(\mathcal{A})\),
-%         % \[\sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,L, \lnot l)| > \sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,R, \lnot r)|\]
-%         % \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \in Q(\mathcal{B})\), 
-%         % \[\sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,L, \lnot l)| \geq \sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,R, \lnot r)|\]
+%         \item \todo{util?} for every graph $X \mathop{\in} \mathbb{X}$, for every rule \(\rho \mathop{\in} Q(\mathcal{A} \mathop{\cup} \mathcal{B})\), the rule $\rho$ is $X$-non-increasing,
+%         \item For every rule \(\left( L \overset{}{\leftarrowtail} K \overset{}{\rightarrowtail} R \right) \mathop{\in} Q(\mathcal{A})\),
+%         \[\sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,L)| \mathop{>} \sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,R)|\]
+%         \item For every rule \(\left( L \overset{}{\leftarrowtail} K \overset{}{\rightarrowtail} R \right) \mathop{\in} Q(\mathcal{B})\), 
+%         \[\sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,L)| \mathop{\geq} \sum_{X\in \mathbb{X}}^{} w(X) * |\operatorname{Mono}(X,R)|\]
+%         % \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \mathop{\in} Q(\mathcal{A})\),
+%         % \[\sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,L, \lnot l)| \mathop{>} \sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,R, \lnot r)|\]
+%         % \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \mathop{\in} Q(\mathcal{B})\), 
+%         % \[\sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,L, \lnot l)| \mathop{\geq} \sum_{X\in S}^{} w(X) * |\operatorname{Mono}(X,R, \lnot r)|\]
 %     \end{itemize}
-%     then $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
+%     then $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}}$ is terminating relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}}$.
 % \end{corollary}

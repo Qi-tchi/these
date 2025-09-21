@@ -1,11 +1,11 @@
-% The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{M}} \) is terminating relative to $\Rightarrow_{\mathcal{B},\mathfrak{M}}$ if the following hold: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) > w_{s_\mathbb{X}}(H) \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H) \). However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
+% The rewriting relation \( \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{M}} \) is terminating relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{M}}$ if the following hold: (i) for all \(G \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \mathop{>} w_{s_\mathbb{X}}(H) \), and (ii) for all \(G \mathop{\Rightarrow}_{\mathcal{B},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \mathop{\geq} w_{s_\mathbb{X}}(H) \). However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
 % Thus, we aim to provide a rule-based sufficient condition for termination.
 % \begin{remark}
 
 \begin{notation}
     % \noindent
     % \begin{minipage}{0.6\textwidth}\setlength{\parindent}{1em}
-     Let \( \mathcal{X} = (X, F_X) \) be a ruler-graph. Let \( A, B, G \) be graphs. Let \( \alpha \colon A \to G \) and \( \beta \colon B \to G \) be morphisms. 
+     Let \( \mathcal{X} \mathop{=} (X, F_X) \) be a ruler-graph. Let \( A, B, G \) be graphs. Let \( \alpha \mathop{\colon} A \mathop{\to} G \) and \( \beta \mathop{\colon} B \mathop{\to} G \) be morphisms. 
     We define the following sets of monomorphisms of $X$ in $G$: 
         %  the set $\operatorname{Mono}(X,G,\alpha)$ of occurrences which is fully included in $A$; the set $\operatorname{Mono}(X,G,\lnot \alpha)$ of occurrences which is not fully included in $A$; the set $\operatorname{Mono}(X,G,\lnot \alpha, \beta)$ of occurrences which is not fully included in $A$ but fully include in $B$; the set $\operatorname{Mono}(X,G,\lnot \alpha, \lnot \beta)$ of occurrences which is neither fully included in $A$ nor fully include in $B$. Formally:
     % \end{minipage}%
@@ -22,31 +22,31 @@
     %     \end{tikzpicture}
     % \end{minipage}%
     \begin{align*}
-        \operatorname{Mono}(X,G,\alpha) &= \left\{ \iota \colon X \rightarrowtail G \;\middle|\; \exists \beta \colon X \rightarrowtail A.\, \iota = \beta \star \alpha \right\}, 
+        \operatorname{Mono}(X,G,\alpha) &= \left\{ \iota \mathop{\colon} X \rightarrowtail G \;\middle|\; \exists \beta \mathop{\colon} X \rightarrowtail A.\, \iota \mathop{=} \beta \mathop{\star} \alpha \right\}, 
         \\
-        \operatorname{Mono}(X,G,\lnot \alpha) &= \left\{ \iota \colon X \rightarrowtail G \;\middle|\; \nexists \beta \colon X \rightarrowtail A.\, \iota = \beta \star \alpha \right\}, 
+        \operatorname{Mono}(X,G,\lnot \alpha) &= \left\{ \iota \mathop{\colon} X \rightarrowtail G \;\middle|\; \nexists \beta \mathop{\colon} X \rightarrowtail A.\, \iota \mathop{=} \beta \mathop{\star} \alpha \right\}, 
         \\
         \operatorname{Mono}(X,G,\lnot \alpha, \beta) &= \left\{ 
-            \iota \colon X \rightarrowtail G \;\middle|\; 
+            \iota \mathop{\colon} X \rightarrowtail G \;\middle|\; 
                 \begin{aligned}  
-                    &(\nexists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha) \\ 
-                    &\land (\exists \zeta \colon X \rightarrowtail B.\, \iota = \zeta \star \beta)
+                    &(\nexists \zeta \mathop{\colon} X \rightarrowtail A.\, \iota \mathop{=} \zeta \mathop{\star} \alpha) \\ 
+                    &\land (\exists \zeta \mathop{\colon} X \rightarrowtail B.\, \iota \mathop{=} \zeta \mathop{\star} \beta)
                 \end{aligned}
         \right\},
         \\
         \operatorname{Mono}(X,G,\lnot \alpha, \lnot \beta) &= \left\{ 
-            \iota \colon X \rightarrowtail G \;\middle|\; 
+            \iota \mathop{\colon} X \rightarrowtail G \;\middle|\; 
                 \begin{aligned}
-                    &(\nexists \zeta \colon X \rightarrowtail A.\, \iota = \zeta \star \alpha) \\
-                    &\land (\nexists \zeta \colon X \rightarrowtail B.\, \iota = \zeta \star \beta)
+                    &(\nexists \zeta \mathop{\colon} X \rightarrowtail A.\, \iota \mathop{=} \zeta \mathop{\star} \alpha) \\
+                    &\land (\nexists \zeta \mathop{\colon} X \rightarrowtail B.\, \iota \mathop{=} \zeta \mathop{\star} \beta)
                 \end{aligned}
         \right\}.
     \end{align*}
-    For each of the above sets, we introduce the subscript``NF" (respectively ``F") to denote the subset of \( X \)-occurrences that are not included in any \( Y \)-occurrence for all \( Y \in F_X \) (respectively, that are included in some \( Y \)-occurrence for some \( Y \in F_X \)). For example: \( \operatorname{Mono}(X, G, \alpha)_{\text{NF}} \) and \( \operatorname{Mono}(X, G, \alpha)_{\text{F}} \).
+    For each of the above sets, we introduce the subscript``NF" (respectively ``F") to denote the subset of \( X \)-occurrences that are not included in any \( Y \)-occurrence for all \( Y \mathop{\in} F_X \) (respectively, that are included in some \( Y \)-occurrence for some \( Y \mathop{\in} F_X \)). For example: \( \operatorname{Mono}(X, G, \alpha)_{\text{NF}} \) and \( \operatorname{Mono}(X, G, \alpha)_{\text{F}} \).
 \end{notation}
 \noindent
 \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
-    Suppose that all hypothesese in Lemma~\ref{lem:w_u_l_not_geq_r_not} are satisfied. Consider a DPO diagram (illustrated on the right) defining a rewriting step \( G \Rightarrow_{\rho,\mathfrak{M}} H \). 
+    Suppose that all hypothesese in Lemma~\ref{lem:w_u_l_not_geq_r_not} are satisfied. Consider a DPO diagram (illustrated on the right) defining a rewriting step \( G \mathop{\Rightarrow}_{\rho,\mathfrak{M}} H \). 
     The sets of monomorphisms from \( X \) to \( G \) and \( H \) can be decomposed into the following disjoint unions:
 \end{minipage}%
 \begin{minipage}{0.29\textwidth}
@@ -90,14 +90,14 @@ Thus, we have
 \begin{flalign*}
     \card{\operatorname{Mono}(X,G)_{\operatorname{NF}}} - 
     \card{\operatorname{Mono}(X,H)_{\operatorname{NF}}} =& 
-    (\operatorname{Mono}(X,G,m)_{\operatorname{NF}} - \operatorname{Mono}(X,H,m')_{\operatorname{NF}}) + \\
-    &(\operatorname{Mono}(X,G,\lnot m, l')_{\operatorname{NF}} - \operatorname{Mono}(X,H,\lnot m', r')_{\operatorname{NF}}) + \\
+    (\operatorname{Mono}(X,G,m)_{\operatorname{NF}} - \operatorname{Mono}(X,H,m')_{\operatorname{NF}})\mathop{+}\\
+    &(\operatorname{Mono}(X,G,\lnot m, l')_{\operatorname{NF}} - \operatorname{Mono}(X,H,\lnot m', r')_{\operatorname{NF}})\mathop{+}\\
     &(\operatorname{Mono}(X,G,\lnot m, \lnot l')_{\operatorname{NF}} - \operatorname{Mono}(X,H,\lnot m', \lnot r')_{\operatorname{NF}})
 \end{flalign*}
 We have
 $
     \card{\operatorname{Mono}(X,G)_{\operatorname{NF}}} - 
-    \card{\operatorname{Mono}(X,H)_{\operatorname{NF}}} \geq 
+    \card{\operatorname{Mono}(X,H)_{\operatorname{NF}}} \mathop{\geq} 
     \card{\operatorname{Mono}(X,L)} -
     \card{\operatorname{Mono}(X,R)}
 $, by the following lemmas under the following assumptions:
@@ -107,10 +107,10 @@ $, by the following lemmas under the following assumptions:
     \item \label{hyp:inj_mono_f_l_to_r} there exists an injection $M_F$ from $Mono(X,L)$ to $Mono(X,R)$ such that (todo)
     \begin{itemize}
         \item for all $h_{XL}$, $h_{XL}$ and $M_X(h_{XL})$ have the same interface elements
-        \item for all $h_{XL}:X \rightarrowtail L$, if $h_{XL} = h_{XF} \star h_{FL}$, then $M_X(h_{XL}) = h_{XF} \star M_F(h_{FL})$.
+        \item for all $h_{XL}:X \rightarrowtail L$, if $h_{XL} \mathop{=} h_{XF} \mathop{\star} h_{FL}$, then $M_X(h_{XL}) \mathop{=} h_{XF} \mathop{\star} M_F(h_{FL})$.
     \end{itemize}  
     \item \label{hyp:f_non_increasing} $\rho^-1$ is $F$-non-increasing.
-    \item \label{hyp:f_implicitly_destroyed} for all $L' \in D(L,F)$, let $h_{L'L}:L' \rightarrowtail L$ be the monomorphism give by the $F$-non-increasing property, if there exists $h_{XL'}:X \rightarrowtail L'$ such that $h_{XL} = h_{XL'} \star h_{L'L}$, then $M_X(h_{XL}) = h_{XL'} \star M_L(h_{L'L})$.
+    \item \label{hyp:f_implicitly_destroyed} for all $L' \mathop{\in} D(L,F)$, let $h_{L'L}:L' \rightarrowtail L$ be the monomorphism give by the $F$-non-increasing property, if there exists $h_{XL'}:X \rightarrowtail L'$ such that $h_{XL} \mathop{=} h_{XL'} \mathop{\star} h_{L'L}$, then $M_X(h_{XL}) \mathop{=} h_{XL'} \mathop{\star} M_L(h_{L'L})$.
     \item $\rho^-1$ and $\rho$ are $X$-non-increasing.
 \end{enumerate}.
 
@@ -120,7 +120,7 @@ $, by the following lemmas under the following assumptions:
 %     \noindent
 %     \begin{minipage}{0.7\textwidth}
 %         Let $X$ be a ruler-graph. For a pushout square as shown on the right, we have 
-%         % $\card{\operatorname{Mono}(X, B)} = \card{\operatorname{Mono}(X, D, \beta')}$ and $\card{\operatorname{Mono}(X, C, \lnot \beta)} = \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}$.
+%         % $\card{\operatorname{Mono}(X, B)} \mathop{=} \card{\operatorname{Mono}(X, D, \beta')}$ and $\card{\operatorname{Mono}(X, C, \lnot \beta)} \mathop{=} \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}$.
 %         \begin{flalign*}
 %             \card{\operatorname{Mono}(X, B)} &= \card{\operatorname{Mono}(X, D, \beta')}
 %             \\
@@ -174,7 +174,7 @@ $, by the following lemmas under the following assumptions:
     \begin{flalign*}
         \card{\operatorname{Mono}(X,G,m)_{\operatorname{NF}}} - 
         \card{\operatorname{Mono}(X,H,m')_{\operatorname{NF}}} 
-        \geq 
+        \mathop{\geq} 
         \card{\operatorname{Mono}(X,L)} -
         \card{\operatorname{Mono}(X,R)}
     \end{flalign*}
@@ -230,16 +230,16 @@ Consequently, we have
 \begin{flalign*}
     &w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H)
     \\
-   \overset{\operatorname{def}}{=}&\sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(G) - \sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(H)
+   \overset{\operatorname{def}}{=}&\sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(G) - \sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(H)
    \\
-   \overset{\operatorname{def}}{=}&\sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * |\operatorname{Mono}(X,G)| - \sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * |\operatorname{Mono}(X,H)|
+   \overset{\operatorname{def}}{=}&\sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * |\operatorname{Mono}(X,G)| - \sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * |\operatorname{Mono}(X,H)|
    \\
-   =&\sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * \left( \card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)} \right)
+   =&\sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * \left( \card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)} \right)
    \\
-   =&\sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * \card{\operatorname{Mono}(X,G)} -  
-   \sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) *  \card{\operatorname{Mono}(X,H)}  
+   =&\sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * \card{\operatorname{Mono}(X,G)} -  
+   \sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) *  \card{\operatorname{Mono}(X,H)}  
     \\
-    \overset{\operatorname{def}}{=}&\sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(L) - \sum_{X \in \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(R)
+    \overset{\operatorname{def}}{=}&\sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(L) - \sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(R)
     \\
     \overset{\operatorname{def}}{=}& w_{s_\mathbb{X}}(L) - w_{s_\mathbb{X}}(R)
 \end{flalign*}
@@ -247,13 +247,13 @@ Consequently, we have
 The following lemma captures the above reasoning.
 \begin{lemma}[Decreasing step]
     \label{lem:w_g_geq_w_h_leq}
-    Let $\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ be an injective DPO rewriting rule,
+    Let $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ be an injective DPO rewriting rule,
     \( \mathbb{X} \) a set of ruler-graphs,
-    \( s_{\mathbb{X}} \colon \mathbb{X} \to \mathbb{N} \) a weight function,
-    and \( G \Rightarrow_{\rho,\mathfrak{M}} H \) a rewriting step. 
-    If $\rho$ is \( X \)-non-increasing for every ruler-graph \( X \in \mathbb{X} \), then $
+    \( s_{\mathbb{X}} \mathop{\colon} \mathbb{X} \mathop{\to} \mathbb{N} \) a weight function,
+    and \( G \mathop{\Rightarrow}_{\rho,\mathfrak{M}} H \) a rewriting step. 
+    If $\rho$ is \( X \)-non-increasing for every ruler-graph \( X \mathop{\in} \mathbb{X} \), then $
         w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H) 
-        \geq 
+        \mathop{\geq} 
         w_{s_\mathbb{X}}(L) - w_{s_\mathbb{X}}(R)
     $.
 \end{lemma}
@@ -265,11 +265,11 @@ Finally, we state our main result.
     \label{thm:termination_grs}
     Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules, $\mathbb{X}$ a set of ruler-graphs and $s_\mathbb{X}$ a weight function. If the following hold:
     \begin{enumerate}
-        \item  for every $\rho \in \mathcal{A} \cup \mathcal{B}$ and for every $X \in \mathbb{X}$, the rule $\rho$ is $X$-non-increasing,
-        \item for every \(\rho \in \mathcal{A}\), we have \( w_{s_\mathbb{X}}(lhs(\rho)) > w_{s_\mathbb{X}}(rhs(\rho)) \),
-        \item for every \(\rho \in \mathcal{B}\), we have \( w_{s_\mathbb{X}}(lhs(\rho)) \geq w_{s_\mathbb{X}}(rhs(\rho)) \).
+        \item  for every $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$ and for every $X \mathop{\in} \mathbb{X}$, the rule $\rho$ is $X$-non-increasing,
+        \item for every \(\rho \mathop{\in} \mathcal{A}\), we have \( w_{s_\mathbb{X}}(lhs(\rho)) \mathop{>} w_{s_\mathbb{X}}(rhs(\rho)) \),
+        \item for every \(\rho \mathop{\in} \mathcal{B}\), we have \( w_{s_\mathbb{X}}(lhs(\rho)) \mathop{\geq} w_{s_\mathbb{X}}(rhs(\rho)) \).
     \end{enumerate}
-    Then \(\Rightarrow_{\mathcal{A},\mathcal{M}}\) is terminating relative to \(\Rightarrow_{\mathcal{B},\mathcal{M}}\).
+    Then \(\mathop{\Rightarrow}_{\mathcal{A},\mathcal{M}}\) is terminating relative to \(\mathop{\Rightarrow}_{\mathcal{B},\mathcal{M}}\).
 \end{theorem}
 \begin{proof}
     See the Appendix, \hyperref[proof:thm:termination_grs]{Section C}.

@@ -1,18 +1,18 @@
-It is crucial to ensure that the weight of any object subject to rewriting is not $0_S$, because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +)\), \(0_S\) is the smallest element \(-\infty\).
+It is crucial to ensure that the weight of any object subject to rewriting is not $0_S$, because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \mathop{\cup} \{\mathop{+\infty}\}, \mathop{\min}, +)\), \(0_S\) is the greatest element \(\mathop{+\infty}\), while in the natural and real arctic semirings \((\mathbb{N} \mathop{\cup} \{\mathop{-\infty}\}, \max, +)\), \(0_S\) is the smallest element \(\mathop{-\infty}\).
 The existence of a context closure does the job. Further details can be found in~\cite[\textsection 5.3]{endrullis2024generalized}.
 
 % \begin{remark} 
 %   \label{remark:semiring_0_unpredictable}
-%   The requirement \textquote{for all \(e \in \mathbb{E}, w(e) \neq 0_S\)} is necessary because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \cup \{+\infty\}, \min, +)\), \(0_S\) is the greatest element \(+\infty\), while in the natural and real arctic semirings \((\mathbb{N} \cup \{-\infty\}, \max, +)\), \(0_S\) is the smallest element \(-\infty\).
+%   The requirement \textquote{for all \(e \mathop{\in} \mathbb{E}, w(e) \mathop{\neq} 0_S\)} is necessary because \(0_S\) behaves unpredictably in strongly monotonic measurable semirings. For instance, in the natural and real tropical semirings \((\mathbb{N} \mathop{\cup} \{\mathop{+\infty}\}, \mathop{\min}, +)\), \(0_S\) is the greatest element \(\mathop{+\infty}\), while in the natural and real arctic semirings \((\mathbb{N} \mathop{\cup} \{\mathop{-\infty}\}, \max, +)\), \(0_S\) is the smallest element \(\mathop{-\infty}\).
 % \end{remark} 
 
 \begin{definition}[Context Closure~\text{\cite[\textdef~5.3]{endrullis2024generalized}}]
     \label{def:context_closure}  
     \ \newline 
 \begin{minipage}{0.65\textwidth}
-    Let $\mathcal{T} = (T,\mathbb{E}, S, w)$ be a type graph, \(\rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R ) \) a DPO rewriting rule and $\mathfrak{F}$ a rewriting framework. 
-    A \textbf{context closure} for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$ is a morphism $c:L \rightarrow T$ such that for every DPO diagram in $\mathfrak{F}(\rho)$ (shown on the right) 
-    there exists $\alpha : G \rightarrow T$ such that $m \star \alpha = c$.
+    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, S, w)$ be a type graph, \(\rho \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R ) \) a DPO rewriting rule and $\mathfrak{F}$ a rewriting framework. 
+    A \textbf{context closure} for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$ is a morphism $c:L \mathop{\rightarrow} T$ such that for every DPO diagram in $\mathfrak{F}(\rho)$ (shown on the right) 
+    there exists $\alpha : G \mathop{\rightarrow} T$ such that $m \mathop{\star} \alpha \mathop{=} c$.
 \end{minipage}
 \begin{minipage}{0.35\textwidth}
     \begin{center}
@@ -40,14 +40,14 @@ The existence of a context closure does the job. Further details can be found in
 \begin{example}
     \label{example:context_closure}
    Consider the DPO rule in Example~\ref{ex:grsaa}, the weighted type graph in~\autoref{example:weighted_type_graph}.
-   and the morphism $c$ illustrated below. Since for every match $m : L \to G$, there exists a morphism $\alpha : G \to T$ such that $m \star \alpha = c$, the morphism $c$ is a context closure for the DPO rule in the type graph.
+   and the morphism $c$ illustrated below. Since for every match $m : L \mathop{\to} G$, there exists a morphism $\alpha : G \mathop{\to} T$ such that $m \mathop{\star} \alpha \mathop{=} c$, the morphism $c$ is a context closure for the DPO rule in the type graph.
   \begin{center}
     \begin{tikzpicture}
       \graphbox{\( L \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
         \coordinate (o) at (0mm,-10mm); 
         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
         \draw[] (l1) -- (l3) node[midway,above] {$a$};
         \draw[] (l3) -- (l2) node[midway,above] {$a$};
     } 

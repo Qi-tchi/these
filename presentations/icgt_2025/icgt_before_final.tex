@@ -83,8 +83,8 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
 
 \begin{frame}{DPO graph rewriting with injective rules}
  \begin{itemize}
-    \item Rules $\varphi = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ consist of two inclusions $l$ and $r$.  
-    \item A rule $\varphi' = (L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ is equivalent to $\varphi$ if 
+    \item Rules $\varphi \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ consist of two inclusions $l$ and $r$.  
+    \item A rule $\varphi' \mathop{=} (L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ is equivalent to $\varphi$ if 
             \begin{center}
                     \resizebox{0.40\textwidth}{!}{
                         \begin{tikzpicture}
@@ -107,7 +107,7 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
                     }
                 \end{center}
     \item 
- Rewriting steps $G \Rightarrow_\varphi H$ are double-pushouts
+ Rewriting steps $G \mathop{\Rightarrow}_\varphi H$ are double-pushouts
 %   with injective match $m :L' \rightarrowtail G$:
          \begin{center}
           \resizebox{0.40\textwidth}{!}{
@@ -131,7 +131,7 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
           }
       \end{center}
       where all arrows are inclusions and $(L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ is an equivalent rule to $\varphi$.
-    %   \item Difference with standard definition: an equivalent rule $\varphi'$ with $\opn{lhs}(\varphi') \subseteq G$ is applied instead of $\varphi$.  
+    %   \item Difference with standard definition: an equivalent rule $\varphi'$ with $\opn{lhs}(\varphi') \mathop{\subseteq} G$ is applied instead of $\varphi$.  
  \end{itemize} 
 \end{frame} 
 
@@ -147,9 +147,9 @@ Finite edge-labeled directed multigraphs
         %         \begin{tikzpicture}
         %         \graphbox{}{39mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
         %                         \coordinate (delta) at (0,-18mm);
-        %                         \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {};
-        %                         \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {};
-        %                         \node[draw,circle] (l3) at ($(delta) + (0,0)$) {};
+        %                         \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {};
+        %                         \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {};
+        %                         \node[draw,circle] (l3) at ($(delta)+(0,0)$) {};
         %                         \draw[->] (l1) -- (l3) node[midway,left] {$s$};
         %                         \draw[->] (l2) -- (l3) node[midway,right] {$s$};
         %                         \draw[->] (l3) edge [loop below] node {0} (l3);
@@ -176,9 +176,9 @@ Finite edge-labeled directed multigraphs
                 \begin{tikzpicture}
                     \graphbox{$L$}{39mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
                         \coordinate (delta) at (0,-18mm);
-                        \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {1};
-                        \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {2};
-                        \node[draw,circle] (l3) at ($(delta) + (0,0)$) {3};
+                        \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
+                        \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
+                        \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
                         \draw[->] (l1) -- (l3) node[midway,left] {$s$};
                         \draw[->] (l2) -- (l3) node[midway,right] {$s$};
                         \draw[->] (l3) edge [loop below] node {0} (l3);
@@ -186,15 +186,15 @@ Finite edge-labeled directed multigraphs
                         \node () at (77mm,-18mm) {$\overset{h}{\rightarrowtail}$};
                     \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
                         \coordinate (delta) at (-10mm,-18mm);
-                        \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-                        \node[draw,circle] (r2) at ($(delta) + (0.5,1.5)$) {2};
-                        \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
-                        \node[draw,circle] (r4) at ($(delta) + (1,0)$) {};
+                        \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+                        \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {2};
+                        \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                        \node[draw,circle] (r4) at ($(delta)+(1,0)$) {};
                         \draw[->] (r1) edge[bend right] node[midway,left] {$s$} (r3) ; 
                         \draw[->] (r2) -- (r4) node[midway,right] {$s$};
                         \draw[->] (r4) edge [loop below] node {0} (r4);
                         \draw[->] (r3) edge [out=190,in=220,looseness=6] node [midway,left] {0} (r3);
-                        \node[draw,circle] (r5) at ($(r2) + (1.5,0)$) {};
+                        \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
                         \draw[->] (r5) edge [loop below] node {0} (r5);
                         \draw[->] (r5) edge [loop right] node {0} (r5);
                         \draw[->] (r5) edge [loop left] node {0} (r5);
@@ -205,9 +205,9 @@ Finite edge-labeled directed multigraphs
                     % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
                     %     \coordinate (delta) at (0,-18mm);
                     %     \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
-                    %     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-                    %     \node[draw,circle] (r2) at ($(delta) +  (0.5,1.5)$) {2};
-                    %     \node[draw,circle] (r3) at ($(delta) +  (0,0)$) {3};
+                    %     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+                    %     \node[draw,circle] (r2) at ($(delta)\mathop{+} (0.5,1.5)$) {2};
+                    %     \node[draw,circle] (r3) at ($(delta)\mathop{+} (0,0)$) {3};
                     %     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                     %     % \draw[->] (r3) edge [loop below] node {0} (r3);
                     % }
@@ -218,7 +218,7 @@ Finite edge-labeled directed multigraphs
                 \end{tikzpicture}
                 }
         \end{center}
-    % Inclusion : morphism $h: L \rightarrowtail R$ with $L \subseteq R$.
+    % Inclusion : morphism $h: L \rightarrowtail R$ with $L \mathop{\subseteq} R$.
 \end{frame}
 
 
@@ -227,7 +227,7 @@ Finite edge-labeled directed multigraphs
     \item $\mathcal{R}$ : set of DPO graph rewriting rules
     \item impossibility of transforming any graph $G_0$ indefinitely
       \begin{center}
-        $G_0 \Rightarrow_\mathcal{R} G_1 \Rightarrow_\mathcal{R} G_2 \Rightarrow_\mathcal{R} \cdots$
+        $G_0 \mathop{\Rightarrow}_\mathcal{R} G_1 \mathop{\Rightarrow}_\mathcal{R} G_2 \mathop{\Rightarrow}_\mathcal{R} \cdots$
       \end{center}
       with the non-deterministic strategy
           \begin{center}
@@ -252,7 +252,7 @@ Finite edge-labeled directed multigraphs
 %     \item $\mathcal{R}$ : set of DPO graph rewriting rules
 %     \item impossibility of transforming any graph $G_0$ indefinitely
 %       \begin{center}
-%         $G_0 \Rightarrow_\mathcal{R} G_1 \Rightarrow_\mathcal{R} G_2 \Rightarrow_\mathcal{R} \cdots$
+%         $G_0 \mathop{\Rightarrow}_\mathcal{R} G_1 \mathop{\Rightarrow}_\mathcal{R} G_2 \mathop{\Rightarrow}_\mathcal{R} \cdots$
 %       \end{center}
 %     \item Guarantees that the non-deterministic strategy
 %           \begin{center}
@@ -277,7 +277,7 @@ Finite edge-labeled directed multigraphs
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                         \draw[->] (l3) -- (l2) node[midway,above] {$b$};
                     } 
@@ -292,8 +292,8 @@ Finite edge-labeled directed multigraphs
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
                         \draw[->] (l1) -- (l3) node[midway,above] {$b$};
                         \draw[->] (l3) -- (l4) node[midway,above] {$a$};
                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -317,7 +317,7 @@ Finite edge-labeled directed multigraphs
                 \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
                 \draw[->] (z) -- node[midway,left] {$b$} (x) ;
             } 
-            $\Rightarrow$ 
+            $\mathop{\Rightarrow}$ 
             \tikz[baseline=-0.5ex]{ 
                 \node (x) at (0,0) {$\bullet$};  
                 \node (y) at (1,0) {$\bullet$};
@@ -326,7 +326,7 @@ Finite edge-labeled directed multigraphs
                 \draw[->,red] (y) -- node[midway,right] {$a$} (z) ;
                 \draw[->,red] (z) -- node[midway,left] {$b$} (x) ;
             }
-            $\Rightarrow$ 
+            $\mathop{\Rightarrow}$ 
             \tikz[baseline=-0.5ex]{ 
                 \node (x) at (0,0) {$\bullet$};  
                 \node (y) at (1,0) {$\bullet$};
@@ -335,7 +335,7 @@ Finite edge-labeled directed multigraphs
                 \draw[->] (y) -- node[midway,right] {$b$} (z) ;
                 \draw[->,red] (z) -- node[midway,left] {$a$} (x) ;
             }
-            $\Rightarrow$ 
+            $\mathop{\Rightarrow}$ 
             \tikz[baseline=-0.5ex]{ 
                 \node (x) at (0,0) {$\bullet$};   
                 \node (y) at (1,0) {$\bullet$};
@@ -356,7 +356,7 @@ Finite edge-labeled directed multigraphs
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[->] (l1) -- (l2) node[midway,above] {$a$};
                     } 
             
@@ -370,8 +370,8 @@ Finite edge-labeled directed multigraphs
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                        % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
                         \draw[->] (l1) -- (l4) node[midway,above] {$b$};
                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                     }    
@@ -393,7 +393,7 @@ Finite edge-labeled directed multigraphs
         %         \draw[->] (y) -- node[midway,right] {$b$} (z) ;
         %         \draw[->] (z) -- node[midway,left] {$b$} (x) ;
         %     } 
-        %     $\Rightarrow$ 
+        %     $\mathop{\Rightarrow}$ 
         %     \tikz[baseline=-0.5ex]{ 
         %         \node (x) at (0,0) {$\bullet$};  
         %         \node (y) at (1,0) {$\bullet$};
@@ -416,9 +416,9 @@ Finite edge-labeled directed multigraphs
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
-                    \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {1};
-                    \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {2};
-                    \node[draw,circle] (l3) at ($(delta) + (0,0)$) {3};
+                    \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
+                    \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
+                    \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
                     \draw[->] (l1) -- (l3) node[midway,left] {$s$};
                     \draw[->] (l2) -- (l3) node[midway,right] {$s$};
                     \draw[->] (l3) edge [loop below] node {0} (l3);
@@ -428,7 +428,7 @@ Finite edge-labeled directed multigraphs
                         \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
                         \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {1};
                         \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {2};
-                        \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
+                        \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
                         % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                         % \draw[->] (r3) edge [loop below] node {0} (r3);
                     } 
@@ -436,16 +436,16 @@ Finite edge-labeled directed multigraphs
                     \node () at (77mm,-18mm) {$\rightarrowtail$};
                 \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
                     \coordinate (delta) at (-10mm,-18mm);
-                    \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-                    \node[draw,circle] (r2) at ($(delta) + (0.5,1.5)$) {2};
-                    \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
-                    \node[draw,circle] (r4) at ($(delta) + (1,0)$) {};
+                    \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+                    \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {2};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                    \node[draw,circle] (r4) at ($(delta)+(1,0)$) {};
                     \draw[->] (r1) edge[bend right] node[midway,left] {$s$} (r3) ;
                     \draw[->] (r2) -- (r4) node[midway,right] {$s$};
                     \draw[->] (r4) edge [loop below] node {0} (r4);
                     
                     \draw[->] (r3) edge [out=190,in=270,looseness=3] node[midway,left] {0} (r3);
-                    \node[draw,circle] (r5) at ($(r2) + (1.5,0)$) {};
+                    \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
                     \draw[->] (r5) edge [loop below] node {0} (r5);
                     \draw[->] (r5) edge [loop right] node {0} (r5);
                     \draw[->] (r5) edge [loop left] node {0} (r5);
@@ -453,9 +453,9 @@ Finite edge-labeled directed multigraphs
                 % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
                 %     \coordinate (delta) at (0,-18mm);
                 %     \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
-                %     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-                %     \node[draw,circle] (r2) at ($(delta) +  (0.5,1.5)$) {2};
-                %     \node[draw,circle] (r3) at ($(delta) +  (0,0)$) {3};
+                %     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+                %     \node[draw,circle] (r2) at ($(delta)\mathop{+} (0.5,1.5)$) {2};
+                %     \node[draw,circle] (r3) at ($(delta)\mathop{+} (0,0)$) {3};
                 %     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                 %     % \draw[->] (r3) edge [loop below] node {0} (r3);
                 % }
@@ -487,13 +487,13 @@ Finite edge-labeled directed multigraphs
 % \subsection{Pre-graphs and Graphs}
 % \begin{frame}{Pre-graphs \( (V, E, \opn{src}, \opn{dst}, l) \)}    
 %     \begin{itemize}
-%         \item \( \textcolor{red}{V} \subseteq \mathbb{N} \) : finite set of \textcolor{red}{nodes}
+%         \item \( \textcolor{red}{V} \mathop{\subseteq} \mathbb{N} \) : finite set of \textcolor{red}{nodes}
 
-%         \item \( \textcolor{red}{E} \subseteq \mathbb{N} \) : finite set of \textcolor{red}{edges}
+%         \item \( \textcolor{red}{E} \mathop{\subseteq} \mathbb{N} \) : finite set of \textcolor{red}{edges}
 
-%         \item \( \textcolor{red}{\opn{src}} : E \to \mathbb{N} \) : \textcolor{red}{source} function
+%         \item \( \textcolor{red}{\opn{src}} : E \mathop{\to} \mathbb{N} \) : \textcolor{red}{source} function
 
-%         \item\( \textcolor{red}{\opn{dst}}: E \to \mathbb{N} \) : \textcolor{red}{target} function
+%         \item\( \textcolor{red}{\opn{dst}}: E \mathop{\to} \mathbb{N} \) : \textcolor{red}{target} function
 
 %         \item \textcolor{red}{\( l \)} : edge-\textcolor{red}{labeling} function
 %     \end{itemize}
@@ -570,7 +570,7 @@ Finite edge-labeled directed multigraphs
 \end{frame}
 
 \begin{frame}{Pre-graph operations}
-    \textcolor{red}{Union} $C \cup R$ of two pre-graphs $C \subseteq G$ and $R \subseteq G$ 
+    \textcolor{red}{Union} $C \mathop{\cup} R$ of two pre-graphs $C \mathop{\subseteq} G$ and $R \mathop{\subseteq} G$ 
     % \vspace{1mm}
 \begin{center}
     \resizebox{\textwidth}{!}{
@@ -579,8 +579,8 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (-5mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -590,21 +590,21 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (0mm,-6mm); 
                 \node[draw,circle,dashed] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle,dashed] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->] (l2) -- (l4) node[midway,right] {$a$};
                 \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
             }    
 
-            \graphbox{\textcolor{red}{\(C \cup R \)}}{40mm}{-22mm}{45mm}{25mm}{2mm}{-3mm}{
+            \graphbox{\textcolor{red}{\(C \mathop{\cup} R \)}}{40mm}{-22mm}{45mm}{25mm}{2mm}{-3mm}{
                 \coordinate (o) at (-5mm,-6mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -618,7 +618,7 @@ Finite edge-labeled directed multigraphs
     \end{center}
 
 
-    % \textcolor{red}{Intersection} $G \cap H$: 
+    % \textcolor{red}{Intersection} $G \mathop{\cap} H$: 
     % \vspace{1mm}
 
     % % \begin{center}
@@ -628,24 +628,24 @@ Finite edge-labeled directed multigraphs
     %             \coordinate (o) at (0mm,-6mm); 
     %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
     %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-    %             \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+    %             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+    %             \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
     %             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
     %             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
     %             \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-    %             \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+    %             \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
     %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
     %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
     %         }    
     
-    %         \graphbox{ \textcolor{red}{\(G \cap H\)}  }{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
+    %         \graphbox{ \textcolor{red}{\(G \mathop{\cap} H\)}  }{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
     %             \coordinate (o) at (0mm,-6mm); 
     %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
     %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+    %             \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
     %             \draw[->] (l2) -- (l4) node[midway,right] {$a$};
     %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %             \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+    %             \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
     %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
     %         }    
     
@@ -653,10 +653,10 @@ Finite edge-labeled directed multigraphs
     %             \coordinate (o) at (-5mm,-3mm); 
     %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
     %             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-    %             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-    %             \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-    %             \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-    %             \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+    %             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+    %             \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+    %             \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+    %             \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
     %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
     %             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
     %             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -670,8 +670,8 @@ Finite edge-labeled directed multigraphs
     %     \end{tikzpicture}
     %     }         
     % \end{center}
-\textcolor{red}{Relative complement} of $R$ in $H$ where $R \subseteq H$
-, denoted $H \setminus R$: 
+\textcolor{red}{Relative complement} of $R$ in $H$ where $R \mathop{\subseteq} H$
+, denoted $H \mathop{\setminus} R$: 
     % \vspace{1mm} 
 
     \begin{center}
@@ -685,21 +685,21 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (-5mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
             }    
         
-            \graphbox{\textcolor{red}{\( H \setminus R  \)}}{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
+            \graphbox{\textcolor{red}{\( H \mathop{\setminus} R  \)}}{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-6mm); 
                 \node[draw,dashed,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,dashed,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->] (l2) -- (l4) node[midway,right] {$a$};
                 \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
             }    
 
@@ -707,10 +707,10 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (-5mm,-6mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -724,12 +724,12 @@ Finite edge-labeled directed multigraphs
     }
     \end{center}
 
-    % Remark : \textcolor{red}{$H \setminus R$ is not always a graph.}
+    % Remark : \textcolor{red}{$H \mathop{\setminus} R$ is not always a graph.}
 \end{frame}
 
 
 
-% \begin{frame}{Graph morphism $h : G \rightarrow H$}
+% \begin{frame}{Graph morphism $h : G \mathop{\rightarrow} H$}
 %    Function preserving graph structure and edge-labels.
 
 %    Domain : $G$ 
@@ -754,20 +754,20 @@ Finite edge-labeled directed multigraphs
 %                         \coordinate (o) at (0mm,-8mm); 
 %                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                         \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+%                         \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
 %                         \draw[->] (l2) -- (l4) node[midway,right] {$a$};
 %                         \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-%                         \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                         \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                         \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %                     }    
 %                     \graphbox{\( \)}{80mm}{-22mm}{45mm}{25mm}{2mm}{-3mm}{
 %                         \coordinate (o) at (-5mm,-8mm); 
 %                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                         \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                         \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-%                         \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-%                         \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                         \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                         \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+%                         \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+%                         \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                         \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                         \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -786,17 +786,17 @@ Finite edge-labeled directed multigraphs
 % \subsection{Pushout and pushout complement}
 % \begin{frame}{Pushout of a pair of inclusions \( L \overset{\alpha}{\leftarrowtail} K \overset{\beta}{\rightarrowtail} C \)}
 
-%     Suppose $L \cap C = K$
+%     Suppose $L \mathop{\cap} C \mathop{=} K$
 %     % \begin{itemize}
 %     %     \item $\alpha$, $\beta$ inclusions
-%     %     \item $L \cap C = K$
+%     %     \item $L \mathop{\cap} C \mathop{=} K$
 %     % \end{itemize}
 
-%     \textcolor{red}{Pushout} : \( L \overset{\beta'}{\rightarrowtail} L \cup C \overset{\alpha'}{\leftarrowtail} R \) with $\alpha'$, $\beta'$ inclusions\\
+%     \textcolor{red}{Pushout} : \( L \overset{\beta'}{\rightarrowtail} L \mathop{\cup} C \overset{\alpha'}{\leftarrowtail} R \) with $\alpha'$, $\beta'$ inclusions\\
 
 %     Example:
 
-%     % Pushout object : $L \cup C$
+%     % Pushout object : $L \mathop{\cup} C$
 
 
 %     % \( L \overset{\alpha}{\leftarrowtail} K \overset{\beta}{\rightarrowtail} C \): a pair of injective homomorphisms with domain \( K \)
@@ -811,7 +811,7 @@ Finite edge-labeled directed multigraphs
 %                 \coordinate (o) at (0mm,-8mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+%                 \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
 %                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
 %             } 
@@ -821,16 +821,16 @@ Finite edge-labeled directed multigraphs
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
 %             }  
-%             \graphbox{\(G = L \cup C \)}{90mm}{5mm}{34mm}{27mm}{2mm}{-3mm}{
+%             \graphbox{\(G \mathop{=} L \mathop{\cup} C \)}{90mm}{5mm}{34mm}{27mm}{2mm}{-3mm}{
 %                 \coordinate (o) at (0mm,-8mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
-%                 \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+%                 \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
+%                 \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
 %                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
 %                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
-%                 \node[draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+%                 \node[draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
 %                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
 %                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
 %             }   
@@ -839,10 +839,10 @@ Finite edge-labeled directed multigraphs
 %                 \coordinate (o) at (0mm,-8mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+%                 \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
 %                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
 %                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-%                 \node[ draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+%                 \node[ draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
 %                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
 %             }      
 %             % K to L
@@ -866,11 +866,11 @@ Finite edge-labeled directed multigraphs
 % \begin{frame}{Pushout complement of a pair of inclusions \( K \overset{\alpha}{\leftarrowtail} L \overset{\beta'}{\rightarrowtail} G \)}
 %     % Suppose : $\alpha$, $\beta'$ inclusions
 
-%     \textcolor{red}{Pushout complement} : \( K \overset{\beta}{\rightarrowtail} (G\setminus L)\cup K \overset{\alpha'}{\leftarrowtail} G \) with $\alpha$, $\beta$ inclusions
+%     \textcolor{red}{Pushout complement} : \( K \overset{\beta}{\rightarrowtail} (G\mathop{\setminus} L)\mathop{\cup} K \overset{\alpha'}{\leftarrowtail} G \) with $\alpha$, $\beta$ inclusions
 
 %     Example: 
 
-%     % Pushout complement object : $(G\setminus L)\cup K$: 
+%     % Pushout complement object : $(G\mathop{\setminus} L)\mathop{\cup} K$: 
 
 %     \begin{center} 
 %         \resizebox{0.9\textwidth}{!}{
@@ -879,7 +879,7 @@ Finite edge-labeled directed multigraphs
 %                 \coordinate (o) at (0mm,-8mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+%                 \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
 %                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
 %             } 
@@ -893,24 +893,24 @@ Finite edge-labeled directed multigraphs
 %                 \coordinate (o) at (0mm,-8mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
-%                 \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+%                 \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
+%                 \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
 %                 \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
 %                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
-%                 \node[draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+%                 \node[draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
 %                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
 %                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
 %             }   
      
-%             \graphbox{\( C = (G \setminus L) \cup K  \)}{40mm}{-20mm}{34mm}{27mm}{2mm}{-3mm}{
+%             \graphbox{\( C \mathop{=} (G \mathop{\setminus} L) \mathop{\cup} K  \)}{40mm}{-20mm}{34mm}{27mm}{2mm}{-3mm}{
 %                 \coordinate (o) at (0mm,-8mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle,blue] (l4) at ($(l2) + (0,-1)$) {6};
+%                 \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
 %                 \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
 %                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-%                 \node[ draw,circle,blue] (l6) at ($(l1) + (0,-1)$) {7};
+%                 \node[ draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
 %                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
 %             }      
 %             % K to L
@@ -937,15 +937,15 @@ Finite edge-labeled directed multigraphs
 
 
 % \begin{frame}{Equivalent rules}
-%     $\alpha = L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R$ : rule
+%     $\alpha \mathop{=} L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R$ : rule
 
-%     $\beta =  L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R'$ : rule
+%     $\beta \mathop{=}  L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R'$ : rule
     
 %     \textcolor{red}{Equivalent} if 
 %     \begin{itemize}
 %         \item there \textcolor{red}{exist isomorphisms $f,g,h$}
-%         \item $l \circ g = f \circ l'$
-%         \item $r \circ g = h \circ r'$
+%         \item $l \circ g \mathop{=} f \circ l'$
+%         \item $r \circ g \mathop{=} h \circ r'$
 %     \end{itemize}
 
 %     Example:
@@ -957,7 +957,7 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (0mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {6};
 %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {7};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {8};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {8};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                 } 
@@ -972,8 +972,8 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (-5mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {6};
 %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {7};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {9};
-%                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {10};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {9};
+%                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {10};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
 %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -984,7 +984,7 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (0mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                 } 
@@ -999,8 +999,8 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (-5mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
 %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1025,7 +1025,7 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (0mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {6};
 %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {7};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {8};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {8};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                 } 
@@ -1040,8 +1040,8 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (-5mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {6};
 %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {7};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {9};
-%                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {10};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {9};
+%                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {10};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
 %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1060,7 +1060,7 @@ Finite edge-labeled directed multigraphs
 %                             \coordinate (o) at (0mm,-8mm); 
 %                             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                         } 
@@ -1076,7 +1076,7 @@ Finite edge-labeled directed multigraphs
 %                             \coordinate (o) at (0mm,-8mm); 
 %                             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                         } 
@@ -1091,8 +1091,8 @@ Finite edge-labeled directed multigraphs
 %                             \coordinate (o) at (-5mm,-8mm); 
 %                             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                             \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                             \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%                             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                             \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %                             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
 %                             \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1113,7 +1113,7 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (0mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                 } 
@@ -1128,8 +1128,8 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (-5mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
 %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1139,25 +1139,25 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (0mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-%                     \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+%                     \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                     \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-%                     \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                     \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                     \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %                     \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
 %                 }    
         
 %                 \only<1->{
-%                     \graphbox{\( C = \textcolor{red}{(G \setminus L) \cup K } \)}{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
+%                     \graphbox{\( C \mathop{=} \textcolor{red}{(G \mathop{\setminus} L) \mathop{\cup} K } \)}{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
 %                         \coordinate (o) at (0mm,-8mm); 
 %                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                         \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+%                         \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
 %                         \draw[->] (l2) -- (l4) node[midway,right] {$a$};
 %                         \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-%                         \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                         \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                         \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %                     }    
 %                     \node () at (37mm,-33mm) {\( \leftarrowtail \)};
@@ -1166,14 +1166,14 @@ Finite edge-labeled directed multigraphs
 %                 }
         
 %                 \only<1->{
-%                     \graphbox{\( H = \textcolor{red}{C \cup R} \)}{80mm}{-22mm}{45mm}{25mm}{2mm}{-3mm}{
+%                     \graphbox{\( H \mathop{=} \textcolor{red}{C \mathop{\cup} R} \)}{80mm}{-22mm}{45mm}{25mm}{2mm}{-3mm}{
 %                         \coordinate (o) at (-5mm,-8mm); 
 %                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                         \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                         \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-%                         \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-%                         \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                         \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                         \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+%                         \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+%                         \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                         \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                         \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -1208,7 +1208,7 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (0mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                 } 
@@ -1223,8 +1223,8 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (-5mm,-8mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
 %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1234,12 +1234,12 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (0mm,-3mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-%                     \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+%                     \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                     \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-%                     \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                     \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                     \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %                     \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
 %                 }    
@@ -1248,10 +1248,10 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (0mm,-3mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                     \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+%                     \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
 %                     \draw[->] (l2) -- (l4) node[midway,right] {$a$};
 %                     \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-%                     \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                     \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                     \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %                 }    
         
@@ -1259,10 +1259,10 @@ Finite edge-labeled directed multigraphs
 %                     \coordinate (o) at (-5mm,-3mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-%                     \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-%                     \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+%                     \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+%                     \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                     \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -1294,7 +1294,7 @@ Finite edge-labeled directed multigraphs
 %                 \coordinate (o) at (0mm,-8mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %             } 
@@ -1309,8 +1309,8 @@ Finite edge-labeled directed multigraphs
 %                 \coordinate (o) at (-5mm,-8mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                 \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                 \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
 %                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1320,13 +1320,13 @@ Finite edge-labeled directed multigraphs
 %                 \coordinate (o) at (0mm,-3mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-%                 \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+%                 \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
 %                 \draw[->,red] (l3) -- (l4) node[midway,above] {$a$};
 %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                 \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-%                 \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                 \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                 \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %                 \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
 %             }    
@@ -1335,13 +1335,13 @@ Finite edge-labeled directed multigraphs
 %                 \coordinate (o) at (0mm,-3mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
-%                 \node[draw,circle,dashed,red] (l3) at ($(l1) + (1,0)$) {3};
+%                 \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
+%                 \node[draw,circle,dashed,red] (l3) at ($(l1)+(1,0)$) {3};
 %                 % \draw[->,red] (l3) -- (l4) node[midway,above] {$a$};
 %                 \draw[->] (l3) -- (l4) node[midway,above] {$a$};
 %                 \draw[->] (l2) -- (l4) node[midway,right] {$a$};
 %                 \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-%                 \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                 \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                 \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %             }    
     
@@ -1349,10 +1349,10 @@ Finite edge-labeled directed multigraphs
 %                 \coordinate (o) at (-5mm,-3mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                 \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-%                 \node[draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-%                 \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                 \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+%                 \node[draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+%                 \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
 %                 \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
 %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -1387,7 +1387,7 @@ Finite edge-labeled directed multigraphs
 %                         \coordinate (o) at (0mm,-11mm); 
 %                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                         \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                         \draw[->] (l3) -- (l2) node[midway,above] {$b$};
 %                     } 
@@ -1402,8 +1402,8 @@ Finite edge-labeled directed multigraphs
 %                         \coordinate (o) at (-5mm,-11mm); 
 %                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                         \node[draw,circle] (l4) at ($(l1) + (2,0)$) {2};
+%                         \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                         \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
 %                         \draw[->] (l1) -- (l3) node[midway,above] {$b$};
 %                         \draw[->] (l3) -- (l4) node[midway,above] {$a$};
 %                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1424,7 +1424,7 @@ Finite edge-labeled directed multigraphs
 %                 \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
 %                 \draw[->] (z) -- node[midway,left] {$b$} (x) ;
 %             } 
-%             $\Rightarrow$ 
+%             $\mathop{\Rightarrow}$ 
 %             \tikz[baseline=-0.5ex]{ 
 %                 \node (x) at (0,0) {$\bullet$};  
 %                 \node (y) at (1,0) {$\bullet$};
@@ -1433,7 +1433,7 @@ Finite edge-labeled directed multigraphs
 %                 \draw[->,red] (y) -- node[midway,right] {$a$} (z) ;
 %                 \draw[->,red] (z) -- node[midway,left] {$b$} (x) ;
 %             }
-%             $\Rightarrow$ 
+%             $\mathop{\Rightarrow}$ 
 %             \tikz[baseline=-0.5ex]{ 
 %                 \node (x) at (0,0) {$\bullet$};  
 %                 \node (y) at (1,0) {$\bullet$};
@@ -1442,7 +1442,7 @@ Finite edge-labeled directed multigraphs
 %                 \draw[->] (y) -- node[midway,right] {$b$} (z) ;
 %                 \draw[->,red] (z) -- node[midway,left] {$a$} (x) ;
 %             }
-%             $\Rightarrow$ 
+%             $\mathop{\Rightarrow}$ 
 %             \tikz[baseline=-0.5ex]{ 
 %                 \node (x) at (0,0) {$\bullet$};  
 %                 \node (y) at (1,0) {$\bullet$};
@@ -1584,9 +1584,9 @@ Finite edge-labeled directed multigraphs
 
 %     Pre-graphs : $L', R', C'$
 
-%     % $L = L' \cup K$, $R = R' \cup K$, $C = C' \cup K$
+%     % $L \mathop{=} L' \mathop{\cup} K$, $R \mathop{=} R' \mathop{\cup} K$, $C \mathop{=} C' \mathop{\cup} K$
 
-%     % $G = L' \cup K \cup C'$, $H = R' \cup K \cup C'$
+%     % $G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C'$, $H \mathop{=} R' \mathop{\cup} K \mathop{\cup} C'$
 
 
 % \end{frame}
@@ -1712,7 +1712,7 @@ Finite edge-labeled directed multigraphs
 
 
 \begin{frame}{Running example}
-    % Rule : a pair of inclusions $L \leftarrowtail K \rightarrowtail R$ with $L \cap R = K$
+    % Rule : a pair of inclusions $L \leftarrowtail K \rightarrowtail R$ with $L \mathop{\cap} R \mathop{=} K$
 
     % Motivating example:
     % \begin{center}
@@ -1720,9 +1720,9 @@ Finite edge-labeled directed multigraphs
     %         \begin{tikzpicture}
     %             \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
     %                 \coordinate (delta) at (0,-18mm);
-    %                 \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {1};
-    %                 \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {2};
-    %                 \node[draw,circle] (l3) at ($(delta) + (0,0)$) {3};
+    %                 \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
+    %                 \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
+    %                 \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
     %                 \draw[->] (l1) -- (l3) node[midway,left] {$s$};
     %                 \draw[->] (l2) -- (l3) node[midway,right] {$s$};
     %                 \draw[->] (l3) edge [loop below] node {0} (l3);
@@ -1732,7 +1732,7 @@ Finite edge-labeled directed multigraphs
     %                     \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
     %                     \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {1};
     %                     \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {2};
-    %                     \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
+    %                     \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
     %                     % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
     %                     % \draw[->] (r3) edge [loop below] node {0} (r3);
     %                 } 
@@ -1740,16 +1740,16 @@ Finite edge-labeled directed multigraphs
     %                 \node () at (77mm,-18mm) {$\rightarrowtail$};
     %             \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
     %                 \coordinate (delta) at (-10mm,-18mm);
-    %                 \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-    %                 \node[draw,circle] (r2) at ($(delta) + (0.5,1.5)$) {2};
-    %                 \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
-    %                 \node[draw,circle] (r4) at ($(delta) + (1,0)$) {};
+    %                 \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+    %                 \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {2};
+    %                 \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+    %                 \node[draw,circle] (r4) at ($(delta)+(1,0)$) {};
     %                 \draw[->] (r1) edge[bend right] node[midway,left] {$s$} (r3) ;
     %                 \draw[->] (r2) -- (r4) node[midway,right] {$s$};
     %                 \draw[->] (r4) edge [loop below] node {0} (r4);
                     
     %                 \draw[->] (r3) edge [out=190,in=270,looseness=3] node[midway,left] {0} (r3);
-    %                 \node[draw,circle] (r5) at ($(r2) + (1.5,0)$) {};
+    %                 \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
     %                 \draw[->] (r5) edge [loop below] node {0} (r5);
     %                 \draw[->] (r5) edge [loop right] node {0} (r5);
     %                 \draw[->] (r5) edge [loop left] node {0} (r5);
@@ -1757,9 +1757,9 @@ Finite edge-labeled directed multigraphs
     %             % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
     %             %     \coordinate (delta) at (0,-18mm);
     %             %     \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
-    %             %     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-    %             %     \node[draw,circle] (r2) at ($(delta) +  (0.5,1.5)$) {2};
-    %             %     \node[draw,circle] (r3) at ($(delta) +  (0,0)$) {3};
+    %             %     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+    %             %     \node[draw,circle] (r2) at ($(delta)\mathop{+} (0.5,1.5)$) {2};
+    %             %     \node[draw,circle] (r3) at ($(delta)\mathop{+} (0,0)$) {3};
     %             %     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
     %             %     % \draw[->] (r3) edge [loop below] node {0} (r3);
     %             % }
@@ -1778,7 +1778,7 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (0mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 } 
@@ -1793,8 +1793,8 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (-5mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -1916,11 +1916,11 @@ Finite edge-labeled directed multigraphs
     \begin{center}
     \resizebox{0.8\textwidth}{!}{
       \begin{tikzpicture}
-              \graphbox{\( L = L' \cup K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+              \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (0mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[orange,draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                  \node[orange,draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                   \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
               } 
@@ -1931,48 +1931,48 @@ Finite edge-labeled directed multigraphs
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
               }  
 
-              \graphbox{\( R = R' \cup K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
+              \graphbox{\( R \mathop{=} R' \mathop{\cup} K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (-5mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[red,draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                  \node[red,draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                  \node[red,draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                  \node[red,draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                   \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
                   \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
               }    
 
-              \graphbox{\( G = L' \cup K \cup C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+              \graphbox{\( G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (0mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[draw,circle,orange] (l3) at ($(l1) + (1,0)$) {3};
-                  \node[blue, draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                  \node[draw,circle,orange] (l3) at ($(l1)+(1,0)$) {3};
+                  \node[blue, draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                   \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
                   \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
-                  \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                  \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
               }    
 
-              \graphbox{\( C = K \cup C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+              \graphbox{\( C \mathop{=} K \mathop{\cup} C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (0mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                  \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                   \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
-                  \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                  \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
               }    
 
-              \graphbox{\( H = R' \cup K \cup C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
+              \graphbox{\( H \mathop{=} R' \mathop{\cup} K \mathop{\cup} C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (-5mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {4};
-                  \node[draw,circle,red] (l4) at ($(l1) + (2,0)$) {5};
-                  \node[blue,draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                  \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                  \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {4};
+                  \node[draw,circle,red] (l4) at ($(l1)+(2,0)$) {5};
+                  \node[blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                  \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
                   \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
@@ -2090,11 +2090,11 @@ Finite edge-labeled directed multigraphs
 
 %     An occurrence $x$ of a graph $X$ is 
 %     \begin{itemize}
-%         \item \textcolor{red}{explicitly deleted} if $x \subseteq L' \cup K$ 
-%         \item \textcolor{blue}{explicitly created} if $x \subseteq R' \cup K$
-%         \item \hspace{1.57cm} shared if $x \subseteq C' \cup K$
-%         \item \textcolor{red}{implicitly deleted} if $x \not \subseteq L' \cup K$ and $x \not \subseteq C' \cup K$
-%         \item \textcolor{blue}{implicitly created} if $x \not \subseteq R' \cup K$ and $x \not \subseteq C' \cup K$
+%         \item \textcolor{red}{explicitly deleted} if $x \mathop{\subseteq} L' \mathop{\cup} K$ 
+%         \item \textcolor{blue}{explicitly created} if $x \mathop{\subseteq} R' \mathop{\cup} K$
+%         \item \hspace{1.57cm} shared if $x \mathop{\subseteq} C' \mathop{\cup} K$
+%         \item \textcolor{red}{implicitly deleted} if $x \not \mathop{\subseteq} L' \mathop{\cup} K$ and $x \not \mathop{\subseteq} C' \mathop{\cup} K$
+%         \item \textcolor{blue}{implicitly created} if $x \not \mathop{\subseteq} R' \mathop{\cup} K$ and $x \not \mathop{\subseteq} C' \mathop{\cup} K$
 %     \end{itemize}
 
 % \end{frame}
@@ -2129,8 +2129,8 @@ Finite edge-labeled directed multigraphs
 
 %     An $X$-occurrence is 
 %     \begin{itemize} 
-%         \item \textcolor{red}{explicit} if it is included in $L' \cup K$ or $x \subseteq R' \cup K$ 
-%         \item \textcolor{red}{implicit} if $x \not \subseteq L' \cup K$ and $x \not \subseteq C' \cup K$
+%         \item \textcolor{red}{explicit} if it is included in $L' \mathop{\cup} K$ or $x \mathop{\subseteq} R' \mathop{\cup} K$ 
+%         \item \textcolor{red}{implicit} if $x \not \mathop{\subseteq} L' \mathop{\cup} K$ and $x \not \mathop{\subseteq} C' \mathop{\cup} K$
 %         \item \textcolor{blue}{implicitly} otherwise
 %     \end{itemize}
     
@@ -2261,33 +2261,33 @@ Finite edge-labeled directed multigraphs
 
     $X$-occurrence $y$ in $G$ is 
 
-    \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{shared} if $y \subseteq C$}
-    \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{explicit} if $y \subseteq L$}
+    \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{shared} if $y \mathop{\subseteq} C$}
+    \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{explicit} if $y \mathop{\subseteq} L$}
 
-    \parbox{\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{implicit} if $y \cap C' \neq \emptyset$ and \textcolor{blue}{$y \cap L' \neq  \emptyset$}}
+    \parbox{\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{implicit} if $y \mathop{\cap} C' \mathop{\neq} \emptyset$ and \textcolor{blue}{$y \mathop{\cap} L' \mathop{\neq}  \emptyset$}}
 
     % \begin{itemize} 
-    %     % \item \textcolor{red}{shared} if $y \subseteq C$ 
-    %     % \item \textcolor{red}{explicit} if $y \subseteq L$  
-    %     \item \textcolor{red}{implicit} if $y \cap C' \neq \emptyset$ and \textcolor{blue}{$y \cap L' \neq  \emptyset$}
-    %     % if $y \not \subseteq L' \cup K$ and $y \not \subseteq C' \cup K$
+    %     % \item \textcolor{red}{shared} if $y \mathop{\subseteq} C$ 
+    %     % \item \textcolor{red}{explicit} if $y \mathop{\subseteq} L$  
+    %     \item \textcolor{red}{implicit} if $y \mathop{\cap} C' \mathop{\neq} \emptyset$ and \textcolor{blue}{$y \mathop{\cap} L' \mathop{\neq}  \emptyset$}
+    %     % if $y \not \mathop{\subseteq} L' \mathop{\cup} K$ and $y \not \mathop{\subseteq} C' \mathop{\cup} K$
     % \end{itemize}
     
     $X$-occurrence $y$ in $H$ is 
 
-   \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{shared} if $y \subseteq C$}
-   \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{explicit} if $y \subseteq R$ }
+   \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{shared} if $y \mathop{\subseteq} C$}
+   \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{explicit} if $y \mathop{\subseteq} R$ }
 
-    \parbox{\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{implicit} if $y \cap C' \neq \emptyset$ and \textcolor{blue}{$y \cap R' \neq \emptyset$}}
+    \parbox{\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{implicit} if $y \mathop{\cap} C' \mathop{\neq} \emptyset$ and \textcolor{blue}{$y \mathop{\cap} R' \mathop{\neq} \emptyset$}}
     % \begin{itemize} 
-    %     % \item \textcolor{red}{explicit} if $y \subseteq K \cup L'$ or $y \subseteq K \cup R'$ 
-    %     % \item \textcolor{red}{explicit} if $y \subseteq L$ or $y \subseteq R$ 
-    %     % \item \textcolor{red}{shared} if $y \subseteq C$
-    %     % \item \textcolor{red}{implicit} otherwise (i.e. $y \cap C' \neq \emptyset$, and $y \cap L' \neq  \emptyset$ or $y \cap R' \neq \emptyset$)
-    %     \item \textcolor{red}{shared} if $y \subseteq C$
-    %     \item \textcolor{red}{explicit} if $y \subseteq R$ 
-    %     \item \textcolor{red}{implicit} if $y \cap C' \neq \emptyset$ and \textcolor{blue}{$y \cap R' \neq \emptyset$}
-    %     % if $y \not \subseteq L' \cup K$ and $y \not \subseteq C' \cup K$
+    %     % \item \textcolor{red}{explicit} if $y \mathop{\subseteq} K \mathop{\cup} L'$ or $y \mathop{\subseteq} K \mathop{\cup} R'$ 
+    %     % \item \textcolor{red}{explicit} if $y \mathop{\subseteq} L$ or $y \mathop{\subseteq} R$ 
+    %     % \item \textcolor{red}{shared} if $y \mathop{\subseteq} C$
+    %     % \item \textcolor{red}{implicit} otherwise (i.e. $y \mathop{\cap} C' \mathop{\neq} \emptyset$, and $y \mathop{\cap} L' \mathop{\neq}  \emptyset$ or $y \mathop{\cap} R' \mathop{\neq} \emptyset$)
+    %     \item \textcolor{red}{shared} if $y \mathop{\subseteq} C$
+    %     \item \textcolor{red}{explicit} if $y \mathop{\subseteq} R$ 
+    %     \item \textcolor{red}{implicit} if $y \mathop{\cap} C' \mathop{\neq} \emptyset$ and \textcolor{blue}{$y \mathop{\cap} R' \mathop{\neq} \emptyset$}
+    %     % if $y \not \mathop{\subseteq} L' \mathop{\cup} K$ and $y \not \mathop{\subseteq} C' \mathop{\cup} K$
     % \end{itemize}
 \end{frame}
  
@@ -2297,11 +2297,11 @@ Finite edge-labeled directed multigraphs
    \begin{center}
     \resizebox{0.9\textwidth}{!}{
       \begin{tikzpicture}
-              \graphbox{\( L = L' \cup K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+              \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (0mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[orange,draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                  \node[orange,draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                   \draw[orange] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[orange] (l3) -- (l2) node[midway,above] {$a$};
               } 
@@ -2312,48 +2312,48 @@ Finite edge-labeled directed multigraphs
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
               }  
 
-              \graphbox{\( R = R' \cup K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
+              \graphbox{\( R \mathop{=} R' \mathop{\cup} K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (-5mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[red,draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                  \node[red,draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                  \node[red,draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                  \node[red,draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                   \draw[red] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[red] (l3) -- (l4) node[midway,above] {$b$};
                   \draw[red] (l4) -- (l2) node[midway,above] {$a$};
               }    
 
-              \graphbox{\( G = L' \cup K \cup C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+              \graphbox{\( G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (0mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[draw,circle,orange] (l3) at ($(l1) + (1,0)$) {3};
-                  \node[blue, draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                  \node[draw,circle,orange] (l3) at ($(l1)+(1,0)$) {3};
+                  \node[blue, draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                   \draw[orange] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[orange] (l3) -- (l2) node[midway,above] {$a$};
                   \draw[blue] (l2) -- (l4) node[midway,right] {$a$};
-                  \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                  \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                   \draw[blue] (l1) -- (l6) node[midway,left] {$a$};
               }    
 
-              \graphbox{\( C = K \cup C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+              \graphbox{\( C \mathop{=} K \mathop{\cup} C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (0mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                  \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                   \draw[blue] (l2) -- (l4) node[midway,right] {$a$};
-                  \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                  \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                   \draw[blue] (l1) -- (l6) node[midway,left] {$a$};
               }    
 
-              \graphbox{\( H = R' \cup K \cap C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
+              \graphbox{\( H \mathop{=} R' \mathop{\cup} K \mathop{\cap} C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (-5mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {4};
-                  \node[draw,circle,red] (l4) at ($(l1) + (2,0)$) {5};
-                  \node[blue,draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                  \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                  \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {4};
+                  \node[draw,circle,red] (l4) at ($(l1)+(2,0)$) {5};
+                  \node[blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                  \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                   \draw[blue] (l1) -- (l6) node[midway,left] {$a$};
                   \draw[red] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[red] (l3) -- (l4) node[midway,above] {$b$};
@@ -2406,22 +2406,22 @@ Finite edge-labeled directed multigraphs
 \begin{frame}{Termination of a graph rewriting rule $\varphi$}
     \begin{itemize}
         \item $X$: a subgraph of $\opn{lhs}(\varphi)$
-        \item $\varphi$ terminates if for all $G \Rightarrow_\varphi H$, the number of $X$-occurrences strictly decreases.
+        \item $\varphi$ terminates if for all $G \mathop{\Rightarrow}_\varphi H$, the number of $X$-occurrences strictly decreases.
             % \begin{flalign*}
             % &\mathop{\mid}\text{$X$-occurrences in $G$}\mathop{\mid} - \mathop{\mid}\text{$X$-occurrences in $H$}\mathop{\mid} \\
-            % % = &\mathop{\mid}\text{explicit $X$-occurrences in $G$}\mathop{\mid} - \mathop{\mid}\text{explicit $X$-occurrences in $H$}\mathop{\mid}  +\\
+            % % \mathop{=} &\mathop{\mid}\text{explicit $X$-occurrences in $G$}\mathop{\mid} - \mathop{\mid}\text{explicit $X$-occurrences in $H$}\mathop{\mid}  +\\
             % %         &\mathop{\mid}\text{implicit $X$-occurrences in $G$}\mathop{\mid} - \mathop{\mid}\text{implicit $X$-occurrences in $H$}\mathop{\mid} \\
             % \mathop{>} & 0
             % \end{flalign*}
-            % because $\text{shared $X$-occurrences in $G$} = \text{shared $X$-occurrences in $H$}$.
-        \item $\varphi$ terminates if for all $G \Rightarrow_\varphi H$,  
+            % because $\text{shared $X$-occurrences in $G$} \mathop{=} \text{shared $X$-occurrences in $H$}$.
+        \item $\varphi$ terminates if for all $G \mathop{\Rightarrow}_\varphi H$,  
             \begin{flalign*}
             &\mathop{\mid}\text{explicit $X$-occurrences in $G$}\mathop{\mid} \mathop{-} \mathop{\mid}\text{explicit $X$-occurrences in $H$}\mathop{\mid}  \mathop{+}\\
                     &\mathop{\mid}\text{implicit $X$-occurrences in $G$}\mathop{\mid} \mathop{-} \mathop{\mid}\text{implicit $X$-occurrences in $H$}\mathop{\mid} \\
             &\mathop{>} 0
             \end{flalign*}
             because $G$ and $H$ shared the same shared $X$-occurrences.
-        \item $\varphi$ terminates if for all $G \Rightarrow H$,
+        \item $\varphi$ terminates if for all $G \mathop{\Rightarrow} H$,
         \begin{flalign*}
             &\mathop{\mid}\text{explicit $X$-occurrences in $G$}\mathop{\mid} \mathop{>} \mathop{\mid}\text{explicit $X$-occurrences in $H$}\mathop{\mid} \\
             &\mathop{\mid}\text{implicit $X$-occurrences in $G$}\mathop{\mid} \mathop{\geq} \mathop{\mid}\text{implicit $X$-occurrences in $H$}\mathop{\mid} 
@@ -2564,7 +2564,7 @@ Finite edge-labeled directed multigraphs
    \end{center}
    Therefore, the key challenge is to establish 
     $$\mathop{\mid}\text{implicit $X$-occurrences in $G$}\mathop{\mid} \mathop{\geq} \mathop{\mid}\text{implicit $X$-occurrences in $H$}\mathop{\mid}$$ 
-    for all rewriting steps $G \Rightarrow_\varphi H$.
+    for all rewriting steps $G \mathop{\Rightarrow}_\varphi H$.
 \end{frame}
 
 % \begin{frame}{Example}
@@ -2573,9 +2573,9 @@ Finite edge-labeled directed multigraphs
 %             \begin{tikzpicture}
 %                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
 %                     \coordinate (delta) at (0,-18mm);
-%                     \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {1};
-%                     \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {2};
-%                     \node[draw,circle] (l3) at ($(delta) + (0,0)$) {3};
+%                     \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
+%                     \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
+%                     \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
 %                     \draw[->] (l1) -- (l3) node[midway,left] {$s$};
 %                     \draw[->] (l2) -- (l3) node[midway,right] {$s$};
 %                     \draw[->] (l3) edge [loop below] node {0} (l3);
@@ -2585,7 +2585,7 @@ Finite edge-labeled directed multigraphs
 %                         \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
 %                         \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {1};
 %                         \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {2};
-%                         \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
+%                         \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
 %                         % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
 %                         % \draw[->] (r3) edge [loop below] node {0} (r3);
 %                     } 
@@ -2593,16 +2593,16 @@ Finite edge-labeled directed multigraphs
 %                     \node () at (77mm,-18mm) {$\rightarrowtail$};
 %                 \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
 %                     \coordinate (delta) at (-10mm,-18mm);
-%                     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-%                     \node[draw,circle] (r2) at ($(delta) + (0.5,1.5)$) {2};
-%                     \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
-%                     \node[draw,circle] (r4) at ($(delta) + (1,0)$) {};
+%                     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+%                     \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {2};
+%                     \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+%                     \node[draw,circle] (r4) at ($(delta)+(1,0)$) {};
 %                     \draw[->] (r1) edge[bend right] node[midway,left] {$s$} (r3) ;
 %                     \draw[->] (r2) -- (r4) node[midway,right] {$s$};
 %                     \draw[->] (r4) edge [loop below] node {0} (r4);
                     
 %                     \draw[->] (r3) edge [out=190,in=270,looseness=3] node[midway,left] {0} (r3);
-%                     \node[draw,circle] (r5) at ($(r2) + (1.5,0)$) {};
+%                     \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
 %                     \draw[->] (r5) edge [loop below] node {0} (r5);
 %                     \draw[->] (r5) edge [loop right] node {0} (r5);
 %                     \draw[->] (r5) edge [loop left] node {0} (r5);
@@ -2610,9 +2610,9 @@ Finite edge-labeled directed multigraphs
 %                 % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
 %                 %     \coordinate (delta) at (0,-18mm);
 %                 %     \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
-%                 %     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-%                 %     \node[draw,circle] (r2) at ($(delta) +  (0.5,1.5)$) {2};
-%                 %     \node[draw,circle] (r3) at ($(delta) +  (0,0)$) {3};
+%                 %     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+%                 %     \node[draw,circle] (r2) at ($(delta)\mathop{+} (0.5,1.5)$) {2};
+%                 %     \node[draw,circle] (r3) at ($(delta)\mathop{+} (0,0)$) {3};
 %                 %     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
 %                 %     % \draw[->] (r3) edge [loop below] node {0} (r3);
 %                 % }
@@ -2632,9 +2632,9 @@ Finite edge-labeled directed multigraphs
 %                 \draw[->] (z) -- (y) node[midway, above] {$s$};
 %         }$
 
-%     $\mathop{\mid}\text{$X$-occurrences in $L$}\mathop{\mid} = 1 \mathop{>} 0 = \mathop{\mid}\text{$X$-occurrences in $R$}\mathop{\mid}$
+%     $\mathop{\mid}\text{$X$-occurrences in $L$}\mathop{\mid} \mathop{=} 1 \mathop{>} 0 \mathop{=} \mathop{\mid}\text{$X$-occurrences in $R$}\mathop{\mid}$
 
-%     \textcolor{red}{Terminating} if for all rewriting step $G \Rightarrow H$,
+%     \textcolor{red}{Terminating} if for all rewriting step $G \mathop{\Rightarrow} H$,
 %         \begin{flalign*}
 %             \mathop{\mid}\text{implicit $X$-occurrences in G}\mathop{\mid} \mathop{\geq} 
 %             \mathop{\mid}\text{implicit $X$-occurrences in H}\mathop{\mid} 
@@ -2757,9 +2757,9 @@ Finite edge-labeled directed multigraphs
 %           }
 %    \end{center}
 
-% %    Implicit $X$-occurrence $x$ in $G$ is of form $L'_x \cup K_x \cup C'_x$ 
+% %    Implicit $X$-occurrence $x$ in $G$ is of form $L'_x \mathop{\cup} K_x \mathop{\cup} C'_x$ 
      
-%    Implicit $X$-occurrence $x$ in $H$ is of form $R_x \cup C'_x$ with $R_x \subseteq R$ and $C'_x \subseteq C'$
+%    Implicit $X$-occurrence $x$ in $H$ is of form $R_x \mathop{\cup} C'_x$ with $R_x \mathop{\subseteq} R$ and $C'_x \mathop{\subseteq} C'$
     
 %     % It suffices to map different $R_x$ to different $L_x$ in such a way that 
 %     % \begin{itemize}
@@ -2768,10 +2768,10 @@ Finite edge-labeled directed multigraphs
 
 %     If  
 %     \begin{itemize}
-%         \item for every implicit $X$-occurrence $R_x \cup C'_x$, there is $h_x:R_x \rightarrowtail L$
+%         \item for every implicit $X$-occurrence $R_x \mathop{\cup} C'_x$, there is $h_x:R_x \rightarrowtail L$
 %         \item $h_x$ preserves interface elements,
 %     \end{itemize}
-%     then $h_x(R_x) \cup C'$ is an implicit $X$-occurrence in $G$
+%     then $h_x(R_x) \mathop{\cup} C'$ is an implicit $X$-occurrence in $G$
 % \end{frame}
 
 \begin{frame}{Observation of Implicit Occurrences}
@@ -2784,7 +2784,7 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (0mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 } 
@@ -2799,8 +2799,8 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (-5mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -2810,12 +2810,12 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                    \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                    \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                     \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-                    \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                     \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                     \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                 }    
@@ -2824,10 +2824,10 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                    \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                     \draw[->] (l2) -- (l4) node[midway,right] {$a$};
                     \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                    \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                     \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                 }    
         
@@ -2835,10 +2835,10 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                    \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                    \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                    \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                    \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                     \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -2875,7 +2875,7 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (2mm,-8mm); 
                 \node[circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -2884,8 +2884,8 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (-5mm,-8mm); 
                 \node[circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -2895,12 +2895,12 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (2mm,-3mm); 
                 \node[circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                 % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-                % \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                % \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 % \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                 % \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }    
@@ -2914,10 +2914,10 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (0mm,-3mm); 
                 \node[circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[->] (l2) -- (l4) node[midway,right] {$a$};
                 % \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-                % \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                % \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 % \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
             }  
     
@@ -2925,10 +2925,10 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (-5mm,-3mm); 
                 \node[circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[circle] (l3) at ($(l1) + (1,0)$) {};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                \node[circle] (l6) at ($(l1) + (0,-1)$) {};
+                \node[circle] (l3) at ($(l1)+(1,0)$) {};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                \node[circle] (l6) at ($(l1)+(0,-1)$) {};
                 % \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
                 % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
@@ -2940,7 +2940,7 @@ Finite edge-labeled directed multigraphs
             %     \coordinate (o) at (0mm,-8mm); 
             %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
             %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            %     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
+            %     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {5};
             %     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             %     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             % }
@@ -3075,9 +3075,9 @@ Finite edge-labeled directed multigraphs
 %           }
 %    \end{center}
 
-%    Implicit $X$-occurrence $x$ in $G$ is of form $L_x \cup C'_x$ 
+%    Implicit $X$-occurrence $x$ in $G$ is of form $L_x \mathop{\cup} C'_x$ 
      
-%    Implicit $X$-occurrence $x$ in $G$ is of form $R_x \cup C'_x$
+%    Implicit $X$-occurrence $x$ in $G$ is of form $R_x \mathop{\cup} C'_x$
     
 %     It suffices to map different $R_x$ to different $L_x$ in such a way that 
 %     \begin{itemize}
@@ -3094,9 +3094,9 @@ Finite edge-labeled directed multigraphs
 %             \begin{tikzpicture}
 %                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
 %                     \coordinate (delta) at (0,-18mm);
-%                     \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {1};
-%                     \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {2};
-%                     \node[draw,circle] (l3) at ($(delta) + (0,0)$) {3};
+%                     \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
+%                     \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
+%                     \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
 %                     \draw[->] (l1) -- (l3) node[midway,left] {$s$};
 %                     \draw[->] (l2) -- (l3) node[midway,right] {$s$};
 %                     \draw[->] (l3) edge [loop below] node {0} (l3);
@@ -3106,7 +3106,7 @@ Finite edge-labeled directed multigraphs
 %                         \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
 %                         \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {1};
 %                         \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {2};
-%                         \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
+%                         \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
 %                         % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
 %                         % \draw[->] (r3) edge [loop below] node {0} (r3);
 %                     } 
@@ -3114,15 +3114,15 @@ Finite edge-labeled directed multigraphs
 %                     \node () at (77mm,-18mm) {$\rightarrowtail$};
 %                 \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
 %                     \coordinate (delta) at (-10mm,-18mm);
-%                     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-%                     \node[draw,circle] (r2) at ($(delta) + (0.5,1.5)$) {2};
-%                     \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
-%                     \node[draw,circle] (r4) at ($(delta) + (1,0)$) {};
+%                     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+%                     \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {2};
+%                     \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+%                     \node[draw,circle] (r4) at ($(delta)+(1,0)$) {};
 %                     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
 %                     \draw[->] (r2) -- (r4) node[midway,right] {$s$};
 %                     \draw[->] (r4) edge [loop below] node {0} (r4);
 %                     \draw[->] (r3) edge [loop below] node {0} (r3);
-%                     \node[draw,circle] (r5) at ($(r2) + (1.5,0)$) {};
+%                     \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
 %                     \draw[->] (r5) edge [loop below] node {0} (r5);
 %                     \draw[->] (r5) edge [loop right] node {0} (r5);
 %                     \draw[->] (r5) edge [loop left] node {0} (r5);
@@ -3130,9 +3130,9 @@ Finite edge-labeled directed multigraphs
 %                 % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
 %                 %     \coordinate (delta) at (0,-18mm);
 %                 %     \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
-%                 %     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-%                 %     \node[draw,circle] (r2) at ($(delta) +  (0.5,1.5)$) {2};
-%                 %     \node[draw,circle] (r3) at ($(delta) +  (0,0)$) {3};
+%                 %     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+%                 %     \node[draw,circle] (r2) at ($(delta)\mathop{+} (0.5,1.5)$) {2};
+%                 %     \node[draw,circle] (r3) at ($(delta)\mathop{+} (0,0)$) {3};
 %                 %     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
 %                 %     % \draw[->] (r3) edge [loop below] node {0} (r3);
 %                 % }
@@ -3207,7 +3207,7 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (0mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 } 
@@ -3222,8 +3222,8 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (-5mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -3241,7 +3241,7 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
@@ -3254,7 +3254,7 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
@@ -3266,7 +3266,7 @@ Finite edge-labeled directed multigraphs
                 \graphbox{$R'_3$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 }   
         \end{tikzpicture}
@@ -3279,7 +3279,7 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
@@ -3289,7 +3289,7 @@ Finite edge-labeled directed multigraphs
 \end{frame}
 
 
-\begin{frame}{Observation:For every $R_i \in D(R,X)$, there is a morphism \(h_i: R_i \rightarrowtail L \) which preserves the interface elements}
+\begin{frame}{Observation:For every $R_i \mathop{\in} D(R,X)$, there is a morphism \(h_i: R_i \rightarrowtail L \) which preserves the interface elements}
     
     \begin{center}  
         \resizebox{\textwidth}{!}{
@@ -3303,14 +3303,14 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (-5mm,-8mm); 
                 \node[circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
             } 
             \graphbox{$L$}{133mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {5};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }
@@ -3333,7 +3333,7 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (-5mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
             }     
      
@@ -3341,7 +3341,7 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {5};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }
@@ -3362,14 +3362,14 @@ Finite edge-labeled directed multigraphs
             \graphbox{\( R'_3 \)}{80mm}{-3mm}{45mm}{12mm}{2mm}{2mm}{
                 \coordinate (o) at (-5mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
             }    
             \graphbox{$L$}{133mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }
@@ -3393,8 +3393,8 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (-5mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                % \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                % \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                 % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -3403,7 +3403,7 @@ Finite edge-labeled directed multigraphs
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }
@@ -3418,10 +3418,10 @@ Finite edge-labeled directed multigraphs
  \begin{definition}
     A rule $\varphi$ is $X$-non-increasing rule if 
     \begin{enumerate}
-        \item For every $R_i \in D(R,X)$, there is a morphism \(h_i: R_i \rightarrowtail L \) which preserves the interface elements,
-        % \item For all $R'_i \in D(R,X)$, morphism $h_i$ does not maps any non-interface element to an interface element,
-        % \item Different edges $e_i \in R_i$ and $e_j \in R_j$ have different images $h_{R_iL}(e_i) \neq h_{R_jL}(e_j)$,
-        % \item If $X$ has isolated nodes, then then for all $R',R'' \in D(R,X)$ and nodes $x \in R', y \in R''$, if $x \neq y$, then $h_{R'L}(x) \neq h_{R''L}(y)$.
+        \item For every $R_i \mathop{\in} D(R,X)$, there is a morphism \(h_i: R_i \rightarrowtail L \) which preserves the interface elements,
+        % \item For all $R'_i \mathop{\in} D(R,X)$, morphism $h_i$ does not maps any non-interface element to an interface element,
+        % \item Different edges $e_i \mathop{\in} R_i$ and $e_j \mathop{\in} R_j$ have different images $h_{R_iL}(e_i) \mathop{\neq} h_{R_jL}(e_j)$,
+        % \item If $X$ has isolated nodes, then then for all $R',R'' \mathop{\in} D(R,X)$ and nodes $x \mathop{\in} R', y \mathop{\in} R''$, if $x \mathop{\neq} y$, then $h_{R'L}(x) \mathop{\neq} h_{R''L}(y)$.
         \item three more conditions on $h_i$
     \end{enumerate}  
  \end{definition}
@@ -3437,7 +3437,7 @@ Finite edge-labeled directed multigraphs
     Let $\varphi$ be a $X$-non-increasing rule.
     \begin{lemma}[More $X$-occurrences before rewriting]
         % If a rule $\varphi$ is $X$-non-increasing, then, 
-        For all $G \Rightarrow_\varphi H$, there are more implicit $X$-occurrences in $G$ than in $H$.
+        For all $G \mathop{\Rightarrow}_\varphi H$, there are more implicit $X$-occurrences in $G$ than in $H$.
     \end{lemma}
          
     \begin{theorem}[Sufficient Termination Condition]
@@ -3456,7 +3456,7 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (0mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 } 
@@ -3471,8 +3471,8 @@ Finite edge-labeled directed multigraphs
                     \coordinate (o) at (-5mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -3501,9 +3501,9 @@ Finite edge-labeled directed multigraphs
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
-                    \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {1};
-                    \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {2};
-                    \node[draw,circle] (l3) at ($(delta) + (0,0)$) {3};
+                    \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
+                    \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
+                    \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
                     \draw[->] (l1) -- (l3) node[midway,left] {$s$};
                     \draw[->] (l2) -- (l3) node[midway,right] {$s$};
                     \draw[->] (l3) edge [loop below] node {0} (l3);
@@ -3513,7 +3513,7 @@ Finite edge-labeled directed multigraphs
                         \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
                         \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {1};
                         \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {2};
-                        \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
+                        \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
                         % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                         % \draw[->] (r3) edge [loop below] node {0} (r3);
                     } 
@@ -3521,16 +3521,16 @@ Finite edge-labeled directed multigraphs
                     \node () at (77mm,-18mm) {$\rightarrowtail$};
                 \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
                     \coordinate (delta) at (-10mm,-18mm);
-                    \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-                    \node[draw,circle] (r2) at ($(delta) + (0.5,1.5)$) {2};
-                    \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
-                    \node[draw,circle] (r4) at ($(delta) + (1,0)$) {};
+                    \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+                    \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {2};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                    \node[draw,circle] (r4) at ($(delta)+(1,0)$) {};
                     \draw[->] (r1) edge[bend right] node[midway,left] {$s$} (r3) ;
                     \draw[->] (r2) -- (r4) node[midway,right] {$s$};
                     \draw[->] (r4) edge [loop below] node {0} (r4);
                     
                     \draw[->] (r3) edge [out=190,in=270,looseness=3] node[midway,left] {0} (r3);
-                    \node[draw,circle] (r5) at ($(r2) + (1.5,0)$) {};
+                    \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
                     \draw[->] (r5) edge [loop below] node {0} (r5);
                     \draw[->] (r5) edge [loop right] node {0} (r5);
                     \draw[->] (r5) edge [loop left] node {0} (r5);
@@ -3538,9 +3538,9 @@ Finite edge-labeled directed multigraphs
                 % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
                 %     \coordinate (delta) at (0,-18mm);
                 %     \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
-                %     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-                %     \node[draw,circle] (r2) at ($(delta) +  (0.5,1.5)$) {2};
-                %     \node[draw,circle] (r3) at ($(delta) +  (0,0)$) {3};
+                %     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+                %     \node[draw,circle] (r2) at ($(delta)\mathop{+} (0.5,1.5)$) {2};
+                %     \node[draw,circle] (r3) at ($(delta)\mathop{+} (0,0)$) {3};
                 %     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                 %     % \draw[->] (r3) edge [loop below] node {0} (r3);
                 % }
@@ -3622,7 +3622,7 @@ Finite edge-labeled directed multigraphs
 
 % \begin{frame}{$X$-non-increasing rule}
     
-%     If $\varphi$ is $X$-non-increasing then for all $G \Rightarrow_\varphi H$
+%     If $\varphi$ is $X$-non-increasing then for all $G \mathop{\Rightarrow}_\varphi H$
 %     $$\mathop{\mid}\text{implicit $X$-occurrences in $G$}\mathop{\mid} \mathop{\geq} \mathop{\mid}\text{implicit $X$-occurrences in $H$}\mathop{\mid}$$ because
 %     \begin{description}
 %         \item[Condition 1:] every implicit $X$-occurrence in $H$ has a corresponding implicit $X$-occurrence in $G$ with the same interface elements,
@@ -3638,11 +3638,11 @@ Finite edge-labeled directed multigraphs
 
 % \subsection{Main results}
 % \begin{frame}{Main results}
-%     $\varphi = L \leftarrowtail K \rightarrowtail R$ : a rule
+%     $\varphi \mathop{=} L \leftarrowtail K \rightarrowtail R$ : a rule
 
-%     $X \subseteq R$ : a graph
+%     $X \mathop{\subseteq} R$ : a graph
 %     \begin{lemma}
-%         For every rewriting step $G \Rightarrow H$ using $\varphi$, there are more implicit $X$-occurrences in $G$ than in $H$
+%         For every rewriting step $G \mathop{\Rightarrow} H$ using $\varphi$, there are more implicit $X$-occurrences in $G$ than in $H$
 %         if 
 %         \begin{itemize}
 %             \item $\varphi$ is $X$-non-increasing 
@@ -3664,9 +3664,9 @@ Finite edge-labeled directed multigraphs
 %             \begin{tikzpicture}
 %                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
 %                     \coordinate (delta) at (0,-18mm);
-%                     \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {1};
-%                     \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {2};
-%                     \node[draw,circle] (l3) at ($(delta) + (0,0)$) {3};
+%                     \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
+%                     \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
+%                     \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
 %                     \draw[->] (l1) -- (l3) node[midway,left] {$s$};
 %                     \draw[->] (l2) -- (l3) node[midway,right] {$s$};
 %                     \draw[->] (l3) edge [loop below] node {0} (l3);
@@ -3676,7 +3676,7 @@ Finite edge-labeled directed multigraphs
 %                         \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
 %                         \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {1};
 %                         \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {2};
-%                         \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
+%                         \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
 %                         % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
 %                         % \draw[->] (r3) edge [loop below] node {0} (r3);
 %                     } 
@@ -3684,16 +3684,16 @@ Finite edge-labeled directed multigraphs
 %                     \node () at (77mm,-18mm) {$\rightarrowtail$};
 %                 \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
 %                     \coordinate (delta) at (-10mm,-18mm);
-%                     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-%                     \node[draw,circle] (r2) at ($(delta) + (0.5,1.5)$) {2};
-%                     \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
-%                     \node[draw,circle] (r4) at ($(delta) + (1,0)$) {};
+%                     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+%                     \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {2};
+%                     \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+%                     \node[draw,circle] (r4) at ($(delta)+(1,0)$) {};
 %                     \draw[->] (r1) edge[bend right] node[midway,left] {$s$} (r3) ;
 %                     \draw[->] (r2) -- (r4) node[midway,right] {$s$};
 %                     \draw[->] (r4) edge [loop below] node {0} (r4);
                     
 %                     \draw[->] (r3) edge [out=190,in=270,looseness=3] node[midway,left] {0} (r3);
-%                     \node[draw,circle] (r5) at ($(r2) + (1.5,0)$) {};
+%                     \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
 %                     \draw[->] (r5) edge [loop below] node {0} (r5);
 %                     \draw[->] (r5) edge [loop right] node {0} (r5);
 %                     \draw[->] (r5) edge [loop left] node {0} (r5);
@@ -3701,9 +3701,9 @@ Finite edge-labeled directed multigraphs
 %                 % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
 %                 %     \coordinate (delta) at (0,-18mm);
 %                 %     \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
-%                 %     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {1};
-%                 %     \node[draw,circle] (r2) at ($(delta) +  (0.5,1.5)$) {2};
-%                 %     \node[draw,circle] (r3) at ($(delta) +  (0,0)$) {3};
+%                 %     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+%                 %     \node[draw,circle] (r2) at ($(delta)\mathop{+} (0.5,1.5)$) {2};
+%                 %     \node[draw,circle] (r3) at ($(delta)\mathop{+} (0,0)$) {3};
 %                 %     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
 %                 %     % \draw[->] (r3) edge [loop below] node {0} (r3);
 %                 % }
@@ -3813,7 +3813,7 @@ Finite edge-labeled directed multigraphs
 %           \coordinate (o) at (0mm,-3mm); 
 %           \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %           \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%           \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%           \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %           \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %           \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %       }     
@@ -3821,7 +3821,7 @@ Finite edge-labeled directed multigraphs
 %           \coordinate (o) at (5mm,-3mm); 
 %           \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %           \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-%           % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+%           % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
 %           % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %           % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %       }    
@@ -3829,7 +3829,7 @@ Finite edge-labeled directed multigraphs
 %         \coordinate (o) at (0mm,-3mm); 
 %         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%         \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%         \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %         \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %         \draw[->] (l3) edge [loop below] node {$c$} (l3);

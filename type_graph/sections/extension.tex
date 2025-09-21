@@ -5,7 +5,7 @@
 The definitions of weighted type graph and the weight of a morphism and an object relative to a weighted type graph are the same as in \textsection~\ref{sec:weighted_type_graph} and \textsection~\ref{sec:type_graph:wf:measuring_graphs}.
 \begin{example}
     \label{nwf:example:weighted_type_graph}
-     Consider the weighted type graph $\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)$ in \textbf{Graph} where
+     Consider the weighted type graph $\mathcal{T} \mathop{=} (T, \mathbb{E}, \mathcal{S}, w)$ in \textbf{Graph} where
      \begin{itemize}
         \item $\mathcal{S}$ is the real arithmetic semiring $(\mathbb{R}^+, +, *, 0_{\mathbb{R}^+}, 1_{\mathbb{R}^+}, <, \operatorname{id}_{\mathbb{R}^+})$,
         \item $T$ is the graph illustrated in Figure~\ref{fig:nwf:weighted_type_graph_sss} without superscripts on the edge labels,
@@ -21,7 +21,7 @@ The definitions of weighted type graph and the weight of a morphism and an objec
         \node[draw, circle] (y) at (1,0) {$\mathrm{v}$};
         \draw[->]  (x) -- (y) node [midway,above] {$l$};
     \end{tikzpicture} in the graph $T$,
-    \item $w(e) = 1.0$ for all $e \in \mathbb{E}$.
+    \item $w(e) \mathop{=} 1.0$ for all $e \mathop{\in} \mathbb{E}$.
      \end{itemize} 
 \noindent It is visualized in Figure~\ref{fig:nwf:weighted_type_graph_sss}.
     \begin{figure}[H] 
@@ -48,7 +48,7 @@ The definitions of weighted type graph and the weight of a morphism and an objec
             \coordinate (o) at (0mm,-10mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
             \draw[] (l1) -- (l3) node[midway,above] {$a$};
             \draw[] (l3) -- (l2) node[midway,above] {$a$};
         } 
@@ -70,7 +70,7 @@ The definitions of weighted type graph and the weight of a morphism and an objec
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -91,8 +91,8 @@ The definitions of weighted type graph and the weight of a morphism and an objec
     We have 
     \begin{flalign*}
         w_\mathcal{T}(h_{11}^1)
-      = &w(e_{13a})^{m_{e_{13a}}(h_{11}^1)} \odot w(e_{31a})^{m_{e_{31a}}(h_{11}^1)} \\
-      = &1.0^1 * 1.0^1 = 1.0.
+      \mathop{=} &w(e_{13a})^{m_{e_{13a}}(h_{11}^1)} \mathop{\odot} w(e_{31a})^{m_{e_{31a}}(h_{11}^1)} \\
+      \mathop{=} &1.0^1 * 1.0^1 \mathop{=} 1.0.
     \end{flalign*}
     and
     \begin{flalign*}
@@ -112,93 +112,93 @@ The definitions of weighted type graph and the weight of a morphism and an objec
 
 
 \subsection{Precise and upperbound of weights of pushout objects}
-Let \( \mathcal{R} = \mathcal{A} \cup \mathcal{B} \) be a set of DPO rewriting rules and let \(\mathcal{T} = (T, \mathbb{E}, \mathcal{S}, w)\) be a weighted type graph over the strongly monotonic measurable semiring $\mathcal{S}$.
+Let \( \mathcal{R} \mathop{=} \mathcal{A} \mathop{\cup} \mathcal{B} \) be a set of DPO rewriting rules and let \(\mathcal{T} \mathop{=} (T, \mathbb{E}, \mathcal{S}, w)\) be a weighted type graph over the strongly monotonic measurable semiring $\mathcal{S}$.
 The following proposition ensures that every morphism to a type graph $(T,S,\mathbb{E}, w)$ has a weight different from $0_S$ and greater than or equal to $1_S$.
 %  then the weight of a morphism to a type graph is greater than $1_S$ too. 
 % This will be used in Theorem~\ref{nwf:thm:termination_grs}.
 \begin{proposition}  
     \label{prop_endrullis_2d7}
-    Let $(S, \oplus, \odot, 0_S, 1_S, \prec, \mu)$ be a strongly monotonic measurable semiring and $\preceq$ be the reflexive closure of $\prec$. We have for all $x,y\in S$:
+    Let $(S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu)$ be a strongly monotonic measurable semiring and $\mathop{\preceq}$ be the reflexive closure of $\prec$. We have for all $x,y\in S$:
     \begin{align*}
-        0_S \neq x \land 0_S \neq y 
-        &\Rightarrow 0_S \neq x \odot y,
+        0_S \mathop{\neq} x \mathop{\land} 0_S \mathop{\neq} y 
+        &\mathop{\Rightarrow} 0_S \mathop{\neq} x \mathop{\odot} y,
         \tag{S10} \label{eq:prop_neq0_mul_neq0}  
         \\
-        1_S \preceq x \land 1_S \preceq y \land 0_S \neq x \land 0_S \neq y  
-        &\Rightarrow
-         1_S \preceq x \odot y,
+        1_S \mathop{\preceq} x \mathop{\land} 1_S \mathop{\preceq} y \mathop{\land} 0_S \mathop{\neq} x \mathop{\land} 0_S \mathop{\neq} y  
+        &\mathop{\Rightarrow}
+         1_S \mathop{\preceq} x \mathop{\odot} y,
          \tag{S11} \label{eq:prop_neg0_ge1_mul_ge1}  
          \\
-         0_S \neq x \land 0_S \neq y   
-         &\Rightarrow 0_S \neq x \oplus y.
+         0_S \mathop{\neq} x \mathop{\land} 0_S \mathop{\neq} y   
+         &\mathop{\Rightarrow} 0_S \mathop{\neq} x \mathop{\oplus} y.
          \tag{S12} \label{eq:prop_neq0_plus_neq0}  
     \end{align*}
 \end{proposition}
 
 \begin{proof}
     \label{proof_prop_endrullis_2d7}
-    Let $x,y \in S$ such that $x, y \neq 0_S$. By definition, $\prec$ is not empty, therefore, there are $a, b \in S$ such that $a \prec b$. $\prec$ is irreflexive, because $\mu: (S, \prec) \to (\overline{\mathbb{R}}, <_{\overline{\mathbb{R}}})$ is a homomorphism. 
+    Let $x,y \mathop{\in} S$ such that $x, y \mathop{\neq} 0_S$. By definition, $\prec$ is not empty, therefore, there are $a, b \mathop{\in} S$ such that $a \mathop{\prec} b$. $\prec$ is irreflexive, because $\mu: (S, \prec) \mathop{\to} (\overline{\mathbb{R}}, <_{\overline{\mathbb{R}}})$ is a homomorphism. 
     \begin{itemize}
         \item \ref*{eq:prop_neq0_mul_neq0}:  
-        Suppose $(x \odot y)=0_S$. 
+        Suppose $(x \mathop{\odot} y)=0_S$. 
         We have 
         \begin{flalign*}
-             0_S &= a \odot 0_S & \text{$0_S$ is annihilator for $\odot$}\\
-                 &= a \odot (x \odot y) &\text{by assumption on $x \odot y$}\\ 
-                 &= a \odot x \odot y &\text{by associativity} \\
-                 &\prec b \odot x \odot y &\text{by Axiom~\eqref{ax:s4} and $x,y\neq 0_S$}\\
-                 &= b \odot (x \odot y)  &\text{by associativity}  \\
-                 &= b \odot 0_S &\text{by assumption on $x \odot y$} \\
+             0_S &= a \mathop{\odot} 0_S & \text{$0_S$ is annihilator for $\mathop{\odot}$}\\
+                 &= a \mathop{\odot} (x \mathop{\odot} y) &\text{by assumption on $x \mathop{\odot} y$}\\ 
+                 &= a \mathop{\odot} x \mathop{\odot} y &\text{by associativity} \\
+                 &\mathop{\prec} b \mathop{\odot} x \mathop{\odot} y &\text{by Axiom~\eqref{ax:s4} and $x,y\mathop{\neq} 0_S$}\\
+                 &= b \mathop{\odot} (x \mathop{\odot} y)  &\text{by associativity}  \\
+                 &= b \mathop{\odot} 0_S &\text{by assumption on $x \mathop{\odot} y$} \\
                  &= 0_S
         \end{flalign*}
          which contradicts the irreflexivity of $\prec$. 
         \item \ref*{eq:prop_neg0_ge1_mul_ge1}:
         Suppose
-          $1_S \preceq x$ and $1_S \preceq y$. We have either $1_S = x$ or $1_S \prec x$. If $1_S = x$ then 
+          $1_S \mathop{\preceq} x$ and $1_S \mathop{\preceq} y$. We have either $1_S \mathop{=} x$ or $1_S \mathop{\prec} x$. If $1_S \mathop{=} x$ then 
           \begin{flalign*}
-            x \odot y &= 1_S \odot y & \\
+            x \mathop{\odot} y &= 1_S \mathop{\odot} y & \\
                       &= y  & \\
-                      & \succeq 1_S &\text{by assumption}
+                      & \mathop{\succeq} 1_S &\text{by assumption}
           \end{flalign*}
-          If $1_S \prec x$ then $
-        %   1_S \preceq y = 
-          1_S \odot y \prec x \odot y$ by Axiom~\eqref{ax:s4} since $y \neq 0_S$ by assumption.
+          If $1_S \mathop{\prec} x$ then $
+        %   1_S \mathop{\preceq} y \mathop{=} 
+          1_S \mathop{\odot} y \mathop{\prec} x \mathop{\odot} y$ by Axiom~\eqref{ax:s4} since $y \mathop{\neq} 0_S$ by assumption.
         \item \ref*{eq:prop_neq0_plus_neq0}:  
-        By Axiom~\eqref{ax:s4}, we have $a \odot x \prec b \odot x$ and $a\odot y \prec b \odot y $. 
+        By Axiom~\eqref{ax:s4}, we have $a \mathop{\odot} x \mathop{\prec} b \mathop{\odot} x$ and $a\mathop{\odot} y \mathop{\prec} b \mathop{\odot} y $. 
         \begin{flalign*}
-            a \odot \left(x  \oplus y \right) &= \left( a \odot x \right)  \oplus \big(a \odot y \big)  & \text{by distributivity}\\
-            & \prec \left(b \odot x \right)   \oplus \left( b \odot y \right)  & \text{by Axiom~\eqref{ax:s2}}\\
-            & = b \odot \left(x  \oplus y \right) & \text{by distributivity}
+            a \mathop{\odot} \left(x  \mathop{\oplus} y \right) &= \left( a \mathop{\odot} x \right)  \mathop{\oplus} \big(a \mathop{\odot} y \big)  & \text{by distributivity}\\
+            & \mathop{\prec} \left(b \mathop{\odot} x \right)   \mathop{\oplus} \left( b \mathop{\odot} y \right)  & \text{by Axiom~\eqref{ax:s2}}\\
+            & \mathop{=} b \mathop{\odot} \left(x  \mathop{\oplus} y \right) & \text{by distributivity}
         \end{flalign*} 
-        if $x  \oplus y = 0_S$ then we have $0_S = a \odot 0_S = a \odot \left(x  \oplus y\right) \prec b \odot \left(x  \oplus y\right) = b \odot 0_S = 0_S$ which contradicts the irreflexivity of $\prec$. 
+        if $x  \mathop{\oplus} y \mathop{=} 0_S$ then we have $0_S \mathop{=} a \mathop{\odot} 0_S \mathop{=} a \mathop{\odot} \left(x  \mathop{\oplus} y\right) \mathop{\prec} b \mathop{\odot} \left(x  \mathop{\oplus} y\right) \mathop{=} b \mathop{\odot} 0_S \mathop{=} 0_S$ which contradicts the irreflexivity of $\prec$. 
     \end{itemize}
 \end{proof} 
 
 % \begin{proposition}  
-%     % Let $\mathcal{S} = (S, \oplus, \odot, 0_\mathcal{S}, 1_\mathcal{S}, \prec, \mu)$ be a strongly monotonic measurable semiring. We have 
+%     % Let $\mathcal{S} \mathop{=} (S, \mathop{\oplus}, \mathop{\odot}, 0_\mathcal{S}, 1_\mathcal{S}, \prec, \mu)$ be a strongly monotonic measurable semiring. We have 
 %     For all $x,y$ in $\mathcal{S}$:
 %     \begin{align*}
-%         0_\mathcal{S} \neq x \land 0_\mathcal{S} \neq y 
-%         &\Rightarrow 0_\mathcal{S} \neq x \odot y 
+%         0_\mathcal{S} \mathop{\neq} x \mathop{\land} 0_\mathcal{S} \mathop{\neq} y 
+%         &\mathop{\Rightarrow} 0_\mathcal{S} \mathop{\neq} x \mathop{\odot} y 
 %         \\
-%         1_\mathcal{S} \preceq x \land 1_\mathcal{S} \preceq y \land 0_\mathcal{S} \neq x \land 0_\mathcal{S} \neq y  
-%         &\Rightarrow
-%          1_\mathcal{S} \preceq x \odot y 
+%         1_\mathcal{S} \mathop{\preceq} x \mathop{\land} 1_\mathcal{S} \mathop{\preceq} y \mathop{\land} 0_\mathcal{S} \mathop{\neq} x \mathop{\land} 0_\mathcal{S} \mathop{\neq} y  
+%         &\mathop{\Rightarrow}
+%          1_\mathcal{S} \mathop{\preceq} x \mathop{\odot} y 
 %          \\
-%          0_\mathcal{S} \neq x \land 0_\mathcal{S} \neq y   
-%          &\Rightarrow 0_\mathcal{S} \neq x \oplus y
+%          0_\mathcal{S} \mathop{\neq} x \mathop{\land} 0_\mathcal{S} \mathop{\neq} y   
+%          &\mathop{\Rightarrow} 0_\mathcal{S} \mathop{\neq} x \mathop{\oplus} y
 %     \end{align*}
 % \end{proposition}
 
-    Suppose that for all $x \in \mathcal{S}$, if $ 1_\mathcal{S} \preceq x \neq 0_\mathcal{S}$ then $\mu(x) \geq_{\mathbb{R}^+} \mu(1_\mathcal{S})$ and $\mu(x) \in \mathbb{R}$. 
-    By definition of a weighted type graph, $1_\mathcal{S} \leq w(e)\neq 0_\mathcal{S}$ for all $e\in\mathbb{E}$.
-    Therefore, by the proposition above and the definition of the weight of a morphism (Definition~\ref{def:weight_of_a_morphism_relative_to_a_type_graph}), for all morphisms \( h \) from a finite graph $G$ to $\mathcal{T}$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(h) \succeq 1_\mathcal{S} \). 
-    By the above proposition, Axiom \eqref{ax:s0} and the definition of the weight of an object (Definition~\ref{def:weight_of_an_object_relative_to_a_type_graph}), we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, we have \( 0_\mathcal{S} \neq w_\mathcal{T}(G) \succeq 1_\mathcal{S} \). By assumption, we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\neq \emptyset$, \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} \mu(1_\mathcal{S}) = 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and \( \mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} 1 \) if $\mathcal{S}$ is the arithmetic semiring.
+    Suppose that for all $x \mathop{\in} \mathcal{S}$, if $ 1_\mathcal{S} \mathop{\preceq} x \mathop{\neq} 0_\mathcal{S}$ then $\mu(x) \mathop{\geq_{\mathbb{R}^+}} \mu(1_\mathcal{S})$ and $\mu(x) \mathop{\in} \mathbb{R}$. 
+    By definition of a weighted type graph, $1_\mathcal{S} \leq w(e)\mathop{\neq} 0_\mathcal{S}$ for all $e\in\mathbb{E}$.
+    Therefore, by the proposition above and the definition of the weight of a morphism (Definition~\ref{def:weight_of_a_morphism_relative_to_a_type_graph}), for all morphisms \( h \) from a finite graph $G$ to $\mathcal{T}$, we have \( 0_\mathcal{S} \mathop{\neq} w_\mathcal{T}(h) \mathop{\succeq} 1_\mathcal{S} \). 
+    By the above proposition, Axiom \eqref{ax:s0} and the definition of the weight of an object (Definition~\ref{def:weight_of_an_object_relative_to_a_type_graph}), we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\mathop{\neq} \emptyset$, we have \( 0_\mathcal{S} \mathop{\neq} w_\mathcal{T}(G) \mathop{\succeq} 1_\mathcal{S} \). By assumption, we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\mathop{\neq} \emptyset$, \( \mu(w_\mathcal{T}(G)) \mathop{\geq_{\mathbb{R}^+}} \mu(1_\mathcal{S}) \mathop{=} 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and \( \mu(w_\mathcal{T}(G)) \mathop{\geq_{\mathbb{R}^+}} 1 \) if $\mathcal{S}$ is the arithmetic semiring.
 
-Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\neq \emptyset$. The rewriting relation \( \Rightarrow_{\mathcal{A},\mathfrak{F}} \) terminates relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta > 0$ such that: (i) for all \(G \Rightarrow_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H)) + \delta \), and (ii) for all \(G \Rightarrow_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \geq \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
+Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\mathop{\neq} \emptyset$. The rewriting relation \( \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{F}} \) terminates relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta \mathop{>} 0$ such that: (i) for all \(G \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H))\mathop{+}\delta \), and (ii) for all \(G \mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \mathop{\geq} \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
 
-Consider the following DPO diagram that defines a rewriting step \( G \Rightarrow_{\rho,\mathfrak{F}} H \). 
+Consider the following DPO diagram that defines a rewriting step \( G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H \). 
 \begin{center}
         \resizebox{0.3\textwidth}{!}{
             \begin{tikzpicture}
@@ -224,26 +224,26 @@ Consider the following DPO diagram that defines a rewriting step \( G \Rightarro
     If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
 \begin{flalign*}
     w_\mathcal{T}(G) 
-        & = \bigoplus_{t_K: K \rightarrow T} 
-        \left ( \bigoplus_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
+        & \mathop{=} \mathop{\bigoplus}_{t_K: K \mathop{\rightarrow} T} 
+        \left ( \mathop{\bigoplus}_{\substack{t_C: C \mathop{\rightarrow} T\\ t_K \mathop{=} u \mathop{\star} t_C}}
           w_\mathcal{T}(t_C - u) \right ) 
-          \odot
-        \left (\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
+          \mathop{\odot}
+        \left (\mathop{\bigoplus}_{\substack{t_L: L \mathop{\rightarrow} T\\ t_K \mathop{=} l \mathop{\star} t_L}}
         w_\mathcal{T}(t_L) \right ),
          \\
     w_\mathcal{T}(H) 
-        &  \preceq \bigoplus_{t_K: K \rightarrow T} 
-        \left ( \bigoplus_{\substack{t_C: C \rightarrow T\\ t_K = u \star t_C}}
+        &  \mathop{\preceq} \mathop{\bigoplus}_{t_K: K \mathop{\rightarrow} T} 
+        \left ( \mathop{\bigoplus}_{\substack{t_C: C \mathop{\rightarrow} T\\ t_K \mathop{=} u \mathop{\star} t_C}}
          w_\mathcal{T}(t_C - u) \right ) 
-         \odot 
-         \left ( \bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
+         \mathop{\odot} 
+         \left ( \mathop{\bigoplus}_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} r \mathop{\star} t_R}}
             w_\mathcal{T}(t_R) \right ). \\
 \end{flalign*}
 According to these results, a termination criterion will be established by comparing the weights 
-$\bigoplus_{\substack{t_L: L \rightarrow T\\ t_K = l \star t_L}}
+$\mathop{\bigoplus}_{\substack{t_L: L \mathop{\rightarrow} T\\ t_K \mathop{=} l \mathop{\star} t_L}}
         w_\mathcal{T}(t_L)$ and 
-$\bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}} 
-        w_\mathcal{T}(t_R)$ for every $t_K: K \rightarrow T$.
+$\mathop{\bigoplus}_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} r \mathop{\star} t_R}} 
+        w_\mathcal{T}(t_R)$ for every $t_K: K \mathop{\rightarrow} T$.
 
 
 
@@ -265,15 +265,15 @@ $\bigoplus_{\substack{t_R: R \rightarrow T\\ t_K = r \star t_R}}
 Finally, we formulate a termination criterion leveraging type graphs weighted over non-well-founded semirings. 
 \begin{theorem}[Termination of DPO rewriting system] 
     \label{nwf:thm:termination_grs}
-    Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules, $\mathcal{T} = (T,\mathbb{E}, (S, \oplus, \odot, 0_S, 1_S, \prec, \mu), w)$ a finitary weighted type graph and $\mathfrak{F}$ a DPO rewriting framework such that
+    Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules, $\mathcal{T} \mathop{=} (T,\mathbb{E}, (S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu), w)$ a finitary weighted type graph and $\mathfrak{F}$ a DPO rewriting framework such that
 
      \begin{enumerate}[label=\roman*)]
-        \item\label{thm1:hyp3} $w(e) \succeq 1_S$ for all $e \in \mathbb{E}$, and
-        % \item\label{thm1:hyp4} $\{s \in S\mid 1_S \leq s \neq 0_S\} \subseteq \mathbb{R}_{>0}$ 
-        % \item\label{thm1:hyp4} for all $x \in S$, if $ 1_S \preceq x \neq 0_S$ then $\mu(x) \geq \mu(1_S)$ and $\mu(x) \in \mathbb{R}$,
-        \item\label{thm1:hyp4} for all $x \in S$, if $ 1_S \preceq x \neq 0_S$ then $\mu(x) \geq \mu(1_S)$ and $\mu(x) \in \mathbb{R}$, and
-        \item for every rule $\rho \in (\mathcal{A }\cup \mathcal{B })$ and every double pushout diagram  
-        $\Delta \in \mathfrak{F}(\rho)$ 
+        \item\label{thm1:hyp3} $w(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$, and
+        % \item\label{thm1:hyp4} $\{s \mathop{\in} S\mid 1_S \leq s \mathop{\neq} 0_S\} \mathop{\subseteq} \mathbb{R}_{>0}$ 
+        % \item\label{thm1:hyp4} for all $x \mathop{\in} S$, if $ 1_S \mathop{\preceq} x \mathop{\neq} 0_S$ then $\mu(x) \mathop{\geq} \mu(1_S)$ and $\mu(x) \mathop{\in} \mathbb{R}$,
+        \item\label{thm1:hyp4} for all $x \mathop{\in} S$, if $ 1_S \mathop{\preceq} x \mathop{\neq} 0_S$ then $\mu(x) \mathop{\geq} \mu(1_S)$ and $\mu(x) \mathop{\in} \mathbb{R}$, and
+        \item for every rule $\rho \mathop{\in} (\mathcal{A }\mathop{\cup} \mathcal{B })$ and every double pushout diagram  
+        $\Delta \mathop{\in} \mathfrak{F}(\rho)$ 
         \begin{itemize}
             \item \(\operatorname{left}(\Delta)\) is weighable with \(\mathcal{T}\),
             \item \(\operatorname{right}(\Delta)\) is bounded above by \(\mathcal{T}\). 
@@ -282,10 +282,10 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
 
     \noindent If the following conditions hold:
     \begin{enumerate}
-        \item there exists $\delta >_{\mathbb{R}^+} 0$ such that either every $\rho \in \mathcal{A}$ is $\delta$-uniformly decreasing, or every $\rho \in \mathcal{A}$ is $\delta$-closure decreasing, and
-        \item every rule $\rho \in \mathcal{B}$ is weakly decreasing,
+        \item there exists $\delta >_{\mathbb{R}^+} 0$ such that either every $\rho \mathop{\in} \mathcal{A}$ is $\delta$-uniformly decreasing, or every $\rho \mathop{\in} \mathcal{A}$ is $\delta$-closure decreasing, and
+        \item every rule $\rho \mathop{\in} \mathcal{B}$ is weakly decreasing,
     \end{enumerate}
-    then $\Rightarrow_{\mathcal{A},\mathfrak{F}}$ terminates relative to $\Rightarrow_{\mathcal{B},\mathfrak{F}}$.
+    then $\mathop{\Rightarrow}_{\mathcal{A},\mathfrak{F}}$ terminates relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}}$.
 \end{theorem} 
 % \begin{proof}
 %     See the \hyperref[proof_termination_grs]{Appendix}.
@@ -294,48 +294,48 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
 \begin{proof} 
     \label{nwf:proof_termination_grs}
     From the definition of weighted type graph, we have 
-    $$\text{for all}~e\in\mathbb{E}, w(e) \neq 0_S.$$ 
+    $$\text{for all}~e\in\mathbb{E}, w(e) \mathop{\neq} 0_S.$$ 
     From~\ref{thm1:hyp3}, we have 
-    $$\text{for all}~e\in\mathbb{E},1_S \preceq w(e).$$
+    $$\text{for all}~e\in\mathbb{E},1_S \mathop{\preceq} w(e).$$
     Therefore, we have 
     \begin{flalign}
-        \text{for all}~e\in\mathbb{E},1_S \preceq w(e)\neq 0_S. \label{thm_eq_we_neq0_geq1}
+        \text{for all}~e\in\mathbb{E},1_S \mathop{\preceq} w(e)\mathop{\neq} 0_S. \label{thm_eq_we_neq0_geq1}
     \end{flalign} 
     Let $G$ be a graph admitting a match of a DPO rewriting rule. We have 
     \begin{flalign*}
         w_\mathcal{T}(G) &\overset{\operatorname{def}}{=} 
-            \underset{h \in \operatorname{Hom}(G,T)}{\bigoplus}  w_\mathcal{T}(h) \\
+            \underset{h \mathop{\in} \operatorname{Hom}(G,T)}{\mathop{\bigoplus}}  w_\mathcal{T}(h) \\
         & \overset{\operatorname{def}}{=} 
-        \underset{h \in \operatorname{Hom}(G,T)}{\bigoplus} 
-            \left ( \underset{e \in \mathbb{E}}{\bigodot} 
+        \underset{h \mathop{\in} \operatorname{Hom}(G,T)}{\mathop{\bigoplus}} 
+            \left ( \underset{e \mathop{\in} \mathbb{E}}{\mathop{\bigodot}} 
             \left(  
-                \underset{\alpha \in \{- \star h = e\}}{\bigodot}w(e) 
+                \underset{\alpha \mathop{\in} \{- \mathop{\star} h \mathop{=} e\}}{\mathop{\bigodot}}w(e) 
             \right)
             \right )\\
     \end{flalign*}  
-    By~\eqref{thm_eq_we_neq0_geq1}, Proposition~\ref{prop_endrullis_2d7}, Definition~\ref{def:bigodot} and $1_S \neq 0_S$, for every \\$h \in \operatorname{Hom}(G,T)$, we have
+    By~\eqref{thm_eq_we_neq0_geq1}, Proposition~\ref{prop_endrullis_2d7}, Definition~\ref{def:bigodot} and $1_S \mathop{\neq} 0_S$, for every \\$h \mathop{\in} \operatorname{Hom}(G,T)$, we have
     \begin{flalign}
-        1_S \preceq 
-        \underset{e \in \mathbb{E}}{\bigodot} 
+        1_S \mathop{\preceq} 
+        \underset{e \mathop{\in} \mathbb{E}}{\mathop{\bigodot}} 
                 \left(  
-                    \underset{\alpha \in \{- \star h = e\}}{\bigodot}w(e) 
+                    \underset{\alpha \mathop{\in} \{- \mathop{\star} h \mathop{=} e\}}{\mathop{\bigodot}}w(e) 
                 \right) 
-        \neq 0_S
+        \mathop{\neq} 0_S
     \end{flalign}
-    Since $G$ is a graph admitting a match of a DPO rewriting rule, by Proposition~\ref{prop_endrullis_2d7} and Definition~\ref*{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s0}, we have $$1_S \preceq w_\mathcal{T}(G) \neq 0_S$$
+    Since $G$ is a graph admitting a match of a DPO rewriting rule, by Proposition~\ref{prop_endrullis_2d7} and Definition~\ref*{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s0}, we have $$1_S \mathop{\preceq} w_\mathcal{T}(G) \mathop{\neq} 0_S$$
     % By~\autoref{prop_endrullis_2d7} and \eqref{ax:s0}, we have 
-    % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \Rightarrow_\mathcal{R} H) \rightarrow (1_S \preceq w_\mathcal{T}(G) \neq 0_S)$$
+    % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \mathop{\Rightarrow}_\mathcal{R} H) \mathop{\rightarrow} (1_S \mathop{\preceq} w_\mathcal{T}(G) \mathop{\neq} 0_S)$$
     By Assumption~\ref{thm1:hyp4}, we have 
-    % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \Rightarrow_\mathcal{R} H) \rightarrow (\mu(w_\mathcal{T}(G)) \geq \mu(1_S))$$
-      $$\mu(w_\mathcal{T}(G)) \geq_{\mathbb{R}^+} \mu(1_S)$$
+    % $$\forall G\in\mathcal{C}_0, (\exists H\in \mathcal{C}_0. G \mathop{\Rightarrow}_\mathcal{R} H) \mathop{\rightarrow} (\mu(w_\mathcal{T}(G)) \mathop{\geq} \mu(1_S))$$
+      $$\mu(w_\mathcal{T}(G)) \mathop{\geq_{\mathbb{R}^+}} \mu(1_S)$$
  
-    % Let $G \in \mathcal{C}_0$ be an object. By Assumption \ref{thm1:hyp4}, we have $\mu(w_\mathcal{T}(G)) \in \mathbb{R}$ and $\mu(w_\mathcal{T}(G)) \geq \mu(1_S)$.
+    % Let $G \mathop{\in} \mathcal{C}_0$ be an object. By Assumption \ref{thm1:hyp4}, we have $\mu(w_\mathcal{T}(G)) \mathop{\in} \mathbb{R}$ and $\mu(w_\mathcal{T}(G)) \mathop{\geq} \mu(1_S)$.
 
     By Lemma~\ref{nwf:lem:decreasing_step}, every rewriting step with rules in $\mathcal{A}$ strictly decreases the weight by at least $\delta$ and no rewriting step with rules in $\mathcal{B}$ increases the weight.
     Consequently, there is no infinite rewriting chain with an infinite rewriting steps with rules in $\mathcal{A}$ from $G$.
 \end{proof}
 \begin{example}
     \label{nwf:example:termination}
-    Termination of the DPO rule in Example~\ref{ex:grsaa} can be established using Theorem~\ref{nwf:thm:termination_grs} together with the weighted type graph in Example~\ref{nwf:example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta = 0.5$ as explained in Example~\ref{nwf:example:decreasing_rule}.
+    Termination of the DPO rule in Example~\ref{ex:grsaa} can be established using Theorem~\ref{nwf:thm:termination_grs} together with the weighted type graph in Example~\ref{nwf:example:weighted_type_graph} over the real arithmetic semiring $\mathfrak{N}' \mathop{=} (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$. It is $\delta$-closure decreasing with $\delta \mathop{=} 0.5$ as explained in Example~\ref{nwf:example:decreasing_rule}.
 \end{example}
 

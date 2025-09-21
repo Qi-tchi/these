@@ -1,36 +1,36 @@
 \begin{definition}
-    Let $V_L$ be the set of nodes in $L$, and $M_L = \{m_1, \dots, m_r\}$ the set of matches $m_i : V_L \to V_L$ of $V_L$ into itself, including the identity $id_{V_L} = m_1$. We construct a Labelled Transition System $\mathcal{L}^p = (S, \Lambda, \longrightarrow)$ as follows:
+    Let $V_L$ be the set of nodes in $L$, and $M_L \mathop{=} \{m_1, \dots, m_r\}$ the set of matches $m_i : V_L \mathop{\to} V_L$ of $V_L$ into itself, including the identity $id_{V_L} \mathop{=} m_1$. We construct a Labelled Transition System $\mathcal{L}^p \mathop{=} (S, \Lambda, \longrightarrow)$ as follows:
 
     \begin{enumerate}
         \item $S$ contains a state $s_i$ for each graph 
-        $H_i^p \in \mathfrak{H}_p^p$. 
-        % $H_i^p \in \mathscr{H}$.
-         Each $s_i$ induces a classification function $c_i$ for matches of $p$ such that $c_i(m_l) = \text{true}$ iff $m_l$ can be extended to a match on $H_i^p$, but not to a match on any other 
-         $H_j^p \in \mathfrak{H}_p^p \setminus (\{H_1^p, H_i^p\} \cup \{H_t^p \mid \exists h_t^i : H_t^p \to H_i^p\})$,
+        $H_i^p \mathop{\in} \mathfrak{H}_p^p$. 
+        % $H_i^p \mathop{\in} \mathscr{H}$.
+         Each $s_i$ induces a classification function $c_i$ for matches of $p$ such that $c_i(m_l) \mathop{=} \text{true}$ iff $m_l$ can be extended to a match on $H_i^p$, but not to a match on any other 
+         $H_j^p \mathop{\in} \mathfrak{H}_p^p \mathop{\setminus} (\{H_1^p, H_i^p\} \mathop{\cup} \{H_t^p \mid \exists h_t^i : H_t^p \mathop{\to} H_i^p\})$,
           i.e., $H_i^p$ is the biggest graph to which $m_l$ can be extended.
         
-        \item $\Lambda$ contains a label $p^i$, $i = 1, \dots, r$ for each morphism in $M_L$.
+        \item $\Lambda$ contains a label $p^i$, $i \mathop{=} 1, \dots, r$ for each morphism in $M_L$.
         
-        \item The transition relation $\longrightarrow \subseteq S \times \Lambda \times S$ is such that $(s_i, p^l, s_j) \in \longrightarrow$ (denoted by $s_i \xrightarrow{p^l} s_j$) if applying $p$ with match $m_l$ on graph $H_i^p$ produces a graph for which $c_j(m_l) = \text{true}$.
+        \item The transition relation $\longrightarrow \mathop{\subseteq} S \mathop{\times} \Lambda \mathop{\times} S$ is such that $(s_i, p^l, s_j) \mathop{\in} \longrightarrow$ (denoted by $s_i \xrightarrow{p^l} s_j$) if applying $p$ with match $m_l$ on graph $H_i^p$ produces a graph for which $c_j(m_l) \mathop{=} \text{true}$.
     \end{enumerate}
 \end{definition} 
 
 \begin{definition}
-    In order to consider the variation on the number of possible matches induced by the application of $p$ on the minimal context for a given state, let $@|\cdot|: S \to \mathbb{N}$ be a function which associates with each state $s_i$ the number of matches for $p$ on the graph $H_i^p$ prior to application of $p$, and with $|\cdot|: S \to \mathbb{N}$ the function defining the number of matches on $H_i^p$ after the application of $p$.
+    In order to consider the variation on the number of possible matches induced by the application of $p$ on the minimal context for a given state, let $@|\cdot|: S \mathop{\to} \mathbb{N}$ be a function which associates with each state $s_i$ the number of matches for $p$ on the graph $H_i^p$ prior to application of $p$, and with $|\cdot|: S \mathop{\to} \mathbb{N}$ the function defining the number of matches on $H_i^p$ after the application of $p$.
 \end{definition}
 
 \begin{definition}
     Let $\rho$ be a graph rewriting rule. We say that $\rho$
     \begin{itemize}
-        \item \emph{must terminate} if it should terminate simply and for all transitions $s_i \xrightarrow{p_l} s_j$ and all states $s_h \neq s_i, s_j, s_k$, we have $\left| s_i \right| < @ | s_i |$, $\left| s_j \right| \leq @ | s_j | + 1$ and $\left| s_h \right| \leq @ | s_h |$.
+        \item \emph{must terminate} if it should terminate simply and for all transitions $s_i \xrightarrow{p_l} s_j$ and all states $s_h \mathop{\neq} s_i, s_j, s_k$, we have $\left| s_i \right| < @ | s_i |$, $\left| s_j \right| \leq @ | s_j |\mathop{+}1$ and $\left| s_h \right| \leq @ | s_h |$.
         \item \emph{may terminates} if it may terminate simply and for all states on the path the same condition on matches as above applies.
-        \item \emph{does not terminate} if (it does not terminate simply AND for all states from which $s_k$ is reachable, there is a state for which the number of matches increases for some transition leading to $s_k$ increases) OR (it should or may terminate simply, but there is at least one state $s_i$ on a path from $s_1$ to $s_k$ for which $\left| s_i \right| \geq @ | s_i |$, for a transition reachable from state $s_i$).
+        \item \emph{does not terminate} if (it does not terminate simply AND for all states from which $s_k$ is reachable, there is a state for which the number of matches increases for some transition leading to $s_k$ increases) OR (it should or may terminate simply, but there is at least one state $s_i$ on a path from $s_1$ to $s_k$ for which $\left| s_i \right| \mathop{\geq} @ | s_i |$, for a transition reachable from state $s_i$).
     \end{itemize}
 \end{definition}
 
 \begin{theorem}[Termination~\text{\cite[Theorem~2]{bottoni2010atermination}}]
     \todo{rewrite}
-    Let $@|\cdot|: S \to \mathbb{N}$ and $|\cdot|: S \to \mathbb{N}$ be counting functions as defined above, let $p$ be a rule, and let $G$ be a finite graph. Then the following holds:
+    Let $@|\cdot|: S \mathop{\to} \mathbb{N}$ and $|\cdot|: S \mathop{\to} \mathbb{N}$ be counting functions as defined above, let $p$ be a rule, and let $G$ be a finite graph. Then the following holds:
     \begin{enumerate}
         \item If rule $p$ is of type \textbf{must terminate}, then the application of \texttt{asLongAsPossible $p$ end} on the starting graph $G$ terminates after a finite number of steps.
         

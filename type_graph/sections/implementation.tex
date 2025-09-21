@@ -3,22 +3,22 @@ This problem is inherently hard because it requires quantifying over all edge-la
 
 Existing implementations presented in \cite[\textsection 6]{bruggink2015proving}, ~\cite[\textsection 6]{zantema2014termination}, \cite[\textsection E]{endrullis2024generalized} employ Z3, a satisfiable modulo theories (SMT) solver that can solve first order theories over the nautural numbers, to searching a suitable type graph.
 Furthermore, they constrain the search space by fixing a natural number
-\( k \in \mathbb{N} \) and constructing a weighted type graph \((T, \mathbb{E}, S, w)\) where the underlying graph \( T \) is a simple graph with \( k \) nodes.
+\( k \mathop{\in} \mathbb{N} \) and constructing a weighted type graph \((T, \mathbb{E}, S, w)\) where the underlying graph \( T \) is a simple graph with \( k \) nodes.
 
-We adopt the same method, employing the Z3 and constraining the search space by fixing a natural number \( k \in \mathbb{N} \). Specifically, we construct a weighted type graph \((T, \mathbb{E}, S, w)\), where the underlying graph \( T \) is a simple graph with \( k \) nodes.
+We adopt the same method, employing the Z3 and constraining the search space by fixing a natural number \( k \mathop{\in} \mathbb{N} \). Specifically, we construct a weighted type graph \((T, \mathbb{E}, S, w)\), where the underlying graph \( T \) is a simple graph with \( k \) nodes.
 
 To model a type graph in Z3, we adopt an approach similar to that proposed by Bruggink in \cite[\textsection 6]{bruggink2015proving}.
-Specifically, we fix a complete simple graph $T$ with $k$ nodes, i.e. a graph with an edge for every pair $i,j\in\{1,...,k\}$ of nodes and every edge label $l \in \Sigma$. 
+Specifically, we fix a complete simple graph $T$ with $k$ nodes, i.e. a graph with an edge for every pair $i,j\in\{1,...,k\}$ of nodes and every edge label $l \mathop{\in} \Sigma$. 
 Every edge $e$ in this graph is associated with two variables:
-a binary variable \( x_e \in \{0,1\} \) indicating the presence/absence of \( e \) in the type graph;
+a binary variable \( x_e \mathop{\in} \{0,1\} \) indicating the presence/absence of \( e \) in the type graph;
 a numeric variable \( y_e \) (integer or real, depending on the semiring) representing the edge weight when \( e \) exists.  
-We fix additionally a real variable $\delta \in \mathbb{R}_{>0}$.
-The objective is to assign values to $\delta$, \( (x_e)_{e \in E(T)} \) and \( (y_e)_{e \in E(T)} \) such that all rules are either: decreasing, $\delta$-uniformly decreasing (for tropical or arctic semirings) or \(\delta\)-closure decreasing (for arithmetic semirings).  
+We fix additionally a real variable $\delta \mathop{\in} \mathbb{R}_{>0}$.
+The objective is to assign values to $\delta$, \( (x_e)_{e \mathop{\in} E(T)} \) and \( (y_e)_{e \mathop{\in} E(T)} \) such that all rules are either: decreasing, $\delta$-uniformly decreasing (for tropical or arctic semirings) or \(\delta\)-closure decreasing (for arithmetic semirings).  
 These constraints are formalized as first-order formulas over the natural numbers (or real numbers) and encoded in the Z3. The resulting satisfiability problem is then resolved using Z3.
 
 % Existing implementations of the type graph method~\cite{TORPAcyc,grez}~\footnote{There exists an implementation in GraphTT~\cite{endrullis2024generalized}, but to the best of our knowledge, this implementation is not publicly available} 
 % constrain the search space by fixing a natural number
-% \( k \in \mathbb{N} \) and constructing a weighted type graph \((T, \mathbb{E}, S, w)\) where the underlying graph \( T \) is a simple graph with \( k \) nodes (see~\cite[\textsection 6]{bruggink2015proving}, ~\cite[\textsection 6]{zantema2014termination}, \cite[\textsection E]{endrullis2024generalized}).
+% \( k \mathop{\in} \mathbb{N} \) and constructing a weighted type graph \((T, \mathbb{E}, S, w)\) where the underlying graph \( T \) is a simple graph with \( k \) nodes (see~\cite[\textsection 6]{bruggink2015proving}, ~\cite[\textsection 6]{zantema2014termination}, \cite[\textsection E]{endrullis2024generalized}).
 However, even under these constraints, \textcolor{red}{constructing weighted type graphs over the natural semirings remains challenging.}\todo{It is (still) not clear that you mean by "constructing". Are you searching for a type graph with specific properties?} Specifically, constructing a weighted type graph over the natural tropical semiring $\mathfrak{T}$ or the natural arctic semiring $\mathfrak{A}$ requires solving first-order formulas in Presburger arithmetic. Any algorithm that decides this problem has at least double-exponential time complexity with respect to $k^2 * | \Sigma |$ where \( \Sigma \) denotes the set of edge labels~\cite{fischer1998super}. For the natural arithmetic semiring $\mathfrak{N}$, the task reduces to solving first-order formulas in Peano arithmetic\textemdash a task that is semi-decidable~\cite{matiyasevivc2003enumerable}.
 
 Consequently, existing tools rely on user-specified sets of weights to constrain the size of the search space. However, determining these sets in advance is hard if not impossible, limiting the tools' accessibility and practical applicability.
@@ -37,10 +37,10 @@ combine the complementary strengths of our approach and prior methods, as constr
 We implemented both our approach and the approach proposed by Endrullis et al. \cite{endrullis2024generalized} for edge-labeled directed graph rewriting in a tool in OCaml to leverage their complementary strengths.
 
 % Following prior work, we constrain the search space by fixing a natural number
-% \( k \in \mathbb{N} \) and constructing a weighted type graph \((T, \mathbb{E}, S, w)\) where the underlying graph \( T \) is a simple graph with \( k \) nodes. 
+% \( k \mathop{\in} \mathbb{N} \) and constructing a weighted type graph \((T, \mathbb{E}, S, w)\) where the underlying graph \( T \) is a simple graph with \( k \) nodes. 
 Given a graph rewriting system, our tool searches in parallel weighted type graphs over the six existing concrete semirings using an automated strategy: the graph size incrementally increases from 1 to 4; for the natural semirings, the max weight incrementally increases from 1 to 3. Decision problems are first translated into first-order theories in Z3 and then solved using Z3~\cite{de2008z3}.
 This fully automated approach requires only the problem definition and a timeout, removing the need for users to specify details such as the semiring to be used or the size of the type graph. 
 It accurately reflects real-world scenarios, as it is generally hard to determine parameters such as graph size, semiring, and weight bounds in advance.
 
-Finally, if our tool terminates before timeout and reports that no suitable weighted type graph of size \( k \in \mathbb{N} \) has been found, this implies that no such weighted type graph. Specifically, no weighted type graph with a simple underlying graph of size \( k \) exists for any of the existing six concrete semirings analyzed. \todo{how; why}
+Finally, if our tool terminates before timeout and reports that no suitable weighted type graph of size \( k \mathop{\in} \mathbb{N} \) has been found, this implies that no such weighted type graph. Specifically, no weighted type graph with a simple underlying graph of size \( k \) exists for any of the existing six concrete semirings analyzed. \todo{how; why}
 For the tropical and arctic semirings, current tools are constrained to constructing type graphs with user-specified finite weight sets, a restriction that inherently precludes them from proving the absence of solutions for all possible weights. In the case of the natural arithmetic semiring, where the decision problem is semi-decidable, existing tools are fundamentally \textcolor{red}{incapable of providing negative results.}\todo{Not true; but you can't be complete in this respect}

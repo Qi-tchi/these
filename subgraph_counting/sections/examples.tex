@@ -8,27 +8,26 @@ In contrast, our criterion requires checking simpler conditions.
         \node[draw,circle] (z) at (2,0) { };
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[<-] (z) -- (y) node[midway, above] {$a$};
-    }, $\mathbb{X} = \{X\}$ and $s_\mathbb{X}(X) = 1$. The rule is $X$-non-increasing as shown in Example~\ref{example:grs_aa:has_more_left}. 
-    Since \(w_{s_\mathbb{X}}(\operatorname{lhs}(\rho)) = 1 > 0 = w_{s_\mathbb{X}}(\operatorname{rhs}(\rho)) \),
+    }, $\mathbb{X}\mathop{=}\{X\}$ and $s_\mathbb{X}(X)\mathop{=}1$. The rule is $X$-non-increasing as shown in Example~\ref{example:grs_aa:has_more_left}. 
+    Since \(w_{s_\mathbb{X}}(\operatorname{lhs}(\rho))\mathop{=}1\mathop{>}0\mathop{=}w_{s_\mathbb{X}}(\operatorname{rhs}(\rho)) \),
     it terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 \end{example}
-We consider an example for which the techniques from \cite{bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,plump2018modular,overbeek2024termination_lmcs} fail.
+The techniques from some previous works~\cite{bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,plump2018modular,overbeek2024termination_lmcs} fail to prove termination of the following examples, while our method can be applied to prove their termination.
 \begin{example} 
     \label{subgraph_counting:ex_contrib_variant}
     The rewriting rule shown below 
     % in Figure~\ref{fig:subgraph_counting:ex_confdkjfakljl} 
     is a variant of a rule presented in \cite[Example 6]{plump2018modular}, obtained by removing all edges in the interface:
      
-    % \begin{figure}[H]
-    %     \centering
+    
     \begin{center}
-        \resizebox{0.6\textwidth}{!}{
+        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
-                    \node[draw,circle] (l1) at ($(delta) + (-1,1.5)$) {$1$};
-                    \node[draw,circle] (l2) at ($(delta) + (1,1.5)$) {$2$};
-                    \node[draw,circle] (l3) at ($(delta) + (0,0)$) {3};
+                    \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {$1$};
+                    \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {$2$};
+                    \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
                     \draw[->] (l1) -- (l3) node[midway,left] {$s$};
                     \draw[->] (l2) -- (l3) node[midway,right] {$s$};
                     \draw[->] (l3) edge [loop below] node {$0$} (l3);
@@ -38,21 +37,21 @@ We consider an example for which the techniques from \cite{bruggink2014terminati
                     \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
                     \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {$1$};
                     \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {$2$};
-                    \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
                     % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                     % \draw[->] (r3) edge [loop below] node {$0$} (r3);
                 }
                 \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
                     \coordinate (delta) at (-10mm,-18mm);
-                    \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {$1$};
-                    \node[draw,circle] (r2) at ($(delta) + (0.5,1.5)$) {$2$};
-                    \node[draw,circle] (r3) at ($(delta) + (0,0)$) {3};
-                    \node[draw,circle] (r4) at ($(delta) + (1,0)$) {4};
+                    \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {$2$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                    \node[draw,circle] (r4) at ($(delta)+(1,0)$) {4};
                     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                     \draw[->] (r2) -- (r4) node[midway,right] {$s$};
                     \draw[->] (r4) edge [loop below] node {$0$} (r4);
                     \draw[->] (r3) edge [loop below] node {$0$} (r3);
-                    \node[draw,circle] (r5) at ($(r2) + (1.5,0)$) {};
+                    \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
                     \draw[->] (r5) edge [loop below] node {$0$} (r5);
                     \draw[->] (r5) edge [loop right] node {$0$} (r5);
                     \draw[->] (r5) edge [loop left] node {$0$} (r5);
@@ -60,9 +59,9 @@ We consider an example for which the techniques from \cite{bruggink2014terminati
                 % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
                 %     \coordinate (delta) at (0,-18mm);
                 %     \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
-                %     \node[draw,circle] (r1) at ($(delta) + (-1,1.5)$) {$1$};
-                %     \node[draw,circle] (r2) at ($(delta) +  (0.5,1.5)$) {$2$};
-                %     \node[draw,circle] (r3) at ($(delta) +  (0,0)$) {3};
+                %     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
+                %     \node[draw,circle] (r2) at ($(delta)\mathop{+} (0.5,1.5)$) {$2$};
+                %     \node[draw,circle] (r3) at ($(delta)\mathop{+} (0,0)$) {3};
                 %     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                 %     % \draw[->] (r3) edge [loop below] node {$0$} (r3);
                 % }
@@ -74,12 +73,7 @@ We consider an example for which the techniques from \cite{bruggink2014terminati
             \end{tikzpicture}
             }
           \end{center}
-    %         \caption{}
-    %         \label{fig:subgraph_counting:ex_confdkjfakljl}
-    % \end{figure}
-        %     \caption{Diagram of Example~\ref{ex_contrib_variant}}
-        %     \label{fig:contrib_variant}
-        % \end{figure}
+
         Let $X$ be the ruler-graph 
         \tikz[baseline=-0.5ex]{ 
                 \node[draw,circle] (x) at (0,0) { }; 
@@ -87,7 +81,7 @@ We consider an example for which the techniques from \cite{bruggink2014terminati
                 \node[draw,circle] (z) at (2,0) { };
                 \draw[->] (x) -- (y) node[midway, above] {$s$};
                 \draw[->] (z) -- (y) node[midway, above] {$s$};
-        }, $\mathbb{X} = \{X\}$ and $s_\mathbb{X}(X)=1$.
+        }, $\mathbb{X}\mathop{=}\{X\}$ and $s_\mathbb{X}(X)\mathop{=}1$.
         The set \( D(R,X) \) consists of two elements $R'_1$:
         \raisebox{2pt}{
             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
@@ -102,10 +96,144 @@ We consider an example for which the techniques from \cite{bruggink2014terminati
             \node[draw,circle] (y) at (1,0) {3};
             \draw[->] (x) -- (y) node[midway, above] {$s$};
         }}}. 
-        Each \( R'_i \) admits a unique monomorphism \( h_{R'_i L} \colon R'_i \rightarrowtail L \) preserving interface elements. 
-        Therefore, the rule is $X$-non-increasing under $h_{R'_1L}$ and $h_{R'_2L}$. This is because all conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are satisfied.
-        Since \(w_{s_\mathbb{X}}(L) = 1 > 0 = w_{s_\mathbb{X}}(R)\).
-        It follows that the system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
+        Each \( R'_i \) admits a unique monomorphism \( h_{R'_i L} \mathop{\colon} R'_i \rightarrowtail L \) preserving interface elements. 
+        The rule is $X$-non-increasing under 
+        the function $\Psi$ that maps each element $R'_i \mathop{\in}  D(R,X)$ to $h_{R_i'L}$, because 
+        the following diagrams can be constructed, and other conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are straightforward to verify. Since \(w_{s_\mathbb{X}}(L)\mathop{=}1\mathop{>}0\mathop{=}w_{s_\mathbb{X}}(R)\), the system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
+        \begin{center}
+        \resizebox{0.8\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (0,-18mm);
+                    \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {$1$};
+                    \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {$2$};
+                    \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
+                    \draw[->] (l1) -- (l3) node[midway,left] {$s$};
+                    \draw[->] (l2) -- (l3) node[midway,right] {$s$};
+                    \draw[->] (l3) edge [loop below] node {$0$} (l3);
+                }
+                \graphbox{$R'_1$}{0mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (0,-18mm);
+                    \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {$3$};
+                    \draw[->] (r1) -- (r3) node[midway,left] {$s$};
+                    \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
+                }
+                \graphbox{$R'_1$}{80mm}{40mm}{50mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (-10mm,-18mm);
+                    \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {$3$};
+                    \draw[->] (r1) -- (r3) node[midway,left] {$s$};
+                    \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
+                } 
+                \graphbox{$K$}{40mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (0,-18mm);
+                    \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
+                    \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {$2$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                    % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
+                    % \draw[->] (r3) edge [loop below] node {$0$} (r3);
+                }
+                \graphbox{$K'_1$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (0,-18mm);
+                    \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
+                    \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                }
+                \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (-10mm,-18mm);
+                    \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {$2$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                    \node[draw,circle] (r4) at ($(delta)+(1,0)$) {4};
+                    \draw[->] (r1) -- (r3) node[midway,left] {$s$};
+                    \draw[->] (r2) -- (r4) node[midway,right] {$s$};
+                    \draw[->] (r4) edge [loop below] node {$0$} (r4);
+                    \draw[->] (r3) edge [loop below] node {$0$} (r3);
+                    \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
+                    \draw[->] (r5) edge [loop below] node {$0$} (r5);
+                    \draw[->] (r5) edge [loop right] node {$0$} (r5);
+                    \draw[->] (r5) edge [loop left] node {$0$} (r5);
+                }
+                \node () at (38mm,-18mm) {$\overset{l}{\leftarrowtail}$};
+                \node () at (77mm,-18mm) {$\overset{r}{\rightarrowtail}$};
+                \node () at (38mm,22mm) {$\leftarrowtail$};
+                \node () at (77mm,22mm) {$\rightarrowtail$};
+                \node () at (17mm,2mm) {$\Psi(R'_1)\downarrowtail$};
+                \node () at (57mm,2mm) {$\downarrowtail$};
+                \node () at (97mm,2mm) {$\downarrowtail$};
+            \end{tikzpicture}
+            }
+          \end{center}
+          \vspace{5mm}
+           \begin{center}
+        \resizebox{0.8\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (0,-18mm);
+                    \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {$1$};
+                    \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {$2$};
+                    \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
+                    \draw[->] (l1) -- (l3) node[midway,left] {$s$};
+                    \draw[->] (l2) -- (l3) node[midway,right] {$s$};
+                    \draw[->] (l3) edge [loop below] node {$0$} (l3);
+                }
+                \graphbox{$R'_2$}{0mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (0,-18mm);
+                    \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {$2$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                    \draw[->] (r1) -- (r3) node[midway,left] {$s$};
+                }
+                \graphbox{$R'_2$}{80mm}{40mm}{50mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (-10mm,-18mm);
+                    \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {$2$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                    \draw[->] (r1) -- (r3) node[midway,left] {$s$};
+                }
+                \graphbox{$K$}{40mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (0,-18mm);
+                    \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
+                    \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {$2$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                    % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
+                    % \draw[->] (r3) edge [loop below] node {$0$} (r3);
+                }
+                \graphbox{$K'_2$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (0,-18mm);
+                    \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
+                    \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {$2$};
+                    \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                }
+                \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (-10mm,-18mm);
+                    \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
+                    \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {$2$};
+                    \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                    \node[draw,circle] (r4) at ($(delta)+(1,0)$) {4};
+                    \draw[->] (r1) -- (r3) node[midway,left] {$s$};
+                    \draw[->] (r2) -- (r4) node[midway,right] {$s$};
+                    \draw[->] (r4) edge [loop below] node {$0$} (r4);
+                    \draw[->] (r3) edge [loop below] node {$0$} (r3);
+                    \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
+                    \draw[->] (r5) edge [loop below] node {$0$} (r5);
+                    \draw[->] (r5) edge [loop right] node {$0$} (r5);
+                    \draw[->] (r5) edge [loop left] node {$0$} (r5);
+                }
+                \node () at (38mm,-18mm) {$\overset{l}{\leftarrowtail}$};
+                \node () at (77mm,-18mm) {$\overset{r}{\rightarrowtail}$};
+                \node () at (38mm,22mm) {$\leftarrowtail$};
+                \node () at (77mm,22mm) {$\rightarrowtail$};
+                \node () at (17mm,2mm) {$\Psi(R'_2)\downarrowtail$};
+                \node () at (57mm,2mm) {$\downarrowtail$};
+                \node () at (97mm,2mm) {$\downarrowtail$};
+            \end{tikzpicture}
+            }
+          \end{center}
 \end{example}
 
 The following example demonstrates the usefulness of a weight function that assigns distinct weight to measurements from different ruler-graphs.
@@ -118,10 +246,10 @@ The following example demonstrates the usefulness of a weight function that assi
     %       \centering
     \begin{center}
         \begin{center} 
-          $\rho = $\scalebox{0.7}{\input{subgraph_counting/tikz/OE_ex5d6_rho.tex}}
+          $\rho\mathop{=}$\scalebox{0.8}{\input{subgraph_counting/tikz/OE_ex5d6_rho.tex}}
         \end{center}
         \begin{center}
-        $\tau = $\scalebox{0.7}{\input{subgraph_counting/tikz/OE_ex5d6_tau.tex}
+        $\tau\mathop{=}$\scalebox{0.8}{\input{subgraph_counting/tikz/OE_ex5d6_tau.tex}
         }
         \end{center}
   %       \caption{}
@@ -136,18 +264,23 @@ The following example demonstrates the usefulness of a weight function that assi
     \tikz[baseline=-0.5ex]{  
         \node[draw,circle] (x) at (0,0) { };
         \draw[->] (x) edge [loop right] node {$b$} (x);
-    } and $\mathbb{X} = \{X, Y\}$.
-    The sets $D(R_\rho, X)$, $D(R_\rho, Y)$, $D(R_\tau, X)$ and $D(R_\tau, Y)$ are all empty. Therefore, both rules $\rho$ and $\tau$ are $X$- and $Y$-non-increasing as all conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are met.
+    } and $\mathbb{X}\mathop{=}\{X, Y\}$.
+    The sets $D(R_\rho, X)$, $D(R_\rho, Y)$, $D(R_\tau, X)$ and $D(R_\tau, Y)$ are all empty. 
     
-    For $s_\mathbb{X}(X) = 5$ and $s_\mathbb{X}(Y) = 3$, we have $
-    w_{s_\mathbb{X}}(L_\rho) = 10 > 9 = w_{s_\mathbb{X}}(R_\rho)
-    $ and $
-    w_{s_\mathbb{X}}(L_\tau) = 6 > 5 = w_{s_\mathbb{X}}(R_\tau)$.
+    Let $\Psi$ be the empty function (i.e., a function with empty domain).
+    Both rules $\rho$ and $\tau$ are $X$- and $Y$-non-increasing under $\Psi$,
+    since all conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are trivially met: every condition quantifies over elements in the empty set.
+    
+    For $s_\mathbb{X}(X)\mathop{=}5$ and $s_\mathbb{X}(Y)\mathop{=}3$, we have:
+    \begin{itemize}
+       \item $w_{s_\mathbb{X}}(L_\rho)\mathop{=}10\mathop{>}9\mathop{=}w_{s_\mathbb{X}}(R_\rho)$, and
+       \item $w_{s_\mathbb{X}}(L_\tau)\mathop{=}6\mathop{>}5\mathop{=}w_{s_\mathbb{X}}(R_\tau)$.
+    \end{itemize}
     Therefore, the system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 
-  However, for $s_\mathbb{X}'(X) = 1$ and $s_\mathbb{X}'(Y) = 1$, we have
+  However, for $s_\mathbb{X}'(X)\mathop{=}1$ and $s_\mathbb{X}'(Y)\mathop{=}1$, we have
     \(
-        w_{s_\mathbb{X}'}(L_\rho) = 2 \not > 3 = w_{s_\mathbb{X}'}(R_\rho)
+        w_{s_\mathbb{X}'}(L_\rho)\mathop{=}2   \ngtr 3\mathop{=}w_{s_\mathbb{X}'}(R_\rho)
     \) which prevents us from applying Theorem~\ref{subgraph_counting:thm:termination_grs} to prove termination of the rewriting system.
 \end{example}
 
@@ -157,7 +290,7 @@ The following example demonstrates the usefulness of a weight function that assi
  
 %     \begin{center}
 %         \resizebox{0.7\textwidth}{!}{
-%       $\rho = $  \begin{tikzpicture}[baseline=-20mm]
+%       $\rho\mathop{=}$  \begin{tikzpicture}[baseline=-20mm]
 %         \graphbox{$L$}{0mm}{0}{32mm}{40mm}{0}{0}{
 %             \node[draw,circle]  (n1) at (0,-6mm) {$1$};
 %             \node[draw,circle]   (n2) at (0mm,-26mm) {$2$};
@@ -271,14 +404,14 @@ The following example demonstrates the usefulness of a weight function that assi
       \node[draw,circle] (y) at (1,0) { };
       \draw[->] (x) to[bend right=20] (y);
       \draw[->] (y) to[bend right=20] (x); 
-  } and $\mathbb{X} = \{X\}$. Let $s_\mathbb{X}$ be the weight function associating the weight of $1$ to $X$. There is only one element 
+  } and $\mathbb{X}\mathop{=}\{X\}$. Let $s_\mathbb{X}$ be the weight function with $s_\mathbb{X}(X)\mathop{=}1$. There is only one element 
   \scalebox{0.7}{\tikz[baseline=-0.5ex]{
           \node [draw,circle] (x) at (0,0) {x};
           \node[draw,circle] (y) at (1,0) {y};
           \draw[->] (x) -- (y) node[midway, above] {};
       }}
   in $D(X, R)$. 
-   Since $w_{s_\mathbb{X}}(L) = 1 > 0 = w_{s_\mathbb{X}}(R)
+   Since $w_{s_\mathbb{X}}(L)\mathop{=}1\mathop{>}0\mathop{=}w_{s_\mathbb{X}}(R)
       $, the rule terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 \end{example}
 
@@ -289,7 +422,7 @@ The following example demonstrates the usefulness of a weight function that assi
   \begin{center}
   % \begin{figure}[H]
   %   \centering
-      \resizebox{0.6\textwidth}{!}{
+      \resizebox{0.8\textwidth}{!}{
           \begin{tikzpicture}
               \graphbox{$L$}{0mm}{0mm}{35mm}{25mm}{2mm}{-8mm}{
                   \coordinate (delta) at (0,-18mm);
@@ -338,7 +471,8 @@ The following example demonstrates the usefulness of a weight function that assi
   %  in Figure~\ref{fig:subgraph_counting:ex_plump_ex4}.
   % \begin{figure}[H]
 \begin{center}
-  $r_1 = ${ 
+  \resizebox{0.9\textwidth}{!}{
+  $r_1\mathop{=}${ 
    \begin{tikzpicture}[baseline=-20mm]
          \graphbox{$L$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
            \node [draw, circle] (x) at (-10mm,0mm) {$1$};
@@ -364,39 +498,43 @@ The following example demonstrates the usefulness of a weight function that assi
          }
          \end{scope}
        \end{tikzpicture}
+  } 
   }
  \end{center}
  
  \begin{center}
-   $r_2 = ${ 
-    \begin{tikzpicture}[baseline=-20mm]
-       \graphbox{$L$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
-           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
-           \node [draw, circle] (y) at (0mm,0mm) {$2$};
-           \node [draw, circle] (z) at (10mm,0mm) {3};
-           \draw[->] (x) to node [above] {$R$} (y);
-           \draw[->] (y) to node [above] {$1$} (z);
-       }
-       \graphbox{$K$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
-           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
-           %\node [draw, circle] (y) at (0mm,0mm) {$2$};
-           \node [draw, circle] (z) at (10mm,0mm) {3};
-       }
-       \begin{scope}[opacity=1]        
-       \graphbox{$R$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
-           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
-           \node [draw, circle] (y) at (0mm,0mm) {$2$};
-           \node [draw, circle] (z) at (10mm,0mm) {3};
-           \draw[->] (x) to node [above] {$0$} (y);
-           \draw[->] (y) to node [above] {$R$} (z);
-       }
-       \end{scope}
-       \end{tikzpicture}
-   }
+    \resizebox{0.9\textwidth}{!}{
+      $r_2\mathop{=}${ 
+        \begin{tikzpicture}[baseline=-20mm]
+          \graphbox{$L$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+              \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+              \node [draw, circle] (y) at (0mm,0mm) {$2$};
+              \node [draw, circle] (z) at (10mm,0mm) {3};
+              \draw[->] (x) to node [above] {$R$} (y);
+              \draw[->] (y) to node [above] {$1$} (z);
+          }
+          \graphbox{$K$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+              \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+              %\node [draw, circle] (y) at (0mm,0mm) {$2$};
+              \node [draw, circle] (z) at (10mm,0mm) {3};
+          }
+          \begin{scope}[opacity=1]        
+          \graphbox{$R$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+              \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+              \node [draw, circle] (y) at (0mm,0mm) {$2$};
+              \node [draw, circle] (z) at (10mm,0mm) {3};
+              \draw[->] (x) to node [above] {$0$} (y);
+              \draw[->] (y) to node [above] {$R$} (z);
+          }
+          \end{scope}
+          \end{tikzpicture}
+      }
+    }
    \end{center}
 
 \begin{center}
-  $r_3 = ${ 
+      \resizebox{0.9\textwidth}{!}{
+  $r_3\mathop{=}${ 
    \begin{tikzpicture}[baseline=-20mm]
          \graphbox{$L$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
            \node [draw, circle] (x) at (-10mm,0mm) {$1$};
@@ -419,34 +557,37 @@ The following example demonstrates the usefulness of a weight function that assi
          \end{scope}
        \end{tikzpicture}
   }
+      }
  \end{center}
  
  \begin{center}
-   $r_4 = ${ 
-    \begin{tikzpicture}[baseline=-20mm]
-       \graphbox{$L$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
-           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
-           \node [draw, circle] (y) at (0mm,0mm) {$2$};
-           \node [draw, circle] (z) at (10mm,0mm) {3};
-           \draw[->] (x) to node [above] {$R$} (y);
-           \draw[->] (y) to node [above] {$B$} (z);
-       }
-       \graphbox{$K$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
-           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
-           %\node [draw, circle] (y) at (0mm,0mm) {$2$};
-           \node [draw, circle] (z) at (10mm,0mm) {3};
-       }
-       \begin{scope}[opacity=1]        
-       \graphbox{$R$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
-           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
-           \node [draw, circle] (y) at (0mm,0mm) {$2$};
-           \node [draw, circle] (z) at (10mm,0mm) {3};
-           \draw[->] (x) to node [above] {$L$} (y);
-           \draw[->] (y) to node [above] {$B$} (z);
-       }
-       \end{scope}
-       \end{tikzpicture}
-   }
+      \resizebox{0.9\textwidth}{!}{
+        $r_4\mathop{=}${ 
+          \begin{tikzpicture}[baseline=-20mm]
+            \graphbox{$L$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                \node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (10mm,0mm) {3};
+                \draw[->] (x) to node [above] {$R$} (y);
+                \draw[->] (y) to node [above] {$B$} (z);
+            }
+            \graphbox{$K$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                %\node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (10mm,0mm) {3};
+            }
+            \begin{scope}[opacity=1]        
+            \graphbox{$R$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                \node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (10mm,0mm) {3};
+                \draw[->] (x) to node [above] {$L$} (y);
+                \draw[->] (y) to node [above] {$B$} (z);
+            }
+            \end{scope}
+            \end{tikzpicture}
+        }
+      }
    \end{center}
   %  \caption{}
   %  \label{fig:subgraph_counting:ex_plump_ex4}
@@ -473,22 +614,22 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
   % \begin{figure}[H]
   %   \centering
 \begin{center}
- $\rho = ${ 
+ $\rho\mathop{=}${ 
   \begin{tikzpicture}[baseline=-20mm]
-        \graphbox{$L$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+        \graphbox{$L_\rho$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
           \node [draw, circle] (y) at (0mm,0mm) {$2$};
           \node [draw, circle] (z) at (10mm,0mm) {3};
           \draw[->] (x) to node [above] {$a$} (y);
           \draw[->] (y) to node [above] {$b$} (z);
         }
-        \graphbox{$K$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+        \graphbox{$K_\rho$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
           %\node [draw, circle] (y) at (0mm,0mm) {$2$};
           \node [draw, circle] (z) at (10mm,0mm) {3};
         }
         \begin{scope}[opacity=1]        
-        \graphbox{$R$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+        \graphbox{$R_\rho$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
           \node [draw, circle] (y) at (0mm,0mm) {$2$};
           \node [draw, circle] (z) at (10mm,0mm) {3};
@@ -501,22 +642,22 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
 \end{center}
 
 \begin{center}
-  $\tau = ${ 
+  $\tau\mathop{=}${ 
    \begin{tikzpicture}[baseline=-20mm]
-      \graphbox{$L$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+      \graphbox{$L_\tau$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
           \node [draw, circle] (y) at (0mm,0mm) {$2$};
           \node [draw, circle] (z) at (10mm,0mm) {3};
           \draw[->] (x) to node [above] {$c$} (y);
           \draw[->] (y) to node [above] {$d$} (z);
       }
-      \graphbox{$K$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+      \graphbox{$K_\tau$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
           %\node [draw, circle] (y) at (0mm,0mm) {$2$};
           \node [draw, circle] (z) at (10mm,0mm) {3};
       }
       \begin{scope}[opacity=1]        
-      \graphbox{$R$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+      \graphbox{$R_\tau$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
           \node [draw, circle] (y) at (0mm,0mm) {$2$};
           \node [draw, circle] (z) at (10mm,0mm) {3};
@@ -536,17 +677,17 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
       \node[draw,circle] (z) at (2,0) { };
       \draw[->] (x) -- (y) node[midway, above] {$a$};
       \draw[<-] (z) -- (y) node[midway, above] {$b$};
-  } 
-  We have $D(R_\rho,X) = \emptyset$ and $D(R_\tau,X) = \emptyset$. Therefore, both rules are $X$-non-increasing. 
-  We have 
-  $|\operatorname{Mono}(X,L)| = 1 > 0 = |\operatorname{Mono}(X,R)|$ for $\rho$, and 
-  $|\operatorname{Mono}(X,L)| = 0 = 0 = |\operatorname{Mono}(X,R)|$ for $\tau$, therefore $\rho$ can be eliminated.
+  }.
+  We have $D(R_\rho,X)\mathop{=}\emptyset$ and $D(R_\tau,X)\mathop{=}\emptyset$. Therefore, both rules are $X$-non-increasing. 
+  We have  
+  $|\operatorname{Mono}(X,L_\rho)|\mathop{=}1\mathop{>}0\mathop{=}|\operatorname{Mono}(X,R_\rho)|$ for $\rho$, and 
+  $|\operatorname{Mono}(X,L_\tau)|\mathop{=}0\mathop{=}|\operatorname{Mono}(X,R_\tau)|$ for $\tau$, therefore $\rho$ can be eliminated.
   
   Let $Y$ be  \tikz[baseline=-0.5ex]{
       \node[draw,circle] (x) at (0,0) {};
       \node[draw,circle] (y) at (1,0) {};
       \draw[->] (x) -- (y) node[midway, above] {$c$};
-  }. We have $D(R_\tau,Y) = \emptyset$. Therefore, $\tau$ is $Y$-non-increasing. Moreover, we have $|\operatorname{Mono}(Y,L)| = 1 > 0 = |\operatorname{Mono}(Y,R)|$.
+  }. We have $D(R_\tau,Y)\mathop{=}\emptyset$. Therefore, $\tau$ is $Y$-non-increasing. Moreover, we have $|\operatorname{Mono}(Y,L_\tau)|\mathop{=}1\mathop{>}0\mathop{=}|\operatorname{Mono}(Y,R_\tau)|$.
   Thus, this rewriting system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 \end{example} 
 
@@ -554,59 +695,71 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
 \begin{example}
   \label{ex:overbeek_5d3}
   Consider the following rewriting rules from~\cite[Example 5.3]{overbeek2024termination_lmcs}:
-  % in Figure~\ref{fig:subgraph_counting:ex_overbeek_5d3}.
-  % \begin{figure}[H]
-  %   \centering
 \begin{center}
-  $\rho = ${ 
-  \begin{tikzpicture} 
-      \graphbox{$L$}{0mm}{0mm}{23mm}{12mm}{2mm}{-5mm}{
+  \resizebox{0.9\textwidth}{!}{
+    $\rho\mathop{=}${ 
+    \begin{tikzpicture}[baseline=-7mm]
+        \graphbox{$L_\rho$}{0mm}{0mm}{23mm}{12mm}{2mm}{-5mm}{
+            \node[draw,circle] (x) at (0mm,0mm) {$1$};
+            \draw[->] (x) edge [loop right] node {} (x);
+        }
+        \graphbox{$K_\rho$}{24mm}{0mm}{23mm}{12mm}{2mm}{-5mm}{
           \node[draw,circle] (x) at (0mm,0mm) {$1$};
-          \draw[->] (x) edge [loop right] node {} (x);
-      }
-      \graphbox{$K$}{24mm}{0mm}{23mm}{12mm}{2mm}{-5mm}{
-        \node[draw,circle] (x) at (0mm,0mm) {$1$};
-      }
-      \begin{scope}[opacity=1]        
-      \graphbox{$R$}{48mm}{0mm}{30mm}{12mm}{-1mm}{-5mm}{
-        \node[draw,circle] (x) at (0mm,0mm) {$1$};
-        \node[draw,circle] (y) at (10mm,0mm) {$2$};
-      }
-      \end{scope}
-    \end{tikzpicture}
+        }
+        \begin{scope}[opacity=1]        
+        \graphbox{$R_\rho$}{48mm}{0mm}{30mm}{12mm}{-1mm}{-5mm}{
+          \node[draw,circle] (x) at (0mm,0mm) {$1$};
+          \node[draw,circle] (y) at (10mm,0mm) {$2$};
+        }
+        \end{scope}
+      \end{tikzpicture}
+    }
   }
   \end{center}
 
   \begin{center}
-  $\tau = $
-  \begin{tikzpicture}
-      \graphbox{$L$}{0mm}{-11mm}{32mm}{12mm}{2mm}{-8mm}{
-      \node[draw,circle]  (x) at (-6mm,0mm) {$1$};
-      \node[draw,circle] (y) at (6mm,0mm) {$2$};
-      \draw[->]  (x) to (y);
-      }
-      \graphbox{$K$}{33mm}{-11mm}{32mm}{12mm}{2.5mm}{-8mm}{
+      \resizebox{0.9\textwidth}{!}{
+      $\tau\mathop{=}${
+      \begin{tikzpicture}[baseline=-18mm]
+          \graphbox{$L_\tau$}{0mm}{-11mm}{32mm}{12mm}{2mm}{-7mm}{
           \node[draw,circle]  (x) at (-6mm,0mm) {$1$};
-          \node[draw,circle]  (y) at (6mm,0mm) {$2$};
+          \node[draw,circle] (y) at (6mm,0mm) {$2$};
+          \draw[->]  (x) to (y);
+          }
+          \graphbox{$K_\tau$}{33mm}{-11mm}{32mm}{12mm}{2.5mm}{-7mm}{
+              \node[draw,circle]  (x) at (-6mm,0mm) {$1$};
+              \node[draw,circle]  (y) at (6mm,0mm) {$2$};
+          }
+          \begin{scope}[opacity=1]        
+          \graphbox{$R_\tau$}{66mm}{-11mm}{40mm}{12mm}{-2mm}{-7mm}{
+              \node[draw,circle]  (x) at (-6mm,0mm) {$1$};
+              \node[draw,circle]  (y) at (6mm,0mm) {$2$};
+              \node[draw,circle]  (z) at (17mm,0mm) {3};
+          }
+          \end{scope}
+        \end{tikzpicture}
       }
-      \begin{scope}[opacity=1]        
-      \graphbox{$R$}{66mm}{-11mm}{40mm}{12mm}{-2mm}{-8mm}{
-          \node[draw,circle]  (x) at (-6mm,0mm) {$1$};
-          \node[draw,circle]  (y) at (6mm,0mm) {$2$};
-          \node[draw,circle]  (z) at (17mm,0mm) {3};
       }
-      \end{scope}
-    \end{tikzpicture}
   \end{center}
-%   \caption{}
-%   \label{fig:subgraph_counting:ex_overbeek_5d3}
-% \end{figure}
   Let $X$ be 
   \tikz[baseline=-0.5ex]{
       \node[draw,circle] (x) at (0,0) { };
       \node[draw,circle] (y) at (1,0) { };
       \draw[->] (x) to (y);
-  }. Both rules are $X$-non-increasing, and $|\operatorname{Mono}(X,L)| = 1 > 0 = |\operatorname{Mono}(X,R)|$ holds for both rules. Thus, this rewriting system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
+  }.
+  Both $\rho$ and $\tau$ are $X$-non-increasing because 
+  \begin{itemize}
+    \item $D(R_\tau,X)\mathop{=}\emptyset$, and
+    \item $D(R_\rho,X)\mathop{=}\emptyset$, and
+    \item all conditions of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are trivially satisfied. 
+  \end{itemize}
+   
+  Since the following inequality holds: 
+  \begin{itemize}
+    \item $|\operatorname{Mono}(X,L_\rho)|\mathop{=}1\mathop{>}0\mathop{=}|\operatorname{Mono}(X,R_\rho)|$, and 
+    \item $|\operatorname{Mono}(X,L_\tau)|\mathop{=}1\mathop{>}0\mathop{=}|\operatorname{Mono}(X,R_\tau)|$,
+  \end{itemize}
+  the rewriting system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 \end{example}
 
 \begin{example} 
@@ -618,17 +771,17 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
   %   \centering
   \begin{center}
   \begin{tikzpicture}  
-     \graphbox{$L$}{0mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{  
+     \graphbox{$L$}{0mm}{-11mm}{32mm}{17mm}{2mm}{-11mm}{  
          \node[draw,circle]  (x) at (-6mm,0mm) {$1$};  
         \draw[->] (x) edge[loop above] node  {} (x);
 
          \node[draw,circle]  (y) at (6mm,0mm) {$2$};  
        }  
-       \graphbox{$K$}{33mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{  
+       \graphbox{$K$}{33mm}{-11mm}{32mm}{17mm}{2mm}{-11mm}{  
         \node[draw,circle]  (x) at (-6mm,0mm) {$1$};  
         \node[draw,circle]  (y) at (6mm,0mm) {$2$};  
        }  
-       \graphbox{$R$}{66mm}{-11mm}{32mm}{15mm}{1mm}{-8mm}{  
+       \graphbox{$R$}{66mm}{-11mm}{32mm}{17mm}{1mm}{-11mm}{  
         \node[draw,circle]  (x) at (-6mm,0mm) {$1$};  
         \node[draw,circle]  (y) at (6mm,0mm) {$2$};  
         \draw[->]  (x) to (y);  
@@ -641,7 +794,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
 
  Our method can prove its termination with the ruler-graph \tikz[baseline=-0.5ex]{
   \node[draw,circle] (x) at (0,0) {};
-  \draw[->] (x) edge[loop above] node  {} (x);
+  \draw[->] (x) edge[loop right] node  {} (x);
 } of weight $1$.
 \end{example} 
 
@@ -653,7 +806,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
   %   \centering
 \begin{center}
       \resizebox{0.7\textwidth}{!}{
-    $\rho = $  \begin{tikzpicture}[baseline=-20mm]
+    $\rho\mathop{=}$  \begin{tikzpicture}[baseline=-20mm]
       \graphbox{$L$}{0mm}{0}{32mm}{40mm}{0}{0}{
           \node[draw,circle]  (n1) at (0,-6mm) {$1$};
           \node[draw,circle]   (n2) at (0mm,-26mm) {$2$};
@@ -690,23 +843,25 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
   %   \label{fig:subgraph_counting:ex_plump95_4d1}
   % \end{figure}
 \end{center}
-  To prove its termination with our method, a ruler-graph $X$ containing an edge labeled by $f$ must be used, because the number of occurrences of every graph containing only edges labeled by $a$ and $b$ does not change by any rewriting step using $\rho$. But in this case, condition~\eqref{def:non_increasing_rule_img_edges_distinct} of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} cannot be satisfied.
-\todo{to do todo: more details}
-%   \begin{center}
-%   \begin{tikzpicture} 
-%       \graphbox{}{0}{0}{30mm}{20mm}{-10mm}{-10mm}{
-%           \node[draw,circle]  (n1) at (0,0mm) {$1$};
-%           % \node[draw,circle]   (n2) at (0mm,-26mm) {$2$};
-%           % \node[draw,circle]   (n3) at (-10mm,-26mm) {3};
-%           \node[draw,circle]   (n4) at (20mm,0mm) {4};
-%           % \draw[->]  (n2) edge [loop below] node  {$a$} (n2);
-%           % \draw[->]  (n3) edge [loop below] node  {$b$} (n3);
-%           \draw[->]  (n1) edge [bend left] node [above] {$f$} (n4) ;
-%           \draw[->]  (n1) edge [bend right] node [below] {$f$}  (n4);
-%           \draw[->]  (n1) to node {$f$}  (n4);
-%         }  
-%   \end{tikzpicture}
-% \end{center}
+  To apply our method, the ruler-graph $X$ must be a subgraph of $L$ that contains
+  at least one edge labeled by $f$. Indeed, the number of occurrences of any graph made up solely of edges labeled $a$ and $b$ is invariant under rewriting steps using $\rho$.
+  Consequently, $D(R,X)$ contains a graph $R'$ which includes the following subgraph:
+    \begin{center}
+    \begin{tikzpicture} 
+        \graphbox{}{0}{0}{30mm}{20mm}{-10mm}{-10mm}{
+            \node[draw,circle]  (n1) at (0,0mm) {$1$};
+            % \node[draw,circle]   (n2) at (0mm,-26mm) {$2$};
+            % \node[draw,circle]   (n3) at (-10mm,-26mm) {3};
+            \node[draw,circle]   (n4) at (20mm,0mm) {4};
+            % \draw[->]  (n2) edge [loop below] node  {$a$} (n2);
+            % \draw[->]  (n3) edge [loop below] node  {$b$} (n3);
+            \draw[->]  (n1) edge [bend left] node [above] {$f$} (n4) ;
+            \draw[->]  (n1) edge [bend right] node [below] {$f$}  (n4);
+            \draw[->]  (n1) to node {$f$}  (n4);
+          }  
+    \end{tikzpicture}
+  \end{center}
+  However, for graph $R'$ the diagram required by the condition 1 of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} cannot be constructed. Therefore, our method cannot be applied.
 \end{example}
 
 \begin{example}[Limitation]
@@ -735,9 +890,8 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
     %     \label{fig:subgraph_counting:ex_endrullis_d3_limitation}
     % \end{figure}
   \end{center}
-    %  in Figure~\ref{fig:subgraph_counting:ex_endrullis_d3_limitation}.
-    % because our approach cannot take into account antipatterns(see~\cite[Remark 6.2]{overbeek2024termination_lmcs}).
-    This happens because, for any system $\mathcal{R}$, rewriting step $G \Rightarrow_{\mathcal{R},\mathfrak{M}} H$, set of ruler-graphs $\mathbb{X}$, and weight function $s_\mathbb{X}$, we have $w_{s_\mathbb{X}}(G) \geq w_{s_\mathbb{X}}(H)$ because there is an injective graph homomorphism from $G$ to $H$.
+
+    This happens because, for any system $\mathcal{R}$, any rewriting step $G \mathop{\Rightarrow}_{\mathcal{R},\mathfrak{M}} H$, any set of ruler-graphs $\mathbb{X}$, and any weight function $s_\mathbb{X}$, we have $w_{s_\mathbb{X}}(G) \mathop{\geq} w_{s_\mathbb{X}}(H)$ as $G$ is a subgraph of $H$.
   \end{example} 
 
 \begin{example}[Limitation]
@@ -774,7 +928,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
   \label{ex:overbeek:5d6_bis:limitation} 
   Consider the rewriting rule with monic matches from~\cite[Example 5.6]{overbeek2024termination_lmcs}:
   \begin{center}
-    $\rho' = $\scalebox{0.9} { \input{subgraph_counting/tikz/OE_ex5d6_rho_bis.tex}}
+    $\rho'\mathop{=}$\scalebox{0.9} { \input{subgraph_counting/tikz/OE_ex5d6_rho_bis.tex}}
     % \caption{}
     % \label{fig:subgraph_counting:ex_overbeek_5d6_bis}
   \end{center} 

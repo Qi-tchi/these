@@ -18,7 +18,7 @@ The method assigns weights to morphisms targeting a weighted type graph over a w
     Despite these constraints, searching for suitable weighted type graphs
     %  that witness termination of a DPO rewriting system on edge-labeled directed multigraphs
     remains challenging. 
-    Let $n = k^2 \cdot | \Sigma |$:
+    Let $n \mathop{=} k^2 \cdot | \Sigma |$:
     
     For a weighted type graph over the natural tropical semiring $\mathfrak{T}$ or the natural arctic semiring $\mathfrak{A}$, the problem amounts to
     checking the satisfiability of an existential Presburger arithmetic formula with $n$ binary variables and $n$ integer variables.
@@ -36,8 +36,8 @@ The method assigns weights to morphisms targeting a weighted type graph over a w
     In spite of the theoretical power of the weighted type graph method, its practical applicability is limited by the high computational complexity of searching for suitable weighted type graphs over well-founded semirings on 
     natural numbers. In fact, to reduce the search space, users of the above-mentioned tools are required
      to fix the size of the weighted type graph, as well as the maximum weight of edges in the weighted type graph. These are challenging tasks if not impossible to determine a priori even for experts in the field. 
-    Furthermore, our experiments with the two publicly available ones \texttt{TORPAcyc} and \texttt{Grez} show that when the number of edge labels is $2$, they struggle to search for weighted type graphs with $4$ nodes and maximum edge weight of $2$, or to search for weighted type graphs with $3$ nodes when the maximum edge weight is larger than $3$~\footnote{Experiments were conducted on a laptop equipped with an i5-1038NG7 CPU, which features 4 cores, a base clock speed of 2 GHz, and a boost speed of 3.8 GHz.}. 
-   Chapter~\ref{chap:nwf} addresses this limitation to make the weighted type graph method more accessible to non-expert users and to enhance its practical applicability.
+    Furthermore, our experiments with the two publicly available ones \texttt{TORPAcyc} and \texttt{Grez} show that when the number of edge labels is $2$, they struggle to search for weighted type graphs with $4$ nodes and maximum edge weight of $2$, or to search for weighted type graphs with $3$ nodes when the maximum edge weight is larger than $3$~\footnote{Experiments were conducted on a laptop equipped with an i5-1038NG7 CPU, which features 4 cores, a base clock speed of 2 GHz, a boost speed of 3.8 GHz, and 16 GB RAM.}. 
+   We address this limitation to make the weighted type graph method more accessible to non-expert users and to enhance its practical applicability.
 
 To reduce the complexity of searching for weighted type graphs that witness termination of a DPO rewriting system on edge-labeled directed multigraphs, we propose extending the weighted type graph method to non-well-founded semirings and introduce three concrete semirings over the real numbers: the real tropical semiring $\mathfrak{T}'$, the real arctic semiring $\mathfrak{A}'$, and the real arithmetic semiring $\mathfrak{N}'$. The idea of using weights from non-well-founded domains to prove termination was used in the context of term rewriting by Lucas~\cite{lucas2006relative}.
 
@@ -47,10 +47,10 @@ Under the same constraints, searching for weighted type graphs over these semiri
 % existential linear real arithmetic formula with $n$ binary variables and $n$ real variables for the real tropical semiring $\mathfrak{T}'$ or the real arctic semiring $\mathfrak{A}'$.
 Z3 can solve practical instances of this problem more easily: Decidable for the real arithmetic semiring $\mathfrak{N}'$;
 %  using CutSat solver, because there are only $n$ integer variables.
-The worst-case complexity for solving this problem is $O(2^n)$ for the real tropical semiring $\mathfrak{T}'$ or the real arctic semiring $\mathfrak{A}'$;
+The worst-case complexity for solving this problem is $O(2^n)$ for the real tropical semiring $\mathfrak{T}'$ or the real arctic semiring $\mathfrak{A}'$.
 % For a weighted type graph over the real arithmetic semiring $\mathfrak{N}'$, the task reduces to checking the satisfiability of
 % an existential non-linear real arithmetic formula\textemdash a task that is decidable~\cite{collins1974quantifier,z3realarithmetic}.
 
-The implementation of both our approach and the approach proposed by Endrullis et al.~\cite{endrullis2024generalized_icgt}, written in OCaml, will be presented in Chapter~\ref{chap:lyonparallel}.
+The implementation of both our approach and the approach proposed by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}, written in OCaml, will be presented in Chapter~\ref{chap:lyonparallel}.
 
 We first introduce the type graph method~\cite{endrullis2024generalized_icgt} and then present our extension to non-well-founded semirings.

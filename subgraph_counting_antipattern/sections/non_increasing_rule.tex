@@ -1,8 +1,8 @@
-% We use \( S \uplus S' \) to denote the disjoint union of sets \( S \) and \( S' \). Let \( \rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule.
+% We use \( S \uplus S' \) to denote the disjoint union of sets \( S \) and \( S' \). Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule.
 % \newline
 % \noindent
 %     \begin{minipage}{0.65\textwidth}
-%       The DPO diagram for \( G \Rightarrow_\rho H \) with injective match \( m \) can be seen, up to graph renaming, as a diagram in the category of sets where all morphisms are inclusions. The diagram is shown on the right.
+%       The DPO diagram for \( G \mathop{\Rightarrow}_\rho H \) with injective match \( m \) can be seen, up to graph renaming, as a diagram in the category of sets where all morphisms are inclusions. The diagram is shown on the right.
 %     \end{minipage}
 %     \hfill
 %     \begin{minipage}{0.34\textwidth}
@@ -84,22 +84,22 @@
 %         % \end{center}
 %         }
 %     \end{minipage}
-% \( L', R', C', K \) are mutually disjoint sets such that \( L' \uplus K = L \), \( R' \uplus K = R \), and \( C' \uplus K = C \). 
-% Additionally, \( G = L \cup C \) and \( H = R \cup C' \). Thus, any subgraph of \( H \) (resp. \( G \)) can be seen as a union of subgraphs of \( C \) and \( R \) (resp. \( L \)).
+% \( L', R', C', K \) are mutually disjoint sets such that \( L' \uplus K \mathop{=} L \), \( R' \uplus K \mathop{=} R \), and \( C' \uplus K \mathop{=} C \). 
+% Additionally, \( G \mathop{=} L \mathop{\cup} C \) and \( H \mathop{=} R \mathop{\cup} C' \). Thus, any subgraph of \( H \) (resp. \( G \)) can be seen as a union of subgraphs of \( C \) and \( R \) (resp. \( L \)).
 % We provide the following definition to improve readability.
 % % \begin{definition}
 % %         \label{def:corresponding_occurrence}
 % %     Let $X$ be a graph and \( G \) a graph. An \textbf{\( X \)-occurrence} in \( G \) is a subgraph of $G$ isomorphic to \( X \). 
 % %     Since there is a bijection between \( X \)-occurrences in \( G \) and monomorphisms \( X \rightarrowtail G \), we use the terms \enquote{\( X \)-occurrence} and \enquote{monomorphism from \( X \) to \( G \)} interchangeably.  
 % %     An \textbf{implicitly created \( X \)-occurrence} is an \( X \)-occurrence in \( H \) that is included neither in \( R \) nor in \( C \). 
-% %     For such an occurrence \( x \), let \( R' = x \cap R \), \( C' = x \cap C \), and let \( h_{R'L}: R' \rightarrowtail L \) be a monomorphism preserving interface elements. The \textbf{corresponding \( X \)-occurrence} relative to \( h_{R'L} \) is \( h_{R'L}(R') \cup C' \).  
+% %     For such an occurrence \( x \), let \( R' \mathop{=} x \mathop{\cap} R \), \( C' \mathop{=} x \mathop{\cap} C \), and let \( h_{R'L}: R' \rightarrowtail L \) be a monomorphism preserving interface elements. The \textbf{corresponding \( X \)-occurrence} relative to \( h_{R'L} \) is \( h_{R'L}(R') \mathop{\cup} C' \).  
 % %     An \textbf{implicitly destroyed \( X \)-occurrence} is an \( X \)-occurrence in \( G \) that is not in \( L \) or \( C \).
 % % \end{definition}
 % \begin{definition}
 %         \label{def:subgraph_counting_antipattern:corresponding_occurrence}
 %     Let $X$ be a graph and \( G \) a graph. An \textbf{\( X \)-occurrence} in \( G \) is an isomorphism from \( X \) to \( G \).
 %     An \textbf{implicitly created \( X \)-occurrence} is an \( X \)-occurrence whose image in \( H \) is included neither in \( R \) nor in \( C \). 
-%     For such an occurrence \( x \), let \( R' = x \cap R \), \( C' = x \cap C \), and let \( h_{R'L}: R' \rightarrowtail L \) be a monomorphism preserving interface elements. The \textbf{corresponding \( X \)-occurrence} relative to \( h_{R'L} \) is \( h_{R'L}(R') \cup C' \).  
+%     For such an occurrence \( x \), let \( R' \mathop{=} x \mathop{\cap} R \), \( C' \mathop{=} x \mathop{\cap} C \), and let \( h_{R'L}: R' \rightarrowtail L \) be a monomorphism preserving interface elements. The \textbf{corresponding \( X \)-occurrence} relative to \( h_{R'L} \) is \( h_{R'L}(R') \mathop{\cup} C' \).  
 %     An \textbf{implicitly destroyed \( X \)-occurrence} is an \( X \)-occurrence whose image in \( G \) is neither in \( L \) nor in \( C \).
 % \end{definition} 
 % Let $X$ be a graph. We define the set \(D(R,X)\) of all subgraphs of \( R \) which can form an implicitly created \( X \)-occurrence with a subgraph of the context graph.
@@ -110,21 +110,21 @@
 %     %     L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R
 %     % \) an injective DPO rewriting rule.
 %     % %  such that $l$ is edge-injective and $r$ is node-injective.
-%     % The set \(D(R,X)\) consists of all subgraphs \( R' \subseteq R \) such that there exists a diagram (shown on the right) where
-%     % \(h_{R'X} \colon R' \rightarrowtail X \) and \(h_{C'X} \colon C' \rightarrowtail X \) are not isomorphisms, and \(h_{K'K} \colon K' \rightarrowtail K \) and \(h_{R'R} \colon R' \rightarrowtail R \) are inclusion functions. The union of all subgraphs in \( D(R,X) \) is denoted \( R_X \).
+%     % The set \(D(R,X)\) consists of all subgraphs \( R' \mathop{\subseteq} R \) such that there exists a diagram (shown on the right) where
+%     % \(h_{R'X} \mathop{\colon} R' \rightarrowtail X \) and \(h_{C'X} \mathop{\colon} C' \rightarrowtail X \) are not isomorphisms, and \(h_{K'K} \mathop{\colon} K' \rightarrowtail K \) and \(h_{R'R} \mathop{\colon} R' \rightarrowtail R \) are inclusion functions. The union of all subgraphs in \( D(R,X) \) is denoted \( R_X \).
 %     % Let \(X\) be a graph and 
 %     % \(
 %     %     L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R
 %     % \) an injective DPO rewriting rule.
 %     % %  such that $l$ is edge-injective and $r$ is node-injective.
-%     % The set \(D(R,X)\) consists of all subgraphs \( R' \subseteq R \) such that 
-%     % we can construct a diagram as shown on the right where \(h_{K'K} \colon K' \rightarrowtail K \) and \(h_{R'R} \colon R' \rightarrowtail R \) are inclusion functions, and \(h_{R'X} \colon R' \rightarrowtail X \) and \(h_{C'X} \colon C' \rightarrowtail X \) are not isomorphisms. The union of all subgraphs in \( D(R,X) \) is denoted \( R_X \).
+%     % The set \(D(R,X)\) consists of all subgraphs \( R' \mathop{\subseteq} R \) such that 
+%     % we can construct a diagram as shown on the right where \(h_{K'K} \mathop{\colon} K' \rightarrowtail K \) and \(h_{R'R} \mathop{\colon} R' \rightarrowtail R \) are inclusion functions, and \(h_{R'X} \mathop{\colon} R' \rightarrowtail X \) and \(h_{C'X} \mathop{\colon} C' \rightarrowtail X \) are not isomorphisms. The union of all subgraphs in \( D(R,X) \) is denoted \( R_X \).
 %     Let \(\mathcal{X}\) be a ruler-graph with underlying graph \(X\) and
 %     \(
 %         L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R
 %     \) an injective DPO rewriting rule.
 %     %  such that $l$ is edge-injective and $r$ is node-injective.
-%     The set \textbf{\(D(R,X)\)} consists of all subgraphs \( R' \subseteq R \)
+%     The set \textbf{\(D(R,X)\)} consists of all subgraphs \( R' \mathop{\subseteq} R \)
 %     satisfying the following conditions:
 %     \newline
 %     \noindent
@@ -132,7 +132,7 @@
 %     \begin{itemize}
 %         \item \label{def:drx:rp_not_sub} $R'$ is not a subgraph of $r(K)$,
 %         \item \label{def:drx:rp_not_iso} $R'$ is not isomorphic to $X$,
-%         \item  \label{def:drx:rp_diagram} a diagram as shown on the right where \(h_{K'K} \colon K' \rightarrowtail K \) and \(h_{R'R} \colon R' \rightarrowtail R \) are inclusion functions can be constructed.
+%         \item  \label{def:drx:rp_diagram} a diagram as shown on the right where \(h_{K'K} \mathop{\colon} K' \rightarrowtail K \) and \(h_{R'R} \mathop{\colon} R' \rightarrowtail R \) are inclusion functions can be constructed.
 %     \end{itemize}
 %     \end{minipage}
 %     \todo{condition~\ref{def:drx:rp_diagram} est trop restrictive que la terminaison de [ad hoc protocol, bruggink 2014]}
@@ -161,7 +161,7 @@
 %     % The union of all subgraphs in \( D(R,X) \) is denoted \( R_X \).
 % \end{definition}  
 
-% The first condition of the definition ensures that any $R' \in D(R,X)$ can be glued along some common interface elements with a subgraph $C'$ of a context graph \( C \) to form an \( X \)-occurrence. The second and third conditions ensure that such $X$-occurrences are included neither in \( C \) nor in \( R \), thereby guaranteeing that they are implicitly created as defined in Definition~\ref{def:corresponding_occurrence}.
+% The first condition of the definition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along some common interface elements with a subgraph $C'$ of a context graph \( C \) to form an \( X \)-occurrence. The second and third conditions ensure that such $X$-occurrences are included neither in \( C \) nor in \( R \), thereby guaranteeing that they are implicitly created as defined in Definition~\ref{def:corresponding_occurrence}.
 
 % \begin{notation}
 % We adopt the visualization conventions from~\cite[Example 9]{overbeek2023apbpotutorial}: labeled graphs are boxed, with their names in the top-left corner; nodes and edges are assigned subsets of \(\mathbb{N}\) as identifiers; identifiers are chosen in such a way that: a node or an edge \( y \) in the codomain graph inherits the union of identifiers from all preimages in the domain, and this assignment uniquely determines the homomorphism. To further improve readability, sets are represented as lists (e.g., \(\{3,4\}\) becomes \(3\ 4\)), and identifiers are omitted when unambiguous. An example is shown below. 
@@ -204,7 +204,7 @@
 %                 \coordinate (o) at (0mm,-3mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %             }     
@@ -212,7 +212,7 @@
 %                 \coordinate (o) at (5mm,-3mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-%                 % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+%                 % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
 %                 % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                 % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %             }    
@@ -220,8 +220,8 @@
 %                 \coordinate (o) at (-5mm,-3mm); 
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%                 \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                 \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
 %                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -240,7 +240,7 @@
 %         \node (z) at (2,0) { $\bullet$};
 %         \draw[->] (x) -- (y) node[midway, above] {$a$};
 %         \draw[->] (y) -- (z) node[midway, above] {$a$};
-%     } and $R' \in D(R,X)$. 
+%     } and $R' \mathop{\in} D(R,X)$. 
 %     $R'$ is neither the empty graph nor isomorphic to $X$, by Conditions 2 and 3 of Definition~\ref{def:rx}. 
 %     Therefore, $R'$ must contain an interface node (either node 1 or node 2), because if it contains no interface node, Condition 1 of Definition~\ref{def:rx} would be violated due to $X$'s connectivity.
 %     Additionally, $R'$ must contain node 4 or node 5 to avoid being a subgraph of $r(K)$ (Condition 2). 
@@ -253,9 +253,9 @@
 %                 \graphbox{}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
 %                     \coordinate (o) at (-5mm,-3mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
 %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                 }    
@@ -271,7 +271,7 @@
 %                     \coordinate (o) at (-5mm,-3mm); 
 %                     \node[circle] (l1) at ($(o)+(-10mm,0mm)$) {};
 %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
 %                 }    
 %             \end{tikzpicture}
@@ -282,7 +282,7 @@
 %                     \coordinate (o) at (-5mm,-3mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
 %                 }    
 %             \end{tikzpicture}
@@ -292,7 +292,7 @@
 %                 \graphbox{$R'_3$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
 %                     \coordinate (o) at (-5mm,-3mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                 }   
 %         \end{tikzpicture}
@@ -303,7 +303,7 @@
 %                     \coordinate (o) at (-5mm,-3mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
 %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %                 }    
 %             \end{tikzpicture}
@@ -328,7 +328,7 @@
 %                     \coordinate (o) at (0mm,-3mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {2};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
 %                     \draw[->] (l3) -- (l1) node[midway,above] {};
 %                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                 }     
@@ -336,7 +336,7 @@
 %                     \coordinate (o) at (5mm,-3mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-%                     % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+%                     % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
 %                     \draw[->] (l2) -- (l1) node[midway,above] {};
 %                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %                 }    
@@ -344,8 +344,8 @@
 %                     \coordinate (o) at (-5mm,-3mm); 
 %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {2};
-%                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {3};
+%                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
+%                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {3};
 %                     \draw[->] (l3) -- (l1) node[midway,above] {};
 %                     \draw[->] (l3) -- (l4) node[midway,above] {};
 %                     % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -355,7 +355,7 @@
 %             \end{tikzpicture}
 %         }
 %     \end{center}
-%     Let $R' \in D(R,X)$. $R'$ must contain node 3, otherwise it would be a subgraph of $r(K)$, violating Condition 2 of Definition~\ref{def:rx}. Node 3 must be connected to an interface node, otherwise Condition 1 of Definition~\ref{def:rx} would be violated. Therefore, $R'$ must include \raisebox{2pt}{\scalebox{0.6}{\tikz[baseline=-0.5ex]{
+%     Let $R' \mathop{\in} D(R,X)$. $R'$ must contain node 3, otherwise it would be a subgraph of $r(K)$, violating Condition 2 of Definition~\ref{def:rx}. Node 3 must be connected to an interface node, otherwise Condition 1 of Definition~\ref{def:rx} would be violated. Therefore, $R'$ must include \raisebox{2pt}{\scalebox{0.6}{\tikz[baseline=-0.5ex]{
 %         \node [draw,circle] (x) at (0,0) {2};
 %         \node[draw,circle] (y) at (1,0) {3};
 %         \draw[->] (x) -- (y) {};
@@ -374,10 +374,10 @@
 %     }}}.
 % \end{example}
 % % \begin{remark}
-% %     Consider a rewriting step defined by the diagram in Definition~\ref{def:rewriting_step}. Let $X$ be a ruler-graph. The set $\operatorname{Mono}(X,H,\lnot m', \lnot r')$ (resp. $\operatorname{Mono}(X,H,\lnot m', \lnot r')$) is the set of all monomorphisms whose image is an occurrence of $X$ in $H$ (resp. $G$) formed by the image of a graph $R' \in D(R,X)$ and the image of a graph $C' \subseteq C$ around the image of a graph $K' \subseteq K$.
+% %     Consider a rewriting step defined by the diagram in Definition~\ref{def:rewriting_step}. Let $X$ be a ruler-graph. The set $\operatorname{Mono}(X,H,\lnot m', \lnot r')$ (resp. $\operatorname{Mono}(X,H,\lnot m', \lnot r')$) is the set of all monomorphisms whose image is an occurrence of $X$ in $H$ (resp. $G$) formed by the image of a graph $R' \mathop{\in} D(R,X)$ and the image of a graph $C' \mathop{\subseteq} C$ around the image of a graph $K' \mathop{\subseteq} K$.
 % % \end{remark}
 % % \begin{definition}
-% %    Let $X$ be a ruler-graph. Consider a rewriting step defined by the diagram in Definition~\ref{def:rewriting_step}. An occurrence $h_{XH}:X \rightarrow H$ of $X$ in $H$ is a \textbf{created occurrence} of $X$ in $H$ if the image of $h_{XH}$ is neither fully include in $m'(R)$ nor fully include in $r'(C)$. For a created occurrence $h_{XH}$, let $R' \subseteq R$ such that $m'(R') = h_{XH}(X) \cap m'(R)$, and let $h_{R'L}: R' \rightarrowtail L$ be a monomorphism, we say that an $h_{XG}$ 
+% %    Let $X$ be a ruler-graph. Consider a rewriting step defined by the diagram in Definition~\ref{def:rewriting_step}. An occurrence $h_{XH}:X \mathop{\rightarrow} H$ of $X$ in $H$ is a \textbf{created occurrence} of $X$ in $H$ if the image of $h_{XH}$ is neither fully include in $m'(R)$ nor fully include in $r'(C)$. For a created occurrence $h_{XH}$, let $R' \mathop{\subseteq} R$ such that $m'(R') \mathop{=} h_{XH}(X) \mathop{\cap} m'(R)$, and let $h_{R'L}: R' \rightarrowtail L$ be a monomorphism, we say that an $h_{XG}$ 
 % % \end{definition}
 
 % % \newpage
@@ -386,8 +386,8 @@
 % %     \newline
 % %     \noindent
 % %     \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
-% %     Let \(\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule, and let $X$ be a graph.
-% %     Let \( \Psi \) be a function associating $R' \in D(R,X)$ to a homomorphism in $\operatorname{Mono}(R',L)$.
+% %     Let \(\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule, and let $X$ be a graph.
+% %     Let \( \Psi \) be a function associating $R' \mathop{\in} D(R,X)$ to a homomorphism in $\operatorname{Mono}(R',L)$.
 % %     We say that \textbf{the number of occurrences of $X$ is non-increasing from left to right in any $\rho$-rewriting step under the mapping \(\Psi\)} (or simply $\rho$ is $X$-non-increasing) if the following four conditions hold:
 % %     \end{minipage}
 % %     \begin{minipage}{0.3\textwidth}
@@ -415,14 +415,14 @@
 % %         \end{center}
 % %     \end{minipage}
 % %      \begin{enumerate}
-% %         \item[(1)] \label{def:non_increasing:cond_1} For all $R' \in D(R,X)$ the diagram displayed above on the right holds, where $h_{R'R}$ is the inclusion function;
-% %         \item[(2)] \label{def:non_increasing:non_clapse} For all $R' \in D(R,X)$ and for all nodes and arrows $x$ in $R'$, if $ x \notin \operatorname{Im}(r)$ then $\Psi(R')(x) \notin \operatorname{Im}(l)$;
+% %         \item[(1)] \label{def:non_increasing:cond_1} For all $R' \mathop{\in} D(R,X)$ the diagram displayed above on the right holds, where $h_{R'R}$ is the inclusion function;
+% %         \item[(2)] \label{def:non_increasing:non_clapse} For all $R' \mathop{\in} D(R,X)$ and for all nodes and arrows $x$ in $R'$, if $ x \notin \operatorname{Im}(r)$ then $\Psi(R')(x) \notin \operatorname{Im}(l)$;
 % %         % \item there exists a morphism $h_{R_XL}$ such that
-% %         %     \( h_{R'R_X} \star h_{R_XL} = h_{R'L} \) for all $R' \in D(R,X)$;
-% %         \item[(3)] \label{def:non_increasing:edge_injective} For all $R',R'' \in D(R,X)$, for all edges $x \in R'$ and $y \in R''$, if $x \neq y$, then $\Psi(R')(x) \neq \Psi(R'')(y)$;
+% %         %     \( h_{R'R_X} \mathop{\star} h_{R_XL} \mathop{=} h_{R'L} \) for all $R' \mathop{\in} D(R,X)$;
+% %         \item[(3)] \label{def:non_increasing:edge_injective} For all $R',R'' \mathop{\in} D(R,X)$, for all edges $x \mathop{\in} R'$ and $y \mathop{\in} R''$, if $x \mathop{\neq} y$, then $\Psi(R')(x) \mathop{\neq} \Psi(R'')(y)$;
 % %         %  \item $h$  is edge-injective 
-% %         % \item $\bigcup_{R' \in D(R,X)} h_{R'L}$ is an edge-injective morphism from $R_X$ to $L$;
-% %         \item[(4)] \label{def:non_increasing:isolated_nodes} If $X$ has isolated nodes, then for all $R',R'' \in D(R,X)$ and nodes $x \in R', y \in R''$, if $x \neq y$, then $\Psi(R')(x) \neq \Psi(R'')(y)$.
+% %         % \item $\bigcup_{R' \mathop{\in} D(R,X)} h_{R'L}$ is an edge-injective morphism from $R_X$ to $L$;
+% %         \item[(4)] \label{def:non_increasing:isolated_nodes} If $X$ has isolated nodes, then for all $R',R'' \mathop{\in} D(R,X)$ and nodes $x \mathop{\in} R', y \mathop{\in} R''$, if $x \mathop{\neq} y$, then $\Psi(R')(x) \mathop{\neq} \Psi(R'')(y)$.
 % %         % \item $h$ is node-injective if $X$ has isolated nodes;
 % %      \end{enumerate}
 % %      \todo{condition~\ref{def:non_increasing:cond_1} est trop restrictive que la terminaison de [ad hoc protocol, bruggink2014termination]}
@@ -430,8 +430,8 @@
 % We define the notion of \( X \)-non-increasing rules. Intuitively, if a rule $\rho$ is $X$-non-increasing, then for any rewriting step using $\rho$, there exists an injective mapping from the set of \( X \)-occurrences implicitly created by the step to the set of \( X \)-occurrences implicitly destroyed by the step. This is proved in \cite{qiu2025termination_icgt}.
 % \begin{definition}[Non-increasing rule]
 %     \label{def:creates_more_x_on_the_left}
-%     Let \(\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a graph. 
-%     Let \( \Psi \) be a function associating $R' \in D(R,X)$ to a homomorphism in $\operatorname{Mono}(R',L)$.
+%     Let \(\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a graph. 
+%     Let \( \Psi \) be a function associating $R' \mathop{\in} D(R,X)$ to a homomorphism in $\operatorname{Mono}(R',L)$.
 %     We say that \textbf{the number of occurrences of $X$ is non-increasing from left to right in any $\rho$-rewriting step under the mapping \(\Psi\)}
 %     (or that $\rho$ is $X$-\textbf{non-increasing} under $\Psi$. When $\Psi$ is clear from context or irrelevant to the discussion, we may simply say that $\rho$ is $X$-\textbf{non-increasing}.)
 %     % (or simply $\rho$ is $X$-non-increasing under \(\Psi\), or $\rho$ is $X$-non-increasing when \(\Psi\) is clear from the context or irrelevant to the discussion)
@@ -442,13 +442,13 @@
 %     \begin{minipage}{0.64\textwidth} 
 %     \begin{enumerate}
 %         \item 
-%         For all $R' \in D(R,X)$, in the diagram shown on the right, where $h_{R'R}$ is the inclusion function, both squares are pullbacks,
-%         % For all $R' \in D(R,X)$, there exists a morphism \(h_{R'L}: R' \rightarrowtail L \) such that \trackedtext{both squares in the diagram shown on the right are pullbacks}, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions,
-%         \item \label{def:non_increasing:non_clapse} For all $R' \in D(R,X)$, for all nodes and edges $x$ in $R'$, if $ x \notin \operatorname{Im}(r)$ then 
+%         For all $R' \mathop{\in} D(R,X)$, in the diagram shown on the right, where $h_{R'R}$ is the inclusion function, both squares are pullbacks,
+%         % For all $R' \mathop{\in} D(R,X)$, there exists a morphism \(h_{R'L}: R' \rightarrowtail L \) such that \trackedtext{both squares in the diagram shown on the right are pullbacks}, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions,
+%         \item \label{def:non_increasing:non_clapse} For all $R' \mathop{\in} D(R,X)$, for all nodes and edges $x$ in $R'$, if $ x \notin \operatorname{Im}(r)$ then 
 %         $\Psi(R')(x) \notin \operatorname{Im}(l)$,
 %         % $h_{R'L}(r') \notin \operatorname{Im}(l)$,
-%         \item \label{def:non_increasing_rule_img_edges_distinct} For all $R',R'' \in D(R,X)$, for all edges $x$ in $R'$ and $y$ in $R''$, if $x \neq y$, then $\Psi(R')(x) \neq \Psi(R'')(y)$
-%         \item If $X$ has isolated nodes, then for all $R',R'' \in D(R,X)$ and nodes $x$ and $y$ in $R'$ and $R''$ respectively, if $x \neq y$, then $\Psi(R')(x) \neq \Psi(R'')(y)$.
+%         \item \label{def:non_increasing_rule_img_edges_distinct} For all $R',R'' \mathop{\in} D(R,X)$, for all edges $x$ in $R'$ and $y$ in $R''$, if $x \mathop{\neq} y$, then $\Psi(R')(x) \mathop{\neq} \Psi(R'')(y)$
+%         \item If $X$ has isolated nodes, then for all $R',R'' \mathop{\in} D(R,X)$ and nodes $x$ and $y$ in $R'$ and $R''$ respectively, if $x \mathop{\neq} y$, then $\Psi(R')(x) \mathop{\neq} \Psi(R'')(y)$.
 %     \end{enumerate} 
 %     \end{minipage}
 %     \hfill
@@ -514,7 +514,7 @@
                     \coordinate (o) at (0mm,-3mm); 
                     \node (l1) at ($(o)+(-10mm,0mm)$) {};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {5};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -522,7 +522,7 @@
                     \coordinate (o) at (5mm,-3mm); 
                     \node (l1) at ($(o)+(-10mm,0mm)$) {};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
@@ -530,8 +530,8 @@
                     \coordinate (o) at (-5mm,-3mm); 
                     \node (l1) at ($(o)+(-10mm,0mm)$) {};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -540,7 +540,7 @@
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -548,7 +548,7 @@
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
@@ -556,8 +556,8 @@
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -582,7 +582,7 @@
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {5};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -590,7 +590,7 @@
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
@@ -598,8 +598,8 @@
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -608,7 +608,7 @@
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -616,7 +616,7 @@
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
@@ -624,8 +624,8 @@
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -650,7 +650,7 @@
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -658,7 +658,7 @@
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     % \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -666,8 +666,8 @@
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {4};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    % \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    % \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -676,7 +676,7 @@
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -684,7 +684,7 @@
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
@@ -692,8 +692,8 @@
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -718,7 +718,7 @@
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -726,7 +726,7 @@
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -734,8 +734,8 @@
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    % \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    % \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -744,7 +744,7 @@
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -752,7 +752,7 @@
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                     % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
@@ -760,8 +760,8 @@
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -785,14 +785,14 @@
     %             \graphbox{$R'$}{0}{0}{44mm}{15mm}{2mm}{-5mm}{
     %                 \coordinate (o) at (-5mm,-3mm); 
     %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+    %                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
     %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
     %             } 
     %             \graphbox{$L$}{60mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
     %                 \coordinate (o) at (0mm,-3mm); 
     %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
     %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
-    %                 \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+    %                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
     %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
     %                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
     %             }    
@@ -807,14 +807,14 @@
     %                     \coordinate (o) at (-5mm,-3mm); 
     %                     \node[] (l1) at ($(o)+(-10mm,0mm)$) {};
     %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-    %                     \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+    %                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
     %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
     %                 } 
     %                 \graphbox{$L$}{60mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
     %                     \coordinate (o) at (0mm,-3mm); 
     %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
     %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                     \node[draw,circle] (l3) at ($(l1) + (1,0)$) {5};
+    %                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {5};
     %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
     %                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
     %                 }    
@@ -823,12 +823,12 @@
     %         }
     %     \end{center}
     % To illustrate the property captured by Definition~\ref{def:creates_more_x_on_the_left},
-    % consider the rewriting step defined by the DPO diagram below. Whenever an element $R' \in D(R,X)$ forms an \( X \)-occurrence in $H$ that is included neither in \( R \) nor $C$ with $C' \subseteq C$, the graph
-    % \( \operatorname{\Psi(R')} \subseteq L\) forms an \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor $C$.
+    % consider the rewriting step defined by the DPO diagram below. Whenever an element $R' \mathop{\in} D(R,X)$ forms an \( X \)-occurrence in $H$ that is included neither in \( R \) nor $C$ with $C' \mathop{\subseteq} C$, the graph
+    % \( \operatorname{\Psi(R')} \mathop{\subseteq} L\) forms an \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor $C$.
     % Furthermore, distinct $X$-occurrences in $H$ that are included neither in \( R \) nor $C$ have distinct corresponding $X$-occurrences in $G$ that are included neither in \( L \) nor $C$.
     To illustrate the $X$-non-increasing property captured by Definition~\ref{def:creates_more_x_on_the_left},
-    consider the rewriting step defined by the DPO diagram below. Whenever \( R'_i \) (for \( 1 \leq i \leq 4 \)) forms an \( X \)-occurrence $x$ in $H$ that is included neither in \( R \) nor $C$ with a subgraph $C' \subseteq C \cap x \subseteq C$, the graph
-    \( \operatorname{\Psi(R')} \subseteq L\) forms an \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor $C$.
+    consider the rewriting step defined by the DPO diagram below. Whenever \( R'_i \) (for \( 1 \leq i \leq 4 \)) forms an \( X \)-occurrence $x$ in $H$ that is included neither in \( R \) nor $C$ with a subgraph $C' \mathop{\subseteq} C \mathop{\cap} x \mathop{\subseteq} C$, the graph
+    \( \operatorname{\Psi(R')} \mathop{\subseteq} L\) forms an \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor $C$.
     Furthermore, distinct $X$-occurrences in $H$ that are included neither in \( R \) nor $C$ have distinct corresponding $X$-occurrences in $G$ that are included neither in \( L \) nor $C$.
     \begin{center} 
         \resizebox{0.7\textwidth}{!}{
@@ -837,7 +837,7 @@
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
@@ -852,8 +852,8 @@
                 \coordinate (o) at (-5mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 \draw[ ] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[ ] (l3) -- (l4) node[midway,above] {$b$};
                 \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
@@ -863,12 +863,12 @@
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
-                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[] (l3) -- (l2) node[midway,above] {$a$};
                 \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
-                \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[] (l1) -- (l6) node[midway,left] {$a$};
             }    
 
@@ -876,9 +876,9 @@
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                 \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
-                \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
             }    
 
@@ -886,10 +886,10 @@
                 \coordinate (o) at (-5mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
-                \node[ draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
                 \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[] (l3) -- (l4) node[midway,above] {$b$};
@@ -932,7 +932,7 @@ The second condition guarantees that any $X$-occurrence implicitly created by th
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {2};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
                     \draw[->] (l3) -- (l1) node[midway,above] {};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }     
@@ -940,7 +940,7 @@ The second condition guarantees that any $X$-occurrence implicitly created by th
                     \coordinate (o) at (5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                    % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+                    % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
                     \draw[->] (l2) -- (l1) node[midway,above] {};
                     % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
                 }    
@@ -948,8 +948,8 @@ The second condition guarantees that any $X$-occurrence implicitly created by th
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {2};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {3};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {3};
                     \draw[->] (l3) -- (l1) node[midway,above] {};
                     \draw[->] (l3) -- (l4) node[midway,above] {};
                     % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -974,7 +974,7 @@ The second condition guarantees that any $X$-occurrence implicitly created by th
     %                 \coordinate (o) at (5mm,-3mm); 
     %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {2};
     %                 \node[draw,circle] (l2) at ($(l1)+(1,0)$) {3};
-    %                 % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+    %                 % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
     %                 \draw[->] (l1) -- (l2) node[midway,above] {};
     %                 % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
     %             }    
@@ -982,7 +982,7 @@ The second condition guarantees that any $X$-occurrence implicitly created by th
     %                 \coordinate (o) at (-5mm,-3mm); 
     %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {3};
     %                 % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-    %                 \node[draw,circle] (l2) at ($(l1) + (1,0)$) {2};
+    %                 \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
     %                 \draw[->] (l2) -- (l1) node[midway,above] {};
     %                 % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
     %             }    
@@ -1009,7 +1009,7 @@ The second condition guarantees that any $X$-occurrence implicitly created by th
                 \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {2};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
                 }     
                 \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (5mm,-3mm); 
@@ -1019,8 +1019,8 @@ The second condition guarantees that any $X$-occurrence implicitly created by th
                 \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {2};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {3};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {3};
                 }    
                 \node () at (37mm,-8mm) {$\leftarrowtail$};
                 \node () at (67mm,-8mm) {$\rightarrowtail$};

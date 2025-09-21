@@ -1,7 +1,7 @@
 \input{\these/shared_paragrahs/visual_notation_for_multigraphs.tex}
 \begin{example}
     \label{nonwf}
-    Let $n \in \mathbb{N}_{\geq 2}$. Consider the graph rewriting system with three rules shown below. The right-hand-side graph of the first rule contains \( n \) arrows labeled \( b \) from node $1$ to node $2$, and the right-hand-side graph of the second rule contains \( n \) arrows labeled \( c \) from node $1$ to node $2$. The left-hand-side graph for the third rule contains \( n^2+1\) arrows labeled \( c \) from node $1$ to node $2$.
+    Let $n \mathop{\in} \mathbb{N}_{\geq 2}$. Consider the graph rewriting system with three rules shown below. The right-hand-side graph of the first rule contains \( n \) arrows labeled \( b \) from node $1$ to node $2$, and the right-hand-side graph of the second rule contains \( n \) arrows labeled \( c \) from node $1$ to node $2$. The left-hand-side graph for the third rule contains \( n^2+1\) arrows labeled \( c \) from node $1$ to node $2$.
 
     \begin{center}
         % \resizebox{0.7\textwidth}{!}{
@@ -64,9 +64,9 @@
                 \node[draw,circle] (l1) at ($(o)+(-10mm,2mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \draw[->] (l1) to[bend left] node[midway,above] {$c$} (l2);
-                % \draw[->] (l1) to[out = 60, in=120] node[midway,above] {$c$} (l2);
-                % \draw[->] (l1) to[out = 45, in=135] node[midway,above] {$c$} (l2);
-                % \draw[->] (l1) to[out = 30, in=150] node[midway,above] {$c$} (l2);
+                % \draw[->] (l1) to[out \mathop{=} 60, in=120] node[midway,above] {$c$} (l2);
+                % \draw[->] (l1) to[out \mathop{=} 45, in=135] node[midway,above] {$c$} (l2);
+                % \draw[->] (l1) to[out \mathop{=} 30, in=150] node[midway,above] {$c$} (l2);
                 \draw[->] (l1) to[bend right] node[midway,below] {$c$} (l2);
                 \node () at ($(l1)+(1,0)$) {$\vdots$};
             } 
@@ -89,23 +89,23 @@
         \end{center}
 
     The termination of this rewriting system can be proved using weighted type graphs of size $1$ over the natural tropical semiring, the natural arctic semiring or the arithmetic semiring. Let $w_a$,$w_c$ and $w_c$ be the weights of edges labeled by $a$, $b$ and $c$ respectively.
-    For any feasible weighted type graph over the natural tropical semiring or the natural arctic semiring, we have $w_a \geq n*2$ the following conditions must be satisfied
+    For any feasible weighted type graph over the natural tropical semiring or the natural arctic semiring, we have $w_a \mathop{\geq} n*2$ the following conditions must be satisfied
     \begin{flalign}
-        w_a \geq n*w_b\\
-        w_b \geq n*w_c\\
-        (n^2+1) * w_c \geq w_a \\
-        w_a > n*w_b \lor 
-        w_b > n*w_c \lor 
-        (n^2+1) * w_c > w_a
+        w_a \mathop{\geq} n*w_b\\
+        w_b \mathop{\geq} n*w_c\\
+        (n^2+1) * w_c \mathop{\geq} w_a \\
+        w_a \mathop{>} n*w_b \lor 
+        w_b \mathop{>} n*w_c \lor 
+        (n^2+1) * w_c \mathop{>} w_a
     \end{flalign}
-    For any feasible weighted type graph over the natural arithmetic semiring, we have $w_a \geq n*2$ as the following conditions must be satisfied
+    For any feasible weighted type graph over the natural arithmetic semiring, we have $w_a \mathop{\geq} n*2$ as the following conditions must be satisfied
     \begin{flalign}
-        w_a \geq w_b^n\\
-        w_b \geq w_c^n\\
-        w_c^{n^2+1} \geq w_a \\
-        w_a \geq w_b^n \lor 
-        w_b \geq w_c^n \lor
-        w_c^{n^2+1} \geq w_a
+        w_a \mathop{\geq} w_b^n\\
+        w_b \mathop{\geq} w_c^n\\
+        w_c^{n^2+1} \mathop{\geq} w_a \\
+        w_a \mathop{\geq} w_b^n \lor 
+        w_b \mathop{\geq} w_c^n \lor
+        w_c^{n^2+1} \mathop{\geq} w_a
     \end{flalign}
 
     Let $\mathcal{R}$ be a systems including this system. The constraints on weights will included too. If proving termination of $R$ requires a type graph with dimension greater than $1$, then constructing a suitable weighted type graph over the well-founded semiring on extended natural numbers proposed in the prior work becomes extremely difficult in practice, due the high computational complexity.

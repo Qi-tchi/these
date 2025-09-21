@@ -6,9 +6,9 @@ Consider a DPO rewriting system $\mathcal{R}$. Given a fixed semiring $S$, a pro
 The search starts with a weighted type graph containing 1 node, incrementally increasing the node count by 1 until a maximum of 4 nodes is reached.
 For a fixed number of nodes,
  if $S$ is a semiring over the natural numbers, the maximum edge weight is initialized to 1 and incremented by 1 (up to a limit of 3) if no suitable weighted type graph is found;
-if $S$ is a semiring over the real numbers, the search is performed over all real numbers.
+if $S$ is a semiring over the real numbers, weights are constrained to be positive real numbers, and no upper bound is imposed.
 Processors targeting different semirings can run in parallel to analyze the same DPO rewriting system.
-When a processor discovers a weighted type graph that witnesses relative termination of a subset of rules $\mathcal{A}$ with respect to another subset of rules $\mathcal{B}$ such that $\mathcal{R} = \mathcal{A} \cup \mathcal{B}$, it broadcasts this result to all processors and waits for them to terminate. If $\mathcal{B} = \emptyset$, the system's termination is proven. Otherwise, we initiate a new search for the rules in $\mathcal{B}$ unless a timeout is reached.
+When a processor discovers a weighted type graph that witnesses relative termination of a subset of rules $\mathcal{A}$ with respect to another subset of rules $\mathcal{B}$ such that $\mathcal{R} \mathop{=} \mathcal{A} \mathop{\cup} \mathcal{B}$, it broadcasts this result to all processors and waits for them to terminate. If $\mathcal{B} \mathop{=} \emptyset$, the system's termination is proven. Otherwise, we initiate a new search for the rules in $\mathcal{B}$ unless a timeout is reached.
  
 For a fixed number of nodes $k$, we adopt the approach proposed in \cite{bruggink2015proving, bruggink2014termination,zantema2014termination} to reduce the search space. Specifically, we construct a weighted type graph with
 % \( \mathcal{T}=(T, \mathbb{E}, S, w) \) where: (1) the type graph $T$ has 
@@ -33,23 +33,23 @@ This procedure amounts to checking the satisfiability of an existential Presburg
 
 \paragraph{Z3 Modeling.}
 The type graph $T$ is modeled in Z3 by defining 
-a boolean variable $x_{u,v,l} \in \mathbb{B}$ for every directed labeled edge $u\overset{l}{\to} v$ in the type graph, where $u,v\in\{1,...,k\}$ are nodes and $l \in \Sigma$ is an edge label. 
+a boolean variable $x_{u,v,l} \mathop{\in} \mathbb{B}$ for every directed labeled edge $u\overset{l}{\to} v$ in the type graph, where $u,v\in\{1,...,k\}$ are nodes and $l \mathop{\in} \Sigma$ is an edge label. 
 The variable $x_{u,v,l}$ has the value \textit{true} if the directed edge $u\overset{l}{\to} v$ exists in the result type graph, \textit{false} otherwise. 
 
 The weight function $w$ and the set $\mathbb{E}$ of morphism-rulers are modeled by defining 
 a variable $y_{u,v,l}$ of Z3's \textit{Real} sort or \textit{Int} sort (the solver's default theory for real numbers and integers), depending on the semiring $\mathcal{S}$ considered,
- for every pair $u,v\in\{1,...,k\}$ of nodes and edge label $l \in \Sigma$. 
+ for every pair $u,v\in\{1,...,k\}$ of nodes and edge label $l \mathop{\in} \Sigma$. 
 The variable $y_{u,v,l}$ represents the weight of the directed labeled edge $u\overset{l}{\to} v$ in the resulting weighted type graph, but only if edge $u\overset{l}{\to} v$ exists (i.e. $x_{u,v,l}$ has the value \textit{true}). 
 They are constrained to be non-negative.
 
-A variable $\delta \in \mathbb{R}_{>0}$ is defined to ensure that there is
+A variable $\delta \mathop{\in} \mathbb{R}_{>0}$ is defined to ensure that there is
 a partition of the rule set $\mathcal{R}$ into a non-empty subset $\mathcal{A}$ and a subset $\mathcal{B}$ such that all rules in $\mathcal{A}$ are either $\delta$-uniformly decreasing or $\delta$-closure decreasing, and all rules in $\mathcal{B}$ are weakly decreasing.
 
 For convenience, the following auxiliary variables are also defined:
 \begin{itemize}
-    \item a boolean variable $v_h \in \mathbb{B}$ for every morphism $h$ from $L$ or $R$ to $T$;
-    \item a real-valued variable $v_{h'} \in \mathbb{R}_{\geq 0}$ for every morphism $h$ from $L$ or $R$ to $T$;
-    \item a boolean variable $v_c \in \mathbb{B}$ for every morphism $c$ from $L$ to $T$.
+    \item a boolean variable $v_h \mathop{\in} \mathbb{B}$ for every morphism $h$ from $L$ or $R$ to $T$;
+    \item a real-valued variable $v_{h'} \mathop{\in} \mathbb{R}_{\geq 0}$ for every morphism $h$ from $L$ or $R$ to $T$;
+    \item a boolean variable $v_c \mathop{\in} \mathbb{B}$ for every morphism $c$ from $L$ to $T$.
 \end{itemize}  
 The value of $v_h$ has the value \textit{true} if the morphism $h$ exists in the result type graph (i.e. all edges in its image exist), and \textit{false} otherwise.
 The variable $v_{h'}$ holds the weight of the morphism $h$, provided the morphism $h$ exists (i.e., $v_h$ has the value \textit{true}).
@@ -57,12 +57,12 @@ The variable $v_c$ has the value \textit{true} if the morphism $c$ exists in the
 
 If there exists an assignment of values to 
     \begin{itemize}
-        \item $(x_{u,v,l})$, for all $u,v \in \{1,...,k\}$ and for all $l \in \Sigma$, and
-        \item $(y_{u,v,l})$, for all $u,v \in \{1,...,k\}$ and for all $l \in \Sigma$, and
+        \item $(x_{u,v,l})$, for all $u,v \mathop{\in} \{1,...,k\}$ and for all $l \mathop{\in} \Sigma$, and
+        \item $(y_{u,v,l})$, for all $u,v \mathop{\in} \{1,...,k\}$ and for all $l \mathop{\in} \Sigma$, and
         \item $\delta$,
     \end{itemize} 
     such that all conditions of Theorem~\ref{nwf:thm:termination_grs} are satisfied, then a suitable weighted type graph that witnesses termination of the DPO rewriting system can be constructed, because
     \begin{itemize}
-        \item the values of \( (x_{u,v,l})_{u,v \in \{1,...,k\}, l \in \Sigma} \) define the type graph $T$, and
-        \item the values of \( (y_{u,v,l})_{u,v \in \{1,...,k\}, l \in \Sigma} \) define the weight function $w$ and the set $\mathbb{E}$ of morphism-rulers.
+        \item the values of \( (x_{u,v,l})_{u,v \mathop{\in} \{1,...,k\}, l \mathop{\in} \Sigma} \) define the type graph $T$, and
+        \item the values of \( (y_{u,v,l})_{u,v \mathop{\in} \{1,...,k\}, l \mathop{\in} \Sigma} \) define the weight function $w$ and the set $\mathbb{E}$ of morphism-rulers.
     \end{itemize} 

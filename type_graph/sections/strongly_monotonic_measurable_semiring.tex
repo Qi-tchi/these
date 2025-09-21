@@ -1,223 +1,223 @@
 We introduce the notion of a strongly monotonic measurable semiring.
 The key difference with well-founded semirings (Definition~\ref{def:well_founded_semiring}) is that the semiring is required to be equipped with a homomorphism to the extended real numbers instead of being well-founded.
-Hereafter, $<$ and $\leq$ denote the canonical irreflexive and reflexive orders on the set of extended real numbers $\overline{\mathbb{R}} = \mathbb{R} \cup \{-\infty, +\infty\}$.
+Hereafter, $<$ and $\leq$ denote the canonical irreflexive and reflexive orders on the set of extended real numbers $\overline{\mathbb{R}} \mathop{=} \mathbb{R} \mathop{\cup} \{\mathop{-\infty}, \mathop{+\infty}\}$.
 \begin{definition} 
     \label{def:nwf:real_strongly_monotonic_semiring}
-    A \textbf{strongly monotonic measurable semiring} $(S, \oplus, \odot, 0, 1, \prec, \mu)$ consists of
+    A \textbf{strongly monotonic measurable semiring} $(S, \mathop{\oplus}, \mathop{\odot}, 0, 1, \prec, \mu)$ consists of
     \begin{itemize} 
-        \item A commutative semiring $(S, \oplus, \odot, 0, 1)$,
+        \item A commutative semiring $(S, \mathop{\oplus}, \mathop{\odot}, 0, 1)$,
         \item A non-empty irreflexive order $\prec$ on $S$,
-        \item A homomorphism $\mu : (S, \prec) \to ( \overline{\mathbb{R}}, <_{\overline{\mathbb{R}}} )$,
+        \item A homomorphism $\mu : (S, \prec) \mathop{\to} ( \overline{\mathbb{R}}, <_{\overline{\mathbb{R}}} )$,
     \end{itemize}
-    such that $0 \neq 1$ and for all $x,y,z,w \in S$, for all $\delta \in \mathbb{R}$ and $\delta>0$, we have
+    such that $0 \mathop{\neq} 1$ and for all $x,y,z,w \mathop{\in} S$, for all $\delta \mathop{\in} \mathbb{R}$ and $\delta>0$, we have
         \begin{align*}
-            1 \preceq x \land 1 \preceq y 
-            &\Rightarrow
-            1 \preceq x \oplus y,
+            1 \mathop{\preceq} x \mathop{\land} 1 \mathop{\preceq} y 
+            &\mathop{\Rightarrow}
+            1 \mathop{\preceq} x \mathop{\oplus} y,
             &\tag{S0} \label{ax:s0} 
             \\ 
-            x \preceq x' \land y \preceq y' 
-            &\Rightarrow
-            x \oplus y \preceq x' \oplus y',
+            x \mathop{\preceq} x' \mathop{\land} y \mathop{\preceq} y' 
+            &\mathop{\Rightarrow}
+            x \mathop{\oplus} y \mathop{\preceq} x' \mathop{\oplus} y',
             &\tag{S1} \label{ax:s1} 
             \\   
             % x < y  
-            % &\Rightarrow
-            % x \oplus z \leq y \oplus z 
+            % &\mathop{\Rightarrow}
+            % x \mathop{\oplus} z \leq y \mathop{\oplus} z 
             % \tag{S1} \label{eq:ordered_semiring_plus_monotonic} 
             % \\ w
-            x \prec x' \land y \prec y'  
-            &\Rightarrow
-            x \oplus y \prec x' \oplus y',
+            x \mathop{\prec} x' \mathop{\land} y \mathop{\prec} y'  
+            &\mathop{\Rightarrow}
+            x \mathop{\oplus} y \mathop{\prec} x' \mathop{\oplus} y',
             &\tag{S2} \label{ax:s2} 
             \\
-            \delta + \mu(x) <_{\overline{\mathbb{R}}} \mu(y) \land \delta + \mu(z) <_{\overline{\mathbb{R}}} \mu(w)
-            &\Rightarrow
-            \delta + \mu(x \oplus z) <_{\overline{\mathbb{R}}} \mu(y \oplus w),
+            \delta\mathop{+}\mu(x) <_{\overline{\mathbb{R}}} \mu(y) \mathop{\land} \delta\mathop{+}\mu(z) <_{\overline{\mathbb{R}}} \mu(w)
+            &\mathop{\Rightarrow}
+            \delta\mathop{+}\mu(x \mathop{\oplus} z) <_{\overline{\mathbb{R}}} \mu(y \mathop{\oplus} w),
             &\tag{S3} \label{ax:s2'}
             \\
-            x \preceq x'
-            &\Rightarrow 
-            x \odot y \preceq x' \odot y,
+            x \mathop{\preceq} x'
+            &\mathop{\Rightarrow} 
+            x \mathop{\odot} y \mathop{\preceq} x' \mathop{\odot} y,
             &\tag{S4} \label{ax:s3} 
             \\
-            x \prec x' \land y \neq 0 
-            &\Rightarrow
-            x \odot y \prec x' \odot y,
+            x \mathop{\prec} x' \mathop{\land} y \mathop{\neq} 0 
+            &\mathop{\Rightarrow}
+            x \mathop{\odot} y \mathop{\prec} x' \mathop{\odot} y,
             &\tag{S5} \label{ax:s4}
             \\ 
-            \delta + \mu(x) <_{\overline{\mathbb{R}}} \mu(y) \land 1 \preceq z \land z \neq 0
-            &\Rightarrow
-            \delta + \mu(x \odot z) <_{\overline{\mathbb{R}}} \mu(y \odot z),
+            \delta\mathop{+}\mu(x) <_{\overline{\mathbb{R}}} \mu(y) \mathop{\land} 1 \mathop{\preceq} z \mathop{\land} z \mathop{\neq} 0
+            &\mathop{\Rightarrow}
+            \delta\mathop{+}\mu(x \mathop{\odot} z) <_{\overline{\mathbb{R}}} \mu(y \mathop{\odot} z),
             &\tag{S6} \label{ax:s4'}
             \\
-            \delta+ \mu(x) <_{\overline{\mathbb{R}}} \mu(x') \land y \neq 0
-            &\Rightarrow
-            \mu(x \odot y) <_{\overline{\mathbb{R}}} \mu(x' \odot y).
+            \delta+ \mu(x) <_{\overline{\mathbb{R}}} \mu(x') \mathop{\land} y \mathop{\neq} 0
+            &\mathop{\Rightarrow}
+            \mu(x \mathop{\odot} y) <_{\overline{\mathbb{R}}} \mu(x' \mathop{\odot} y).
             &\tag{S7} \label{ax:s4''}
         %    \\
             % \\
-            % 1 \leq z \neq 0 \land X < Y  
-            % &\Rightarrow
+            % 1 \leq z \mathop{\neq} 0 \mathop{\land} X < Y  
+            % &\mathop{\Rightarrow}
             % \exists \mu(x * z) < \mu( y * z)
             % \tag{S101} \label{eq:strongly_ordered_measurable_semiring_lt_preserved_neq0_geq1}  
         %      \\     
-        %     a + X < Y \land z \neq 0 
-        %    &\Rightarrow
-        %    \exists b> 0. b + \mu(x* z) < \mu(y * z) 
+        %     a\mathop{+}X < Y \mathop{\land} z \mathop{\neq} 0 
+        %    &\mathop{\Rightarrow}
+        %    \exists b> 0. b\mathop{+}\mu(x* z) < \mu(y * z) 
         %    \tag{S3} \label{eq:ordered_semiring_times_stable_under_mesure} 
         \end{align*}
-        where $\preceq$ denotes the reflexive closure of $\prec$. The semiring is a \textbf{strictly monotonic measurable semiring} if it additionally satisfies 
+        where $\mathop{\preceq}$ denotes the reflexive closure of $\prec$. The semiring is a \textbf{strictly monotonic measurable semiring} if it additionally satisfies 
     \begin{flalign*}
-        \hspace{4.5cm} x \prec x' 
-        &\Rightarrow
-        x \oplus y \prec x' \oplus y,
+        \hspace{4.5cm} x \mathop{\prec} x' 
+        &\mathop{\Rightarrow}
+        x \mathop{\oplus} y \mathop{\prec} x' \mathop{\oplus} y,
         &\tag{S8} \label{ax:s5} 
         \\
-        \delta + \mu(x) <_{\overline{\mathbb{R}}} \mu(x')
-        &\Rightarrow
-        \delta + \mu(x \oplus y) <_{\overline{\mathbb{R}}} \mu(x' \oplus y).
+        \delta\mathop{+}\mu(x) <_{\overline{\mathbb{R}}} \mu(x')
+        &\mathop{\Rightarrow}
+        \delta\mathop{+}\mu(x \mathop{\oplus} y) <_{\overline{\mathbb{R}}} \mu(x' \mathop{\oplus} y).
         &\tag{S9} \label{ax:s5'}
     \end{flalign*}
 \end{definition} 
 \begin{example} 
-    % The real tropical semiring $\mathfrak{T}' = (\mathbb{R} \cup \{+\infty\}, \min,+,+\infty, 0_\mathbb{R},<,\operatorname{id}_{\mathbb{R} \cup \{+\infty\}})$ has domain $\mathbb{R} \cup \{+\infty\}$, the binary function symbol $\oplus$ interpreted by $\min$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $+\infty$ and $0_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R} \cup \{+\infty\}$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R} \cup \{+\infty\}$. The real tropical semiring is a strongly monotonic measurable semiring. It is not strictly monotonic measurable because $2 < 3$ but $2 \oplus 2 = \min(2,2) = 2 \not < 2 = \min(3,2) = 3 \oplus 2$.
+    % The real tropical semiring $\mathfrak{T}' \mathop{=} (\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}, \mathop{\min},+,\mathop{+\infty}, 0_\mathbb{R},<,\operatorname{id}_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}})$ has domain $\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}$, the binary function symbol $\mathop{\oplus}$ interpreted by $\min$ and the binary function symbol $\mathop{\odot}$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $\mathop{+\infty}$ and $0_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}$. The real tropical semiring is a strongly monotonic measurable semiring. It is not strictly monotonic measurable because $2 < 3$ but $2 \mathop{\oplus} 2 \mathop{=} \min(2,2) \mathop{=} 2 \not < 2 \mathop{=} \min(3,2) \mathop{=} 3 \mathop{\oplus} 2$.
 
      The real tropical semiring $$\mathfrak{T}' \isdef (
-        \mathbb{R} \cup \{+\infty\}, 
-        \min_{\mathbb{R} \cup \{+\infty\}},
-        +_{\mathbb{R} \cup \{+\infty\}},\\
-        \mathop{+\infty},
-        0_{\mathbb{R} \cup \{+\infty\}},
-        <_{\mathbb{R} \cup \{+\infty\}},
-        \operatorname{id}_{\mathbb{R} \cup \{+\infty\}})$$ is an instance of the strongly monotonic measurable semiring where
+        \mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}, 
+        \opn{\min}_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}},
+        +_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}},\\
+        \mathop{\mathop{+\infty}},
+        0_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}},
+        <_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}},
+        \operatorname{id}_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}})$$ is an instance of the strongly monotonic measurable semiring where
      \begin{flalign*}
-         S & \longmapsto \mathbb{R} \cup \{+\infty\},
+         S & \mathop{\longmapsto} \mathbb{R} \mathop{\cup} \{\mathop{+\infty}\},
          \\
-         \oplus & \longmapsto \operatorname{min}_{\mathbb{R} \cup \{+\infty\}},
+         \mathop{\oplus} & \mathop{\longmapsto} \operatorname{min}_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}},
          \\
-         \odot & \longmapsto +_{\mathbb{R} \cup \{+\infty\}},
+         \mathop{\odot} & \mathop{\longmapsto} +_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}},
          \\
-         0_s & \longmapsto +\infty,
+         0_s & \mathop{\longmapsto} \mathop{+\infty},
          \\
-         1_s & \longmapsto 0_{\mathbb{R} \cup \{+\infty\}},
+         1_s & \mathop{\longmapsto} 0_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}},
          \\
-         \prec & \longmapsto <_{\mathbb{R} \cup \{+\infty\}},
+         \mathop{\prec} & \mathop{\longmapsto} <_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}},
          \\
-         \mu & \longmapsto \operatorname{id}_{\mathbb{R} \cup \{+\infty\}}.
+         \mu & \mathop{\longmapsto} \operatorname{id}_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}}.
      \end{flalign*}
-    It is a strongly monotonic measurable semiring but not strictly monotonic measurable, because we have $2 <_{\mathbb{R} \cup \{+\infty\}} 3$ but $$2 \oplus 2 \isdef \operatorname{min}_{\mathbb{R} \cup \{+\infty\}}(2,2) = 2 \not <_{\mathbb{R} \cup \{+\infty\}} 2 = \operatorname{min}_{\mathbb{R} \cup \{+\infty\}}(3,2) = 3 \isdef 2.$$
+    It is a strongly monotonic measurable semiring but not strictly monotonic measurable, because we have $2 <_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}} 3$ but $$2 \mathop{\oplus} 2 \isdef \operatorname{min}_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}}(2,2) \mathop{=} 2 \not <_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}} 2 \mathop{=} \operatorname{min}_{\mathbb{R} \mathop{\cup} \{\mathop{+\infty}\}}(3,2) \mathop{=} 3 \isdef 2.$$
 \end{example}
 \begin{example}
-    % The real arctic semiring $\mathfrak{A}' = (\mathbb{R} \cup \{-\infty\},\max,+,-\infty, 0_\mathbb{R},<,\operatorname{id}_{\mathbb{R} \cup \{-\infty\}})$ has domain $\mathbb{R} \cup \{-\infty\}$, the binary function symbol $\oplus$ interpreted by $\max$ and the binary function symbol $\odot$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $-\infty$ and $0_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R} \cup \{-\infty\}$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R} \cup \{-\infty\}$. The real arctic semiring is a strongly monotonic measurable semiring. It is not strictly monotonic measurable because $2 < 3$ but $2 \oplus 3 = \max(2,3) = 3 \not < 3 = \max(3,3) = 3 \oplus 3$.
-    The real arctic semiring $$\mathfrak{A}' \isdef (\mathbb{R} \cup \{-\infty\},\operatorname{max}_{\mathbb{R} \cup \{-\infty\}}, +_{\mathbb{R} \cup \{-\infty\}}, 
+    % The real arctic semiring $\mathfrak{A}' \mathop{=} (\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\},\max,+,\mathop{-\infty}, 0_\mathbb{R},<,\operatorname{id}_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}})$ has domain $\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}$, the binary function symbol $\mathop{\oplus}$ interpreted by $\max$ and the binary function symbol $\mathop{\odot}$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $\mathop{-\infty}$ and $0_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}$. The real arctic semiring is a strongly monotonic measurable semiring. It is not strictly monotonic measurable because $2 < 3$ but $2 \mathop{\oplus} 3 \mathop{=} \max(2,3) \mathop{=} 3 \not < 3 \mathop{=} \max(3,3) \mathop{=} 3 \mathop{\oplus} 3$.
+    The real arctic semiring $$\mathfrak{A}' \isdef (\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\},\operatorname{max}_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}}, +_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}}, 
     \\
-      \mathop{-\infty}, 0_{\mathbb{R} \cup \{-\infty\}}, <_{\mathbb{R} \cup \{-\infty\}}, \operatorname{id}_{\mathbb{R} \cup \{-\infty\}})$$ is an instance of the strongly monotonic measurable semiring where
+      \mathop{\mathop{-\infty}}, 0_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}}, <_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}}, \operatorname{id}_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}})$$ is an instance of the strongly monotonic measurable semiring where
     \begin{flalign*}
-        S & \longmapsto \mathbb{R} \cup \{-\infty\},
+        S & \mathop{\longmapsto} \mathbb{R} \mathop{\cup} \{\mathop{-\infty}\},
         \\
-        \oplus & \longmapsto \operatorname{\max}_{\mathbb{R} \cup \{-\infty\}},
+        \mathop{\oplus} & \mathop{\longmapsto} \operatorname{\max}_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}},
         \\
-        \odot & \longmapsto +_{\mathbb{R} \cup \{-\infty\}},
+        \mathop{\odot} & \mathop{\longmapsto} +_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}},
         \\
-        0_s & \longmapsto -\infty,
+        0_s & \mathop{\longmapsto} \mathop{-\infty},
         \\
-        1_s & \longmapsto 0_{\mathbb{R} \cup \{-\infty\}},
+        1_s & \mathop{\longmapsto} 0_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}},
         \\
-        \prec & \longmapsto <_{\mathbb{R} \cup \{-\infty\}},
+        \mathop{\prec} & \mathop{\longmapsto} <_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}},
         \\
-        \mu & \longmapsto \operatorname{id}_{\mathbb{R} \cup \{-\infty\}}.
+        \mu & \mathop{\longmapsto} \operatorname{id}_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}}.
     \end{flalign*}
-    It is a strongly monotonic measurable semiring but not strictly monotonic measurable, because we have $2 <_{\mathbb{R} \cup \{-\infty\}} 3$ but $$2 \oplus 3 \isdef \operatorname{\max}_{\mathbb{R} \cup \{-\infty\}}(2,3) = 3 \not <_{\mathbb{R} \cup \{-\infty\}} 3 = \operatorname{\max}_{\mathbb{R} \cup \{-\infty\}}(3,3) \isdef 3 \oplus 3.$$
-%    The real arctic semiring: $\mathfrak{A}' = (\mathbb{R} \cup \{-\infty\},\max,+,-\infty, 0,<,\operatorname{id}_{\mathbb{R} \cup \{-\infty\}})$.
+    It is a strongly monotonic measurable semiring but not strictly monotonic measurable, because we have $2 <_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}} 3$ but $$2 \mathop{\oplus} 3 \isdef \operatorname{\max}_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}}(2,3) \mathop{=} 3 \not <_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}} 3 \mathop{=} \operatorname{\max}_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}}(3,3) \isdef 3 \mathop{\oplus} 3.$$
+%    The real arctic semiring: $\mathfrak{A}' \mathop{=} (\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\},\max,+,\mathop{-\infty}, 0,<,\operatorname{id}_{\mathbb{R} \mathop{\cup} \{\mathop{-\infty}\}})$.
 \end{example}
 \begin{example}
     The real arithmetic semiring $$\mathfrak{N}' \isdef (\mathbb{R}^+,+_{\mathbb{R}^+},*_{\mathbb{R}^+},0_{\mathbb{R}^+},1_{\mathbb{R}^+},<_{\mathbb{R}^+},\operatorname{id}_{\mathbb{R}^+})$$ is an instance of the strongly monotonic measurable semiring where
     \begin{flalign*}
-        S & \longmapsto \mathbb{R}^+,
+        S & \mathop{\longmapsto} \mathbb{R}^+,
         \\
-        \oplus & \longmapsto +_{\mathbb{R}^+},
+        \mathop{\oplus} & \mathop{\longmapsto} +_{\mathbb{R}^+},
         \\
-        \odot & \longmapsto *_{\mathbb{R}^+},
+        \mathop{\odot} & \mathop{\longmapsto} *_{\mathbb{R}^+},
         \\
-        0_s & \longmapsto 0_{\mathbb{R}^+},
+        0_s & \mathop{\longmapsto} 0_{\mathbb{R}^+},
         \\
-        1_s & \longmapsto 1_{\mathbb{R}^+},
+        1_s & \mathop{\longmapsto} 1_{\mathbb{R}^+},
         \\
-        \prec & \longmapsto <_{\mathbb{R}^+},
+        \mathop{\prec} & \mathop{\longmapsto} <_{\mathbb{R}^+},
         \\
-        \mu & \longmapsto \operatorname{id}_{\mathbb{R}^+}.
+        \mu & \mathop{\longmapsto} \operatorname{id}_{\mathbb{R}^+}.
     \end{flalign*} 
     It is a strictly monotonic measurable semiring. 
-    % The real arithmetic semiring $\mathfrak{N}' = (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$ has as domain the set $\mathbb{R}^+$ of positive real numbers, the binary function symbol $\oplus$ interpreted by $+$ and the binary function symbol $\odot$ interpreted by $*$, the constant symbols $0_s$ and $1_s$ interpreted by $0_\mathbb{R}$ and $1_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R}^+$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R}^+$. The real arithmetic semiring is a strictly monotonic measurable semiring. 
+    % The real arithmetic semiring $\mathfrak{N}' \mathop{=} (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$ has as domain the set $\mathbb{R}^+$ of positive real numbers, the binary function symbol $\mathop{\oplus}$ interpreted by $+$ and the binary function symbol $\mathop{\odot}$ interpreted by $*$, the constant symbols $0_s$ and $1_s$ interpreted by $0_\mathbb{R}$ and $1_\mathbb{R}$, respectively, the binary relation symbol $\prec$ interpreted by the canonical order $<$ on $\mathbb{R}^+$, and the unary function symbol $\mu$ interpreted by the identity function on $\mathbb{R}^+$. The real arithmetic semiring is a strictly monotonic measurable semiring. 
 \end{example}
 \begin{example} 
     \label{example:real_semirings}
-    The natural tropical semiring $$\mathfrak{T} \isdef (\mathbb{N} \cup \{+\infty\},\operatorname{min}_\mathbb{N},+_{\mathbb{N}},+\infty, 0_\mathbb{N}, <_{\mathbb{N}} , \operatorname{id}_{\mathbb{N} \cup \{+\infty\}})$$ is an instance of the strongly monotonic measurable semiring where
+    The natural tropical semiring $$\mathfrak{T} \isdef (\mathbb{N} \mathop{\cup} \{\mathop{+\infty}\},\operatorname{min}_\mathbb{N},+_{\mathbb{N}},\mathop{+\infty}, 0_\mathbb{N}, <_{\mathbb{N}} , \operatorname{id}_{\mathbb{N} \mathop{\cup} \{\mathop{+\infty}\}})$$ is an instance of the strongly monotonic measurable semiring where
     \begin{flalign*}
-        S & \longmapsto \mathbb{N} \cup \{+\infty\},
+        S & \mathop{\longmapsto} \mathbb{N} \mathop{\cup} \{\mathop{+\infty}\},
         \\
-        \oplus & \longmapsto \operatorname{min}_\mathbb{N},
+        \mathop{\oplus} & \mathop{\longmapsto} \operatorname{min}_\mathbb{N},
         \\
-        \odot & \longmapsto +_\mathbb{N},
+        \mathop{\odot} & \mathop{\longmapsto} +_\mathbb{N},
         \\
-        0_s & \longmapsto +\infty,
+        0_s & \mathop{\longmapsto} \mathop{+\infty},
         \\
-        1_s & \longmapsto 0_\mathbb{N},
+        1_s & \mathop{\longmapsto} 0_\mathbb{N},
         \\
-        \prec & \longmapsto <_\mathbb{N},
+        \mathop{\prec} & \mathop{\longmapsto} <_\mathbb{N},
         \\
-        \mu & \longmapsto \operatorname{id}_\mathbb{N}.
+        \mu & \mathop{\longmapsto} \operatorname{id}_\mathbb{N}.
     \end{flalign*}
-    The natural arctic semiring $$\mathfrak{A} \isdef (\mathbb{N} \cup \{-\infty\},\operatorname{max}_\mathbb{N},+_{\mathbb{N}},-\infty, 0_\mathbb{N},<_{\mathbb{N}}, \operatorname{id}_{\mathbb{N} \cup \{-\infty\}})$$ is an instance of the strongly monotonic measurable semiring where
+    The natural arctic semiring $$\mathfrak{A} \isdef (\mathbb{N} \mathop{\cup} \{\mathop{-\infty}\},\operatorname{max}_\mathbb{N},+_{\mathbb{N}},\mathop{-\infty}, 0_\mathbb{N},<_{\mathbb{N}}, \operatorname{id}_{\mathbb{N} \mathop{\cup} \{\mathop{-\infty}\}})$$ is an instance of the strongly monotonic measurable semiring where
     \begin{flalign*}
-        S & \longmapsto \mathbb{N} \cup \{-\infty\},
+        S & \mathop{\longmapsto} \mathbb{N} \mathop{\cup} \{\mathop{-\infty}\},
         \\
-        \oplus & \longmapsto \operatorname{max}_\mathbb{N},
+        \mathop{\oplus} & \mathop{\longmapsto} \operatorname{max}_\mathbb{N},
         \\
-        \odot & \longmapsto +_\mathbb{N},
+        \mathop{\odot} & \mathop{\longmapsto} +_\mathbb{N},
         \\
-        0_s & \longmapsto -\infty,
+        0_s & \mathop{\longmapsto} \mathop{-\infty},
         \\ 
-        1_s & \longmapsto 0_\mathbb{N},
+        1_s & \mathop{\longmapsto} 0_\mathbb{N},
         \\
-        \prec & \longmapsto <_\mathbb{N},
+        \mathop{\prec} & \mathop{\longmapsto} <_\mathbb{N},
         \\
-        \mu & \longmapsto \operatorname{id}_\mathbb{N}.
+        \mu & \mathop{\longmapsto} \operatorname{id}_\mathbb{N}.
     \end{flalign*}  
     The natural arithmetic semiring $$\mathfrak{N} \isdef (\mathbb{N},+_\mathbb{N},*_\mathbb{N},+_{\mathbb{N}},0_\mathbb{N},1_\mathbb{N},<_\mathbb{N},\operatorname{id}_\mathbb{N})$$ is an instance of the strictly monotonic measurable semiring where
     \begin{flalign*}
-        S & \longmapsto \mathbb{N},
+        S & \mathop{\longmapsto} \mathbb{N},
         \\
-        \oplus & \longmapsto +_\mathbb{N},
+        \mathop{\oplus} & \mathop{\longmapsto} +_\mathbb{N},
         \\
-        \odot & \longmapsto *_\mathbb{N},
+        \mathop{\odot} & \mathop{\longmapsto} *_\mathbb{N},
         \\
-        0_s & \longmapsto 0_\mathbb{N},
+        0_s & \mathop{\longmapsto} 0_\mathbb{N},
         \\
-        1_s & \longmapsto 1_\mathbb{N},
+        1_s & \mathop{\longmapsto} 1_\mathbb{N},
         \\
-        \prec & \longmapsto <_\mathbb{N},
+        \mathop{\prec} & \mathop{\longmapsto} <_\mathbb{N},
         \\
-        \mu & \longmapsto \operatorname{id}_\mathbb{N}.
+        \mu & \mathop{\longmapsto} \operatorname{id}_\mathbb{N}.
     \end{flalign*}
 \end{example}
 
 % \begin{notation} 
 %     \label{def:bigodot}
-% Let $(S, \oplus, \odot, 0_s, 1_s)$ be a semiring. We extend naturally the binary operations $\oplus$ and $\odot$ to finite sets $E \subseteq S$ by letting
+% Let $(S, \mathop{\oplus}, \mathop{\odot}, 0_s, 1_s)$ be a semiring. We extend naturally the binary operations $\mathop{\oplus}$ and $\mathop{\odot}$ to finite sets $E \mathop{\subseteq} S$ by letting
 %     \begin{itemize}
-%         \item $\bigodot \emptyset \overset{\operatorname{def}}{=} 1_s$ and $\bigodot \left( E \cup \{x\} \right) \overset{\operatorname{def}}{=} \left( \bigodot E \right) \odot x$;
-%         \item $\bigoplus \emptyset \overset{\operatorname{def}}{=} 0_s$ and $\bigoplus \left( E \cup \{x\} \right) \overset{\operatorname{def}}{=} \left( \bigoplus E \right) \oplus x$.
+%         \item $\mathop{\bigodot} \emptyset \overset{\operatorname{def}}{=} 1_s$ and $\mathop{\bigodot} \left( E \mathop{\cup} \{x\} \right) \overset{\operatorname{def}}{=} \left( \mathop{\bigodot} E \right) \mathop{\odot} x$;
+%         \item $\mathop{\bigoplus} \emptyset \overset{\operatorname{def}}{=} 0_s$ and $\mathop{\bigoplus} \left( E \mathop{\cup} \{x\} \right) \overset{\operatorname{def}}{=} \left( \mathop{\bigoplus} E \right) \mathop{\oplus} x$.
 %     \end{itemize}
 % %  \begin{flalign*}
-% %     \bigodot \emptyset &\overset{\operatorname{def}}{=} 1_s
+% %     \mathop{\bigodot} \emptyset &\overset{\operatorname{def}}{=} 1_s
 % % \\
-% %     \bigodot \left( E \cup \{x\} \right) &\overset{\operatorname{def}}{=} \left( \bigodot E \right) \odot x
+% %     \mathop{\bigodot} \left( E \mathop{\cup} \{x\} \right) &\overset{\operatorname{def}}{=} \left( \mathop{\bigodot} E \right) \mathop{\odot} x
 % %     \\
-% %     \bigoplus \emptyset &\overset{\operatorname{def}}{=} 0_s
+% %     \mathop{\bigoplus} \emptyset &\overset{\operatorname{def}}{=} 0_s
 % %     \\
-% %         \bigoplus \left( E \cup \{x\} \right) &\overset{\operatorname{def}}{=} \left( \bigoplus E \right) \oplus x
+% %         \mathop{\bigoplus} \left( E \mathop{\cup} \{x\} \right) &\overset{\operatorname{def}}{=} \left( \mathop{\bigoplus} E \right) \mathop{\oplus} x
 % % \end{flalign*}
 % \end{notation}
 
@@ -226,8 +226,8 @@ Hereafter, $<$ and $\leq$ denote the canonical irreflexive and reflexive orders 
 % A strongly monotonic measurable semiring differs from a well-founded strongly monotonic semiring in~\cite{endrullis2024generalized} in four ways:
 % \begin{enumerate}[label=(\arabic*),noitemsep]
 %     \item Replacing well-foundedness with the homomorphism~$\mu$ and introducing Axioms \eqref{ax:s2'}, \eqref{ax:s4'}, and \eqref{ax:s4''}. This modification enables the use of non-well-founded semirings (e.g., as in Example~\ref{example:real_semirings}).
-%     % \item Removing the condition $1_S \preceq y$ from the original Axioms~(S3) and~(S4)\todo{This is not helpful}, resulting in our Axioms~(S4) and~(S5). This relaxation allows inclusion of elements smaller than $1_S$, as motivated in~\autoref{remark:greater_than_1}.
+%     % \item Removing the condition $1_S \mathop{\preceq} y$ from the original Axioms~(S3) and~(S4)\todo{This is not helpful}, resulting in our Axioms~(S4) and~(S5). This relaxation allows inclusion of elements smaller than $1_S$, as motivated in~\autoref{remark:greater_than_1}.
 %     \item Adding Axiom Equation~\eqref{ax:s0}. This technical adjustment ensures that if every $\mathcal{T}$-valued element of a type graph (see Definition~\ref{def:weighted_type_graph}) has a weight greater than $1_S$, then all objects subject to rewriting inherit this property.
-%     \item Defining $\preceq$ as the reflexive closure of $\prec$ to simplify the theory. This is motivated by the fact that concrete semirings proposed in prior work and our paper satisfy this property.
+%     \item Defining $\mathop{\preceq}$ as the reflexive closure of $\prec$ to simplify the theory. This is motivated by the fact that concrete semirings proposed in prior work and our paper satisfy this property.
 % \end{enumerate} 
 % \end{remark}}

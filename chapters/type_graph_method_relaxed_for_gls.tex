@@ -1,7 +1,7 @@
 
 \begin{definition}
     \label{def:creates_more_x_on_the_right}
-    Let X be a connected graph with at least one arrow. Let $\rho = (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ be a rewriting rule. We say that \( \rho \) \textbf{creates more occurrences of $X$ on the right} with $(h_{KR_x}, h_{R_xL}, h_{R_xR})$ if \( \rho^-1 \) creates more occurrences of $X$ on the left with $(h_{KR_x}, h_{R_xR}, h_{R_xL})$
+    Let X be a connected graph with at least one arrow. Let $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ be a rewriting rule. We say that \( \rho \) \textbf{creates more occurrences of $X$ on the right} with $(h_{KR_x}, h_{R_xL}, h_{R_xR})$ if \( \rho^-1 \) creates more occurrences of $X$ on the left with $(h_{KR_x}, h_{R_xR}, h_{R_xL})$
 \end{definition}
 
 \begin{theorem}
@@ -10,15 +10,15 @@
   \begin{itemize}
     \item either
       \begin{itemize}
-          \item Every rule \(\rho \in \mathcal{A} \cup \mathcal{B}\) creates more \(X\)-occurrences on the right, and
-          \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \in \mathcal{A}\), we have \(|\operatorname{Hom}(X,L)| < |\operatorname{Hom}(X,R)|\), and
-          \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \in \mathcal{B}\), we have \(|\operatorname{Hom}(X,L)| \leq |\operatorname{Hom}(X,R)|\).
+          \item Every rule \(\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}\) creates more \(X\)-occurrences on the right, and
+          \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \mathop{\in} \mathcal{A}\), we have \(|\operatorname{Hom}(X,L)| < |\operatorname{Hom}(X,R)|\), and
+          \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \mathop{\in} \mathcal{B}\), we have \(|\operatorname{Hom}(X,L)| \leq |\operatorname{Hom}(X,R)|\).
       \end{itemize}
     \item or 
     \begin{itemize}
-      \item Every rule \(\rho \in \mathcal{A} \cup \mathcal{B}\) creates more \(X\)-occurrences on the left, and
-      \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \in \mathcal{A}\), we have \(|\operatorname{Hom}(X,L)| > |\operatorname{Hom}(X,R)|\), and
-      \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \in \mathcal{B}\), we have \(|\operatorname{Hom}(X,L)| \geq |\operatorname{Hom}(X,R)|\).
+      \item Every rule \(\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}\) creates more \(X\)-occurrences on the left, and
+      \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \mathop{\in} \mathcal{A}\), we have \(|\operatorname{Hom}(X,L)| \mathop{>} |\operatorname{Hom}(X,R)|\), and
+      \item For every rule \(\left( L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R \right) \mathop{\in} \mathcal{B}\), we have \(|\operatorname{Hom}(X,L)| \mathop{\geq} |\operatorname{Hom}(X,R)|\).
   \end{itemize}
 \end{itemize}
   Then \(\mathcal{A}\) is terminating relative to \(\mathcal{B}\).
@@ -30,25 +30,25 @@
   
   Let $\mathcal{A}$ and $\mathcal{B}$ be finite sets of graph relabelling rules.
   
-  Let $\mathcal{T} = (T,\mathbb{E}, w)$ be a finitary weighted type graph over a strongly monotonic real semiring \( (S, \oplus, \odot, 0_s, 1_s)\) such that 
+  Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, w)$ be a finitary weighted type graph over a strongly monotonic real semiring \( (S, \mathop{\oplus}, \mathop{\odot}, 0_s, 1_s)\) such that 
   \begin{itemize}
-       \item\label{thm_gls:hyp1} $\{s \in S\mid s \neq 0_s\} \subseteq \mathbb{R}$
+       \item\label{thm_gls:hyp1} $\{s \mathop{\in} S\mid s \mathop{\neq} 0_s\} \mathop{\subseteq} \mathbb{R}$
   \end{itemize}
 
   If  
   \begin{itemize}
-  \item every rule $\rho \in \mathcal{B}$ is weakly decreasing, and
-  \item for every $\rho \in \mathcal{A}$, $\rho$ is $0$-uniform or $0$-closure decreasing 
+  \item every rule $\rho \mathop{\in} \mathcal{B}$ is weakly decreasing, and
+  \item for every $\rho \mathop{\in} \mathcal{A}$, $\rho$ is $0$-uniform or $0$-closure decreasing 
   \end{itemize}
   then $\mathcal{A }$ is \textbf{terminating} relative to $\mathcal{B }$.
 \end{theorem}
 
 \begin{proof}
-  By Definition~\ref{def:weight} and~\autoref{prop_endrullis_2d7}, $w_\mathcal{T}(G) \neq 0_s$ for every $G \in \mathcal{C}$ host some matching.
+  By Definition~\ref{def:weight} and~\autoref{prop_endrullis_2d7}, $w_\mathcal{T}(G) \mathop{\neq} 0_s$ for every $G \mathop{\in} \mathcal{C}$ host some matching.
 
-  By \ref{thm_gls:hyp1}, $w_\mathcal{T}(G) \in \mathbb{R}$ for every $G \in \mathcal{C}$ host some matching.
+  By \ref{thm_gls:hyp1}, $w_\mathcal{T}(G) \mathop{\in} \mathbb{R}$ for every $G \mathop{\in} \mathcal{C}$ host some matching.
 
   By~\autoref{lem:decreasing_step}, every rewriting step with rules in $\mathcal{A}$ decreases strictly the weight by $\epsilon$.
 
-  Thus, there exist no infinite rewriting sequence with an infinite rewriting steps with rules in $\mathcal{A}$ from some $G \in \mathcal{C}$, because otherwise there would be an infinite number of accessible objects from $G$.
+  Thus, there exist no infinite rewriting sequence with an infinite rewriting steps with rules in $\mathcal{A}$ from some $G \mathop{\in} \mathcal{C}$, because otherwise there would be an infinite number of accessible objects from $G$.
 \end{proof}

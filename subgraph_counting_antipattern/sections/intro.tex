@@ -1,6 +1,4 @@
-Chapter~\ref{chap:antipattern} extends the subgraph counting method presented in Chapter~\ref{chap:subgraph_counting}. 
-Consider the DPO rewriting system on edge-labeld directed multi-graphs shown
-below.
+Consider the following DPO rewriting rule:
 %  \begin{figure}[H]
 %     \centering
 \begin{center}
@@ -9,7 +7,7 @@ below.
           \coordinate (o) at (0mm,-3mm); 
           \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
           \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-          \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+          \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
           \draw[->] (l1) -- (l3) node[midway,above] {$a$};
           \draw[->] (l3) -- (l2) node[midway,above] {$a$};
       }     
@@ -22,7 +20,7 @@ below.
         \coordinate (o) at (0mm,-3mm); 
         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
         \draw[->] (l3) -- (l2) node[midway,above] {$a$};
         \draw[->] (l3) edge [loop below] node {$c$} (l3);
@@ -36,7 +34,7 @@ below.
 %  \end{figure} 
 \end{center}
 %  in Figure~\ref{fig:intro:graph_transformation_rule_anti_pattern_}. 
-In this system, the number of injective graph homomorphisms from every pattern graph increases with each application of the rewriting rule. Therefore, the method introduced in Chapter~\ref{chap:subgraph_counting} cannot be applied. However, the number of injective graph homomorphisms from the graph
+In this system, the number of monomorphisms from every pattern graph increases with each application of the rewriting rule. Therefore, the method introduced in Chapter~\ref{chap:subgraph_counting} cannot be applied. However, the number of monomorphisms from the graph
 \raisebox{2pt}{
             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
             \node [draw,circle] (z) at (-1,0) {};
@@ -55,10 +53,12 @@ In this system, the number of injective graph homomorphisms from every pattern g
             \draw[->] (x)--(y) node[midway, above] {$a$};
             \draw[->] (x) edge [loop below] node {$c$} (l3);
         }}}
-decreases with each application of the rewriting rule.
+strictly decreases with each application of the rewriting rule.
 
-This extension can handle systems (e.g. Example~\ref{antipattern:ex:grs_aca} and Example~\ref{antipattern:ex:endrullis:d3:termination}) which cannot be handled by the
-prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and the morphism counting method presented in Chapter~\ref{chap:subgraph_counting}.
-An implementation of this extension is also provided in our tool~\textbf{LyonParallel}, which is described in Chapter~\ref{chap:lyonparallel}.
+We formalize this intuition by using the concept of \textit{forbidden contexts} and extend the morphism counting method presented in Chapter~\ref{chap:subgraph_counting} to count only those monomorphisms whose images are not included in any forbidden contexts.
 
-We are going to proceed as follows:~\textsection~\ref{antipattern:sec:termination_criterion} presents the extension.~\textsection~\ref{antipattern:sec:examples} provides some examples,~\textsection~\ref{antipattern:sec:conclusion} concludes. Proofs of some propositions, lemmas, and theorems of this chapter have been moved to Appendix~\ref{antipattern:sec:appendix} to improve readability.
+This extension can handle systems (e.g., Example~\ref{antipattern:ex:grs_aca} and Example~\ref{antipattern:ex:endrullis:d3:termination}) that cannot be handled by the
+prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and by the morphism counting method presented in Chapter~\ref{chap:subgraph_counting}.
+An implementation of this extension is described in Chapter~\ref{chap:lyonparallel}.
+
+This chapter is organized as follows:~\textsection~\ref{antipattern:sec:termination_criterion} presents the extension, and~\textsection~\ref{antipattern:sec:examples} provides some examples. Proofs of some propositions, lemmas, and theorems of this chapter have been moved to Appendix~\ref{antipattern:sec:appendix} to improve readability.

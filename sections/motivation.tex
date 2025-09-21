@@ -2,20 +2,20 @@
 \section{The correctness of distributed algorithms}
 Distributed algorithms run on multiple processors without centralized control and are central to both everyday devices (e.g., smartphones) and safety-critical systems (e.g., medical devices, trains, aircraft, spacecraft).
 Errors in distributed algorithms can have severe consequences, such as the loss of critical data or even human life. Ensuring their correctness is vital but challenging due to the inherent complexity of these systems~\cite{heiser2010theroad, lamport2019thebyzantine}. 
-The Needham-Schroeder protocol~\cite{needham1978using}\textemdash intended for two computers to verify each other's identity\textemdash exemplifies this challenge: a serious security flaw was discovered 17 years after it publication~\cite{lowe1996breaking}.
+The Needham-Schroeder protocol~\cite{needham1978using}\textemdash intended for two computers to verify each other's identity\textemdash exemplifies this challenge: a serious security flaw was discovered 17 years after its publication~\cite{lowe1996breaking}.
 To address the challenge of uncovering subtle vulnerabilities in distributed algorithms, one natural approach is to test all possible scenarios. This is effective when the number of scenarios is small, but becomes infeasible otherwise. For example, when there are infinitely many scenarios, program testing may reveal bugs, but cannot prove the absence of bugs\textemdash a fundamental limitation that motivates the use of formal verification techniques.
 
 Formal verification techniques are mathematically rigorous methods for proving system correctness. 
-This thesis focuses on automated verification techniques~\cite{clarke2018model, contejean2011automated, cortier2014formal, urbain2004modular,steinbach1995simplification,kassing2024dependency,marche2004modular} for specific properties, which perform proof search automatically and need little user intervention.
+This thesis focuses on automated verification techniques~\cite{clarke2018model, contejean2011automated, cortier2014formal, urbain2004modular,steinbach1995simplification,kassing2024dependency,marche2004modular} that perform proof search automatically for specific properties, and need little user intervention.
    
 \section{Automated verification techniques}
 Automated verification techniques are particularly interesting because they can be implemented as automated tools accessible to non-experts in formal verification while also accelerating verification for experts.
-To verify a specific property of an algorithm, the user needs only to model the algorithm in a required formalism, and the tool then automatically checks conditions that mathematically imply the target property. To further ensure the correctness of results, advanced tools generate certificates verifiable by proof assistants~\cite{contejean2011automated}. 
+To verify a specific property of an algorithm, the user only needs to model the algorithm in the required formalism, and the tool then automatically checks conditions that mathematically imply the target property. To further ensure the correctness of results, advanced tools generate certificates verifiable by proof assistants~\cite{contejean2011automated}. 
 Although theoretically incomplete for certain properties (meaning some inputs may yield no answer), well-designed techniques can handle many practical cases and significantly reduce verification effort. 
 To enable such methods, distributed algorithms must be modeled using a formalism that facilitates rigorous analysis of their properties. Specifically, states and behaviors of distributed algorithms must be formally represented.
 
 \section{Finite edge-labeled directed multigraphs} 
-Finite edge-labeled directed multigraphs provide an intuitive yet formal way to model states of distributed algorithms: Computational units are represented by nodes; communication channels are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computational units and states of communication channels. 
+Finite edge-labeled directed multigraphs provide an intuitive yet formal way to model states of distributed algorithms: computational units are represented by nodes; communication channels are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computational units and states of communication channels. 
 
 For example, consider the graph $\mathcal{G}$ shown in the following Figure~\ref{fig:graph_modeling_state_network}, enclosed in a box labeled with its name in the top-left corner. 
 The graph models a distributed network of six computational units.
@@ -75,7 +75,7 @@ The algorithm operates as follows: when an active unit detects a neutral neighbo
                         \draw[->] (x) edge [loop above] node {$A$} (x);
                         \draw[->] (y) edge [loop above] node {$A$} (y);
                     }  
-                    \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
+                    \node () at (37mm,-10mm) {\( \mathop{\rightarrow} \)}; % K -> L
         \end{tikzpicture}
             }
         \caption{Graph rewriting rule for the spanning-tree construction of a connected network with one node labeled by $A$ and all other nodes labeled by $N$ and all edges labeled by $0$. It relabels an occurrence of \(\mathcal{L}\) to \(\mathcal{R}\).}
@@ -300,18 +300,19 @@ Given an initial finite edge-labeled directed multigraph in which all edges are 
                         \draw(3,0) node[right] {$1$};
                     \end{tikzpicture}
 }
-        \caption{Sequence of graph transformation, to be read from left to right and from top to bottom. At each graph, the subgraph in red is to be relabeled according to the rule to obtain the next graph.}
+        \caption{Sequence of graph transformation, to be read from left to right and from top to bottom. In each graph, the subgraph in red is to be relabeled according to the rule to obtain the next graph.}
         \label{fig:intro_sequence_of_transformation}
     \end{figure}
  
- Graph transformation has many applications, such as topology-based geometric modeling~\cite{poudret2007topology,poudret2008graph_transformation, belhaouari2014jerboa, bellet2017geometric, pascale2022Geometric_modeling,arnould2022preserving_consistency}, DNA computing~\cite{harju2004tutorial_dna_computation}, life sciences~\cite{behr2021rewriting_life_sciences}, programming~\cite{plump2009graph_programming_language}, administrative access control policies~\cite{bertolissi2025category_based, bertolissi2021graph_based,koch2001specification_evolution_access_control},and software engineering and security~\cite{heckel2020software_engineers}. Its broad applicability stems from the fact that graphs and graph-like structures provide a natural and intuitive way to model complex systems. 
+ Graph transformation has many applications, such as topology-based geometric modeling~\cite{poudret2007topology,poudret2008graph_transformation, belhaouari2014jerboa, bellet2017geometric, pascale2022Geometric_modeling,arnould2022preserving_consistency}, DNA computing~\cite{harju2004tutorial_dna_computation}, life sciences~\cite{behr2021rewriting_life_sciences}, programming~\cite{plump2009graph_programming_language}, administrative access control policies~\cite{bertolissi2025category_based, bertolissi2021graph_based,koch2001specification_evolution_access_control}, and software engineering and security~\cite{heckel2020software_engineers}. Its broad applicability stems from the fact that graphs and graph-like structures provide a natural and intuitive way to model complex systems. 
  
  A predominant school of thought in this area is called algebraic graph rewriting~\cite{ehrig1997handbook1,ehrig1999handbook2,ehrig1999handbook3}, which uses concepts from category theory~\cite{pierce1991basic,barr1990category,maclane2013categories} to define graph transformation. 
  There are different notions of graphs in the literature for different applications, such as edge-labeled multigraphs~\cite{konig2018atutorial,corradini1997algebraic}, hypergraphs~\cite{plump1993hypergraph}, attributed graphs~\cite{ehrig2006fundamentals}, and polygraphs~\cite{ara2023polygraphs}.
  The language of category theory abstracts away from the details of the different notions of graphs, provided that the notion of graph satisfies certain properties~\cite{lack2004adhesive,overbeek2023graph}.  
-This enables a uniform definition of graph transformation, and leads to an elegant definition of graph transformation. 
+This enables a uniform and elegant definition of graph transformation. 
 
- Double-pushout (DPO) graph rewriting~\cite{corradini1997algebraic,habel2001double} is among the most studied algebraic graph transformation. A DPO graph rewriting rule consists of two functions that preserve graph structure, namely $l:\mathcal{K} \to \mathcal{L}$ and $r:\mathcal{K} \to \mathcal{R}$,
+ Double-pushout (DPO) graph rewriting~\cite{corradini1997algebraic,habel2001double} is among the most studied algebraic graph transformation formalisms.
+  A DPO graph rewriting rule consists of two functions that preserve graph structure, namely $l:\mathcal{K} \mathop{\to} \mathcal{L}$ and $r:\mathcal{K} \mathop{\to} \mathcal{R}$,
  Here, \(\mathcal{L}\) is the left-hand side graph encoding the rule's preconditions, \(\mathcal{R}\) is the right-hand side graph describing the postconditions, and \(\mathcal{K}\) is the interface graph—the part common to \(\mathcal{L}\) and \(\mathcal{R}\) that is preserved by the rule and serves as the interface to the surrounding context. A DPO graph rewriting rule is commonly denoted by \(\mathcal{L} \xleftarrow{l} \mathcal{K} \xrightarrow{r} \mathcal{R}\) in the literature.
  
  As an example, the graph transformation rule, previously defined and illustrated in Figure~\ref{fig:intro:graph_transformation_rule_0}, can be represented as the DPO graph rewriting rule shown in Figure~\ref{fig:intro:graph_transformation_rule_0_dpo}.
@@ -350,9 +351,9 @@ This enables a uniform definition of graph transformation, and leads to an elega
     \label{fig:intro:graph_transformation_rule_0_dpo}
     \end{figure} 
 
-To apply a DPO graph rewriting rule $\mathcal{L} \overset{l}{\leftarrow} \mathcal{K} \overset{r}{\rightarrow} \mathcal{R}$ to a host graph $\mathcal{G}$, one must first identify an occurrence of $\mathcal{L}$ in which a subgraph is designed as the interface graph. The other elements of the host graph $\mathcal{G}$ together with the interface graph form the context graph $\mathcal{C}$ of the rewriting step.
+To apply a DPO graph rewriting rule $\mathcal{L} \overset{l}{\leftarrow} \mathcal{K} \overset{r}{\rightarrow} \mathcal{R}$ to a host graph $\mathcal{G}$, one must first identify an occurrence of $\mathcal{L}$ in which a subgraph is designated as the interface graph. The other elements of the host graph $\mathcal{G}$, together with the interface graph, form the context graph $\mathcal{C}$ of the rewriting step.
 The graph $\mathcal{G}$ is thus decomposed into the occurrence of $\mathcal{L}$ and $\mathcal{C}$. 
-Then, one modifies the occurrence of $\mathcal{L}$ (by removing some nodes and edges and adding some fresh nodes and edges while keeping the interface graph unchanged, and identifying nodes in the interface graph)
+Then one modifies the occurrence of $\mathcal{L}$ (by removing some nodes and edges and adding some fresh nodes and edges while keeping the interface graph unchanged, and identifying nodes in the interface graph)
 to obtain an occurrence of $\mathcal{R}$. Finally, the result graph is obtained by gluing the occurrence of $\mathcal{R}$ with $\mathcal{C}$ via the interface graph $\mathcal{K}$.
 As an example, 
 consider the graph transformation rule, shown in the following Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}.
@@ -365,7 +366,7 @@ consider the graph transformation rule, shown in the following Figure~\ref{fig:i
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$3$};
                         \draw (l1) -- (l3) node[midway,above] {$a$};
                         \draw (l3) -- (l2) node[midway,above] {$a$};
                     } 
@@ -399,7 +400,7 @@ to the unique occurrence
             \draw (x)--(y) node[midway, above] {$a$};
         }}}
 of $\mathcal{L}$ in $\mathcal{G}$.
-Specifically, in this occurrence the subgraph matched to the interface graph $\mathcal{K}$ is the subgraph shown in black in Figure~\ref{fig:intro:decomposition_of_G}; the graph $\mathcal{G}$ is decomposed, as shown in Figure~\ref{fig:intro:decomposition_of_G}, into the occurrence of $\mathcal{L}$ (elements shown in orange and black) and the context graph $\mathcal{C}$ (elements shown in blue and black) gluing via the interface graph (elements shown in black).
+Specifically, in this occurrence the subgraph matched to the interface graph $\mathcal{K}$ is the subgraph shown in black in Figure~\ref{fig:intro:decomposition_of_G}; the graph $\mathcal{G}$ is decomposed, as shown in Figure~\ref{fig:intro:decomposition_of_G}, into the occurrence of $\mathcal{L}$ (elements shown in orange and black) and the context graph $\mathcal{C}$ (elements shown in blue and black), glued via the interface graph (elements shown in black).
 %  The interface graph is the subgraph shown in black in Figure~\ref{fig:intro:decomposition_of_G}. 
  The rule removes the orange part of the occurrence of $\mathcal{L}$ to obtain an occurrence of $\mathcal{R}$. 
 The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal{R}$ and the context graph $\mathcal{C}$ via the interface graph.
@@ -412,12 +413,12 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
-                    \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {$6$};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$3$};
+                    \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {$6$};
                     \draw[] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[] (l3) -- (l2) node[midway,above] {$a$};
                     \draw[ ] (l2) -- (l4) node[midway,right] {$b$};
-                    \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {$7$};
+                    \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {$7$};
                     \draw[] (l1) -- (l6) node[midway,left] {$b$};
                 }  
         \end{tikzpicture}
@@ -431,9 +432,9 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                    \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {$6$};
+                    \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {$6$};
                     \draw[ ] (l2) -- (l4) node[midway,right] {$b$};
-                    \node[ draw,circle] (l6) at ($(l1) + (0,-1)$) {$7$};
+                    \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {$7$};
                     \draw[ ] (l1) -- (l6) node[midway,left] {$b$};
                 }    
         \end{tikzpicture}
@@ -448,12 +449,12 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
                 \coordinate (o) at (0mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                \node[orange,draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
-                \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {$6$};
+                \node[orange,draw,circle] (l3) at ($(l1)+(1,0)$) {$3$};
+                \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {$6$};
                 \draw[orange] (l1) -- (l3) node[midway,above] {$a$};
                 \draw[orange] (l3) -- (l2) node[midway,above] {$a$};
                 \draw[blue] (l2) -- (l4) node[midway,right] {$b$};
-                \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {$7$};
+                \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {$7$};
                 \draw[blue] (l1) -- (l6) node[midway,left] {$b$};
             }  
     \end{tikzpicture}
@@ -467,13 +468,13 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
-                    \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {$6$};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$3$};
+                    \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {$6$};
                     \draw[red] (l3) -- (l4) node[midway,above] {$b$};
                     \draw (l1) -- (l3) node[midway,above] {$a$};
                     \draw (l3) -- (l2) node[midway,above] {$a$};
                     \draw (l2) -- (l4) node[midway,right] {$b$};
-                    \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {$7$};
+                    \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {$7$};
                     \draw (l1) -- (l6) node[midway,left] {$b$};
                     % \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                 }   
@@ -490,13 +491,13 @@ However, a DPO rewriting rule cannot always be applied to a graph with an occurr
 For example, consider the rule, defined earlier and shown in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}. and the graph $\mathcal{G}'$ in Figure~\ref{fig:intro:dangling_edge}. The graph $\mathcal{G}'$ is obtained from the graph $\mathcal{G}$ in Figure~\ref{fig:intro:graph_G} by adding an edge from $3$ to $6$ (in red). This graph has the same occurrence of the graph $\mathcal{L}$ as the graph $\mathcal{G}$ in Figure~\ref{fig:intro:graph_G}.
 However, when $3$ is removed, the edge from $3$ to $6$ becomes dangling.
 
-In the literature, different approaches to this problem exist, leading to different algebraic graph rewriting formalisms. Some formalisms implicitly delete dangling edges (e.g. SPO~\cite{ehrig1997algebraic}); 
-some impose conditions on contexts in the rule specification (e.g. AGREE~\cite{corradini2015agree}, PBPO~\cite{corradini2019thepbpo}, PBPO+~\cite{overbeek2023graph}); and others, like DPO, simply forbid rule application that could create dangling edges.
+In the literature, different approaches to this problem exist, leading to different algebraic graph rewriting formalisms. Some formalisms implicitly delete dangling edges (e.g., SPO~\cite{ehrig1997algebraic}); 
+some impose conditions on contexts in the rule specification (e.g., AGREE~\cite{corradini2015agree}, PBPO~\cite{corradini2019thepbpo}, PBPO+~\cite{overbeek2023graph}); and others, like DPO, simply forbid rule application that could create dangling edges.
 
    This thesis considers DPO graph rewriting for three reasons.
    Firstly, it is among the most studied algebraic graph rewriting formalisms, so our techniques have a large potential user base.
    Secondly, the category-theoretic prerequisites for DPO are minimal: it depends only on pushouts. This matters because category theory's abstract nature can act as a barrier for newcomers.
-    Finally, despite its conceptual simplicity, DPO graph rewriting remains expressive to model many distributed algorithms~\cite{ehrig2006fundamentals,corradini1997algebraic}.
+    Finally, despite its conceptual simplicity, DPO graph rewriting is expressive enough to model many distributed algorithms~\cite{ehrig2006fundamentals,corradini1997algebraic}.
     
 Since graph transformation rules in a system are applied repeatedly (and nondeterministically), they can lead to infinite sequences of graph transformations. However, some properties of systems depend on the absence of infinite sequences. For example, the transformation system, previously defined and illustrated in Figure~\ref{fig:intro:graph_transformation_rule_0_dpo}, can construct a spanning tree of a connected graph with edges and nodes initially labeled as required if the transformation system terminates. Thus, ensuring termination of a rewriting system is crucial.
 
@@ -511,7 +512,7 @@ For example, the previously discussed rule shown below terminates because each a
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$3$};
                         \draw (l1) -- (l3) node[midway,above] {$a$};
                         \draw (l3) -- (l2) node[midway,above] {$a$};
                     } 
@@ -542,7 +543,7 @@ For an example of a nonterminating rewriting rule, consider the following rule:
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$3$};
                         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                         \draw[->] (l3) -- (l2) node[midway,above] {$b$};
                     } 
@@ -557,8 +558,8 @@ For an example of a nonterminating rewriting rule, consider the following rule:
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {$2$};
-                        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$4$};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {$2$};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$4$};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {$2$};
                         \draw[->] (l1) -- (l3) node[midway,above] {$b$};
                         \draw[->] (l3) -- (l4) node[midway,above] {$a$};
                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -650,7 +651,7 @@ For example, consider the graph transformation system with two rules shown in Fi
         \centering
 %   \begin{subfigure}{0.3\textwidth}
 %         % \centering
-        $\alpha$ = {
+        $\alpha$={
              \resizebox{0.85\textwidth}{!}{
              \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -669,21 +670,15 @@ For example, consider the graph transformation system with two rules shown in Fi
                     \graphbox{\( \mathcal{R} \)}{80mm}{-3mm}{35mm}{15mm}{5mm}{2mm}{
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
-                        \node[draw,circle] (l4) at ($(l1) + (2,0)$) {$2$};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {$2$};
                     }    
                     \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
                     \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
                 \end{tikzpicture}
             }
         }
-    %     \caption{A graph transformation rule for edge deletion}
-    % \label{fig:intro:edge_deletion_rule}
-    % \end{subfigure}
-    
-    % \begin{subfigure}{0.3\textwidth}
-    %     % \centering
 
-        $\beta$ ={
+        $\beta$={
              \resizebox{0.85\textwidth}{!}{
              \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -713,12 +708,12 @@ For example, consider the graph transformation system with two rules shown in Fi
 
 
 \section{Relative termination} 
-Relative termination was initially introduced for binary relations~\cite{klop1987term}: let $\mathcal{A}$ and $\mathcal{B}$ be two binary relations, $\mathcal{A}$ is said to be terminating relative to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with \( (x_i,x_{i+1}) \in \mathcal{A} \) or \( (x_i,x_{i+1}) \in \mathcal{B} \) for all \( i \in \mathbb{N} \), there are only finitely many \( i \in \mathbb{N} \) such that \( (x_i,x_{i+1}) \in \mathcal{A} \).
+Relative termination was initially introduced for binary relations~\cite{klop1987term}: let $\mathcal{A}$ and $\mathcal{B}$ be two binary relations, $\mathcal{A}$ is said to be terminating relative to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with \( (x_i,x_{i+1}) \mathop{\in} \mathcal{A} \) or \( (x_i,x_{i+1}) \mathop{\in} \mathcal{B} \) for all \( i \mathop{\in} \mathbb{N} \), there are only finitely many \( i \mathop{\in} \mathbb{N} \) such that \( (x_i,x_{i+1}) \mathop{\in} \mathcal{A} \).
 
 Since a set of rewriting rules defines a binary relation \enquote{object $X$ can be rewritten to object $Y$ using rules from the rule set}, called a rewriting relation,
 the concept of relative termination
 carries over to rewriting systems in a straightforward way via their associated rewriting relations: a rule set $\mathcal{A}$ terminates relative to another rule set $\mathcal{B}$, if the binary relation induced by $\mathcal{A}$ terminates relative to the binary relation induced by $\mathcal{B}$.
-% let \( \mathcal{A} \) and \( \mathcal{B} \) be two sets of rewriting rules, \( \mathcal{A} \) is said to be relatively terminating with respect to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with $x_i$ can be rewritten to $x_{i+1}$ by a rule in $\mathcal{A}$ or $\mathcal{B}$ for all \( i \in \mathbb{N} \), there are only finitely many \( i \in \mathbb{N} \) such that $x_i$ can be rewritten to $x_{i+1}$ by a rule in $\mathcal{A}$. 
+% let \( \mathcal{A} \) and \( \mathcal{B} \) be two sets of rewriting rules, \( \mathcal{A} \) is said to be relatively terminating with respect to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with $x_i$ can be rewritten to $x_{i+1}$ by a rule in $\mathcal{A}$ or $\mathcal{B}$ for all \( i \mathop{\in} \mathbb{N} \), there are only finitely many \( i \mathop{\in} \mathbb{N} \) such that $x_i$ can be rewritten to $x_{i+1}$ by a rule in $\mathcal{A}$. 
 As an example, consider the edge-deleting rule $\alpha$ and the node-adding rule $\beta$, defined earlier and shown in Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}. 
 The rule set $\set{\alpha}$ terminates relative to the rule set $\set{\beta}$, because any infinite sequence of graph transformations can apply the edge-deleting rule only finitely many times.
 
@@ -785,7 +780,7 @@ Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{
           \coordinate (o) at (0mm,-3mm); 
           \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
           \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-          \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
+          \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$3$};
           \draw[->] (l1) -- (l3) node[midway,above] {$a$};
           \draw[->] (l3) -- (l2) node[midway,above] {$a$};
       }     
@@ -798,7 +793,7 @@ Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{
         \coordinate (o) at (0mm,-3mm); 
         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-        \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
+        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$3$};
         \draw[->] (l1) -- (l3) node[midway,above] {$a$};
         \draw[->] (l3) -- (l2) node[midway,above] {$a$};
         \draw[->] (l3) edge [loop below] node {$c$} (l3);

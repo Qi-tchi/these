@@ -61,7 +61,7 @@ This section designs a hierarchical term rewriting system (HTRS) to simulate gra
 
 \begin{example}
     \label{example_fcpgrs}
-    We present our translation using the graph relabeling system with priorities and forbidden contexts, $\mathcal{R} = \{r_1,\ r_2,\ r_3\}$
+    We present our translation using the graph relabeling system with priorities and forbidden contexts, $\mathcal{R} \mathop{=} \{r_1,\ r_2,\ r_3\}$
   
     \begin{tikzpicture}
       \draw (-1,0) node[left] {$r_1$:};
@@ -69,7 +69,7 @@ This section designs a hierarchical term rewriting system (HTRS) to simulate gra
       
       \node[draw,circle] (x_1) at (0,0) {$1$};
       \draw (0,0.3) node[above]{A};
-      \node[draw,circle, minimum size = 1pt] (x_2) at (2,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x_2) at (2,0) {$2$};
       \draw (2,0.3) node[above]{N};
       \draw[-] (x_1) -- (x_2);
       
@@ -78,7 +78,7 @@ This section designs a hierarchical term rewriting system (HTRS) to simulate gra
       
       \node[draw,circle] (x3) at (5,0) {$1$};
       \draw (5,0.3) node[above]{A};
-      \node[draw,circle, minimum size = 1pt] (x4) at (7,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x4) at (7,0) {$2$};
       \draw (7,0.3) node[above]{A'};
       \draw (7.5,-0.45) node[above]{$,$};
       \draw (8,-0.45) node[above]{$\Big\{$};
@@ -105,7 +105,7 @@ This section designs a hierarchical term rewriting system (HTRS) to simulate gra
       
       \node[draw,circle] (x_1) at (0,0) {$1$};
       \draw (0,0.3) node[above]{A'};
-      \node[draw,circle, minimum size = 1pt] (x_2) at (2,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x_2) at (2,0) {$2$};
       \draw (2,0.3) node[above]{N};
       \draw[-] (x_1) -- (x_2);
       
@@ -114,7 +114,7 @@ This section designs a hierarchical term rewriting system (HTRS) to simulate gra
       
       \node[draw,circle] (x3) at (5,0) {$1$};
       \draw (5,0.3) node[above]{A'};
-      \node[draw,circle, minimum size = 1pt] (x4) at (7,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x4) at (7,0) {$2$};
       \draw (7,0.3) node[above]{A'};
       \draw (7.5,-0.45) node[above]{$,$};
       \draw (8,-0.45) node[above]{$\Big\{$};
@@ -189,7 +189,7 @@ This section designs a hierarchical term rewriting system (HTRS) to simulate gra
 %         &\overline{rule\_and\_context\_graphs(n)} &
 %     \end{flalign*}
 
-%     Given a rule number $n$, $get\_context\_rule\_graphs(n)$ returns the concatenantion of terms $graph(r,c,k)$ for all $c \in  where $r$ is the rule number, $c$ is the context number (0 for the rule graph), and $K$ is the size of the graph. Subterms are ordered according to the topological order of the priority.
+%     Given a rule number $n$, $get\_context\_rule\_graphs(n)$ returns the concatenantion of terms $graph(r,c,k)$ for all $c \mathop{\in}  where $r$ is the rule number, $c$ is the context number (0 for the rule graph), and $K$ is the size of the graph. Subterms are ordered according to the topological order of the priority.
 
 \subsection*{get\_context\_rule\_graphs}
 \begin{flalign*}
@@ -197,12 +197,12 @@ This section designs a hierarchical term rewriting system (HTRS) to simulate gra
     &get\_context\_rule\_graphs(R) &\\
     &\longrightarrow &\\
     &\circledast \{graph(R, c, k) \mid 0 \leq c \leq \operatorname{length}(f(r_R))
-    %  \land (c = 0 \implies k = |lhs(r_N)|) \land 
-    % (c \geq 1 \implies k = |\operatorname{codom}(f(r_N))|)
+    %  \mathop{\land} (c \mathop{=} 0 \implies k \mathop{=} |lhs(r_N)|) \mathop{\land} 
+    % (c \mathop{\geq} 1 \implies k \mathop{=} |\operatorname{codom}(f(r_N))|)
     \} &
 \end{flalign*}
 
-where $N$ is the rule number. The right-hand side (rhs) is the concatenation of terms in $\{ graph(R, c, k) \mid 0 \leq c \leq \operatorname{length}(f(r_N))\}$. If $c = 0$, then $k$ is the size of the left-hand side (lhs) graph of the $N$-th rule. Otherwise, $c \geq 1$ and $k$ is the size of the domain of the $c$-th forbidden context of the $N$-th rule.
+where $N$ is the rule number. The right-hand side (rhs) is the concatenation of terms in $\{ graph(R, c, k) \mid 0 \leq c \leq \operatorname{length}(f(r_N))\}$. If $c \mathop{=} 0$, then $k$ is the size of the left-hand side (lhs) graph of the $N$-th rule. Otherwise, $c \mathop{\geq} 1$ and $k$ is the size of the domain of the $c$-th forbidden context of the $N$-th rule.
     
 
     \subsection*{generate\_graph}
@@ -471,7 +471,7 @@ where $N$ is the rule numnber, $X$ is a term encoding all nodes participating to
     
     
     \subsection*{prefix}
-    \noindent \texttt{prefix(X, Y) = true} if and only if the list \texttt{Y} is a prefix of the list \texttt{X}.
+    \noindent \texttt{prefix(X, Y) \mathop{=} true} if and only if the list \texttt{Y} is a prefix of the list \texttt{X}.
     
     
     \begin{flalign*}
@@ -1450,7 +1450,7 @@ Let $X$ be a term encoding a list of occurrences of the left-hand-side graph of 
 
 \begin{theorem}
     \label{thm:fcgls_preservation_termination}
-    If $(G,\Lambda) \to_\mathcal{R} (G,\Lambda')$ then $\tau_{fcgls}(G,\Lambda) \to_{\mathcal{R}'} \tau_{fcgls}(G,\Lambda')$.
+    If $(G,\Lambda) \mathop{\to} _\mathcal{R} (G,\Lambda')$ then $\tau_{fcgls}(G,\Lambda) \mathop{\to} _{\mathcal{R}'} \tau_{fcgls}(G,\Lambda')$.
 \end{theorem}
 \begin{proof}
     to do

@@ -11,13 +11,13 @@
     
       Let $\mathcal{R}$ be a set of graph relabeling rules and $<$ a strict partial order on $\mathcal{R}$.
     
-      We defined a rewriting framework, denoted $\mathfrak{pgls}(\mathcal{R},<)$, as follows: for all $\rho \in \mathcal{R}$,
+      We defined a rewriting framework, denoted $\mathfrak{pgls}(\mathcal{R},<)$, as follows: for all $\rho \mathop{\in} \mathcal{R}$,
       $\mathfrak{pgls}(\mathcal{R},<)(\rho)$ is the classe of all witnesses of rewriting steps
       $\left(  m_\rho, m'_\rho \right)$ using the rule $\rho$
       such that there does not exist 
-      a rule $\sigma \in \mathcal{R}$ with $\sigma > \rho$ and a witness of a rewriting step
+      a rule $\sigma \mathop{\in} \mathcal{R}$ with $\sigma \mathop{>} \rho$ and a witness of a rewriting step
       $\left(  m_\sigma, m'_\sigma \right)$ using the rule $\sigma$ such that 
-      $\operatorname{Im}(m_\rho) \cap \operatorname{Im}(m_\sigma) \neq \emptyset$.
+      $\operatorname{Im}(m_\rho) \mathop{\cap} \operatorname{Im}(m_\sigma) \mathop{\neq} \emptyset$.
  
       The structure $(\mathbf{Graph},\mathcal{R},M,W,\mathfrak{M},\mathfrak{W},\mathfrak{I}, \mathfrak{pgls}(\mathcal{R},<))$, where $M, \mathfrak{M}, W , \mathfrak{W}, \mathfrak{I}$ are the match, match mechanism, witnesses, witness function and interpretation functions introduced in Definition~\ref{def:gls:rewriting}, defines a rewriting system, called \textbf{graph relabeling system with priority relation on rules (PGLS)}. 
 
@@ -27,14 +27,14 @@
     \todo{example: ref,  explanation}
     \begin{example}
       \label{example:pgrs_spanning_tree}
-      Consider the GRS \(\mathcal{R}= \{r_1,r_2\}\) with \(\Sigma = \{N, A, 0, 1\}\) and \(r_1 > r_2\). The rules \(r_1\) and \(r_2\) are depicted below:
+      Consider the GRS \(\mathcal{R}= \{r_1,r_2\}\) with \(\Sigma \mathop{=} \{N, A, 0, 1\}\) and \(r_1 \mathop{>} r_2\). The rules \(r_1\) and \(r_2\) are depicted below:
       
       \begin{tikzpicture}
       \draw (-1,0) node[left] {$r_1$:};
       
       \node[draw,circle] (x_1) at (0,0) {$1$};
       \draw (0,0.3) node[above]{A};
-      \node[draw,circle, minimum size = 1pt] (x_2) at (2,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x_2) at (2,0) {$2$};
       \draw (2,0.3) node[above]{N};
       \draw[-] (x_1) -- (x_2);
       
@@ -42,7 +42,7 @@
       
       \node[draw,circle] (x3) at (5,0) {$1$};
       \draw (5,0.3) node[above]{M};
-      \node[draw,circle, minimum size = 1pt] (x4) at (7,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x4) at (7,0) {$2$};
       \draw (7,0.3) node[above]{A};
       \draw[-] (x3) -- (x4);
       \end{tikzpicture}
@@ -52,7 +52,7 @@
       
       \node[draw,circle] (x_1) at (0,0) {$1$};
       \draw (0,0.3) node[above]{M};
-      \node[draw,circle, minimum size = 1pt] (x_2) at (2,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x_2) at (2,0) {$2$};
       \draw (2,0.3) node[above]{A};
       \draw[-] (x_1) -- (x_2);
       
@@ -60,7 +60,7 @@
       
       \node[draw,circle] (x3) at (5,0) {$1$};
       \draw (5,0.3) node[above]{A};
-      \node[draw,circle, minimum size = 1pt] (x4) at (7,0) {$2$};
+      \node[draw,circle, minimum size \mathop{=} 1pt] (x4) at (7,0) {$2$};
       \draw (7,0.3) node[above]{F};
       \draw[-] (x3) -- (x4);
       \end{tikzpicture}
@@ -75,7 +75,7 @@
 		
 		\node[draw,circle] (x_1) at (0,0) {$1$} ;
 		\draw (0,0.3) node[above]{A};
-		\node[draw,circle, minimum size = 1pt] (x_2) at (2,0) {$2$};
+		\node[draw,circle, minimum size \mathop{=} 1pt] (x_2) at (2,0) {$2$};
 		\draw (2,0.3) node[above]{N};
 		\draw[-] (x_1) -- (x_2);
 		
@@ -84,7 +84,7 @@
 		
 		\node[draw,circle] (x3) at (5,0) {$1$} ;
 		\draw (5,0.3) node[above]{A};
-		\node[draw,circle, minimum size = 1pt] (x4) at (7,0) {$2$};
+		\node[draw,circle, minimum size \mathop{=} 1pt] (x4) at (7,0) {$2$};
 		\draw (7,0.3) node[above]{A'};
 		\draw[-] (x3) -- (x4);
 	\end{tikzpicture}
@@ -94,7 +94,7 @@
 		
 		\node[draw,circle] (x_1) at (0,0) {$1$} ;
 		\draw (0,0.3) node[above]{A'};
-		\node[draw,circle, minimum size = 1pt] (x_2) at (2,0) {$2$};
+		\node[draw,circle, minimum size \mathop{=} 1pt] (x_2) at (2,0) {$2$};
 		\draw (2,0.3) node[above]{N};
 		\draw[-] (x_1) -- (x_2);
 		
@@ -103,18 +103,18 @@
 		
 		\node[draw,circle] (x3) at (5,0) {$1$} ;
 		\draw (5,0.3) node[above]{A'};
-		\node[draw,circle, minimum size = 1pt] (x4) at (7,0) {$2$};
+		\node[draw,circle, minimum size \mathop{=} 1pt] (x4) at (7,0) {$2$};
 		\draw (7,0.3) node[above]{A'};
 		\draw[-] (x3) -- (x4);
 	\end{tikzpicture}\\
-	avec $r_2 > r_1$.
+	avec $r_2 \mathop{>} r_1$.
 
 %1
   \begin{tikzpicture}
-		\node[draw, circle, minimum size = 1 cm] (n1) at (0,0) {$1$};
-		\node[draw, circle, minimum size = 1 cm] (n2) at (2,0) {$2$};
-		\node[draw, circle, minimum size = 1 cm] (n3) at (2,2) {$3$};
-		\node[draw, circle, minimum size = 1 cm] (n4) at (0,2) {$4$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n1) at (0,0) {$1$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n2) at (2,0) {$2$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n3) at (2,2) {$3$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n4) at (0,2) {$4$};
 		
 		\draw[-] (n1)--(n2)--(n3)--(n4);
 		\draw[-] (n4)--(n1);
@@ -131,10 +131,10 @@
 	\end{tikzpicture}
 %2
   \begin{tikzpicture}
-		\node[draw, circle, minimum size = 1 cm] (n1) at (0,0) {$1$};
-		\node[draw, circle, minimum size = 1 cm] (n2) at (2,0) {$2$};
-		\node[draw, circle, minimum size = 1 cm] (n3) at (2,2) {$3$};
-		\node[draw, circle, minimum size = 1 cm] (n4) at (0,2) {$4$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n1) at (0,0) {$1$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n2) at (2,0) {$2$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n3) at (2,2) {$3$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n4) at (0,2) {$4$};
 		
 		\draw[-] (n1)--(n2)--(n3)--(n4);
 		\draw[-] (n4)--(n1);
@@ -151,10 +151,10 @@
 	\end{tikzpicture}
   %3 
   \begin{tikzpicture}
-		\node[draw, circle, minimum size = 1 cm] (n1) at (0,0) {$1$};
-		\node[draw, circle, minimum size = 1 cm] (n2) at (2,0) {$2$};
-		\node[draw, circle, minimum size = 1 cm] (n3) at (2,2) {$3$};
-		\node[draw, circle, minimum size = 1 cm] (n4) at (0,2) {$4$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n1) at (0,0) {$1$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n2) at (2,0) {$2$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n3) at (2,2) {$3$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n4) at (0,2) {$4$};
 		
 		\draw[-] (n1)--(n2)--(n3)--(n4);
 		\draw[-] (n4)--(n1);
@@ -172,10 +172,10 @@
 
   %4 forbident r1 application 
   \begin{tikzpicture}
-		\node[draw, circle, minimum size = 1 cm] (n1) at (0,0) {$1$};
-		\node[draw, circle, minimum size = 1 cm] (n2) at (2,0) {$2$};
-		\node[draw, circle, minimum size = 1 cm] (n3) at (2,2) {$3$};
-		\node[draw, circle, minimum size = 1 cm] (n4) at (0,2) {$4$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n1) at (0,0) {$1$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n2) at (2,0) {$2$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n3) at (2,2) {$3$};
+		\node[draw, circle, minimum size \mathop{=} 1 cm] (n4) at (0,2) {$4$};
 		
 		\draw[-] (n1)--(n2)--(n3)--(n4);
 		\draw[-] (n4)--(n1);
@@ -192,13 +192,13 @@
 
 
     %right up
-	\node[draw, circle, minimum size = 1 cm] (2n1) at (6,2) {$1$};
+	\node[draw, circle, minimum size \mathop{=} 1 cm] (2n1) at (6,2) {$1$};
 	\draw (6,1.5) node[below]{A};
-	\node[draw, circle, minimum size = 1 cm] (2n2) at (8,2) {$2$};
+	\node[draw, circle, minimum size \mathop{=} 1 cm] (2n2) at (8,2) {$2$};
 	\draw (8,1.5) node[below]{A'};
-	\node[draw, circle, minimum size = 1 cm] (2n3) at (6,4) {$3$};
+	\node[draw, circle, minimum size \mathop{=} 1 cm] (2n3) at (6,4) {$3$};
 	\draw (6,4.5) node[above]{\textcolor{red}{A'}};
-	\node[draw, circle, minimum size = 1 cm] (2n4) at (8,4) {$4$};
+	\node[draw, circle, minimum size \mathop{=} 1 cm] (2n4) at (8,4) {$4$};
 	\draw (8,4.5) node[above]{\textcolor{red}{A'}};
 
 
@@ -206,13 +206,13 @@
 	
 	
 	%right down
-	\node[draw, circle, minimum size = 1 cm] (2n1) at (6,-2) {$1$};
+	\node[draw, circle, minimum size \mathop{=} 1 cm] (2n1) at (6,-2) {$1$};
 	\draw (6,-2.5) node[below]{A};
-	\node[draw, circle, minimum size = 1 cm] (2n2) at (8,-2) {$2$};
+	\node[draw, circle, minimum size \mathop{=} 1 cm] (2n2) at (8,-2) {$2$};
 	\draw (8,-2.5) node[below]{A'};
-	\node[draw, circle, minimum size = 1 cm] (2n3) at (6,0) {$3$};
+	\node[draw, circle, minimum size \mathop{=} 1 cm] (2n3) at (6,0) {$3$};
 	\draw (6,0.5) node[above]{\textcolor{red}{A'}};
-	\node[draw, circle, minimum size = 1 cm] (2n4) at (8,0) {$4$};
+	\node[draw, circle, minimum size \mathop{=} 1 cm] (2n4) at (8,0) {$4$};
 	\draw (8,0.5) node[above]{\textcolor{red}{A'}};
 	
 	

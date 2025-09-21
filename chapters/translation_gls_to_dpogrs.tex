@@ -1,10 +1,10 @@
 % \begin{theorem}
-%     Let $\mathcal{T}_{gls\to dpo}$ be the functor from the category of Graph relabeling systems to the category of DPO Graph rewriting systems which assocates $\set{\rho' \mid \rho \in \mathcal{R}}$.
+%     Let $\mathcal{T}_{gls \mathop{\to} dpo}$ be the functor from the category of Graph relabeling systems to the category of DPO Graph rewriting systems which assocates $\set{\rho' \mid \rho \mathop{\in} \mathcal{R}}$.
 % \end{theorem}
 
 \begin{definition}
     \label{def:gls_to_dpo}
-    Let $\rho = ((R,\lambda) \rightarrow (R,\lambda'))$ be a graph relabeling rule.
+    Let $\rho \mathop{=} ((R,\lambda) \mathop{\rightarrow} (R,\lambda'))$ be a graph relabeling rule.
     We define $|\rho|$ as the following injective DPO rewriting rule 
     $$  ((R,\lambda) \overset{l}{\leftarrowtail} (K, \emptyset) \overset{r}{\rightarrowtail} (R,\lambda'))$$ 
     where $K$ is the discrete graph obtained by removing all edges from $R$, and $l : (K,\emptyset) \rightarrowtail (R,\lambda)$ and $r : (K, \emptyset) \rightarrowtail (R,\lambda')$ are the inclusion functions.
@@ -19,12 +19,12 @@ For any graph relabeling rule $\rho$, $|\rho|$ is a well-defined DPO rewriting r
     Suppose that there is a graph relabeling step from a graph $G$ to a graph $H$ using the rule $\rho$.
     By definition, there is an occurrence of $(R,\lambda)$ in $G$. Therefore, there is a match $m$ of DPO rule $|\rho|$ in $G$ such that $\opn{Im}(m)$ is the occurrence. 
     There is a DPO rewriting step from $G$ using rule $|\rho|$ and match $m$ to a graph $H'$ where $H'$ is $G$ with the occurrence of $(R,\lambda)$ replaced by an occurrence of $(R,\lambda')$. 
-    Since $H$ is obtained from $G$ by replacing the labels of the occurrence of $(R,\lambda)$ by the labels of $(R,\lambda')$, we have $H' = H$.
+    Since $H$ is obtained from $G$ by replacing the labels of the occurrence of $(R,\lambda)$ by the labels of $(R,\lambda')$, we have $H' \mathop{=} H$.
     We conclude that there is a DPO rewriting step from $G$ to $H$ using the rule $|\rho|$.
 \end{proof}
 
 % \begin{proposition}[Termination Preservation]
-%     Let $\mathcal{R}$ be a graph relabeling system, let $\mathcal{R}' \isdef \set{\rho' \mid \rho \in \mathcal{R}}$ the resulting DPO graph rewriting system. If $(G,\lambda) \to_\mathcal{R} (G,\lambda')$ then $(G,\lambda) \to_\mathcal{R} (G,\lambda')$.
+%     Let $\mathcal{R}$ be a graph relabeling system, let $\mathcal{R}' \isdef \set{\rho' \mid \rho \mathop{\in} \mathcal{R}}$ the resulting DPO graph rewriting system. If $(G,\lambda) \mathop{\to} _\mathcal{R} (G,\lambda')$ then $(G,\lambda) \mathop{\to} _\mathcal{R} (G,\lambda')$.
 % \end{proposition} 
 
 % \begin{theorem}
@@ -43,6 +43,6 @@ For any graph relabeling rule $\rho$, $|\rho|$ is a well-defined DPO rewriting r
 %    \begin{itemize}
 %        \item $K$ is discrete graph,
 %        \item $L$ and $R$ are simple graphs,
-%        \item there is an isomorphism $\varphi :L' \to R'$ such that $l \star \varphi = r$ and $r \star \varphi^{-1} = l$ where $L'$ (reps. $R'$) is the underlying unlabelled graph of $L$ (reps. $R$).
+%        \item there is an isomorphism $\varphi :L' \mathop{\to} R'$ such that $l \mathop{\star} \varphi \mathop{=} r$ and $r \mathop{\star} \varphi^{-1} \mathop{=} l$ where $L'$ (reps. $R'$) is the underlying unlabelled graph of $L$ (reps. $R$).
 %    \end{itemize}  
 % \end{definition}

@@ -2,14 +2,14 @@ The algebraic approach of double-pushout (DPO) rewriting was introduced by Ehrig
 
 Throughout this section, we fix a category \( \mathcal{C} \).
 
- A DPO rewriting rule is given by two morphisms \(l: K \to L\) and \(r: K \to R\). \(L\) encodes the rule's preconditions, \(R\) specifies the postconditions, and \(K\) is the interface—the subobject common to \(L\) and \(R\) that is preserved by the rule, and links \(L\) and \(R\) to the surrounding context.
+ A DPO rewriting rule is given by two morphisms \(l: K \mathop{\to} L\) and \(r: K \mathop{\to} R\). \(L\) encodes the rule's preconditions, \(R\) specifies the postconditions, and \(K\) is the interface—the subobject common to \(L\) and \(R\) that is preserved by the rule, and links \(L\) and \(R\) to the surrounding context.
 \begin{definition} 
   \label{def:grs:dpo_rule}
 A \textbf{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}, \( L \) is the \textbf{left-hand-side object}, denoted by \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side object}, denoted by \( \operatorname{rhs}(\rho) \). The rule $(R \overset{r}{\leftarrow} K \overset{l}{\rightarrow} L)$ is denoted by $\rho^{-1}$. 
 
 The rule is said to be \textbf{left monic} if \( l \) is monic, and \textbf{right monic} if \( r \) is monic; 
 it is said to be \textbf{monic} if it is both left monic and right monic.
-A \textbf{match} of the rule in an object \( G \) is a morphism \( m: L \rightarrow G \). 
+A \textbf{match} of the rule in an object \( G \) is a morphism \( m: L \mathop{\rightarrow} G \). 
 \end{definition}
 In the case of the category \textbf{Graph}, 
 % let \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \) be a DPO graph rewriting rule. 
@@ -29,7 +29,7 @@ The words \enquote{injective} and \enquote{monic} are used interchangeably in th
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }     
@@ -37,7 +37,7 @@ The words \enquote{injective} and \enquote{monic} are used interchangeably in th
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-              % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
               % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
@@ -45,8 +45,8 @@ The words \enquote{injective} and \enquote{monic} are used interchangeably in th
               \coordinate (o) at (-5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -80,7 +80,7 @@ The words \enquote{injective} and \enquote{monic} are used interchangeably in th
         }}}, keeping the extreme nodes unchanged.   
 \end{example}
 % To perform a rewriting step using a DPO rewriting rule $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ to an object $G$, 
-% we need to find a match $m:L \to G$. 
+% we need to find a match $m:L \mathop{\to} G$. 
 % The rule is then applied by constructing the diagram with double pushout shown in Definition~\ref{def:rewriting_step}, and once the diagram with double pushout is constructed, one says that the object $G$ rewrites to $H$ using the rule $\rho$ and the match $m$. The diagram with double pushout is the origin of the name \enquote{double-pushout}.
 \begin{definition} 
   \label{def:rewriting_step}
@@ -116,11 +116,11 @@ The words \enquote{injective} and \enquote{monic} are used interchangeably in th
     %     \label{fig:preliminaries:a_rewriting_step_slkjdfsljsdl}
     %   \end{figure}
   \end{definition}
-To perform a DPO rewriting step with a rule \(\rho: L \xleftarrow{l} K \xrightarrow{r} R\) on an object \(G\), choose a match \(m: L \to G\). 
+To perform a DPO rewriting step with a rule \(\rho: L \xleftarrow{l} K \xrightarrow{r} R\) on an object \(G\), choose a match \(m: L \mathop{\to} G\). 
 If the double-pushout diagram of Definition~\ref{def:rewriting_step} exists (for \(l\), \(r\), and \(m\)), it yields an object \(H\); we then say that \(G\) rewrites to \(H\) via \(\rho\) at \(m\). The diagram with double pushout is the origin of the name \enquote{double-pushout rewriting}.
 
 The diagram with double pushout in Definition~\ref{def:rewriting_step} is said to be a \textbf{witness} for the \textbf{rewriting step} from \( G \) to \( H \) using
-a rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) and a \textbf{match} $m$, denoted \( G \Rightarrow_\rho^m H \) or \( G \Rightarrow_\rho^\delta H \). The pushout squares $KLGC$ and $KRHC$ are denoted by $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$, respectively.
+a rule \( \rho \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) and a \textbf{match} $m$, denoted \( G \mathop{\Rightarrow}_\rho^m H \) or \( G \mathop{\Rightarrow}_\rho^\delta H \). The pushout squares $KLGC$ and $KRHC$ are denoted by $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$, respectively.
 
 In the category \textbf{Graph}, to apply a DPO graph rewriting rule $\mathcal{L} \overset{l}{\leftarrow} \mathcal{K} \overset{r}{\rightarrow} \mathcal{R}$ to a host graph $\mathcal{G}$, one must first identify an occurrence of $\mathcal{L}$ in which a subgraph is designed as the interface graph. The other elements of the host graph $\mathcal{G}$ together with the interface graph form the context graph $\mathcal{C}$ of the rewriting step.
 The graph $\mathcal{G}$ is thus decomposed into the occurrence of $\mathcal{L}$ and $\mathcal{C}$. 
@@ -139,7 +139,7 @@ and the DPO diagram in the following figure. The numbers inside nodes and the su
 %               \coordinate (o) at (0mm,-3mm); 
 %               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+%               \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %           }     
@@ -147,7 +147,7 @@ and the DPO diagram in the following figure. The numbers inside nodes and the su
 %               \coordinate (o) at (5mm,-3mm); 
 %               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-%               % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+%               % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
 %               % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %               % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
 %           }    
@@ -155,8 +155,8 @@ and the DPO diagram in the following figure. The numbers inside nodes and the su
 %               \coordinate (o) at (-5mm,-3mm); 
 %               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%               \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-%               \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+%               \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%               \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
 %               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
 %               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
 %               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -178,7 +178,7 @@ and the DPO diagram in the following figure. The numbers inside nodes and the su
                   \coordinate (o) at (0mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[orange,draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                  \node[orange,draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                   \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
               } 
@@ -193,8 +193,8 @@ and the DPO diagram in the following figure. The numbers inside nodes and the su
                   \coordinate (o) at (-5mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[red,draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                  \node[red,draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                  \node[red,draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                  \node[red,draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                   \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
                   \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
@@ -204,14 +204,14 @@ and the DPO diagram in the following figure. The numbers inside nodes and the su
                   \coordinate (o) at (0mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[draw,circle,orange] (l3) at ($(l1) + (1,0)$) {3};
-                  \node[blue, draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                  \node[draw,circle,orange] (l3) at ($(l1)+(1,0)$) {3};
+                  \node[blue, draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                   \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
                   \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
-                  \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                  \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
-                % \node[blue,draw,circle] (l7) at ($(l4) + (-1,0)$) {7};
+                % \node[blue,draw,circle] (l7) at ($(l4)+(-1,0)$) {7};
                 %   \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
               }    
 
@@ -219,11 +219,11 @@ and the DPO diagram in the following figure. The numbers inside nodes and the su
                   \coordinate (o) at (0mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                  \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                   \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
-                  \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                  \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
-                %     \node[blue,draw,circle] (l7) at ($(l4) + (-1,0)$) {7};
+                %     \node[blue,draw,circle] (l7) at ($(l4)+(-1,0)$) {7};
                 %   \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
               }    
 
@@ -231,16 +231,16 @@ and the DPO diagram in the following figure. The numbers inside nodes and the su
                   \coordinate (o) at (-5mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {4};
-                  \node[draw,circle,red] (l4) at ($(l1) + (2,0)$) {5};
-                  \node[blue,draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
-                  \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                  \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {4};
+                  \node[draw,circle,red] (l4) at ($(l1)+(2,0)$) {5};
+                  \node[blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                  \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
                   \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
                   \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
                   \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
                   \draw[blue,->] (l2) -- (l5) node[midway,right] {$a$};
-                %         \node[blue,draw,circle] (l7) at ($(l5) + (-1,0)$) {7};
+                %         \node[blue,draw,circle] (l7) at ($(l5)+(-1,0)$) {7};
                 %   \draw[blue,->] (l5) -- (l7) node[midway,below] {$a$};
               }    
 
@@ -315,7 +315,7 @@ However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square c
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }     
@@ -323,7 +323,7 @@ However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square c
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-              % \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$\ $};
+              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
               % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
@@ -331,8 +331,8 @@ However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square c
               \coordinate (o) at (-5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-              \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -353,13 +353,13 @@ and the graph $G$ shown below:
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {$2$};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {$3$};
-                    \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {$6$};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$3$};
+                    \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {$6$};
                     \draw[red] (l3) -- (l4) node[midway,above] {$b$};
                     \draw (l1) -- (l3) node[midway,above] {$a$};
                     \draw (l3) -- (l2) node[midway,above] {$a$};
                     \draw (l2) -- (l4) node[midway,right] {$b$};
-                    \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {$7$};
+                    \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {$7$};
                     \draw (l1) -- (l6) node[midway,left] {$b$};
                     % \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                 }   
@@ -374,7 +374,7 @@ The left pushout square cannot be constructed as visualized by the following fig
                     \coordinate (o) at (0mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[orange,draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                    \node[orange,draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                     \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
                 } 
@@ -389,8 +389,8 @@ The left pushout square cannot be constructed as visualized by the following fig
                     \coordinate (o) at (-5mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
-                    \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -400,12 +400,12 @@ The left pushout square cannot be constructed as visualized by the following fig
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle,orange] (l3) at ($(l1) + (1,0)$) {3};
-                    \node[blue, draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                    \node[draw,circle,orange] (l3) at ($(l1)+(1,0)$) {3};
+                    \node[blue, draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                     \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
                     \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
                     \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
-                    \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                     \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
                     \draw[->,red] (l3) -- (l4) node[midway,above] {$a$};
                 }    
@@ -414,11 +414,11 @@ The left pushout square cannot be constructed as visualized by the following fig
                     \coordinate (o) at (0mm,-3mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[blue,draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                    \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
                     \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
-                    \node[blue,draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                    \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                     \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
-                    \node[draw,circle,dashed,orange] (l3) at ($(l1) + (1,0)$) {3};
+                    \node[draw,circle,dashed,orange] (l3) at ($(l1)+(1,0)$) {3};
                     \draw[->,red] (l3) -- (l4) node[midway,above] {$a$};
                 }    
                 \node () at (37mm,-8mm) {\( \overset{l}{\leftarrowtail} \)}; % K -> L
@@ -436,7 +436,7 @@ The left pushout square cannot be constructed as visualized by the following fig
             \node[draw,circle] (y) at (1,0) {$2$};
             \draw[->] (z)--(x) node[midway, above] {$a$};
             \draw[->] (x)--(y) node[midway, above] {$a$};
-        }}} of $L$. Nevertheless, since node $3$ does not exist in $C$, the edge from node $3$ to node $6$ becomes dangling, making the construction of $C$ impossible and preventing the rule application on that occurrence of $L$. Concretely, nodes in \(m(L)\setminus (l\star m)(K)\) are removed when the rule is applied, while edges in \(G\setminus m(L)\) remain, which can produce dangling edges.
+        }}} of $L$. Nevertheless, since node $3$ does not exist in $C$, the edge from node $3$ to node $6$ becomes dangling, making the construction of $C$ impossible and preventing the rule application on that occurrence of $L$. Concretely, nodes in \(m(L)\mathop{\setminus} (l\star m)(K)\) are removed when the rule is applied, while edges in \(G\mathop{\setminus} m(L)\) remain, which can produce dangling edges.
         Therefore, no node of $G$ outside the image of \(m\) should be incident to a node of \(m(L)\) outside the image of \(l\star m\). This requirement is precisely the dangling-edge condition in the following Proposition~\ref{prop:existence_of_pushout_complement}.
 
 There is another requirement for the existence of a pushout complement. To give an intuition, consider the rewriting rule in \(\mathbf{Graph}\), shown below.  This rule deletes a node of the graph, and the match identifies the three nodes of \(L\) with a single node of \(G\).
@@ -447,7 +447,7 @@ There is another requirement for the existence of a pushout complement. To give 
                     \coordinate (o) at (0mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 } 
         
                 \graphbox{\( K \)}{40mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
@@ -475,7 +475,7 @@ Consider the match \(L \overset{m}{\rightarrow} G\) shown in the following diagr
                     \coordinate (o) at (0mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                 } 
         
                 \graphbox{\( K \)}{40mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
@@ -500,7 +500,7 @@ Consider the match \(L \overset{m}{\rightarrow} G\) shown in the following diagr
             \end{tikzpicture}
         } 
         \end{center}     
-Since there are no edges, we may view these graphs as sets of nodes and compute the left pushout square explicitly, as in Example~\ref{ex:cat:posfjsdlkgja}. Suppose that the left pushout square exists—i.e., there is a graph \(C\) and morphisms \(u: K \to C\) and \(l': C \to G\) such that the following diagram is a pushout square:
+Since there are no edges, we may view these graphs as sets of nodes and compute the left pushout square explicitly, as in Example~\ref{ex:cat:posfjsdlkgja}. Suppose that the left pushout square exists—i.e., there is a graph \(C\) and morphisms \(u: K \mathop{\to} C\) and \(l': C \mathop{\to} G\) such that the following diagram is a pushout square:
 \begin{center}
       \resizebox{0.2\textwidth}{!}{
       \begin{tikzpicture}
@@ -515,13 +515,13 @@ Since there are no edges, we may view these graphs as sets of nodes and compute 
         \end{tikzpicture}
         }
     \end{center}
-Then the set of nodes of \(G\) is isomorphic to the quotient \(D/\!\sim\), where $D$ is the disjoint union of the set $V(L)$ of nodes of $L$ and the set $V(C)$ of nodes in $C$ and \(\sim\) is the equivalence relation generated by \(\set{(l(v),u(v))\mid v \in V(K)}\).
+Then the set of nodes of \(G\) is isomorphic to the quotient \(D/\!\sim\), where $D$ is the disjoint union of the set $V(L)$ of nodes of $L$ and the set $V(C)$ of nodes in $C$ and \(\sim\) is the equivalence relation generated by \(\set{(l(v),u(v))\mid v \mathop{\in} V(K)}\).
   
   In this example, there are two cases, depending on how the nodes of \(K\) map into \(C\). Throughout this paragraph, a node \(v\) of a graph \(X\) is denoted by \(v_X\) to avoid ambiguity. 
 If nodes in $K$ are mapped to different nodes $1_C$ and $2_C$ in $C$, then
-        $\sim$ is the smallest equivalence relation generated by $\set{(1_L,1_C),(2_L,2_C)}$ and $D = \set{1_L,2_L,3_L,1_C,2_C,\cdots}$.
+        $\sim$ is the smallest equivalence relation generated by $\set{(1_L,1_C),(2_L,2_C)}$ and $D \mathop{=} \set{1_L,2_L,3_L,1_C,2_C,\cdots}$.
 If nodes in $K$ are mapped to the same node $1_C$ in $C$, 
-then the equivalence relation $\sim$ is the smallest equivalence relation including $\set{(1_L,1_C),(2_L,1_C)}$ and $D = \set{1_L,2_L,3_L,1_C,\cdots}$.
+then the equivalence relation $\sim$ is the smallest equivalence relation including $\set{(1_L,1_C),(2_L,1_C)}$ and $D \mathop{=} \set{1_L,2_L,3_L,1_C,\cdots}$.
 In both cases \(3_L\notin[1_L]_\sim\), and \(G\) cannot be isomorphic to the quotient set \(D/\!\sim\), which contains at least two distinct elements. The condition that prevents this situation is the identification condition in Proposition~\ref{prop:existence_of_pushout_complement}.
 
 This leads to the following proposition summarizing the conditions under which pushout complements exist.
@@ -533,8 +533,8 @@ This leads to the following proposition summarizing the conditions under which p
     if and only if the following conditions are satisfied:
     \begin{itemize} 
         \item{Dangling edge condition:} 
-        No edge in \(G\setminus m(L)\) is incident to any node in \(m(L) \setminus (l \star m)(K)\);
-        \item{Identification condition: } There is no $x,y \in L_V \cup L_E$ such that $x \neq y$, $m(x) = m(y)$ and $y \notin l(K_V \cup K_E)$.
+        No edge in \(G\mathop{\setminus} m(L)\) is incident to any node in \(m(L) \mathop{\setminus} (l \mathop{\star} m)(K)\);
+        \item{Identification condition: } There is no $x,y \mathop{\in} L_V \mathop{\cup} L_E$ such that $x \mathop{\neq} y$, $m(x) \mathop{=} m(y)$ and $y \notin l(K_V \mathop{\cup} K_E)$.
     \end{itemize} 
     % \begin{figure}[H]
     %     \centering
@@ -558,7 +558,7 @@ This leads to the following proposition summarizing the conditions under which p
     % \end{figure}
 \end{proposition}
  
-%  In this example, edge $3 \overset{a}{\rightarrow} 6$ is in $G_E \setminus m(L_E)$, and it is incident to the node $3$ which is in $m(L_V \setminus l(K_V))$. When node $3$ is removed, the edge from node $3$ to node $6$ will be dangling. Intuitively, edges in $G_E \setminus m(L_E)$.
+%  In this example, edge $3 \overset{a}{\rightarrow} 6$ is in $G_E \mathop{\setminus} m(L_E)$, and it is incident to the node $3$ which is in $m(L_V \mathop{\setminus} l(K_V))$. When node $3$ is removed, the edge from node $3$ to node $6$ will be dangling. Intuitively, edges in $G_E \mathop{\setminus} m(L_E)$.
 
 %     To give an intuition on the second condition, suppose that there is a graph C and morphisms $\beta$ and $\alpha'$ such that the diagram in Figure~\ref{fig:preliminaries:a_pushout_square_diagram_1} is a pushout square.
 %    We have the commutative diagram in Figure~\ref{fig:preliminaries:a_pushout_square_diagram} where the morphism $\gamma$ maps all nodes in $C$ to the node 1 in $E$.
@@ -572,7 +572,7 @@ This leads to the following proposition summarizing the conditions under which p
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
 %                 % \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-%                 % \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+%                 % \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
 %                 % \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
 %                 % \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
 %             } 
@@ -588,12 +588,12 @@ This leads to the following proposition summarizing the conditions under which p
 %                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
 %                 % \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
-%                 % \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
-%                 % \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+%                 % \node[draw,circle,red] (l3) at ($(l1)+(0,1.4)$) {3};
+%                 % \node[draw,circle,blue] (l4) at ($(l1)+(1,-1)$) {6};
 %                 % \draw[->,red] (l1) edge[bend left] node[midway,left] {$a$} (l3);
 %                 % \draw[->,red] (l3) edge[bend left] node[midway,right] {$a$} (l1);
 %                 % \draw[->,blue] (l1) edge  node[midway,right] {$a$} (l4);
-%                 % \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+%                 % \node[draw,circle,blue] (l6) at ($(l1)+(-1,-1)$) {7};
 %                 % \draw[<-,blue] (l1) edge node[midway,left] {$a$} (l6) ;
 %                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
 %             }   
@@ -621,7 +621,7 @@ This leads to the following proposition summarizing the conditions under which p
 %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
 %                 % \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-%                 % \node[draw,circle,red] (l3) at ($(l1) + (1,0)$) {3};
+%                 % \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
 %                 % \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
 %                 % \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
 %             } 
@@ -637,12 +637,12 @@ This leads to the following proposition summarizing the conditions under which p
 %                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
 %                 % \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
-%                 % \node[draw,circle,red] (l3) at ($(l1) + (0,1.4)$) {3};
-%                 % \node[draw,circle,blue] (l4) at ($(l1) + (1,-1)$) {6};
+%                 % \node[draw,circle,red] (l3) at ($(l1)+(0,1.4)$) {3};
+%                 % \node[draw,circle,blue] (l4) at ($(l1)+(1,-1)$) {6};
 %                 % \draw[->,red] (l1) edge[bend left] node[midway,left] {$a$} (l3);
 %                 % \draw[->,red] (l3) edge[bend left] node[midway,right] {$a$} (l1);
 %                 % \draw[->,blue] (l1) edge  node[midway,right] {$a$} (l4);
-%                 % \node[draw,circle,blue] (l6) at ($(l1) + (-1,-1)$) {7};
+%                 % \node[draw,circle,blue] (l6) at ($(l1)+(-1,-1)$) {7};
 %                 % \draw[<-,blue] (l1) edge node[midway,left] {$a$} (l6) ;
 %                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
 %             }   
@@ -661,12 +661,12 @@ This leads to the following proposition summarizing the conditions under which p
 %         \caption{}
 %         \label{fig:preliminaries:a_pushout_square_diagram}
 %     \end{figure}
-%     However, no morphism \(\delta : G \to E\) exists such that \( \gamma' = \beta' \star \delta \) and \( \gamma = \alpha' \star \delta \), which contradicts the universal property of the pushout. Therefore, there cannot be any graph \( C \) and morphisms \( \beta \) and \( \alpha' \) such that the diagram in the assumption is a pushout square.
+%     However, no morphism \(\delta : G \mathop{\to} E\) exists such that \( \gamma' \mathop{=} \beta' \mathop{\star} \delta \) and \( \gamma \mathop{=} \alpha' \mathop{\star} \delta \), which contradicts the universal property of the pushout. Therefore, there cannot be any graph \( C \) and morphisms \( \beta \) and \( \alpha' \) such that the diagram in the assumption is a pushout square.
 
 There are several variants of DPO rewriting. Typically both the match $m$ and the morphism $l$ are required to be monomorphisms, and some variants impose additional constraints on the left pushout—for example, that the pushout complement be minimal or initial~\cite{braatz2011delete,behr2021concurrency,behr2023fundamentals}. Because these choices affect which rewriting steps are permitted and hence properties such as termination, following Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}, we use the definition which is parametric in the variation of DPO under consideration.
 \begin{definition}[\cite{endrullis2024generalized_icgt}]
   \label{def:rewriting_framework} 
-    A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to classes of DPO diagrams. Specifically, for every rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \), class $\mathfrak{F}(\rho)$ consists of DPO diagrams, shown in Figure~\ref{fig:preliminaries:a_rewriting_framework}, which are witnesses of rewriting steps using the rule \( \rho \).
+    A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to classes of DPO diagrams. Specifically, for every rule \( \rho \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \), class $\mathfrak{F}(\rho)$ consists of DPO diagrams shown below, which are witnesses of rewriting steps using the rule \( \rho \).
 %  \begin{figure}[H]
 %       \centering
 \begin{center}
@@ -697,13 +697,13 @@ There are several variants of DPO rewriting. Typically both the match $m$ and th
 %         \caption{}
 %         \label{fig:preliminaries:a_rewriting_framework}
 % \end{figure}
-    The \textbf{DPO rewriting relation $\Rightarrow_{\rho,\mathfrak{F}}$ induced by a DPO rewriting rule $\rho$ in $\mathfrak{F}$} is defined as follows:
-     $$G \Rightarrow_{\rho,\mathfrak{F}} H\text{ if and only if }G \Rightarrow_\rho^\delta H$$
-    for some $\delta \in \mathfrak{F}(\rho)$. 
-     The \textbf{DPO rewriting relation $\Rightarrow_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: 
-     $$G \Rightarrow_{\mathcal{R},\mathfrak{F}} H\text{ if and only if }G \Rightarrow_{\rho,\mathfrak{F}} H$$ for some $\rho \in \mathcal{R}$. Whenever $\mathfrak{F}$ is clear from the context, we 
+    The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\rho,\mathfrak{F}}$ induced by a DPO rewriting rule $\rho$ in $\mathfrak{F}$} is defined as follows:
+     $$G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H\text{ if and only if }G \mathop{\Rightarrow}_\rho^\delta H$$
+    for some $\delta \mathop{\in} \mathfrak{F}(\rho)$. 
+     The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: 
+     $$G \mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}} H\text{ if and only if }G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H$$ for some $\rho \mathop{\in} \mathcal{R}$. Whenever $\mathfrak{F}$ is clear from the context, we 
     omit $\mathfrak{F}$ and 
-    write $\Rightarrow_{\rho}$ and $\Rightarrow_{\mathcal{R}}$.
+    write $\mathop{\Rightarrow}_{\rho}$ and $\mathop{\Rightarrow}_{\mathcal{R}}$.
   \end{definition}
-% Let \(\mathfrak{F}\) denote the DPO rewriting framework that associates each rule \( \rho = (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) with the collection of all DPO diagrams of the form shown in Figure~\ref{fig:preliminaries:a_rewriting_framework}.
+% Let \(\mathfrak{F}\) denote the DPO rewriting framework that associates each rule \( \rho \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) with the collection of all DPO diagrams of the form shown in Figure~\ref{fig:preliminaries:a_rewriting_framework}.
 Hereafter, \(\mathfrak{M}\) denotes the DPO rewriting framework that associates each rule with the class of all DPO diagrams of the form shown in Definition~\ref{def:rewriting_framework} with monic match $m$.
