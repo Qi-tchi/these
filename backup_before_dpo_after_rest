@@ -797,13 +797,13 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
   %   % \begin{flalign*}
   %   %   \operatorname{Acc}_{trs}(s,l \mathop{\to} r) \overset{\operatorname{def}}{=} 
   %   %     \left \{ 
-  %   %         s[\sigma(r)]_p \mid p \mathop{\in} \operatorname{Pos}(s) \mathop{\land} \exists \sigma. s|_p \mathop{=} \sigma(l)
+  %   %         s[\sigma(r)]_p \mathop{\mid} p \mathop{\in} \operatorname{Pos}(s) \mathop{\land} \exists \sigma. s|_p \mathop{=} \sigma(l)
   %   %       \right \}
   %   % \end{flalign*}
   %   \begin{flalign*}
   %     \f{F}_{trs}(l \mathop{\to} r) \overset{\operatorname{def}}{=} 
   %       \left \{ 
-  %           (s,t) \mid 
+  %           (s,t) \mathop{\mid} 
   %             \exists C \mathop{\in} T(\Sigma \mathop{\cup} \set{\square}, \mathcal{X}). \exists \sigma. 
   %            s \mathop{=} C[\sigma(l)] \mathop{\land} C[\sigma(r)] \mathop{=} t
   %         \right \}
@@ -818,10 +818,10 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
 % Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
 % Let $\Sigma_{ac} \mathop{\subseteq} \Sigma_{c} \mathop{\subseteq} \Sigma$. We define $\mathcal{C}$ and $\mathcal{AC}$ as follows:
 
-% $$\mathcal{C} \isdef \{f(x,y) \mathop{\to} f(y,x) \mid f \mathop{\in} \Sigma_{c} \}$$
+% $$\mathcal{C} \isdef \{f(x,y) \mathop{\to} f(y,x) \mathop{\mid} f \mathop{\in} \Sigma_{c} \}$$
 
 % $$\mathcal{AC} \isdef 
-%          \{f(f(x,y),z) \mathop{\to} f(x,f(y,z)) \mid f \mathop{\in} \Sigma_{ac} \}$$
+%          \{f(f(x,y),z) \mathop{\to} f(x,f(y,z)) \mathop{\mid} f \mathop{\in} \Sigma_{ac} \}$$
 
 % Let $\to_\mathcal{AC}$ be the rewriting relation defined by $\mathcal{AC} \mathop{\cup} \mathcal{C}$.
 % \begin{definition}[ACTRS rule]
@@ -845,10 +845,10 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
   Let $\Sigma$ be a signature and $\mathcal{X}$ be a set of variables.
   Let $\Sigma_{ac} \mathop{\subseteq} \Sigma_{c} \mathop{\subseteq} \Sigma$. We define $\mathcal{C}$ and $\mathcal{AC}$ as follows:
   
-  $$\mathcal{C} \isdef \{f(x,y) \mathop{\to} f(y,x) \mid f \mathop{\in} \Sigma_{c} \}$$
+  $$\mathcal{C} \isdef \{f(x,y) \mathop{\to} f(y,x) \mathop{\mid} f \mathop{\in} \Sigma_{c} \}$$
   
   $$\mathcal{AC} \isdef 
-           \{f(f(x,y),z) \mathop{\to} f(x,f(y,z)) \mid f \mathop{\in} \Sigma_{ac} \}$$
+           \{f(f(x,y),z) \mathop{\to} f(x,f(y,z)) \mathop{\mid} f \mathop{\in} \Sigma_{ac} \}$$
   Let $ \mathop{\to} _\mathcal{AC}$ be the TRS rewriting relation induced by $\mathcal{AC} \mathop{\cup} \mathcal{C}$.
 \end{definition}
 
@@ -872,7 +872,7 @@ A term rewriting system (TRS) is a rewriting system where the objects are $T(\Si
 %   For all $\rho \mathop{\in} \mathcal{R}$, we define the the rewriting framework $\f{F}_{actrs}(\rho)$ as follows:
 %   \begin{flalign*}
 %     \f{F}_{actrs}(\rho) \isdef 
-%       \left \{ (s,t) \mathop{\in} T(\Sigma,\mathcal{X})^2 \mid 
+%       \left \{ (s,t) \mathop{\in} T(\Sigma,\mathcal{X})^2 \mathop{\mid} 
 %           \exists s', t'. 
 %           s \mathop{\to} _\mathcal{AC}^* s' \mathop{\to} _\rho t' \mathop{\to} _\mathcal{AC}^* t
 %         \right \}

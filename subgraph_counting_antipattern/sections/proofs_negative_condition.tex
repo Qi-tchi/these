@@ -29,7 +29,7 @@
 
 % We have
 %         $  \{
-%              h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+%              h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
 %              \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
 %          \}
 %          \mathop{\subseteq}
@@ -46,59 +46,54 @@
 
 \begin{lemma}
     \label{antipattern:lem:xgm_xhmp_xl_xr_llsss}
-     \ \newline
-    \noindent
-    \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
-    Let $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$ be a ruler-graph and \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. Consider the DPO diagram illustrated on the right. 
-\end{minipage}%
-\begin{minipage}{0.29\textwidth}
-    \hfill
-    \begin{tikzpicture}
-        % [node distance=15mm]
-        \node (I) {$K$};
-        \node (L) [left of=I] {$L$};
-        \node (R) [right of=I] {$R$};
-        \node (G) [below of=L] {$G$};
-        \node (C) [below of=I] {$C$};
-        \node (H) [below of=R] {$H$}; 
-        \draw [>->] (I) to  node [midway,below] {$l$} (L);
-        \draw [>->] (I) to  node [midway,below] {$r$} (R);
-        \draw [>->] (L) to node [midway,right] {$m$} (G);
-        \draw [>->] (I) to  node [midway,right] {$u$} (C); 
-        \draw [>->] (R) to  node [midway,right] {$m'$} (H);
-        \draw [>->] (C) to node [midway,above] {$l'$} (G);
-        \draw [>->] (C) to node [midway,above] {$r'$} (H);
-        % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-        % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-      \end{tikzpicture}
-\end{minipage} 
+    Let $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$ be a ruler-graph and \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. Consider the DPO diagram shown below.
+        \begin{center}
+            \begin{tikzpicture}
+                % [node distance=15mm]
+                \node (I) {$K$};
+                \node (L) [left of=I] {$L$};
+                \node (R) [right of=I] {$R$};
+                \node (G) [below of=L] {$G$};
+                \node (C) [below of=I] {$C$};
+                \node (H) [below of=R] {$H$}; 
+                \draw [>->] (I) to  node [midway,below] {$l$} (L);
+                \draw [>->] (I) to  node [midway,below] {$r$} (R);
+                \draw [>->] (L) to node [midway,right] {$m$} (G);
+                \draw [>->] (I) to  node [midway,right] {$u$} (C); 
+                \draw [>->] (R) to  node [midway,right] {$m'$} (H);
+                \draw [>->] (C) to node [midway,above] {$l'$} (G);
+                \draw [>->] (C) to node [midway,above] {$r'$} (H);
+                % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+                % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+            \end{tikzpicture}
+        \end{center}
 
-We have
+We hav the following equalities:
 \begin{flalign*}
     \card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} \mathop{=} 
     &\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
     \\
     &\card{\{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
-            \}}
+            \}},
     \\
     \card{\operatorname{Mono}(\mathcal{X},H,m')_{\operatorname{NF}}} \mathop{=} 
     &\card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}} - 
     \\
     &\card{\{
-                h_{XR} \mathop{\in} \operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}} \mid 
+                h_{XR} \mathop{\in} \operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FH}. h_{XR} \mathop{\star} m' \mathop{=} f \mathop{\star} h_{FH} 
-                \}}
+                \}}.
 \end{flalign*}
 \end{lemma}
 \begin{proof}
-    By symmetry, it suffices to prove the first equality and the second equality follows. To prove the first equality, we show that there is a bijection between $\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$ and $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\setminus} \{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+    By symmetry, it suffices to prove the first equality and the second equality follows. To prove the first equality, we show that there is a bijection between $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\setminus} \{
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
-            \}$.
+            \}$ and $\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$.
 
-    Let $h_{XG} \mathop{\in} \operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$.  By definition, there is a morphism $h_{XL}: X \rightarrowtail L$ such that $h_{XG} \mathop{=} h_{XL} \mathop{\star} m$ and no morphism $h_{FG}: F \rightarrowtail G$ such that $f \mathop{\star} h_{FG} \mathop{=} h_{XG}$. We must show $h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}$ and there is no $h_{FG}:f \rightarrowtail G$ such that $h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}$. These can be visualized by the following commutative diagram where edges that cannot exist are in red and dashed:
+    Let $h_{XG} \mathop{\in} \operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$. By definition, there is a monomorphism $h_{XL}$ from $X$ to $L$ such that $h_{XG} \mathop{=} h_{XL} \mathop{\star} m$ and there is no monomorphism $h_{FG}$ from $F$ to $G$ such that $f \mathop{\star} h_{FG} \mathop{=} h_{XG}$. We must show $h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}$ and there is no $h_{FG}:f \rightarrowtail G$ such that $h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}$. These can be visualized by the following commutative diagram where edges that cannot exist are in red and dashed:
 
     \begin{center}
         \begin{tikzpicture}
@@ -166,17 +161,17 @@ We have
         \end{tikzpicture}
     \end{center}
 
-    Let $h_{XG}, h_{XG}' \mathop{\in} \operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$ such that $h_{XG} \mathop{\neq} h_{XG}'$.  By definition, there are morphisms $h_{XL}, h_{XL}': X \rightarrowtail L$ such that $h_{XG} \mathop{=} h_{XL} \mathop{\star} m$, $h_{XG}' \mathop{=} h_{XL}' \mathop{\star} m$, and no morphism $h_{FG}, h_{FG}': F \rightarrowtail G$ such that $f \mathop{\star} h_{FG} \mathop{=} h_{XG}$ and $f \mathop{\star} h_{FG}' \mathop{=} h_{XG}'$. Since $m$ is injection, we have $h_{XL} \mathop{\neq} h_{XL}'$.
+    Let $h_{XG}, h_{XG}' \mathop{\in} \operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$ such that $h_{XG} \mathop{\neq} h_{XG}'$. By definition, there are morphisms $h_{XL}, h_{XL}': X \rightarrowtail L$ such that $h_{XG} \mathop{=} h_{XL} \mathop{\star} m$, $h_{XG}' \mathop{=} h_{XL}' \mathop{\star} m$, and no morphism $h_{FG}, h_{FG}': F \rightarrowtail G$ such that $f \mathop{\star} h_{FG} \mathop{=} h_{XG}$ and $f \mathop{\star} h_{FG}' \mathop{=} h_{XG}'$. Since $m$ is injection, we have $h_{XL} \mathop{\neq} h_{XL}'$.
 
-    There is, thus, an injection from $\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$ to $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\setminus} \{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+    There is, therefore, an injection from the set $\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$ to the set $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\setminus} \{
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
             \}$.
 
-    Conversely, let $h_{XL}$ be a morphism in $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+    Conversely, let $h_{XL}$ be a morphism of the following set $$\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
-            \}$. 
+            \}.$$ 
     We have the following commutative diagram:
     
     \begin{center}
@@ -198,27 +193,37 @@ We have
             \node () [at=($(l)!0.5!(c)$)] {$PO$};
         \end{tikzpicture}
     \end{center}
-    To prove $h_{XL} \mathop{\star} m \mathop{\in} \operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$, we show that we have $h_{XL} \mathop{\star} m \mathop{\in} \operatorname{Mono}(\mathcal{X},G,m)$ and that there is no morphism $h_{FG}: F \rightarrowtail G$ such that $f \mathop{\star} h_{FG} \mathop{=} h_{XL} \mathop{\star} m$. We have $h_{XL} \mathop{\star} m \mathop{\in} \operatorname{Mono}(\mathcal{X},G,m)$, because $h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}$, by definition. There is no morphism $h_{FG}: F \rightarrowtail G$ such that $f \mathop{\star} h_{FG} \mathop{=} h_{XL} \mathop{\star} m$, by definition of $h_{XL}$.
+    To prove $h_{XL} \mathop{\star} m \mathop{\in} \operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$, we show that $h_{XL} \mathop{\star} m$ is an element of $\operatorname{Mono}(\mathcal{X},G,m)$ and that there is no morphism $h_{FG}: F \rightarrowtail G$ such that $f \mathop{\star} h_{FG} \mathop{=} h_{XL} \mathop{\star} m$. We have $h_{XL} \mathop{\star} m \mathop{\in} \operatorname{Mono}(\mathcal{X},G,m)$, because the equality $h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}$ holds by definition. There is no morphism $h_{FG}: F \rightarrowtail G$ such that $f \mathop{\star} h_{FG} \mathop{=} h_{XL} \mathop{\star} m$, by definition of $h_{XL}$.
 
-    Let $h_{XL}, h_{XL}'$ be morphisms in $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+    Let $h_{XL}, h_{XL}'$ be morphisms in the following set
+     $$\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
-            \}$ such that $h_{XL} \mathop{\neq} h_{XL}'$.
+    \}$$
+    such that $h_{XL} \mathop{\neq} h_{XL}'$.
     Since $m$ is injective, we have $h_{XL} \mathop{\star} m \mathop{\neq} h_{XL}' \mathop{\star} m$. 
-
-    There is, thus, an injection from $(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+ 
+    There is, thus, an injection from the following set
+ $$  (\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
-            \}) \mathop{\star} m$ to $\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$. Since $(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+            \}) \mathop{\star} m$$
+    to $\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$.
+    Since the following two sets are in bijection
+    \begin{itemize}
+        \item $(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
-            \}) \mathop{\star} m$ and $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+            \}) \mathop{\star} m$, 
+        \item $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
-            \}$ are in bijection, we conclude that there is an injection from $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+            \}$,
+    \end{itemize} 
+    we conclude that there is an injection from the set $A$ to $\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$, where $A \isdef \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}\mathop{\setminus} \{
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
-            \}$ to $\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}$.
+            \}$.
 
     Finally, we conclude.
 \end{proof}
@@ -274,7 +279,7 @@ We have
         \card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} - 
         \card{\operatorname{Mono}(\mathcal{X},H,m')_{\operatorname{NF}}} \geq
         \card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
-        \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}
+        \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}.
     $$
     By definition, it is equivalent to the following inequality:
     \begin{flalign*}
@@ -283,9 +288,13 @@ We have
         \card{\operatorname{Mono}(X,L)} - 
    \card{\operatorname{Mono}(X,R)}
     \end{flalign*}
-    which is true because $\card{\operatorname{Mono}(X,G,m)} \mathop{=} \card{\operatorname{Mono}(X,L)}$ and $\card{\operatorname{Mono}(X,H,m')} =
-   \card{\operatorname{Mono}(X,R)}$ by Lemma~\ref{subgraph_counting:lem:decomp_w_u}.
-   
+    because the following equalities hold by Lemma~\ref{subgraph_counting:lem:decomp_w_u}:
+    \begin{itemize}
+        \item $\card{\operatorname{Mono}(X,G,m)} \mathop{=} \card{\operatorname{Mono}(X,L)}$,
+        \item $\card{\operatorname{Mono}(X,H,m')} =
+   \card{\operatorname{Mono}(X,R)}$.
+    \end{itemize} 
+
    For the second case, by Lemma~\ref{antipattern:lem:xgm_xhmp_xl_xr_llsss}, we have the following:
     \begin{flalign*}
         &\card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} - 
@@ -293,7 +302,7 @@ We have
         \\
         \mathop{=} &(\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
             \card{\{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
             \}}
         ) - 
@@ -303,57 +312,54 @@ We have
             \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}
             -  
             \card{\{
-                h_{XR} \mathop{\in} \operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}} \mid 
+                h_{XR} \mathop{\in} \operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FH}. h_{XR} \mathop{\star} m' \mathop{=} f \mathop{\star} h_{FH}
             \}}
            )
     \end{flalign*}
     where 
     $\{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} h_{XF} \mathop{\star} h_{FG}
-            \}$ is the set of $X$-occurrences in $L$ that are not included in any occurrences of its forbidden context in $L$ but included in an occurrence of its forbidden context in $G$, and, analogously, $\{
-                h_{XR} \mathop{\in} \operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}} \mid 
+            \}$ is the set of occurrences of $X$ in $L$ that are not included in any occurrences of its forbidden context in $L$ but included in an occurrence of its forbidden context in $G$, and, analogously, $\{
+                h_{XR} \mathop{\in} \operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FH}. h_{XR} \mathop{\star} m' \mathop{=} h_{XF} \mathop{\star} h_{FH}
             \}$ is the set of $X$-occurrences in $R$ that are not included in any occurrences of its forbidden context in $R$ but included in an occurrence of its forbidden context in $H$.
 
     The following equalities and inequalities hold:
     \begin{flalign*}
-        &\card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} - 
+        &\card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} \mathop{-} 
         \card{\operatorname{Mono}(\mathcal{X},H,m')_{\operatorname{NF}}} 
         \\
-           \mathop{=} &(\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
+           \mathop{=} &(\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} \mathop{-} 
            \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}
        )\mathop{+}
        \\
            &
           (
             \card{\{
-               h_{XR} \mathop{\in} \operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}} \mid 
+               h_{XR} \mathop{\in} \operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}} \mathop{\mid} 
                \exists h_{FH}. h_{XR} \mathop{\star} m' \mathop{=} f \mathop{\star} h_{FH}
            \}}
-           - \\&
+           \mathop{-} \\&
            \card{\{
-                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+                h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
                 \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} f \mathop{\star} h_{FG}
             \}}         
           ) 
         \\ 
-        \geq& (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
+        \mathop{\geq}& (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} \mathop{-} 
         \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}
-        ) -
-        % \\
-        % &
-        %  0 -
+        ) \mathop{-}
          \\
          & \card{\{
-             h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mid 
+             h_{XL} \mathop{\in} \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}} \mathop{\mid} 
              \exists h_{FG}. h_{XL} \mathop{\star} m \mathop{=} h_{XF} \mathop{\star} h_{FG}
          \}}        
        \\ 
-       =& (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
+       \mathop{=}& (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} \mathop{-} 
        \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}
-       ) - 
+       ) \mathop{-} 
        \\
        &
     %   (
@@ -365,13 +371,13 @@ We have
         \text{\hspace{1cm}by Definition~\ref{antipattern:def:gamma_l_rho_x}}
       \\
       \mathop{=}& 
-      \card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
+      \card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} \mathop{-} 
       \card{
         \Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})
         } \mathop{-}
       \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}
       \\
-      =& \Lambda(\mathcal{X}, \rho)
+      \mathop{=}& \Lambda(\mathcal{X}, \rho).
     \end{flalign*}
 \end{proof}
 
@@ -481,12 +487,12 @@ We have
         Since $KCHR$ is a pushout, it is also a pullback, by Proposition~\ref{prop:pb_eq_po}. 
         Therefore, from \(
             h_{K'C'} \mathop{\star} h_{C'C} \mathop{\star} h_{CH} =h_{K'R'} \mathop{\star} h_{R'R} \mathop{\star} h_{R'R}
-        \) and the universal property of pullback, there exists a unique morphism $h_{K'K}:K' \rightarrowtail K$ such that 
+        \) and the universal property of pullback, there is a unique morphism $h_{K'K}:K' \rightarrowtail K$ such that 
         \begin{flalign*}
-            h_{K'C'} \mathop{\star} h_{C'C} &= h_{K'K} \mathop{\star} h_{KC} 
+            h_{K'C'} \mathop{\star} h_{C'C} &= h_{K'K} \mathop{\star} h_{KC}, 
             % \label{antipattern:kpcpcpckpkkc}
             \\
-            h_{K'R'} \mathop{\star} h_{R'R} &= h_{K'K} \mathop{\star} h_{KR} 
+            h_{K'R'} \mathop{\star} h_{R'R} &= h_{K'K} \mathop{\star} h_{KR}.
             % \label{antipattern:kprprprkpk}
          \end{flalign*}
         The square $K'KCC'$ and $K'R'RK$ are pullbacks, by Lemma~\ref{kpcpck_pullback}. Furthermore, $K'C'XR'$ is a pushout by Lemma~\ref{kpcpxrp_po}. Hence, the following commutative diagram holds:
@@ -544,18 +550,9 @@ We have
 
 \noindent
 \begin*{\textbf{Lemma~\ref{antipattern:lem:xglnotmlp_xhlnotmrp}}}
-    \newline
-    \noindent
-    \vspace{2mm}
-    \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
-        Let $\mathcal{X}$ be a ruler-graph
-        %  with underlying graph $X$ 
-         and \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. 
-        Suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X} \mathop{=} (X,f:X \rightarrowtail F)$.
-        Consider the DPO diagram illustrated on the right. We have 
-    \end{minipage}%
-    \begin{minipage}{0.29\textwidth}
-        \hfill
+        Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule and $\mathcal{X}$ be a ruler-graph with underlying graph $X$.
+        Suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X} \mathop{=} (X,f:X \rightarrowtail F)$. For the DPO shown below,
+        \begin{center}
         \begin{tikzpicture}
             % [node distance=15mm]
             \node (I) {$K$};
@@ -574,11 +571,10 @@ We have
             % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
             % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
         \end{tikzpicture}
-    \end{minipage} 
-  
-   $$
-        \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{NF}}} \geq
-        \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{NF}}}$$
+        \end{center}
+        the following inequality holds:
+    $$\card{\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, l')_{\operatorname{NF}}} \geq
+        \card{\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', r')_{\operatorname{NF}}}.$$
 \end*{}
 \begin{proof}
     \label{antipattern:proof:lem:xglnotmlp_xhlnotmrp}
@@ -586,7 +582,7 @@ We have
      In the first case, since there is no forbidden context, the inequality is equivalent to $
         \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, l')} \geq
         \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')}$.
-    To show this inequality, we are going to establish an injection from $\operatorname{Mono}(\mathcal{X},H,\lnot m', r')$ to $\operatorname{Mono}(\mathcal{X},G,\lnot m, l')$. Let $h_{XH} \mathop{\in} \operatorname{Mono}(\mathcal{X},H,\lnot m', r')$. By definition, there exists a monomorphism $h_{XC}:X \rightarrowtail C$ such that $h_{XH} \mathop{=} h_{XC} \mathop{\star} r'$. Thus we have the following commutative diagram:
+    To show this inequality, we are going to establish an injection from $\operatorname{Mono}(\mathcal{X},H,\lnot m', r')$ to $\operatorname{Mono}(\mathcal{X},G,\lnot m, l')$. Let $h_{XH} \mathop{\in} \operatorname{Mono}(\mathcal{X},H,\lnot m', r')$. By definition, there is a monomorphism $h_{XC}:X \rightarrowtail C$ such that $h_{XH} \mathop{=} h_{XC} \mathop{\star} r'$. Thus we have the following commutative diagram:
 
      \begin{center}
     \begin{tikzpicture}
@@ -615,18 +611,19 @@ We have
     Suppose that the contrary holds.
      Since $KLGC$ is a pullback by Proposition~\ref{prop:pb_eq_po}, there is a morphism $h_{XK}:X \rightarrowtail K$ such that 
             \begin{flalign}
-         h_{XK} \mathop{\star} u \mathop{=} h_{XC} \label{alabeldkfsjlk}
-        \end{flalign} Therefore, we have 
+         h_{XK} \mathop{\star} u \mathop{=} h_{XC}. \label{alabeldkfsjlk}
+        \end{flalign} 
+    Therefore, we have 
     \begin{flalign*}
         h_{XH} 
         &= h_{XC} \mathop{\star} r' \\
         &= (h_{XK} \mathop{\star} u) \mathop{\star} r' \hspace{1cm} by Equation~\eqref{alabeldkfsjlk}\\
         &= h_{XK} \mathop{\star} (r \mathop{\star} m') \\ 
-        &= (h_{XK} \mathop{\star} r) \mathop{\star} m' 
+        &= (h_{XK} \mathop{\star} r) \mathop{\star} m'.
     \end{flalign*}
-    which contradicts the fact that $h_{XH} \mathop{\in} \operatorname{Mono}(\mathcal{X},H,\lnot m', r')$. Therefore, we have $h_{XC} \mathop{\star} l' \mathop{\in} \operatorname{Mono}(\mathcal{X},G,\lnot m, l')$.
+    This contradicts the fact that $h_{XH} \mathop{\in} \operatorname{Mono}(\mathcal{X},H,\lnot m', r')$. Therefore, we have $h_{XC} \mathop{\star} l' \mathop{\in} \operatorname{Mono}(\mathcal{X},G,\lnot m, l')$.
 
-    Furthermore, if $h_{XH}, h_{XH}' \mathop{\in} \operatorname{Mono}(\mathcal{X},H,\lnot m', r')$ with $h_{XH} \mathop{\neq} h_{XH}'$, then there exist $h_{XC}, h_{XC}'$ such that $h_{XH} \mathop{=} h_{XC} \mathop{\star} r'$ and $h_{XH}' \mathop{=} h_{XC}' \mathop{\star} r'$. Since $r'$ is injective, we deduce that $h_{XC} \mathop{\neq} h_{XC}'$. Therefore, from the injectivity of $l'$, we have $h_{XC} \mathop{\star} l' \mathop{\neq} h_{XC}' \mathop{\star} l'$. Thus, there is an injection from $\operatorname{Mono}(\mathcal{X},H,\lnot m', r')$ to $\operatorname{Mono}(\mathcal{X},G,\lnot m, l')$, which proves the inequality.
+    Furthermore, if $h_{XH}, h_{XH}' \mathop{\in} \operatorname{Mono}(\mathcal{X},H,\lnot m', r')$ with $h_{XH} \mathop{\neq} h_{XH}'$, then there are $h_{XC}, h_{XC}'$ such that $h_{XH} \mathop{=} h_{XC} \mathop{\star} r'$ and $h_{XH}' \mathop{=} h_{XC}' \mathop{\star} r'$. Since $r'$ is injective, we deduce that $h_{XC} \mathop{\neq} h_{XC}'$. Therefore, from the injectivity of $l'$, we have $h_{XC} \mathop{\star} l' \mathop{\neq} h_{XC}' \mathop{\star} l'$. Thus, there is an injection from $\operatorname{Mono}(\mathcal{X},H,\lnot m', r')$ to $\operatorname{Mono}(\mathcal{X},G,\lnot m, l')$, which proves the inequality.
         
         Now, let us focus on the second case, where $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$. We have the following equalities:
         \begin{flalign*}
@@ -642,19 +639,19 @@ We have
             \mathop{=} & (\card{\operatorname{Mono}(X,C,\lnot u)} - \card{\operatorname{Mono}(X,C,\lnot u)})\mathop{+}\\
               & (\card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{F}}} - \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}})
             \\
-            &\text{By Lemma~\ref{subgraph_counting:lem:decomp_w_u}}
+            &\hspace{5cm}\text{by Lemma~\ref{subgraph_counting:lem:decomp_w_u}}
             \\
             \mathop{=} & \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{F}}} - \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}}
         \end{flalign*}
-    We prove this lemma by show that the function $\phi:\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}} \mathop{\rightarrow} \operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{NF}}$
-    defined by $\phi(h_{XG}) \mathop{=} h_{XC} \mathop{\star} r'$ for all $h_{XG} \mathop{\in} \operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}$, where $h_{XC}:X \rightarrowtail C$ is the uniquemonomorphism such that $h_{XG} \mathop{=} h_{XC} \mathop{\star} l'$, is injective.
+    We prove this lemma by show that the function $\phi$ from $\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}$ to $\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{NF}}$
+    defined by $\phi(h_{XG}) \mathop{=} h_{XC} \mathop{\star} r'$ for all element $h_{XG}$ in $\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}$, where $h_{XC}:X \rightarrowtail C$ is the uniquemonomorphism such that $h_{XG} \mathop{=} h_{XC} \mathop{\star} l'$, is injective.
 
     We first show that $\phi$ is well-defined.
 
     Let $h_{XG} \mathop{\in} \operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}$. By definition, there are $h_{FG}:F \rightarrowtail G$ and $h_{XC}:X \rightarrowtail C$ such that
         \begin{flalign}
-            h_{XG} &= h_{XC} \mathop{\star} l' \label{antipattern:lem:hxghxclp} \\
-            h_{XF} \mathop{\star} h_{FG} &= H_{XG} \label{antipattern:lem:hxfhfghxg}
+            h_{XG} &= h_{XC} \mathop{\star} l', \label{antipattern:lem:hxghxclp} \\
+            h_{XF} \mathop{\star} h_{FG} &= H_{XG}. \label{antipattern:lem:hxfhfghxg}
         \end{flalign}
     Therefore, the following commutative diagram holds:
 
@@ -687,7 +684,7 @@ We have
 
 
    We prove that $\phi(h_{XG})$ cannot be factorized by $m'$, by contradiction. Suppose that the contrary holds, i.e. there is $h_{XR}:X \mathop{\rightarrow} R$ such that $\phi(h_{XG}) \overset{def}{=} h_{XC} \mathop{\star} r' \mathop{=} h_{XR} \mathop{\star} m'$. The morphism $h_{XR}$ is injective, because $\phi(h_{XG})$ is injective. Therefore, under this assumption, we have the following commutative diagram:
-
+    \begin{center}
     \begin{tikzpicture}
        \node (k) at (0,1) {K};
        \node (l) at (-2,1) {L};
@@ -714,83 +711,56 @@ We have
        \node () [at=($(l)!0.5!(c)$)] {$PO$};
        \node () [at=($(r)!0.5!(c)$)] {$PO$};
    \end{tikzpicture}
+    \end{center}
    
    \noindent
     The square $KCHR$ is also a pullback by Proposition~\ref{prop:pb_eq_po}. 
-    By the universal property of pullback, there exists a unique morphism $h_{XK}:X \mathop{\rightarrow} K$, which is injective because $h_{XR}$ is injective, such that $h_{XK} \mathop{\star} r \mathop{=} h_{XR}$ and 
+    By the universal property of pullback, there is a unique morphism $h_{XK} \mathop{\colon} X \mathop{\rightarrow} K$, which is injective because $h_{XR}$ is injective, such that $h_{XK} \mathop{\star} r \mathop{=} h_{XR}$ and 
     \begin{flalign}
-        h_{XK} \mathop{\star} u \mathop{=} h_{XC} \label{antipattern:eq:hxk_u}
+        h_{XK} \mathop{\star} u \mathop{=} h_{XC}. \label{antipattern:eq:hxk_u}
     \end{flalign} 
     Therefore, the following commutative diagram holds:
-
-%      \begin{tikzpicture}
-%        \node (k) at (0,1) {K};
-%        \node (l) at (-2,1) {L};
-%        \node (r) at (2,1) {R};
-%        \node (c) at (0,-1) {C};
-%        \node (g) at (-2,-1) {G};
-%        \node (h) at (2,-1) {H};
-%        \node (x) at (-4,2) {X};
-%        \node (f) at  (-4,-2) {F};
-%        \draw[>->] (x) -- (g) node [midway,above] {};
-%        \draw[>->] (x) -- (f) node [midway,above] {};
-%        \draw[>->]  (f) -- (g) node [midway,above] {};
-%        % \draw[>->] (x) -- (l) node [midway,above] {};
-%        \draw[>->] (x) edge[out=-80,in=220] (c) node [midway,above] {};
-%        \draw[>->] (x) edge
-%         % [out=90,in=135]
-%         (r) node [midway,above] {};
-%        \draw[>->] (f) edge [out=0,in=-90](c) node [midway,above] {};
-%        \draw[>->]  (k) -- (r) node [midway,below] {$r$};
-%        \draw[>->]  (k) -- (l) node [midway,below] {$l$};
-%        \draw[>->] (c) -- (g) node [midway, above] {$l'$};
-%        \draw[>->] (c) -- (h) node [midway,above] {$r'$};
-%        \draw[>->] (l) -- (g) node[midway, right] {$m$};
-%        \draw[>->] (x) -- (k) node[midway, right] {};
-%        \draw[>->] (r) -- (h) node[midway, left] {$m'$};
-%        \draw[>->] (k) -- (c) node[midway, left] {$u$};
-%        \node () [at=($(l)!0.5!(c)$)] {$PO$};
-%        \node () [at=($(r)!0.5!(c)$)] {$PB$};
-%    \end{tikzpicture}
+    \begin{center}
        \begin{tikzpicture}
-       \node (k) at (0,1) {K};
-       \node (l) at (-2,1) {L};
-       \node (r) at (2,1) {R};
-       \node (c) at (0,-1) {C};
-       \node (g) at (-2,-1) {G};
-       \node (h) at (2,-1) {H};
-       \node (x) at (-4,-1) {X};
-       \node (f) at  (-4,-2) {F};
-       \draw[>->] (x) -- (g) node [midway,above] {};
-       \draw[>->] (x) -- (f) node [midway,above] {};
-       \draw[>->]  (f) -- (g) node [midway,above] {};
-       % \draw[>->] (x) -- (l) node [midway,above] {};
-       \draw[>->] (x) edge [bend right](c) node [midway,above] {};
-       \draw[>->] (x) edge [out=90,in=135](r) node [midway,above] {};
-       \draw[>->] (x) edge [out=90,in=135](k) node [midway,above] {};
-       \draw[>->] (f) edge [bend right](c) node [midway,above] {};
-       \draw[>->]  (k) -- (r) node [midway,below] {$r$};
-       \draw[>->]  (k) -- (l) node [midway,below] {$l$};
-       \draw[>->] (c) -- (g) node [midway, above] {$l'$};
-       \draw[>->] (c) -- (h) node [midway,above] {$r'$};
-       \draw[>->] (l) -- (g) node[midway, right] {$m$};
-       \draw[>->] (r) -- (h) node[midway, left] {$m'$};
-       \draw[>->] (k) -- (c) node[midway, left] {$u$};
-       \node () [at=($(l)!0.5!(c)$)] {$PO$};
-       \node () [at=($(r)!0.5!(c)$)] {$PB$};
-   \end{tikzpicture}
+            \node (k) at (0,1) {K};
+            \node (l) at (-2,1) {L};
+            \node (r) at (2,1) {R};
+            \node (c) at (0,-1) {C};
+            \node (g) at (-2,-1) {G};
+            \node (h) at (2,-1) {H};
+            \node (x) at (-4,-1) {X};
+            \node (f) at  (-4,-2) {F};
+            \draw[>->] (x) -- (g) node [midway,above] {};
+            \draw[>->] (x) -- (f) node [midway,above] {};
+            \draw[>->]  (f) -- (g) node [midway,above] {};
+            % \draw[>->] (x) -- (l) node [midway,above] {};
+            \draw[>->] (x) edge [bend right](c) node [midway,above] {};
+            \draw[>->] (x) edge [out=90,in=135](r) node [midway,above] {};
+            \draw[>->] (x) edge [out=90,in=135](k) node [midway,above] {};
+            \draw[>->] (f) edge [bend right](c) node [midway,above] {};
+            \draw[>->]  (k) -- (r) node [midway,below] {$r$};
+            \draw[>->]  (k) -- (l) node [midway,below] {$l$};
+            \draw[>->] (c) -- (g) node [midway, above] {$l'$};
+            \draw[>->] (c) -- (h) node [midway,above] {$r'$};
+            \draw[>->] (l) -- (g) node[midway, right] {$m$};
+            \draw[>->] (r) -- (h) node[midway, left] {$m'$};
+            \draw[>->] (k) -- (c) node[midway, left] {$u$};
+            \node () [at=($(l)!0.5!(c)$)] {$PO$};
+            \node () [at=($(r)!0.5!(c)$)] {$PB$};
+        \end{tikzpicture}
+    \end{center}
    
    \noindent 
    Thus, we have \begin{flalign*}
         h_{XG} &= h_{XC} \mathop{\star} l' \\
         &= (h_{XK} \mathop{\star} u) \mathop{\star} l' &\text{by Equation~\eqref{antipattern:eq:hxk_u}}\\
-        &= h_{XK} \mathop{\star} (l \mathop{\star} m)  &\text{by commutativity of $KLGC$}
+        &= h_{XK} \mathop{\star} (l \mathop{\star} m).  &\text{by commutativity of $KLGC$}
     \end{flalign*}
-    Which is a contradiction because $h_{XG}$ is an element of $\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}$ and, by definition, cannot be factorized by $m$. Thus, the assumption is false, and $\phi(h_{XG})$ cannot be factorized by $m'$.
+    This is a contradiction because $h_{XG}$ is an element of $\operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}$ and, by definition, cannot be factorized by $m$. Thus, the assumption is false, and $\phi(h_{XG})$ cannot be factorized by $m'$.
 
     % In order to show that $\phi(h_{XG})$ is an element in $\operatorname{Mono}(\mathcal{X},H,\lnot m', r')_{\operatorname{F}}$, since $\phi(h_{XG})$ can be factorized by $r'$ by definition, 
     Consider the commutative diagram shown below.
-    It remains to show that $\phi(h_{XG})$ can be decomposed as $x \mathop{\star} y$ with $x: X \rightarrowtail F$ and $y: F \rightarrowtail H$. There are three mutually exclusive cases according to whether or not the morphism $h_{FG}$ can be factorized by $m$ or $l'$.
+    It remains to show that $\phi(h_{XG})$ can be decomposed as $x \mathop{\star} y$ with $x \mathop{\colon} X \rightarrowtail F$ and $y \mathop{\colon} F \rightarrowtail H$. There are three mutually exclusive cases according to whether or not the morphism $h_{FG}$ can be factorized by $m$ or $l'$.
         \begin{center}
     \begin{tikzpicture}
         \node (k) at (0,1) {K};
@@ -819,7 +789,7 @@ We have
     \end{center}
     %  $h_{FG}$ can be factorized by $m$ or $l'$:
     \begin{itemize}
-        \item Case 1 : there exists $h_{FL}: F \mathop{\rightarrow} L$ such that $h_{FG} \mathop{=} h_{FL} \mathop{\star} m$. 
+        \item Case 1 : there is $h_{FL} \mathop{\colon} F \mathop{\rightarrow} L$ such that $h_{FG} \mathop{=} h_{FL} \mathop{\star} m$. 
         This case is impossible, because if it were true, then we would have the following commutative diagram:
 
         \begin{tikzpicture}
@@ -852,9 +822,10 @@ We have
              h_{XC} \mathop{\star} l' \mathop{=} &h_{XG}  & \text{by Equation~\eqref{antipattern:lem:hxghxclp}}\\
              \mathop{=} &f \mathop{\star} h_{FG} 
              &\text{by Equation~\eqref{antipattern:lem:hxfhfghxg}} \\
-             \mathop{=} &f \mathop{\star} h_{FL} \mathop{\star} m \\
-        \end{flalign*} which would imply that $h_{XC}$ is not in $\operatorname{Mono}(X,G,\lnot m, l')$.
-        \item Case 2 : there does not exist $h_{FL}: F \mathop{\rightarrow} L$ such that $h_{FG} \mathop{=} h_{FL} \mathop{\star} m$, but there exists $h_{FC}:F \mathop{\rightarrow} C$ such that $h_{FG} \mathop{=} h_{FC} \mathop{\star} l'$. 
+             \mathop{=} &f \mathop{\star} h_{FL} \mathop{\star} m.
+        \end{flalign*} 
+        This would imply that $h_{XC}$ is not in $\operatorname{Mono}(X,G,\lnot m, l')$.
+        \item Case 2 : there does not exist $h_{FL} \mathop{\colon} F \mathop{\rightarrow} L$ such that $h_{FG} \mathop{=} h_{FL} \mathop{\star} m$, but there is $h_{FC} \mathop{\colon} F \mathop{\rightarrow} C$ such that $h_{FG} \mathop{=} h_{FC} \mathop{\star} l'$. 
         We have the following commutative diagram:
 
         \begin{tikzpicture}
@@ -885,8 +856,8 @@ We have
 
         We have therefore $\phi(h_{XG}) \mathop{=} h_{XC} \mathop{\star} r' \mathop{=} h_{XF} \mathop{\star} (h_{FC} \mathop{\star} r')$.
 
-    \item Case 3 : there does not exist $h_{FL}: F \mathop{\rightarrow} L$ such that $h_{FG} \mathop{=} h_{FL} \mathop{\star} m$,
-    and there does not exist $h_{FC}:F \mathop{\rightarrow} C$ such that $h_{FG} \mathop{=} h_{FC} \mathop{\star} l'$.
+    \item Case 3 : there does not exist $h_{FL} \mathop{\colon}  F \mathop{\rightarrow} L$ such that $h_{FG} \mathop{=} h_{FL} \mathop{\star} m$,
+    and there does not exist $h_{FC} \mathop{\colon} F \mathop{\rightarrow} C$ such that $h_{FG} \mathop{=} h_{FC} \mathop{\star} l'$.
      By Lemma~\ref{antipattern:lem:xh_decomp}, we can construct the following commutative diagram:
 
     \begin{center}
@@ -921,7 +892,7 @@ We have
         }
         \end{center} 
 
-    There exists a unique monomorphism $h_{XC'}:X \rightarrowtail C'$ 
+    There is a unique monomorphism $h_{XC'} \mathop{\colon} X \rightarrowtail C'$ 
     such that $h_{XC'} \mathop{\star} h_{C'C} \mathop{=} h_{XC}$ and $h_{XC'} \mathop{\star} h_{C'F} \mathop{=} h_{XF}$,
     because we have $h_{XF} \mathop{\star} h_{FG} \mathop{=} h_{XG}$, $h_{XC} \mathop{\star} h_{CG} \mathop{=} h_{XG}$ and $C'CGF$ is a pullback.
 
@@ -981,9 +952,9 @@ We have
         \end{center} 
     
      By the $F$-non-increasing property of $\rho^{-1}$,  
-     \todo{assumption: the $F$-non-increasing property of $\rho^{-1}$}$h_{L'R}$ 
-     there is a morphism $h_{L'R}:L' \rightarrowtail R$ such that $K'L'RK$ is a pullback.
-        By Lemma~\ref{lem:g_monic}, there exists a unique monomorphism $h_{FH}:F \rightarrowtail H$ such that $L'FHR$ and $C'FHC$ are commutative squares.
+     \todo{assumption: the $F$-non-increasing property of $\rho^{-1}$} 
+     there is a morphism $h_{L'R} \mathop{\colon} L' \rightarrowtail R$ such that $K'L'RK$ is a pullback.
+        By Lemma~\ref{lem:g_monic}, there is a unique monomorphism $h_{FH} \mathop{\colon} F \rightarrowtail H$ such that $L'FHR$ and $C'FHC$ are commutative squares.
     %      $h_{L'R} \mathop{\star} h_{RH} \mathop{=} h_{L'F} \mathop{\star} h_{FH}$ and $h_{C'F} \mathop{\star} h_{FH} \mathop{=} h_{C'C} \mathop{\star} h_{CH}$, because $K'C'FL'$ is a pushout, and 
     % \begin{flalign*}
     %      &h_{K'L'} \mathop{\star} h_{L'R} \mathop{\star} h_{RH} \\
@@ -1050,28 +1021,21 @@ We have
         \begin{flalign*}
             \phi(h_{XG}) &= h_{XC} \mathop{\star} r' \\
             &= h_{XC'} \mathop{\star} h_{C'C} \mathop{\star} r' \\
-            &= (h_{XC'} \mathop{\star} h_{C'F}) \mathop{\star} h_{FH}  \\
+            &= (h_{XC'} \mathop{\star} h_{C'F}) \mathop{\star} h_{FH}.
         \end{flalign*} 
     \end{itemize}
     We have thus shown that $\phi$ is well defined.
     
     Proving its injectivity is straightforward. 
     Let $h_{XG}, h_{XG}' \mathop{\in} \operatorname{Mono}(\mathcal{X},G,\lnot m, l')_{\operatorname{F}}$ such that $h_{XG} \mathop{\neq} h_{XG}'$.
-    There exist $h_{XC},h_{XC}'$ such that $h_{XG} \mathop{=} h_{XC} \mathop{\star} l'$ and $h_{XG}' \mathop{=} h_{XC}' \mathop{\star} l'$.
-    By injectivity of $l'$, we have $h_{XC} \mathop{\neq} h_{XC}'$. Therefore, we have $\phi(h_{XG}) \mathop{=} h_{XC} \mathop{\star} r' \mathop{\neq} h_{XC}' \mathop{\star} r' \mathop{=} \phi(h_{XG}')$ because $r'$ is injective.
+    There are morphisms $h_{XC}$ and $h_{XC}'$ such that $h_{XG} \mathop{=} h_{XC} \mathop{\star} l'$ and $h_{XG}' \mathop{=} h_{XC}' \mathop{\star} l'$.
+    By injectivity of $l'$, we have $h_{XC} \mathop{\neq} h_{XC}'$. Therefore, since $r'$ is injective, we have $\phi(h_{XG}) \mathop{=} h_{XC} \mathop{\star} r' \mathop{\neq} h_{XC}' \mathop{\star} r' \mathop{=} \phi(h_{XG}')$.
 \end{proof} 
 
 \noindent
 \begin*{\textbf{Lemma~\ref{antipattern:lem:xglnotmlnotlp_xhlnotmrnotrp}}}
-    \newline
-    \noindent
-    \vspace{2mm}
-    \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
-        Let $\mathcal{X}$ be a ruler-graph with underlying graph $X$, and let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. Suppose that $\rho$ and $\rho^{-1}$ are $X$-non-increasing.
-        Consider the DPO diagram illustrated on the right. We have 
-    \end{minipage}%
-    \begin{minipage}{0.29\textwidth}
-        \hfill
+        let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule, and let $\mathcal{X}$ be a ruler-graph with underlying graph $X$. Suppose that $\rho$ and $\rho^{-1}$ are $X$-non-increasing. For the DPO diagram shown below,
+        \begin{center}
         \begin{tikzpicture}
             % [node distance=15mm]
             \node (I) {$K$};
@@ -1090,20 +1054,21 @@ We have
             % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
             % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
         \end{tikzpicture}
-    \end{minipage} 
-    $$
-        \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{NF}}} \geq
-        \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')_{\operatorname{NF}}}
-    $$
+    \end{center}
+    the following inequality holds:
+    $$ 
+        \card{\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, \mathop{\lnot} l')_{\operatorname{NF}}} \geq
+        \card{\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', \mathop{\lnot} r')_{\operatorname{NF}}}.
+    $$ 
 \end*{}
 \begin{proof} 
       \label{antipattern:proof:lem:xglnotmlnotlp_xhlnotmrnotrp}
-    There are two cases to consider: the ruler-graph is $(X)$ or $(X,f:X \rightarrowtail F)$. For the first case, the inequality is equivalent to 
- $
+    There are two cases to consider: $\mathcal{X}$ is $(X)$ or $(X,f:X \rightarrowtail F)$. For the first case, the inequality is equivalent to the following inequality:
+ $$
         \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')} \geq
-        \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')}
-    $
-    , and the result follows from Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}. 
+        \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')},
+    $$
+     and the result follows from Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}. 
     Let us now consider the second case.
      \todo{assumption for Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}: $\rho$ is $X$-non-increasing} The following equalities and inequalities hold:
     \begin{flalign*}
@@ -1123,16 +1088,15 @@ We have
         \mathop{\geq} & 
             \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')_{\operatorname{F}}} 
             - 
-            \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}}}
-        \\
-        & \text{by Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}}
+            \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}}}.
+        &\text{by Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}}
     \end{flalign*}    
 
     % We prove this lemma by show that the function $\phi: \operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}} \rightarrowtail \operatorname{Mono}(X,H,\lnot r', \lnot r')_{\operatorname{NF}}$
     % defined by $\phi(h_{XG}) \mathop{=} h_{XC} \mathop{\star} \lnot r'$ is injective where $h_{XC}:X \rightarrowtail C$ is a monomorphism such that $h_{XG} \mathop{=} h_{XC} \mathop{\star} \lnot l'$.
 
     We prove $\card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')_{\operatorname{F}}} \mathop{\geq} \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}}}$ by showing
-    that we can construct an injection $\phi: \operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}} \mathop{\to} \operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')_{\operatorname{F}}$.
+    that we can construct an injection $\phi \mathop{\colon}  \operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}} \mathop{\to} \operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')_{\operatorname{F}}$.
 
     Let $h_{XG} \mathop{\in} \operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}}$. 
     By Lemma~\ref{antipattern:lem:xh_decomp}, we can construct the following commutative diagram:
@@ -1186,7 +1150,7 @@ We have
         }
         \end{center} 
 
-         \todo{assmption: $\rho^{-1}$ is $X$-non-increasing} There exists a monomorphism $h_{L'R} : L' \rightarrowtail R$ because $\rho^{-1}$ is $X$-non-increasing by assumption. By Lemma~\ref{lem:g_monic}, we can construct the following commutative diagram:
+         \todo{assmption: $\rho^{-1}$ is $X$-non-increasing} There is a monomorphism $h_{L'R} \mathop{\colon} L' \rightarrowtail R$ because $\rho^{-1}$ is $X$-non-increasing by assumption. By Lemma~\ref{lem:g_monic}, we can construct the following commutative diagram:
 
         \begin{center}
             \resizebox{0.3\textwidth}{!}{
@@ -1242,7 +1206,7 @@ We have
         \begin{enumerate}
             \item $h_{XH}$ cannot be factorized by $r'$,
             \item $h_{XH}$ cannot be factorized by $m'$,
-            \item there is a monomorphism $h_{FH}:F \rightarrowtail H$ such that $h_{XH} \mathop{=} f \mathop{\star} h_{FH}$.
+            \item there is a monomorphism $h_{FH} \mathop{\colon} F \rightarrowtail H$ such that $h_{XH} \mathop{=} f \mathop{\star} h_{FH}$.
             % $h_{XH}$ can be decomposed as $x \mathop{\star} y$ where $x$ is a monomorphism from $X$ to $F$ and $y$ is a monomorphism from $F$ to $H$.
         \end{enumerate}
 
@@ -1298,9 +1262,9 @@ We have
             \end{center} 
 
         We show that $h_{XH}$ cannot be factorized by $m'$ by contradiction.
-        Assume that the contrary, i.e. there exists a morphism $h_{XR}:X \rightarrowtail R$ such that $h_{XH} \mathop{=} h_{XR} \mathop{\star} m'$.
+        Assume that the contrary, i.e. there is a morphism $h_{XR} \mathop{\colon} X \rightarrowtail R$ such that $h_{XH} \mathop{=} h_{XR} \mathop{\star} m'$.
 
-        There exists a unique monomorphism $h_{XL'}:X \rightarrowtail L'$ such that $Id_X \mathop{=} h_{XL'} \mathop{\star} h_{L'X}$ and $h_{XR} \mathop{=} h_{XL'} \mathop{\star} h_{L'R}$ because $L'XHR$ is a pullback and $Id_X \mathop{\star} h_{XH} \mathop{=} h_{XR} \mathop{\star} h_{RH}$.
+        There is a unique monomorphism $h_{XL'} \mathop{\colon} X \rightarrowtail L'$ such that $Id_X \mathop{=} h_{XL'} \mathop{\star} h_{L'X}$ and $h_{XR} \mathop{=} h_{XL'} \mathop{\star} h_{L'R}$ because $L'XHR$ is a pullback and $Id_X \mathop{\star} h_{XH} \mathop{=} h_{XR} \mathop{\star} h_{RH}$.
         Thus, we have the following equalities
          \begin{flalign*}
             h_{XG} \mathop{=} &Id_X  \mathop{\star} h_{XG} 
@@ -1313,12 +1277,12 @@ We have
         
         Symmetrically, $\phi(h_{XG})$ cannot be factorized by $r'$.
 
-        It remains to show that there is a monomorphism $h_{FH}:F \rightarrowtail H$ such that $h_{XH} \mathop{=} f \mathop{\star} h_{FH}$. 
+        It remains to show that there is a monomorphism $h_{FH} \mathop{\colon} F \rightarrowtail H$ such that $h_{XH} \mathop{=} f \mathop{\star} h_{FH}$. 
         
-        By definition of $h_{XG} \mathop{\in} \operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}}$, there is a morphism $h_{FG}:F \rightarrowtail G$ such that 
+        Since $h_{XG} \mathop{\in} \operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')_{\operatorname{F}}$, there is a morphism $h_{FG} \mathop{\colon} F \rightarrowtail G$ such that 
             the following equality holds:
         \begin{flalign}
-            h_{XG} \mathop{=} f \mathop{\star} h_{FG} \label{antipattern:eq:xxxhxg}
+            h_{XG} \mathop{=} f \mathop{\star} h_{FG}. \label{antipattern:eq:xxxhxg}
         \end{flalign}
         Thus, we have the following commutative diagram:
 
@@ -1426,17 +1390,17 @@ We have
             }
             \end{center} 
 
-   Since $L''LGF$ is pullback and $h_{L'X} \mathop{\star} h_{XF} \mathop{\star} h_{FG} \mathop{=} h_{L'L''} \mathop{\star} h_{L''L} \mathop{\star} h_{LG}$, by the universal property of pullback, there is a unique morphism $h_{L'L''}:L' \rightarrowtail L''$ such that 
+   Since $L''LGF$ is pullback and $h_{L'X} \mathop{\star} h_{XF} \mathop{\star} h_{FG} \mathop{=} h_{L'L''} \mathop{\star} h_{L''L} \mathop{\star} h_{LG}$, by the universal property of pullback, there is a unique morphism $h_{L'L''} \mathop{\colon} L' \rightarrowtail L''$ such that 
    \begin{flalign}
-         h_{L'L''} \mathop{\star} h_{L''L} &= h_{L'L} \label{antipattern:lplpplppllpl} \\
-         h_{L'X} \mathop{\star} h_{XF} & \mathop{=} h_{L'L''} \mathop{\star} h_{L''F} 
+         h_{L'L''} \mathop{\star} h_{L''L} &= h_{L'L} \label{antipattern:lplpplppllpl}, \\
+         h_{L'X} \mathop{\star} h_{XF} & \mathop{=} h_{L'L''} \mathop{\star} h_{L''F}.
          \nonumber
         %  \label{antipattern:hlpxhxfhlplpplppf}
    \end{flalign}
-   $L'L''L$ and $L'L''FX$ are commutative diagrams. Analogously, since $C''CGF$ is pullback and $C'CHFX$ is a commutative diagram, there is a unique morphism $h_{C'C''}:C' \rightarrowtail C''$ such that 
+   $L'L''L$ and $L'L''FX$ are commutative diagrams. Analogously, since $C''CGF$ is pullback and $C'CHFX$ is a commutative diagram, there is a unique morphism $h_{C'C''} \mathop{\colon} C' \rightarrowtail C''$ such that 
    \begin{flalign}
-            h_{C'C''} \mathop{\star} h_{C''C} &= h_{C'C} \label{antipattern:cpcppc}\\
-            h_{C'C''} \mathop{\star} h_{C''F} &= h_{C'X} \mathop{\star} h_{XF}
+            h_{C'C''} \mathop{\star} h_{C''C} &= h_{C'C}, \label{antipattern:cpcppc}\\
+            h_{C'C''} \mathop{\star} h_{C''F} &= h_{C'X} \mathop{\star} h_{XF}.
             \nonumber 
             %  \label{antipattern:cpxf}
    \end{flalign}
@@ -1562,7 +1526,7 @@ We have
             }
             \end{center} 
 
-            Since $K''C''FL''$ is pullback and $K'C'C''FL''L'$ is a commutative diagram, by the universal property of pullback, there exist unique morphisms $h_{K'K''}:K' \rightarrowtail K''$ such that $K'C'C''K''$, $K'L'L''K''$ in the following diagram are commutative:
+            Since $K''C''FL''$ is pullback and $K'C'C''FL''L'$ is a commutative diagram, by the universal property of pullback, there is a unique morphism $h_{K'K''} \mathop{\colon} K' \rightarrowtail K''$ such that $K'C'C''K''$, $K'L'L''K''$ in the following diagram are commutative:
             \begin{center}
             \resizebox{0.5\textwidth}{!}{
                 \begin{tikzpicture}
@@ -1628,7 +1592,7 @@ We have
             }
             \end{center} 
 
-          Similarly, since $KCGL$ is pullback and $K''C''CGLL''$ is a commutative diagram, by the universal property of pullback, there exist unique morphisms $h_{K''K}:K'' \rightarrowtail K$ such that $K''C''CK$, $K''L''LK$ in the following diagram are commutative:
+          Similarly, since $KCGL$ is pullback and $K''C''CGLL''$ is a commutative diagram, by the universal property of pullback, there is a unique morphisms $h_{K''K} \mathop{\colon} K'' \rightarrowtail K$ such that $K''C''CK$, $K''L''LK$ in the following diagram are commutative:
  \begin{center}
             \resizebox{0.5\textwidth}{!}{
                 \begin{tikzpicture}
@@ -1694,7 +1658,7 @@ We have
             }
             \end{center} 
 
-        There is a monomorphism $h_{L''R}:L'' \rightarrowtail R$ such that $K''L''RK$ is pullback, because $\rho^{-1}$ is $X$-non-increasing by assump.\todo{$\rho^{-1}$ is $X$-non-increasing} We have, thus, the following commutative diagram:
+        There is a monomorphism $h_{L''R} \mathop{\colon} L'' \rightarrowtail R$ such that $K''L''RK$ is pullback, because $\rho^{-1}$ is $X$-non-increasing by assump.\todo{$\rho^{-1}$ is $X$-non-increasing} We have, thus, the following commutative diagram:
 
 \begin{center}
             \resizebox{0.5\textwidth}{!}{
@@ -1765,7 +1729,7 @@ We have
          &(h_{K''C''} \mathop{\star} h_{C''C}) \mathop{\star} h_{CH} \\
         =&(h_{K''K} \mathop{\star} h_{KC}) \mathop{\star} h_{CH} \\
         \mathop{=} &h_{K''K} \mathop{\star} (h_{KR} \mathop{\star} h_{RH}) \\
-        \mathop{=} &h_{K''L''} \mathop{\star} h_{L''R} \mathop{\star} h_{RH}
+        \mathop{=} &h_{K''L''} \mathop{\star} h_{L''R} \mathop{\star} h_{RH}.
     \end{flalign*}
     Therefore, by the universal property of pushout, 
      there is a unique morphism $h_{FH}$ such that $L''FHR$ and $C''FHC$ are commutative diagrams. Thus, we have the following commutative diagram:
@@ -1836,14 +1800,14 @@ We have
             \end{center} 
     We have $h_{XH} \mathop{=} h_{XF} \mathop{\star} h_{FH}$ because $K'C'XL'$ is a pushout and $h_{XH}$ 
         is the unique morphism such that 
-        \begin{flalign}
+        \begin{flalign*}
            H_{C'X} \mathop{\star} h_{XH} &= h_{C'C} \mathop{\star} h_{CH} \\
            &=  h_{C'C''} \mathop{\star} h_{C''C} \mathop{\star} h_{CH} \hspace{2cm} \text{by Equation~\eqref{antipattern:cpcppc}}
-        \end{flalign} and 
-        \begin{flalign}
+        \end{flalign*} and 
+        \begin{flalign*}
         h_{L'X} \mathop{\star} h_{XH} &= h_{L'R} \mathop{\star} h_{RH} \\
-        &= h_{L'L''} \mathop{\star} h_{L''R} \mathop{\star} h_{RH} \hspace{2cm} \text{by Equation~\eqref{antipattern:lplpplppllpl}}
-        \end{flalign}
+        &= h_{L'L''} \mathop{\star} h_{L''R} \mathop{\star} h_{RH}, \hspace{2cm} \text{by Equation~\eqref{antipattern:lplpplppllpl}}
+        \end{flalign*}
          but we have 
         \begin{flalign*}
             &h_{C'X} \mathop{\star} (h_{XF} \mathop{\star} h_{FH}) 
@@ -1854,7 +1818,7 @@ We have
         \begin{flalign*}
             &h_{L'X} \mathop{\star} (h_{XF} \mathop{\star} h_{FH})
             \\ \mathop{=} & (h_{L'L''} \mathop{\star} h_{L''F}) \mathop{\star} h_{FH}
-            \\ \mathop{=} & h_{L'L''} \mathop{\star} (h_{L''R} \mathop{\star} h_{RH})
+            \\ \mathop{=} & h_{L'L''} \mathop{\star} (h_{L''R} \mathop{\star} h_{RH}).
         \end{flalign*}
         This concludes our proof.
 
@@ -2089,7 +2053,7 @@ We have
    
 
 
-%     % There exists $h_{L'L''}:L' \rightarrowtail L''$ such that $h_{L'L} \mathop{=} h_{L'L''} \mathop{\star} h_{L''L}$ 
+%     % There is $h_{L'L''}:L' \rightarrowtail L''$ such that $h_{L'L} \mathop{=} h_{L'L''} \mathop{\star} h_{L''L}$ 
 %     % because $L''LGF$ is a pullback, and the following diagram holds:
 
 
@@ -2444,26 +2408,23 @@ We have
 \noindent
 \begin*{Theorem~\textbf{\ref{antipattern:thm:termination_grs}}}(Termination)
 
-Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules, $\mathbb{X}$ a set of ruler-graphs and $s_\mathbb{X}$ a weight function. If the following hold:
-\begin{enumerate}
-    \item\label{antipattern:thm:termination_grs:assump:1}  for every $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$ and for every \( \mathcal{X} \mathop{\in} \mathbb{X} \) with underlying graph $X$, 
+ Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules, $\mathbb{X}$ a set of ruler-graphs, and $s_\mathbb{X}$ a weight function. If the following hold:
+    \begin{enumerate}
+        \item  for every $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$ and for every \( \mathcal{X} \mathop{\in} \mathbb{X} \) with underlying graph $X$, 
         % the number of $X$-occurrences that are not included in any occurrences of the forbidden context $F \mathop{\in} F_x$ in a $\rho$-rewriting step is predictable,
-        $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f:X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing,
+        $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f:X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing, and
         % $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X}= (X,f:X \rightarrowtail F)$ and, $\rho$ and $\rho^{-1}$ are $X$-non-increasing
-    \item\label{antipattern:thm:termination_grs:assump:2}  for every \(\rho \mathop{\in} \mathcal{A}\), 
-    % \( w_{s_\mathbb{X}}(lhs(\rho)) \mathop{>} w_{s_\mathbb{X}}(rhs(\rho)) \),
-    \( \sum_{\mathcal{X} \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(\mathcal{X}) * \left( 
-        \card{\operatorname{Mono}(X,L)} -
-        \card{\operatorname{Mono}(X,R)}
-        \right) \mathop{>} 0 \),
-    \item\label{antipattern:thm:termination_grs:assump:3}  for every \(\rho \mathop{\in} \mathcal{B}\),  
-    % \( w_{s_\mathbb{X}}(lhs(\rho)) \mathop{\geq} w_{s_\mathbb{X}}(rhs(\rho)) \).
-    \( \sum_{\mathcal{X} \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(\mathcal{X}) * \left( 
-        \card{\operatorname{Mono}(X,L)} -
-        \card{\operatorname{Mono}(X,R)}
-        \right) \mathop{\geq} 0 \).
-\end{enumerate}
-Then \(\mathop{\Rightarrow}_{\mathcal{A},\mathcal{M}}\) terminates relative to \(\mathop{\Rightarrow}_{\mathcal{B},\mathcal{M}}\).
+        \item for every \(\rho \mathop{\in} \mathcal{A}\), we have
+        % \( w_{s_\mathbb{X}}(lhs(\rho)) \mathop{>} w_{s_\mathbb{X}}(rhs(\rho)) \),
+        $ \sum_{\mathcal{X} \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(\mathcal{X}) \mathop{*} 
+            \Lambda(\mathcal{X},\rho) \mathop{>} 0 $, and
+        \item for every \(\rho \mathop{\in} \mathcal{B}\), we have   
+        % \( w_{s_\mathbb{X}}(lhs(\rho)) \mathop{\geq} w_{s_\mathbb{X}}(rhs(\rho)) \).
+        $ 
+            \sum_{\mathcal{X} \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(\mathcal{X}) \mathop{*} \Lambda(\mathcal{X},\rho) \mathop{\geq} 0 
+        $.
+    \end{enumerate}
+    Then \(\mathop{\Rightarrow}_{\mathcal{A},\mathcal{M}}\) terminates relative to \(\mathop{\Rightarrow}_{\mathcal{B},\mathcal{M}}\).
 \end*{}
 
 
@@ -2471,8 +2432,8 @@ Then \(\mathop{\Rightarrow}_{\mathcal{A},\mathcal{M}}\) terminates relative to \
 %     \begin{enumerate}
 %         \item  for every $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$ and for every \( \mathcal{X} \mathop{\in} \mathbb{X} \) with underlying graph $X$, 
 %         % the number of $X$-occurrences that are not included in any occurrences of the forbidden context $F \mathop{\in} F_x$ in a $\rho$-rewriting step is predictable,
-%         $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f:X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing,
-%         % $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X}= (X,f:X \rightarrowtail F)$ and, $\rho$ and $\rho^{-1}$ are $X$-non-increasing
+%         $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f \mathop{\colon} X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing,
+%         % $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X}= (X,f \mathop{\colon} X \rightarrowtail F)$ and, $\rho$ and $\rho^{-1}$ are $X$-non-increasing
 %         \item for every \(\rho \mathop{\in} \mathcal{A}\), we have
 %         % \( w_{s_\mathbb{X}}(lhs(\rho)) \mathop{>} w_{s_\mathbb{X}}(rhs(\rho)) \),
 %         $ \sum_{\mathcal{X} \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * 
@@ -2488,16 +2449,16 @@ Then \(\mathop{\Rightarrow}_{\mathcal{A},\mathcal{M}}\) terminates relative to \
 \begin{proof} 
     \label{antipattern:proof:thm:termination_grs}
     
-    By Assumption~\eqref{antipattern:thm:termination_grs:assump:1} and Lemma~\ref{antipattern:lem:w_g_geq_w_h_leq}, the inequality \(
+    By the assumption 1 and Lemma~\ref{antipattern:lem:w_g_geq_w_h_leq}, the following inequality holds for all rewriting steps $G \mathop{\Rightarrow}_{\rho, \mathcal{M}} H$  with $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$:
+      \[
         w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H) 
         \mathop{\geq} 
         \sum_{\mathcal{X} \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(\mathcal{X}) * \left( 
             \card{\operatorname{Mono}(X,L)} -
             \card{\operatorname{Mono}(X,R)}
-            \right)
-    \) holds for all rewriting steps $G \mathop{\Rightarrow}_{\rho, \mathcal{M}} H$  with $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$.
-    
-    \noindent From Assumption~\eqref{antipattern:thm:termination_grs:assump:2} and Assumption~\eqref{antipattern:thm:termination_grs:assump:3}, we deduce 
+            \right).
+    \]
+    \noindent From the assumptions 2 and 3, we deduce 
     \begin{itemize}
         \item \( w_{s_\mathbb{X}}(G) \mathop{>} w_{s_\mathbb{X}}(H) \) for every rule \(\rho \mathop{\in} \mathcal{A}\);
         \item  \( w_{s_\mathbb{X}}(G) \mathop{\geq} w_{s_\mathbb{X}}(H) \) for every rule \(\rho \mathop{\in} \mathcal{B}\).

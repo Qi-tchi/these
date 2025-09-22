@@ -1,49 +1,43 @@
 \begin*{\textbf{ Lemma~\ref{subgraph_counting:lem:decomp_w_u}}}
-\ \newline
-\noindent
-\begin{minipage}{0.7\textwidth}
-    Let $X$ be a graph. For a pushout square as shown on the right, we have 
-    % $\card{\operatorname{Mono}(X, B)} \mathop{=} \card{\operatorname{Mono}(X, D, \beta')}$ and $\card{\operatorname{Mono}(X, C, \lnot \beta)} \mathop{=} \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}$.
-    \begin{flalign*}
-        \card{\operatorname{Mono}(X, B)} &= \card{\operatorname{Mono}(X, D, \beta')}
-        \\
-        \card{\operatorname{Mono}(X, C, \lnot \beta)} &= \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}
-    \end{flalign*}
-    
-\end{minipage}
-\hfill
-\begin{minipage}{0.3\textwidth}
-    \hfill
-    \begin{tikzpicture}
-        \node (A) {$A$};
-        \node [below of=A] (B) {$B$}; 
-        \node [left of=A] (C) {$C$}; 
-        \node [left of=B] (D) {$D$}; 
-        \begin{scope}[nodes=rectangle]          
-        \draw [>->] (A) to node [right,label,pos=0.5] {$\alpha$} (B);
-        \draw [>->] (A) to node [above,label,pos=0.5] {$\beta$} (C);
-        \draw [>->] (B) to node [below,label,pos=0.45] {$\beta'$} (D); 
-        \draw [>->] (C) to node [right,label,pos=0.45] {$\alpha'$} (D);
-        \end{scope}
-    \end{tikzpicture}
-\end{minipage}
+    Let $X$ be a ruler-graph. For a pushout square as shown below:
+        \begin{center}
+        \resizebox{0.2\textwidth}{!}{
+            \begin{tikzpicture}
+            \node (A) at (0,0) {$A$};
+            \node (B) at (0,-2) {$B$}; 
+            \node (C) at (-2,0) {$C$}; 
+            \node (D) at (-2,-2) {$D$}; 
+            \draw [>->] (A) to node [right,label,pos=0.5] {$\alpha$} (B);
+            \draw [>->] (A) to node [above,label,pos=0.5] {$\beta$} (C);
+            \draw [>->] (B) to node [below,label,pos=0.45] {$\beta'$} (D); 
+            \draw [>->] (C) to node [left,label,pos=0.45] {$\alpha'$} (D);
+        \end{tikzpicture}
+        }
+        \end{center}
+         the following equalities hold:
+        % $\card{\operatorname{Mono}(X, B)} \mathop{=} \card{\operatorname{Mono}(X, D, \beta')}$ and $\card{\operatorname{Mono}(X, C, \lnot \beta)} \mathop{=} \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}$.
+        \begin{flalign*}
+            \card{\operatorname{Mono}(X, B)} &= \card{\operatorname{Mono}(X, D, \beta')},
+            \\
+            \card{\operatorname{Mono}(X, C, \lnot \beta)} &= \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}.
+        \end{flalign*}
 \end*{}
 \begin{proof}
     \label{subgraph_counting:proof:dcomp_w_u}
 %    Since $\operatorname{Mono}(X, B) \mathop{=} \operatorname{Mono}(X, D, \beta')$ by definition of $\operatorname{Mono}(X, B)$ and $\operatorname{Mono}(X, D, \beta')$, the equality $\card{\operatorname{Mono}(X, B)} \mathop{=} \card{\operatorname{Mono}(X, D, \beta')}$ holds.
 \begin{claim}
-    $\card{\operatorname{Mono}(X, B)} \mathop{=} \card{\operatorname{Mono}(X, D, \beta')}$
+    $\card{\operatorname{Mono}(X, B)} \mathop{=} \card{\operatorname{Mono}(X, D, \beta')}$ holds.
 \end{claim}
 \begin{itemize} 
-    \item Inclusion \(\operatorname{Mono}(X, B) \mathop{\star} \beta' \mathop{\subseteq} \operatorname{Mono}(X, D, \beta')\) holds by the definition of $\operatorname{Mono}(X, B)$ and $\operatorname{Mono}(X, D, \beta')$. 
+    \item The inclusion \(\operatorname{Mono}(X, B) \mathop{\star} \beta' \mathop{\subseteq} \operatorname{Mono}(X, D, \beta')\) holds by the definitions of $\operatorname{Mono}(X, B)$ and $\operatorname{Mono}(X, D, \beta')$. 
     In fact, if \(\iota  \mathop{\in} \operatorname{Mono}(X, B) \mathop{\star} \beta' \), then there is a monomorphism \(\zeta : X \rightarrowtail B\) satisfying \(\iota \mathop{=} \zeta \mathop{\star} \beta'\). Since $\zeta \mathop{\star} \beta'$ is also a monomorphism\todo{monicity of $\beta'$}, \(\iota\) is also an element of \(\operatorname{Mono}(X, D, \beta')\).
     \item Inclusion \(\operatorname{Mono}(X, B) \mathop{\star} \beta' \supseteq \operatorname{Mono}(X, D, \beta')\) holds by the definition of $\operatorname{Mono}(X, B)$ and $\operatorname{Mono}(X, D, \beta')$.
-    Suppose \(\iota \mathop{\in} \operatorname{Mono}(X, D, \beta')\). There is a monomorphism \(\zeta : X \rightarrowtail B\) satisfying \(\iota \mathop{=} \zeta \mathop{\star} \beta'\). It follows that \(\iota \mathop{=} \zeta \mathop{\star} \beta' \mathop{\in} \operatorname{Mono}(X, B) \mathop{\star} \beta'\).
+    Suppose \(\iota \mathop{\in} \operatorname{Mono}(X, D, \beta')\). There is a monomorphism \(\zeta : X \rightarrowtail B\) satisfying \(\iota \mathop{=} \zeta \mathop{\star} \beta'\). This shows that \(\iota \) is an element of \(\operatorname{Mono}(X, B) \mathop{\star} \beta'\).
     \item Hence, we have \(\operatorname{Mono}(X, B) \mathop{\star} \beta' \mathop{=} \operatorname{Mono}(X, D, \beta')\).
     \item $\card{\operatorname{Mono}(X, B)} \leq \card{\operatorname{Mono}(X, D, \beta')}$ follows by the injectivity of $\beta'$\todo{monicity of $\beta'$}.
 \end{itemize}
 \begin{claim}
-     $\card{\operatorname{Mono}(X, C, \lnot \beta)} \mathop{=} \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}$
+     $\card{\operatorname{Mono}(X, C, \lnot \beta)} \mathop{=} \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}$ holds.
    \end{claim}
     \begin{itemize}
         % \item The inclusion \(\operatorname{Mono}(X, C, \lnot \beta) \mathop{\star} \alpha'  \mathop{\subseteq} \operatorname{Mono}(X, D, \lnot \beta', \alpha')\) can be justified as follows. Suppose that \(\iota : X \mathop{\to} D\) is an element of \(\operatorname{Mono}(X, C, \lnot \beta) \mathop{\star} \alpha'\). According to the definition of \(\operatorname{Mono}(X, C, \lnot \beta) \mathop{\star} \alpha'\), there exists \(\eta : X \mathop{\to} C\) in \(\operatorname{Mono}(X, C, \lnot \beta)\) such that \(\iota \mathop{=} \eta \mathop{\star} \alpha'\). We need to show that no \(\zeta : X \mathop{\to} B\) exists such that \(\iota \mathop{=} \zeta \mathop{\star} \beta'\). Assuming the contrary, that such a \(\zeta\) exists. Under this assumption, the following commutative diagram holds:
@@ -69,16 +63,16 @@
         The pushout square \(\square ABDC\) is also a pullback square, by Proposition~\ref{prop:pb_eq_po}. The universal property of the pullback provides a morphism \(\gamma : X \mathop{\rightarrow} A\) such that \(\eta \mathop{=} \gamma \mathop{\star} \beta\). \(\gamma\) is a monomorphism, because \(\eta \mathop{=} \gamma \mathop{\star} \beta\) and $\eta$ is a monomorphism. Therefore, the existence of $\gamma$ contradicts the assumption that \(\eta \mathop{\in} \operatorname{Mono}(X, C, \lnot \beta)\). Thus, \(\iota\) is also an element of \(\operatorname{Mono}(X, D, \lnot \beta', \alpha')\). 
         \item The inclusion \(\operatorname{Mono}(X, C, \lnot \beta) \mathop{\star} \alpha'  \supseteq \operatorname{Mono}(X, D, \lnot \beta', \alpha')\) can be justified as follows. Suppose that \(\iota : X \rightarrowtail D\) is an element of \(\operatorname{Mono}(X, D, \lnot \beta', \alpha')\). According to the definition of \(\operatorname{Mono}(X, D, \lnot \beta', \alpha')\), there exists \(\eta : X \rightarrowtail C\) making 
             \begin{flalign}
-                \iota \mathop{=} \eta \mathop{\star} \alpha' \label{eq:etastaralphap}
+                \iota \mathop{=} \eta \mathop{\star} \alpha'. \label{eq:etastaralphap}
             \end{flalign}
         We show that \(\eta\) is an element of 
         \(\operatorname{Mono}(X, C, \lnot \beta)\) by contradiction.
         
         Suppose that there is a monomorphism \(\zeta : X \rightarrowtail A\) such that 
         \begin{flalign}
-            \eta \mathop{=} \zeta \mathop{\star} \beta \label{eq:zetastarbeta}
+            \eta \mathop{=} \zeta \mathop{\star} \beta. \label{eq:zetastarbeta}
         \end{flalign}
-        and observe:
+        We have:
         \begin{flalign*}
            \hspace{2cm} \iota &\overset{\operatorname{def}}{=} \eta \mathop{\star} \alpha' &\text{by \eqref{eq:etastaralphap}} 
            \\
@@ -87,7 +81,7 @@
                   &= \zeta \mathop{\star} (\beta \mathop{\star} \alpha') & \text{by associativity} 
                   \\
                   &= \zeta \mathop{\star} (\alpha \mathop{\star} \beta') &\text{by commutativity of $ABDC$}\\
-                  &= (\zeta \mathop{\star} \alpha) \mathop{\star} \beta'
+                  &= (\zeta \mathop{\star} \alpha) \mathop{\star} \beta'.
         \end{flalign*}
           There is a contradiction because no such factorization of \(\iota\) should exist as \(\iota \mathop{\in} \operatorname{Mono}(X, D, \lnot \beta', \alpha')\).
         %    Therefore, there is no \(\zeta : X \mathop{\rightarrow} A\) such that \(\eta \mathop{=} \zeta \mathop{\star} \beta\), confirming \(\eta\) as an element of \(\operatorname{Mono}(X, C, \lnot \beta)\). Consequently, \(\iota \mathop{=} \eta \mathop{\star} \alpha'\) is an element of \(\operatorname{Mono}(X, C, \lnot \beta) \mathop{\star} \alpha'\).
@@ -97,21 +91,19 @@
     \end{itemize}
 \end{proof} 
 
-
-
 \noindent
 \begin*{\textbf{ Lemma~\ref{subgraph_counting:lem:xlnlmxrnr}}}
 Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$ be an injective DPO graph rewriting rule. We have 
 \[
    \card{\operatorname{Mono}(X, L, \lnot l)}  - \card{\operatorname{Mono}(X, R, \lnot r)} 
    \mathop{=} 
-   \card{\operatorname{Mono}(X, L)}  - \card{\operatorname{Mono}(X, R)} 
+   \card{\operatorname{Mono}(X, L)}  - \card{\operatorname{Mono}(X, R)}.
     \]
 \end*{}
 \begin{proof}
     \label{subgraph_counting:proof:lem:xlnlmxrnr}
     \begin{claim}
-       $\card{\operatorname{Mono}(X, L, l)} \mathop{=} \card{\operatorname{Mono}(X, R, r)}$
+       $\card{\operatorname{Mono}(X, L, l)} \mathop{=} \card{\operatorname{Mono}(X, R, r)}$ holds.
     \end{claim}
     \begin{itemize}
         \item We prove $\card{\operatorname{Mono}(X, L, l)} \leq \card{\operatorname{Mono}(X, R, r)}$ by constructing an injection from $\operatorname{Mono}(X, L, l)$ to $\operatorname{Mono}(X, R, r)$. Let $h \mathop{\in} \operatorname{Mono}(X, L, l)$. By definition, we have $h \mathop{=} g \mathop{\star} l$ for some $g: X \rightarrowtail K$. Thus, $g \mathop{\star} r \mathop{\in} \operatorname{Mono}(X, L, r)$. Let $h' \mathop{\in} \operatorname{Mono}(X, L, l)$ such that $h \mathop{\neq} h'$. We have $h' \mathop{=} g' \mathop{\star} l$ for some $g':X \rightarrowtail K$. We have $g \mathop{\neq} g'$ because otherwise we would have $h \mathop{=} g \mathop{\star} l \mathop{=} g' \mathop{\star} l \mathop{=} h'$. From the monicity of $r$, we conclude $g \mathop{\star} r \mathop{\neq} g' \mathop{\star} r$.
@@ -131,7 +123,7 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
         =&(\card{\operatorname{Mono}(X, L)} - \card{\operatorname{Mono}(X, L, l)}) - (\card{\operatorname{Mono}(X, R)} - \card{\operatorname{Mono}(X, R, r)}) \\
         =&(\card{\operatorname{Mono}(X, L)} - \card{\operatorname{Mono}(X, R)})
          - (\card{\operatorname{Mono}(X, L, l)} - \card{\operatorname{Mono}(X, R, r)})\\
-        \mathop{=} &\card{\operatorname{Mono}(X, L)} - \card{\operatorname{Mono}(X, R)}
+        \mathop{=} &\card{\operatorname{Mono}(X, L)} - \card{\operatorname{Mono}(X, R)}.
     \end{flalign*}
 \end{proof}
 
@@ -143,7 +135,7 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
         Let $X$ be a ruler-graph and $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ an injective DPO rewriting rule.
         Suppose that $\rho$ is $X$-non-increasing. For every rewriting step induced by the DPO diagram (shown on the right), we have 
         \[
-            |\operatorname{Mono}(X, G, \lnot m, \lnot l')| \mathop{\geq} |\operatorname{Mono}(X, H, \lnot m', \lnot r')|
+            |\operatorname{Mono}(X, G, \lnot m, \lnot l')| \mathop{\geq} |\operatorname{Mono}(X, H, \lnot m', \lnot r')|.
         \]
     \end{minipage}
     \hfill
@@ -236,11 +228,11 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
     $KCHR$ is also pullback, by Proposition~\ref{prop:pb_eq_po}, because it is pushout. 
     Therefore, since $KCHR$ is also pullback and \(
         h_{K'C'} \mathop{\star} h_{C'C} \mathop{\star} h_{CH} =h_{K'R'} \mathop{\star} h_{R'R} \mathop{\star} h_{R'R}
-    \) holds, there exists $h_{K'K}:K' \rightarrowtail K$ such that 
+    \) holds, there is $h_{K'K}:K' \rightarrowtail K$ such that the following equalities hold:
     \begin{flalign}
-        h_{K'C'} \mathop{\star} h_{C'C} &= h_{K'K} \mathop{\star} h_{KC} \label{kpcpcpckpkkc}
+        h_{K'C'} \mathop{\star} h_{C'C} &= h_{K'K} \mathop{\star} h_{KC}, \label{kpcpcpckpkkc}
         \\
-        h_{K'R'} \mathop{\star} h_{R'R} &= h_{K'K} \mathop{\star} h_{KR} \label{kprprprkpk}
+        h_{K'R'} \mathop{\star} h_{R'R} &= h_{K'K} \mathop{\star} h_{KR}. \label{kprprprkpk}
     \end{flalign} 
     
     The square $K'KCC'$ and $K'R'RK$ are pullbacks, by Lemma~\ref{kpcpck_pullback}. Hence, the following commutative diagram holds
@@ -365,7 +357,7 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
 
     Let $h_{XH}'':X \rightarrowtail H$ be a monomorphism such that 
     \begin{flalign}
-        h_{XH}' \mathop{\neq} h_{XH}'' \label{hpneqh}
+        h_{XH}' \mathop{\neq} h_{XH}''. \label{hpneqh}
     \end{flalign}
     
     In the category \textbf{Graph}, we can construct the following commutative diagram:
@@ -439,7 +431,7 @@ and \( G \mathop{\Rightarrow}_{\rho,\mathfrak{M}} H \) a rewriting step.
 If $\rho$ is \( X \)-non-increasing for every ruler-graph \( X \mathop{\in} \mathbb{X} \), then:\[
     w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H) 
     \mathop{\geq} 
-    w_{s_\mathbb{X}}(L) - w_{s_\mathbb{X}}(R)
+    w_{s_\mathbb{X}}(L) - w_{s_\mathbb{X}}(R).
 \]
 \end*{}
 \begin{proof}
@@ -465,7 +457,6 @@ If $\rho$ is \( X \)-non-increasing for every ruler-graph \( X \mathop{\in} \mat
         \end{tikzpicture}
     \end{center}
     Let $X \mathop{\in} \mathbb{X}$.
-
     We have 
     \begin{flalign*}
         & \card{\operatorname{Mono}(X,G)}
@@ -521,7 +512,7 @@ If $\rho$ is \( X \)-non-increasing for every ruler-graph \( X \mathop{\in} \mat
             +
             \card{\operatorname{Mono}(X, R, \lnot r)} 
             +
-            \card{\operatorname{Mono}(X, H, \lnot r', \lnot m')}
+            \card{\operatorname{Mono}(X, H, \lnot r', \lnot m')}.
         % ( 
         %             w_{T_\Sigma} (h_{RH} \mathop{\star} t_H )\mathop{+}w_{T_\Sigma} (h_{CH} \mathop{\star} t_H  -h_{KC}) 
         % )
@@ -535,7 +526,7 @@ If $\rho$ is \( X \)-non-increasing for every ruler-graph \( X \mathop{\in} \mat
             &(\card{\operatorname{Mono}(X, G, \lnot l', \lnot m)} - \card{\operatorname{Mono}(X, H, \lnot r', \lnot m')}) \\
        \geq& \card{\operatorname{Mono}(X, L, \lnot l)} - \card{\operatorname{Mono}(X, R, \lnot r)} \hspace{3cm} 
        \text{by Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}} \\
-          =& \card{\operatorname{Mono}(X, L)} - \card{\operatorname{Mono}(X, R)} \hspace{3cm} 
+          =& \card{\operatorname{Mono}(X, L)} - \card{\operatorname{Mono}(X, R)}. \hspace{3cm} 
           \text{by Lemma~\ref{subgraph_counting:lem:xlnlmxrnr}}
      \end{flalign*}
      Thus, the following inequality holds
@@ -550,9 +541,8 @@ If $\rho$ is \( X \)-non-increasing for every ruler-graph \( X \mathop{\in} \mat
          \\
          \mathop{=} &\sum_{X \mathop{\in} \mathbb{X}}^{}w(X) * \card{\operatorname{Mono}(X,L)} -  \sum_{X \mathop{\in} \mathbb{X}}^{}w(X) * \card{\operatorname{Mono}(X,R)} 
          \\
-         \mathop{=} & w_{s_\mathbb{X}}(L) - w_{s_\mathbb{X}}(R)
+         \mathop{=} & w_{s_\mathbb{X}}(L) - w_{s_\mathbb{X}}(R).
      \end{flalign*}
-    \qed
 \end{proof}
 
 \noindent

@@ -18,7 +18,7 @@ We establish a mapping $\tau$ that maps graph relabeling rules to term rewriting
     where each symbol in \(\Sigma_k\) has arity \(k\) for all \(k \mathop{\in} \{1,2,3\}\), and the symbols in \(\Sigma_{ac}\) are binary.
     % The set of variables is denoted by \(\chi \mathop{=} \{ Y_1, Y_2, \ldots, Y_n \}\), where
     % \[
-    % n \isdef \max \{\text{card}(V(G)) \mid \text{for each rule } r \mathop{=} (G, \lambda, \lambda') \mathop{\in} \mathcal{R}\}
+    % n \isdef \max \{\text{card}(V(G)) \mathop{\mid} \text{for each rule } r \mathop{=} (G, \lambda, \lambda') \mathop{\in} \mathcal{R}\}
     % \]
     % is the maximum number of nodes present in the graphs of the rules within the relabeling system \(\mathcal{R}\).
     \end{definition}
@@ -107,13 +107,13 @@ We establish a mapping $\tau$ that maps graph relabeling rules to term rewriting
 
     %     $\tau((G,\Lambda))$ is defined as the term:
     %     \[
-    %      \circledast \{ \lambda(\tau(src(e)),\tau(dst(e)),l) \mid 
+    %      \circledast \{ \lambda(\tau(src(e)),\tau(dst(e)),l) \mathop{\mid} 
     %         e \mathop{\in} E(G) \land
     %      \Lambda(e) \mathop{=} l \} 
     %      \]
     %     and $N$ be the term
     %     \[
-    %      \circledast \{ \lambda(\tau(n),\Lambda(n)) \mid n \mathop{\in} V(G) \}
+    %      \circledast \{ \lambda(\tau(n),\Lambda(n)) \mathop{\mid} n \mathop{\in} V(G) \}
     %      \]
     % \end{definition}
      
@@ -246,7 +246,7 @@ If $(G, \Lambda)$ rewrites to $(G, \Lambda')$ using the rule $\rho$, then the te
 % Let $f:E(m(R)) \mathop{\to} \Sigma$ defined by $f(e') \mathop{=} \operatorname{min}_< \set{\Lambda(e)~\mid~e \mathop{\in} E(R)}$ where $\operatorname{min}_<$ return the minimal element in a subset of $\Sigma$. 
 % The graph $(m(R), f)$ is a subgraph of $(G, \Lambda)$. Consequently, $\tau(m(G), f)$ is a subterm of $\tau(G, \Lambda)$. Since the symbol * is associative and commutative, $\tau(G, \lambda) \mathop{\to} _\mathcal{AC}^* (m(R), f) * A$, where $A$ is a term in $T(\Sigma',\mathcal{X})$ where $\Sigma'$ is a set of symbols. Similarly, $\tau(G, \Lambda') \mathop{\to} _\mathcal{AC}^*   * B$, where $B$ is a term in $T(\Sigma',\mathcal{X})$. We have $A \mathop{=} B$ because $\Lambda$ and $\Lambda'$ differ only in the nodes and edges of the graph $(R, \lambda)$.
 % We have, finally $(m(R), f) * A \mathop{\to} _\rho$
-% % Let $\sigma \mathop{=} \{(Y_k, m(k)) \mid k \mathop{\in} V(R)\}$. By applying the substitution $\sigma$ to the rule $\mathcal{R}'_{R}$, we obtain $\sigma (\overline{\Gamma(\overline{\lambda_R})}) \longrightarrow \sigma (\overline{\Gamma (\overline{\lambda_R'})} )$, which simplifies to $\overline{(G_R, \lambda_R \circ m^{-1})} \longrightarrow \overline{(G_R, \lambda_R' \circ m^{-1})}$.
+% % Let $\sigma \mathop{=} \{(Y_k, m(k)) \mathop{\mid} k \mathop{\in} V(R)\}$. By applying the substitution $\sigma$ to the rule $\mathcal{R}'_{R}$, we obtain $\sigma (\overline{\Gamma(\overline{\lambda_R})}) \longrightarrow \sigma (\overline{\Gamma (\overline{\lambda_R'})} )$, which simplifies to $\overline{(G_R, \lambda_R \circ m^{-1})} \longrightarrow \overline{(G_R, \lambda_R' \circ m^{-1})}$.
 
 % % Thus, it follows that $\overline{\lambda} \longrightarrow_{\mathcal{R}'} \overline{\lambda'}$.
 % \end{proof}
