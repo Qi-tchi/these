@@ -129,19 +129,10 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
 
 \noindent
 \begin*{\textbf{ Lemma~\ref{subgraph_counting:lem:w_u_l_not_geq_r_not}}}
-\ \newline 
-    \noindent 
-    \begin{minipage}{0.7\textwidth}
-        Let $X$ be a ruler-graph and $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ an injective DPO rewriting rule.
-        Suppose that $\rho$ is $X$-non-increasing. For every rewriting step induced by the DPO diagram (shown on the right), we have 
-        \[
-            |\operatorname{Mono}(X, G, \lnot m, \lnot l')| \mathop{\geq} |\operatorname{Mono}(X, H, \lnot m', \lnot r')|.
-        \]
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.29\textwidth}
-        \hfill
-        \resizebox{0.9\textwidth}{!}{
+  Let $X$ be a ruler-graph and $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ an injective DPO rewriting rule.
+        Suppose that $\rho$ is $X$-non-increasing. For every rewriting step induced by the following DPO diagram:
+        \begin{center}
+        \resizebox{0.3\textwidth}{!}{ 
                 \begin{tikzpicture}
             \node (k) at (0,1) {K};
             \node (l) at (-2,1) {L};
@@ -149,10 +140,6 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
             \node (c) at (0,-1) {C};
             \node (g) at (-2,-1) {G};
             \node (h) at (2,-1) {H};
-            % \node (rb) at (1.5,-0.5) {$R_X$};
-            % \node (h') at (1.5,-1.5) {$H'$};
-            % \draw[>->]  (rb) -- (h') node [midway,above] {};
-            % \draw[>->]  (c) -- (h') node [midway,above] {};
             \draw[<-<]  (l) -- (k) node [midway,below] {$l$};
             \draw[>->]  (k) -- (r) node [midway,below] {$r$};
             \draw[>->] (c) -- (g) node [midway, above] {$l'$};
@@ -162,16 +149,17 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
             \draw[>->] (k) -- (c) node[midway, left] {};
             \node () [at=($(l)!0.5!(c)$)] {$PO$};
             \node () [at=($(r)!0.5!(c)$)] {$PO$};
-            % \draw[>->] (rb) to (r);
-            % \draw[->] (rb) to (l);
-            % \draw[<-<] (rb) to (k);
         \end{tikzpicture}
         }
-    \end{minipage}
+        \end{center}
+       The following inequality holds:
+        \[
+            |\operatorname{Mono}(X, G, \lnot m, \lnot l')| \mathop{\geq} |\operatorname{Mono}(X, H, \lnot m', \lnot r')|
+        \]
 \end*{}
 \begin{proof}
     \label{proof:lem:w_u_l_not_geq_r_not}
-    We are going to show that for two arbitrary distinct monomorphisms $h_{XH}', h_{XH}'' \mathop{\in} \operatorname{Mono}(X, H, \lnot m', \lnot r')$, there are two distinct monomorphisms $h_{XG}', h_{XG}'' \mathop{\in} \operatorname{Mono}(X, G, \lnot m, \lnot l')$.
+    We are going to show that for two arbitrary distinct monomorphisms $h_{XH}', h_{XH}'' \mathop{\in} \operatorname{Mono}(X, H, \lnot m', \lnot r')$, there are two distinct monomorphisms $h_{XG}'$ and $h_{XG}'' \mathop{\in} \operatorname{Mono}(X, G, \lnot m, \lnot l')$.
 
     Let $h_{XH}'\in \operatorname{Mono}(X, H, \lnot m', \lnot r')$ be a monomorphism. In the category \textbf{Graph}, we can construct the following commutative diagram
     \begin{center}

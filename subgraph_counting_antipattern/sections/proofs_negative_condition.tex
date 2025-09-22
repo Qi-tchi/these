@@ -46,7 +46,7 @@
 
 \begin{lemma}
     \label{antipattern:lem:xgm_xhmp_xl_xr_llsss}
-    Let $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$ be a ruler-graph and \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. Consider the DPO diagram shown below.
+    Let $\mathcal{X} \mathop{=} (X, \set{f:X \rightarrowtail F})$ be a ruler-graph and \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. Consider the DPO diagram shown below.
         \begin{center}
             \begin{tikzpicture}
                 % [node distance=15mm]
@@ -232,15 +232,47 @@ We hav the following equalities:
 
 \noindent
 \begin*{\textbf{Lemma~\ref{antipattern:lem:xgm_xhmp_xl_xr}}}
-    \newline
-    \noindent
-\begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
-    Let $\mathcal{X}$
-    % $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$
-     be a ruler-graph and \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. Consider the DPO diagram illustrated on the right. 
-\end{minipage}%
-\begin{minipage}{0.29\textwidth}
-    \hfill
+%     \newline
+%     \noindent
+% \begin{minipage}{0.7\textwidth}\setlength{\parindent}{1em}
+%     Let $\mathcal{X}=(X,\mathcal{C})$
+%     % $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$
+%      be a ruler-graph and \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. Consider the DPO diagram illustrated on the right. 
+% \end{minipage}%
+% \begin{minipage}{0.29\textwidth}
+%     \hfill
+%     \begin{tikzpicture}
+%         % [node distance=15mm]
+%         \node (I) {$K$};
+%         \node (L) [left of=I] {$L$};
+%         \node (R) [right of=I] {$R$};
+%         \node (G) [below of=L] {$G$};
+%         \node (C) [below of=I] {$C$};
+%         \node (H) [below of=R] {$H$}; 
+%         \draw [>->] (I) to  node [midway,below] {$l$} (L);
+%         \draw [>->] (I) to  node [midway,below] {$r$} (R);
+%         \draw [>->] (L) to node [midway,right] {$m$} (G);
+%         \draw [>->] (I) to  node [midway,right] {$u$} (C); 
+%         \draw [>->] (R) to  node [midway,right] {$m'$} (H);
+%         \draw [>->] (C) to node [midway,above] {$l'$} (G);
+%         \draw [>->] (C) to node [midway,above] {$r'$} (H);
+%         % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
+%         % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+%       \end{tikzpicture}
+% \end{minipage} 
+
+% We have 
+%     $$
+%         \card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} - 
+%         \card{\operatorname{Mono}(\mathcal{X},H,m')_{\operatorname{NF}}} \geq
+%         \Lambda(\mathcal{X}, \rho)
+%     $$
+%     where $\Lambda(\mathcal{X},\rho) \overset{\operatorname{def}}{=} \card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} - 
+%     \card{\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})} -
+%    \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}$.
+
+  Let $\mathcal{X} \mathop{=} (X, \set{f:X \rightarrowtail F})$ be a ruler-graph, and let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. 
+  Consider the DPO diagram shown below.
     \begin{tikzpicture}
         % [node distance=15mm]
         \node (I) {$K$};
@@ -259,8 +291,6 @@ We hav the following equalities:
         % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
         % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
       \end{tikzpicture}
-\end{minipage} 
-
 We have 
     $$
         \card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} - 
@@ -274,7 +304,7 @@ We have
 
 \begin{proof}
     \label{antipattern:proof:lem:xgm_xhmp_xl_xr}
-    There are two cases to consider: either $\mathcal{X}=(X)$ or $\mathcal{X}=(X,f:X \rightarrowtail F)$. For the first case, since $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}) \mathop{=} \emptyset$ by definition, the inequality is equivalent to the following:
+    There are two cases to consider: either $\mathcal{C}=\emptyset$ or $\mathcal{C}=\set{f:X \rightarrowtail F}$. For the first case, since $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}) \mathop{=} \emptyset$ by definition, the inequality is equivalent to the following:
     $$
         \card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} - 
         \card{\operatorname{Mono}(\mathcal{X},H,m')_{\operatorname{NF}}} \geq
@@ -550,8 +580,8 @@ We have
 
 \noindent
 \begin*{\textbf{Lemma~\ref{antipattern:lem:xglnotmlp_xhlnotmrp}}}
-        Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule and $\mathcal{X}$ be a ruler-graph with underlying graph $X$.
-        Suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X} \mathop{=} (X,f:X \rightarrowtail F)$. For the DPO shown below,
+        Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule and $\mathcal{X}=(X,\mathcal{C})$ be a ruler-graph with underlying graph $X$.
+        Suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{C} \mathop{=} \set{f:X \rightarrowtail F}$. For the DPO shown below,
         \begin{center}
         \begin{tikzpicture}
             % [node distance=15mm]
@@ -578,7 +608,7 @@ We have
 \end*{}
 \begin{proof}
     \label{antipattern:proof:lem:xglnotmlp_xhlnotmrp}
-    There are two cases to consider: either $\mathcal{X} \mathop{=} (X)$ or $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$. 
+    There are two cases to consider: either $\mathcal{C} \mathop{=}\emptyset$ or $\mathcal{C} \mathop{=} \set{f:X \rightarrowtail F}$. 
      In the first case, since there is no forbidden context, the inequality is equivalent to $
         \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, l')} \geq
         \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', r')}$.
@@ -1034,7 +1064,7 @@ We have
 
 \noindent
 \begin*{\textbf{Lemma~\ref{antipattern:lem:xglnotmlnotlp_xhlnotmrnotrp}}}
-        let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule, and let $\mathcal{X}$ be a ruler-graph with underlying graph $X$. Suppose that $\rho$ and $\rho^{-1}$ are $X$-non-increasing. For the DPO diagram shown below,
+        let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule, and let $\mathcal{X}=(X,\mathcal{C})$ be a ruler-graph. Suppose that $\rho$ and $\rho^{-1}$ are $X$-non-increasing. For the DPO diagram shown below,
         \begin{center}
         \begin{tikzpicture}
             % [node distance=15mm]
@@ -1063,7 +1093,7 @@ We have
 \end*{}
 \begin{proof} 
       \label{antipattern:proof:lem:xglnotmlnotlp_xhlnotmrnotrp}
-    There are two cases to consider: $\mathcal{X}$ is $(X)$ or $(X,f:X \rightarrowtail F)$. For the first case, the inequality is equivalent to the following inequality:
+    There are two cases to consider: $\mathcal{C} \mathop{=} \emptyset$ or $\mathcal{C} \mathop{=} \set{f:X \rightarrowtail F}$. For the first case, the inequality is equivalent to the following inequality:
  $$
         \card{\operatorname{Mono}(\mathcal{X},G,\lnot m, \lnot l')} \geq
         \card{\operatorname{Mono}(\mathcal{X},H,\lnot m', \lnot r')},
@@ -2410,9 +2440,9 @@ We have
 
  Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules, $\mathbb{X}$ a set of ruler-graphs, and $s_\mathbb{X}$ a weight function. If the following hold:
     \begin{enumerate}
-        \item  for every $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$ and for every \( \mathcal{X} \mathop{\in} \mathbb{X} \) with underlying graph $X$, 
+        \item  for every $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$ and for every \( \mathcal{X} \mathop{=} (X,\mathcal{C})\mathop{\in} \mathbb{X} \), 
         % the number of $X$-occurrences that are not included in any occurrences of the forbidden context $F \mathop{\in} F_x$ in a $\rho$-rewriting step is predictable,
-        $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f:X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing, and
+        $\rho$ is $X$-non-increasing, and if $\mathcal{C}= \set{f:X \rightarrowtail F}$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing, and
         % $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X}= (X,f:X \rightarrowtail F)$ and, $\rho$ and $\rho^{-1}$ are $X$-non-increasing
         \item for every \(\rho \mathop{\in} \mathcal{A}\), we have
         % \( w_{s_\mathbb{X}}(lhs(\rho)) \mathop{>} w_{s_\mathbb{X}}(rhs(\rho)) \),

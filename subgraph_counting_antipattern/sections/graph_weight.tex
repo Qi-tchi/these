@@ -2,18 +2,20 @@ We generalize the concept of the ruler-graph presented in Chapter~\ref{chap:subg
 
 \begin{definition}
     \label{antipattern:def:ruler_graph}
-    A \textbf{ruler-graph} is either $(X)$ or \( (X, f) \) where $X$ is a graph (the \textbf{underlying graph}) and $f$ is a monomorphism into a graph $F$; $f$ is the \textbf{forbidden context}.
+    A \textbf{ruler-graph} is an order pair \( (X, \mathcal{C}) \) where $X$ is a graph (the \textbf{underlying graph}) and $\mathcal{C}$ is a set of monomorphisms from $X$ with $\card{\mathcal{C}}\mathop{\leq} 1$. Each $f \in \mathcal{C}$ is called a \textbf{forbidden context}.
 \end{definition}
-For $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$, we also call $F$ the forbidden context for simplicity.
-The definition of measurement needs some modifications to take the forbidden context into account. When the ruler-graph is just $(X)$, the definition of measurement is the same as that in Definition~\ref{subgraph_counting:def:measurement} in Chapter~\ref{chap:subgraph_counting}. When $\mathcal{X}$ is $(X, f:X \rightarrowtail F)$, we exclude those monomorphisms whose images overlap with the forbidden context. These excluded monomorphisms are those that can be extended to a morphism $g: F \rightarrowtail G$. This leads us to the following definition.
+In this chapter we restrict attention to the case $\card{\mathcal{C}}\mathop{\leq} 1$, and defer an analysis for general finite $\mathcal{C}$ to future work.
+
+For $f:X \rightarrowtail F \in \mathcal{C}$, we also call $F$ a forbidden context for simplicity.
+The definition of measurement needs some modifications to take the forbidden context into account. When $\mathcal{C} \mathop{=} \emptyset$, the definition of measurement is the same as that in Definition~\ref{subgraph_counting:def:measurement} in Chapter~\ref{chap:subgraph_counting}. When $\mathcal{C} = \set{f}$ with $f:X \rightarrowtail F$, we exclude those monomorphisms whose images overlap with the forbidden context. These excluded monomorphisms are those that can be extended to a morphism $g: F \rightarrowtail G$. This leads us to the following definition.
 \begin{definition} 
     \label{antipattern:def:measurement}
-    Let \( \mathcal{X}\) be a ruler-graph and \( G \) a graph. The \textbf{measurement} of \( G \) with respect to \( \mathcal{X}\), denoted \( m_\mathcal{X}(G) \), is defined as 
+    Let \( \mathcal{X} = (X,\mathcal{C}) \) be a ruler-graph and \( G \) a graph. The \textbf{measurement} of \( G \) with respect to \( \mathcal{X}\), denoted \( m_\mathcal{X}(G) \), is defined as 
     \[
         m_\mathcal{X}(G) \isdef
         \begin{cases}
-            \card{\{h \mathop{\in} \operatorname{Mono}(X,G) \mathop{\mid} \nexists g.\,f \mathop{\star} g \mathop{=} h \}}, & \text{if } \mathcal{X} \mathop{=} (X, f), \\
-            \card{\operatorname{Mono}(X,G)}, & \text{if } \mathcal{X} \mathop{=} (X).
+            \card{\{h \mathop{\in} \operatorname{Mono}(X,G) \mathop{\mid} \nexists g.\,f \mathop{\star} g \mathop{=} h \}}, & \text{if } \mathcal{C} \mathop{=}  \set{f}, \\
+            \card{\operatorname{Mono}(X,G)}, & \text{if } \mathcal{C} \mathop{=} \emptyset.
         \end{cases}
     \]
 \end{definition}

@@ -1,5 +1,5 @@
 
-We define the following sets of monomorphisms to facilitate the discussion of the termination criterion. They are almost identical to those defined in Notation~\ref{subgraph_counting:notation:mono_sets}. The only difference is that the first parameter is a ruler-graph $\mathcal{X}=(X,f)$ defined in Definition~\ref{antipattern:def:ruler_graph} instead of the underlying graph $X$.
+We define the following sets of monomorphisms to facilitate the discussion of the termination criterion. They are almost identical to those defined in Notation~\ref{subgraph_counting:notation:mono_sets}. 
 \begin{notation}
     \label{antipattern:notation:mono_sets}
   Let \( \mathcal{X}\) be a ruler-graph with underlying graph $X$. The disjoint union of two sets \( S \) and \( S' \) is denoted by \( S \uplus S' \). Let \( X, A, B, G \) be graphs, and let \( \alpha \mathop{\colon} A \mathop{\to} G \) and \( \beta \mathop{\colon} B \mathop{\to} G \) be morphisms as illustrated below:
@@ -48,7 +48,7 @@ We define the following sets of monomorphisms to facilitate the discussion of th
     \end{align*}
     For a set $\operatorname{Mono}(\mathcal{X},\dots)$, we write $\operatorname{Mono}(\mathcal{X},\dots)_{\operatorname{NF}}$ for the subset of \( X \)-occurrences whose images are not included in any occurrence of the forbidden context if it exists, and  $\operatorname{Mono}(\mathcal{X},\dots)_{\operatorname{F}}$ for the subset of \( X \)-occurrences whose images are included in some occurrences of the forbidden context if it exists. 
 \end{notation}
-    Let $\mathcal{X}$ be a ruler-graph with underlying graph $X$ and \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. 
+    Let $\mathcal{X}=(X,\mathcal{C})$ be a ruler-graph and \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. 
     Consider the following DPO diagram:
     \begin{center}
         \resizebox{0.3\textwidth}{!}{
@@ -115,21 +115,21 @@ Thus, the following equality holds:
         \card{\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', \mathop{\lnot} r')_{\operatorname{NF}}} 
     ).\nonumber
 \end{flalign}
-In the remainder of this section, we suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X}= (X,f:X \rightarrowtail F)$ and that $\rho$ and $\rho^{-1}$ are $X$-non-increasing. To estimate $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} \mathop{-} 
+In the remainder of this section, we suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{C} \mathop{=} \set{f:X \mathop{\rightarrowtail} F}$ and that $\rho$ and $\rho^{-1}$ are $X$-non-increasing. To estimate $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} \mathop{-} 
     \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}}$, we establish the following lemmas.
 % The following lemmas can be used to approximate $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} \mathop{-} 
 %     \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}}$
 \begin{lemma}
     \label{antipattern:lem:xglnotmlp_xhlnotmrp}
-        Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule and $\mathcal{X}$ be a ruler-graph with underlying graph $X$. 
-        Suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X} \mathop{=} (X,f:X \rightarrowtail F)$.
+        Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule and $\mathcal{X}=(X,\mathcal{C})$ be a ruler-graph. 
+        Suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{C} \mathop{=} \set{f:X \rightarrowtail F}$.
         The following inequality holds:
     $$\card{\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, l')_{\operatorname{NF}}} \geq
         \card{\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', r')_{\operatorname{NF}}}.$$
 \end{lemma} 
 \begin{lemma}
     \label{antipattern:lem:xglnotmlnotlp_xhlnotmrnotrp}
-        let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule, and let $\mathcal{X}$ be a ruler-graph with underlying graph $X$. Suppose that $\rho$ and $\rho^{-1}$ are $X$-non-increasing. We have
+        Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule, and let $\mathcal{X}=(X,\mathcal{C})$ be a ruler-graph. Suppose that $\rho$ and $\rho^{-1}$ are $X$-non-increasing. We have
     $$ 
         \card{\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, \mathop{\lnot} l')_{\operatorname{NF}}} \geq
         \card{\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', \mathop{\lnot} r')_{\operatorname{NF}}}.
@@ -145,11 +145,10 @@ Under the assumptions of the above two lemmas, we obtain the following inequalit
 
 \begin{definition}
     \label{antipattern:def:gamma_l_rho_x}
-    Let $\mathcal{X}$ be a ruler-graph with underlying graph $X$. 
-    Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule.
+    Let $\mathcal{X}=(X,\mathcal{C})$ be a ruler-graph, and let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule.
     Define $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ as the subset of $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}$ consisting of $X$-occurrences whose images are not included in any occurrence of the forbidden context in $L$,
     but, in some rewriting step $G \mathop{\Rightarrow}_\rho^m H$, their images may possibly be included in some occurrence of the forbidden context in the host graph $G$.
-    Formally,  $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}) \mathop{=} \emptyset$ if $\mathcal{X} \mathop{=} (X)$, and if $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$, then a monomorphism $h_{XL}:X \rightarrowtail L$ is in $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ if and only if the following hold:
+    Formally,  $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}) \mathop{=} \emptyset$ if $\mathcal{C} \mathop{=} \emptyset$, and if $\mathcal{C} \mathop{=} \set{f:X \rightarrowtail F}$, then a monomorphism $h_{XL}:X \rightarrowtail L$ is in $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ if and only if the following hold:
     \begin{itemize}
         \item there does not exist $h_{FL}:F \rightarrowtail L$ such that $f \mathop{\star} h_{FL} \mathop{=} h_{XL}$, and
          \item  
@@ -235,7 +234,7 @@ Furthermore, since $X$ and the forbidden context (if exists) are finite graphs, 
 
 \begin{lemma}
     \label{antipattern:lem:xgm_xhmp_xl_xr}
-     Let $\mathcal{X} \mathop{=} (X, f:X \rightarrowtail F)$ be a ruler-graph, and let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. 
+     Let $\mathcal{X}$ be a ruler-graph, and let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. 
    We have
     \begin{flalign*}
         &\card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} \mathop{-} 
@@ -272,9 +271,9 @@ This proves the following key lemma of this section.
     \( \mathbb{X} \) a set of ruler-graphs,
     \( s_{\mathbb{X}} \mathop{\colon} \mathbb{X} \mathop{\to} \mathbb{N} \) a weight function,
     and \( G \mathop{\Rightarrow}_{\rho,\mathfrak{M}} H \) a rewriting step. 
-    Suppose that for every \( \mathcal{X} \mathop{\in} \mathbb{X} \) with underlying graph $X$, 
+    Suppose that for every \( \mathcal{X}=(X,\mathcal{C}) \mathop{\in} \mathbb{X} \), 
     % the number of $X$-occurrences that are not included in any occurrences of forbidden context $F \mathop{\in} F_x$ in a $\rho$-rewriting step is predictable,
-    $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f:X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing. The following inequality holds:
+    $\rho$ is $X$-non-increasing, and if $\mathcal{C}= \set{f:X \rightarrowtail F}$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing. The following inequality holds:
      $$
         w_{s_\mathbb{X}}(G) \mathop{-} w_{s_\mathbb{X}}(H) 
         \mathop{\geq} 
@@ -286,9 +285,9 @@ Finally, our main result follows.
     \label{antipattern:thm:termination_grs} 
     Let \(\mathcal{A}\) and \(\mathcal{B}\) be sets of injective DPO rewriting rules, $\mathbb{X}$ a set of ruler-graphs, and $s_\mathbb{X}$ a weight function. If the following hold:
     \begin{enumerate}
-        \item  for every $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$ and for every \( \mathcal{X} \mathop{\in} \mathbb{X} \) with underlying graph $X$, 
+        \item  for every $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$ and for every \( \mathcal{X} = (X, \mathcal{C}) \mathop{\in} \mathbb{X} \), 
         % the number of $X$-occurrences that are not included in any occurrences of the forbidden context $F \mathop{\in} F_x$ in a $\rho$-rewriting step is predictable,
-        $\rho$ is $X$-non-increasing, and if $\mathcal{X}= (X,f:X \rightarrowtail F)$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing, and
+        $\rho$ is $X$-non-increasing, and if $\mathcal{C}= \set{f:X \rightarrowtail F}$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing, and
         % $\rho^{-1}$ is $F$-non-increasing if $\mathcal{X}= (X,f:X \rightarrowtail F)$ and, $\rho$ and $\rho^{-1}$ are $X$-non-increasing
         \item for every \(\rho \mathop{\in} \mathcal{A}\), we have
         % \( w_{s_\mathbb{X}}(lhs(\rho)) \mathop{>} w_{s_\mathbb{X}}(rhs(\rho)) \),
