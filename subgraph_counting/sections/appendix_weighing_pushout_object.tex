@@ -1,7 +1,7 @@
 \begin*{\textbf{ Lemma~\ref{subgraph_counting:lem:decomp_w_u}}}
     Let $X$ be a ruler-graph. For a pushout square as shown below:
         \begin{center}
-        \resizebox{0.2\textwidth}{!}{
+        % \resizebox{0.2\textwidth}{!}{
             \begin{tikzpicture}
             \node (A) at (0,0) {$A$};
             \node (B) at (0,-2) {$B$}; 
@@ -12,7 +12,7 @@
             \draw [>->] (B) to node [below,label,pos=0.45] {$\beta'$} (D); 
             \draw [>->] (C) to node [left,label,pos=0.45] {$\alpha'$} (D);
         \end{tikzpicture}
-        }
+        % }
         \end{center}
          the following equalities hold:
         % $\card{\operatorname{Mono}(X, B)} \mathop{=} \card{\operatorname{Mono}(X, D, \beta')}$ and $\card{\operatorname{Mono}(X, C, \lnot \beta)} \mathop{=} \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}$.
@@ -46,7 +46,7 @@
         %  By the definition of \(\operatorname{Mono}(X, C, \lnot \beta) \mathop{\star} \alpha'\), there exists a morphism \(\eta : X \mathop{\to} C\) in \(\operatorname{Mono}(X, C, \lnot \beta)\) such that \(\iota \mathop{=} \). 
          Since $\eta \mathop{\star} \alpha'$ is a monomorphism\todo{monicity of $\alpha'$}, it suffices to show that there is no \(\zeta : X \rightarrowtail B\) such that \(\eta \mathop{\star} \alpha' \mathop{=} \zeta \mathop{\star} \beta'\). Suppose, by contradiction, that such a \(\zeta\) exists, then the following commutative diagram holds:
         \begin{center}
-            \begin{tikzpicture}[node distance=10mm]
+            \begin{tikzpicture}
                 \node (A) {A}; 
                 \node (B) [above right=of A] {B};
                 \node (X) [left  = of A] {X};
@@ -132,7 +132,7 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
   Let $X$ be a ruler-graph and $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ an injective DPO rewriting rule.
         Suppose that $\rho$ is $X$-non-increasing. For every rewriting step induced by the following DPO diagram:
         \begin{center}
-        \resizebox{0.3\textwidth}{!}{ 
+        % \resizebox{0.3\textwidth}{!}{ 
                 \begin{tikzpicture}
             \node (k) at (0,1) {K};
             \node (l) at (-2,1) {L};
@@ -150,7 +150,7 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
             \node () [at=($(l)!0.5!(c)$)] {$PO$};
             \node () [at=($(r)!0.5!(c)$)] {$PO$};
         \end{tikzpicture}
-        }
+        % }
         \end{center}
        The following inequality holds:
         \[
@@ -163,26 +163,16 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
 
     Let $h_{XH}'\in \operatorname{Mono}(X, H, \lnot m', \lnot r')$ be a monomorphism. In the category \textbf{Graph}, we can construct the following commutative diagram
     \begin{center}
-        \resizebox{6cm}{!}{
-            \begin{tikzpicture}
+        % \resizebox{6cm}{!}{
+            \begin{tikzpicture}[scale=1.5]
                 \node (k) at (0,0) {K};
                 \node (r) at (4,0) {R};
                 \node (c) at (0,-3) {C};
                 \node (h) at (4,-3) {H};
-                % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
-                
-                % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->]  (c) -- (h') node [midway,above] {};
-    
                 \draw[<-<]  (r) -- (k) node [midway,above] {};
                 \draw[>->] (c) -- (h) node [midway, below] {};
                 \draw[>->] (r) -- (h) node[midway, left] {};
                 \draw[>->] (k) -- (c) node[midway, left] {};
-    
-                % \draw[->] (rb) to (l);
-                % \draw[<-<] (rb) to (k);
-            
                 \node (k') at (1,-1) {K'};
                 \node (r') at (2,-1) {R'};
                 \node (c') at (1,-2) {C'};
@@ -190,27 +180,15 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
                 \node () at (3,-1.5) {$PB$};
                 \node () at (1.5,-2.5) {$PB$};
                 \node (x) at (2,-2) {X};
-                % \draw [->] (x) -- (h') node[midway] {!};
                 \draw [>->] (c') -- (x);
                 \draw [>->] (r') -- (x);
                 \draw [>->] (k') -- (r');
                 \draw [>->] (k') -- (c');
                 \draw [>->] (c') -- (c);
-                % \draw [->] (r') -- (rb);
-                % \draw [->] (r') -- (rb);
-                % \draw [->] (h') -- (h);
-    
                 \draw[>->] (r') -- (r);
                 \draw[>->] (x) -- (h) node[midway,right] {$h$};
-                % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
-                % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->]  (c) -- (h') node [midway,above] {};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->] (rb) to (r);
-                % \draw[<-<] (rb) to (k);
             \end{tikzpicture}
-        }
+        % }
         \end{center} 
     
     $KCHR$ is also pullback, by Proposition~\ref{prop:pb_eq_po}, because it is pushout. 
@@ -225,22 +203,16 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
     
     The square $K'KCC'$ and $K'R'RK$ are pullbacks, by Lemma~\ref{kpcpck_pullback}. Hence, the following commutative diagram holds
     \begin{center}
-        \resizebox{6cm}{!}{
-            \begin{tikzpicture}
+        % \resizebox{6cm}{!}{
+            \begin{tikzpicture}[scale=1.5]
                 \node (k) at (0,0) {K};
                 \node (r) at (4,0) {R};
                 \node (c) at (0,-3) {C};
                 \node (h) at (4,-3) {H};
-                % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
-                % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->]  (c) -- (h') node [midway,above] {};
                 \draw[<-<]  (r) -- (k) node [midway,above] {};
                 \draw[>->] (c) -- (h) node [midway, below] {};
                 \draw[>->] (r) -- (h) node[midway, left] {};
                 \draw[>->] (k) -- (c) node[midway, left] {};
-                % \draw[->] (rb) to (l);
-                % \draw[<-<] (rb) to (k);
                 \node (k') at (1,-1) {K'};
                 \node (r') at (2,-1) {R'};
                 \node (c') at (1,-2) {C'};
@@ -250,27 +222,16 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
                 \node () at (1.5,-0.5) {$PB$};
                 \node () at (0.5,-1.5) {$PB$};
                 \node (x) at (2,-2) {X};
-                % \draw [->] (x) -- (h') node[midway] {!};
                 \draw [>->] (c') -- (x);
                 \draw [>->] (r') -- (x);
                 \draw [>->] (k') -- (r');
                 \draw [>->] (k') -- (c');
                 \draw [>->] (c') -- (c);
-                % \draw [->] (r') -- (rb);
-                % \draw [->] (r') -- (rb);
-                % \draw [->] (h') -- (h);
                 \draw[>->] (r') -- (r);
                 \draw[>->] (x) -- (h) node[midway,right] {$h$};
-                % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
-                % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->]  (c) -- (h') node [midway,above] {};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->] (rb) to (r);
-                % \draw[<-<] (rb) to (k);
                 \draw[>->] (k') -- (k) ;
             \end{tikzpicture}
-        }
+        % }
         \end{center} 
 
     \todo{use: assumption: non increasing}
@@ -280,66 +241,38 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
     
     Thus, the following commutative diagram holds
     \begin{center}
-        \resizebox{6cm}{!}{
-            \begin{tikzpicture}
+            \begin{tikzpicture}[scale=1.5]
                 \node (k) at (0,0) {K};
                 \node (r) at (4,0) {L};
                 \node (c) at (0,-3) {C};
                 \node (h) at (4,-3) {G};
-                % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
-                
-                % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->]  (c) -- (h') node [midway,above] {};
-    
                 \draw[<-<]  (r) -- (k) node [midway,above] {};
                 \draw[>->] (c) -- (h) node [midway, below] {};
                 \draw[>->] (r) -- (h) node[midway, left] {};
                 \draw[>->] (k) -- (c) node[midway, left] {};
-    
-                % \draw[->] (rb) to (l);
-                % \draw[<-<] (rb) to (k);
-            
                 \node (k') at (1,-1) {K'};
                 \node (r') at (2,-1) {R'};
                 \node (c') at (1,-2) {C'};
                 \node () at (1.5,-1.5) {$PO$};
-                % \node () at (1.5,-0.5) {$PB$};
                 \node () at (0.5,-1.5) {$PB$};
-                % \node () at (3,-1.5) {$PB$};
-                % \node () at (1.5,-2.5) {$PB$};
                 \node (x) at (2,-2) {X};
-                % \draw [->] (x) -- (h') node[midway] {!};
                 \draw [>->] (c') -- (x);
                 \draw [>->] (r') -- (x);
                 \draw [>->] (k') -- (r');
                 \draw [>->] (k') -- (c');
                 \draw [>->] (c') -- (c);
                 \draw [->] (k') -- (k);
-                % \draw [->] (r') -- (rb);
-                % \draw [->] (r') -- (rb);
-                % \draw [->] (h') -- (h);
-    
                 \draw[>->] (r') -- (r);
-                % \draw[>->] (x) -- (h) node[midway,right] {$h$};
-                % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
-                % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->]  (c) -- (h') node [midway,above] {};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->] (rb) to (r);
-                % \draw[<-<] (rb) to (k);
             \end{tikzpicture}
-        }
         \end{center} 
 
     By Lemma~\ref{lem:g_monic}, there is a unique monomorphism $h_{XG}':X \rightarrowtail G$ such that $h_{C'X} \mathop{\star} h_{XG}' \mathop{=} h_{C'C} \mathop{\star} h_{CG}$ and $h_{R'X} \mathop{\star} h_{XG}' \mathop{=} h_{R'L} \mathop{\star} h_{LG}$.
 
     By $h_{XH}'\in \operatorname{Mono}(X, H, \lnot m', \lnot r')$ and Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}, the monomorphism $h_{XG}'$ is in the set $\operatorname{Mono}(X, G, \lnot m, \lnot l')$. 
-    Intuitively, $h_{XH}'$ is an element of $\operatorname{Mono}(X, H, \lnot m', \lnot r')$ implies that some elements in $X$ are mapped onto $h_{RH}(R) \mathop{\setminus} (r \mathop{\star} h_{RH})(K)$. By the first assumption of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}, these elements are mapped onto $h_{LG}(L) \mathop{\setminus} (l \mathop{\star} h_{LG})(K)$.
+    Intuitively, some elements in $X$ are mapped onto $h_{RH}(R) \mathop{\setminus} (r \mathop{\star} h_{RH})(K)$ if $h_{XH}'$ is an element of $\operatorname{Mono}(X, H, \lnot m', \lnot r')$. By the first assumption of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}, these elements are mapped onto $h_{LG}(L) \mathop{\setminus} (l \mathop{\star} h_{LG})(K)$.
 
     
-    The monomorphism \( h_{XG}' \) belongs to the set \( \operatorname{Mono}(X, G, \lnot m, \lnot l') \), due to \( h_{XH}' \mathop{\in} \operatorname{Mono}(X, H, \lnot m', \lnot r') \) and Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}. Intuitively, \( h_{XH}' \mathop{\in} \operatorname{Mono}(X, H, \lnot m', \lnot r') \) implies that certain elements of \( X \) are mapped into \( h_{RH}(R) \mathop{\setminus} (r \mathop{\star} h_{RH})(K) \). By the second assumption of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}, these elements are also mapped into \( h_{LG}(L) \mathop{\setminus} (l \mathop{\star} h_{LG})(K) \).
+    The monomorphism \( h_{XG}' \) belongs to the set \( \operatorname{Mono}(X, G, \lnot m, \lnot l') \), due to \( h_{XH}' \mathop{\in} \operatorname{Mono}(X, H, \lnot m', \lnot r') \) and Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}. Intuitively, \( h_{XH}'$ is an element of $\operatorname{Mono}(X, H, \lnot m', \lnot r') \) implies that certain elements of \( X \) are mapped into \( h_{RH}(R) \mathop{\setminus} (r \mathop{\star} h_{RH})(K) \). By the second assumption of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}, these elements are also mapped into \( h_{LG}(L) \mathop{\setminus} (l \mathop{\star} h_{LG})(K) \).
 
      \todo{use; def non-increase; condition 1}
 
@@ -350,57 +283,29 @@ Let $X$ be a graph. Let $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$
     
     In the category \textbf{Graph}, we can construct the following commutative diagram:
     \begin{center}
-        \resizebox{6cm}{!}{
-            \begin{tikzpicture}
+            \begin{tikzpicture}[scale=1.5]
                 \node (k) at (0,0) {K};
                 \node (r) at (4,0) {L};
                 \node (c) at (0,-3) {C};
                 \node (h) at (4,-3) {G};
-                % \node (rb) at ($\scl*(1.5,-0.5)$) {$R_X$};
-                
-                % \node (h') at ($\scl*(1.5,-1.5)$) {$H'$};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->]  (c) -- (h') node [midway,above] {};
-    
                 \draw[<-<]  (r) -- (k) node [midway,above] {};
                 \draw[>->] (c) -- (h) node [midway, below] {};
                 \draw[>->] (r) -- (h) node[midway, left] {};
                 \draw[>->] (k) -- (c) node[midway, left] {};
-    
-                % \draw[->] (rb) to (l);
-                % \draw[<-<] (rb) to (k);
-            
                 \node (k') at (1,-1) {K'};
                 \node (r') at (2,-1) {R'};
                 \node (c') at (1,-2) {C'};
                 \node () at (1.5,-1.5) {$PO$};
-                % \node () at (1.5,-0.5) {$PB$};
                 \node () at (0.5,-1.5) {$PB$};
-                % \node () at (3,-1.5) {$PB$};
-                % \node () at (1.5,-2.5) {$PB$};
                 \node (x) at (2,-2) {X};
-                % \draw [->] (x) -- (h') node[midway] {!};
                 \draw [>->] (c') -- (x);
                 \draw [>->] (r') -- (x);
                 \draw [>->] (k') -- (r');
                 \draw [>->] (k') -- (c');
                 \draw [>->] (c') -- (c);
                 \draw [->] (k') -- (k);
-                % \draw [->] (r') -- (rb);
-                % \draw [->] (r') -- (rb);
-                % \draw [->] (h') -- (h);
-    
                 \draw[>->] (r') -- (r);
-                % \draw[>->] (x) -- (h) node[midway,right] {$h$};
-                % \node (rb) at ($\scl*(\sclx*1.5,-0.5)$) {$R_X$};
-                % \node (h') at ($\scl*(\sclx*1.5,-1.2)$) {$H'$};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->]  (c) -- (h') node [midway,above] {};
-                % \draw[>->]  (rb) -- (h') node [midway,above] {};
-                % \draw[>->] (rb) to (r);
-                % \draw[<-<] (rb) to (k);
             \end{tikzpicture}
-        }
         \end{center} 
 
     Analoguously, there exists a unique monomorphism $h_{XG}'':X \rightarrowtail G$ such that $h_{C''X} \mathop{\star} h_{XG} ''= h_{C''C} \mathop{\star} h_{CG}$ and $h_{R''X} \mathop{\star} h_{XG}'' \mathop{=} h_{R''L} \mathop{\star} h_{LG}$.
@@ -546,11 +451,12 @@ If $\rho$ is \( X \)-non-increasing for every ruler-graph \( X \mathop{\in} \mat
 \begin{proof}
     \label{subgraph_counting:proof:thm:termination_grs}
     
-    By assumption \eqref{subgraph_counting:thm:termination_grs:assump:1} and  Lemma~\ref{subgraph_counting:lem:w_g_geq_w_h_leq}, the inequality \(
+    By assumption \eqref{subgraph_counting:thm:termination_grs:assump:1} and  Lemma~\ref{subgraph_counting:lem:w_g_geq_w_h_leq}, the following inequality holds for all rules $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$ and for all rewriting steps $G \mathop{\Rightarrow}_{\rho, \mathcal{M}} H$:
+     \[
         w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H) 
         \mathop{\geq} 
-        w_{s_\mathbb{X}}(\operatorname{lhs}(\rho)) - w_{s_\mathbb{X}}(\operatorname{rhs}(\rho))
-    \) holds for all rules $\rho \mathop{\in} \mathcal{A} \mathop{\cup} \mathcal{B}$ and for all rewriting steps $G \mathop{\Rightarrow}_{\rho, \mathcal{M}} H$.
+        w_{s_\mathbb{X}}(\operatorname{lhs}(\rho)) - w_{s_\mathbb{X}}(\operatorname{rhs}(\rho)).
+    \]
     
     \noindent From assumptions \eqref{thm:termination_grs:assump:2} and \eqref{thm:termination_grs:assump:3}, we deduce 
     \begin{itemize}

@@ -23,7 +23,7 @@ The words \enquote{injective} and \enquote{monic} are used interchangeably in th
 % \begin{figure}[H]
 %       \centering
 \begin{center}
-      \resizebox{0.8\textwidth}{!}{
+      \resizebox{0.95\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -172,7 +172,7 @@ and the DPO diagram in the following figure. The numbers inside nodes and the su
 %   \begin{figure}[H]
 %     \centering
 \begin{center}
-    \resizebox{0.8\textwidth}{!}{
+    \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
               \graphbox{\( L \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (0mm,-8mm); 
@@ -279,7 +279,7 @@ below:
 % \begin{figure}[H]
 %       \centering
 \begin{center}
-      \resizebox{0.3\textwidth}{!}{
+      \resizebox{0.5\textwidth}{!}{
       \begin{tikzpicture}
             \node (I) at (0,0) {$K$};
             \node (L)  at (-2,0) {$L$};
@@ -309,7 +309,7 @@ below:
 
 However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square cannot always be constructed. For example, consider the same rewriting rule 
 \begin{center}
-      \resizebox{0.8\textwidth}{!}{
+      \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -348,6 +348,7 @@ However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square c
 %   \end{figure}
 and the graph $G$ shown below:
 \begin{center}
+    \resizebox{0.4\textwidth}{!}{
 \begin{tikzpicture}
         \graphbox{\( \mathcal{G} \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -364,11 +365,12 @@ and the graph $G$ shown below:
                     % \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                 }   
     \end{tikzpicture}
+    }
 \end{center}
 The left pushout square cannot be constructed as visualized by the following figure. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges; the dashed circle in the box $C$ indicates that the node 3 is missing.
 
         \begin{center}
-        \resizebox{0.9\textwidth}{!}{
+        \resizebox{\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
                     \coordinate (o) at (0mm,-8mm); 
@@ -441,7 +443,7 @@ The left pushout square cannot be constructed as visualized by the following fig
 
 There is another requirement for the existence of a pushout complement. To give an intuition, consider the rewriting rule in \(\mathbf{Graph}\), shown below.  This rule deletes a node of the graph, and the match identifies the three nodes of \(L\) with a single node of \(G\).
     \begin{center}
-        \resizebox{0.9\textwidth}{!}{
+        \resizebox{\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
                     \coordinate (o) at (0mm,-8mm); 
@@ -469,7 +471,7 @@ There is another requirement for the existence of a pushout complement. To give 
         \end{center}  
 Consider the match \(L \overset{m}{\rightarrow} G\) shown in the following diagram:    
     \begin{center}
-        \resizebox{0.9\textwidth}{!}{
+        \resizebox{\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
                     \coordinate (o) at (0mm,-8mm); 
@@ -502,7 +504,7 @@ Consider the match \(L \overset{m}{\rightarrow} G\) shown in the following diagr
         \end{center}     
 Since there are no edges, we may view these graphs as sets of nodes and compute the left pushout square explicitly, as in Example~\ref{ex:cat:posfjsdlkgja}. Suppose that the left pushout square exists—i.e., there is a graph \(C\) and morphisms \(u: K \mathop{\to} C\) and \(l': C \mathop{\to} G\) such that the following diagram is a pushout square:
 \begin{center}
-      \resizebox{0.2\textwidth}{!}{
+      \resizebox{0.3\textwidth}{!}{
       \begin{tikzpicture}
             \node (I) at (0,0) {$K$};
             \node (L)  at (-2,0) {$L$};
@@ -539,7 +541,7 @@ This leads to the following proposition summarizing the conditions under which p
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-        \resizebox{0.2\textwidth}{!}{
+        \resizebox{0.3\textwidth}{!}{
             \begin{tikzpicture}
                 \node (I) at (0,0) {$K$};
                 \node (L) at (-2,0) {$L$};
@@ -666,11 +668,12 @@ This leads to the following proposition summarizing the conditions under which p
 There are several variants of DPO rewriting. Typically both the match $m$ and the morphism $l$ are required to be monomorphisms, and some variants impose additional constraints on the left pushout—for example, that the pushout complement be minimal or initial~\cite{braatz2011delete,behr2021concurrency,behr2023fundamentals}. Because these choices affect which rewriting steps are permitted and hence properties such as termination, following Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}, we use the definition which is parametric in the variation of DPO under consideration.
 \begin{definition}[\cite{endrullis2024generalized_icgt}]
   \label{def:rewriting_framework} 
+    % A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a funtion that to every rewriting rule \( \rho \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) associates DPO diagrams as shown below
     A \textbf{DPO rewriting framework} $\mathfrak{F}$ is a mapping of DPO rewriting rules to classes of DPO diagrams. Specifically, for every rule \( \rho \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \), class $\mathfrak{F}(\rho)$ consists of DPO diagrams shown below, which are witnesses of rewriting steps using the rule \( \rho \).
 %  \begin{figure}[H]
 %       \centering
 \begin{center}
-      \resizebox{0.4\textwidth}{!}{
+      \resizebox{0.5\textwidth}{!}{
       \begin{tikzpicture}
             \node (I) at (0,0) {$K$};
             \node (L)  at (-2,0) {$L$};

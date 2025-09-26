@@ -38,7 +38,7 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\mathop{\Right
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-            \resizebox{0.85\textwidth}{!}{
+            \resizebox{\textwidth}{!}{
                 \begin{tikzpicture}[baseline=-3ex]
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -73,14 +73,12 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\mathop{\Right
     %     \label{fig:preliminaries:graph_transformation_rule_nonterminating}
     % \end{figure} 
             \end{center} 
-    A looping rewriting chain using this rule is shown in Figure~\ref{fig:preliminaries:sequence_of_transformation_infinite}, in which the subgraph to be replaced at each transformation step is highlighted in red.
-       
+   A sequence of rewriting steps, to be read left to right. In each graph, the subgraph to be replaced to obtain the next graph is highlighted in red.
         \begin{figure}[H]
            \centering
-          \resizebox{0.85\textwidth}{!}{
-            \tikz
-            [baseline=-0.5ex]
-            { 
+          \resizebox{\textwidth}{!}{
+                   \begin{tikzpicture}
+            \graphbox{\( \)}{0mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                 \node[draw,circle] (x) at (0,0) {};
                 \node[draw,circle] (y) at (1,0) {};
                 \node[draw,circle] (z) at (0.5,0.86) {};
@@ -88,8 +86,7 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\mathop{\Right
                 \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
                 \draw[->] (z) -- node[midway,left] {$b$} (x) ;
             } 
-            $\mathop{\Rightarrow}$ 
-            \tikz[baseline=-0.5ex]{ 
+            \graphbox{\( \)}{22mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                 \node[draw,circle] (x) at (0,0) {};  
                 \node[draw,circle] (y) at (1,0) {};
                 \node[draw,circle] (z) at (0.5,0.86) {};
@@ -97,8 +94,15 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\mathop{\Right
                 \draw[->,red] (y) -- node[midway,right] {$a$} (z) ;
                 \draw[->,red] (z) -- node[midway,left] {$b$} (x) ;
             }
-            $\mathop{\Rightarrow}$ 
-            \tikz[baseline=-0.5ex]{ 
+            \graphbox{\( \)}{44mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
+                \node[draw,circle] (x) at (0,0) {};   
+                \node[draw,circle] (y) at (1,0) {};
+                \node[draw,circle] (z) at (0.5,0.86) {};
+                \draw[->,red] (x) -- node[midway,below] {$a$} (y) ;
+                \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
+                \draw[->] (z) -- node[midway,left] {$b$} (x) ;
+            } 
+            \graphbox{\( \)}{66mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                 \node[draw,circle] (x) at (0,0) {};  
                 \node[draw,circle] (y) at (1,0) {};
                 \node[draw,circle] (z) at (0.5,0.86) {};
@@ -106,8 +110,7 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\mathop{\Right
                 \draw[->] (y) -- node[midway,right] {$b$} (z) ;
                 \draw[->,red] (z) -- node[midway,left] {$a$} (x) ;
             }
-            $\mathop{\Rightarrow}$
-            \tikz[baseline=-0.5ex]{ 
+            \graphbox{\( \)}{88mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                 \node[draw,circle] (x) at (0,0) {};   
                 \node[draw,circle] (y) at (1,0) {};
                 \node[draw,circle] (z) at (0.5,0.86) {};
@@ -115,9 +118,10 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\mathop{\Right
                 \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
                 \draw[->] (z) -- node[midway,left] {$b$} (x) ;
             }
-          }
-          \caption{}
-          \label{fig:preliminaries:sequence_of_transformation_infinite}
+         \end{tikzpicture}
+        }
+        %  \caption{Sequence of rewriting steps, to be read left to right. In each graph, the subgraph to be replaced to obtain the next graph is highlighted in red.}
+        %   \label{fig:preliminaries:sequence_of_transformation_infinite}
         \end{figure}
 \end{example}
 
@@ -129,7 +133,7 @@ For example of a terminating rule set, consider the set with the unique rule, sh
 % in Figure~\ref{fig:intro:edge_deletion_andffsfjsssdkdsglkadjl}, 
 which deletes an edge. 
     \begin{center}
-     \resizebox{0.85\textwidth}{!}{ 
+     \resizebox{\textwidth}{!}{ 
                 \begin{tikzpicture}[baseline=-3ex]
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -165,7 +169,7 @@ However, in many cases, an interesting property can be proved even if the whole 
 Take the system with rules $\alpha$ and $\beta$ shown below. Rule~$\alpha$ removes one edge per application; rule~$\beta$ introduces a new node. 
 \begin{center}
         $\alpha$ = {
-             \resizebox{0.7\textwidth}{!}{
+             \resizebox{0.9\textwidth}{!}{
              \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -198,7 +202,7 @@ Take the system with rules $\alpha$ and $\beta$ shown below. Rule~$\alpha$ remov
     %     % \centering
 
         $\beta$ ={
-             \resizebox{0.7\textwidth}{!}{
+             \resizebox{0.9\textwidth}{!}{
              \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         

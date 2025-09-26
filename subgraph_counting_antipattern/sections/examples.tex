@@ -64,46 +64,46 @@
   \label{antipattern:ex:grs_aca}
   Consider the rule $\rho$ shown below.
   \begin{center}
-  \resizebox{0.8\textwidth}{!}{ 
-  \begin{tikzpicture}   
-      \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
+  % \resizebox{0.8\textwidth}{!}{ 
+    \begin{tikzpicture}   
+        \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
+            \coordinate (o) at (0mm,-3mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+            \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+            \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+        }     
+        \graphbox{$K$}{40mm}{0mm}{24mm}{20mm}{2mm}{-5mm}{
+            \coordinate (o) at (5mm,-3mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+            \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+            % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
+            % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+            % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+        }    
+        \graphbox{$R$}{70mm}{0mm}{45mm}{20mm}{2mm}{-5mm}{
           \coordinate (o) at (0mm,-3mm); 
           \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
           \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
           \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
           \draw[->] (l1) -- (l3) node[midway,above] {$a$};
           \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-      }     
-      \graphbox{$K$}{40mm}{0mm}{24mm}{20mm}{2mm}{-5mm}{
-          \coordinate (o) at (5mm,-3mm); 
-          \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-          \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-          % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
-          % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-          % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-      }    
-      \graphbox{$R$}{70mm}{0mm}{45mm}{20mm}{2mm}{-5mm}{
-        \coordinate (o) at (0mm,-3mm); 
-        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-        \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-        \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-        \draw[->] (l3) edge [loop below] node {$c$} (l3);
-      }    
+          \draw[->] (l3) edge [loop below] node {$c$} (l3);
+        }    
 
-      \node () at (37mm,-10mm) {$\leftarrowtail$};
-      \node () at (67mm,-10mm) {$\rightarrowtail$};
+        \node () at (37mm,-10mm) {$\leftarrowtail$};
+        \node () at (67mm,-10mm) {$\rightarrowtail$};
 
-      % \draw[>->] (51mm,2mm) -- (52mm,3mm);
-  \end{tikzpicture}
-  }
+        % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+    \end{tikzpicture}
+  % }
 \end{center}
 Consider the ruler-graph $\mathcal{X} \mathop{=} (L, \set{f})$ where the underlying graph is $L$ and $f:L \rightarrowtail R$ is the inclusion function. Let $s_\mathbb{X}$ be the weight function with $s_\mathbb{X}(\mathcal{X})=1$.
 % The number of $L$-occurrences not included in any occurrences of the forbidden context $R$ in any rewriting step using this rule is predictable:
 % the condition~\ref{hyp:inj_mono_x_l_to_r} is satisfied because $Mono(L,L)_F \mathop{=} \emptyset$; the condition~\ref{hyp:inj_mono_f_l_to_r} is satisfied because $Mono(R,L) \mathop{=} \emptyset$; the conditions~\ref{hyp:x_non_increasing} and~\ref{hyp:f_non_increasing} are satisfied under identity function; the condition~\ref{hyp:f_non_increasing} is satisfied because for the condition~\ref{hyp:f_non_increasing} we employ identity function. 
 
-Since $D(R,X)$ is the empty set, all conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are straightforward to verify, and rule $\rho$ is $X$-non-increasing. 
+Since $D(R,X)$ is the empty set, all conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} hold, and rule $\rho$ is $X$-non-increasing. 
 Similarly, rule $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing, because $D(L,X) \mathop{=} \emptyset$ and $D(L,R) \mathop{=} \emptyset$. 
 
 We have 
@@ -114,7 +114,7 @@ We have
     }   -
 \card{\operatorname{Mono}(X,R)_{\operatorname{NF}}} \\
 \mathop{=}&1 - 0 - 0 \\
-\mathop{=}&1 
+\mathop{=}&1.
 \end{flalign*}
 Therefore, $s_\mathbb{X}(\mathcal{X}) * \Lambda(\mathcal{X},\rho) \mathop{=} 1 \mathop{>} 0$, and the rule terminates by Theorem~\ref{antipattern:thm:termination_grs}.
 \end{example} 
@@ -124,7 +124,7 @@ Therefore, $s_\mathbb{X}(\mathcal{X}) * \Lambda(\mathcal{X},\rho) \mathop{=} 1 \
     Our method can prove termination of the rewriting rule $\rho$ shown below.
     %  in Figure~\ref{fig:antipattern:ex_endrullis_d3} from~\cite[Example D.3]{endrullis2024generalized_arxiv_v2}.
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
+        % \resizebox{0.8\textwidth}{!}{
     \begin{tikzpicture}  
        \graphbox{$L$}{0mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{  
            \node[draw,circle]  (x) at (-6mm,0mm) {1};  
@@ -139,13 +139,13 @@ Therefore, $s_\mathbb{X}(\mathcal{X}) * \Lambda(\mathcal{X},\rho) \mathop{=} 1 \
           \draw[->]  (x) to (y);  
          }    
    \end{tikzpicture}
-    }
+    % }
     \end{center}
     Let $\mathcal{X} \mathop{=} (L,\set{f})$ be the ruler-graph where $f:L \rightarrowtail R$ is the unique interface-preserving monomorphism from $L$ to $R$. Let $s_\mathbb{X}$ be the weight function with $s_\mathbb{X}(\mathcal{X})=1$.
     % The number of $X$-occurrences not included in any occurrences of the forbidden context $R$ in any $\rho$-rewriting step is predictable. 
     Since $D(R,X)$ is the empty set, rule $\rho$ is $X$-non-increasing.
     Rule $\rho^{-1}$ is $X$-non-increasing and $R$-non-increasing, because $D(L,X)$ and $D(L,R)$ are empty sets.
-    Since we have 
+    We have 
     \begin{flalign*}
       \Lambda(\mathcal{X},\rho) \overset{\operatorname{def}}{\mathop{=}}&  
       \card{\operatorname{Mono}(X,L)_{\operatorname{NF}}} - 
@@ -154,7 +154,7 @@ Therefore, $s_\mathbb{X}(\mathcal{X}) * \Lambda(\mathcal{X},\rho) \mathop{=} 1 \
       \\
       \mathop{=}&1 - 0 - 0 
       \\
-      \mathop{=}&1
+      \mathop{=}&1.
     \end{flalign*}
     Therefore, $s_\mathbb{X}(\mathcal{X}) * \Lambda(\mathcal{X},\rho) \mathop{=} 1 \mathop{>} 0$, and the rule terminates by Theorem~\ref{antipattern:thm:termination_grs}.
   \end{example} 

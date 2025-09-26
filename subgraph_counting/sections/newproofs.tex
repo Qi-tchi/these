@@ -1,19 +1,19 @@
 \begin{lemma}
     \label{lem:b_c_same_img_exist_a}
     Consider the pushout square in $\mathbf{Graph}$ of form
-    \begin{center}{\normalfont
+    \begin{center} 
         \begin{tikzpicture}[node distance=12mm]
-          \node (A) {$A$};
-          \node [right of=A] (B) {$B$}; 
-          \node [below of=A] (C) {$C$}; 
-          \node [below of=B] (D) {$D$}; 
+          \node (A) at (0,0) {$A$};
+          \node (B) at (2,0) {$B$}; 
+          \node (C) at (0,-2) {$C$}; 
+          \node (D) at (2,-2) {$D$}; 
           \node () [at=($(A)!0.5!(D)$)] {\normalfont PO};
           \draw [>->] (A) to (B);
           \draw [>->] (A) to (C);
           \draw [>->] (B) to (D); 
           \draw [>->] (C) to (D);
         \end{tikzpicture}
-    }\end{center} 
+    \end{center} 
     The following statements hold:
     \begin{enumerate}
         \item  If $ b\in B $ and $ c \mathop{\in} C $ such that $ h_{BD}(b) \mathop{=} h_{CD}(c) $ then there is $ a \mathop{\in} A $ such that $ h_{AB}(a) \mathop{=} b $ and $ h_{AC}(a)= c $;
@@ -39,8 +39,8 @@
     \label{kpcpck_pullback}
     Consider the following commutative diagram in \textbf{Graph}.
     \begin{center}
-        \resizebox{6cm}{!}{
-            \begin{tikzpicture}
+        % \resizebox{6cm}{!}{ 
+            \begin{tikzpicture}[scale=1.2]
                 \node (k) at (0,0) {K};
                 \node (r) at (4,0) {R};
                 \node (c) at (0,-3) {C};
@@ -65,7 +65,7 @@
                 \draw[>->] (x) -- (h);
                 \draw[->] (k') -- (k);
             \end{tikzpicture}
-        }
+        % }
         \end{center}  
         The squares $K'KCC'$ and $K'KRR'$ are pulllback square.
 \end{lemma}
@@ -77,8 +77,8 @@
     We have the following commutative diagram 
 
     \begin{center}
-        \resizebox{0.3\textwidth}{!}{
-            \begin{tikzpicture}
+        % \resizebox{0.3\textwidth}{!}{
+            \begin{tikzpicture}[scale=1.2]
                 \node (k) at (0,0) {K};
                 \node (r) at (4,0) {R};
                 \node (c) at (0,-3) {C};
@@ -107,7 +107,7 @@
                 \draw[->,red] (a) -- (c');
                 \draw[->,red] (a) -- (k);
             \end{tikzpicture}
-        }
+        % }
         \end{center} 
     We show first the existence of a morphism $h_{AK'} \mathop{\colon} A \mathop{\to} K'$ such that the following statements hold:
     \begin{flalign*}
@@ -126,8 +126,8 @@
     Therefore, the following commutative diagram holds 
 
     \begin{center}
-        \resizebox{0.3\textwidth}{!}{
-            \begin{tikzpicture}
+        % \resizebox{0.3\textwidth}{!}{
+            \begin{tikzpicture}[scale=1.2]
                 \node (k) at (0,0) {K};
                 \node (r) at (4,0) {R};
                 \node (h) at (4,-3) {H};
@@ -146,7 +146,7 @@
                 \draw[->] (a) -- (c');
                 \draw[->] (a) -- (k);
             \end{tikzpicture}
-        }
+        % }
         \end{center} 
     Since $R'XHR$ is a pullback square, by the universal property Definition~\ref{def:cat:pb}, there is a unique morphism $h_{AR'} \mathop{\colon} A \mathop{\to} R'$ such that 
     \begin{flalign}
@@ -157,8 +157,8 @@
     We have thus the following commutative diagram 
 
         \begin{center}
-            \resizebox{0.2\textwidth}{!}{
-                \begin{tikzpicture}
+            % \resizebox{0.2\textwidth}{!}{
+                \begin{tikzpicture}[scale=1.2]
                     \node (a) at (-1,0) {A};
                     \node (k') at (1,-1) {K'};
                     \node (r') at (2,-1) {R'};
@@ -172,7 +172,7 @@
                     \draw[->] (a) -- (c');
                     \draw[->] (a) -- (r');
                 \end{tikzpicture}
-            }
+            % }
         \end{center} 
     Since $K'C'XR'$ is a pullback square, there is a unique morphism $h_{AK'} \mathop{\colon} A \mathop{\to} K'$ such that 
     \begin{flalign}
@@ -203,7 +203,7 @@
     \label{kpcpxrp_po}
     Consider the following commutative diagram in \textbf{Graph} where $KCHR$ is a pushout.
     \begin{center}
-        \resizebox{6cm}{!}{
+        % \resizebox{6cm}{!}{
             \begin{tikzpicture}
                 \node (k) at (0,0) {K};
                 \node (r) at (4,0) {R};
@@ -248,7 +248,7 @@
                 % \draw[<-<] (rb) to (k);
                 \draw[>->] (k') -- (k) ;
             \end{tikzpicture}
-        }
+        % }
         \end{center} 
         The square $K'C'XR'$ is a pushout.
 \end{lemma}
@@ -261,17 +261,17 @@
         Consider the following pushout square in \textbf{Graph}.
     \begin{center}
         \begin{tikzpicture}
-            \node (k') at (-1,-1) {K'};
-            \node (r') at (-2,-1) {R'};
-            \node (c') at (-1,-2) {C'};
+            \node (k') at (0,0) {K'};
+            \node (r') at (-2,0) {R'};
+            \node (c') at (0,-2) {C'};
             \node (x) at (-2,-2) {X};
-            \node () at (-1.5,-1.5) {$PO$};
+            \node () at (-1,-1) {$PO$};
             \draw [>->] (c') -- (x);
             \draw [>->] (r') -- (x);
             \draw [>->] (k') -- (r');
             \draw [>->] (k') -- (c');
         \end{tikzpicture}
-    \end{center}
+    \end{center} 
      Let $x$ be a node (resp. an edge) in $X$. There is either a node (resp. an edge) $r'$ in $R'$ such that $h_{R'X}(r') \mathop{=} x$ or a node (resp. an edge) $c'$ in $C'$ such that $h_{C'X}(c') \mathop{=} x$.
 \end{lemma}
 \begin{proof}
@@ -282,10 +282,10 @@
     \begin{center}
         \begin{tikzpicture}
             \node (g) at (-4,-4) {$G$};
-            \node (k') at (-1,-1) {K'};
-            \node (r') at (-2,-1) {R'};
-            \node (c') at (-1,-2) {C'};
-            \node (x) at (-2,-2) {X};
+            \node (k') at (-1,-1) {$K'$};
+            \node (r') at (-2,-1) {$R'$};
+            \node (c') at (-1,-2) {$C'$};
+            \node (x) at (-2,-2) {$X$};
             \node () at (-1.5,-1.5) {$PO$};
             \draw [>->] (c') -- (x);
             \draw [>->] (r') -- (x);
@@ -341,10 +341,10 @@
             \draw[>->] (c) -- (g) node [midway,above] {};
             \draw[>->] (k) -- (c) node[midway, left] {};
             \draw[<-<] (l) to (k);
-            \node (k') at (-1,-1) {K'};
-            \node (r') at (-2,-1) {R'};
-            \node (c') at (-1,-2) {C'};
-            \node (x) at (-2,-2) {X};
+            \node (k') at (-1,-1) {$K'$};
+            \node (r') at (-2,-1) {$R'$};
+            \node (c') at (-1,-2) {$C'$};
+            \node (x) at (-2,-2) {$X$};
             \node () at (-1.5,-1.5) {$PO$};
             \node () at (-0.5,-1.5) {$PB$};
             \draw [>->] (c') -- (x);
@@ -374,18 +374,18 @@
     Therefore, the following commutative diagram holds
     \begin{center}
         \begin{tikzpicture}
-            \node (k) at (0,0) {K};
-            \node (c) at (0,-4) {C};
+            \node (k) at (0,0) {$K$};
+            \node (c) at (0,-4) {$C$};
             \node (l) at (-4,0) {$L$};
             \node (g) at (-4,-4) {$G$};
             \draw[>->] (l) -- (g) node [midway,above] {};
             \draw[>->] (c) -- (g) node [midway,above] {};
             \draw[>->] (k) -- (c) node[midway, left] {};
             \draw[<-<] (l) to (k);
-            \node (k') at (-1,-1) {K'};
-            \node (r') at (-2,-1) {R'};
-            \node (c') at (-1,-2) {C'};
-            \node (x) at (-2,-2) {X};
+            \node (k') at (-1,-1) {$K'$};
+            \node (r') at (-2,-1) {$R'$};
+            \node (c') at (-1,-2) {$C'$};
+            \node (x) at (-2,-2) {$X$};
             \node () at (-1.5,-1.5) {$PO$};
             \node () at (-0.5,-1.5) {$PB$};
             \draw [>->] (c') -- (x);
@@ -672,12 +672,12 @@
 
     \begin{center}
         \begin{tikzpicture}
-            \node (k) at (0,1) {K};
-            \node (l) at (-2,1) {L};
-            \node (r) at (2,1) {R};
-            \node (c) at (0,-1) {C};
-            \node (g) at (-2,-1) {G};
-            \node (h) at (2,-1) {H};
+            \node (k) at (0,1) {$K$};
+            \node (l) at (-2,1) {$L$};
+            \node (r) at (2,1) {$R$};
+            \node (c) at (0,-1) {$C$};
+            \node (g) at (-2,-1) {$G$};
+            \node (h) at (2,-1) {$H$};
             % \node (rb) at (1.5,-0.5) {$R_X$};
             % \node (h') at (1.5,-1.5) {$H'$};
             % \draw[>->]  (rb) -- (h') node [midway,above] {};
@@ -795,6 +795,7 @@
         \end{tikzpicture}
     \end{center}
     where  
+
     \begin{itemize}
         \item $K'R'XC'$ is pushout and pullback;
         \item $K''R''XC''$ is pushout and pullback;

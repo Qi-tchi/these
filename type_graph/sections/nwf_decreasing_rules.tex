@@ -39,10 +39,25 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
 
 \begin{example}
     \label{nwf:example:decreasing_rule}
-    Consider the following DPO rule:
+    Consider the following weighted type graph
+    % in Example~\ref{nwf:example:weighted_type_graphd_grsaa_sdfsf} 
+    over the real arithmetic semiring $\mathfrak{N}' \mathop{=} (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$:
+    \begin{center}
+        \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
+                \node[draw,circle] (1) at (0,0) {};
+                \node[draw,circle] (2) at (2,0) {};
+                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
+                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
+                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
+                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
+            }
+        \end{tikzpicture}
+    \end{center}
+    \noindent and the rule:
     % shown in Figure~\ref{fig:nwf:rewriting_step_tracsdfdsafdfsd}
      \begin{center}
-      \resizebox{0.7\textwidth}{!}{
+    %   \resizebox{0.7\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -74,26 +89,10 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
-      }
+    %   }
   \end{center}
-   and the following weighted type graph
-    % in Example~\ref{nwf:example:weighted_type_graphd_grsaa_sdfsf} 
-    over the real arithmetic semiring $\mathfrak{N}' \mathop{=} (\mathbb{R}^+,+,*,0_\mathbb{R},1_\mathbb{R},<,\operatorname{id}_{\mathbb{R}^+})$:
-    \begin{center}
-        \begin{tikzpicture}
-            \graphbox{}{0mm}{0mm}{32mm}{28mm}{-10mm}{-14mm}{
-                \node[draw,circle] (1) at (0,0) {};
-                \node[draw,circle] (2) at (2,0) {};
-                \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
-                \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
-                \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
-                \draw[->] (2) edge[bend left] node[midway, below] {$a^{1.0}$} (1)   ;
-            }
-        \end{tikzpicture}
-    \end{center}
      There are 4 morphisms $t_K^{11}, t_K^{12}, t_K^{21}, t_K^{22}$ from $K$ to $T$:
     \begin{center} 
-        \resizebox{0.6\textwidth}{!}{
             \begin{tikzpicture}
             \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
@@ -113,11 +112,11 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 }
                 \node () at (-5mm,-15mm) {$\overset{t_K^{11}}{\to}$};
             \end{tikzpicture}
-            } 
 
-            \resizebox{0.6\textwidth}{!}{
+            \vspace{2mm}
+
             \begin{tikzpicture}
-                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -125,7 +124,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
-                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                \graphbox{$T$}{0mm}{0mm}{40mm}{28mm}{-10mm}{-15mm}{
                     \node[draw,circle] (1) at (0,0) {$1$};
                     \node[draw,circle] (2) at (2,0) {2};
                     \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
@@ -135,11 +134,11 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 }
                 \node () at (-5mm,-15mm) {$\overset{t_K^{12}}{\to}$};
             \end{tikzpicture}
-            }
             
-            \resizebox{0.6\textwidth}{!}{
+            \vspace{2mm}
+            
             \begin{tikzpicture}
-                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -147,7 +146,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
-                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                \graphbox{$T$}{0mm}{0mm}{40mm}{28mm}{-10mm}{-15mm}{
                     \node[draw,circle] (1) at (0,0) {2};
                     \node[draw,circle] (2) at (2,0) {1};
                     \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
@@ -157,11 +156,11 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 }
                 \node () at (-5mm,-15mm) {$\overset{t_K^{21}}{\to}$};
             \end{tikzpicture}
-            }
 
-            \resizebox{0.6\textwidth}{!}{
+            \vspace{2mm}
+
             \begin{tikzpicture}
-                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{30mm}{2mm}{-6mm}{
+                \graphbox{\( K \)}{-50mm}{0mm}{40mm}{28mm}{2mm}{-6mm}{
                 \coordinate (o) at (0mm,-10mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -169,7 +168,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 % \draw[] (l1) -- (l3) node[midway,above] {$a$};
                 % \draw[] (l3) -- (l2) node[midway,above] {$a$};
             } 
-                \graphbox{$T$}{0mm}{0mm}{40mm}{30mm}{-10mm}{-15mm}{
+                \graphbox{$T$}{0mm}{0mm}{40mm}{28mm}{-10mm}{-15mm}{
                     \node[draw,circle] (1) at (0,0) {};
                     \node[draw,circle] (2) at (2,0) {$1\ 2$};
                     \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1) ;
@@ -179,23 +178,21 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 }
                 \node () at (-5mm,-15mm) {$\overset{t_K^{22}}{\to}$};
             \end{tikzpicture}
-            }
             % \caption{}
             % \label{fig:nwf:example:decreasing_rule_morphisms_grsaa_sfsdjl}
       \end{center}
     The set $\{l \mathop{\star} - \mathop{=} t_K^{11}\}$ has two morphisms $h_{11}^1$ and $h_{11}^2$:
     \begin{center}
-        \resizebox{0.6\textwidth}{!}{
         \begin{tikzpicture}
-          \graphbox{\( L \)}{-50mm}{0mm}{40mm}{40mm}{2mm}{-6mm}{
+          \graphbox{\( L \)}{-50mm}{0mm}{40mm}{34mm}{2mm}{-6mm}{
             \coordinate (o) at (0mm,-10mm); 
             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
             \draw[] (l1) -- (l3) node[midway,above] {$a$};
             \draw[] (l3) -- (l2) node[midway,above] {$a$};
-        } 
-            \graphbox{$T$}{0mm}{0mm}{40mm}{40mm}{-10mm}{-17mm}{
+        }  
+            \graphbox{$T$}{0mm}{0mm}{40mm}{34mm}{-10mm}{-18mm}{
                 \node[draw,circle] (1) at (0,0) {$1\ 2$};
                 \node[draw,circle] (2) at (2,0) {3};
                 \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
@@ -205,9 +202,9 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
             }
             \node () at (-5mm,-15mm) {$\overset{h_{11}^1}{\to}$};
         \end{tikzpicture}
-        }
 
-        \resizebox{0.6\textwidth}{!}{
+        \vspace{2mm}
+
             \begin{tikzpicture}
               \graphbox{\(L\)}{-50mm}{0mm}{40mm}{40mm}{2mm}{-10mm}{
                 \coordinate (o) at (0mm,-10mm); 
@@ -227,7 +224,6 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                 }
                 \node () at (-5mm,-15mm) {$\overset{h_{11}^2}{\to}$};
             \end{tikzpicture}
-            }
         \end{center}
     Therefore, we have \begin{flalign*}
         w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{11}\})
@@ -238,7 +234,6 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
     \end{flalign*}
     The set $\{r \mathop{\star} - \mathop{=} t_K^{11}\}$ has one morphism $h_{11}^3$ which is illustrated below:
     \begin{center}
-        \resizebox{0.49\textwidth}{!}{
         \begin{tikzpicture}
           \graphbox{\( R \)}{-55mm}{0mm}{45mm}{44mm}{1mm}{-22mm}{
             \coordinate (o) at (-5mm,-3mm); 
@@ -260,7 +255,6 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
             }
             \node () at (-5mm,-19mm) {$\overset{h_{11}^3}{\to}$};
         \end{tikzpicture}
-        }
       \end{center}
     Therefore, we have: $$w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{11}\}) \mathop{=} w_\mathcal{T}(h_{11}^3) \mathop{=} 1.0^1 * 1.0^1 * 1.0 ^ 1 \mathop{=} 1.0.$$
     The following inequality holds:
@@ -275,7 +269,6 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
     
     Moreover, there is a context closure $c$ for the DPO rule in the weighted type graph, as explained in Example~\ref{wf:example:context_closure}, which is illustrated below:
     \begin{center} 
-    \resizebox{0.6\textwidth}{!}{
     \begin{tikzpicture}
       \graphbox{\( L \)}{-50mm}{0mm}{40mm}{40mm}{2mm}{-8mm}{
         \coordinate (o) at (0mm,-10mm); 
@@ -298,7 +291,6 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
         }
         \node () at (-5mm,-15mm) {$\overset{c}{\to}$};
     \end{tikzpicture}
-    }
   \end{center}
     Additionally, we have 
     \begin{itemize}
@@ -311,27 +303,23 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
 The following lemma by Endrullis and Overbeek ~\cite{endrullis2024generalized_arxiv_v2} guarantees that, under certain constraints: exact weights of host graphs can be computed, and upper bounds for result-graph weights can be derived. 
 \begin{lemma}
     \label{nwf:lem_4d13}
-\ \newline
-\begin{minipage}{0.7\textwidth}
-    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, (S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph. Consider the pushout square $\delta$ illustrated on the right. We define
-\end{minipage}
-\begin{minipage}{0.3\textwidth}
-    \begin{center}{\normalfont
-        \begin{tikzpicture}[node distance=12mm]
-            \node (A) {$A$};
-            \node (B) [right of=A] {$B$};
-            \node (C) [below of=A] {$C$};
-            \node (D) [right of=C] {$D$};
-            
-            \draw [->] (A) to node [above, label] {$\alpha$} (B);
-            \draw [->] (A) to node [left, label] {$\beta$} (C);
-            \draw [->] (B) to node [right, label] {$\beta'$} (D);
-            \draw [->] (C) to node [below, label] {$\alpha'$} (D);
-            
-            \node [at=($(A)!.5!(D)$)] {$\delta$};
+    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, (S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph. Consider the pushout square $\delta$:
+    \begin{center}
+        \begin{tikzpicture}
+        \node (A) at (0,0) {$A$};
+        \node (B) at (2,0) {$B$}; 
+        \node  (C) at (0,-2) {$C$}; 
+        \node  (D) at (2,-2) {$D$}; 
+        \begin{scope}[nodes=rectangle]          
+        \draw [->] (A) to node [above,label,pos=0.5] {$\alpha$} (B);
+        \draw [->] (A) to node [left,label,pos=0.5] {$\beta$} (C);
+        \draw [->] (B) to node [right,label,pos=0.45] {$\beta'$} (D); 
+        \draw [->] (C) to node [below,label,pos=0.45] {$\alpha'$} (D);
+        \end{scope}
+        \node at ($(A)!.5!(D)$) {$\delta$};
         \end{tikzpicture}
-    }\end{center}
-\end{minipage}
+    \end{center}
+    We define
      \[k \mathop{=} \underset{t_A:A \mathop{\rightarrow} T}{\mathop{\bigoplus}}
             \left ( 
                 \underset{\substack{t_C:C \mathop{\rightarrow} T\\
@@ -351,28 +339,24 @@ The following lemma by Endrullis and Overbeek ~\cite{endrullis2024generalized_ar
 Adapted from \cite[Theorem C.3]{endrullis2024generalized_arxiv_v2} by Endrullis and Overbeek, the lemma below relates decreasing rules to weight reduction under specific constraints. 
 \begin{lemma}[Decreasing steps]
     \label{nwf:lem:decreasing_step}
-    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, (S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, $\rho$ a rewriting rule and $\Delta \mathop{\in} \mathfrak{F}(\rho)$ the following DPO diagram
-    \begin{center}
-        \resizebox{0.3\textwidth}{!}{
-            \begin{tikzpicture}[node distance=11mm]
-            \node (I) {$K$};
-            \node (L) [left of= I] {$L$};
-            \node (R) [right of=I] {$R$}; 
-            \node (G) [below of=L] {$G$};
-            \node (C) [below of=I] {$C$};
-            \node (H) [below of=R] {$H$};
-            %   \node (T) [left=of $(L)!0.5!(G)$] {$T$};
-            %   \draw [->] (L) to  node [label, above] {$c$}  (T);
-            %   \draw [->] (G) to  node [label, below] {$\alpha$} (T);
-            \draw [->] (I) to node [label, below] {$l$} (L);
-            \draw [->] (I) to node [label, below] {$r$} (R);
-            \draw [->] (L) to  (G);
-            \draw [->] (I) to (C);
-            \draw [->] (R) to (H);
-            \draw [->] (C) to (G);
-            \draw [->] (C) to (H);
-            \end{tikzpicture}
-        }
+    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, (S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S, \prec, \mu), w)$ be a finitary weighted type graph, $\rho$ a rewriting rule and $\Delta \mathop{\in} \mathfrak{F}(\rho)$ the DPO diagram:
+       \begin{center}
+        \begin{tikzpicture}
+            % [scale=1.5]
+          \node (I) at (0,0) {$K$};
+          \node (L) at (-2,0) {$L$};
+          \node (R) at (2,0) {$R$};
+          \node (G) at (-2,-2) {$G$};
+          \node (C) at (0,-2) {$C$};
+          \node (H) at (2,-2) {$H$};
+          \draw [->] (I) to node [label, above] {$l$} (L);
+          \draw [->] (I) to node [label,above] {$r$} (R);
+          \draw [->] (L) to node [label, right] {} (G);
+          \draw [->] (I) to (C);
+          \draw [->] (R) to (H);
+          \draw [->] (C) to (G);
+          \draw [->] (C) to (H);
+        \end{tikzpicture}
       \end{center}
     such that the following conditions hold:
  
@@ -481,7 +465,7 @@ $.
       i.e. we have the following commutative diagram:
      
     \begin{center}
-        \begin{tikzpicture}[node distance=11mm]
+        \begin{tikzpicture} 
           \node (I) at (0,0) {$K$};
           \node (L) at (-2,0) {$L$};
           \node (R) at (2,0) {$R$};

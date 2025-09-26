@@ -83,7 +83,6 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
     % The disjoint union of two sets \( S \) and \( S' \) will be denoted by \( S \uplus S' \). Let \( X, A, B, G \) be graphs, and let \( \alpha \mathop{\colon} A \mathop{\to} G \) and \( \beta \mathop{\colon} B \mathop{\to} G \) be morphisms. We define the following sets of monomorphisms of $X$ in $G$: 
  The disjoint union of two sets \( S \) and \( S' \) will be denoted by \( S \uplus S' \). Let \( X, A, B, G \) be graphs, and let \( \alpha \mathop{\colon} A \mathop{\to} G \) and \( \beta \mathop{\colon} B \mathop{\to} G \) be morphisms shown below:
 \begin{center}
-        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
             \node (X) at (-1.5,-1) {$X$};
             \node (B) at (2,0) {$A$}; 
@@ -95,7 +94,6 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
             \draw [>->,dashed] (X) to node [below,label,pos=0.45] {$\zeta$} (B);
             \draw [>->,dashed] (X) to node [above,label,pos=0.45] {$\eta$} (C);
         \end{tikzpicture}
-        }
 \end{center}
  We define the following sets of monomorphisms from $X$ in $G$ based on their interaction with $\alpha$ and $\beta$:    
     \begin{align*}
@@ -122,7 +120,6 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
 \end{notation}
 Consider a rewriting step \( G \mathop{\Rightarrow}_{\rho,\mathfrak{M}} H \) defined by the DPO diagram illustrated below:
 \begin{center}
-    \resizebox{0.4\textwidth}{!}{
      \begin{tikzpicture}
             \node (I) at (0,0) {$K$};
             \node (L)  at (-2,0) {$L$};
@@ -145,7 +142,6 @@ Consider a rewriting step \( G \mathop{\Rightarrow}_{\rho,\mathfrak{M}} H \) def
             % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
             % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
         \end{tikzpicture}
-    }
 \end{center}
  The sets of monomorphisms \( \operatorname{Mono}(X,G) \) and \( \operatorname{Mono}(X,H) \) can be decomposed into the following disjoint unions:
 \begin{flalign*}
@@ -199,7 +195,6 @@ Thus, the following equalities hold:
     \label{subgraph_counting:lem:decomp_w_u}
         Let $X$ be a ruler-graph. For a pushout square as shown below:
         \begin{center}
-        \resizebox{0.2\textwidth}{!}{
             \begin{tikzpicture}
             \node (A) at (0,0) {$A$};
             \node (B) at (0,-2) {$B$}; 
@@ -210,7 +205,6 @@ Thus, the following equalities hold:
             \draw [>->] (B) to node [below,label,pos=0.45] {$\beta'$} (D); 
             \draw [>->] (C) to node [left,label,pos=0.45] {$\alpha'$} (D);
         \end{tikzpicture}
-        }
         \end{center}
          the following equalities hold:
         % $\card{\operatorname{Mono}(X, B)} \mathop{=} \card{\operatorname{Mono}(X, D, \beta')}$ and $\card{\operatorname{Mono}(X, C, \lnot \beta)} \mathop{=} \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}$.
@@ -651,14 +645,13 @@ We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along
         \item $R'$ is not isomorphic to $X$,
         \item the following diagram where \(h_{K'K} \mathop{\colon} K' \rightarrowtail K \) and \(h_{R'R} \mathop{\colon} R' \rightarrowtail R \) are inclusion functions can be constructed:
         \begin{center}
-            \resizebox{0.4\textwidth}{!}{
                 \begin{tikzpicture}[node distance=11mm]
-                    \node (k) {K};
-                    \node (r) [above=of k] {R};
-                    \node (r') [right=of r] {$R'$};
-                    \node (k') [right=of k] {K'};
-                    \node (x)  [right=of r'] {X};
-                    \node (c') [below=of x] {C'};
+                    \node (k) at (0, 0) {K};
+                    \node (r) at (0, 2) {R};
+                    \node (r') at (2,2) {$R'$};
+                    \node (k') at (2,0) {K'};
+                    \node (x) at (4,2) {X};
+                    \node (c') at (4,0) {C'};
                     \node () [at=($(r)!0.5!(k')$)] {$PB$};
                     \node () [at=($(x)!0.5!(k')$)] {$PO$};
                     \draw[>->] (k) -- (r) node[pos= .5, left] {$r$}; 
@@ -669,7 +662,6 @@ We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along
                     \draw[>->] (c') -- (x);
                     \draw[>->] (r') -- (x);
                 \end{tikzpicture}
-            }
         \end{center}
     \end{itemize}
 \end{definition}  
@@ -685,7 +677,6 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture}
             \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
                 \coordinate (o) at (0mm,-3mm); 
@@ -699,9 +690,6 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
                 \coordinate (o) at (5mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
-                % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }    
             \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                 \coordinate (o) at (-5mm,-3mm); 
@@ -719,7 +707,6 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
 
             % \draw[>->] (51mm,2mm) -- (52mm,3mm);
         \end{tikzpicture}
-        }
     %     \caption{}
     %     \label{fig:subgraph_counting:grfksfdfgsdgsd}
     % \end{figure}
@@ -731,7 +718,6 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[->] (y) -- (z) node[midway, above] {$a$};
     } and $R' \mathop{\in} D(R,X)$. 
-
     $R'$ is neither the empty graph nor isomorphic to $X$, by Conditions 2 and 3 of Definition~\ref{subgraph_counting:def:rx}. 
     Therefore, $R'$ must contain an interface node (either node $1$ 
     % \tikz[baseline=-0.5ex]{ 
@@ -785,7 +771,6 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -797,14 +782,9 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
-        } 
-    %     \caption{}
-    %     \label{fig:subgraph_counting:rx_counter_exdfsdfadfs}
-    % \end{figure}
         \end{center}
     Thus, $D(R,X)$ consists of the four graphs $R'_1$, $R'_2$, $R'_3$ and $R'_4$:
     \begin{center}
-        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_1$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -814,8 +794,6 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
-        }
-        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_2$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -825,11 +803,9 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
-        } 
         \end{center}
 
         \begin{center}
-        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_3$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -838,8 +814,6 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 }   
         \end{tikzpicture}
-        } 
-        \resizebox{0.4\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_4$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (-5mm,-3mm); 
@@ -849,7 +823,6 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
                 }    
             \end{tikzpicture}
-        }
     \end{center}
     For each of them, the construction of the pullback square in Condition 1 is demonstrated in Example~\ref{example:grs_aa:has_more_left} and the construction of the pushout square required by Condition 1 is straightforward. 
         
@@ -866,10 +839,7 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
             \draw[->] (x) -- (y)   {};
             \draw[->] (y) -- (z)   {};
     }. Consider the following rule:
-    % in Figure~\ref{fig:subgraph_counting:rx_counter_exdfs}.
-    % \begin{figure}[H]
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -900,10 +870,6 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
                 \node () at (37mm,-8mm) {$\leftarrowtail$};
                 \node () at (67mm,-8mm) {$\rightarrowtail$};
             \end{tikzpicture}
-        }
-    %     \caption{}
-    %     \label{fig:subgraph_counting:rx_counter_exdfs}
-    % \end{figure}
     \end{center}
     Let $R' \mathop{\in} D(R,X)$. $R'$ must contain node 3, otherwise it would be a subgraph of $r(K)$, violating Condition 2 of Definition~\ref{subgraph_counting:def:rx}. Node 3 must be connected to an interface node, otherwise Condition 1 of Definition~\ref{subgraph_counting:def:rx} would be violated. Therefore, $R'$ must include \raisebox{2pt}{\scalebox{0.6}{\tikz[baseline=-0.5ex]{
         \node [draw,circle] (x) at (0,0) {2};
@@ -941,14 +907,7 @@ We introduce the concept of non-increasing occurrences. Intuitively, if a rule $
     \begin{enumerate}
         \item For all $R' \mathop{\in} D(R,X)$, we can construct the following diagram where all morphisms other than $\Psi(R')$, $l$ and $r$ are inclusion functions:
       \begin{center}
-        \resizebox{0.5\textwidth}{!}{
                 \begin{tikzpicture} 
-                    % \node (k) at (0,0) {$K$}; 
-                    % \node (k') at (-2,0) {$K'$};
-                    % \node (l) at (0,2) {$L$};
-                    % \node (rb) at (-2,2) {$R'$};
-                    % \node (r) at (0,-2) {$R$};
-                    % \node (rb') at (-2,-2) {$R'$};
                     \node (k) at (0,-2) {$K$};
                     \node (k') at (0,0) {$K'$};
                     \node (l) at (-2,-2) {$L$};
@@ -966,7 +925,6 @@ We introduce the concept of non-increasing occurrences. Intuitively, if a rule $
                     \node () [at=($(k)!0.5!(rb)$)] {$PB$};
                     \node () [at=($(k)!0.5!(rb')$)] {$PB$}; 
                 \end{tikzpicture}
-        }
         \end{center}
         % For all $R' \mathop{\in} D(R,X)$, in the diagram shown on the right, where $h_{R'R}$ is the inclusion function, both squares are pullbacks,
         % For all $R' \mathop{\in} D(R,X)$, there is a morphism \(h_{R'L}: R' \rightarrowtail L \) such that \trackedtext{both squares in the diagram shown on the right are pullbacks}, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions,
@@ -1059,7 +1017,6 @@ The following example shows an $X$-non-increasing rule.
     Consider the rule illustrated below and previously presented
     in Example~\ref{subgraph_counting:ex:grsaa_rx}.
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture}
             \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
                 \coordinate (o) at (0mm,-3mm); 
@@ -1073,9 +1030,6 @@ The following example shows an $X$-non-increasing rule.
                 \coordinate (o) at (5mm,-3mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-                % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
-                % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
             }    
             \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
                 \coordinate (o) at (-5mm,-3mm); 
@@ -1091,9 +1045,7 @@ The following example shows an $X$-non-increasing rule.
             \node () at (37mm,-8mm) {$\leftarrowtail$};
             \node () at (67mm,-8mm) {$\rightarrowtail$};
 
-            % \draw[>->] (51mm,2mm) -- (52mm,3mm);
         \end{tikzpicture}
-        }
     \end{center}
     Let $X$ be the graph \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) { };
@@ -1109,7 +1061,6 @@ The following example shows an $X$-non-increasing rule.
      can be constructed, and other conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are straightforward to verify.
     %1
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_1$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -1173,12 +1124,10 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (37mm,-28mm) {$\overset{l}{\leftarrowtail}$};
                 \node () at (67mm,-28mm) {$\overset{r}{\rightarrowtail}$};
             \end{tikzpicture}
-        } 
         \end{center}
 
     % 2
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_2$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -1242,12 +1191,10 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (37mm,-28mm) {$\overset{l}{\leftarrowtail}$};
                 \node () at (67mm,-28mm) {$\overset{r}{\rightarrowtail}$};
             \end{tikzpicture}
-        } 
         \end{center}    
     
     %3
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_3$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -1311,13 +1258,11 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (37mm,-28mm) {$\overset{l}{\leftarrowtail}$};
                 \node () at (67mm,-28mm) {$\overset{r}{\rightarrowtail}$};
             \end{tikzpicture}
-        } 
     \end{center}
 
 
     %4
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$R'_4$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -1381,60 +1326,8 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (37mm,-28mm) {$\overset{l}{\leftarrowtail}$};
                 \node () at (67mm,-28mm) {$\overset{r}{\rightarrowtail}$};
             \end{tikzpicture}
-        } 
     \end{center}
 
-    %     \caption{}
-    %     \label{fig:subgraph_counting:decodkfjasddgsf}
-    % \end{figure}
-    % with the following morphisms $h_{R'L}$ and $h_{R''L}$:
-    % \begin{center}
-    %     \resizebox{0.6\textwidth}{!}{
-    %         \begin{tikzpicture}
-    %             \graphbox{$R'$}{0}{0}{44mm}{15mm}{2mm}{-5mm}{
-    %                 \coordinate (o) at (-5mm,-3mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-    %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-    %             } 
-    %             \graphbox{$L$}{60mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
-    %                 \coordinate (o) at (0mm,-3mm); 
-    %                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
-    %                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-    %                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-    %                 \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-    %             }    
-    %         \node () at (52mm,-8mm) {$\rightarrowtail$};
-    %         \end{tikzpicture}
-    %      }
-    %     \end{center}
-    %     \begin{center}
-    %         \resizebox{0.6\textwidth}{!}{
-    %             \begin{tikzpicture}
-    %                 \graphbox{$R''$}{0}{0}{44mm}{15mm}{2mm}{-5mm}{
-    %                     \coordinate (o) at (-5mm,-3mm); 
-    %                     \node[] (l1) at ($(o)+(-10mm,0mm)$) {};
-    %                     \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-    %                     \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
-    %                     \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-    %                 } 
-    %                 \graphbox{$L$}{60mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
-    %                     \coordinate (o) at (0mm,-3mm); 
-    %                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-    %                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %                     \node[draw,circle] (l3) at ($(l1)+(1,0)$) {5};
-    %                     \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-    %                     \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-    %                 }    
-    %             \node () at (52mm,-8mm) {$\rightarrowtail$};
-    %             \end{tikzpicture}
-    %         }
-    %     \end{center}
-    % To illustrate the property captured by Definition~\ref{def:creates_more_x_on_the_left},
-    % consider the rewriting step defined by the DPO diagram below. Whenever an element $R' \mathop{\in} D(R,X)$ forms an \( X \)-occurrence in $H$ that is included neither in \( R \) nor $C$ with $C' \mathop{\subseteq} C$, the graph
-    % \( \operatorname{\Psi(R')} \mathop{\subseteq} L\) forms an \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor $C$.
-    % Furthermore, distinct $X$-occurrences in $H$ that are included neither in \( R \) nor $C$ have distinct corresponding $X$-occurrences in $G$ that are included neither in \( L \) nor $C$.
     To illustrate the $X$-non-increasing property captured by Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left},
     consider the rewriting step defined by the DPO diagram below.
     \begin{center}
@@ -1536,7 +1429,6 @@ The following example shows an $X$-non-increasing rule.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -1567,7 +1459,6 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (37mm,-8mm) {$\leftarrowtail$};
                 \node () at (67mm,-8mm) {$\rightarrowtail$};
             \end{tikzpicture}
-        }
       \end{center}
 
     As shown in Example~\ref{subgraph_counting:ex:rx_counter_ex}, \( D(R,X) \) contains the graph $R'$:
@@ -1619,7 +1510,6 @@ The following example shows an $X$-non-increasing rule.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -1640,10 +1530,6 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (37mm,-8mm) {$\leftarrowtail$};
                 \node () at (67mm,-8mm) {$\rightarrowtail$};
             \end{tikzpicture}
-        }
-    %     \caption{}
-    %     \label{fig:subgraph_counting:degkdjfqaaacodkfjasddgsf}
-    % \end{figure}
     \end{center}
     The set \( D(R,X) \) contains $R'$:
     \raisebox{2pt}{ \scalebox{0.6}{\tikz[baseline=-0.5ex]{
@@ -1668,7 +1554,6 @@ The following example shows an $X$-non-increasing rule.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{30mm}{20mm}{0}{0}{
                     \node[draw,circle]  (x) at (-6mm,-12mm) {x};
@@ -1692,10 +1577,6 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (35mm,-12mm) {$\leftarrowtail$};
                 \node () at (75mm,-12mm) {$\rightarrowtail$};
             \end{tikzpicture}
-        }
-    %     \caption{}
-    %     \label{fig:subgraph_counting:decodkfjasdddfsfdsagsf}
-    % \end{figure}
     \end{center}
     The set \( D(R,X) \) contains exactly two elements $R'$:
     \raisebox{2pt}{ 
@@ -1727,7 +1608,6 @@ The following example shows an $X$-non-increasing rule.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{30mm}{20mm}{0}{0}{
                     \node[draw,circle]  (x) at (-6mm,-10mm) {x};
@@ -1744,10 +1624,6 @@ The following example shows an $X$-non-increasing rule.
                 \node () at (35mm,-10mm) {$\leftarrowtail$};
                 \node () at (75mm,-10mm) {$\rightarrowtail$};
             \end{tikzpicture}
-        }
-    %     \caption{}
-    %     \label{fig:subgraph_counting:decodkfjasddgdfsgassf}
-    % \end{figure}
     \end{center}
     The set \( D(R,X) \) contains exactly two elements $R'$:
     \raisebox{2pt}{\scalebox{0.6}{\tikz[baseline=-0.5ex]{
@@ -1777,25 +1653,23 @@ more X-occurrences are implicitly destroyed than implicitly created by the rewri
         Let $X$ be a ruler-graph and $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ an injective DPO rewriting rule.
         Suppose that $\rho$ is $X$-non-increasing. For every rewriting step induced by the following DPO diagram:
         \begin{center}
-        \resizebox{0.3\textwidth}{!}{ 
-                \begin{tikzpicture}
-            \node (k) at (0,1) {K};
-            \node (l) at (-2,1) {L};
-            \node (r) at (2,1) {R};
-            \node (c) at (0,-1) {C};
-            \node (g) at (-2,-1) {G};
-            \node (h) at (2,-1) {H};
-            \draw[<-<]  (l) -- (k) node [midway,below] {$l$};
-            \draw[>->]  (k) -- (r) node [midway,below] {$r$};
-            \draw[>->] (c) -- (g) node [midway, above] {$l'$};
-            \draw[>->] (c) -- (h) node [midway,above] {$r'$};
-            \draw[>->] (l) -- (g) node[midway, right] {$m$};
-            \draw[>->] (r) -- (h) node[midway, left] {$m'$};
-            \draw[>->] (k) -- (c) node[midway, left] {};
-            \node () [at=($(l)!0.5!(c)$)] {$PO$};
-            \node () [at=($(r)!0.5!(c)$)] {$PO$};
-        \end{tikzpicture}
-        }
+            \begin{tikzpicture}
+                \node (k) at (0,1) {K};
+                \node (l) at (-2,1) {L};
+                \node (r) at (2,1) {R};
+                \node (c) at (0,-1) {C};
+                \node (g) at (-2,-1) {G};
+                \node (h) at (2,-1) {H};
+                \draw[<-<]  (l) -- (k) node [midway,below] {$l$};
+                \draw[>->]  (k) -- (r) node [midway,below] {$r$};
+                \draw[>->] (c) -- (g) node [midway, above] {$l'$};
+                \draw[>->] (c) -- (h) node [midway,above] {$r'$};
+                \draw[>->] (l) -- (g) node[midway, right] {$m$};
+                \draw[>->] (r) -- (h) node[midway, left] {$m'$};
+                \draw[>->] (k) -- (c) node[midway, left] {};
+                \node () [at=($(l)!0.5!(c)$)] {$PO$};
+                \node () [at=($(r)!0.5!(c)$)] {$PO$};
+            \end{tikzpicture}
         \end{center}
        The following inequality holds:
         \[

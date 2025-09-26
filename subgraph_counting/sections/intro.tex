@@ -5,13 +5,8 @@ We presents a new automated method for relative termination of double-pushout (D
 The method, based on the interpretation method framework~\cite{nipkow1998term,contejean2005mechanically}, works as follows. Let \( \mathbb{X} \) denote a fixed set of graphs. We assign weights (natural numbers) to monomorphisms from graphs in \( \mathbb{X} \), and define the weight of a graph $G$ as the sum of the weights of all monomorphisms from graphs in \( \mathbb{X} \) to $G$. 
 
 Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \mathop{\in} \mathbb{X}$ and $G \mathop{\Rightarrow} H$ be a rewriting step defined by the double-pushouts diagram shown below. 
-% in Figure~\ref{fig:subgraph_counting:general_rewriting_step_sdfsl}.
-% \begin{figure}[H]
-%     \centering
 \begin{center}
- \resizebox{0.4\textwidth}{!}{
      \begin{tikzpicture}
-            % [node distance=15mm]
             \node (I) at (0,0) {$K$};
             \node (L)  at (-2,0) {$L$};
             \node (R)  at (2,0) {$R$};
@@ -22,7 +17,6 @@ Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \math
             \draw [>->] (I) to  node [midway,below] {$r$} (R);
             \draw [>->] (L) to node [midway,right] {$m$} (G);
             \draw [>->] (I) to  node [midway,right] 
-            % {$u$}
             {} (C);
             \draw [>->] (R) to  node [midway,right] 
             {$m'$}
@@ -31,13 +25,7 @@ Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \math
             \draw [>->] (C) to node [midway,above] 
             {$r'$} 
             (H);
-            % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-            % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
         \end{tikzpicture}
-    }
-%     \caption{}
-%     \label{fig:subgraph_counting:general_rewriting_step_sdfsl}
-% \end{figure}
     \end{center}
 
 For a monomorphism from $X$ to $G$, its image falls into exactly one of the following three mutually exclusive cases:

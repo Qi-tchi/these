@@ -15,26 +15,25 @@ For any set \( \Gamma \mathop{\subseteq} \operatorname{Hom}(A, G) \),
     \(
     \Gamma' \overset{\operatorname{def}}{=} \left\{ \iota \mathop{\in} \operatorname{Hom}(X, G)~\middle|~\exists \alpha \mathop{\in} \Gamma,~\exists \zeta:X \mathop{\to} A,~\zeta \mathop{\star} \alpha \mathop{=} \iota \right\}. 
     \)
-    % \begin{figure}[H]
-    % \centering
+
     \begin{center}
-        \begin{tikzpicture}[scale=0.8]
+        % \resizebox{0.5\textwidth}{!}{
+        \begin{tikzpicture}
+            [scale=0.5]
             \node (X) at (0,0) {\(X \)};
-            \node (A) at (2,1) {\( A \)};
-            \node (G) at (4,0) {\( G \)}; 
+            \node (A) at (4,2) {\( A \)};
+            \node (G) at (8,0) {\( G \)}; 
             \draw[->] (X) -- (A) node[midway, above] {\( \zeta \)};
             \draw[ ->] (X) -- (G) node[midway, below] {\( \iota \)};
             \draw[->] (A) -- (G) node[midway, above] {\( \alpha \)};
             % \node at (2,0.5) {\( \mathop{=} \)};
-            \node (T) at (2,-1) {\( T \)};
+            \node (T) at (4,-2) {\( T \)};
             \draw[ ->] (X) -- (T) node[midway, below ] {$e$};
             \draw[<-] (T) -- (G) node[midway, below] {$h$};
         \end{tikzpicture}
-%     \caption{}
-%     \label{fig:wf:measurement_of_a_morphism_relative_to_a_morphism_ruler_dfsdfsdsa}
-% \end{figure} 
-    \end{center}
-    
+        % }
+    \end{center} 
+     
 
 \begin{definition} 
     \label{def:weight_excluding_pre}
@@ -87,7 +86,7 @@ An object $X$ is said to be \textbf{traceable along $\Delta$} if for every diagr
 % \begin{figure}[H]
 %     \centering
 \begin{center}
-     \resizebox{0.4\textwidth}{!}{
+    %  \resizebox{0.5\textwidth}{!}{
     \begin{tikzpicture}
       \node (A) at (0,0) {$A$};
       \node (B) at (2,0) {$B$}; 
@@ -103,11 +102,8 @@ An object $X$ is said to be \textbf{traceable along $\Delta$} if for every diagr
       \end{scope}
       \node at ($(A)!.5!(D)$) {$\delta$};
     \end{tikzpicture}
-    }
+    % }
 \end{center}
-%     \caption{}
-%     \label{fig:preliminaries:pushout_square_traceable_sdlkfjsladkj}
-% \end{figure} 
   one of the following conditions holds:
     \begin{enumerate}[label=(\alph*)]
         \item\label{traceable:a} there is a morphism $f : X \mathop{\to} B$ such that $h \mathop{=} f \mathop{\star} \beta'$, or
@@ -144,7 +140,7 @@ Intuitively, in the category \textbf{Graph}, a graph $X$ is $\beta$-strongly tra
         \node[draw,circle] (x) at (0,0) {};
         \draw[->] (x) edge[loop right]  node[midway, right] {$x$}  (x)
     }, are strongly traceable if all morphisms in the square are monomorphisms.
-\end{remark}
+\end{remark} 
 
 \begin{example}
     Consider the following DPO diagram:
@@ -152,7 +148,7 @@ Intuitively, in the category \textbf{Graph}, a graph $X$ is $\beta$-strongly tra
     \begin{center}
     % \begin{figure}[H]
     %     \centering 
-      \resizebox{0.7\textwidth}{!}{
+      \resizebox{0.98\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
               \coordinate (o) at (0mm,-8mm); 
@@ -376,11 +372,24 @@ To see this, let \(X\in\Gamma\) and let \(g,h\mathop{\colon} X \mathop{\to} G\) 
 \end{example}
 \begin{definition}[\text{\cite[\textdef~4.9]{endrullis2024generalized_arxiv_v2}}]
     \label{def:weighable}
-    \ \newline
-    \noindent
-    \begin{minipage}{0.7\textwidth}
         Let  $\mathcal{T} \mathop{=} (T,\mathbb{E}, S, w)$ be a weighted type graph.
-        Consider the pushout square $\delta$ shown on the right. We say that $\delta$ is said to be
+        Consider the pushout square $\delta$ shown below.
+        \begin{center}
+            \begin{tikzpicture}
+            \node (A) at (0,0) {$A$};
+            \node (B) at (2,0) {$B$}; 
+            \node  (C) at (0,-2) {$C$}; 
+            \node  (D) at (2,-2) {$D$}; 
+            \begin{scope}[nodes=rectangle]          
+            \draw [->] (A) to node [above,label,pos=0.5] {$\alpha$} (B);
+            \draw [->] (A) to node [left,label,pos=0.5] {$\beta$} (C);
+            \draw [->] (B) to node [right,label,pos=0.45] {$\beta'$} (D); 
+            \draw [->] (C) to node [below,label,pos=0.45] {$\alpha'$} (D);
+            \end{scope}
+            \node at ($(A)!.5!(D)$) {$\delta$};
+            \end{tikzpicture}
+        \end{center}
+        We say that $\delta$ is said to be
          \begin{enumerate}[label=(\alph*)]
         \item \textbf{weighable} with $\mathcal{T}$ if the following hold:
             \begin{enumerate}[label=(\roman*)]
@@ -390,22 +399,6 @@ To see this, let \(X\in\Gamma\) and let \(g,h\mathop{\colon} X \mathop{\to} G\) 
             \end{enumerate}
         \item \textbf{bounded-above} by $\mathcal{T}$ if $dom(\mathbb{E})$ is traceable along $\delta$.
     \end{enumerate}
-    \end{minipage}
-    \begin{minipage}{0.3\textwidth}
-        \begin{center}
-            \begin{tikzpicture}[node distance=12mm]
-                \node (A) {$A$};
-                \node (B) [right of=A] {$B$};
-                \node (C) [below of=A] {$C$};
-                \node (D) [right of=C] {$D$};
-                \draw [->] (A) to node [above, label] {$\alpha$} (B);
-                \draw [->] (A) to node [left, label] {$\beta$} (C);
-                \draw [->] (B) to node [right, label] {$\beta'$} (D);
-                \draw [->] (C) to node [below, label] {$\alpha'$} (D);
-                \node [at=($(A)!.5!(D)$)] {$\delta$};
-            \end{tikzpicture}
-        \end{center}
-    \end{minipage}
    
 \end{definition}
 
@@ -413,25 +406,7 @@ To see this, let \(X\in\Gamma\) and let \(g,h\mathop{\colon} X \mathop{\to} G\) 
 The following lemma shows that, under certain constraints, exact weights of pushout object can be precisely computed or upperbounded.
 \begin{lemma}[\text{\cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}}]
     \label{lem_4d13}
-    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, S, w)$ be a finitary weighted type graph. Consider the pushout square $\delta$ illustrated on the right. 
-
-    \begin{center} 
-        \resizebox{0.3\textwidth}{!}{
-        \begin{tikzpicture}[node distance=12mm]
-            \node (A) {$A$};
-            \node (B) [right of=A] {$B$};
-            \node (C) [below of=A] {$C$};
-            \node (D) [right of=C] {$D$};
-            
-            \draw [->] (A) to node [above, label] {$\alpha$} (B);
-            \draw [->] (A) to node [left, label] {$\beta$} (C);
-            \draw [->] (B) to node [right, label] {$\beta'$} (D);
-            \draw [->] (C) to node [below, label] {$\alpha'$} (D);
-            
-            \node [at=($(A)!.5!(D)$)] {$\delta$};
-        \end{tikzpicture}
-        }
-  \end{center}
+    Let $\mathcal{T} \mathop{=} (T,\mathbb{E}, S, w)$ be a finitary weighted type graph. Consider the pushout square $\delta$ in Example~\ref{def:weighable}.
   We define
      \[k \mathop{=} \underset{t_A:A \mathop{\rightarrow} T}{\mathop{\bigoplus}}
             \left ( 
@@ -451,10 +426,10 @@ The following lemma shows that, under certain constraints, exact weights of push
 
     Consider the following DPO diagram
     %  shown in Figure~\ref{fig:nwf:dpo_diagram_sdfslafgjsl} 
-     that defines a rewriting step \( G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H \). 
-    \begin{center}
-        \resizebox{0.3\textwidth}{!}{
+     that defines a rewriting step \( G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H \).  
+    \begin{center}  
         \begin{tikzpicture}
+            % [scale=1.5]
             % [node distance=11mm]
             \node (I) at (0,0) {$K$};
             \node (L) at (-2,0) {$L$};
@@ -472,7 +447,6 @@ The following lemma shows that, under certain constraints, exact weights of push
             \node [at=($(I)!.5!(G)$)] {\normalfont PO};
             \node [at=($(I)!.5!(H)$)] {\normalfont PO};
         \end{tikzpicture}
-    } 
     \end{center}
     If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$, by Lemma~\ref{lem_4d13}, we obtain:
 
