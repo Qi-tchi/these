@@ -1,15 +1,20 @@
 LyonParallel is a prototype tool, written in OCaml, for the analysis of DPO graph rewriting systems.
-It implements the type graph method presented by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} and its extension in Chapter~\ref{chap:nwf}, the morphism counting method in Chapter~\ref{chap:subgraph_counting} and its extension in Chapter~\ref{chap:antipattern}. Note that the type graph method presented by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} is more powerful than the versions presented by Zantema et al. and Bruggink et al.~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}, which are implemented in TORPAcyc~\cite{TORPAcyc} and Grez~\cite{grez}, for DPO graph rewriting systems with monic match. This method does not have a publicly available implementation.  
+It implements the type graph method presented by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} and its extension in Chapter~\ref{chap:nwf}, and it also implements the morphism counting method in Chapter~\ref{chap:subgraph_counting} and its extension in Chapter~\ref{chap:antipattern}. 
+For DPO graph rewriting systems with monic matches,
+the type graph method presented by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} is more powerful than the versions presented by Zantema et al. and Bruggink et al.~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}, which are implemented in TORPAcyc~\cite{TORPAcyc} and Grez~\cite{grez}. The method presented by Endrullis and Overbeek does not have a publicly available implementation.  
 
-LyonParallel implements the notions of DPO rewriting systems on finite directed, edge-labeled multigraphs introduced in Chapter~\ref{chap:preliminaries}. Using the \texttt{REPL} (Read-Eval-Print Loop)\textemdash an interactive environment that reads user commands, evaluates them, prints results, and waits for the next input\textemdash users can select a set of rules encoded in the tool, then choose a method to partition the rules of the system into two sets $\mathcal{A}$ and $\mathcal{B}$ such that $\mathcal{A}$ terminates relative to $\mathcal{B}$. If such a partition is found, the tool replaces the current rule set with \(\mathcal{B}\) and a new iteration begins; otherwise users may try a different method. When the rule set becomes empty, the termination of the original system is proved.
+LyonParallel implements the notions of DPO rewriting systems on finite directed, edge-labeled multigraphs introduced in Chapter~\ref{chap:preliminaries}. Using the \texttt{REPL} (Read-Eval-Print Loop)\textemdash{}an interactive environment that reads user commands, evaluates them, prints results, and waits for the next input\textemdash{}users can select a set of rules encoded in the tool, then choose a method to partition the rules of the system into two sets $\mathcal{A}$ and $\mathcal{B}$ such that $\mathcal{A}$ terminates relative to $\mathcal{B}$. If such a partition is found, the tool replaces the current rule set with \(\mathcal{B}\) and a new iteration begins; otherwise, users may try a different method. When the rule set becomes empty, the termination of the original system is proved.
 \section{DPO graph rewriting systems on finite directed edge-labeled multigraphs}
 \label{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}
-A \textbf{labeled graph} is encoded in the tool as a structure with five fields: a list of nodes, a list of edges, a mapping that associates to each edge a source node, a mapping that associates to each edge a target node, and a mapping that associates to each edge a label.
+\subsection{Labeled graphs}
+\label{lyonparallel:sec:labeled_graphs}
+A labeled graph is encoded in the tool as a structure with five fields: a list of nodes, a list of edges, a mapping that associates to each edge a source node, a mapping that associates to each edge a target node, and a mapping that associates to each edge a label.
 The representation of a labeled graph is constructed using the function \colorbox{Ivory2}{$MGraph.fromList$} given 2 parameters. The first parameter is a list of integers representing the nodes of the graph. The second parameter is a list of four-tuples representing the labeled edges of the graph, where each tuple \colorbox{Ivory2}{$(s,lab,t,id)$} of type \colorbox{Ivory2}{$\textit{int}\times \textit{string}\times \textit{int}\times \textit{int}$} represents an edge with source node $s$, label $lab$, target node $t$, and identifier $id$.
 
 For example, consider the graph rewriting rule:
-\begin{figure}[H]
-      \centering 
+% \begin{figure}[H]
+%       \centering 
+      \begin{center}
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -41,9 +46,10 @@ For example, consider the graph rewriting rule:
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
-      \caption{}
-      \label{fig:implemented:grsaa_0}
-  \end{figure}
+    \end{center}
+%       \caption{}
+%       \label{fig:implemented:grsaa_0}
+%   \end{figure}
 \noindent The representation of graphs $K$,$L$, and $R$ in OCaml can be constructed by the following code:
 \begin{minted}{ocaml}
     let graph_K = MGraph.fromList [1;2] []
@@ -53,7 +59,9 @@ For example, consider the graph rewriting rule:
                     [(1,"a",4,1);(4,"b",5,2);(5,"a",2,3)]
 \end{minted}
 
-A \textbf{homomorphism} between two labeled graphs is encoded as a mapping from the nodes of the source graph to the nodes of the target graph, which preserves the edge labels and the source and target nodes of each edge. Its representation can be constructed using the function
+\subsection{Homomorphisms}
+\label{lyonparallel:sec:homomorphisms}
+A homomorphism between two labeled graphs is encoded as a mapping from the nodes of the source graph to the nodes of the target graph, which preserves the edge labels and the source and target nodes of each edge. Its representation can be constructed using the function
 \colorbox{Ivory2}{$GraphHomomorphism.fromList$}, given 4 arguments:
     \begin{enumerate}
         \item the first argument is the source graph,
@@ -61,7 +69,41 @@ A \textbf{homomorphism} between two labeled graphs is encoded as a mapping from 
         \item the third argument is a list of pairs, where each pair $(s,t)$ means that node $s$ of the source graph is mapped to node $t$ of the target graph,
         \item the fourth argument is a list of pairs similar to the third argument, but for the edges.
     \end{enumerate}
-For example, consider morphisms $l$ and $r$ shown in Figure~\ref{fig:implemented:grsaa_0}. Their representation in OCaml can be constructed using the following code:
+For example, consider morphisms $l$ and $r$ of the rewriting rule:
+  \begin{center}
+      \begin{tikzpicture}
+          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+          }     
+          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
+              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+          }    
+          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+              \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+          }    
+          \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
+          \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
+          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+      \end{tikzpicture}
+    \end{center}
+\noindent Their representation in OCaml can be constructed using the following code, where \colorbox{Ivory2}{$morphism\_l$} represents $l$ and \colorbox{Ivory2}{$morphism\_r$} represents $r$, respectively, and \colorbox{Ivory2}{$graph\_K$}, \colorbox{Ivory2}{$graph\_L$}, and \colorbox{Ivory2}{$graph\_R$} represent graphs $K$, $L$, and $R$, respectively (see Section~\ref{lyonparallel:sec:labeled_graphs}):
 \begin{minted}{ocaml}
     let morphism_l = GraphHomomorphism.fromList 
                         graph_K graph_L [(1,1);(2,2)] []
@@ -69,20 +111,90 @@ For example, consider morphisms $l$ and $r$ shown in Figure~\ref{fig:implemented
                         graph_K graph_R [(1,1);(2,2)] []
 \end{minted}
 
-A DPO \textbf{rewriting rule} is represented by a structure with two fields: a left-hand-side homomorphism and a right-hand side homomorphism. The representation of a rewriting rule can be constructed using the function
+\subsection{DPO rewriting rules and systems}
+A DPO rewriting rule is represented by a structure with two fields: a left-hand-side homomorphism and a right-hand side homomorphism. The representation of a rewriting rule can be constructed using the function
  $$\colorbox{Ivory2}{$GraphRewritingSystem.DPOrule.fromHomos$}$$
 given the representations of the left- and right-hand side homomorphisms.
-For example, the representation of the rewriting rule, in Figure~\ref{fig:implemented:grsaa_0}, is constructed using the following OCaml expression, which creates the representation of a DPO rule from the representations of the left and right morphisms: 
+For example, 
+consider the rewriting rule:
+  \begin{center}
+      \begin{tikzpicture}
+          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+          }     
+          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
+              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+          }    
+          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+              \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+          }    
+          \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
+          \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
+          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+      \end{tikzpicture}
+    \end{center}
+\noindent The representation of the rewriting rule is constructed using the following OCaml expression, which creates the representation of a DPO rule from the representations of the left and right morphisms. Here, \colorbox{Ivory2}{$morphism\_l$} and \colorbox{Ivory2}{$morphism\_r$} denote the representations of $l$ and $r$, respectively (see Section~\ref{lyonparallel:sec:homomorphisms}):
 \begin{minted}{ocaml}
     let rl = GraphRewritingSystem.DPOrule.fromHomos 
                 morphism_l morphism_r
 \end{minted}
 
-A DPO graph \textbf{rewriting system} is represented by a structure with three fields: the set of rules, the name of the system, and a Boolean indicating whether the system is restricted to monic matches. A representation of the DPO graph rewriting system
+A DPO graph rewriting system is represented by a structure with three fields: the set of rules, the name of the system, and a Boolean indicating whether the system is restricted to monic matches. A representation of the DPO graph rewriting system
 can be constructed using the function 
 $$\colorbox{Ivory2}{$GraphRewritingSystem.fromRulesListAndName$}$$ given three arguments: a list of rewriting rules and the name of the system; the third parameter is \colorbox{Ivory2}{$false$} by default.
 
-For example, the DPO graph rewriting system that contains the single rule, in Figure~\ref{fig:implemented:grsaa_0}, is represented by the following OCaml expression. 
+For example, consider the DPO graph rewriting system that consists of the rule:
+  \begin{center}
+      \begin{tikzpicture}
+          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+          }     
+          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
+              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+          }    
+          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+              \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+          }    
+          \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
+          \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
+          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+      \end{tikzpicture}
+    \end{center}
+It is represented by the following OCaml expression that creates a system from the singleton list containing the representation of the rule. Here, \colorbox{Ivory2}{$rl$} denotes the representation of the rewriting rule.
 \begin{minted}{ocaml}
     let bruggink14_ex_4_and_6 =
         GraphRewritingSystem.fromRulesListAndName 
@@ -90,8 +202,8 @@ For example, the DPO graph rewriting system that contains the single rule, in Fi
 \end{minted}
 The function \colorbox{Ivory2}{$GraphRewritingSystem.fromRulesListAndName$} produces a system named \colorbox{Ivory2}{$bruggink14\_ex\_4\_and\_6$} from the singleton list \colorbox{Ivory2}{$[rl]$}.
 
-
-\textbf{User-defined rewriting systems} should be placed in the file 
+\subsection{User-defined rewriting systems}
+User-defined rewriting systems should be placed in the file 
     $$\colorbox{Ivory2}{$lib/concretGraphRewritingSystems.ml$}$$
  To expose them, add each instance to the list 
  $$\colorbox{Ivory2}{$available\_graph\_rewriting\_systems$}$$ in the same file.
@@ -104,7 +216,7 @@ For example, for the rewriting rule named \colorbox{Ivory2}{$bruggink14\_ex\_4\_
 
 \section{Ruler-Graphs}
 A ruler-graph with one forbidden context as defined in Chapter~\ref{chap:antipattern} is represented by a structure with an underlying graph $X$ and an injective graph homomorphism from $X$. 
-Consider a ruler graph $(X, f)$ where $X$ is graph \raisebox{2pt}{
+Consider a ruler-graph $(X, f)$ where $X$ is the graph \raisebox{2pt}{
             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
             \node [draw,circle] (z) at (-1,0) {};
             \node [draw,circle] (x) at (0,0) {};
@@ -207,10 +319,10 @@ Instances of ruler-graphs can be defined in the file \colorbox{Ivory2}{$lib/rule
 %     \caption{}
 %     \label{fig:implemented:aa_not_in_aca}
 % \end{figure}
-
+ 
 \section{Installation and Execution of LyonParallel}
 \label{lyonparallel:sec:installation}
-This section shows the installation process using \colorbox{Ivory2}{OPAM}\textemdash a package manager for OCaml. To install LyonParallel, one needs to have \colorbox{Ivory2}{OPAM} installed on one's system, then 
+This section shows the installation process using \colorbox{Ivory2}{OPAM}\textemdash{}a package manager for OCaml. To install LyonParallel, one needs to have \colorbox{Ivory2}{OPAM} installed on one's system, then 
 run the following command
 \begin{minted}[style=bw]{bash}
     >> opam switch create lyonParallel 5.2.1
@@ -241,17 +353,48 @@ Upon launching, one should see:
 \label{lyonparallel:sec:termination}
 The LyonParallel REPL lets the user select a set of rewriting rules and run the tool's relative termination analysis techniques to test whether the set can be partitioned into two subsets \(\mathcal{A}\) and \(\mathcal{B}\) such that \(\mathcal{A}\) terminates relative to \(\mathcal{B}\). If such a partition is found, the REPL replaces the analyzed rule set with \(\mathcal{B}\) for further analysis; otherwise, the user can try alternative methods or different partitions.
 
-The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewriting systems; user-defined systems can be added as described in~\textsection~\ref{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}. The predefined system shown in Figure~\ref{fig:implemented:grsaa_0} is named \colorbox{Ivory2}{$bruggink14\_ex\_4\_and\_6$} and appears in that list. Select it at the REPL by name:
+The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewriting systems; user-defined systems can be added as described in~\textsection~\ref{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}. The predefined system consisting of the rule shown below is named \colorbox{Ivory2}{$bruggink14\_ex\_4\_and\_6$}:
+\begin{center}
+      \begin{tikzpicture}
+          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+          }     
+          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
+              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+          }    
+          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+              \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+          }    
+          \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
+          \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
+          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+      \end{tikzpicture}
+    \end{center}
+It appears in the list. Select it at the REPL by name:
 \begin{minted}[style=bw]{bash}
 select_system_by_name bruggink14_ex_4_and_6
 \end{minted}
 
 
 \subsection{Termination Analysis using the Morphism Counting Method}
-Consider the graph rewriting system presented in Example~\ref{subgraph_counting:ex_contrib_variant} whose termination cannot be proved using existing interpretation-based approaches. Its unique rule is illustrated below:
-%  in Figure~\ref{fig:subgraph_counting:ex_confdkjfakljlfdsfsdfs}.
-    % \begin{figure}[H]
-    %     \centering
+Consider the graph rewriting system presented in Example~\ref{subgraph_counting:ex_contrib_variant} with a single rule:
     \begin{center}
             \begin{tikzpicture}[scale=0.9]
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
@@ -287,27 +430,13 @@ Consider the graph rewriting system presented in Example~\ref{subgraph_counting:
                     \draw[->] (r5) edge [loop right] node {0} (r5);
                     \draw[->] (r5) edge [loop left] node {0} (r5);
                 }
-                % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
-                %     \coordinate (delta) at (0,-18mm);
-                %     \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
-                %     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
-                %     \node[draw,circle] (r2) at ($(delta)\mathop{+} (0.5,1.5)$) {2};
-                %     \node[draw,circle] (r3) at ($(delta)\mathop{+} (0,0)$) {3};
-                %     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
-                %     % \draw[->] (r3) edge [loop below] node {0} (r3);
-                % }
                 \node () at (38mm,-18mm) {$\leftarrowtail$};
                 \node () at (77mm,-18mm) {$\rightarrowtail$};
-                % \node () at (57mm,2mm) {$\uparrowtail$};
-                % \node () at (38mm,2mm) {$\swarrowtail$};
-                % \node () at (79mm,2mm) {$\searrowtail$};
             \end{tikzpicture}
-    %         \caption{}
-    %         \label{fig:subgraph_counting:ex_confdkjfakljlfdsfsdfs}
-    % \end{figure}
         \end{center}
+Its termination cannot be proved using the weighted type graph method presented in~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt} and in Chapter~\ref{chap:weighted_type_graphs}. However, its relative termination with respect to the empty set can be proved using the morphism counting method.
 
-The following sequence of commands selects the system, then use the morphism counting method without forbidden patterns presented in Chapter~\ref{chap:subgraph_counting} to analyse the relative termination of the system.
+The following sequence of commands selects the system, then uses the morphism counting method without forbidden patterns presented in Chapter~\ref{chap:subgraph_counting} to analyse the relative termination of the system.
 \begin{minted}[style=bw]{bash}
     >> select_system_by_name plump18_ex6_rule_copy_variant
     >> subgraph_counting_no_forbidden_context
@@ -436,11 +565,11 @@ Consider the rewriting rule shown below:
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
       \end{tikzpicture}
     \end{center}
-The rule is predefined in the tool and can be selected with the REPL command:
+The rewriting system consisting of the rule is predefined in the tool and can be selected with the REPL command:
  \begin{minted}[style=bw]{bash}
    >> select_system_by_name bruggink14_ex_4_and_6
 \end{minted}
-For a selected system, the following command proves relative termination of some non-empty subset of rules of the system with respect to the set of the remaining rules using the type graph method with the natural arithmetic semiring. The timeout is set to 30 seconds.
+For a selected system, the following command analyses relative termination of some non-empty subset of rules of the system with respect to the set of the remaining rules using the type graph method with the natural arithmetic semiring. The timeout is set to 30 seconds.
  \begin{minted}[style=bw]{bash}
    >> type_graph 30 n
 \end{minted}

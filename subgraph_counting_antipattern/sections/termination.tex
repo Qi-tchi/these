@@ -46,7 +46,7 @@ We define the following sets of monomorphisms to facilitate the discussion of th
                 \end{aligned}
         \right\}.
     \end{align*}
-    For a set $\operatorname{Mono}(\mathcal{X},\dots)$, we write $\operatorname{Mono}(\mathcal{X},\dots)_{\operatorname{NF}}$ for the subset of \( X \)-occurrences whose images are not included in any occurrence of the forbidden context if it exists, and  $\operatorname{Mono}(\mathcal{X},\dots)_{\operatorname{F}}$ for the subset of \( X \)-occurrences whose images are included in some occurrences of the forbidden context if it exists. 
+    For a set $\operatorname{Mono}(\mathcal{X},\dots)$, $\operatorname{Mono}(\mathcal{X},\dots)_{\operatorname{NF}}$ denotes the subset of $X$-occurrences whose images are not included in any occurrence of the forbidden context if it exists, and  $\operatorname{Mono}(\mathcal{X},\dots)_{\operatorname{F}}$ denotes the subset of $X$-occurrences whose images are included in some occurrences of the forbidden context if it exists. 
 \end{notation}
     Let $\mathcal{X}=(X,\mathcal{C})$ be a ruler-graph and \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule. 
     Consider the following DPO diagram:
@@ -113,13 +113,12 @@ Thus, the following equality holds:
         \card{\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, \mathop{\lnot} l')_{\operatorname{NF}}} 
             \mathop{-} 
         \card{\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', \mathop{\lnot} r')_{\operatorname{NF}}} 
-    ).\nonumber
+    ). \label{eq:lkdfjasnveennnaa}
 \end{flalign}
 In the remainder of this section, we suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{C} \mathop{=} \set{f:X \mathop{\rightarrowtail} F}$ and that $\rho$ and $\rho^{-1}$ are $X$-non-increasing.  
-The following lemmas provide a lower bound on $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} \mathop{-} 
-    \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}}$.
-% The following lemmas can be used to approximate $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} \mathop{-} 
-%     \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}}$
+Lemma~\ref{antipattern:lem:xglnotmlp_xhlnotmrp} asserts that $\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, l')_{\operatorname{NF}}$ contains more elements than $\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', r')_{\operatorname{NF}}$, and Lemma~\ref{antipattern:lem:xglnotmlnotlp_xhlnotmrnotrp} asserts that $\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, \mathop{\lnot} l')_{\operatorname{NF}}$ contains more elements than $\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', \mathop{\lnot} r')_{\operatorname{NF}}$.
+Hence, $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} \mathop{-} 
+    \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}}$ can be bounded below using these lemmas.
 \begin{lemma}
     \label{antipattern:lem:xglnotmlp_xhlnotmrp}
         Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule and $\mathcal{X}=(X,\mathcal{C})$ be a ruler-graph. 
@@ -136,7 +135,7 @@ The following lemmas provide a lower bound on $\card{\operatorname{Mono}(\mathca
         \card{\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', \mathop{\lnot} r')_{\operatorname{NF}}}.
     $$
 \end{lemma}
-Under the assumptions of the above two lemmas, we obtain the following inequality:
+Under the assumptions of the above two lemmas, by~\eqref{eq:lkdfjasnveennnaa}, we obtain the following inequality:
  \begin{flalign*}
      \card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} \mathop{-} 
      \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}} 
@@ -144,45 +143,48 @@ Under the assumptions of the above two lemmas, we obtain the following inequalit
      \card{\operatorname{Mono}(\mathcal{X},G,m)_{\operatorname{NF}}} \mathop{-} \card{\operatorname{Mono}(\mathcal{X},H,m')_{\operatorname{NF}}}.
  \end{flalign*}
 
- The following introduce a subset of $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}$ that consists of $X$-occurrences whose images are not included in any occurrence of the forbidden context in $L$,
+ The following introduce a subset of $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}$ that consists of occurrences of $X$ whose images are not included in any occurrence of the forbidden context in $L$,
     but, in some rewriting step $G \mathop{\Rightarrow}_\rho^m H$, their images may possibly be included in some occurrence of the forbidden context in the host graph $G$.
 \begin{definition}
     \label{antipattern:def:gamma_l_rho_x}
     Let $\mathcal{X}=(X,\mathcal{C})$ be a ruler-graph, and let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule.
     Define $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})\subseteq \operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}$ as follows:
-    $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}) \mathop{=} \emptyset$ if $\mathcal{C} \mathop{=} \emptyset$, and if $\mathcal{C} \mathop{=} \set{f\mathop{\colon}X \rightarrowtail F}$, then a monomorphism $h_{XL} \mathop{\colon} X \rightarrowtail L$ is in $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ if and only if the following hold:
     \begin{itemize}
-        \item there does not exist $h_{FL}:F \rightarrowtail L$ such that $f \mathop{\star} h_{FL} \mathop{=} h_{XL}$, and
-         \item  
-         there are a graph $C$, a monomorphism $K \overset{u}{\rightarrowtail} C$, and the pushout $L \overset{m}{\rightarrowtail} G \overset{l'}{\leftarrowtail} C$ of $L \overset{l}{\leftarrowtail} K \overset{u}{\rightarrowtail} C$ such that
-         there is a monomorphism $h_{FG} \mathop{\colon} F \rightarrowtail G$ satisfying
-         $h_{XL} \mathop{\star} m \mathop{=} h_{XF} \mathop{\star} h_{FG}$. 
-      \begin{center}
-        % \resizebox{0.4\textwidth}{!}{
-            \begin{tikzpicture}
-                    \node (k) at (0,1) {K};
-                    \node (l) at (-2,1) {L};
-                    \node (c) at (0,-1) {C};
-                    \node (g) at (-2,-1) {G};
-                    \node (x) at (-4,-2) {X};
-                    \node (f) at (-2,-2) {F};
-                    \draw[<-<]  (l) -- (k) node [midway,below] {$l$};
-                    \draw[>->] (c) -- (g) node [midway, above] {$l'$};
-                    \draw[>->] (l) -- (g) node[midway, right] {$m$};
-                    \draw[>->] (k) -- (c) node[midway, left] {$u$};
-                    \draw[>->] (x) -- (l) node[midway, left] {$h_{XL}$};
-                    \draw[>->] (x) -- (f) node[midway, above] {$f$};
-                    \draw[>->] (f) -- (g) node[midway, right] {$h_{FG}$};
-                    \node () [at=($(l)!0.5!(c)$)] {$PO$};
-                \end{tikzpicture}
-        %  }
-        \end{center}
-    \end{itemize}
+        \item $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}) \mathop{=} \emptyset$ if $\mathcal{C} \mathop{=} \emptyset$, and
+        \item if $\mathcal{C} \mathop{=} \set{f\mathop{\colon}X \rightarrowtail F}$, then a monomorphism $h_{XL} \mathop{\colon} X \rightarrowtail L$ is an element of the set $\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})$ if and only if the following hold:
+            \begin{itemize}
+                \item there does not exist $h_{FL}:F \rightarrowtail L$ such that $f \mathop{\star} h_{FL} \mathop{=} h_{XL}$, and
+                \item  
+                there are a graph $C$, a monomorphism $K \overset{u}{\rightarrowtail} C$, and the pushout $L \overset{m}{\rightarrowtail} G \overset{l'}{\leftarrowtail} C$ of $L \overset{l}{\leftarrowtail} K \overset{u}{\rightarrowtail} C$ such that
+                there is a monomorphism $h_{FG} \mathop{\colon} F \rightarrowtail G$ satisfying
+                $h_{XL} \mathop{\star} m \mathop{=} h_{XF} \mathop{\star} h_{FG}$. 
+            \begin{center}
+                % \resizebox{0.4\textwidth}{!}{
+                    \begin{tikzpicture}
+                            \node (k) at (0,1) {K};
+                            \node (l) at (-2,1) {L};
+                            \node (c) at (0,-1) {C};
+                            \node (g) at (-2,-1) {G};
+                            \node (x) at (-4,-2) {X};
+                            \node (f) at (-2,-2) {F};
+                            \draw[<-<]  (l) -- (k) node [midway,below] {$l$};
+                            \draw[>->] (c) -- (g) node [midway, above] {$l'$};
+                            \draw[>->] (l) -- (g) node[midway, right] {$m$};
+                            \draw[>->] (k) -- (c) node[midway, left] {$u$};
+                            \draw[>->] (x) -- (l) node[midway, left] {$h_{XL}$};
+                            \draw[>->] (x) -- (f) node[midway, above] {$f$};
+                            \draw[>->] (f) -- (g) node[midway, right] {$h_{FG}$};
+                            \node () [at=($(l)!0.5!(c)$)] {$PO$};
+                        \end{tikzpicture}
+                %  }
+                \end{center}
+            \end{itemize}
+    \end{itemize} 
 %    \trackedtext{Intuitively, $\Lambda(\mathcal{X},\rho)$ is the number of $X$-occurrences in $L$ ...}
 \end{definition}
-We define $\Lambda(\mathcal{X},\rho) \overset{\operatorname{def}}{=} (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} \mathop{-} 
+To improve the readability of the subsequent discussion, we define $$\Lambda(\mathcal{X},\rho) \overset{\operatorname{def}}{=} (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} \mathop{-} 
     \card{\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})}) -
-   \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}$ to improve the readability of the subsequent discussion.
+   \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}.$$ 
 
 Note that in the category \textbf{Graph}, the pushout of two arrows always exists~\cite[p.188]{corradini1997algebraic}. This justifies the existence of the pushout square in the second condition of the above definition.
 Furthermore, since $X$ and the forbidden context (if exists) are finite graphs, $\Lambda(\mathcal{X},\rho)$ can be precisely computed. Consequently, it provides a lower bound for the change in the number of $X$-occurrences in a rewriting step using $\rho$, as shown in the following lemma whose proof is given in~\textsection~\ref{antipattern:proof:lem:xgm_xhmp_xl_xr}.
@@ -270,10 +272,9 @@ Consequently, we have
 This proves the following key lemma of this section.
 \begin{lemma}[Decreasing step]
     \label{antipattern:lem:w_g_geq_w_h_leq}
-    Let $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ be an injective DPO rewriting rule,
+    Let $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ be an injective DPO rewriting rule, \( G \mathop{\Rightarrow}_{\rho,\mathfrak{M}} H \) a rewriting step,
     \( \mathbb{X} \) a set of ruler-graphs,
-    \( s_{\mathbb{X}} \mathop{\colon} \mathbb{X} \mathop{\to} \mathbb{N} \) a weight function,
-    and \( G \mathop{\Rightarrow}_{\rho,\mathfrak{M}} H \) a rewriting step. 
+    and \( s_{\mathbb{X}} \mathop{\colon} \mathbb{X} \mathop{\to} \mathbb{N} \) a weight function. 
     Suppose that for every \( \mathcal{X}=(X,\mathcal{C}) \mathop{\in} \mathbb{X} \), 
     % the number of $X$-occurrences that are not included in any occurrences of forbidden context $F \mathop{\in} F_x$ in a $\rho$-rewriting step is predictable,
     $\rho$ is $X$-non-increasing, and if $\mathcal{C}= \set{f:X \rightarrowtail F}$ then $\rho^{-1}$ is $X$-non-increasing and $F$-non-increasing. The following inequality holds:
