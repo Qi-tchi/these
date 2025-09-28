@@ -1,6 +1,6 @@
-We extend an existing method for termination of DPO graph rewriting systems, called type graph method~\footnote{The result has appeared in the workshop paper~\cite{qiu2025termination_nwf_v2_acceptedgcm}.}.
+We extend an existing method for termination of DPO graph rewriting systems, called type graph method.~\footnote{The result presented in this chapter led to a workshop paper~\cite{qiu2025termination_nwf_v2_acceptedgcm}.}
 
-The weighted type graph method was first introduced by Hans, Konig and Bruggink~\cite{zantema2014termination} for cycle rewriting. Their subsequent work~\cite{bruggink2014termination} generalized it for DPO rewriting on edge-labeled directed multigraphs with injective rules and injective matches; later, it was extended to general DPO rewriting on edge-labeled multigraphs by Bruggink et al.~\cite{bruggink2015proving}; and it was adapted to broader categories and DPO variants by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}. 
+The weighted type graph method was first introduced by Hans, Konig and Bruggink~\cite{zantema2014termination} for cycle rewriting. Their subsequent work~\cite{bruggink2014termination} generalized it for DPO rewriting on edge-labeled directed multigraphs with injective rules and injective matches; later, it was extended to general DPO rewriting on edge-labeled multigraphs by Bruggink et al.~\cite{bruggink2015proving}; and it was adapted to broader categories and DPO variants by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}.
 
 The method assigns weights to morphisms targeting a weighted type graph over a well-founded semiring. The weight of a graph is defined
  as the sum of the weights of all morphisms from that graph to the type graph. Relative termination of $\mathcal{A}$ with respect to $\mathcal{B}$ is proven by ensuring that rewriting steps using rules in \( \mathcal{A} \) strictly decrease the weights of the host graphs, while rewriting steps using rules in \( \mathcal{B} \) do not increase them.
@@ -11,7 +11,7 @@ The method assigns weights to morphisms targeting a weighted type graph over a w
     In response to this challenge, these works proposed to reduce the search space by fixing the number of nodes \( k\) and the maximum weight of edges of the weighted type graph, and then by constructing a weighted type graph as follows: 
     \begin{enumerate}
       \item Construct a graph with \( k \) nodes, with a directed and labeled edge per ordered pair of nodes and label from the finite set of edge labels $\Sigma$ of the rewriting system. 
-      \item For each edge, decide if it exists in the weighted type graph;  if an edge exists, assign a weight (a natural number) to it.
+      \item For each edge, decide if there is in the weighted type graph;  if an edge exists, assign a weight (a natural number) to it.
       \item Check if the weighted type graph fulfils the required conditions.
     \end{enumerate}
     where $\Sigma$ is a finite set of edge labels that will be fixed throughout this chapter.
@@ -28,15 +28,15 @@ The method assigns weights to morphisms targeting a weighted type graph over a w
      checking the satisfiability of an existential Peano arithmetic formula with addition and multiplication, involving $n$ binary variables and $n$ integer variables. Though modern solvers like Z3 can tackle practical instances, it is a semi-decidable problem~\cite{matiyasevivc2003enumerable}.
 
     There are automated tools that implement the weighted type graph method for proving termination of DPO rewriting systems on edge-labeled directed multigraphs:  
-    \texttt{TORPAcyc}~\cite{TORPAcyc} implements the weighted type graph method for cycle rewriting and uses the SMT solver \texttt{Yices}~\cite{yices} to solve constraint systems;
+    \texttt{TORPAcyc}~\cite{TORPAcyc} implements the weighted type graph method for cycle rewriting and uses \texttt{Yices}~\cite{yices} to solve constraint systems;
     \texttt{Grez}~\cite{grez} implements the weighted type graph method for DPO rewriting on edge-labeled directed multigraphs; \texttt{GraphTT-wtg}~\footnote{To the best of our knowledge, no implementation is publicly available.}~\cite{endrullis2024generalized_arxiv_v3} implements the weighted type graph method for DPO rewriting on many categories.
     \texttt{Grez} and \texttt{GraphTT-wtg}  
-    use  the SMT solver \texttt{Z3} to solve constraint systems.
+    use \texttt{Z3} to solve constraint systems.
 
     In spite of the theoretical power of the weighted type graph method, its practical applicability is limited by the high computational complexity of searching for suitable weighted type graphs over well-founded semirings on 
     natural numbers. In fact, to reduce the search space, users of the above-mentioned tools are required
      to fix the size of the weighted type graph, as well as the maximum weight of edges in the weighted type graph. These are challenging tasks if not impossible to determine a priori even for experts in the field. 
-    Furthermore, our experiments with the two publicly available ones \texttt{TORPAcyc} and \texttt{Grez} show that when the number of edge labels is $2$, they struggle to search for weighted type graphs with $4$ nodes and maximum edge weight of $2$, or to search for weighted type graphs with $3$ nodes when the maximum edge weight is larger than $3$~\footnote{Experiments were conducted on a laptop equipped with an i5-1038NG7 CPU, which features 4 cores, a base clock speed of 2 GHz, a boost speed of 3.8 GHz, and 16 GB RAM.}. 
+    Furthermore, our experiments with the two publicly available ones \texttt{TORPAcyc} and \texttt{Grez} show that when the number of edge labels is $2$, they struggle to search for weighted type graphs with $4$ nodes and maximum edge weight of $2$, or to search for weighted type graphs with $3$ nodes when the maximum edge weight is larger than $3$.~\footnote{Experiments were conducted on a laptop equipped with an i5-1038NG7 CPU, which features 4 cores, a base clock speed of 2 GHz, a boost speed of 3.8 GHz, and 16 GB RAM.}
    We address this limitation to make the weighted type graph method more accessible to non-expert users and to enhance its practical applicability.
 
 To reduce the complexity of searching for weighted type graphs that witness termination of a DPO rewriting system on edge-labeled directed multigraphs, we propose extending the weighted type graph method to non-well-founded semirings and introduce three concrete semirings over the real numbers: the real tropical semiring $\mathfrak{T}'$, the real arctic semiring $\mathfrak{A}'$, and the real arithmetic semiring $\mathfrak{N}'$. The idea of using weights from non-well-founded domains to prove termination was used in the context of term rewriting by Lucas~\cite{lucas2006relative}.
@@ -53,4 +53,5 @@ The worst-case complexity for solving this problem is $O(2^n)$ for the real trop
 
 The implementation of both our approach and the approach proposed by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}, written in OCaml, will be presented in Chapter~\ref{chap:lyonparallel}.
 
-We first introduce the type graph method~\cite{endrullis2024generalized_icgt} and then present our extension to non-well-founded semirings.
+This chapter is organized as follows.
+\textsection~\ref{sec:type_graph:preliminaries} introduces the type graph method~\cite{endrullis2024generalized_icgt}; \textsection~\ref{sec:type_graph:extension_nwf} presents our extension to non-well-founded semirings; and \textsection~\ref{nwf:sec:type_graph:conclusion} concludes.

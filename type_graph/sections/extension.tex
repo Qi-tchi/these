@@ -29,8 +29,8 @@ The definitions of weighted type graph and the weight of a morphism and an objec
         % \resizebox{0.5\textwidth}{!}{
         \begin{tikzpicture}[scale=2]
             \graphbox{}{0mm}{0mm}{32mm}{22mm}{-10mm}{-12mm}{
-                \node[draw,circle] (1) at (0,0) {1};
-                \node[draw,circle] (2) at (2,0) {2};
+                \node[draw,circle] (1) at (0,0) {};
+                \node[draw,circle] (2) at (2,0) {};
                 \draw[->] (1) edge[loop above] node[midway, above] {$a^{1.0}$} (1) ;
                 \draw[->] (1) edge[loop below] node[midway, below] {$b^{1.0}$} (1) ;
                 \draw[->] (1) edge[bend left] node[midway, above] {$a^{1.0}$}  (2)  ;
@@ -150,7 +150,7 @@ The following proposition ensures that every morphism to a type graph $(T,S,\mat
              0_S &= a \mathop{\odot} 0_S & \text{$0_S$ is annihilator for $\mathop{\odot}$}\\
                  &= a \mathop{\odot} (x \mathop{\odot} y) &\text{by assumption on $x \mathop{\odot} y$}\\ 
                  &= a \mathop{\odot} x \mathop{\odot} y &\text{by associativity} \\
-                 &\mathop{\prec} b \mathop{\odot} x \mathop{\odot} y &\text{by Axiom~\eqref{ax:s4} and $x,y\mathop{\neq} 0_S$}\\
+                 &\mathop{\prec} b \mathop{\odot} x \mathop{\odot} y &\text{by~\eqref{ax:s4} and $x,y\mathop{\neq} 0_S$}\\
                  &= b \mathop{\odot} (x \mathop{\odot} y)  &\text{by associativity}  \\
                  &= b \mathop{\odot} 0_S &\text{by assumption on $x \mathop{\odot} y$} \\
                  &= 0_S
@@ -166,12 +166,12 @@ The following proposition ensures that every morphism to a type graph $(T,S,\mat
           \end{flalign*}
           If $1_S \mathop{\prec} x$ then $
         %   1_S \mathop{\preceq} y \mathop{=} 
-          1_S \mathop{\odot} y \mathop{\prec} x \mathop{\odot} y$ by Axiom~\eqref{ax:s4} since $y \mathop{\neq} 0_S$ by assumption.
+          1_S \mathop{\odot} y \mathop{\prec} x \mathop{\odot} y$ by~\eqref{ax:s4} since $y \mathop{\neq} 0_S$ by assumption.
         \item \ref*{eq:prop_neq0_plus_neq0}:  
-        By Axiom~\eqref{ax:s4}, we have $a \mathop{\odot} x \mathop{\prec} b \mathop{\odot} x$ and $a\mathop{\odot} y \mathop{\prec} b \mathop{\odot} y $. 
+        By~\eqref{ax:s4}, we have $a \mathop{\odot} x \mathop{\prec} b \mathop{\odot} x$ and $a\mathop{\odot} y \mathop{\prec} b \mathop{\odot} y $. 
         \begin{flalign*}
             a \mathop{\odot} \left(x  \mathop{\oplus} y \right) &= \left( a \mathop{\odot} x \right)  \mathop{\oplus} \big(a \mathop{\odot} y \big)  & \text{by distributivity}\\
-            & \mathop{\prec} \left(b \mathop{\odot} x \right)   \mathop{\oplus} \left( b \mathop{\odot} y \right)  & \text{by Axiom~\eqref{ax:s2}}\\
+            & \mathop{\prec} \left(b \mathop{\odot} x \right)   \mathop{\oplus} \left( b \mathop{\odot} y \right)  & \text{by~\eqref{ax:s2}}\\
             & \mathop{=} b \mathop{\odot} \left(x  \mathop{\oplus} y \right) & \text{by distributivity}
         \end{flalign*} 
         if $x  \mathop{\oplus} y \mathop{=} 0_S$ then we have $0_S \mathop{=} a \mathop{\odot} 0_S \mathop{=} a \mathop{\odot} \left(x  \mathop{\oplus} y\right) \mathop{\prec} b \mathop{\odot} \left(x  \mathop{\oplus} y\right) \mathop{=} b \mathop{\odot} 0_S \mathop{=} 0_S$ which contradicts the irreflexivity of $\prec$. 
@@ -196,10 +196,19 @@ The following proposition ensures that every morphism to a type graph $(T,S,\mat
 
     Suppose that for all $x \mathop{\in} \mathcal{S}$, if $ 1_\mathcal{S} \mathop{\preceq} x \mathop{\neq} 0_\mathcal{S}$ then $\mu(x) \mathop{\geq_{\mathbb{R}^+}} \mu(1_\mathcal{S})$ and $\mu(x) \mathop{\in} \mathbb{R}$. 
     By definition of a weighted type graph, $1_\mathcal{S} \leq w(e)\mathop{\neq} 0_\mathcal{S}$ for all $e\in\mathbb{E}$.
-    Therefore, by the proposition above and the definition of the weight of a morphism (Definition~\ref{def:weight_of_a_morphism_relative_to_a_type_graph}), for all morphisms \( h \) from a finite graph $G$ to $\mathcal{T}$, we have \( 0_\mathcal{S} \mathop{\neq} w_\mathcal{T}(h) \mathop{\succeq} 1_\mathcal{S} \). 
-    By the above proposition, Axiom \eqref{ax:s0} and the definition of the weight of an object (Definition~\ref{def:weight_of_an_object_relative_to_a_type_graph}), we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\mathop{\neq} \emptyset$, we have \( 0_\mathcal{S} \mathop{\neq} w_\mathcal{T}(G) \mathop{\succeq} 1_\mathcal{S} \). By assumption, we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\mathop{\neq} \emptyset$, \( \mu(w_\mathcal{T}(G)) \mathop{\geq_{\mathbb{R}^+}} \mu(1_\mathcal{S}) \mathop{=} 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and \( \mu(w_\mathcal{T}(G)) \mathop{\geq_{\mathbb{R}^+}} 1 \) if $\mathcal{S}$ is the arithmetic semiring.
+    Therefore, by the proposition above and Definition~\ref{def:weight_of_a_morphism_relative_to_a_type_graph} of the weight of a morphism, for all morphisms \( h \) from a finite graph $G$ to $\mathcal{T}$, we have \( 0_\mathcal{S} \mathop{\neq} w_\mathcal{T}(h) \mathop{\succeq} 1_\mathcal{S} \). 
+    By the above proposition, \eqref{ax:s0} and Definition~\ref{def:weight_of_an_object_relative_to_a_type_graph} of the weight of an object, we conclude that for all objects \( G \) with $\operatorname{Hom}(G,T)\mathop{\neq} \emptyset$, we have \( 0_\mathcal{S} \mathop{\neq} w_\mathcal{T}(G) \mathop{\succeq} 1_\mathcal{S} \). By assumption, we have that for all objects \( G \) with $\operatorname{Hom}(G,T)\mathop{\neq} \emptyset$, 
+    \begin{itemize}
+       \item \( \mu(w_\mathcal{T}(G)) \mathop{\geq_{\mathbb{R}^+}} \mu(1_\mathcal{S}) \mathop{=} 0 \) if $\mathcal{S}$ is the real tropical or arctic semiring, and
+       \item \( \mu(w_\mathcal{T}(G)) \mathop{\geq_{\mathbb{R}^+}} 1 \) if $\mathcal{S}$ is the arithmetic semiring.
+    \end{itemize} 
 
-Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\mathop{\neq} \emptyset$. The rewriting relation \( \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{F}} \) terminates relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}}$ if there exists a constant $\delta \mathop{>} 0$ such that: (i) for all \(G \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H))\mathop{+}\delta \), and (ii) for all \(G \mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \mathop{\geq} \mu(w_\mathcal{T}(H)) \). However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
+Suppose additionally that for every graph $G$ subject to rewriting, we have $\operatorname{Hom}(G,T)\mathop{\neq} \emptyset$. The rewriting relation \( \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{F}} \) terminates relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}}$ if there is a constant $\delta \mathop{>} 0$ such that the following conditions hold:
+\begin{itemize}
+   \item  for all \(G \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H))\mathop{+}\delta \), and
+   \item for all \(G \mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}} H\), \( \mu(w_\mathcal{T}(G)) \mathop{\geq} \mu(w_\mathcal{T}(H)) \).
+\end{itemize}
+ However, directly verifying all rewriting steps is infeasible due to the potentially infinite number of rewriting steps.
 
 
 Consider the following DPO diagram that defines a rewriting step \( G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H \). 
@@ -225,7 +234,7 @@ Consider the following DPO diagram that defines a rewriting step \( G \mathop{\R
             \end{tikzpicture}
         % }
     \end{center}
-    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$, by \cite[Lemma 4.13]{endrullis2024generalized_arxiv_v2}, we obtain:
+    If the left pushout square is weighable with $\mathcal{T}$ and the right pushout square is bounded above by $\mathcal{T}$, by Lemma~\ref{lem_4d13}, we obtain:
 \begin{flalign*}
     w_\mathcal{T}(G) 
         & \mathop{=} \mathop{\bigoplus}_{t_K: K \mathop{\rightarrow} T} 
@@ -286,7 +295,7 @@ Finally, we formulate a termination criterion leveraging type graphs weighted ov
 
     \noindent If the following conditions hold:
     \begin{enumerate}
-        \item there exists $\delta >_{\mathbb{R}^+} 0$ such that either every $\rho \mathop{\in} \mathcal{A}$ is $\delta$-uniformly decreasing, or every $\rho \mathop{\in} \mathcal{A}$ is $\delta$-closure decreasing, and
+        \item there is $\delta >_{\mathbb{R}^+} 0$ such that either every $\rho \mathop{\in} \mathcal{A}$ is $\delta$-uniformly decreasing, or every $\rho \mathop{\in} \mathcal{A}$ is $\delta$-closure decreasing, and
         \item every rule $\rho \mathop{\in} \mathcal{B}$ is weakly decreasing,
     \end{enumerate}
     then $\mathop{\Rightarrow}_{\mathcal{A},\mathfrak{F}}$ terminates relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{F}}$.

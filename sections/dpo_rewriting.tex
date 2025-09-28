@@ -1,7 +1,6 @@
 The algebraic approach of double-pushout (DPO) rewriting was introduced by Ehrig et al.~\cite{ehrig1973graph}. It is not restricted to graphs, and can be defined in any category enjoying certain properties~\cite{ehrig2006fundamentals,lack2004adhesive}. This section recalls the definition of DPO rewriting, following the treatment of Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}.
 
-Throughout this section, we fix a category \( \mathcal{C} \).
-
+\textbf{Throughout this section, a category \( \mathcal{C} \).}
  A DPO rewriting rule is given by two morphisms \(l: K \mathop{\to} L\) and \(r: K \mathop{\to} R\). \(L\) encodes the rule's preconditions, \(R\) specifies the postconditions, and \(K\) is the interface—the subobject common to \(L\) and \(R\) that is preserved by the rule, and links \(L\) and \(R\) to the surrounding context.
 \begin{definition} 
   \label{def:grs:dpo_rule}
@@ -127,9 +126,7 @@ The graph $\mathcal{G}$ is thus decomposed into the occurrence of $\mathcal{L}$ 
 Then, one modifies the occurrence of $\mathcal{L}$ (by removing some nodes and edges and adding some fresh nodes and edges while keeping the interface graph unchanged, and identifying nodes in the interface graph)
 to obtain an occurrence of $\mathcal{R}$. Finally, the result graph is obtained by gluing the occurrence of $\mathcal{R}$ with $\mathcal{C}$ via the interface graph $\mathcal{K}$.
 
-As an example, consider the DPO rewriting rule 
-% shown in Figure~\ref{fig:preliminaries:a_rewriting_rule_sfdsgdfa} 
-and the DPO diagram in the following figure. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
+As an example, consider the DPO rewriting rule in~Example~\ref{ex:grsaa}, and the DPO diagram in the following figure. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
 % Figure~\ref{fig:preliminaries:a_rewriting_step}.
 % \begin{figure}[H]
 %       \centering 
@@ -172,7 +169,7 @@ and the DPO diagram in the following figure. The numbers inside nodes and the su
 %   \begin{figure}[H]
 %     \centering
 \begin{center}
-    \resizebox{\textwidth}{!}{
+    \resizebox{0.95\textwidth}{!}{
       \begin{tikzpicture}
               \graphbox{\( L \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (0mm,-8mm); 
@@ -266,10 +263,10 @@ The graph $G$ can be rewritten to yield the graph $H$ by applying the rule to th
             \draw[->,orange] (z)--(x) node[midway, above] {$a$};
             \draw[->,orange] (x)--(y) node[midway, above] {$a$};
         }}} of $L$ in $G$.
-Specifically, graph $G$ can be decomposed into an occurrence of graph $L$ (elements shown in orange and black in $G$) and the context graph $C$ (elements shown in blue and black in $G$). The interface graph is the subgraph shown in black.
+Specifically, $G$ can be decomposed into an occurrence of $L$ (elements shown in orange and black in $G$) and the context $C$ (elements shown in blue and black in $G$). The interface is the subgraph shown in black.
 The graph $R$ can be decomposed into an occurrence of $K$ (elements shown in black) and the others (elements shown in red).
-The rule removes the orange part of the occurrence of $L$ in $G$ to obtain the context graph $C$. 
-The result graph $H$ is obtained by gluing the context graph $C$ and the graph $R$ via the interface graph.
+The rule removes the orange part of the occurrence of $L$ in $G$ to obtain the context $C$. 
+The result graph $H$ is obtained by gluing $C$ and $R$ via the interface graph.
 
 
 In category \textbf{Graph}, the pushout of two arrows always exists by Proposition~\ref{prop:pushout_graph_always_exists}. Therefore, consider the DPO diagram shown
@@ -441,7 +438,7 @@ The left pushout square cannot be constructed as visualized by the following fig
         }}} of $L$. Nevertheless, since node $3$ does not exist in $C$, the edge from node $3$ to node $6$ becomes dangling, making the construction of $C$ impossible and preventing the rule application on that occurrence of $L$. Concretely, nodes in \(m(L)\mathop{\setminus} (l\star m)(K)\) are removed when the rule is applied, while edges in \(G\mathop{\setminus} m(L)\) remain, which can produce dangling edges.
         Therefore, no node of $G$ outside the image of \(m\) should be incident to a node of \(m(L)\) outside the image of \(l\star m\). This requirement is precisely the dangling-edge condition in the following Proposition~\ref{prop:existence_of_pushout_complement}.
 
-There is another requirement for the existence of a pushout complement. To give an intuition, consider the rewriting rule in \(\mathbf{Graph}\), shown below.  This rule deletes a node of the graph, and the match identifies the three nodes of \(L\) with a single node of \(G\).
+There is another requirement for the existence of a pushout complement. To give an intuition, consider the rewriting rule in \(\mathbf{Graph}\), shown below. 
     \begin{center}
         \resizebox{\textwidth}{!}{
             \begin{tikzpicture}
@@ -468,7 +465,8 @@ There is another requirement for the existence of a pushout complement. To give 
                 \node () at (77mm,-8mm) {\( \overset{r}{\rightarrowtail} \)}; % K -> R
             \end{tikzpicture}
         } 
-        \end{center}  
+        \end{center} 
+This rule deletes a node of the graph, and the match identifies the three nodes of \(L\) with a single node of \(G\). 
 Consider the match \(L \overset{m}{\rightarrow} G\) shown in the following diagram:    
     \begin{center}
         \resizebox{\textwidth}{!}{
@@ -529,7 +527,7 @@ In both cases \(3_L\notin[1_L]_\sim\), and \(G\) cannot be isomorphic to the quo
 This leads to the following proposition summarizing the conditions under which pushout complements exist.
 \begin{proposition}[\cite{corradini1997algebraic}] 
     \label{prop:existence_of_pushout_complement}
-    Let $K \overset{l}{\rightarrow} L$ and $L \overset{m}{\rightarrow} G$ be two morphisms in the category \textbf{Graph}. There exist two morphisms $K \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} G$ such that $K \overset{l}{\rightarrow} L \overset{m}{\rightarrow} G$ and $K \overset{u}{\rightarrow} L \overset{l'}{\rightarrow} G$ form a pushout square, as shown 
+    Let $K \overset{l}{\rightarrow} L$ and $L \overset{m}{\rightarrow} G$ be two morphisms in the category \textbf{Graph}. There are two morphisms $K \overset{u}{\rightarrow} C \overset{l'}{\rightarrow} G$ such that $K \overset{l}{\rightarrow} L \overset{m}{\rightarrow} G$ and $K \overset{u}{\rightarrow} L \overset{l'}{\rightarrow} G$ form a pushout square, as shown 
     below, 
     % in Figure~\ref{fig:preliminaries:a_pushout_square_complement} 
     if and only if the following conditions are satisfied:
@@ -703,8 +701,11 @@ There are several variants of DPO rewriting. Typically both the match $m$ and th
     The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\rho,\mathfrak{F}}$ induced by a DPO rewriting rule $\rho$ in $\mathfrak{F}$} is defined as follows:
      $$G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H\text{ if and only if }G \mathop{\Rightarrow}_\rho^\delta H$$
     for some $\delta \mathop{\in} \mathfrak{F}(\rho)$. 
-     The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: 
-     $$G \mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}} H\text{ if and only if }G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H$$ for some $\rho \mathop{\in} \mathcal{R}$. Whenever $\mathfrak{F}$ is clear from the context, we 
+     
+    The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$} is given by: 
+     $$G \mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}} H\text{ if and only if }G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H$$ for some $\rho \mathop{\in} \mathcal{R}$. 
+     
+     Whenever $\mathfrak{F}$ is clear from the context, we 
     omit $\mathfrak{F}$ and 
     write $\mathop{\Rightarrow}_{\rho}$ and $\mathop{\Rightarrow}_{\mathcal{R}}$.
   \end{definition}

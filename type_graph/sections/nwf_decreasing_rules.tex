@@ -16,7 +16,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
                   w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K\}) \mathop{\succeq} w_\mathcal{T}(\{r\star - \mathop{=} t_K\}).$$
            
     \noindent
-    The rule $\rho$ is \textbf{$\delta$-uniformly decreasing} with respect to $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
+    The rule $\rho$ is \textbf{$\delta$-uniformly decreasing} with respect to $\mathcal{T}$ in $\mathfrak{F}$ if the following conditions hold:
         \begin{itemize}
             \item[]- there is a context closure $c_\rho$ for $\rho$ and $\mathcal{T}$ in $\mathfrak{F}$, 
             \item[]- for every $t_K : K \mathop{\to} T$,
@@ -28,7 +28,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
          
     \noindent
     The rule $\rho$ is
-            \textbf{$\delta$-closure decreasing} with respect to $\mathcal{T}$ in $\mathfrak{F}$ if the following hold:
+            \textbf{$\delta$-closure decreasing} with respect to $\mathcal{T}$ in $\mathfrak{F}$ if the following conditions hold:
             \begin{itemize}
                 \item[]- $S$ is strictly monotonic measurable semiring,
                 \item[]- $\rho$ is weakly decreasing,
@@ -265,7 +265,7 @@ The definition below adapts the concept of decreasing rules by Endrullis and Ove
             \item $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{21}\}) \mathop{=} 1.0 \mathop{\geq} 1.0 \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{21}\})$, and
             \item $w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K^{22}\}) \mathop{=} 1.0 \mathop{\geq} 1.0 \mathop{=} w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K^{22}\})$.
         \end{itemize}
-    Therefore, the rule is therefore weakly decreasing.
+    Therefore, the rule is weakly decreasing.
     
     Moreover, there is a context closure $c$ for the DPO rule in the weighted type graph, as explained in Example~\ref{wf:example:context_closure}, which is illustrated below:
     \begin{center} 
@@ -331,7 +331,7 @@ The following lemma by Endrullis and Overbeek ~\cite{endrullis2024generalized_ar
     \]
     The following conditions hold
     \begin{enumerate}[label=(\Alph*)]
-        \item  $w_\mathcal{T}(D)=k$ if $\delta$ is weighable with $\mathcal{T}$.
+        \item  $w_\mathcal{T}(D)=k$ if $\delta$ is weighable with $\mathcal{T}$, and
         \item  $w_\mathcal{T}(D)\mathop{\preceq} k$ if $\delta$ is bounded above by $\mathcal{T}$  and \(w(e) \mathop{\succeq} 1_S\) for all $e \mathop{\in} \mathbb{E}$.
     \end{enumerate}
 \end{lemma}
@@ -390,20 +390,23 @@ $.
         \begin{proof}
             By definition of weighted type graph, for all $e \mathop{\in} \mathbb{E}$, we have 
             \begin{flalign}
-                w(e) \mathop{\neq} 0_S \label{eq_we_neq_0s1111}
+                w(e) \mathop{\neq} 0_S. \label{eq_we_neq_0s1111}
             \end{flalign}
             For every $t_C:C \mathop{\to} T$, we have 
             \begin{flalign*}
-                &w_\mathcal{T}(t_C - h_{KC}) \\
+                w_\mathcal{T}(t_C - h_{KC})
                =&\mathop{\bigodot}_{e\in \mathbb{E}} w_e(t_C - h_{KC}) 
-                 \hspace{5.5cm}\text{by Definition~\ref{def:weight_excluding}}\\
+                   \hspace{3cm}\text{by Definition~\ref{def:weight_excluding}}\\
                =&\mathop{\bigodot}_{e\in \mathbb{E}} 
                  \mathop{\bigodot}_{\substack{\alpha \mathop{\in} \{- * t_C \mathop{=} e\}\\
                     \alpha \notin \left\{ \iota \mathop{\in} \operatorname{Hom}(X, C)~\middle|~\exists \zeta:X \mathop{\to} K,~\zeta \mathop{\star} h_{KC} \mathop{=} \iota \right\}
                  }
-                 } w(e)  \hspace{2cm} \text{by Definition~\ref{def:weight_excluding_pre}} 
+                 } w(e)  
+                    \hspace{1cm}\text{by Definition~\ref{def:weight_excluding_pre}} 
                  \\
-               \mathop{\neq}&0_S \hspace{1.3cm}\text{by Equation~\eqref{eq_we_neq_0s1111}, Proposition~\ref{prop_endrullis_2d7}~\eqref{eq:prop_neq0_mul_neq0} and Definition~\ref{def:bigodot}}  
+               \mathop{\neq}
+                    &0_S.
+                    \hspace{2cm}\text{by~\eqref{eq_we_neq_0s1111},~\eqref{eq:prop_neq0_mul_neq0} and Definition~\ref{def:bigodot}}  
             \end{flalign*}
 
             Therefore, $S_{t_K} \overset{\operatorname{def}}{=}   
@@ -418,11 +421,11 @@ $.
             By the definition of weighted type graph, for all $e \mathop{\in} \mathbb{E}$, we have $w(e) \mathop{\neq} 0_S$.  
             By assumption, we have $w_\mathcal{T}(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$. Thus, we have 
             \begin{flalign}
-                1_S \mathop{\preceq} w(e) \mathop{\neq} 0_S \label{eq_we_neq_0s_geq1_0}
+                1_S \mathop{\preceq} w(e) \mathop{\neq} 0_S. \label{eq_we_neq_0s_geq1_0}
             \end{flalign}
             By Proposition~\ref{prop_endrullis_2d7}~\eqref{eq:prop_neg0_ge1_mul_ge1}, we have
             \begin{flalign}
-                1_S \mathop{\preceq} w_\mathcal{T}(t_C - h_{KC}) \label{eq_we_neq_0s_geq1}
+                1_S \mathop{\preceq} w_\mathcal{T}(t_C - h_{KC}). \label{eq_we_neq_0s_geq1}
             \end{flalign}
 
             Therefore, $S_{t_K} \overset{\operatorname{def}}{=}   
@@ -435,7 +438,7 @@ $.
         % \\ by Axiom \eqref{ax:s3}. \todo{to delete: inutile}
          
         \item \label{claim:st} if there is $t_C$ with $t_K \mathop{=} h_{KC} \mathop{\star} t_C$ then
-        $$ \mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+}\delta  \implies \mu(Y \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(X \mathop{\odot} S_{t_K})$$
+        $$ \mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+}\delta  \implies \mu(Y \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(X \mathop{\odot} S_{t_K}).$$
                 % $$\left (\exists \alpha \mathop{\geq} \delta.~\mu(Y) \mathop{>} \mu(X)\mathop{+}\alpha \right ) \implies (\mu(Y \mathop{\odot} S_{t_K}) \mathop{>} \mu(X \mathop{\odot} S_{t_K}))$$
         \begin{proof}
            Suppose that there is $t_C$ with $t_K \mathop{=} h_{KC} \mathop{\star} t_C$. We have $S_{t_K} \mathop{\neq} 0_S$ by Claim~\ref{s_nz}, and we conclude by Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s4''}.
@@ -444,23 +447,23 @@ $.
         \item \label{claim:sh_{DT}elta} 
         if there is $t_C$ with $t_K \mathop{=} h_{KC} \mathop{\star} t_C$, and  $w_\mathcal{T}(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$ then
         % $$\left (\exists \alpha \mathop{\geq} \delta.~\mu(Y) \mathop{>} \mu(X)\mathop{+} \alpha \right ) \implies (\exists \beta \mathop{\geq} \delta. \mu(Y \mathop{\odot} S_{t_K}) \mathop{>} \mu(X \mathop{\odot} S_{t_K}) \mathop{+}\beta)$$
-        $$\mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+} \delta \implies \mu(Y \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(X \mathop{\odot} S_{t_K}) \mathop{+}\delta $$
+        $$\mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+} \delta \implies \mu(Y \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(X \mathop{\odot} S_{t_K}) \mathop{+}\delta. $$
         \begin{proof}
             Suppose that there is $t_C$ with $t_K \mathop{=} h_{KC} \mathop{\star} t_C$. We have $1_S \mathop{\preceq} S_{t_K} \mathop{\neq} 0_S$ by Claim~\ref{s_nz} and Claim~\ref{s_ge1}, and we conclude by Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s4'}. 
         \end{proof}
 
         \item \label{claim:0} 
         if there is no $t_C$ with $t_K \mathop{=} h_{KC} \mathop{\star} t_C$ then  $S_{t_K} \mathop{=} 0_S$, thus
-        $$Y \mathop{\odot} S_{t_K} \mathop{=} 0_S \mathop{=} X \mathop{\odot} S_{t_K} $$
+        $$Y \mathop{\odot} S_{t_K} \mathop{=} 0_S \mathop{=} X \mathop{\odot} S_{t_K}. $$
     
         \item \label{claim:exist_st} 
         If there is a context closure $t_L$ for $\rho$ and $T$ in $\mathfrak{F}$ , then, let $t_K \mathop{=} l \mathop{\star} t_L$, we have
-        $$ \mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+}\delta \implies \mu(Y \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(X \mathop{\odot} S_{t_K})$$
+        $$ \mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+}\delta \implies \mu(Y \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(X \mathop{\odot} S_{t_K}).$$
         \begin{proof}
             
        By Definition~\ref{def:context_closure} of context closure, there is $t_G : G \mathop{\rightarrow} T$ such that 
         \begin{flalign*}
-             t_L \mathop{=} h_{LG} \mathop{\star} t_G \tag{1} \label{eq_tl_hlg_tg}
+             t_L \mathop{=} h_{LG} \mathop{\star} t_G. \tag{1} \label{eq_tl_hlg_tg}
         \end{flalign*}
       i.e. we have the following commutative diagram:
      
@@ -489,11 +492,11 @@ $.
         Let $t_C \overset{\operatorname{def}}{=} h_{CG} \mathop{\star} t_G$ and $t_K \overset{\operatorname{def}}{=} l \mathop{\star} t_L$. We have\\
         \begin{flalign*}
               t_K  &=  l \mathop{\star} t_L &\text{by definition of $t_K$}
-            \\ &=   l \mathop{\star} (h_{LG}  \mathop{\star} t_G) & \text{by Equation~\eqref{eq_tl_hlg_tg}\text{ above}}
+            \\ &=   l \mathop{\star} (h_{LG}  \mathop{\star} t_G) & \text{by~\eqref{eq_tl_hlg_tg}\text{ above}}
             \\ &= (l \mathop{\star} h_{LG}) \mathop{\star} t_G &\text{by associativity }
             \\ &= (h_{KC} \mathop{\star} h_{CG}) \mathop{\star} t_G & \text{by commutativity of $\square KLGC$}
             \\ &= h_{KC} \mathop{\star} (h_{CG}  \mathop{\star} t_G) & \text{by associativity}
-            \\ & \mathop{=} h_{KC} \mathop{\star} t_C &\text{by definition of $t_C$}
+            \\ & \mathop{=} h_{KC} \mathop{\star} t_C. &\text{by definition of $t_C$}
         \end{flalign*}
         and the claim follows from Claim~\ref{claim:st}, since $t_C$ is a morphism such that $t_K \mathop{=} h_{KC} \mathop{\star} t_C$.
     \end{proof}
@@ -501,7 +504,7 @@ $.
         \item \label{claim:exist_sh_{DT}elta} 
         If there is a context closure $t_L$ for $\rho$ and $T$ in $\mathfrak{F}$, and $w_\mathcal{T}(e) \mathop{\succeq} 1_S$ for all $e \mathop{\in} \mathbb{E}$ then, let $t_K \mathop{=} l \mathop{\star} t_L$, we have 
             % $$\left (\exists \alpha \mathop{\geq} \delta. Y \mathop{\succ} X\mathop{+} \alpha \right ) \implies (\exists \beta \mathop{\geq} \delta. Y \mathop{\odot} S_{t_K} \mathop{\succ} X \mathop{\odot} S_{t_K} \mathop{+}\beta)$$
-        $$\mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+}\delta \implies \mu(Y \mathop{\odot}  S_{t_K}) \mathop{\succ}_{\mathbb{R}^+} \mu(X \mathop{\odot}  S_{t_K}) \mathop{+}\delta$$ 
+        $$\mu(Y) >_{\mathbb{R}^+} \mu(X)\mathop{+}\delta \implies \mu(Y \mathop{\odot}  S_{t_K}) \mathop{\succ}_{\mathbb{R}^+} \mu(X \mathop{\odot}  S_{t_K}) \mathop{+}\delta.$$ 
         \begin{proof}
             The proof is analogous to the proof of Claim~\ref{claim:exist_st} but with Claim~\ref{claim:sh_{DT}elta} instead of Claim~\ref{claim:st} in the end.
         \end{proof} 
@@ -509,9 +512,9 @@ $.
     
     \noindent For every \( t_K: K \mathop{\rightarrow} T \), let
     \begin{flalign*}
-        \Lambda_{t_K} &\overset{\operatorname{def}}{=}  w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K\})
+        \Lambda_{t_K} &\overset{\operatorname{def}}{=}  w_\mathcal{T}(\{l \mathop{\star} - \mathop{=} t_K\}),
         \\
-        \Omega_{t_K} &\overset{\operatorname{def}}{=}  w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K\})
+        \Omega_{t_K} &\overset{\operatorname{def}}{=}  w_\mathcal{T}(\{r \mathop{\star} - \mathop{=} t_K\}).
     \end{flalign*}
   By Lemma~\ref{nwf:lem_4d13}, we have 
         \begin{flalign*} 
@@ -555,12 +558,12 @@ $.
                                 \item $\mu(\Lambda_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K})\mathop{+}\delta$,
                                 % $\exists \alpha \mathop{\geq} \delta  .~\mu(\Lambda_{t_K}) \mathop{>} \mu(\Omega_{t_K})\mathop{+}\alpha$, 
                                  or
-                                \item $\{l \mathop{\star} - \mathop{=} t_K\} \mathop{=} \emptyset \mathop{=} \{r \mathop{\star} - \mathop{=} t_K\}$
+                                \item $\{l \mathop{\star} - \mathop{=} t_K\} \mathop{=} \emptyset \mathop{=} \{r \mathop{\star} - \mathop{=} t_K\}$.
                             \end{itemize}
             From Claim~\ref{claim:sh_{DT}elta} and Claim~\ref{claim:0}, for every \( t_K: K \mathop{\rightarrow} T \), we obtain
             \begin{enumerate}[label=(\roman*)]
                 \item $S_{t_K} \mathop{\odot} \Lambda_{t_K} \mathop{=} 0_S \mathop{=}  S_{t_K} \mathop{\odot} \Omega_{t_K}$, or
-                \item  \label{it:strich_{DT}elta}  $\mu(\Lambda_{t_K} \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K} \mathop{\odot} S_{t_K})\mathop{+}\delta$
+                \item  \label{it:strich_{DT}elta}  $\mu(\Lambda_{t_K} \mathop{\odot} S_{t_K}) >_{\mathbb{R}^+} \mu(\Omega_{t_K} \mathop{\odot} S_{t_K})\mathop{+}\delta$.
                 % $\exists \beta \mathop{\geq} \delta  .\  \mu(\Lambda_{t_K} \mathop{\odot} S_{t_K}) \mathop{>} \mu(\Omega_{t_K} \mathop{\odot} S_{t_K})\mathop{+}\beta$
             \end{enumerate}
             To establish $ \mu(w_\mathcal{T}(G)) >_{\mathbb{R}^+} \mu(w_\mathcal{T}(H))\mathop{+}\delta$, using Definition~\ref{def:nwf:real_strongly_monotonic_semiring}~\eqref{ax:s2'}, 

@@ -1,4 +1,4 @@
-Pushouts play a central role in the double-pushout approach to graph rewriting considered in this thesis (recalled in the next section). The concepts and notation in this section follow the treatments of Pierce~\cite{pierce1991basic} and Barr and Wells~\cite{barr1990category}.
+Pushouts play a central role in the double-pushout approach to graph rewriting considered in this thesis. The concepts and notation in this section follow the treatments of Pierce~\cite{pierce1991basic} and Barr and Wells~\cite{barr1990category}.
 \begin{definition}
     \label{def:cat}
     A \textbf{category} is an unlabeled graph \( C \) together with a total function \( u : V(C)  \mathop{\to} E(C) \) and a partial function \( \star: E(C) \mathop{\times} E(C)  \mathop{\to} E(C) \) such that 
@@ -14,7 +14,7 @@ Pushouts play a central role in the double-pushout approach to graph rewriting c
 \begin{definition}
     A category \(\mathcal{C}\) is said to be \textbf{locally small} if for all objects \(X,Y\) in \(\mathcal{C}\), the collection $\opn{Hom}(X,Y)$ of morphisms from \(X\) to \(Y\) is a set (called a \textbf{hom-set}). For a locally small category, $\opn{Mono}(X,Y)$ denotes the set of all monomorphisms from $X$ to $Y$.
 \end{definition}
-\textbf{Throughout this section, we fix a locally small category \( \mathcal{C} \).}
+\textbf{Throughout this section, fix a locally small category \( \mathcal{C} \).}
 \begin{example}
     Consider the unlabeled graph shown below.
     %  in Figure~\ref{fig:preliminaries:category}. 
@@ -50,6 +50,28 @@ Pushouts play a central role in the double-pushout approach to graph rewriting c
     A morphism \( f : X  \mathop{\to} Y \) is said to be a \textbf{monomorphism} (is \textbf{monic}) if given any morphisms \( g,h: Z  \mathop{\to} X  \), \( g \mathop{\star} f \mathop{=} h \mathop{\star} f \) implies \( g \mathop{=} h \). 
     In this case, we write $f : X \rightarrowtail Y$ to indicate that $f$ is a monomorphism.
 \end{definition} 
+
+When visualizing a monomorphism, we often use $\rightarrowtail$ instead of $\to$ to emphasize that it is monic. For example, a monomorphism of labeled graphs can be represented as follows:
+\begin{center}
+        \begin{tikzpicture}
+            \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (5mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+            }    
+            \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (-5mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+            }    
+            \node () at (67mm,-8mm) {$\rightarrowtail$};
+        \end{tikzpicture}
+    \end{center}
 
 \begin{example}
 The category \(\mathbf{Set}\) has sets as objects and total functions between them as morphisms. For \(f\mathop{\colon} A \mathop{\to} B\) and \(g\mathop{\colon} B \mathop{\to} C\), composition is given by \(g\circ f\), and the identity morphism on a set \(A\) is the identity function \(\mathrm{id}_A\).
@@ -126,13 +148,13 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }      
             % K to L
-            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
-            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
             % K to C
-            \draw[>->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G
-            \draw[>->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
             % \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
@@ -224,13 +246,13 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }      
             % K to L
-            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
-            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
             % K to C
-            \draw[>->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G
-            \draw[>->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
             \node () at (57mm,-6mm) {$\mathop{=}$};
         \end{tikzpicture}
         }
@@ -247,7 +269,7 @@ The pushout is a construction in category theory that can often be thought of as
     \label{def:cat:po} 
     A \textbf{pushout} of a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \), shown in the following diagram,
     %  in Figure~\ref{fig:preliminaries:pushout_sdfkjasdlgjfl}
-    is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \), and for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \mathop{\star} \gamma' \mathop{=} \beta \mathop{\star} \gamma \) holds, then there exists a unique morphism \(\delta : D  \mathop{\to} E\) such that \( \gamma' \mathop{=} \beta' \mathop{\star} \delta \) and \( \gamma \mathop{=} \alpha' \mathop{\star} \delta \).
+    is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \), and for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \mathop{\star} \gamma' \mathop{=} \beta \mathop{\star} \gamma \) holds, then there is a unique morphism \(\delta : D  \mathop{\to} E\) such that \( \gamma' \mathop{=} \beta' \mathop{\star} \delta \) and \( \gamma \mathop{=} \alpha' \mathop{\star} \delta \).
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -332,10 +354,10 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
             %   \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
             %   \draw[ ] (l2) -- (l5) node[midway,right] {$a$};
           }    
-          \node () at (77mm,-8mm) {\( \overset{\alpha}{\rightarrowtail} \)}; % K -> R
-          \node () at (58mm,-18mm) {\( \beta\downarrowtail \)};
-          \node () at (102mm,-18mm) {\( \beta'\downarrowtail \)};
-          \node () at (77mm,-33mm) {\( \overset{\alpha'}{\rightarrowtail} \)}; % C -> H
+          \node () at (77mm,-8mm) {\( \overset{\alpha}{\rightarrow} \)}; % K -> R
+          \node () at (58mm,-18mm) {\( \beta\downarrow \)};
+          \node () at (102mm,-18mm) {\( \beta'\downarrow \)};
+          \node () at (77mm,-33mm) {\( \overset{\alpha'}{\rightarrow} \)}; % C -> H
       \end{tikzpicture}
       }
       \caption{}
@@ -409,13 +431,13 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }      
             % K to L
-            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
-            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
             % K to C
-            \draw[>->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G
-            \draw[>->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
             \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
@@ -479,9 +501,9 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }
             % K to L  
-            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
-            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
             % K to C
             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G
@@ -494,10 +516,10 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
 The \emph{pullback} is the dual construction of the pushout, and it can be thought of as construction of the interface structure along which two structures are glued together. 
 \begin{definition} 
     \label{def:cat:pb}
-   A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \)
+   A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) 
 %    , shown below,
 %    in Figure~\ref{fig:preliminaries:pullback_ssdsfd},
-is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \mathop{\star} \beta' \mathop{=} \gamma \mathop{\star} \alpha'\) holds, then there exists a unique morphism \(\delta: E  \mathop{\to} A\) such that $\gamma' \mathop{=} \delta \mathop{\star} \alpha$ and $\gamma \mathop{=} \delta \mathop{\star} \beta$. 
+is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \mathop{\star} \beta' \mathop{=} \gamma \mathop{\star} \alpha'\) holds, then there is a unique morphism \(\delta: E  \mathop{\to} A\) such that $\gamma' \mathop{=} \delta \mathop{\star} \alpha$ and $\gamma \mathop{=} \delta \mathop{\star} \beta$. 
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -573,10 +595,10 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
             %   \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
             %   \draw[ ] (l2) -- (l5) node[midway,right] {$a$};
           }    
-          \node () at (77mm,-8mm) {\( \overset{\alpha}{\rightarrowtail} \)};
-          \node () at (58mm,-18mm) {\( \beta\downarrowtail \)};
-          \node () at (102mm,-18mm) {\( \beta'\downarrowtail \)};
-          \node () at (77mm,-33mm) {\( \overset{\alpha'}{\rightarrowtail} \)};
+          \node () at (77mm,-8mm) {\( \overset{\alpha}{\rightarrow} \)};
+          \node () at (58mm,-18mm) {\( \beta\downarrow \)};
+          \node () at (102mm,-18mm) {\( \beta'\downarrow \)};
+          \node () at (77mm,-33mm) {\( \overset{\alpha'}{\rightarrow} \)};
       \end{tikzpicture}
       }
     \end{center} 
@@ -637,9 +659,9 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }
             % K to L  
-            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
-            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
             % K to C
             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G 

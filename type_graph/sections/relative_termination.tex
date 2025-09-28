@@ -14,12 +14,14 @@
 Given a DPO rewriting framework \(\mathfrak{F}\), a rule set \(\mathcal{R}\) defines the binary relation \enquote{object $X$ can be rewritten to object $Y$ using rules from the rule set} on the objects of the category $\mathcal{C}$.
 \begin{definition}\label{def:rewriting-chain}
 Let \(\mathcal{R}\) be a rule set and let \(\mathfrak{F}\) be a DPO rewriting framework.
-An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}\)-chain. Hence, when the context is clear, we simply call it a \textbf{rewriting chain}.
+An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}\)-chain.
+
+When the context is clear, we simply call it a \textbf{rewriting chain}.
 \end{definition}
 
 \begin{example}
     \label{example:preliminaries:dggdfgnkfsjksfkjsf}
-    Consider the rewriting rule shown below. It replaces an occurrence of the graph 
+    Consider the rewriting rule below. It replaces an occurrence of the graph 
 \raisebox{2pt}{
             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
             \node [draw,circle] (z) at (-1,0) {};
@@ -73,7 +75,8 @@ An \textbf{\((\mathcal{R},\mathfrak{F})\)-rewriting chain} is a \(\mathop{\Right
     %     \label{fig:preliminaries:graph_transformation_rule_nonterminating}
     % \end{figure} 
             \end{center} 
-   A sequence of rewriting steps, to be read left to right. In each graph, the subgraph to be replaced to obtain the next graph is highlighted in red.
+
+    A looping rewriting chain using this rule can be the following, to be read left to right. In each graph, the subgraph to be replaced to obtain the next graph is highlighted in red.
         \begin{figure}[H]
            \centering
           \resizebox{\textwidth}{!}{
@@ -163,7 +166,7 @@ which deletes an edge.
                 \end{tikzpicture}
                 }
             \end{center}
-Any rewriting chain using this rule is finite, because each rewriting step decreases the number of edges by one and a graph has only finitely many edges by definition.
+Any rewriting chain using this rule is finite, because each rewriting step decreases the number of edges by one and a graph has only a finite number of edges by definition.
 
 However, in many cases, an interesting property can be proved even if the whole rule set is not terminating. 
 Take the system with rules $\alpha$ and $\beta$ shown below. Rule~$\alpha$ removes one edge per application; rule~$\beta$ introduces a new node. 
@@ -235,7 +238,7 @@ In particular, $R$ is \textbf{terminating} (or terminates) if it is terminating 
 
 For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the empty relation, since any $(\mathop{>} \mathop{\cup} \emptyset)$-chain contains only finitely many $>$-steps. The relation $>$ is also terminating relative to $\geq$ on $\mathbb{N}$, since any $(\mathop{>} \mathop{\cup} \mathop{\geq})$-chain can only contain finitely many $>$-steps. 
 
-Note that termination and well-foundedness are the same property of a binary relation $\to$ described from two perspectives. Operationally, we read $x \mathop{\to} y$ as \enquote{$x$ can be transformed to $y$}; the absence of infinite $\rightarrow$-chains therefore means that any transformation sequence starting from an initial object $x$ is finite, i.e. every computation or rewrite sequence eventually terminates. Structurally, we read $x \mathop{\to} y$ as \enquote{$x$ is constructed from $y$}; the absence of infinite $\to$-chains then implies that every object $x$ can be traced back along a finite chain to an element that is not constructed from any other, so the structure is well-founded. In this thesis we adopt the operational viewpoint and use the term termination.
+% Note that termination and well-foundedness are the same property of a binary relation $\to$ described from two perspectives. Operationally, we read $x \mathop{\to} y$ as \enquote{$x$ can be transformed to $y$}; the absence of infinite $\rightarrow$-chains therefore means that any transformation sequence starting from an initial object $x$ is finite, i.e. every computation or rewrite sequence eventually terminates. Structurally, we read $x \mathop{\to} y$ as \enquote{$x$ is constructed from $y$}; the absence of infinite $\to$-chains then implies that every object $x$ can be traced back along a finite chain to an element that is not constructed from any other, so the structure is well-founded. In this thesis we adopt the operational viewpoint and use the term termination.
 
 Relative termination 
 carries over to rewriting systems in a straightforward way via their associated rewriting relations.
@@ -245,5 +248,6 @@ carries over to rewriting systems in a straightforward way via their associated 
      We say that $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\mathop{\Rightarrow}_{\mathcal{S}, \mathfrak{F}}$ if 
      $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ is \textbf{terminating relative to} $\mathop{\Rightarrow}_{\mathcal{S}, \mathfrak{F}}$.
 \end{definition}
-In practice, to prove termination of a rewriting system $\mathcal{R}$, one partitions the set of rules into two disjoint subsets \( \mathcal{B} \) and \( \mathcal{A} \) with non-empty $\mathcal{A}$ such that \( \mathcal{A} \) terminates relative to \( \mathcal{B} \), if $\mathcal{B}$ is not empty then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.
+In practice, to prove termination of a rewriting system $\mathcal{R}$, one partitions the set of rules into two disjoint subsets \( \mathcal{B} \) and \( \mathcal{A} \) with non-empty $\mathcal{A}$ such that \( \mathcal{A} \) terminates relative to \( \mathcal{B} \). 
+If $\mathcal{B}$ is empty then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.
  
