@@ -1,10 +1,10 @@
 LyonParallel is a prototype tool, written in OCaml, for the analysis of DPO graph rewriting systems.
 It implements the type graph method presented by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} and its extension in Chapter~\ref{chap:nwf}, and it also implements the morphism counting method in Chapter~\ref{chap:subgraph_counting} and its extension in Chapter~\ref{chap:antipattern}. 
 For DPO graph rewriting systems with monic matches,
-the type graph method presented by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} is more powerful than the versions presented by Zantema et al. and Bruggink et al.~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}, which are implemented in TORPAcyc~\cite{TORPAcyc} and Grez~\cite{grez}. The method presented by Endrullis and Overbeek does not have a publicly available implementation.  
+the type graph method presented by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} is more powerful than the versions presented by Zantema et al. and Bruggink et al.~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}, which are implemented in TORPAcyc~\cite{TORPAcyc} and Grez~\cite{grez}. At the time of writing and to the best of our knowledge, the method presented by Overbeek and Endrullis has no publicly available implementation.
 
 LyonParallel implements the notions of DPO rewriting systems on finite directed, edge-labeled multigraphs introduced in Chapter~\ref{chap:preliminaries}. Using the \texttt{REPL} (Read-Eval-Print Loop)\textemdash{}an interactive environment that reads user commands, evaluates them, prints results, and waits for the next input\textemdash{}users can select a set of rules encoded in the tool, then choose a method to partition the rules of the system into two sets $\mathcal{A}$ and $\mathcal{B}$ such that $\mathcal{A}$ terminates relative to $\mathcal{B}$. If such a partition is found, the tool replaces the current rule set with \(\mathcal{B}\) and a new iteration begins; otherwise, users may try a different method. When the rule set becomes empty, the termination of the original system is proved.
-\section{DPO graph rewriting systems on finite directed edge-labeled multigraphs}
+\section{DPO graph rewriting systems}
 \label{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}
 \subsection{Labeled graphs}
 \label{lyonparallel:sec:labeled_graphs}
@@ -14,6 +14,7 @@ The representation of a labeled graph is constructed using the function \colorbo
 For example, consider the graph rewriting rule:
 % \begin{figure}[H]
 %       \centering 
+
       \begin{center}
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{

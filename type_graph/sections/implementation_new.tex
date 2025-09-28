@@ -1,9 +1,10 @@
 % We have implemented both our approach and the one proposed by Endrullis and Overbeek~\cite{endrullis2024generalized_arxiv_v2} for edge-labeled DPO rewriting systems into a unified tool. These two approaches can be launched in parallel and collaborate to establish termination of a DPO rewriting system.
-Chapter~\ref{chap:lyonparallel} provides a description of the implementation of our approach and the one proposed by Endrullis and Overbeek~\cite{endrullis2024generalized_arxiv_v2} in our tool, called LyonParallel.
+Chapter~\ref{chap:lyonparallel} provides a description of the implementation of our approach and the one proposed by Endrullis and Overbeek~\cite{endrullis2024generalized_arxiv_v2} in our tool, called LyonParallel and described in Section~\ref{chap:lyonparallel}.
 
 \paragraph{Searching Strategy.}
 Consider a DPO rewriting system $\mathcal{R}$. Given a fixed semiring $S$, a processor is spawned to iteratively search for a suitable weighted type graph over $S$.
-The search starts with a weighted type graph containing 1 node, incrementally increasing the node count by 1 until a maximum of 4 nodes is reached.
+The search begins with a weighted type graph containing $1$ node and increases the node count by $1$ until it reaches a maximum of 4 nodes.
+
 For a fixed number of nodes,
  if $S$ is a semiring over the natural numbers, the maximum edge weight is initialized to 1 and incremented by 1 (up to a limit of 3) if no suitable weighted type graph is found;
 if $S$ is a semiring over the real numbers, weights are constrained to be positive real numbers, and no upper bound is imposed.

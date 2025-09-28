@@ -72,7 +72,12 @@ Assigning different weights to measurements from distinct ruler-graphs enhences 
 For the remainder of this section, we assume: a set \( \mathcal{R} \mathop{=} \mathcal{A} \mathop{\cup} \mathcal{B} \) of injective DPO rewriting rules, a set \( \mathbb{X} \) of ruler-graphs, and a weight function \( s_{\mathbb{X}} \).  Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) denote a rule in \( \mathcal{R} \) and \( X \mathop{\in} \mathbb{X} \). 
 Recall that \(\mathfrak{M}\), defined in Definition~\ref{def:rewriting_framework}, denotes the DPO rewriting framework that associates each rule with the collection of all DPO diagrams witnessing rewriting steps using the rule, where the matches are monic.
 
-The rewriting relation \( \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{M}} \) terminates relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{M}}$ if the following hold: (i) for all \(G \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \mathop{>} w_{s_\mathbb{X}}(H) \), and (ii) for all \(G \mathop{\Rightarrow}_{\mathcal{B},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \mathop{\geq} w_{s_\mathbb{X}}(H) \). However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
+The rewriting relation \( \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{M}} \) terminates relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{M}}$ if the following conditions hold:
+\begin{itemize}
+    \item for all \(G \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \mathop{>} w_{s_\mathbb{X}}(H) \), and
+    \item for all \(G \mathop{\Rightarrow}_{\mathcal{B},\mathfrak{M}} H\), \( w_{s_\mathbb{X}}(G) \mathop{\geq} w_{s_\mathbb{X}}(H) \).
+\end{itemize}   
+However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
 Thus, we aim to provide a rule-based sufficient condition for termination.
 % \begin{remark}
 %     To simplify our presentation, we treat the following three notions interchangeably when the monomorphism \( h: A \mathop{\to} B \) is understood: the domain graph \( A \), the monomorphism \( h: A \mathop{\to} B \), the image \( h(A) \mathop{\subseteq} B \) (an occurrence of \( A \) in \( B \)).
@@ -175,25 +180,10 @@ Thus, the following equalities hold:
     \card{\operatorname{Mono}(X,H,\lnot r',m')} \\
     &+\card{\operatorname{Mono}(X,H,\lnot r',\lnot m')}.
 \end{flalign*}
-\noindent By the following Lemma~\ref{subgraph_counting:lem:decomp_w_u}, the following equalities hold:\todo{to do todo: xu : we cannot use a lemma before stating it. Move the lemma up?}
-\begin{flalign*}
-&\card{\operatorname{Mono}(X,G)} =
-\card{\operatorname{Mono}(X,C)}
-+
-\card{\operatorname{Mono}(X,L, \lnot l)}
-+
-\card{\operatorname{Mono}(X,G, \lnot l',\lnot m)},
- \\
- &\card{\operatorname{Mono}(X,H)} =
- \card{\operatorname{Mono}(X,C)}
- +
- \card{ \operatorname{Mono}(X,R, \lnot r) }
- +
- \card{ \operatorname{Mono}(X,H, \lnot r',\lnot m')}.  
-\end{flalign*}
+ The following lemma provides a way to rewrite the terms $\card{\operatorname{Mono}(X,G)}$ and $\card{\operatorname{Mono}(X,H)}$.
 \begin{lemma}
     \label{subgraph_counting:lem:decomp_w_u}
-        Let $X$ be a ruler-graph. For a pushout square as shown below:
+        Let $X$ be a ruler-graph. For a pushout square:
         \begin{center}
             \begin{tikzpicture}
             \node (A) at (0,0) {$A$};
@@ -214,6 +204,25 @@ Thus, the following equalities hold:
             \card{\operatorname{Mono}(X, C, \lnot \beta)} &= \card{\operatorname{Mono}(X, D, \lnot \beta', \alpha')}.
         \end{flalign*}
 \end{lemma}
+\begin{proof} 
+        See~\textsection~\ref{subgraph_counting:proof:dcomp_w_u}.
+\end{proof}
+By Lemma~\ref{subgraph_counting:lem:decomp_w_u}, the following equalities hold:
+\begin{flalign*}
+&\card{\operatorname{Mono}(X,G)} =
+\card{\operatorname{Mono}(X,C)}
++
+\card{\operatorname{Mono}(X,L, \lnot l)}
++
+\card{\operatorname{Mono}(X,G, \lnot l',\lnot m)},
+ \\
+ &\card{\operatorname{Mono}(X,H)} =
+ \card{\operatorname{Mono}(X,C)}
+ +
+ \card{ \operatorname{Mono}(X,R, \lnot r) }
+ +
+ \card{ \operatorname{Mono}(X,H, \lnot r',\lnot m')}.  
+\end{flalign*}
 Therefore, we obtain:
 \begin{flalign*}
       \card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)}
@@ -221,13 +230,7 @@ Therefore, we obtain:
      &\card{\operatorname{Mono}(X,G, \lnot l',\lnot m)} - 
      \card{\operatorname{Mono}(X,H, \lnot r',\lnot m') } 
 \end{flalign*}
-By the following Lemma~\ref{subgraph_counting:lem:xlnlmxrnr}, it can be simplified to:
-\begin{flalign*}
-     \card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)}
-    \mathop{=} &\card{\operatorname{Mono}(X,L)}- \card{\operatorname{Mono}(X,R)} \mathop{+}\\ 
-      &\card{\operatorname{Mono}(X,G, \lnot l',\lnot m)} - 
-    \card{\operatorname{Mono}(X,H, \lnot r',\lnot m') } 
-\end{flalign*}
+The following lemma provides a way to rewrite the term $\card{\operatorname{Mono}(X,L, \lnot l)}- \card{\operatorname{Mono}(X,R, \lnot r)}$.
 \begin{lemma}
     \label{subgraph_counting:lem:xlnlmxrnr}
     Let $X$ be a graph. Let $L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R$ be an injective DPO graph rewriting rule. We have 
@@ -237,6 +240,16 @@ By the following Lemma~\ref{subgraph_counting:lem:xlnlmxrnr}, it can be simplifi
        \card{\operatorname{Mono}(X, L)}  - \card{\operatorname{Mono}(X, R)} 
         \]
 \end{lemma}
+\begin{proof}
+        See~\textsection~\ref{subgraph_counting:proof:lem:xlnlmxrnr}.
+\end{proof}
+By Lemma~\ref{subgraph_counting:lem:xlnlmxrnr}, the following equalities hold:
+\begin{flalign*}
+     \card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)}
+    \mathop{=} &\card{\operatorname{Mono}(X,L)}- \card{\operatorname{Mono}(X,R)} \mathop{+}\\ 
+      &\card{\operatorname{Mono}(X,G, \lnot l',\lnot m)} - 
+    \card{\operatorname{Mono}(X,H, \lnot r',\lnot m') } 
+\end{flalign*}
 Consequently, the weight difference satisfies:
 \begin{flalign*}
      w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H)
@@ -672,7 +685,7 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
 
 \begin{example}
     \label{subgraph_counting:ex:grsaa_rx}
-    Consider the following injective DPO rule from~\cite[Example 6]{bruggink2014termination}:
+    Consider the rewriting rule~\cite[Example 6]{bruggink2014termination}:
     % in Figure~\ref{fig:subgraph_counting:grfksfdfgsdgsd}.  
     % \begin{figure}[H]
     %     \centering
@@ -1676,3 +1689,6 @@ more X-occurrences are implicitly destroyed than implicitly created by the rewri
             |\operatorname{Mono}(X, G, \lnot m, \lnot l')| \mathop{\geq} |\operatorname{Mono}(X, H, \lnot m', \lnot r')|
         \]
 \end{lemma}
+\begin{proof}
+        See~\textsection~\ref{proof:lem:w_u_l_not_geq_r_not}.
+\end{proof} 

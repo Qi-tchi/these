@@ -17,9 +17,7 @@ The techniques from some previous works~\cite{bruggink2014termination,bruggink20
     \label{subgraph_counting:ex_contrib_variant}
     The rewriting rule shown below 
     % in Figure~\ref{fig:subgraph_counting:ex_confdkjfakljl} 
-    is a variant of a rule presented in \cite[Example 6]{plump2018modular}, obtained by removing all edges in the interface:
-     
-    
+    is obtained by removing all edges in the interface of a rule presented by Plump~\cite[Example 6]{plump2018modular}:  
     \begin{center}
             \begin{tikzpicture}[scale=0.9]
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
@@ -55,8 +53,8 @@ The techniques from some previous works~\cite{bruggink2014termination,bruggink20
                     \draw[->] (r5) edge [loop right] node {$0$} (r5);
                     \draw[->] (r5) edge [loop left] node {$0$} (r5);
                 }
-                \node () at (38mm,-18mm) {$\leftarrowtail$};
-                \node () at (77mm,-18mm) {$\rightarrowtail$};
+                \node () at (38mm,-18mm) {$\leftarrow$};
+                \node () at (77mm,-18mm) {$\rightarrow$};
             \end{tikzpicture}
           \end{center}
 
@@ -221,8 +219,7 @@ The techniques from some previous works~\cite{bruggink2014termination,bruggink20
 The following example demonstrates the usefulness of a weight function that assigns distinct weight to measurements from different ruler-graphs.
 \begin{example} 
     \label{ex:overbeek_5d6}
-    Consider the rewriting rules presented in \cite[Example 5.6]{overbeek2024termination_lmcs} illustrated 
-    below.
+    Consider the rewriting rules~\cite[Example 5.6]{overbeek2024termination_lmcs}:
     \begin{center}
         \begin{center} 
           $\rho\mathop{=}$\input{subgraph_counting/tikz/OE_ex5d6_rho.tex}
@@ -328,10 +325,7 @@ The following example demonstrates the usefulness of a weight function that assi
 
 \begin{example}
   \label{ex_endrullis_6d3_endrullis_5d8}
-  Consider the following rule from~\cite[Example 6.3]{endrullis2024generalized_arxiv_v2}: 
-  %  in Figure~\ref{fig:subgraph_counting:ex_endrullis_6d3_endrullis_5d8}.
-  % \begin{figure}[H]
-  %     \centering
+  Consider the following rule~\cite[Example 6.3]{endrullis2024generalized_arxiv_v2}: 
   \begin{center}
           \begin{tikzpicture}
               \graphbox{$L$}{0mm}{0mm}{35mm}{25mm}{2mm}{-8mm}{
@@ -354,21 +348,10 @@ The following example demonstrates the usefulness of a weight function that assi
                       \draw[->]  (x) to (y);
                       \draw[->]  (y) to [bend left=0] (z);
                       \draw[->]  (z) to [bend left=0] (x);
-              }
-              % \graphbox{$R_x$}{40mm}{20mm}{35mm}{15mm}{2mm}{2mm}{
-              %     \node[draw,circle]  (x) at (-6mm,-10mm) {x};
-              %     \node[draw,circle]  (y) at (6mm,-10mm) {y};
-              %     \draw[->]  (x) to (y);
-              % }
-              \node () at (37mm,-12mm) {$\leftarrowtail$};
-              \node () at (78mm,-12mm) {$\rightarrowtail$};
-              % \node () at (57mm,2mm) {$\uparrowtail$};
-              % \node () at (38mm,2mm) {$\swarrowtail$};
-              % \node () at (79mm,2mm) {$\searrowtail$};
+              } 
+              \node () at (37mm,-12mm) {$\leftarrow$};
+              \node () at (78mm,-12mm) {$\rightarrow$};
           \end{tikzpicture}
-  %     \caption{}
-  %     \label{fig:subgraph_counting:ex_endrullis_6d3_endrullis_5d8}
-  % \end{figure}
   \end{center}
 
   Let $X$ be the graph 
@@ -391,10 +374,8 @@ The following example demonstrates the usefulness of a weight function that assi
 
 \begin{example} 
   \label{ex:overbeek_5d5}
-  Consider the following rewriting rul from~\cite[Example 5.5]{overbeek2024termination_lmcs}:
+  Consider the following rewriting rule~\cite[Example 5.5]{overbeek2024termination_lmcs}:
   \begin{center}
-  % \begin{figure}[H]
-  %   \centering
       \resizebox{0.95\textwidth}{!}{
           \begin{tikzpicture}
               \graphbox{$L$}{0mm}{0mm}{35mm}{25mm}{2mm}{-8mm}{
@@ -419,32 +400,21 @@ The following example demonstrates the usefulness of a weight function that assi
                       \draw[->]  (y) to [bend left=0] (z);
                       \draw[->]  (z) to [bend left=0] (x);
               }
-              % \graphbox{$R_x$}{40mm}{20mm}{35mm}{15mm}{2mm}{2mm}{
-              %     \node[draw,circle]  (x) at (-6mm,-10mm) {x};
-              %     \node[draw,circle]  (y) at (6mm,-10mm) {y};
-              %     \draw[->]  (x) to (y);
-              % }
-              \node () at (37mm,-12mm) {$\leftarrowtail$};
-              \node () at (78mm,-12mm) {$\rightarrowtail$};
-              % \node () at (57mm,2mm) {$\uparrowtail$};
-              % \node () at (38mm,2mm) {$\swarrowtail$};
-              % \node () at (79mm,2mm) {$\searrowtail$};
+              \node () at (37mm,-12mm) {$\leftarrow$};
+              \node () at (78mm,-12mm) {$\rightarrow$};
           \end{tikzpicture}
       }
-  %     \caption{}
-  %     \label{fig:subgraph_counting:overbeek_5d5}
-  % \end{figure}
   \end{center}
     The termination of the system in the DPO rewriting framework with monic matches can be established using our approach; the argument is identical to that of Example~\ref{ex_endrullis_6d3_endrullis_5d8}.
 \end{example}
 
 \begin{example}
   \label{ex:plump_ex4}
-  Our method cannot prove the termination of the DPO rewriting system with monic matches from~\cite[Example 4]{plump2018modular}:
+  Our method cannot prove the termination of the DPO rewriting system with monic matches~\cite[Example 4]{plump2018modular}:
   %  in Figure~\ref{fig:subgraph_counting:ex_plump_ex4}.
   % \begin{figure}[H]
 \begin{center}
-  \resizebox{0.5\textwidth}{!}{
+  \resizebox{0.95\textwidth}{!}{
   $r_1\mathop{=}${ 
    \begin{tikzpicture}[baseline=-20mm]
          \graphbox{$L$}{0mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
@@ -454,13 +424,13 @@ The following example demonstrates the usefulness of a weight function that assi
            \draw[->] (x) to node [above] {$0$} (y);
            \draw[->] (y) to node [above] {$L$} (z);
          }
-         \graphbox{$K$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+         \graphbox{$K$}{39mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
            \node [draw, circle] (x) at (-10mm,0mm) {$1$};
            %\node [draw, circle] (y) at (0mm,0mm) {$2$};
            \node [draw, circle] (z) at (10mm,0mm) {3};
          }
          \begin{scope}[opacity=1]        
-         \graphbox{$R$}{72mm}{-11mm}{40mm}{15mm}{-4mm}{-9mm}{
+         \graphbox{$R$}{78mm}{-11mm}{40mm}{15mm}{-4mm}{-9mm}{
            \node [draw, circle] (x) at (-10mm,0mm) {$1$};
            \node [draw, circle] (y) at (0mm,0mm) {$2$};
            \node [draw, circle] (z) at (10mm,0mm) {3};
@@ -470,6 +440,8 @@ The following example demonstrates the usefulness of a weight function that assi
            \draw[->] (z) to node [above] {$1$} (w);
          }
          \end{scope}
+          \node () at (37mm,-19mm) {$\leftarrow$};
+          \node () at (76mm,-19mm) {$\rightarrow$};
        \end{tikzpicture}
   } 
   }
@@ -486,13 +458,13 @@ The following example demonstrates the usefulness of a weight function that assi
               \draw[->] (x) to node [above] {$R$} (y);
               \draw[->] (y) to node [above] {$1$} (z);
           }
-          \graphbox{$K$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+          \graphbox{$K$}{39mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
               \node [draw, circle] (x) at (-10mm,0mm) {$1$};
               %\node [draw, circle] (y) at (0mm,0mm) {$2$};
               \node [draw, circle] (z) at (10mm,0mm) {3};
           }
           \begin{scope}[opacity=1]        
-          \graphbox{$R$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+          \graphbox{$R$}{78mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
               \node [draw, circle] (x) at (-10mm,0mm) {$1$};
               \node [draw, circle] (y) at (0mm,0mm) {$2$};
               \node [draw, circle] (z) at (10mm,0mm) {3};
@@ -500,7 +472,9 @@ The following example demonstrates the usefulness of a weight function that assi
               \draw[->] (y) to node [above] {$R$} (z);
           }
           \end{scope}
-          \end{tikzpicture}
+          \node () at (37mm,-19mm) {$\leftarrow$};
+          \node () at (76mm,-19mm) {$\rightarrow$};
+        \end{tikzpicture}
       }
     }
    \end{center}
@@ -516,18 +490,20 @@ The following example demonstrates the usefulness of a weight function that assi
            \draw[->] (x) to node [above] {$B$} (y);
            \draw[->] (y) to node [above] {$L$} (z);
          }
-         \graphbox{$K$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+         \graphbox{$K$}{39mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
            \node [draw, circle] (x) at (-10mm,0mm) {$1$};
            %\node [draw, circle] (y) at (0mm,0mm) {$2$};
            \node [draw, circle] (z) at (10mm,0mm) {3};
          }
          \begin{scope}[opacity=1]        
-         \graphbox{$R$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+         \graphbox{$R$}{78mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
            \node [draw, circle] (x) at (-10mm,0mm) {$1$};
            \node [draw, circle] (y) at (0mm,0mm) {$2$};
            \draw[->] (x) to node [above] {$R$} (y);
          }
          \end{scope}
+          \node () at (37mm,-19mm) {$\leftarrow$};
+          \node () at (76mm,-19mm) {$\rightarrow$};
        \end{tikzpicture}
   }
       }
@@ -544,13 +520,13 @@ The following example demonstrates the usefulness of a weight function that assi
                 \draw[->] (x) to node [above] {$R$} (y);
                 \draw[->] (y) to node [above] {$B$} (z);
             }
-            \graphbox{$K$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+            \graphbox{$K$}{39mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
                 \node [draw, circle] (x) at (-10mm,0mm) {$1$};
                 %\node [draw, circle] (y) at (0mm,0mm) {$2$};
                 \node [draw, circle] (z) at (10mm,0mm) {3};
             }
             \begin{scope}[opacity=1]        
-            \graphbox{$R$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+            \graphbox{$R$}{78mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
                 \node [draw, circle] (x) at (-10mm,0mm) {$1$};
                 \node [draw, circle] (y) at (0mm,0mm) {$2$};
                 \node [draw, circle] (z) at (10mm,0mm) {3};
@@ -558,6 +534,8 @@ The following example demonstrates the usefulness of a weight function that assi
                 \draw[->] (y) to node [above] {$B$} (z);
             }
             \end{scope}
+            \node () at (37mm,-19mm) {$\leftarrow$};
+            \node () at (76mm,-19mm) {$\rightarrow$};
             \end{tikzpicture}
         }
       }
@@ -581,7 +559,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
 
 \begin{example}
   \label{ex:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8}
-  Consider the rewriting rules from~\cite[Example~3.8]{plump1995ontermination}:
+  Consider the rewriting rules~\cite[Example~3.8]{plump1995ontermination}:
   % in Figure~\ref{fig:subgraph_counting:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8}.
 
   % \begin{figure}[H]
@@ -596,13 +574,13 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
           \draw[->] (x) to node [above] {$a$} (y);
           \draw[->] (y) to node [above] {$b$} (z);
         }
-        \graphbox{$K_\rho$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+        \graphbox{$K_\rho$}{39mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
           %\node [draw, circle] (y) at (0mm,0mm) {$2$};
           \node [draw, circle] (z) at (10mm,0mm) {3};
         }
         \begin{scope}[opacity=1]        
-        \graphbox{$R_\rho$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+        \graphbox{$R_\rho$}{78mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
           \node [draw, circle] (y) at (0mm,0mm) {$2$};
           \node [draw, circle] (z) at (10mm,0mm) {3};
@@ -610,6 +588,8 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
           \draw[->] (y) to node [above] {$c$} (z);
         }
         \end{scope}
+          \node () at (37mm,-19mm) {$\leftarrow$};
+          \node () at (76mm,-19mm) {$\rightarrow$};
       \end{tikzpicture}
  }
 \end{center}
@@ -624,13 +604,13 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
           \draw[->] (x) to node [above] {$c$} (y);
           \draw[->] (y) to node [above] {$d$} (z);
       }
-      \graphbox{$K_\tau$}{36mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+      \graphbox{$K_\tau$}{39mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
           %\node [draw, circle] (y) at (0mm,0mm) {$2$};
           \node [draw, circle] (z) at (10mm,0mm) {3};
       }
       \begin{scope}[opacity=1]        
-      \graphbox{$R_\tau$}{72mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
+      \graphbox{$R_\tau$}{78mm}{-11mm}{35mm}{15mm}{0.5mm}{-9mm}{
           \node [draw, circle] (x) at (-10mm,0mm) {$1$};
           \node [draw, circle] (y) at (0mm,0mm) {$2$};
           \node [draw, circle] (z) at (10mm,0mm) {3};
@@ -638,6 +618,8 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
           \draw[->] (y) to node [above] {$b$} (z);
       }
       \end{scope}
+      \node () at (37mm,-19mm) {$\leftarrow$};
+      \node () at (76mm,-19mm) {$\rightarrow$};
       \end{tikzpicture}
   }
   \end{center}
@@ -667,7 +649,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
 
 \begin{example}
   \label{ex:overbeek_5d3}
-  Consider the following rewriting rules from~\cite[Example 5.3]{overbeek2024termination_lmcs}:
+  Consider the following rewriting rules~\cite[Example 5.3]{overbeek2024termination_lmcs}:
 \begin{center}
     $\rho\mathop{=}${ 
     \begin{tikzpicture}[baseline=-7mm]
@@ -675,38 +657,42 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
             \node[draw,circle] (x) at (0mm,0mm) {$1$};
             \draw[->] (x) edge [loop right] node {} (x);
         }
-        \graphbox{$K_\rho$}{24mm}{0mm}{23mm}{12mm}{2mm}{-5mm}{
+        \graphbox{$K_\rho$}{27mm}{0mm}{23mm}{12mm}{2mm}{-5mm}{
           \node[draw,circle] (x) at (0mm,0mm) {$1$};
         }
         \begin{scope}[opacity=1]        
-        \graphbox{$R_\rho$}{48mm}{0mm}{30mm}{12mm}{-1mm}{-5mm}{
+        \graphbox{$R_\rho$}{56mm}{0mm}{30mm}{12mm}{-1mm}{-5mm}{
           \node[draw,circle] (x) at (0mm,0mm) {$1$};
           \node[draw,circle] (y) at (10mm,0mm) {$2$};
         }
         \end{scope}
+          \node () at (25mm,-6mm) {$\leftarrow$};
+          \node () at (53mm,-6mm) {$\rightarrow$};
       \end{tikzpicture}
   }
   \end{center}
 
   \begin{center}
       $\tau\mathop{=}${
-      \begin{tikzpicture}[baseline=-18mm]
+      \begin{tikzpicture}[baseline=-18mm,scale=0.9]
           \graphbox{$L_\tau$}{0mm}{-11mm}{32mm}{12mm}{2mm}{-7mm}{
           \node[draw,circle]  (x) at (-6mm,0mm) {$1$};
           \node[draw,circle] (y) at (6mm,0mm) {$2$};
           \draw[->]  (x) to (y);
           }
-          \graphbox{$K_\tau$}{33mm}{-11mm}{32mm}{12mm}{2.5mm}{-7mm}{
+          \graphbox{$K_\tau$}{36mm}{-11mm}{32mm}{12mm}{2.5mm}{-7mm}{
               \node[draw,circle]  (x) at (-6mm,0mm) {$1$};
               \node[draw,circle]  (y) at (6mm,0mm) {$2$};
           }
           \begin{scope}[opacity=1]        
-          \graphbox{$R_\tau$}{66mm}{-11mm}{40mm}{12mm}{-2mm}{-7mm}{
+          \graphbox{$R_\tau$}{72mm}{-11mm}{40mm}{12mm}{-2mm}{-7mm}{
               \node[draw,circle]  (x) at (-6mm,0mm) {$1$};
               \node[draw,circle]  (y) at (6mm,0mm) {$2$};
               \node[draw,circle]  (z) at (17mm,0mm) {3};
           }
           \end{scope}
+          \node () at (34mm,-17mm) {$\leftarrow$};
+          \node () at (70mm,-17mm) {$\rightarrow$};
         \end{tikzpicture}
       }
   \end{center}
@@ -733,7 +719,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
 
 \begin{example} 
   \label{ex:endrullis2024_6d2}  
-  Consider the rewriting rule from~\cite[Example 6.2]{endrullis2024generalized_arxiv_v2}:
+  Consider the rule~\cite[Example 6.2]{endrullis2024generalized_arxiv_v2}:
   %  in Figure~\ref{fig:subgraph_counting:ex_endrullis2024_6d2}.
 
   % \begin{figure}[H]
@@ -746,30 +732,33 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
 
          \node[draw,circle]  (y) at (6mm,0mm) {$2$};  
        }  
-       \graphbox{$K$}{33mm}{-11mm}{32mm}{17mm}{2mm}{-11mm}{  
+       \graphbox{$K$}{36mm}{-11mm}{32mm}{17mm}{2mm}{-11mm}{  
         \node[draw,circle]  (x) at (-6mm,0mm) {$1$};  
         \node[draw,circle]  (y) at (6mm,0mm) {$2$};  
        }  
-       \graphbox{$R$}{66mm}{-11mm}{32mm}{17mm}{1mm}{-11mm}{  
+       \graphbox{$R$}{72mm}{-11mm}{32mm}{17mm}{1mm}{-11mm}{  
         \node[draw,circle]  (x) at (-6mm,0mm) {$1$};  
         \node[draw,circle]  (y) at (6mm,0mm) {$2$};  
         \draw[->]  (x) to (y);  
-       }    
+       }     
+    \node () at (34mm,-19mm) {$\leftarrow$};
+    \node () at (70mm,-19mm) {$\rightarrow$};
  \end{tikzpicture}  
 \end{center}
 %  \caption{}
 %  \label{fig:subgraph_counting:ex_endrullis2024_6d2}
 % \end{figure}
 
- Our method can prove its termination with the ruler-graph \tikz[baseline=-0.5ex]{
+ Our method proves termination for this rule using the ruler-graph 
+ \tikz[baseline=-0.5ex]{
   \node[draw,circle] (x) at (0,0) {};
   \draw[->] (x) edge[loop right] node  {} (x);
-} of weight $1$.
+} with weight~$1$.
 \end{example} 
 
 \begin{example}[Limitation]
   \label{ex:plump95_4d1}
- Consider the rewriting rule from~\cite[Example 4.1]{plump1995ontermination}:
+ Consider the rule~\cite[Example 4.1]{plump1995ontermination}:
 %  in Figure~\ref{fig:subgraph_counting:ex_plump95_4d1}.
   % \begin{figure}[H]
   %   \centering
@@ -786,7 +775,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
           \draw[->]  (n1) to node [right] {$f$}  (n3);
           \draw[->]  (n1) to node [right] {$f$}  (n4);
         }
-        \graphbox{$K$}{33mm}{0}{32mm}{40mm}{0}{-0}{
+        \graphbox{$K$}{36mm}{0}{32mm}{40mm}{0}{-0}{
           \node[draw,circle]  (n1) at (0,-6mm) {$1$};
           \node[draw,circle]   (n2) at (0mm,-26mm) {$2$};
           \node[draw,circle]   (n3) at (-10mm,-26mm) {3};
@@ -794,7 +783,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
           \draw[->]  (n2) edge [loop below] node  {$a$} (n2);
           \draw[->]  (n3) edge [loop below] node  {$b$} (n3);
         }
-        \graphbox{$R$}{66mm}{0}{32mm}{40mm}{0}{-0}{
+        \graphbox{$R$}{72mm}{0}{32mm}{40mm}{0}{-0}{
           \node[draw,circle]  (n1) at (0,-6mm) {$1$};
           \node[draw,circle]   (n2) at (0mm,-26mm) {$2$};
           \node[draw,circle]   (n3) at (-10mm,-26mm) {3};
@@ -805,6 +794,8 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
           \draw[->]  (n1) edge [bend right] node [left] {$f$}  (n4);
           \draw[->]  (n1) to node [right] {$f$}  (n4);
         }   
+        \node () at (34mm,-19mm) {$\leftarrow$};
+      \node () at (70mm,-19mm) {$\rightarrow$};
   \end{tikzpicture}
   %   \caption{}
   %   \label{fig:subgraph_counting:ex_plump95_4d1}
@@ -833,7 +824,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
 
 \begin{example}[Limitation]
     \label{ex:endrullis:d3:limitation}  
-    Our method fails to prove termination of the following rewriting rule from \cite[Example D.3]{endrullis2024generalized_arxiv_v2}:
+    Our method fails to prove termination of the rewriting rule~\cite[Example D.3]{endrullis2024generalized_arxiv_v2}:
     % \begin{figure}[H]
     %   \centering
     \begin{center}
@@ -842,14 +833,16 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
            \node[draw,circle]  (x) at (-6mm,0mm) {$1$};  
            \node[draw,circle]  (y) at (6mm,0mm) {};  
          }  
-         \graphbox{$K$}{33mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{  
+         \graphbox{$K$}{36mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{  
            \node[draw,circle]  (x) at (-6mm,0mm) {$1$};  
          }  
-         \graphbox{$R$}{66mm}{-11mm}{32mm}{15mm}{1mm}{-8mm}{  
+         \graphbox{$R$}{72mm}{-11mm}{32mm}{15mm}{1mm}{-8mm}{  
           \node[draw,circle]  (x) at (-6mm,0mm) {$1$};  
           \node[draw,circle]  (y) at (6mm,0mm) {};  
           \draw[->]  (x) to (y);  
          }    
+           \node () at (34mm,-19mm) {$\leftarrow$};
+          \node () at (70mm,-19mm) {$\rightarrow$};
    \end{tikzpicture}
   \end{center}
 
@@ -858,7 +851,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
 
 \begin{example}[Limitation]
     \label{ex:overbeek:5d2:limitation}
-    Consider a rewriting rule given by Overbeek and Endrullis in~\cite[Example 5.2]{overbeek2024termination_lmcs} shown below.
+    Consider the rewriting rule~\cite[Example 5.2]{overbeek2024termination_lmcs}:
     % in Figure~\ref{fig:subgraph_counting:ex_overbeek_5d2}.
   % \begin{figure}[H]
   %   \centering
@@ -869,15 +862,17 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
             \node[draw,circle]   (y) at (6mm,0mm) {$2$};
             \draw[->]  (x) to (y);
           }
-          \graphbox{$K$}{33mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{
+          \graphbox{$K$}{36mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{
             \node[draw,circle]  (x) at (-6mm,0mm) {$1$};
             \node[draw,circle]  (y) at (6mm,0mm) {$2$};
             \draw[->]  (x) to (y);
           }
-          \graphbox{$R$}{66mm}{-11mm}{32mm}{15mm}{1mm}{-8mm}{
+          \graphbox{$R$}{72mm}{-11mm}{32mm}{15mm}{1mm}{-8mm}{
             \node[draw,circle]  (x) at (0mm,0mm) {1 2};
             \draw[->]  (x) edge [loop right] (x);
           }  
+          \node () at (34mm,-19mm) {$\leftarrow$};
+          \node () at (70mm,-19mm) {$\rightarrow$};
     \end{tikzpicture} 
   \end{center}
     The termination of this rule is not in the scope of our method due to its non-node-injective right-hand side morphism. It can be proved using the method proposed by Overbeek et al.~\cite{overbeek2024termination_lmcs}.
@@ -885,7 +880,7 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
  
 \begin{example}[Limitation]
   \label{ex:overbeek:5d6_bis:limitation} 
-  Consider the rewriting rule with monic matches from~\cite[Example 5.6]{overbeek2024termination_lmcs}:
+  Consider the rewriting rule with monic matches~\cite[Example 5.6]{overbeek2024termination_lmcs}:
   \begin{center}
     $\rho'\mathop{=}$\scalebox{0.9} { \input{subgraph_counting/tikz/OE_ex5d6_rho_bis.tex}}
     % \caption{}

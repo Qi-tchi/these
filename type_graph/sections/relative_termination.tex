@@ -228,15 +228,16 @@ Take the system with rules $\alpha$ and $\beta$ shown below. Rule~$\alpha$ remov
     %     \label{fig:intro:node_addition_rule}
     % \end{subfigure} 
             \end{center}
-Because $\beta$ can always be re-applied to generate additional nodes, infinite rewriting sequences exist. Conversely, $\alpha$ is applicable only finitely many times: every firing strictly decreases the number of edges, and no rule increases it. Since the initial graph is finite, the possibility of non-termination stems exclusively from $\beta$. This attribution illustrates the broader idea of \emph{relative termination} as introduced by Klop~\cite{klop1987term} and explored in~\cite{geser1990relative,kassing2024dependency,endrullis2024generalized_icgt,zantema2014termination,bruggink2014termination,bruggink2015proving}.
+Because $\beta$ can always be re-applied to generate additional nodes, infinite rewriting sequences exist. Conversely, $\alpha$ is applicable only 
+a finite number of times in any rewriting chain, since each application removes an edge and no rule adds edges. Since the initial graph is finite, the possibility of non-termination stems exclusively from $\beta$. This attribution illustrates the broader idea of \emph{relative termination} as introduced by Klop~\cite{klop1987term} and explored in~\cite{geser1990relative,kassing2024dependency,endrullis2024generalized_icgt,zantema2014termination,bruggink2014termination,bruggink2015proving}.
 \begin{definition}
 Let $A$ be a collection of objects and let $R$ and $S$ be binary relations on $A$. 
 We say that $R$ is \textbf{terminating relative to} $S$ (or that $R$ \textbf{terminates relative to} $S$) if 
-any $(R \mathop{\cup} S)$-chain contains only finitely many $R$-steps.
+any $(R \mathop{\cup} S)$-chain contains only a finite number of $R$-steps.
 In particular, $R$ is \textbf{terminating} (or terminates) if it is terminating relative to the empty relation $\emptyset$.
 \end{definition}
 
-For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the empty relation, since any $(\mathop{>} \mathop{\cup} \emptyset)$-chain contains only finitely many $>$-steps. The relation $>$ is also terminating relative to $\geq$ on $\mathbb{N}$, since any $(\mathop{>} \mathop{\cup} \mathop{\geq})$-chain can only contain finitely many $>$-steps. 
+For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the empty relation, since any $(\mathop{>} \mathop{\cup} \emptyset)$-chain contains only a finite number of $>$-steps. The relation $>$ is also terminating relative to $\geq$ on $\mathbb{N}$, since any $(\mathop{>} \mathop{\cup} \mathop{\geq})$-chain can only contain a finite number of $>$-steps.
 
 % Note that termination and well-foundedness are the same property of a binary relation $\to$ described from two perspectives. Operationally, we read $x \mathop{\to} y$ as \enquote{$x$ can be transformed to $y$}; the absence of infinite $\rightarrow$-chains therefore means that any transformation sequence starting from an initial object $x$ is finite, i.e. every computation or rewrite sequence eventually terminates. Structurally, we read $x \mathop{\to} y$ as \enquote{$x$ is constructed from $y$}; the absence of infinite $\to$-chains then implies that every object $x$ can be traced back along a finite chain to an element that is not constructed from any other, so the structure is well-founded. In this thesis we adopt the operational viewpoint and use the term termination.
 
