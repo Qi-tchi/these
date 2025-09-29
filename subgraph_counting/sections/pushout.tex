@@ -102,9 +102,7 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
 \). 
 \end{definition}
 \begin{example}
-Consider the following diagram in the category \textbf{Graph}. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
-%  in Figure~\ref{fig:preliminaries:span_cospan}. 
- $(\alpha, \beta)$ is a span, and $(\beta', \alpha')$ is a cospan.
+Consider the diagram below in the category \textbf{Graph}, where the numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
 
 \begin{center}
         \resizebox{0.9\textwidth}{!}{
@@ -159,6 +157,9 @@ Consider the following diagram in the category \textbf{Graph}. The numbers insid
         \end{tikzpicture}
         }
     \end{center}
+
+%  in Figure~\ref{fig:preliminaries:span_cospan}. 
+ $(\alpha, \beta)$ is a span, and $(\beta', \alpha')$ is a cospan.
 \end{example}
 
 \begin{definition}[\cite{barr1990category}]
@@ -269,7 +270,11 @@ The pushout is a construction in category theory that can often be thought of as
     \label{def:cat:po} 
     A \textbf{pushout} of a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \), shown in the following diagram,
     %  in Figure~\ref{fig:preliminaries:pushout_sdfkjasdlgjfl}
-    is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \), and for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \mathop{\star} \gamma' \mathop{=} \beta \mathop{\star} \gamma \) holds, then there is a unique morphism \(\delta : D  \mathop{\to} E\) such that \( \gamma' \mathop{=} \beta' \mathop{\star} \delta \) and \( \gamma \mathop{=} \alpha' \mathop{\star} \delta \).
+    is defined as a cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) such that the following conditions hold:
+    \begin{itemize}
+        \item \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \),
+        \item for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \mathop{\star} \gamma' \mathop{=} \beta \mathop{\star} \gamma \) holds, then there is a unique morphism \(\delta : D  \mathop{\to} E\) such that \( \gamma' \mathop{=} \beta' \mathop{\star} \delta \) and \( \gamma \mathop{=} \alpha' \mathop{\star} \delta \).
+    \end{itemize} 
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -449,7 +454,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
 
 \begin{example}
     \label{ex:cat:pushout_non_injective_ssss}
-    Consider the diagram in the category \textbf{Graph} shown below. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
+    Consider the diagram in the category \textbf{Graph} shown below, where the numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
     % The diagram 
     % in Figure~\ref{fig:preliminaries:pushout_non_injective} is a pushout square in the category \textbf{Graph}. 
     In this example, $\beta$ is not injective. Therefore, some elements are merged in the pushout object $G$.
@@ -519,7 +524,11 @@ The \emph{pullback} is the dual construction of the pushout, and it can be thoug
    A \textbf{pullback} of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) 
 %    , shown below,
 %    in Figure~\ref{fig:preliminaries:pullback_ssdsfd},
-is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \), and for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \mathop{\star} \beta' \mathop{=} \gamma \mathop{\star} \alpha'\) holds, then there is a unique morphism \(\delta: E  \mathop{\to} A\) such that $\gamma' \mathop{=} \delta \mathop{\star} \alpha$ and $\gamma \mathop{=} \delta \mathop{\star} \beta$. 
+is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) such that the following conditions hold:
+\begin{itemize}
+    \item  \( \alpha \mathop{\star} \beta' \mathop{=} \beta \mathop{\star} \alpha' \),
+    \item for every span \( B \overset{\gamma'}{\leftarrow} E \overset{\gamma}{\rightarrow} C \) if \(\gamma' \mathop{\star} \beta' \mathop{=} \gamma \mathop{\star} \alpha'\) holds, then there is a unique morphism \(\delta: E  \mathop{\to} A\) such that $\gamma' \mathop{=} \delta \mathop{\star} \alpha$ and $\gamma \mathop{=} \delta \mathop{\star} \beta$.
+\end{itemize}  
     % \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -553,7 +562,9 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
     the pullback 
     of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) is the span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) where
     the pullback object $A$ is the set $A \mathop{=} \set{(b,c) \mathop{\mid} \beta (c) \mathop{=} \alpha (b)} \mathop{\subseteq} B \mathop{\times} C$; $\alpha$ and $\beta$ are defined as the corresponding projections, e.g., $\alpha((b, c)) \mathop{=} b$ and $\beta((b, c)) \mathop{=} c$.
-    Consider the following diagram:
+    Consider the following diagram in the category \textbf{Set}, where 
+    sets are drawn as boxes,
+    circles represent elements of sets, and numbers inside circles indicate how the functions map those elements.
     \begin{center}
       \resizebox{0.7\textwidth}{!}{
       \begin{tikzpicture}

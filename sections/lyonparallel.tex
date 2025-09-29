@@ -190,8 +190,8 @@ For example, consider the DPO graph rewriting system that consists of the rule:
               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
           }    
-          \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
-          \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
+          \node () at (37mm,-7mm) {$\overset{l}{\leftarrowtail}$};
+          \node () at (67mm,-7mm) {$\overset{r}{\rightarrowtail}$};
           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
     \end{center}
@@ -249,7 +249,7 @@ and the injective graph homomorphism is shown below:
         \draw[->] (l3) edge [loop below] node {$c$} (l3);
       }    
     %   \node () at (37mm,-10mm) {$\leftarrowtail$};
-      \node () at (67mm,-10mm) {$\rightarrowtail$};
+      \node () at (67mm,-9mm) {$\rightarrowtail$};
   \end{tikzpicture}
 %   \caption{}
 %   \label{fig:intro:graph_transformation_rule_anti_patternsfs}
@@ -383,8 +383,8 @@ The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewr
               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
           }    
-          \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
-          \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
+          \node () at (37mm,-7mm) {$\overset{l}{\leftarrowtail}$};
+          \node () at (67mm,-7mm) {$\overset{r}{\rightarrowtail}$};
           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
     \end{center}
@@ -435,7 +435,7 @@ Consider the graph rewriting system presented in Example~\ref{subgraph_counting:
                 \node () at (77mm,-18mm) {$\rightarrowtail$};
             \end{tikzpicture}
         \end{center}
-Its termination cannot be proved using the weighted type graph method presented in~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt} and in Chapter~\ref{chap:weighted_type_graphs}. However, its relative termination with respect to the empty set can be proved using the morphism counting method.
+Its termination cannot be proved using the weighted type graph method presented in~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt} and in Chapter~\ref{chap:nwf}. However, its relative termination with respect to the empty set can be proved using the morphism counting method.
 
 The following sequence of commands selects the system, then uses the morphism counting method without forbidden patterns presented in Chapter~\ref{chap:subgraph_counting} to analyse the relative termination of the system.
 \begin{minted}[style=bw]{bash}
@@ -469,9 +469,9 @@ The ruler-graph is illustrated below.
         \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
                         \coordinate (delta) at (0,-18mm);
-                        \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
-                        \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
-                        \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
+                        \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {};
+                        \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {};
+                        \node[draw,circle] (l3) at ($(delta)+(0,0)$) {};
                         \draw[->] (l1) -- (l3) node[midway,left] {$s$};
                         \draw[->] (l2) -- (l3) node[midway,right] {$s$};
                 }
@@ -508,8 +508,8 @@ Consider the graph rewriting system shown in Example~\ref{antipattern:ex:grs_aca
             \draw[->] (l3) edge [loop below] node {$c$} (l3);
         }    
 
-        \node () at (37mm,-10mm) {$\leftarrowtail$};
-        \node () at (67mm,-10mm) {$\rightarrowtail$};
+        \node () at (37mm,-9mm) {$\leftarrowtail$};
+        \node () at (67mm,-9mm) {$\rightarrowtail$};
     \end{tikzpicture}
 \end{center}
 The rule is predefined in the tool and can be selected with the REPL command:
@@ -611,7 +611,7 @@ The summary contains also the information shown below.
 %     \label{fig:implemented:type_graph_summarydfsaldkfjsdl}
 % \end{figure}
 \end{center}
-The first block indicates that the rule whose representation is indexed by \colorbox{Ivory2}{0} (here the system's unique rule) can be eliminated using the type graph method over the real arctic semiring; no rules remain to be analyzed. The second block gives the information for constructing the type graph $\mathcal{T}$: two nodes and 5 edges with rational weights. The third block shows an equivalent type graph $\mathcal{T}'$ with integer weights obtained by multiplying the rational weights by their least common multiple. These type graphs are shown below:
+The first block indicates that the rule whose representation is indexed by \colorbox{Ivory2}{0} (here the system's unique rule) can be eliminated using the type graph method over the real arctic semiring; no rules remain to be analyzed. The second block gives the information for constructing the type graph $\mathcal{T}$: two nodes and 5 edges with rational weights. The third block shows an equivalent type graph $\mathcal{T}'$ with integer weights obtained by multiplying the rational weights by their least common multiple. These type graphs are shown below, where the numbers inside the nodes are their identifiers.
 % in Figure~\ref{fig:implemented:type_gdfdgggggg}.
 %  \begin{figure}[H]
 %     \centering

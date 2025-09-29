@@ -17,9 +17,9 @@ To enable such methods, distributed algorithms must be modeled using a formalism
 \section{Finite edge-labeled directed multigraphs} 
 Finite edge-labeled directed multigraphs provide an intuitive yet formal way to model states of distributed algorithms: computational units are represented by nodes; communication channels are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computational units and states of communication channels. 
 
-For example, consider the graph $\mathcal{G}$ shown in the following Figure~\ref{fig:graph_modeling_state_network}, enclosed in a box labeled with its name in the top-left corner. 
+For example, consider the graph $\mathcal{G}$ shown in Figure~\ref{fig:graph_modeling_state_network}, enclosed in a box labeled with its name in the top-left corner. 
 The graph models a distributed network of six computational units.
-Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. In Figure~\ref{fig:graph_modeling_state_network}, node $1$ labeled by $A$ represents an active computational unit, the other nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$. \todo{links on number only}
+Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. In Figure~\ref{fig:graph_modeling_state_network}, node $1$ labeled by $A$ represents an active computational unit, the other nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$. 
 \begin{figure}[H]
         \centering
         \resizebox{0.4\textwidth}{!}{
@@ -56,7 +56,7 @@ Graph transformation provides an intuitive yet formal way to model algorithm beh
 
 As an example, consider a distributed spanning-tree construction algorithm on a connected network, where one computational unit is active, all other nodes are neutral, and every channel is initially in state $0$. An example initial configuration is shown in Figure~\ref{fig:graph_modeling_state_network}. 
 The algorithm operates as follows: when an active unit detects a neutral neighbor via a channel in state $0$, it activates the neighbor and updates the channel to state $1$.
- This behavior is captured by the graph transformation rule in the following Figure~\ref{fig:intro:graph_transformation_rule_0}.
+ This behavior is captured by the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_0}.
  \begin{figure}[H]
         \centering 
         \begin{tikzpicture}
@@ -352,7 +352,7 @@ The graph $\mathcal{G}$ is thus decomposed into the occurrence of $\mathcal{L}$ 
 Then one modifies the occurrence of $\mathcal{L}$ (by removing some nodes and edges and adding some fresh nodes and edges while keeping the interface graph unchanged, and identifying nodes in the interface graph)
 to obtain an occurrence of $\mathcal{R}$. Finally, the result graph is obtained by gluing the occurrence of $\mathcal{R}$ with $\mathcal{C}$ via the interface graph $\mathcal{K}$.
 As an example, 
-consider the graph transformation rule, shown in the following Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}.
+consider the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}.
   \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -380,7 +380,7 @@ consider the graph transformation rule, shown in the following Figure~\ref{fig:i
     \caption{A DPO graph rewriting rule which removes the middle node and edges of an occurrence of $\mathcal{L}$.}
     \label{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}
 \end{figure}
-\noindent The graph $\mathcal{G}$ shown in Figure~\ref{fig:intro:graph_G} can be rewritten to yield the graph $\mathcal{H}$ shown in Figure~\ref{fig:intro:graph_H} by applying the following DPO graph rewriting rule, defined earlier,
+\noindent The graph $\mathcal{G}$ shown in Figure~\ref{fig:intro:graph_G} can be rewritten to yield the graph $\mathcal{H}$ shown in Figure~\ref{fig:intro:graph_H} by applying the rule in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}
 to the unique occurrence 
 \raisebox{2pt}{
             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
@@ -473,7 +473,7 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
     \caption{Graph $\mathcal{G}'$}
     \label{fig:intro:dangling_edge}
     \end{subfigure}
-    \caption{Application of the rule shown in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}: (a) host graph $\mathcal{G}$ with a unique occurrence of $\mathcal{L}$, (b) result $\mathcal{H}$, (c) decomposition of $\mathcal{G}$ into occurrence of $\mathcal{L}$ (in orange and black), interface K (black), and context C (in blue and black), (d) a graph $\mathcal{G}'$ where the rule is not applicable because deleting the middle node would create a dangling edge (in red), violating the dangling condition.}
+    \caption{Application of the rule shown in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}: (a) host graph $\mathcal{G}$ with a unique occurrence of $\mathcal{L}$, (b) result $\mathcal{H}$, (c) decomposition of $\mathcal{G}$ into interface K (in black), occurrence of $\mathcal{L}$ (in orange and black), and context C (in blue and black), (d) a graph $\mathcal{G}'$ where the rule is not applicable because deleting the middle node would create a dangling edge (in red).}
     \label{fig:intro:example_dpo_application_sfjsdlgjadlsss}
 \end{figure}
 

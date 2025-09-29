@@ -1,8 +1,40 @@
 While the type graph method~\cite{bruggink2014termination, bruggink2015proving,endrullis2024generalized_arxiv_v2} can prove termination for this example, it requires constructing an appropriate weighted type graph, a task that is difficult in general~\cite[\textsection 6]{bruggink2015proving}. 
 In contrast, our criterion requires checking simpler conditions.
 \begin{example}
-    \label{subgraph_counting:ex:termination:grsaa}
-    Consider the rewriting rule $\rho$ in Example~\ref{subgraph_counting:ex:grsaa_rx}, let $X$ be the graph \tikz[baseline=-0.5ex]{
+    \label{subgraph_counting:ex:termination:bruggink14_ex4_and6}
+    \label{subgraph_counting:ex:termination:bruggink15_ex2}
+    Consider the following rewriting rule $\rho$ (~\cite[Examples 4 and 6]{bruggink2014termination} and~\cite[Example 2]{bruggink2015proving}):
+     \begin{center}
+        \begin{tikzpicture}
+            \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (0mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+            }     
+            \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (5mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
+            }    
+            \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+                \coordinate (o) at (-5mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+            }    
+
+            \node () at (37mm,-8mm) {$\leftarrowtail$};
+            \node () at (67mm,-8mm) {$\rightarrowtail$};
+        \end{tikzpicture}
+    \end{center} 
+     Let $X$ be the graph \tikz[baseline=-0.5ex]{
         \node[draw,circle] (x) at (0,0) { };
         \node[draw,circle] (y) at (1,0) { }; 
         \node[draw,circle] (z) at (2,0) { };
@@ -755,6 +787,158 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
   \draw[->] (x) edge[loop right] node  {} (x);
 } with weight~$1$.
 \end{example} 
+
+\begin{example}
+  \label{subgraph_counting:ex:bruggink2015_ex4}
+  Our method can prove the termination of the following DPO rewriting system (\cite[Example 4]{bruggink2015proving}):
+\begin{center}
+  \resizebox{0.95\textwidth}{!}{
+  $\rho_1\mathop{=}${ 
+   \begin{tikzpicture}[baseline=-20mm]
+            \graphbox{$L$}{0mm}{-11mm}{45mm}{20mm}{-3mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                \node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (20mm,0mm) {$3$};
+                \draw[<-] (x) to node [above] {$0$} (y);
+                \draw[<-] (y) to node [above] {\text{count}} (z);
+                \draw[->]  (y) edge [loop above] node  {\text{incr}} (y);
+            }
+            \graphbox{$K$}{49mm}{-11mm}{25mm}{20mm}{4mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                %\node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (0mm,0mm) {3};
+            }
+            \begin{scope}[opacity=1]        
+            \graphbox{$R$}{78mm}{-11mm}{45mm}{20mm}{-3mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                \node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (20mm,0mm) {$3$};
+                \draw[<-] (x) to node [above] {$1$} (y);
+                \draw[<-] (y) to node [above] {\text{count}} (z);
+            }
+            \end{scope}
+            \node () at (47mm,-19mm) {$\leftarrow$};
+            \node () at (76mm,-19mm) {$\rightarrow$};
+      \end{tikzpicture}
+  } 
+  }
+ \end{center}
+ 
+ \begin{center}
+    \resizebox{0.95\textwidth}{!}{
+      $\rho_2\mathop{=}${ 
+       \begin{tikzpicture}[baseline=-20mm]
+            \graphbox{$L$}{0mm}{-11mm}{45mm}{20mm}{-3mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                \node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (20mm,0mm) {$3$};
+                \draw[<-] (x) to node [above] {$1$} (y);
+                \draw[<-] (y) to node [above] {\text{count}} (z);
+                \draw[->]  (y) edge [loop above] node  {\text{incr}} (y);
+            }
+            \graphbox{$K$}{49mm}{-11mm}{25mm}{20mm}{4mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                %\node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (0mm,0mm) {3};
+            }
+            \begin{scope}[opacity=1]        
+            \graphbox{$R$}{78mm}{-11mm}{45mm}{20mm}{-3mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                \node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (20mm,0mm) {$3$};
+                \draw[<-] (x) to node [above] {$c$} (y);
+                \draw[<-] (y) to node [above] {\text{count}} (z);
+            }
+            \end{scope}
+            \node () at (47mm,-19mm) {$\leftarrow$};
+            \node () at (76mm,-19mm) {$\rightarrow$};
+            \end{tikzpicture}
+      }
+    }
+   \end{center}
+
+\begin{center}
+      \resizebox{0.95\textwidth}{!}{
+  $\rho_3\mathop{=}${ 
+   \begin{tikzpicture}[baseline=-20mm]
+            \graphbox{$L$}{0mm}{-11mm}{45mm}{20mm}{-3mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                \node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (10mm,0mm) {$3$};
+                \draw[<-] (x) to node [above] {$0$} (y);
+                \draw[<-] (y) to node [above] {$c$} (z);
+            }
+            \graphbox{$K$}{49mm}{-11mm}{25mm}{20mm}{4mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                %\node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (0mm,0mm) {3};
+            }
+            \begin{scope}[opacity=1]        
+            \graphbox{$R$}{78mm}{-11mm}{45mm}{20mm}{-3mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                \node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (10mm,0mm) {$3$};
+                \draw[<-] (x) to node [above] {$1$} (y);
+                \draw[<-] (y) to node [above] {$0$} (z);
+            }
+            \end{scope}
+            \node () at (47mm,-19mm) {$\leftarrow$};
+            \node () at (76mm,-19mm) {$\rightarrow$};
+            \end{tikzpicture}
+  }
+      }
+ \end{center}
+ 
+ \begin{center}
+      \resizebox{0.95\textwidth}{!}{
+        $\rho_4\mathop{=}${ 
+          \begin{tikzpicture}[baseline=-20mm]
+            \graphbox{$L$}{0mm}{-11mm}{45mm}{20mm}{-3mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                \node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (20mm,0mm) {$3$};
+                \draw[<-] (x) to node [above] {$1$} (y);
+                \draw[<-] (y) to node [above] {$c$} (z);
+            }
+            \graphbox{$K$}{49mm}{-11mm}{25mm}{20mm}{4mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                %\node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (0mm,0mm) {3};
+            }
+            \begin{scope}[opacity=1]        
+            \graphbox{$R$}{78mm}{-11mm}{45mm}{20mm}{-3mm}{-14mm}{
+                \node [draw, circle] (x) at (-10mm,0mm) {$1$};
+                \node [draw, circle] (y) at (0mm,0mm) {$2$};
+                \node [draw, circle] (z) at (20mm,0mm) {$3$};
+                \draw[<-] (x) to node [above] {$c$} (y);
+                \draw[<-] (y) to node [above] {$0$} (z);
+            }
+            \end{scope}
+            \node () at (47mm,-19mm) {$\leftarrow$};
+            \node () at (76mm,-19mm) {$\rightarrow$};
+            \end{tikzpicture}
+        }
+      }
+   \end{center}
+  % The rule $\rho_1$ and $\rho_2$ can be eliminated by considering the ruler-graph \tikz[baseline=-0.5ex]{
+  %   \node[draw,circle] (x) at (0,0) { };
+  %               \draw[->]  (y) edge [loop right] node  {\text{incr}} (y);
+  % } with weight $1$, then the rule $\rho_3$ can be eliminated by considering occurrences of \tikz[baseline=-0.5ex]{
+  % \node[draw,circle] (x) at (0,0) { };
+  % \node[draw,circle] (y) at (1,0) { };
+  % \draw[->] (x) -- (y) node[midway, above] {$c$};
+  % }, finally, the rule $\rho_4$ can be eliminated by considering occurrences of \tikz[baseline=-0.5ex]{
+  % \node[draw,circle] (x) at (0,0) { };
+  % \node[draw,circle] (y) at (1,0) { };
+  % \draw[->] (x) -- (y) node[midway, above] {$1$};
+  % }.
+  The rules \(\rho_1\) and \(\rho_2\) can be eliminated by considering the ruler graph
+\tikz[baseline=-0.5ex]{\node[draw,circle] (y) at (0,0) {}; \draw[->] (y) edge[loop above] node {\text{incr}} (y); }
+with weight \(1\); the rule \(\rho_3\) can be eliminated by considering the ruler-graph
+\tikz[baseline=-0.5ex]{\node[draw,circle] (x) at (0,0) {}; \node[draw,circle] (y) at (1,0) {}; \draw[->] (x) -- (y) node[midway, above] {$c$}; } with weight \(1\);
+and, finally, \(\rho_4\) can be eliminated by considering occurrences of
+\tikz[baseline=-0.5ex]{\node[draw,circle] (x) at (0,0) {}; \node[draw,circle] (y) at (1,0) {}; \draw[->] (x) -- (y) node[midway, above] {$1$}; } with weight \(1\).
+\end{example}
 
 \begin{example}[Limitation]
   \label{ex:plump95_4d1}
