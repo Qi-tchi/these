@@ -1,10 +1,10 @@
 We work with directed, edge-labeled graphs admitting parallel edges. This notion differs from that of Barr and Wells \cite{barr1990category}, whose directed multigraphs with loops lack edge labels; from that of König et al. \cite{konig2018atutorial}, since we permit the collections of nodes and edges to be classes; and from that of Ehrig et al. \cite{ehrig1997handbook1}, where both nodes and edges are labeled, whereas here only edges are labeled.
 
 Other notions of graphs appear in the literature for distinct purposes, including hypergraphs \cite{plump1993hypergraph}, attributed graphs \cite{ehrig2006fundamentals}, and polygraphs \cite{ara2023polygraphs}. Our choice reflects that a category in the sense of category theory (discussed in the next section) can be seen, in the style of Barr and Wells \cite{barr1990category}, as a directed edge-labeled multigraph endowed with extra structure, with object and morphism collections allowed to be classes.
-
+ 
 \begin{definition}
     \label{def:graph}
-     Let \(\Sigma\) be a finite set of labels. A \textbf{directed edge-labeled multigraph} is a structure \((V, E, \opn{dom}, \opn{cod},\lambda)\) where
+     Let \(\Sigma\) be a finite set of labels. A \textbf{directed edge-labeled multigraph}\index{Directed edge-labeled multigraph} is a structure \((V, E, \opn{dom}, \opn{cod},\lambda)\) where
     \begin{itemize}
         \item $V$ is a collection of distinct elements called \textbf{nodes} (or \textbf{objects}),
         \item $E$ is a collection of distinct elements, disjoint from $V$, called \textbf{edges} (or \textbf{arrows}),
@@ -12,7 +12,7 @@ Other notions of graphs appear in the literature for distinct purposes, includin
         \item $\opn{cod}: E \mathop{\to} V$ is the \textbf{codomain} (or \textbf{target}) function assigning to each edge its target node,
         \item $\lambda: E \mathop{\to} \Sigma$ is the \textbf{labeling} function assigning to each edge a label from $\Sigma$.
     \end{itemize}
-    A directed edge-labeled multigraph is said to be \textbf{finite} if $V$ and $E$ are finite, and \textbf{discrete} if its edge set \(E\) is empty.
+    A directed edge-labeled multigraph is said to be \textbf{finite} if $V$ and $E$ are finite, and \textbf{discrete}\index{Directed edge-labeled multigraph!discrete} if its edge set \(E\) is empty.
     For a directed edge-labeled multigraph \( G \), we write \( V(G) \) for its set of nodes, \( E(G) \) for its set of edges, \( \opn{dom}_G \) for its domain function, \( \opn{cod}_G \) for its codomain function, and \( \lambda_G \) for its labeling function. $a : s\overset{l}{\rightarrow} t$ denotes an arrow $a$ labeled by $l$ from $s$ to $t$.
 \end{definition}
 A directed edge-labeled multigraph may have multiple edges from one node to another, as well as loops (edges from a node to itself), because different edges $u,v$ can have the same source and target nodes, i.e. $\opn{dom}(u) \mathop{=} \opn{dom}(v)$ and $\opn{cod}(u) \mathop{=} \opn{cod}(v)$.

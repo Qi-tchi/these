@@ -1,6 +1,6 @@
 Type graphs are weighted over semirings which are algebraic structures as defined below.
 \begin{definition} 
-    A \textbf{monoid} $(S, \mathop{\cdot}, e)$ is a set $S$ equipped with a binary operation $\mathop{\cdot} : S \mathop{\times} S \mathop{\rightarrow} S$ and having a special element $e$ such that:
+    A \textbf{monoid}\index{Monoid} $(S, \mathop{\cdot}, e)$ is a set $S$ equipped with a binary operation $\mathop{\cdot} : S \mathop{\times} S \mathop{\rightarrow} S$ and having a special element $e$ such that:
     \begin{itemize}
         \item {$\mathop{\cdot}$ is associative:} $ (x \mathop{\cdot} y) \mathop{\cdot} z \mathop{=} x \mathop{\cdot} (y \mathop{\cdot} z)$,
         \item {$e$ is an identity element:} $  e \mathop{\cdot} x \mathop{=} x \mathop{=} x \mathop{\cdot} e$.
@@ -10,7 +10,7 @@ Type graphs are weighted over semirings which are algebraic structures as define
 
 \begin{definition} 
     \label{def_semiring}
-        A \textbf{semiring} is a 5-tuple $(S,\mathop{\oplus},\mathop{\odot},0,1)$ satisfying the following conditions:
+        A \textbf{semiring}\index{Semiring} is a 5-tuple $(S,\mathop{\oplus},\mathop{\odot},0,1)$ satisfying the following conditions:
          \begin{itemize}
             \item {$(S,\mathop{\oplus},0)$ is a commutative monoid},
             \item {$(S,\mathop{\odot},1)$ is a monoid},
@@ -26,7 +26,7 @@ Type graphs are weighted over semirings which are algebraic structures as define
 The following definition of well-founded semirings is from~\cite{endrullis2024generalized_icgt}.
 \begin{definition}
     \label{def:well_founded_semiring}
-    A \textbf{well-founded semiring} $(S, \mathop{\oplus}, \mathop{\odot}, 0, 1,\prec, \mathop{\preceq})$ consists of
+    A \textbf{well-founded semiring}\index{Semiring!well-founded} $(S, \mathop{\oplus}, \mathop{\odot}, 0, 1,\prec, \mathop{\preceq})$ consists of
     \begin{itemize}
         \item a semiring $(S, \mathop{\oplus}, \mathop{\odot}, 0, 1)$, and
         \item non-empty orders $\prec, \mathop{\preceq} \mathop{\subseteq} S \mathop{\times} S$ for which $\mathop{\prec} \mathop{\subseteq} \mathop{\preceq}$ and $\mathop{\preceq}$ is reflexive,
@@ -58,7 +58,7 @@ The following definition of well-founded semirings is from~\cite{endrullis2024ge
             x \mathop{\odot} y \mathop{\prec} x' \mathop{\odot} y \mathop{\land} y \mathop{\odot} x \mathop{\prec} y \mathop{\odot} x'.
             &\tag{S4} \label{wfs:ax:s4}
         \end{align*}
-      The semiring is \textbf{strictly monotonic} if it additionally satisfies 
+      The semiring is \textbf{strictly monotonic}\index{Semiring!strictly monotonic} if it additionally satisfies 
         \begin{flalign*}
                 \hspace{5cm}x \mathop{\prec} x'  \mathop{\land} y \mathop{\preceq} y'
                 &\mathop{\Rightarrow}
@@ -69,7 +69,7 @@ The following definition of well-founded semirings is from~\cite{endrullis2024ge
 \begin{example}
     % The natural tropical semiring $\mathfrak{T} \mathop{=} (\mathbb{N} \mathop{\cup} \{\mathop{+\infty}\},\min,+,\mathop{+\infty}, 0, <, \leq)$ has domain $\mathbb{N} \mathop{\cup} \{\mathop{+\infty}\}$, the binary function symbol $\mathop{\oplus}$ interpreted by $\min$ and the binary function symbol $\mathop{\odot}$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $\mathop{+\infty}$ and $0_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N} \mathop{\cup} \{\mathop{+\infty}\}$. It is a well-founded semiring. It is not strictly monotonic because $2 < 3$ but $2 \mathop{\oplus} 2 \mathop{=} \min(2,2) \mathop{=} 2 \not < 2 \mathop{=} \min(3,2) \mathop{=} 3 \mathop{\oplus} 2$.
 
-    The natural tropical semiring 
+    The \textbf{natural tropical semiring}\index{Semiring!natural tropical} 
     $$
     \mathfrak{T} \mathop{=} 
     (\mathbb{N} \mathop{\cup} \{\mathop{+\infty}\},
@@ -101,7 +101,7 @@ The following definition of well-founded semirings is from~\cite{endrullis2024ge
 \begin{example}
     % The natural arctic semiring $\mathfrak{A} \mathop{=} (\mathbb{N} \mathop{\cup} \{\mathop{-\infty}\},\max,+,\mathop{-\infty}, 0,<,\mathop{\preceq})$ has domain $\mathbb{N} \mathop{\cup} \{\mathop{-\infty}\}$, the binary function symbol $\mathop{\oplus}$ interpreted by $\max$ and the binary function symbol $\mathop{\odot}$ interpreted by $+$, the constant symbols $0_s$ and $1_s$ interpreted by $\mathop{-\infty}$ and $0_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\mathop{\preceq}$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N} \mathop{\cup} \{\mathop{-\infty}\}$. It is a well-founded semiring. It is not strictly monotonic because $2 < 3$ but $2 \mathop{\oplus} 3 \mathop{=} \max(2,3) \mathop{=} 3 \not < 3 \mathop{=} \max(3,3) \mathop{=} 3 \mathop{\oplus} 3$.
 
-    The natural arctic semiring 
+    The \textbf{natural arctic semiring}\index{Semiring!natural arctic} 
     $$\mathfrak{A} \mathop{=} 
     (\mathbb{N} \mathop{\cup} \{\mathop{-\infty}\},
     \opn{max}_{\mathbb{N} \mathop{\cup} \{\mathop{-\infty}\}},
@@ -130,7 +130,7 @@ The following definition of well-founded semirings is from~\cite{endrullis2024ge
 
 \begin{example}
     % The natural arithmetic semiring $\mathfrak{N} \mathop{=} (\mathbb{N},+,*,0,1,<,\leq)$ has domain $\mathbb{N}$, the binary function symbol $\mathop{\oplus}$ interpreted by $+$ and the binary function symbol $\mathop{\odot}$ interpreted by $*$, the constant symbols $0_s$ and $1_s$ interpreted by $0_\mathbb{N}$ and $1_\mathbb{N}$, respectively, the binary relation symbols $\prec$ and $\leq$ interpreted by the canonical \enquote{strictly less than} and \enquote{less than or equal to} on $\mathbb{N}$. It is a strictly monotonic semiring.
-    The natural arithmetic semiring $\mathfrak{N} \mathop{=} (\mathbb{N},+_\mathbb{N},*_\mathbb{N},0_\mathbb{N},1_\mathbb{N},\mathop{<}_\mathbb{N},\leq_\mathbb{N}) $ is an instance of the well-founded semiring where
+    The \textbf{natural arithmetic semiring}\index{Semiring!natural arithmetic} $\mathfrak{N} \mathop{=} (\mathbb{N},+_\mathbb{N},*_\mathbb{N},0_\mathbb{N},1_\mathbb{N},\mathop{<}_\mathbb{N},\leq_\mathbb{N}) $ is an instance of the well-founded semiring where
     \begin{flalign*}
         S & \mathop{\longmapsto} \mathbb{N},
         \\
@@ -160,7 +160,7 @@ Let $(S, \mathop{\oplus}, \mathop{\odot}, 0, 1)$ be a semiring. We extend natura
  We define the exponentiation operation for elements of the semiring before defining formally the morphism weight.
 \begin{notation} 
     \label{wfs:def:exponentiation}
-Let $(S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S)$ be a semiring. We define the \textbf{exponentiation operation} for all $x \mathop{\in} S$ and $n \mathop{\in} \mathbb{N}$ by
+Let $(S, \mathop{\oplus}, \mathop{\odot}, 0_S, 1_S)$ be a semiring. We define the \textbf{exponentiation operation}\index{Semiring!exponentiation operation} for all $x \mathop{\in} S$ and $n \mathop{\in} \mathbb{N}$ by
    \begin{itemize}
         \item $ x^0 \isdef 1_S$,
         \item $x^{n+1} \isdef x^n \mathop{\odot} x$.

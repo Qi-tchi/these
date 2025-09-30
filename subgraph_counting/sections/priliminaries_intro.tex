@@ -2,9 +2,9 @@ While Definition~\ref{def:rewriting_inclusion} of injective rewriting rules and 
  
 \begin{definition}
     \label{def:rewriting_inclusion}
-    An \textbf{inclusion} is a function $f$ such that $\opn{dom}(f) \mathop{\subseteq} \opn{codom}(f)$ and $f(x) \mathop{=} x$ for every $x \mathop{\in} \opn{dom}(f)$.
+    An \textbf{inclusion}\index{inclusion function} is a function $f$ such that $\opn{dom}(f) \mathop{\subseteq} \opn{codom}(f)$ and $f(x) \mathop{=} x$ for every $x \mathop{\in} \opn{dom}(f)$.
     A rewriting rule $\varphi \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ consists of two inclusions $l$ and $r$.  
-    Two rules $\varphi' \mathop{=} (L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ and $\varphi$ are \textbf{equivalent} if there are isomorphisms $a,b,c$ such that 
+    Two rules $\varphi' \mathop{=} (L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ and $\varphi$ are \textbf{equivalent}\index{DPO rewriting rule!equivalent} if there are isomorphisms $a,b,c$ such that 
     $l' \mathop{\star} a \mathop{=} b \mathop{\star} l$ and $r' \mathop{\star} c \mathop{=} b \mathop{\star} r$, i.e. the following diagram is commutative:    
     % the commutative diagram illustrated in Figure~\ref{fig:subgraph_counting:general_rewriting_step_sdfsl_sdfjlsdkjfl} can be constructed:
             \begin{center}
@@ -53,12 +53,12 @@ While Definition~\ref{def:rewriting_inclusion} of injective rewriting rules and 
 Graphs in double-pushouts that define rewriting steps in \textbf{Graph} can be decomposed into unions of pregraphs. pregraphs model finite directed edge-labeled multigraphs that may contain dangling edges.
 \begin{definition}
     \label{def:pregraph}
-    A pregraph $G$ consists of
+    A \textbf{pregraph}\index{Pregraph} $G$ consists of
     \begin{itemize}
         \item a finite set of nodes, denoted by $V(G)$,
         \item a subset $V_{\nexists}(G) \mathop{\subseteq} V(G)$ of missing nodes,
         \item a finite set of edges, denoted by $E(G)$,
-        \item a source function, denoted by \( \textbf{src}_G \), (resp. a target function, denoted by \( \textbf{dst}_G \)) that assigns to each edge an existing or missing node,
+        \item a source function, denoted by \( \textbf{src}_G \)\index{Source function \( \textbf{src}_G \)}, (resp. a target function, denoted by \( \textbf{dst}_G \)\index{Target function \( \textbf{dst}_G \)}) that assigns to each edge an existing or missing node,
         \item an edge-labeling function, denoted by $l_G$, that assigns labels to edges.
     \end{itemize}
 \end{definition} 
@@ -87,7 +87,7 @@ The set of existing nodes, $V(G) \mathop{\setminus} V_{\nexists}(G)$, is denoted
  A homomorphism of pregraphs is a mapping between two pregraphs that preserves structure and respects missing and existing nodes.
  \begin{definition} 
     \label{def:pregraph:homomorphism}
-    Let \( G \) and \( H \) be pregraphs. A \textbf{homomorphism of pregraphs} $h: G \mathop{\to} H$ consists a pair of functions $h_V: V(G) \mathop{\to} V(H) $ and $h_E: E(G) \mathop{\to} E(H)$ such that
+    Let \( G \) and \( H \) be pregraphs. A \textbf{homomorphism of pregraphs}\index{Homomorphism!of pregraphs} $h: G \mathop{\to} H$ consists a pair of functions $h_V: V(G) \mathop{\to} V(H) $ and $h_E: E(G) \mathop{\to} E(H)$ such that
     \begin{itemize}
         \item for every edge \( a \mathop{\colon} s \mathop{\to} t \) in \( G \), the edge \( h_E(a) \) in $H$ has source \( h_V(s) \) and target \( h_V(t) \),
         \item for all $s \mathop{\in} V_{\nexists}(G)$, we have $h_V(s) \mathop{\in} V_{\nexists}(H)$,
@@ -100,7 +100,7 @@ The set of existing nodes, $V(G) \mathop{\setminus} V_{\nexists}(G)$, is denoted
     Let $f: (G,\lambda) \mathop{\to} (G',\lambda')$ and $g: (G',\lambda') \mathop{\to} (G'',\lambda'')$ be homomorphisms of pregraphs. Their composition, denoted by $g \circ f$, is the homomorphism defined by the component-wise composition of functions $g_V \circ f_V$ and $g_E \circ f_E$.
 \end{definition}
 \begin{definition} 
-    \label{def:subpregraph} Let $G$ be a pregraph. A pregraph $H$ is a \textbf{subpregraph} of $G$, written $H \mathop{\rightarrowtail} G$, if all of the following conditions hold:
+    \label{def:subpregraph} Let $G$ be a pregraph. A pregraph $H$ is a \textbf{subpregraph}\index{Subpregraph} of $G$, written $H \mathop{\rightarrowtail} G$, if all of the following conditions hold:
      \begin{itemize} 
             \item $V(H) \mathop{\subseteq} V(G)$, \item $V_{\nexists}(H) \mathop{=} V(H) \mathop{\cap} V_{\nexists}(G)$, 
             \item $E(H) \mathop{\subseteq} E(G)$, 
@@ -109,7 +109,7 @@ The set of existing nodes, $V(G) \mathop{\setminus} V_{\nexists}(G)$, is denoted
         \end{itemize} 
 \end{definition}
 We define two operations on pregraphs that will be used in the following discussion.
-The \textbf{union} $C \mathop{\cup} R$ of two subpregraphs $C \mathop{\subseteq} G$ and $R \mathop{\subseteq} G$ is a pregraph with 
+The \textbf{union}\index{Union} $C \mathop{\cup} R$ of two subpregraphs $C \mathop{\subseteq} G$ and $R \mathop{\subseteq} G$ is a pregraph with 
 \begin{itemize}
     \item Node set: $ V(C) \mathop{\cup} V(R) $,
     \item Missing nodes:
@@ -220,7 +220,7 @@ The definition is illustrated below:
     %     \end{tikzpicture}
     %     }         
     % \end{center}
-The \textbf{relative complement} of $R$ in $H$ where $R \mathop{\subseteq} H$, denoted by $H \mathop{\setminus} R$, is the pregraph with
+The \textbf{relative complement}\index{Relative complement} of $R$ in $H$ where $R \mathop{\subseteq} H$, denoted by $H \mathop{\setminus} R$, is the pregraph with
 \begin{itemize}
     \item Edge set: $X \isdef E(H) \mathop{\setminus} E(R)$,
     \item Node set: $Y \isdef \bigcup_{e \mathop{\in} X} \{\opn{src}(e), \opn{dst}(e)\}$,
@@ -400,7 +400,7 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
     \end{center}
 \begin{definition}
     \label{def:x_occurrence}
-     Let $X$ be a subgraph of $L$.  An \textbf{$X$-occurrence} in a graph $G$ is a \textbf{monomorphism} from $X$ to $G$. An $X$-occurrence in $G$ is 
+     Let $X$ be a subgraph of $L$.  An \textbf{$X$-occurrence}\index{$X$-occurrence} in a graph $G$ is a monomorphism from $X$ to $G$. An $X$-occurrence in $G$ is 
     \begin{itemize}
         \item \textbf{shared} if its image is included in $C$,
         \item \textbf{explicit} if its image is  included in $L$,
