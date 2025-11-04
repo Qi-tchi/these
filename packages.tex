@@ -42,7 +42,7 @@ rotating,MnSymbol,mathtools,subcaption,caption}
 \newcommand{\cat}[1]{\mathcal{#1}}
 \newcommand{\f}[1]{\mathfrak{#1}}
 \newcommand{\opn}[1]{\operatorname{#1}}
-
+ \usepackage{textcomp}
 \usepackage{tocloft}
 
 % % Customizing the table of contents
@@ -105,6 +105,9 @@ rotating,MnSymbol,mathtools,subcaption,caption}
 \renewcommand{\theHPlan}{\thechapter.\arabic{Plan}}
 \renewcommand{\theHclaim}{\thechapter.\arabic{claim}}
 \renewcommand{\theHnotation}{\thechapter.\arabic{notation}}
+
+% indexing package loaded before hyperref to have hyperlinks in the index
+\usepackage{imakeidx}
 % reference 3/3
 \usepackage[
 colorlinks=true,
@@ -113,7 +116,6 @@ citecolor=PineGreen,
 urlcolor=PineGreen,
 pdfborder={0 0 0}
 ]{hyperref} 
- 
-\usepackage{imakeidx}
+
 % 
 \makeindex[intoc] 

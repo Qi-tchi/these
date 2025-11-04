@@ -2,7 +2,8 @@ While Definition~\ref{def:rewriting_inclusion} of injective rewriting rules and 
  
 \begin{definition}
     \label{def:rewriting_inclusion}
-    An \textbf{inclusion}\index{inclusion function} is a function $f$ such that $\opn{dom}(f) \mathop{\subseteq} \opn{codom}(f)$ and $f(x) \mathop{=} x$ for every $x \mathop{\in} \opn{dom}(f)$.
+    \index{Inclusion function}
+    An \textbf{inclusion} is a function $f$ such that $\opn{dom}(f) \mathop{\subseteq} \opn{codom}(f)$ and $f(x) \mathop{=} x$ for every $x \mathop{\in} \opn{dom}(f)$.
     A rewriting rule $\varphi \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ consists of two inclusions $l$ and $r$.  
     Two rules $\varphi' \mathop{=} (L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ and $\varphi$ are \textbf{equivalent}\index{DPO rewriting rule!equivalent} if there are isomorphisms $a,b,c$ such that 
     $l' \mathop{\star} a \mathop{=} b \mathop{\star} l$ and $r' \mathop{\star} c \mathop{=} b \mathop{\star} r$, i.e. the following diagram is commutative:    
@@ -58,7 +59,7 @@ Graphs in double-pushouts that define rewriting steps in \textbf{Graph} can be d
         \item a finite set of nodes, denoted by $V(G)$,
         \item a subset $V_{\nexists}(G) \mathop{\subseteq} V(G)$ of missing nodes,
         \item a finite set of edges, denoted by $E(G)$,
-        \item a source function, denoted by \( \textbf{src}_G \)\index{Source function \( \textbf{src}_G \)}, (resp. a target function, denoted by \( \textbf{dst}_G \)\index{Target function \( \textbf{dst}_G \)}) that assigns to each edge an existing or missing node,
+        \item a source function, denoted by \( \textbf{src}_G \)\index{src@\( \textbf{src}_G \)}, (resp. a target function, denoted by \( \textbf{dst}_G \)\index{dst@\( \textbf{dst}_G \)}) that assigns to each edge an existing or missing node,
         \item an edge-labeling function, denoted by $l_G$, that assigns labels to edges.
     \end{itemize}
 \end{definition} 
@@ -87,7 +88,7 @@ The set of existing nodes, $V(G) \mathop{\setminus} V_{\nexists}(G)$, is denoted
  A homomorphism of pregraphs is a mapping between two pregraphs that preserves structure and respects missing and existing nodes.
  \begin{definition} 
     \label{def:pregraph:homomorphism}
-    Let \( G \) and \( H \) be pregraphs. A \textbf{homomorphism of pregraphs}\index{Homomorphism!of pregraphs} $h: G \mathop{\to} H$ consists a pair of functions $h_V: V(G) \mathop{\to} V(H) $ and $h_E: E(G) \mathop{\to} E(H)$ such that
+    Let \( G \) and \( H \) be pregraphs. A \textbf{homomorphism of pregraphs}\index{Homomorphism!pregraph} $h: G \mathop{\to} H$ consists a pair of functions $h_V: V(G) \mathop{\to} V(H) $ and $h_E: E(G) \mathop{\to} E(H)$ such that
     \begin{itemize}
         \item for every edge \( a \mathop{\colon} s \mathop{\to} t \) in \( G \), the edge \( h_E(a) \) in $H$ has source \( h_V(s) \) and target \( h_V(t) \),
         \item for all $s \mathop{\in} V_{\nexists}(G)$, we have $h_V(s) \mathop{\in} V_{\nexists}(H)$,
@@ -109,7 +110,7 @@ The set of existing nodes, $V(G) \mathop{\setminus} V_{\nexists}(G)$, is denoted
         \end{itemize} 
 \end{definition}
 We define two operations on pregraphs that will be used in the following discussion.
-The \textbf{union}\index{Union} $C \mathop{\cup} R$ of two subpregraphs $C \mathop{\subseteq} G$ and $R \mathop{\subseteq} G$ is a pregraph with 
+The \textbf{union}\index{Union of pregraphs} $C \mathop{\cup} R$ of two subpregraphs $C \mathop{\subseteq} G$ and $R \mathop{\subseteq} G$ is a pregraph with 
 \begin{itemize}
     \item Node set: $ V(C) \mathop{\cup} V(R) $,
     \item Missing nodes:
@@ -400,7 +401,7 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
     \end{center}
 \begin{definition}
     \label{def:x_occurrence}
-     Let $X$ be a subgraph of $L$.  An \textbf{$X$-occurrence}\index{$X$-occurrence} in a graph $G$ is a monomorphism from $X$ to $G$. An $X$-occurrence in $G$ is 
+     Let $X$ be a subgraph of $L$.  An \textbf{$X$-occurrence}\index{x-occurrence@$X$-occurrence} in a graph $G$ is a monomorphism from $X$ to $G$. An $X$-occurrence in $G$ is 
     \begin{itemize}
         \item \textbf{shared} if its image is included in $C$,
         \item \textbf{explicit} if its image is  included in $L$,

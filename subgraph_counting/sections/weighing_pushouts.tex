@@ -7,6 +7,7 @@
 
 \section{Measuring graphs by counting morphisms from specific graphs}
 \label{subgraph_counting:sec:interpretation}
+\index{Ruler-graph!morphism counting}
 Let $\mathcal{R} \mathop{=} \mathcal{A} \mathop{\cup} \mathcal{B}$ be a set of injective rules.
 Define $\opn{Sub}(\opn{left}(\mathcal{R}))$ as the set of all subgraphs of left-hand sides of rules in $\mathcal{R}$.
 We call the elements of $\opn{Sub}(\opn{left}(\mathcal{R}))$~\textbf{ruler-graphs}. Ruler-graphs in a set $\mathbb{X}$ provide a measure for a graph
@@ -15,7 +16,8 @@ combination of these measures.
 
 \begin{definition} 
     \label{subgraph_counting:def:measurement}
-    For a ruler-graph \( X \) and a graph \( G \), the \textbf{measurement}\index{Measurement} \( m_X(G) \) is defined as the number of $X$-occurrences in $G$, i.e. the cardinality of the set of monomorphisms from $ X $ to $ G $:
+    \index{Measurement of object!morphism counting}
+    For a ruler-graph \( X \) and a graph \( G \), the \textbf{measurement} \( m_X(G) \) is defined as the number of $X$-occurrences in $G$, i.e. the cardinality of the set of monomorphisms from $ X $ to $ G $:
     \(
         m_X(G) \mathop{=} \card{\operatorname{Mono}(X, G)}
     \).
@@ -56,13 +58,15 @@ However, systems like Example~\ref{subgraph_counting:ex:grsaa_rx} require more c
 To combine measurements from multiple ruler-graphs (analogous to combining measurements of physical objects from multiple rulers), we introduce a weight function that assigns a weight to each ruler-graph.
 \begin{definition} 
     \label{subgraph_counting:def:weight_function}
-    A \textbf{weight function}\index{Weight function} for a set of ruler-graphs \( \mathbb{X} \) is a map \( s_{\mathbb{X}} \mathop{\colon} \mathbb{X} \mathop{\to} \mathbb{N} \) assigning a weight in $\mathbb{N}$ to each ruler-graph. The weight of a monomorphism from a ruler-graph $X$ is defined to be $s_\mathbb{X}(X)$. 
+    \index{Weight function}
+    A \textbf{weight function} for a set of ruler-graphs \( \mathbb{X} \) is a map \( s_{\mathbb{X}} \mathop{\colon} \mathbb{X} \mathop{\to} \mathbb{N} \) assigning a weight in $\mathbb{N}$ to each ruler-graph. The weight of a monomorphism from a ruler-graph $X$ is defined to be $s_\mathbb{X}(X)$. 
 \end{definition}
 Assigning different weights to measurements from distinct ruler-graphs enhences the technique, as we will demonstrate in Example~\ref{ex:overbeek_5d6}.
 \begin{definition} 
     \label{subgraph_counting:def:graph_weight}  
+    \index{Graph weight!morphism counting}
     Let \( \mathbb{X} \) be a set of ruler-graphs, 
-    \( s_{\mathbb{X}} \) a weight function, and \( G \) a graph. The \textbf{weight of graph}\textbf{Graph weight} \( G \) relative to \( s_{\mathbb{X}} \), denoted by \( w_{s_{\mathbb{X}}}(G) \), is defined as: 
+    \( s_{\mathbb{X}} \) a weight function, and \( G \) a graph. The \textbf{weight of graph} \( G \) relative to \( s_{\mathbb{X}} \), denoted by \( w_{s_{\mathbb{X}}}(G) \), is defined as: 
     \[
         w_{s_{\mathbb{X}}}(G) \mathop{=} \sum_{X \mathop{\in} \mathbb{X}} s_{\mathbb{X}}(X) \cdot m_X(G).  
     \]  
@@ -102,10 +106,10 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
         \end{tikzpicture}
 \end{center}
  We define the following sets of monomorphisms from $X$ in $G$ based on their interaction with $\alpha$ and $\beta$: 
- \index{$\operatorname{Mono}(X,G,\alpha)$}
- \index{$\operatorname{Mono}(X,G,\lnot \alpha)$}
- \index{$\operatorname{Mono}(X,G,\lnot \alpha, \beta)$}
- \index{$\operatorname{Mono}(X,G,\lnot \alpha, \lnot \beta)$}  
+ \index{mono(@$\operatorname{Mono}(X,G,\alpha)$}
+ \index{mono(@$\operatorname{Mono}(X,G,\lnot \alpha)$}
+ \index{mono(@$\operatorname{Mono}(X,G,\lnot \alpha, \beta)$}
+ \index{mono(@$\operatorname{Mono}(X,G,\lnot \alpha, \lnot \beta)$}  
     \begin{align*}
         \operatorname{Mono}(X,G,\alpha) &= \left\{ \iota \mathop{\colon} X \rightarrowtail G \;\middle|\; \exists \zeta \mathop{\colon} X \rightarrowtail A.\, \iota \mathop{=} \zeta \mathop{\star} \alpha \right\},
         \\

@@ -4,10 +4,10 @@ The algebraic approach of double-pushout (DPO) rewriting was introduced by Ehrig
  A DPO rewriting rule is given by two morphisms \(l: K \mathop{\to} L\) and \(r: K \mathop{\to} R\). \(L\) encodes the rule's preconditions, \(R\) specifies the postconditions, and \(K\) is the interface—the subobject common to \(L\) and \(R\) that is preserved by the rule, and links \(L\) and \(R\) to the surrounding context.
 \begin{definition} 
   \label{def:grs:dpo_rule}
-A \textbf{DPO rewriting rule}\index{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}\index{Interface}, \( L \) is the \textbf{left-hand-side object}\index{Left-hand-side object}, denoted by \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side object}\index{Right-hand-side object}, denoted by \( \operatorname{rhs}(\rho) \). The rule $(R \overset{r}{\leftarrow} K \overset{l}{\rightarrow} L)$ is denoted by $\rho^{-1}$. 
+A \textbf{DPO rewriting rule}\index{DPO rewriting rule} $\rho$ is a span \( L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R \), where \( K \) is the \textbf{interface}\index{DPO rewriting rule!interface}, \( L \) is the \textbf{left-hand-side object}\index{DPO rewriting rule!left-hand-side object}, denoted by \( \operatorname{lhs}(\rho) \), and \( R \) is the \textbf{right-hand-side object}\index{DPO rewriting rule!right-hand-side object}, denoted by \( \operatorname{rhs}(\rho) \). The rule $(R \overset{r}{\leftarrow} K \overset{l}{\rightarrow} L)$ is denoted by $\rho^{-1}$. 
 
-The rule is said to be \textbf{left monic}\index{Left monic rule} if \( l \) is monic, and \textbf{right monic}\index{Right monic rule} if \( r \) is monic; 
-it is said to be \textbf{monic}\index{Monic rule} if it is both left monic and right monic.
+The rule is said to be \textbf{left monic}\index{DPO rewriting rule!left monic} if \( l \) is monic, and \textbf{right monic}\index{DPO rewriting rule!right monic} if \( r \) is monic; 
+it is said to be \textbf{monic}\index{DPO rewriting rule!monic} if it is both left monic and right monic.
 A \textbf{match}\index{Match} of the rule in an object \( G \) is a morphism \( m: L \mathop{\rightarrow} G \). 
 \end{definition}
 In the case of the category \textbf{Graph}, 
@@ -85,7 +85,7 @@ The words \enquote{injective} and \enquote{monic} are used interchangeably in th
   \label{def:rewriting_step}
     A diagram in a category consisting of two pushout squares arranged as shown below
     %  in Figure~\ref{fig:preliminaries:a_rewriting_step_slkjdfsljsdl} 
-    is called a \textbf{double-pushout (DPO) diagram}\index{double-pushout diagram}\index{DPO diagram}.
+    is called a \textbf{double-pushout (DPO) diagram}\index{Double-pushout diagram}\index{DPO diagram}.
     %   \begin{figure}[H]
     %     \centering
     \begin{center}
@@ -118,7 +118,7 @@ The words \enquote{injective} and \enquote{monic} are used interchangeably in th
 To perform a DPO rewriting step with a rule \(\rho: L \xleftarrow{l} K \xrightarrow{r} R\) on an object \(G\), choose a match \(m: L \mathop{\to} G\). 
 If the double-pushout diagram of Definition~\ref{def:rewriting_step} exists (for \(l\), \(r\), and \(m\)), it yields an object \(H\); we then say that \(G\) rewrites to \(H\) via \(\rho\) at \(m\). The diagram with double pushout is the origin of the name \enquote{double-pushout rewriting}.
 
-The diagram with double pushout in Definition~\ref{def:rewriting_step} is said to be a \textbf{witness}\index{Witness!of a rewriting step} for the \textbf{rewriting step}\index{Rewriting step} from \( G \) to \( H \) using
+The diagram with double pushout in Definition~\ref{def:rewriting_step} is said to be a \textbf{witness}\index{Witness!of DPO rewriting step} for the \textbf{rewriting step}\index{DPO rewriting step} from \( G \) to \( H \) using
 a rule \( \rho \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R) \) and a \textbf{match} $m$, denoted \( G \mathop{\Rightarrow}_\rho^m H \) or \( G \mathop{\Rightarrow}_\rho^\delta H \). The pushout squares $KLGC$ and $KRHC$ are denoted by $\operatorname{left}(\delta)$ and $\operatorname{right}(\delta)$, respectively.
 
 In the category \textbf{Graph}, to apply a DPO graph rewriting rule $\mathcal{L} \overset{l}{\leftarrow} \mathcal{K} \overset{r}{\rightarrow} \mathcal{R}$ to a host graph $\mathcal{G}$, one must first identify an occurrence of $\mathcal{L}$ in which a subgraph is designed as the interface graph. The other elements of the host graph $\mathcal{G}$ together with the interface graph form the context graph $\mathcal{C}$ of the rewriting step.
@@ -698,11 +698,11 @@ There are several variants of DPO rewriting. Typically both the match $m$ and th
 %         \caption{}
 %         \label{fig:preliminaries:a_rewriting_framework}
 % \end{figure}
-    The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\rho,\mathfrak{F}}$ induced by a DPO rewriting rule $\rho$ in $\mathfrak{F}$}\index{DPO rewriting relation}\index{$\mathop{\Rightarrow}_{\rho,\mathfrak{F}}$} is defined as follows:
+    The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\rho,\mathfrak{F}}$ induced by a DPO rewriting rule $\rho$ in $\mathfrak{F}$}\index{DPO rewriting relation}\index{a@$\mathop{\Rightarrow}_{\rho,\mathfrak{F}}$} is defined as follows:
      $$G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H\text{ if and only if }G \mathop{\Rightarrow}_\rho^\delta H$$
     for some $\delta \mathop{\in} \mathfrak{F}(\rho)$. 
      
-    The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$}\index{$\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$} is given by: 
+    The \textbf{DPO rewriting relation $\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$ induced by a set $\mathcal{R}$ of DPO rewriting rules in $\mathfrak{F}$}\index{a@$\mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}}$} is given by: 
      $$G \mathop{\Rightarrow}_{\mathcal{R},\mathfrak{F}} H\text{ if and only if }G \mathop{\Rightarrow}_{\rho,\mathfrak{F}} H$$ for some $\rho \mathop{\in} \mathcal{R}$. 
      
      Whenever $\mathfrak{F}$ is clear from the context, we 

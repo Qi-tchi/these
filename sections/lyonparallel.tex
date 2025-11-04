@@ -390,7 +390,7 @@ The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewr
     \end{center}
 It appears in the list. Select it at the REPL by name:
 \begin{minted}[style=bw]{bash}
-select_system_by_name bruggink14_ex_4_and_6
+    >> select_system_by_name bruggink14_ex_4_and_6
 \end{minted}
 
 
@@ -576,7 +576,7 @@ For a selected system, the following command analyses relative termination of so
 \end{minted}
 This command is an instance of the following command pattern
 \begin{minted}[style=bw]{bash}
-    type_graph [timeout] [semiring_1 semiring_2 ...]
+    >> type_graph [timeout] [semiring_1 semiring_2 ...]
 \end{minted}
 From the command pattern, we can see that more semirings can be selected. In fact, there are 6 semirings available in the tool, which can be selected by adding flags in the set $\set{a,t,n,A,T,N}$ where $A$, $T$, $N$ stand for the arctic, tropical, and arithmetic semirings over the (extended) natural numbers;  $a$, $t$, $n$ stand for the arctic, tropical, and arithmetic semirings over the (extended) real numbers. If multiple semirings are selected, the tool runs the type graph method in parallel for each chosen semiring. When some rules are removed the tool automatically starts a new iteration on the remaining rules using the same selected semirings. 
 
@@ -586,7 +586,7 @@ For example, we can have the following command which launches the type graph met
 \end{minted}
 Type graph methods with different semirings will be launched in parallel and cooperate with each other. When a non-empty subset $A$ of rules is proved to be terminating relative to the set of remaining rules $B$, a new iteration starts with the set of rules $B$.
 
-The command \colorbox{Ivory2}{$recap$} displays a summary of the termination analysis. The summary contains \colorbox{Ivory2}{$Terminating:\ yes$} and \colorbox{Ivory2}{$Remaining\ Rules:\ none$}, showing that the method successfully proved the rule's relative termination with respect to the empty rule set.
+The command \colorbox{Ivory2}{$recap$} displays a summary of the termination analysis. The summary contains \colorbox{Ivory2}{$Terminating:\ yes$} and \colorbox{Ivory2}{$Remaining\ Rules:\ none$}, showing that the method successfully proved the rule's relative termination with respect to the empty rule set. 
 The summary contains also the information shown below.
 %  in Figure~\ref{fig:implemented:type_graph_summarydfsaldkfjsdl}. 
 % \begin{figure}[H]
