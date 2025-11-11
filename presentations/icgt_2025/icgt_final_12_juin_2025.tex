@@ -126,8 +126,8 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
                     \draw [>->] (R) to node [midway,left] { } (H);
                     \draw [>->] (C) to node [midway,above] { } (G);
                     \draw [>->] (C) to node [midway,above] { } (H);
-                    \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-                    \node [at=($(I)!.5!(H)$)] {\normalfont PO};
+                    \node [at=($(I)!.5!(G)$)] {} ;
+                    \node [at=($(I)!.5!(H)$)] {};
                   \end{tikzpicture}
           }
       \end{center}
@@ -325,41 +325,19 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
         % \end{center}
 \end{frame}
  
-\begin{frame}{Visual Notation for Graph Morphisms}
-    % Graph : finite edge-labeled directed multigraph
-
-        % \begin{itemize}
-        %     \item nodes are represented by circles
-        %     \item edges are represented by arrows
-        % \end{itemize}
-        % \begin{center}
-        %     \resizebox{0.25\textwidth}{!}{
-        %         \begin{tikzpicture}
-        %         \graphbox{}{39mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
-        %                         \coordinate (delta) at (0,-18mm);
-        %                         \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {};
-        %                         \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {};
-        %                         \node[draw,circle] (l3) at ($(delta)+(0,0)$) {};
-        %                         \draw[->] (l1) -- (l3) node[midway,left] {$s$};
-        %                         \draw[->] (l2) -- (l3) node[midway,right] {$s$};
-        %                         \draw[->] (l3) edge [loop below] node {0} (l3);
-        %                     }
-        %         \end{tikzpicture}
-        %     }
-        % \end{center}
-
-        Visualization of an injective graph morphism~\footcite{overbeek2023apbpotutorial}:
+\begin{frame}{Visualization of injective graph morphism}
+        Visualization of an injective graph morphism:
           \begin{center}
             \resizebox{0.9\textwidth}{!}{
                 \begin{tikzpicture}
                     \graphbox{$L$}{39mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
                         \coordinate (delta) at (0,-18mm);
-                        \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
-                        \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
-                        \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
-                        \draw[->] (l1) -- (l3) node[midway,left] {$s$};
-                        \draw[->] (l2) -- (l3) node[midway,right] {$s$};
-                        \draw[->] (l3) edge [loop below] node {0} (l3);
+                        \node[draw,circle,red] (l1) at ($(delta)+(-1,1.5)$) {1};
+                        \node[draw,circle,red] (l2) at ($(delta)+(1,1.5)$) {2};
+                        \node[draw,circle,red] (l3) at ($(delta)+(0,0)$) {3};
+                        \draw[->,red] (l1) -- (l3) node[midway,left] {$s$};
+                        \draw[->,red] (l2) -- (l3) node[midway,right] {$s$};
+                        \draw[->,red] (l3) edge [loop below] node {0} (l3);
                     }
                         \node () at (77mm,-18mm) {$\overset{h}{\rightarrowtail}$};
                     \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
@@ -378,7 +356,7 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
                         \draw[->] (r5) edge [loop left] node {0} (r5);
                         \draw[->,red] (r1) edge node[midway,left] {$s$} (r3) ;
                         \draw[->,red] (r2) edge node[midway,right] {$s$} (r3) ; 
-                        \draw[->] (r3) edge [loop below] node {0} (r3); 
+                        \draw[->,red] (r3) edge [loop below] node {0} (r3); 
                     }
                     % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
                     %     \coordinate (delta) at (0,-18mm);
@@ -399,10 +377,10 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
         \begin{itemize}
             \item \alert{Graphs} are contained \alert{in boxes}
             \item \alert{Graph name} is placed in the \alert{top left corner}
-            \item \alert{Codomain} is represented as a \alert{supergraph of domain}
+            \item \alert{Domain} is represented as a \alert{subgraph of codomain}
             % \item \alert{Corresponding elements} have the \alert{same position}
-            \item Some \alert{nodes} are marked by \alert{numbers} for clarity
-            \item \alert{Morphism name} is placed \alert{between the boxes}
+            \item Some \alert{nodes} are \alert{numbered} for identification
+            \item \alert{Morphism name} is placed \alert{in between the boxes}.
             % \item nodes $v$ and $h(v)$ marked by the same natural number
             % \item edges $e$ and $h(e)$ have the same spatial position
         \end{itemize}
@@ -627,60 +605,6 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
         \end{tikzpicture}
     }
     \end{center}
-
-
-    % \textcolor{red}{Intersection} $G \mathop{\cap} H$: 
-    % \vspace{1mm}
-
-    % % \begin{center}
-    %     \resizebox{0.95\textwidth}{!}{
-    %     \begin{tikzpicture}
-    %         \graphbox{\( G \)}{0mm}{-22mm}{34mm}{26mm}{2mm}{-3mm}{
-    %             \coordinate (o) at (0mm,-6mm); 
-    %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-    %             \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-    %             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-    %             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-    %             \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-    %             \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
-    %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
-    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %         }    
-    
-    %         \graphbox{ \textcolor{red}{\(G \mathop{\cap} H\)}  }{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
-    %             \coordinate (o) at (0mm,-6mm); 
-    %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-    %             \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %             \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
-    %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
-    %         }    
-    
-    %         \graphbox{\( H \)}{80mm}{-22mm}{45mm}{25mm}{2mm}{-6mm}{
-    %             \coordinate (o) at (-5mm,-3mm); 
-    %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-    %             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-    %             \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
-    %             \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
-    %             \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
-    %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
-    %             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-    %             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
-    %             \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-    %             \draw[->] (l2) -- (l5) node[midway,right] {$a$};
-    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %         }    
-           
-    %         % \node () at (37mm,-33mm) {\( \leftarrowtail \)};
-    %         % \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
-    %     \end{tikzpicture}
-    %     }         
-    % \end{center}
 \textcolor{red}{Relative complement} of $R$ in $H$ where $R \mathop{\subseteq} H$
 , denoted $H \mathop{\setminus} R$: 
     % \vspace{1mm} 
