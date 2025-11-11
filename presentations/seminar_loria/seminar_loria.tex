@@ -587,7 +587,7 @@ A rule equivalent to $\varphi$:
 \end{frame}
 
 \begin{frame}{One-rule examples}
-    Rule $a$ : 
+    Rule $\alpha$ : 
 %   \begin{center}  
 \resizebox{0.85\textwidth}{!}{
                 \begin{tikzpicture}[baseline=-3ex]
@@ -621,7 +621,7 @@ A rule equivalent to $\varphi$:
                 \end{tikzpicture}
                 }
             % \end{center}  
-
+ 
 \textcolor{blue}{Looping}:
         \begin{center}
             \resizebox{0.8\textwidth}{!}{
@@ -634,15 +634,17 @@ A rule equivalent to $\varphi$:
                   \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
                   \draw[->] (z) -- node[midway,left] {$b$} (x) ;
               } 
-              \graphbox{\( \)}{22mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
+              \node () at (25mm,-10mm) {\( \Rightarrow_\alpha \)};
+              \graphbox{\( \)}{30mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                   \node[draw,circle] (x) at (0,0) {};  
                   \node[draw,circle] (y) at (1,0) {};
                   \node[draw,circle] (z) at (0.5,0.86) {};
                   \draw[->] (x) -- node[midway,below] {$b$} (y) ;
                   \draw[->,red] (y) -- node[midway,right] {$a$} (z) ;
                   \draw[->,red] (z) -- node[midway,left] {$b$} (x) ;
-              }
-              \graphbox{\( \)}{44mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
+              } 
+              \node () at (55mm,-10mm) {\( \Rightarrow_\alpha \)};
+              \graphbox{\( \)}{60mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                   \node[draw,circle] (x) at (0,0) {};  
                   \node[draw,circle] (y) at (1,0) {};
                   \node[draw,circle] (z) at (0.5,0.86) {};
@@ -650,7 +652,8 @@ A rule equivalent to $\varphi$:
                   \draw[->] (y) -- node[midway,right] {$b$} (z) ;
                   \draw[->,red] (z) -- node[midway,left] {$a$} (x) ;
               }
-              \graphbox{\( \)}{66mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
+              \node () at (85mm,-10mm) {\( \Rightarrow_\alpha \)};
+              \graphbox{\( \)}{90mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                   \node[draw,circle] (x) at (0,0) {};   
                   \node[draw,circle] (y) at (1,0) {};
                   \node[draw,circle] (z) at (0.5,0.86) {};
@@ -696,7 +699,7 @@ A rule equivalent to $\varphi$:
             % \end{center}  
   
 \vspace{2mm}
-\textcolor{blue}{Terminating}: the number of edges labeled by \enquote{a} strictly decreases.
+\textcolor{blue}{Termination} by the number of edges labeled by \enquote{a}.
 
         \begin{center}
           \resizebox{0.4\textwidth}{!}{
@@ -709,7 +712,8 @@ A rule equivalent to $\varphi$:
                   \draw[->] (y) -- node[midway,right] {$b$} (z) ;
                   \draw[->] (z) -- node[midway,left] {$b$} (x) ;
                 } 
-                \graphbox{\( \)}{22mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
+                \node () at (25mm,-10mm) {\( \Rightarrow_\beta \)};
+                \graphbox{\( \)}{30mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                     \node[draw,circle] (x) at (0,0) {};  
                     \node[draw,circle] (y) at (1,0) {};
                     \node[draw,circle] (z) at (0.5,0.86) {};
@@ -846,6 +850,8 @@ A rule equivalent to $\varphi$:
     % Remark : \textcolor{red}{$H \mathop{\setminus} R$ is not always a graph.}
 \end{frame}
 
+\begin{frame}{test}
+\end{frame}
 
 \section{Etending the Type Graph Method to Non-well-founded Semirings}
 \begin{frame}
