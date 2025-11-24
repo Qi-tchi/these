@@ -10,7 +10,7 @@
 backend=biber,
 style=alphabetic,
 ]{biblatex}  
-\addbibresource{icgt.bib}
+\addbibresource{../../bib/these.bib}
 \usepackage{hyperref, xcolor, cmbright,diagbox,colortbl,tikz,graphicx,algorithm2e,cancel,verbatim, graphicx,
 listings,float,amsmath,amssymb,array,subfiles,bussproofs,
 rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
@@ -1530,66 +1530,6 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
 \begin{frame}{Running example}
 
     We will use the following running example to analyze the subgraph changes before and after a rewriting step.
-
-    % Rule : a pair of inclusions $L \leftarrowtail K \rightarrowtail R$ with $L \mathop{\cap} R \mathop{=} K$
-
-    % Motivating example:
-    % \begin{center}
-    %     \resizebox{\textwidth}{!}{
-    %         \begin{tikzpicture}
-    %             \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
-    %                 \coordinate (delta) at (0,-18mm);
-    %                 \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
-    %                 \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
-    %                 \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
-    %                 \draw[->] (l1) -- (l3) node[midway,left] {$s$};
-    %                 \draw[->] (l2) -- (l3) node[midway,right] {$s$};
-    %                 \draw[->] (l3) edge [loop below] node {0} (l3);
-    %             }
-    %                 \graphbox{$K$}{40mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
-    %                     \coordinate (delta) at (0,-18mm);
-    %                     \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
-    %                     \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {1};
-    %                     \node[draw,circle] (r2) at ($(delta) +(0.5,1.5)$) {2};
-    %                     \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
-    %                     % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
-    %                     % \draw[->] (r3) edge [loop below] node {0} (r3);
-    %                 } 
-    %                 \node () at (38mm,-18mm) {$\leftarrowtail$};
-    %                 \node () at (77mm,-18mm) {$\rightarrowtail$};
-    %             \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
-    %                 \coordinate (delta) at (-10mm,-18mm);
-    %                 \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
-    %                 \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {2};
-    %                 \node[draw,circle] (r3) at ($(delta)+(0,0)$) {3};
-    %                 \node[draw,circle] (r4) at ($(delta)+(1,0)$) {};
-    %                 \draw[->] (r1) edge[bend right] node[midway,left] {$s$} (r3) ;
-    %                 \draw[->] (r2) -- (r4) node[midway,right] {$s$};
-    %                 \draw[->] (r4) edge [loop below] node {0} (r4);
-                    
-    %                 \draw[->] (r3) edge [out=190,in=270,looseness=3] node[midway,left] {0} (r3);
-    %                 \node[draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
-    %                 \draw[->] (r5) edge [loop below] node {0} (r5);
-    %                 \draw[->] (r5) edge [loop right] node {0} (r5);
-    %                 \draw[->] (r5) edge [loop left] node {0} (r5);
-    %             }
-    %             % \graphbox{$R_x$}{40mm}{40mm}{35mm}{35mm}{2mm}{-5mm}{
-    %             %     \coordinate (delta) at (0,-18mm);
-    %             %     \coordinate (rxorigin) at ($(interfaceorigin)+(0,6)$);
-    %             %     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
-    %             %     \node[draw,circle] (r2) at ($(delta)\mathop{+} (0.5,1.5)$) {2};
-    %             %     \node[draw,circle] (r3) at ($(delta)\mathop{+} (0,0)$) {3};
-    %             %     \draw[->] (r1) -- (r3) node[midway,left] {$s$};
-    %             %     % \draw[->] (r3) edge [loop below] node {0} (r3);
-    %             % }
-                
-    %             % \node () at (57mm,2mm) {$\uparrowtail$};
-    %             % \node () at (38mm,2mm) {$\swarrowtail$};
-    %             % \node () at (79mm,2mm) {$\searrowtail$};
-    %         \end{tikzpicture}
-    %         }
-    % \end{center}
-
          \begin{center} 
             \resizebox{\textwidth}{!}{
             \begin{tikzpicture}
@@ -1934,151 +1874,6 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
    
 \end{frame}
 
-
-% \begin{frame}{Occurrences}
-%     $X, G$ : graphs\\
-%     An \textcolor{red}{$X$-occurrence} in $G$ is a \textcolor{red}{subgraph} of $G$ isomorphic to $X$.\\
-% \end{frame}
-
-% \begin{frame}{Implicit creation and deletion of subgraphs}
-%     A DPO diagram witnessing a rewriting step:
-
-%     \resizebox{0.7\textwidth}{!}{
-%             \begin{tikzpicture}
-%                 \coordinate (k) at (0, 0);
-%                 \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
-%                 \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-%                 \coordinate (c) at (0, -2.2);
-%                 \draw[fill=blue!20]
-%                 ($(c)+(0,-0.5)$)
-%                 -- ($(c)+(0,0.5)$) 
-%                 -- ($(c)+(1,0.5)$) 
-%                 arc[start angle=0, end angle=-90, radius=1]
-%                 -- cycle;
-%                 \node () at ($(c)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-%                 \draw[fill=white] ($(c)+(0,0)$) rectangle ($(c)+(0.5,0.5)$);
-%                 \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-%                 \coordinate (l) at (-3, 0);
-%                 \draw[fill=orange!20] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
-%                 \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
-%                 \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
-%                 \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-%                 \coordinate (g) at (-3, -2.2);
-%                 \draw[fill=blue!20]
-%                 ($(g)+(0,-0.5)$)
-%                 -- ($(g)+(0,0.5)$)
-%                 -- ($(g)+(1,0.5)$) 
-%                 arc[start angle=0, end angle=-90, radius=1]
-%                 -- cycle;
-%                 \draw[fill=orange!20] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
-%                 \node () at ($(g)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-%                 \node () at ($(g)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
-%                 \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
-%                 \node () at ($(g)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-%                 \coordinate (r) at (3,0);
-%                 \draw[fill=red!20] ($(r)+(-0.5,0)$)
-%                 -- ($(r)+(-0.5,0.5)$)
-%                 -- ($(r)+(0,1)$)
-%                 --  ($(r)+(0.5,1)$)
-%                 -- ($(r)+(0.5,0)$)
-%                 -- cycle;
-%                 \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
-%                 \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
-%                 \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-%                 \coordinate (h) at (3, -2.2);
-%                 \draw[fill=blue!20]
-%                 ($(h)+(0,-0.5)$)
-%                 -- ($(h)+(0,0.5)$)
-%                 -- ($(h)+(1,0.5)$) 
-%                 arc[start angle=0, end angle=-90, radius=1]
-%                 -- cycle;
-%                 \draw[fill=red!20] ($(h)+(-0.5,0)$)
-%                 -- ($(h)+(-0.5,0.5)$)
-%                 -- ($(h)+(0,1)$)
-%                 --  ($(h)+(0.5,1)$)
-%                 -- ($(h)+(0.5,0)$)
-%                 -- cycle;
-%             \node () at ($(h)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-%             \draw[fill=white] ($(h)+(0,0)$) rectangle ($(h)+(0.5,0.5)$);
-%             \node () at ($(h)+(0.25,0.25)$) {\( \mathrm{K} \)};
-%             \node () at ($(h)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
-            
-%                 \node[ font=\huge] (kl) at ($(k)!0.5!(l)+(0.25,0.25)$)
-%             %    {\( \overset{l}{\leftarrowtail} \)}
-%                 {\( \leftarrowtail \)}
-%                 ; 
-%                 \node[ font=\huge] (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
-%                 {\( \rightarrowtail \)}
-%                 ;  
-%                 \node[ font=\huge] (cg) at ($(c)!0.5!(g)+(0.25,0.25)$) 
-%                 {\( \leftarrowtail \)}
-%             ;  
-%                 \node[ font=\huge] (ch) at ($(c)!0.5!(h)+(0.25,0.25)$)
-%                 {\( \rightarrowtail \)}
-%             ; 
-%                 \node[ font=\huge] (kc) at ($(k)!0.5!(c)+(0.2,0.4)$) {\( \downarrowtail \)}; 
-%             %   \node[ font=\LARGE] () at ($(l)!0.5!(g)+(0.5,0.4)$) {$m$}; 
-%                 \node[ font=\huge] (lg) at ($(l)!0.5!(g)+(0.1,0.4)$) {\( \downarrowtail \)}; 
-%                 \node[ font=\huge] (rh) at ($(r)!0.5!(h)+(0.1,0.4)$) {\( \downarrowtail \)}; 
-%             %   \node[ font=\LARGE] () at ($(r)!0.5!(h)+(0.55,0.4)$) {$m'$}; 
-%             %   \node[ font=\LARGE] () at ($(k)!0.5!(c)+(0.5,0.4)$) {$u$}; 
-%             \end{tikzpicture}
-%           }
-
-%     An occurrence $x$ of a graph $X$ is 
-%     \begin{itemize}
-%         \item \textcolor{red}{explicitly deleted} if $x \mathop{\subseteq} L' \mathop{\cup} K$ 
-%         \item \textcolor{blue}{explicitly created} if $x \mathop{\subseteq} R' \mathop{\cup} K$
-%         \item \hspace{1.57cm} shared if $x \mathop{\subseteq} C' \mathop{\cup} K$
-%         \item \textcolor{red}{implicitly deleted} if $x \not \mathop{\subseteq} L' \mathop{\cup} K$ and $x \not \mathop{\subseteq} C' \mathop{\cup} K$
-%         \item \textcolor{blue}{implicitly created} if $x \not \mathop{\subseteq} R' \mathop{\cup} K$ and $x \not \mathop{\subseteq} C' \mathop{\cup} K$
-%     \end{itemize}
-
-% \end{frame}
-
-
-
-% \begin{frame}{Explicit occurrences}
-%     Rule : $L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R$
-
-%     Rewriting step :
-
-%     \resizebox{0.5\textwidth}{!}{
-%         \begin{tikzpicture}
-%             % [node distance=15mm]
-%             \node (I) at (0,0) {K};
-%             \node (L)  at (-2,0) {L};
-%             \node (R)  at (2,0) {R};
-%             \node (G)  at (-2,-2) {G};
-%             \node (C)  at (0,-2) {C};
-%             \node (H)  at (2,-2) {H};
-%             \draw [>->] (I) to  node [midway,above] {$l$} (L);
-%             \draw [>->] (I) to  node [midway,above] {$r$} (R);
-%             \draw [>->] (L) to node [midway,left] {$m$} (G);
-%             \draw [>->] (I) to (C);
-%             \draw [>->] (R) to (H);
-%             \draw [>->] (C) to (G);
-%             \draw [>->] (C) to (H); 
-%         \end{tikzpicture}
-%     }
-    
-%     $X$ : graph 
-
-%     An $X$-occurrence is 
-%     \begin{itemize} 
-%         \item \textcolor{red}{explicit} if it is included in $L' \mathop{\cup} K$ or $x \mathop{\subseteq} R' \mathop{\cup} K$ 
-%         \item \textcolor{red}{implicit} if $x \not \mathop{\subseteq} L' \mathop{\cup} K$ and $x \not \mathop{\subseteq} C' \mathop{\cup} K$
-%         \item \textcolor{blue}{implicitly} otherwise
-%     \end{itemize}
-    
-
-% \end{frame}
-
 \begin{frame}{Implicit, Explicit and Shared Occurrences}
     An \textcolor{red}{$X$-occurrence} in a graph $G$ is a \textcolor{red}{subgraph} of $G$ isomorphic to $X$. 
     % A DPO diagram witnessing a rewriting step:
@@ -2201,53 +1996,28 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
     $X$-occurrence in $G$ is 
 
     \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{shared} if 
-    % $y \mathop{\subseteq} C$
     included in $C$
     }
     \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{explicit} if 
-    % $y \mathop{\subseteq} L$
     included in $L$
     }
 
     \parbox{\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{implicit} if 
-    % $y \mathop{\cap} C' \mathop{\neq} \emptyset$ and $y \mathop{\cap} L' \mathop{\neq}  \emptyset$
     having elements in both $C'$ and $L'$
-    % having non-empty intersection with both $C'$ and $L'$
     }
-
-    % \begin{itemize} 
-    %     % \item \textcolor{red}{shared} if $y \mathop{\subseteq} C$ 
-    %     % \item \textcolor{red}{explicit} if $y \mathop{\subseteq} L$  
-    %     \item \textcolor{red}{implicit} if $y \mathop{\cap} C' \mathop{\neq} \emptyset$ and \textcolor{blue}{$y \mathop{\cap} L' \mathop{\neq}  \emptyset$}
-    %     % if $y \not \mathop{\subseteq} L' \mathop{\cup} K$ and $y \not \mathop{\subseteq} C' \mathop{\cup} K$
-    % \end{itemize}
-    
+ 
     $X$-occurrence in $H$ is 
 
    \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{shared} if 
-%    $y \mathop{\subseteq} C$
     included in $C$ 
    }
    \parbox{0.45\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{explicit} if 
-%    $y \mathop{\subseteq} R$ 
     included in $R$
    }
 
     \parbox{\textwidth}{\hspace{3mm}$\bullet$ \textcolor{red}{implicit} if 
-    % $y \mathop{\cap} C' \mathop{\neq} \emptyset$ and $y \mathop{\cap} R' \mathop{\neq} \emptyset$
     having elements in both $C'$ and $R'$
-    % having non-empty intersection with both $C'$ and $R'$
     }
-    % \begin{itemize} 
-    %     % \item \textcolor{red}{explicit} if $y \mathop{\subseteq} K \mathop{\cup} L'$ or $y \mathop{\subseteq} K \mathop{\cup} R'$ 
-    %     % \item \textcolor{red}{explicit} if $y \mathop{\subseteq} L$ or $y \mathop{\subseteq} R$ 
-    %     % \item \textcolor{red}{shared} if $y \mathop{\subseteq} C$
-    %     % \item \textcolor{red}{implicit} otherwise (i.e. $y \mathop{\cap} C' \mathop{\neq} \emptyset$, and $y \mathop{\cap} L' \mathop{\neq}  \emptyset$ or $y \mathop{\cap} R' \mathop{\neq} \emptyset$)
-    %     \item \textcolor{red}{shared} if $y \mathop{\subseteq} C$
-    %     \item \textcolor{red}{explicit} if $y \mathop{\subseteq} R$ 
-    %     \item \textcolor{red}{implicit} if $y \mathop{\cap} C' \mathop{\neq} \emptyset$ and \textcolor{blue}{$y \mathop{\cap} R' \mathop{\neq} \emptyset$}
-    %     % if $y \not \mathop{\subseteq} L' \mathop{\cup} K$ and $y \not \mathop{\subseteq} C' \mathop{\cup} K$
-    % \end{itemize}
 \end{frame}
  
 
@@ -2368,6 +2138,8 @@ Consider the occurrences of the graph
             &\mathop{\mid}\text{shared $X$-occurrences}\mathop{\mid} \mathop{+} \\
             &\mathop{\mid}\text{implicit $X$-occurrences}\mathop{\mid}
     \end{flalign*} 
+
+    Shared $X$-occurrences in $G$ and $H$ are the same.
 \end{frame} 
 
 \begin{frame}{Termination of a graph rewriting rule $\varphi$}
@@ -2388,7 +2160,6 @@ Consider the occurrences of the graph
                     &(\mathop{\mid}\text{implicit $X$-occurrences in $G$}\mathop{\mid} \mathop{-} \mathop{\mid}\text{implicit $X$-occurrences in $H$}\mathop{\mid})\\
             &\mathop{>} 0
             \end{flalign*}
-                because shared $X$-occurrences in $G$ and $H$ are the same.
         \item $\varphi$ terminates if for all $G \mathop{\Rightarrow}_\varphi H$,
         \begin{flalign*}
             &\mathop{\mid}\text{explicit $X$-occurrences in $G$}\mathop{\mid} \mathop{>} \mathop{\mid}\text{explicit $X$-occurrences in $H$}\mathop{\mid} \\
@@ -3584,6 +3355,7 @@ Consider the implicit occurrence of \tikz[baseline=-0.5ex]{
         \item $X$-non-increasing rule because inclusions from $h_1: R_1 \rightarrowtail L$ and $h_2: R_2 \rightarrowtail L$ satisfy all conditions.
         \item Strictly more explicit $X$-occurrences in $L$ than in $R$ : $1 \mathop{>} 0$
         \item Terminating
+        \item Its termination can only be shown using our technique.
     \end{itemize}
 
     

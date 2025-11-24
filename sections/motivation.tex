@@ -19,7 +19,7 @@ Finite edge-labeled directed multigraphs provide an intuitive yet formal way to 
 
 For example, consider the graph $\mathcal{G}$ shown in Figure~\ref{fig:graph_modeling_state_network}, enclosed in a box labeled with its name in the top-left corner. 
 The graph models a distributed network of six computational units.
-Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. In Figure~\ref{fig:graph_modeling_state_network}, node $1$ labeled by $A$ represents an active computational unit, the other nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$. 
+Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. In Figure~\ref{fig:graph_modeling_state_network}, the node labeled by $A$ represents an active computational unit, the other nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$. 
 \begin{figure}[H]
         \centering
         \resizebox{0.4\textwidth}{!}{
@@ -38,10 +38,10 @@ Each node represents a computational unit; a node's state is indicated by the la
                         \draw[-] (n3) edge node[above] {$0$} (n6);
                         \draw[-] (n6) edge node[right] {$0$} (n5);
                         \draw[-] (n5) edge node[above] {$0$} (n3);  
-                        \draw[->] (n1) edge [loop left] node {$A$} (n1);
+                        \draw[->] (n1) edge [loop left] node {$N$} (n1);
                         \draw[->] (n2) edge [loop above] node {$N$} (n2);
                         \draw[->] (n3) edge [loop below] node {$N$} (n3);
-                        \draw[->] (n4) edge [loop below] node {$N$} (n4);
+                        \draw[->] (n4) edge [loop below] node {$A$} (n4);
                         \draw[->] (n5) edge [loop below] node {$N$} (n5);
                         \draw[->] (n6) edge [loop above] node {$N$} (n6);
                     } 
@@ -86,217 +86,126 @@ Given an initial finite edge-labeled directed multigraph in which all edges are 
 
     \begin{figure}[H]
         \centering
+        %1
         \resizebox{0.28\textwidth}{!}{
-                \begin{tikzpicture}
-                    \node[draw, red,circle] (n1) at (0,0) {};
-                    \node[draw, red,circle] (n2) at (1,1) {};
-                    \node[draw, circle] (n4) at (1,-1) {};
-                    \node[draw, circle] (n3) at (2,0) {};
-                    \node[draw, circle] (n5) at (3,-1){};
-                    \node[draw, circle] (n6) at (3,1){};
-                    \draw[-,red] (n1)--(n2);
-                    \draw[-] (n2)--(n3)--(n4);
-                    \draw[-] (n4)--(n1);
-                    \draw[-] (n3)--(n6)--(n5)--(n3);
-                    \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
-                    \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;   
-
-                    \draw(-0.1,0) node[left] {\textcolor{red}{$A$}};
-                    \draw(1,1.1) node[above] {\textcolor{red}{$N$}};
-                    \draw(1,-1.1) node[below] {$N$};
-                    \draw(2,0.1) node[above] {$N$};
-                    \draw(3,1.1) node[above] {$N$};
-                    \draw(3,-1.1) node[below] {$N$};
-
-                    % edge labels
-                    \draw(1.35,0.7) node[right] {$0$};
-                    \draw(1.35,-0.7) node[right] {$0$};
-                    \draw(0.5,0.5) node[left] {\textcolor{red}{$0$}};
-                    \draw(0.5,-0.5) node[left] {$0$};
-                    \draw(2.6,0.6) node[left] {$0$};
-                    \draw(2.6,-0.6) node[left] {$0$};
-                    \draw(3,0) node[right] {$0$};
-                \end{tikzpicture}
+        \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[draw, circle, label={[label distance=-1mm]left:{$N$}}] (n1) at (0,0) {};
+            \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n2) at (1,1) {};
+            \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n3) at (2,0) {};
+            \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
+            \node[draw, circle, label={[label distance=-1mm]below:{$N$}}] (n5) at (3,-1) {};
+            \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
+            \draw[-] (n1)-- node[pos=0.6, left] {$0$} (n2);
+            \draw[-] (n2)-- node[pos=0.35,right] {$0$} (n3);
+            \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
+            \draw[-] (n4)-- node[pos=0.45,left] {$0$}(n1);
+            \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
+            \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
+            \draw[-] (n5)-- node[pos=0.4,left] {$0$}(n3);
+            }
+        \end{tikzpicture}
     }
+    %2 
   \resizebox{0.28\textwidth}{!}{
-                \begin{tikzpicture}
-                    \node[draw, circle] (n1) at (0,0) {};
-                    \node[draw, red,circle] (n2) at (1,1) {};
-                    \node[draw, circle] (n4) at (1,-1) {};
-                    \node[draw, red,circle] (n3) at (2,0) {};
-                    
-                    \node[draw, circle] (n5) at (3,-1){};
-                    \node[draw, circle] (n6) at (3,1){};
-        
-                    \draw[-] (n1)--(n2);
-                    \draw[-,red] (n2)--(n3);
-                    \draw[-] (n3)--(n4);
-                    \draw[-] (n4)--(n1);
-                    \draw[-] (n3)--(n6)--(n5)--(n3);
-        
-                    \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
-                    \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
-    
-                    \draw(-0.1,0) node[left] {$A$};
-                    \draw(1,1.1) node[above] {\textcolor{red}{$A$}};
-                    \draw(1,-1.1) node[below] {$N$};
-                    \draw(2,0.1) node[above] {\textcolor{red}{$N$}};
-                    \draw(3,1.1) node[above] {$N$};
-                    \draw(3,-1.1) node[below] {$N$};
-
-                    % edge labels
-                    \draw(1.35,0.7) node[right] {\textcolor{red}{$0$}};
-                    \draw(1.35,-0.7) node[right] {$0$};
-                    \draw(0.5,0.5) node[left] {$1$};
-                    \draw(0.5,-0.5) node[left] {$0$};
-                    \draw(2.6,0.6) node[left] {$0$};
-                    \draw(2.6,-0.6) node[left] {$0$};
-                    \draw(3,0) node[right] {$0$};
-                \end{tikzpicture}
+    \begin{tikzpicture}
+        \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+        \node[red,draw, circle, label={[label distance=-1mm]left:{\textcolor{red}{$A$}}}] (n1) at (0,0) {};
+        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n2) at (1,1) {};
+        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n3) at (2,0) {};
+        \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
+        \node[draw, circle, label={[label distance=-1mm]below:{$N$}}] (n5) at (3,-1) {};
+        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
+        \draw[-] (n1)-- node[pos=0.6, left] {$0$} (n2);
+        \draw[-] (n2)-- node[pos=0.35,right] {$0$} (n3);
+        \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
+        \draw[-,red] (n4)-- node[pos=0.45,left] {\textcolor{red}{$1$}}(n1);
+        \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
+        \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
+        \draw[-] (n5)-- node[pos=0.4,left] {$0$}(n3);
+        }
+    \end{tikzpicture}
 }
+%3 
 \resizebox{0.28\textwidth}{!}{
-                    \begin{tikzpicture}
-                        \node[draw, red,circle] (n1) at (0,0) {};
-                        \node[draw, circle] (n2) at (1,1) {};
-                        \node[draw, red,circle] (n4) at (1,-1) {};
-                        \node[draw, circle] (n3) at (2,0) {};
-                        
-                        \node[draw, circle] (n5) at (3,-1){};
-                        \node[draw, circle] (n6) at (3,1){};
-            
-                    \draw[-] (n1)--(n2);
-                    \draw[-] (n2)--(n3);
-                    \draw[-] (n3)--(n4);
-                    \draw[-,red] (n4)--(n1);
-                    \draw[-] (n3)--(n6)--(n5)--(n3);
-            
-                        \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
-                        \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
-    
-                        \draw(-0.1,0) node[left] {\textcolor{red}{$A$}};
-                        \draw(1,1.1) node[above] {$A$};
-                        \draw(1,-1.1) node[below] {\textcolor{red}{$N$}};
-                        \draw(2,0.1) node[above] {$A$};
-                        \draw(3,1.1) node[above] {$N$};
-                        \draw(3,-1.1) node[below] {$N$};
-    
-                        % edge labels
-                        \draw(1.35,0.7) node[right] {$1$};
-                        \draw(1.35,-0.7) node[right] {$0$};
-                        \draw(0.5,0.5) node[left] {$1$};
-                        \draw(0.5,-0.5) node[left] {\textcolor{red}{$0$}};
-                        \draw(2.6,0.6) node[left] {$0$};
-                        \draw(2.6,-0.6) node[left] {$0$};
-                        \draw(3,0) node[right] {$0$};
-                    \end{tikzpicture}
+   \begin{tikzpicture}  
+        \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+        \node[red,draw, circle, label={[label distance=-1mm]left:{\textcolor{red}{$A$}}}] (n1) at (0,0) {}; 
+        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n2) at (1,1) {};
+        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n3) at (2,0) {};
+        \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
+        \node[draw, circle, label={[label distance=-1mm]below:{$N$}}] (n5) at (3,-1) {}; 
+        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
+        \draw[red,-] (n1)-- node[pos=0.6, left] {\textcolor{red}{$1$}} (n2);
+        \draw[-] (n2)-- node[pos=0.35,right] {$0$} (n3);
+        \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
+        \draw[-,red] (n4)-- node[pos=0.45,left] {\textcolor{red}{$1$}}(n1);
+        \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
+        \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
+        \draw[-] (n5)-- node[pos=0.4,left] {$0$}(n3);
+        }
+    \end{tikzpicture}
 }
 
-
+%4
 \resizebox{0.28\textwidth}{!}{
-                    \begin{tikzpicture}
-                        \node[draw, circle] (n1) at (0,0) {};
-                        \node[draw, circle] (n2) at (1,1) {};
-                        \node[draw, circle] (n4) at (1,-1) {};
-                        \node[draw, red,circle] (n3) at (2,0) {};
-                        
-                        \node[draw, red,circle] (n5) at (3,-1){};
-                        \node[draw, circle] (n6) at (3,1){};
-            
-                        \draw[-] (n1)--(n2);
-                        \draw[-] (n2)--(n3);
-                        \draw[-] (n3)--(n4);
-                        \draw[-] (n4)--(n1);
-                        \draw[-] (n3)--(n6)--(n5);
-                        \draw[-,red] (n5)--(n3);
-            
-                        \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
-                        \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
-
-                        \draw(-0.1,0) node[left] {$A$};
-                        \draw(1,1.1) node[above] {$A$};
-                        \draw(1,-1.1) node[below] {$A$};
-                        \draw(2,0.1) node[above] {\textcolor{red}{$A$}};
-                        \draw(3,1.1) node[above] {$N$};
-                        \draw(3,-1.1) node[below] {\textcolor{red}{$N$}};
-    
-                        % edge labels
-                        \draw(1.35,0.7) node[right] {$1$};
-                        \draw(1.35,-0.7) node[right] {$0$};
-                        \draw(0.5,0.5) node[left] {$1$};
-                        \draw(0.5,-0.5) node[left] {$1$};
-                        \draw(2.6,0.6) node[left] {$0$};
-                        \draw(2.6,-0.6) node[left] {\textcolor{red}{$0$}};
-                        \draw(3,0) node[right] {$0$};
-                    \end{tikzpicture}
+     \begin{tikzpicture}  
+        \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+        \node[red,draw, circle, label={[label distance=-1mm]left:{\textcolor{red}{$A$}}}] (n1) at (0,0) {}; 
+        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n2) at (1,1) {};
+        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n3) at (2,0) {};
+        \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
+        \node[draw, circle, label={[label distance=-1mm]below:{$N$}}] (n5) at (3,-1) {}; 
+        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
+        \draw[red,-] (n1)-- node[pos=0.6, left] {\textcolor{red}{$1$}} (n2);
+        \draw[red,-] (n2)-- node[pos=0.35,right] {\textcolor{red}{$1$}} (n3);
+        \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
+        \draw[-,red] (n4)-- node[pos=0.45,left] {\textcolor{red}{$1$}}(n1);
+        \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
+        \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
+        \draw[-] (n5)-- node[pos=0.4,left] {$0$}(n3);
+        }
+    \end{tikzpicture}
 }
+%5
 \resizebox{0.28\textwidth}{!}{
-                    \begin{tikzpicture}
-                        \node[draw, circle] (n1) at (0,0) {};
-                        \node[draw, circle] (n2) at (1,1) {};
-                        \node[draw, circle] (n4) at (1,-1) {};
-                        \node[draw,circle] (n3) at (2,0) {};
-                        
-                        \node[draw, red,circle] (n5) at (3,-1){};
-                        \node[draw, red,circle] (n6) at (3,1){};
-            
-                        \draw[-] (n1)--(n2)--(n3)--(n4);
-                        \draw[-] (n4)--(n1);
-                        \draw[-] (n3)--(n6);
-                        \draw[-,red] (n6)--(n5);
-                        \draw[-] (n5)--(n3);
-            
-                        \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
-                        \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
-              
-                        \draw(-0.1,0) node[left] {$A$};
-                        \draw(1,1.1) node[above] {$A$};
-                        \draw(1,-1.1) node[below] {$A$};
-                        \draw(2,0.1) node[above] {$A$};
-                        \draw(3,1.1) node[above] {\textcolor{red}{$N$}};
-                        \draw(3,-1.1) node[below] {\textcolor{red}{$A$}};
-
-                        % edge labels
-                        \draw(1.35,0.7) node[right] {$1$};
-                        \draw(1.35,-0.7) node[right] {$0$};
-                        \draw(0.5,0.5) node[left] {$1$};
-                        \draw(0.5,-0.5) node[left] {$1$};
-                        \draw(2.6,0.6) node[left] {$0$};
-                        \draw(2.6,-0.6) node[left] {$1$};
-                        \draw(3,0) node[right] {\textcolor{red}{$0$}};
-                    \end{tikzpicture}
+    \begin{tikzpicture}  
+        \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+        \node[red,draw, circle, label={[label distance=-1mm]left:{\textcolor{red}{$A$}}}] (n1) at (0,0) {}; 
+        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n2) at (1,1) {};
+        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n3) at (2,0) {};
+        \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
+        \node[red,draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n5) at (3,-1) {}; 
+        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
+        \draw[red,-] (n1)-- node[pos=0.6, left] {\textcolor{red}{$1$}} (n2);
+        \draw[red,-] (n2)-- node[pos=0.35,right] {\textcolor{red}{$1$}} (n3);
+        \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
+        \draw[-,red] (n4)-- node[pos=0.45,left] {\textcolor{red}{$1$}}(n1);
+        \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
+        \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
+        \draw[red,-] (n5)-- node[pos=0.4,left] {\textcolor{red}{$1$}}(n3);
+        }
+    \end{tikzpicture}
 }
+%6
 \resizebox{0.28\textwidth}{!}{
-                    \begin{tikzpicture}
-                        \node[draw, circle] (n1) at (0,0) {};
-                        \node[draw, circle] (n2) at (1,1) {};
-                        \node[draw, circle] (n4) at (1,-1) {};
-                        \node[draw, circle] (n3) at (2,0) {};
-                        
-                        \node[draw, circle] (n5) at (3,-1){};
-                        \node[draw, circle] (n6) at (3,1){};
-            
-                        \draw[-] (n1)--(n2)--(n3)--(n4);
-                        \draw[-] (n4)--(n1);
-                        \draw[-] (n3)--(n6)--(n5)--(n3);
-            
-                        \draw[transparent, rounded corners,rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3) ;
-                        \draw[transparent, rounded corners,rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3) ;
-                        \draw(-0.1,0) node[left] {$A$};
-                        \draw(1,1.1) node[above] {$A$};
-                        \draw(1,-1.1) node[below] {$A$};
-                        \draw(2,0.1) node[above] {$A$};
-                        \draw(3,1.1) node[above] {$A$};
-                        \draw(3,-1.1) node[below] {$A$};
-     
-                        % edge labels
-                        \draw(1.35,0.7) node[right] {$1$};
-                        \draw(1.35,-0.7) node[right] {$0$};
-                        \draw(0.5,0.5) node[left] {$1$};
-                        \draw(0.5,-0.5) node[left] {$1$};
-                        \draw(2.6,0.6) node[left] {$0$};
-                        \draw(2.6,-0.6) node[left] {$1$};
-                        \draw(3,0) node[right] {$1$};
-                    \end{tikzpicture}
+   \begin{tikzpicture}  
+        \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+        \node[red,draw, circle, label={[label distance=-1mm]left:{\textcolor{red}{$A$}}}] (n1) at (0,0) {}; 
+        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n2) at (1,1) {};
+        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n3) at (2,0) {};
+        \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
+        \node[red,draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n5) at (3,-1) {}; 
+        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n6) at (3,1) {};
+        \draw[red,-] (n1)-- node[pos=0.6, left] {\textcolor{red}{$1$}} (n2);
+        \draw[red,-] (n2)-- node[pos=0.35,right] {\textcolor{red}{$1$}} (n3);
+        \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
+        \draw[-,red] (n4)-- node[pos=0.45,left] {\textcolor{red}{$1$}}(n1);
+        \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
+        \draw[red,-] (n6)-- node[pos=0.4,right] {\textcolor{red}{$1$}}(n5);
+        \draw[red,-] (n5)-- node[pos=0.4,left] {\textcolor{red}{$1$}}(n3);
+        }
+    \end{tikzpicture}
 }
         \caption{Sequence of graph transformation, to be read from left to right and from top to bottom. In each graph, the subgraph in red is to be relabeled according to the rule to obtain the next graph.}
         \label{fig:intro_sequence_of_transformation}
