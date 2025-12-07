@@ -2,17 +2,19 @@
 \usepackage{xcolor}
 % \usetheme{Marburg}
 \usecolortheme{orchid}
+\usepackage{fontawesome5}
 \usepackage{adjustbox} % in preamble
-\usepackage{pifont}
+\usepackage{pifont} 
 \usepackage{nicefrac}
 \usepackage{csquotes}
 \usepackage{graphicx}
 \usepackage{changepage}
-\usepackage{cancel} 
+\usepackage{cancel}  
 \usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
 \usetikzlibrary{positioning,arrows}
 \usepackage[dvipsnames]{xcolor}
-\makeatletter 
+\makeatletter
 \def\blfootnote{\gdef\@thefnmark{}\@footnotetext}
 \makeatother
 \newcommand{\crossout}[2][red]{%
@@ -29,8 +31,8 @@
 \setbeamertemplate{navigation symbols}{}
 \usepackage[  
 backend=biber,
-style=alphabetic,
-]{biblatex}
+style=alphabetic, 
+]{biblatex} 
 \addbibresource{../../bib/these.bib}
 \usepackage{hyperref, xcolor, cmbright,diagbox,colortbl,tikz,graphicx,algorithm2e,cancel,verbatim, graphicx,
 listings,float,amsmath,amssymb,array,subfiles,bussproofs,
@@ -69,33 +71,71 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
 \author{Qi QIU}
 \institute[VFU] % (optional)
 {
-	Supervisor: Xavier URBAIN\\
     LIRIS, UMR 5205 CNRS\\
-	Université Claude Bernard Lyon 1, France \\
+	Université Claude Bernard Lyon 1, France\\
+    Supervisor: Xavier URBAIN\\
+}
+
+\titlegraphic{%
+  \includegraphics[height=1.2cm]{logo_liris.png}\hspace{5mm}%
+  \includegraphics[height=1.5cm]{logo_lyon1.jpg}%
 }
 
 \maketitle
 
-\begin{frame}{Motivation \& Goal}
+\begin{frame}{Motivation \& Goal} 
 
-    \begin{description}
-        \item[Distributed/concurrent systems are everywhere.] 
-        \item[Failures can be catastrophic.] 
-        \item[Ensuring correctness is hard.] 
-        \item[This thesis: automated verification.] 
+    \begin{description} 
+        \item[Centralized systems and distributed systems:]\ \\
+            \resizebox{0.3\textwidth}{!}{
+              \begin{tikzpicture}
+                  \node (n0) at (0,0) {\faIcon{laptop-code}};
+                  \node (n1) at (-1.2,0) {\faIcon{laptop-code}};
+                  \node (n2) at (0,1.2) {\faIcon{laptop-code}};
+                  \node (n3) at (1.2,0) {\faIcon{laptop-code}};
+                  \node (n4) at (0,-1.2) {\faIcon{laptop-code}};
+                  \draw[-,dashed] (n0) -- (n1);
+                  \draw[-,dashed] (n0) -- (n2);
+                  \draw[-,dashed] (n0) -- (n3);
+                  \draw[-,dashed] (n0) -- (n4);
+              \end{tikzpicture}
+            }
+            \hspace{1cm}
+            \resizebox{0.3\textwidth}{!}{
+            \begin{tikzpicture}
+                \node (n1) at (-1.2,0) {\faIcon{laptop-code}};
+                \node (n2) at (0,1.2) {\faIcon{laptop-code}};
+                \node (n3) at (1.2,0) {\faIcon{laptop-code}};
+                \node (n4) at (0,-1.2) {\faIcon{laptop-code}};
+                \draw[-,dashed] (n1) -- (n2);
+                \draw[-,dashed] (n2) -- (n3);
+                \draw[-,dashed] (n3) -- (n4);
+                \draw[-,dashed] (n4) -- (n1);
+                \draw[-,dashed] (n1) -- (n3);
+                \draw[-,dashed] (n2) -- (n4);
+            \end{tikzpicture}
+            }
+        \item[Failures can be catastrophic:]                
+              \faIcon{laptop-code}
+              \faIcon{mobile-alt}
+              \faIcon{medkit}
+              \faIcon{train}
+              \faIcon{plane}
+              \faIcon{rocket} 
+              \begin{itemize}
+                \item The Needham-Schroeder protocol flaw (1978-1995)
+              \end{itemize}
+        \item[Ensuring correctness is hard.]\ \\
+            \begin{itemize}
+                \item Distributed algorithms are complex.
+                \item Human proofs are error-prone.
+            \end{itemize}
+        \item[This thesis: automated verification.]\ \\
+            \begin{itemize}
+                \item Mathematically rigorous
+                \item Minimal user effort
+            \end{itemize}
     \end{description}
-
-  
-
-\vspace{5mm}
- 
-
-\vspace{5mm}
- 
- 
-\vspace{5mm}
-
-
 \note{Distributed and concurrent systems are everywhere — from medical devices to transport. When they fail, consequences can be severe. Yet proving correctness is hard. In this thesis, I focus on automated, mathematically rigorous verification with minimal user effort.}
 \end{frame}
 
@@ -132,192 +172,278 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
         \draw[transparent, rounded corners, rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3);
     \end{tikzpicture}
 
-   Graph rewriting:
+  Intuitive modelization of distributed systems:
     \begin{itemize}
         \item computational units $\rightarrow$ nodes
         \item communication channels  $\rightarrow$ edges
         \item system states  $\rightarrow$ graphs
-        \item algorithm behaviors $\rightarrow$ graph transformation rules
+        \item algorithm behaviors \\ $\rightarrow$ graph transformation rules according to local knowledge
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Graph Transformation}
- Graph representing a configuration of a distributed system:
-
+ \only<1-11>{Configuration of a distributed system:}
+ \only<12->{A spanning tree is obtained when the rule cannot be applied:}
     \begin{overlayarea}{\textwidth}{\textheight}
         \begin{center}
-        \begin{onlyenv}<1>
+            \begin{onlyenv}<1>
             \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-            \node[draw, circle, label={[label distance=-1mm]left:{$N$}}] (n1) at (0,0) {};
-            \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n2) at (1,1) {};
-            \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n3) at (2,0) {};
-            \node[draw, circle, label={[label distance=-1mm]below:{$A$}}] (n4) at (1,-1) {};
-            \node[draw, circle, label={[label distance=-1mm]below:{$N$}}] (n5) at (3,-1) {};
-            \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
-            \draw[-] (n1)-- node[pos=0.6, left] {$0$} (n2);
-            \draw[-] (n2)-- node[pos=0.35,right] {$0$} (n3);
-            \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
-            \draw[-] (n4)-- node[pos=0.45,left] {$0$}(n1);
-            \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
-            \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
-            \draw[-] (n5)-- node[pos=0.4,left] {$0$}(n3);
+            \node[PineGreen,fill=PineGreen,draw, circle] (n1) at (0,0) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[PineGreen,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
             }
+            % \draw[red!50, rounded corners] ($(n5)+(-0.3,-0.3)$) rectangle ($(n6)+(0.3,0.3)$);  %n5(bottom) and n6
         \end{tikzpicture}
         % } 
         \end{onlyenv}
-            \begin{onlyenv}<2>
-            \begin{tikzpicture}
+        \begin{onlyenv}<2>
+               \begin{tikzpicture}
             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-            \node[draw, circle, label={[label distance=-1mm]left:{$N$}}] (n1) at (0,0) {};
-            \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n2) at (1,1) {};
-            \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n3) at (2,0) {};
-            \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
-            \node[draw, circle, label={[label distance=-1mm]below:{$N$}}] (n5) at (3,-1) {};
-            \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
-            \draw[-] (n1)-- node[pos=0.6, left] {$0$} (n2);
-            \draw[-] (n2)-- node[pos=0.35,right] {$0$} (n3);
-            \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
-            \draw[-] (n4)-- node[pos=0.45,left] {$0$}(n1);
-            \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
-            \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
-            \draw[-] (n5)-- node[pos=0.4,left] {$0$}(n3);
+            \node[PineGreen,fill=PineGreen,draw, circle] (n1) at (0,0) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[PineGreen,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+             \draw[red!50, rounded corners,rotate around={45:(0,-0.5)}] ($(n4)+(-0.3,-0.3)$) rectangle ($(n1)+(0.3,0.3)$); 
             }
         \end{tikzpicture}
-        % } 
         \end{onlyenv}
-            %2
-        \begin{onlyenv}<3>
-    % \resizebox{0.28\textwidth}{!}{
-      \begin{tikzpicture}
-        \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-        \node[red,draw, circle, label={[label distance=-1mm]left:{\textcolor{red}{$A$}}}] (n1) at (0,0) {};
-        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n2) at (1,1) {};
-        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n3) at (2,0) {};
-        \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
-        \node[draw, circle, label={[label distance=-1mm]below:{$N$}}] (n5) at (3,-1) {};
-        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
-        \draw[-] (n1)-- node[pos=0.6, left] {$0$} (n2);
-        \draw[-] (n2)-- node[pos=0.35,right] {$0$} (n3);
-        \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
-        \draw[-,red] (n4)-- node[pos=0.45,left] {\textcolor{red}{$1$}}(n1);
-        \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
-        \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
-        \draw[-] (n5)-- node[pos=0.4,left] {$0$}(n3);
-        }
+         \begin{onlyenv}<3>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
         \end{tikzpicture}
-    % }
         \end{onlyenv}
-    %3
-    \begin{onlyenv}<4>
-    % \resizebox{0.28\textwidth}{!}{
-       \begin{tikzpicture}  
-        \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-        \node[red,draw, circle, label={[label distance=-1mm]left:{\textcolor{red}{$A$}}}] (n1) at (0,0) {}; 
-        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n2) at (1,1) {};
-        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n3) at (2,0) {};
-        \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
-        \node[draw, circle, label={[label distance=-1mm]below:{$N$}}] (n5) at (3,-1) {}; 
-        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
-        \draw[red,-] (n1)-- node[pos=0.6, left] {\textcolor{red}{$1$}} (n2);
-        \draw[-] (n2)-- node[pos=0.35,right] {$0$} (n3);
-        \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
-        \draw[-,red] (n4)-- node[pos=0.45,left] {\textcolor{red}{$1$}}(n1);
-        \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
-        \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
-        \draw[-] (n5)-- node[pos=0.4,left] {$0$}(n3);
-        }
-    \end{tikzpicture}
-    % }
-    \end{onlyenv}
-
-    %4
-    \begin{onlyenv}<5>
-    % \resizebox{0.28\textwidth}{!}{
-     \begin{tikzpicture}  
-        \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-        \node[red,draw, circle, label={[label distance=-1mm]left:{\textcolor{red}{$A$}}}] (n1) at (0,0) {}; 
-        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n2) at (1,1) {};
-        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n3) at (2,0) {};
-        \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
-        \node[draw, circle, label={[label distance=-1mm]below:{$N$}}] (n5) at (3,-1) {}; 
-        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
-        \draw[red,-] (n1)-- node[pos=0.6, left] {\textcolor{red}{$1$}} (n2);
-        \draw[red,-] (n2)-- node[pos=0.35,right] {\textcolor{red}{$1$}} (n3);
-        \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
-        \draw[-,red] (n4)-- node[pos=0.45,left] {\textcolor{red}{$1$}}(n1);
-        \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
-        \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
-        \draw[-] (n5)-- node[pos=0.4,left] {$0$}(n3);
-        }
-    \end{tikzpicture}
-    % }
-    \end{onlyenv}
-
-    %5
-    \begin{onlyenv}<6>
-    % \resizebox{0.28\textwidth}{!}{
-    \begin{tikzpicture}  
-        \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-        \node[red,draw, circle, label={[label distance=-1mm]left:{\textcolor{red}{$A$}}}] (n1) at (0,0) {}; 
-        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n2) at (1,1) {};
-        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n3) at (2,0) {};
-        \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
-        \node[red,draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n5) at (3,-1) {}; 
-        \node[draw, circle, label={[label distance=-1mm]above:{$N$}}] (n6) at (3,1) {};
-        \draw[red,-] (n1)-- node[pos=0.6, left] {\textcolor{red}{$1$}} (n2);
-        \draw[red,-] (n2)-- node[pos=0.35,right] {\textcolor{red}{$1$}} (n3);
-        \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
-        \draw[-,red] (n4)-- node[pos=0.45,left] {\textcolor{red}{$1$}}(n1);
-        \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
-        \draw[-] (n6)-- node[pos=0.4,right] {$0$}(n5);
-        \draw[red,-] (n5)-- node[pos=0.4,left] {\textcolor{red}{$1$}}(n3);
-        }
-    \end{tikzpicture}
-    % }
-    \end{onlyenv}
-    %6
-    \begin{onlyenv}<7->
-    % \resizebox{0.28\textwidth}{!}{
-    \begin{tikzpicture}  
-        \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-        \node[red,draw, circle, label={[label distance=-1mm]left:{\textcolor{red}{$A$}}}] (n1) at (0,0) {}; 
-        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n2) at (1,1) {};
-        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n3) at (2,0) {};
-        \node[red, draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n4) at (1,-1) {};
-        \node[red,draw, circle, label={[label distance=-1mm]below:{\textcolor{red}{$A$}}}] (n5) at (3,-1) {}; 
-        \node[red,draw, circle, label={[label distance=-1mm]above:{\textcolor{red}{$A$}}}] (n6) at (3,1) {};
-        \draw[red,-] (n1)-- node[pos=0.6, left] {\textcolor{red}{$1$}} (n2);
-        \draw[red,-] (n2)-- node[pos=0.35,right] {\textcolor{red}{$1$}} (n3);
-        \draw[-] (n3)-- node[pos=0.6,right] {$0$}(n4);
-        \draw[-,red] (n4)-- node[pos=0.45,left] {\textcolor{red}{$1$}}(n1);
-        \draw[-] (n3)-- node[pos=0.65,left] {$0$}(n6);
-        \draw[red,-] (n6)-- node[pos=0.4,right] {\textcolor{red}{$1$}}(n5);
-        \draw[red,-] (n5)-- node[pos=0.4,left] {\textcolor{red}{$1$}}(n3);
-        }
-    \end{tikzpicture}
-    \end{onlyenv}
+        \begin{onlyenv}<4>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            \draw[red!50, rounded corners,rotate around={45:(0,-0.5)}] ($(n1)+(-0.3,-0.3)$) rectangle ($(n2)+(0.3,0.3)$); 
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+        \begin{onlyenv}<5>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+        \begin{onlyenv}<6>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            \draw[red!50, rounded corners,rotate around={45:(0.5,0.5)}] ($(n3)+(-0.3,-0.3)$) rectangle ($(n2)+(0.3,0.3)$); 
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+         \begin{onlyenv}<7>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+         \begin{onlyenv}<8>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            % \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n3)+(-0.3,-0.3)$) rectangle ($(n6)+(0.3,0.3)$); 
+            \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n5)+(-0.4,-0.4)$) rectangle ($(n3)+(0.3,0.4)$); 
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+        \begin{onlyenv}<9>
+            \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+              \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+              \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+              \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+              \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+              \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
+              \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+              \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+              \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+              \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+              \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+              \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+              \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+              \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
+              }
+          \end{tikzpicture}
+        \end{onlyenv}
+         \begin{onlyenv}<10>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+              \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+              \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+              \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+              \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+              \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
+              \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+              \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+              \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+              \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+              \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+              \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+              \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+              \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
+              \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n3)+(-0.3,-0.3)$) rectangle ($(n6)+(0.3,0.3)$); 
+              % \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n5)+(-0.4,-0.4)$) rectangle ($(n3)+(0.3,0.4)$); 
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+        \begin{onlyenv}<11>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
+            \node[red,fill=red,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[red,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+          \begin{onlyenv}<12->
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
+            \node[red,fill=red,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+            % \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[red,-] (n3)-- node[pos=0.65,left] {}(n6);
+            % \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
      \end{center}
 
-    Graph transformation rule:
+    Apply the rule as long as possible:
         \begin{center}
         \resizebox{0.7\textwidth}{!}{
             \begin{tikzpicture}
-                        \graphbox{\(\)}{0mm}{0mm}{34mm}{20mm}{-8mm}{-15mm}{
-                            \node[draw, circle] (x) at (0,0) {$1$};
-                            \node () at (0,0.55) {$A$};  
-                            \node[draw, circle] (y) at (2,0) {$2$};
-                            \node () at (2,0.55) {$N$};
-                            \draw[-] (x) -- node[midway,above] {$0$} (y) ;
+                        \graphbox{\(\)}{0mm}{0mm}{34mm}{15mm}{-10mm}{-10mm}{
+                            \node[red,fill=red,draw, circle] (x) at (0,0) {};
+                            \node () at (0,0.55) {};  
+                            \node[PineGreen,fill=PineGreen,draw, circle] (y) at (2,0) {};
+                            \node () at (2,0.55) {};
+                            \draw[PineGreen,-] (x) -- node[midway,above] {} (y) ;
                             %             \draw[->] (x) edge [loop above] node {$A$} (x);
                             % \draw[->] (y) edge [loop above] node {$N$} (y);
                         }
-                        \graphbox{\(\)}{40mm}{0mm}{34mm}{20mm}{-8mm}{-15mm}{
-                            \node[draw, circle]  (x) at (0,0) {$1$};  
-                            \node () at (0,0.55) {$A$};  
-                            \node[draw, circle]  (y) at (2,0) {$2$};
-                            \node () at (2,0.55) {$A$};
-                            \draw[-] (x) -- node[midway,above] {$1$} (y) ;
+                        \graphbox{\(\)}{40mm}{0mm}{34mm}{15mm}{-10mm}{-10mm}{
+                            \node[red,fill=red,draw, circle]  (x) at (0,0) {};  
+                            \node () at (0,0.55) {};  
+                            \node[red,fill=red,draw, circle]  (y) at (2,0) {};
+                            \node () at (2,0.55) {};
+                            \draw[red,-] (x) -- node[midway,above] {} (y) ;
                             % \draw[->] (x) edge [loop above] node {$A$} (x);
                             % \draw[->] (y) edge [loop above] node {$A$} (y);
                         }  
@@ -325,8 +451,10 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
             \end{tikzpicture}
         } 
         \end{center}
-        \begin{onlyenv}<8>
-            Question: does the transformation process terminate for any initial graph?
+        This rule replaces an occurrence of the left-hand side by the right-hand side.\\
+        \begin{onlyenv}<13->
+          \textcolor{red}{Can a given set of rules transform a given initial graph forever?}
+            % \textcolor{red}{Does the transformation process terminate for any initial graph under the strategy of applying the rule while possible?}
         \end{onlyenv} 
     \end{overlayarea}
     
@@ -337,28 +465,43 @@ Each node represents a computational unit; a node's state is indicated by the la
  This behavior is captured by the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_0}.}
 \end{frame}
 
+\begin{frame}{Termination}
+  \begin{itemize}
+    \item No graph $G_0$ can be transformed forever
+         $$G_0 \Rightarrow G_1 \Rightarrow \cdots$$
+        %  under the strategy 
+        %   \begin{center}
+        %       \textcolor{blue}{\enquote{apply rules as long as possible}}
+        %   \end{center}
+    \item Aligns with the notion of program termination: 
+         \begin{center}
+            \textcolor{blue}{\enquote{every execution (on any input) halts.}}
+          \end{center}
+    \item Undecidable in general 
+  \end{itemize}
+\end{frame}
 
-\begin{frame}{A non-termination case}
+\begin{frame}{A non-terminating case}
     \begin{center}
         \resizebox{0.8\textwidth}{!}{
     \begin{tikzpicture}[baseline=-10mm]
         \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{3mm}{
             \coordinate (o) at (0mm,-11mm); 
-            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-            \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-            \draw[->] (l3) -- (l2) node[midway,above] {$b$};
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+            \draw[-,red] (l1) -- (l3) node[midway,above] {};
+            \draw[-,blue] (l3) -- (l2) node[midway,above] {};
         } 
 
         \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{3mm}{
             \coordinate (o) at (-5mm,-11mm); 
-            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
             % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-            \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
-            \draw[->] (l1) -- (l3) node[midway,above] {$b$};
-            \draw[->] (l3) -- (l4) node[midway,above] {$a$};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+            \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+            \draw[-,blue] (l1) -- (l3) node[midway,above] {};
+            \draw[-,red] (l3) -- (l4) node[midway,above] {};
             % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
         }    
         % \node () at (37mm,-10mm) {\( \leftarrow \)}; % K -> L
@@ -373,9 +516,9 @@ Each node represents a computational unit; a node's state is indicated by the la
         \node[draw,circle] (x) at (0,0) {};
         \node[draw,circle] (y) at (1,0) {};
         \node[draw,circle] (z) at (0.5,0.86) {};
-        \draw[->,red] (x) -- node[midway,below] {$a$} (y) ;
-        \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
-        \draw[->] (z) -- node[midway,left] {$b$} (x) ;
+        \draw[-,red] (x) -- node[midway,below] {} (y) ;
+        \draw[-,red,line width=3pt] (y) -- node[midway,right] {} (z) ;
+        \draw[-,blue,line width=3pt] (z) -- node[midway,left] {} (x) ;
     } 
     \node () at (10mm,-35mm) {\( \Rightarrow  \)};
     \node () at (-3mm,-23mm) {\( \Swarrow  \)};
@@ -383,18 +526,18 @@ Each node represents a computational unit; a node's state is indicated by the la
         \node[draw,circle] (x) at (0,0) {};  
         \node[draw,circle] (y) at (1,0) {};
         \node[draw,circle] (z) at (0.5,0.86) {};
-        \draw[->] (x) -- node[midway,below] {$b$} (y) ;
-        \draw[->,red] (y) -- node[midway,right] {$a$} (z) ;
-        \draw[->,red] (z) -- node[midway,left] {$b$} (x) ;
+        \draw[-,red,line width=3pt] (x) -- node[midway,below] {} (y) ;
+        \draw[-,blue,line width=3pt] (y) -- node[midway,right] {} (z) ;
+        \draw[-,red] (z) -- node[midway,left] {} (x) ;
     } 
     \node () at (23mm,-23mm) {\( \Nwarrow \)};
     \graphbox{\( \)}{25mm}{-25mm}{20mm}{20mm}{-5mm}{-14mm}{
         \node[draw,circle] (x) at (0,0) {};  
         \node[draw,circle] (y) at (1,0) {};
         \node[draw,circle] (z) at (0.5,0.86) {};
-        \draw[->,red] (x) -- node[midway,below] {$b$} (y) ;
-        \draw[->] (y) -- node[midway,right] {$b$} (z) ;
-        \draw[->,red] (z) -- node[midway,left] {$a$} (x) ;
+        \draw[-,blue,line width=3pt] (x) -- node[midway,below] {} (y) ;
+        \draw[-,red] (y) -- node[midway,right] {} (z) ;
+        \draw[-,red,line width=3pt] (z) -- node[midway,left] {} (x) ;
     }
     %   \node () at (85mm,-10mm) {\( \Rightarrow  \)};
     %   \graphbox{\( \)}{90mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
@@ -436,28 +579,11 @@ Each node represents a computational unit; a node's state is indicated by the la
 %                 }
 
 %                 \vspace{4mm}
-% \noindent Terminating by the number of edges if we consider finite graphs only.
-\end{frame}
-
-\begin{frame}{Termination}
-  \begin{itemize}
-    \item No graph $G_0$ can be transformed forever
-         $$G_0 \Rightarrow G_1 \Rightarrow \cdots$$
-         under the strategy 
-          \begin{center}
-              \textcolor{blue}{\enquote{apply rules as long as possible}}
-          \end{center}
-    \item Aligns with the notion of program termination: 
-         \begin{center}
-            \textcolor{blue}{\enquote{every execution (on any input) halts.}}
-          \end{center}
-    \item Undecidable in general 
-    \item How to prove termination automatically?
-  \end{itemize}
+% \noindent Terminating by the number of edges if we consider finite graphs only. 
 \end{frame}
 
 \begin{frame}{Automated Termination Proofs}
-    \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
         Termination by interpretations:
         \begin{itemize}
             \item interpret graphs as natural numbers;
@@ -465,13 +591,12 @@ Each node represents a computational unit; a node's state is indicated by the la
         \end{itemize}
     \end{beamercolorbox}
 
-    \begin{center}
-    \resizebox{\textwidth}{!}{ 
-       Number of edges: \begin{tikzpicture}[baseline=-12mm]
+    % \begin{center}
+\noindent   Number of edges: \begin{tikzpicture}[baseline=-12mm]
                     \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
                         \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[-] (l1) -- (l2) node[midway,above] {};
                     } 
@@ -482,24 +607,24 @@ Each node represents a computational unit; a node's state is indicated by the la
                     % }  
                     \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
                         \coordinate (o) at (-5mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                          % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
                         % \draw[->] (l1) -- (l4) node[midway,above] {};
                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                     }    
                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
                     % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
                 \end{tikzpicture}
-    }
-    \end{center}
-    \begin{center}
-    \resizebox{\textwidth}{!}{ 
-       Number of nodes: \begin{tikzpicture}[baseline=-12mm]
+    % \end{center}
+    % \begin{center}
+
+
+     \noindent  Number of nodes: \begin{tikzpicture}[baseline=-12mm]
                     \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
                         \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-5mm,0mm)$) {};
+                        \node[draw,circle] (l1) at ($(o)+(0mm,0mm)$) {};
                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                     } 
                     % \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -512,15 +637,17 @@ Each node represents a computational unit; a node's state is indicated by the la
                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
                     % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
                 \end{tikzpicture}
-    }
-    \end{center}
+    % \end{center}
+
+
+    \vspace{3mm}
+      \noindent Number of edges labeled by $a$: 
     \begin{center}
-    \resizebox{\textwidth}{!}{ 
-       Number of edges labeled by $a$: \begin{tikzpicture}[baseline=-12mm]
+       \begin{tikzpicture}
                     \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
                         \coordinate (o) at (0mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[-] (l1) -- (l2) node[midway,above] {$a$};
                     } 
@@ -531,38 +658,37 @@ Each node represents a computational unit; a node's state is indicated by the la
                     % }  
                     \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
                         \coordinate (o) at (-5mm,-11mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                          % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
                         \draw[-] (l1) -- (l4) node[midway,above] {$b$};
                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                     }    
                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
                     % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
                 \end{tikzpicture}
-    }
     \end{center}
 \end{frame}
 
-\begin{frame}{A non-trivial example}
+\begin{frame}{Limitation of Trivial Interpretations}
     \begin{center}
       \resizebox{\textwidth}{!}{
        \begin{tikzpicture}[baseline=-10mm]
-          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+          \graphbox{}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
-              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-              \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+              \node[draw,circle,red,fill=red] (l1) at ($(o)+(-10mm,0mm)$) {};
+              \node[draw,circle,red,fill=red] (l2) at ($(l1)+(2,0)$) {};
+              \node[draw,circle,blue,fill=blue] (l3) at ($(l1)+(1,0)$) {};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }     
-          \graphbox{$R$}{40mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+          \graphbox{}{40mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (-5mm,-3mm); 
-              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-              \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-              \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-              \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+              \node[draw,circle,red,fill=red] (l1) at ($(o)+(-10mm,0mm)$) {};
+              \node[draw,circle,red,fill=red] (l2) at ($(l1)+(3,0)$) {};
+              \node[draw,circle,PineGreen,fill=PineGreen] (l3) at ($(l1)+(1,0)$) {};
+              \node[draw,circle,PineGreen,fill=PineGreen] (l4) at ($(l1)+(2,0)$) {};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
@@ -574,20 +700,31 @@ Each node represents a computational unit; a node's state is indicated by the la
   \end{center} 
 
   \begin{description}
-    \item[Limitation of simple interpretations] 
-    \item[Need a formal definition of graph transformations]\ \\
-        \begin{itemize}
-            \item edges incident to deleted nodes
-        \end{itemize}
+    \item[Left-hand side graph:] middle has no other incident edges
+    \item[Right-hand side graph:] middles are fresh nodes
+    \item[\noindent Termination:] number of \raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {};
+            \node [draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \draw[->] (z)--(x) node[midway, above] {$a$};
+            \draw[->] (x)--(y) node[midway, above] {$a$};
+        }}} decreases
+    \item[Can its termination be proved by interpretations?]\ \\
+      \begin{itemize}
+        \item Weighted Type Graph Method
+        \item Need a more powerful definition of graph transformations.
+      \end{itemize}
   \end{description}
 \end{frame}
+
 \section{Preliminaries}
-\begin{frame}{Structure of the presentation}
+\begin{frame}
     \tableofcontents[hideothersubsections]
 \end{frame}
-\subsection{Graphs and graph morphisms}
-\begin{frame}{Graphs : finite, directed, edge-labeled multigraphs}
-\begin{adjustwidth}{-0.5cm}{0cm}
+\subsection{Graphs and Graph Morphisms}
+\begin{frame}{Graphs: Finite, Directed, Edge-Labeled Multigraphs}
+% \begin{adjustwidth}{-0.5cm}{0cm}
         \begin{center} 
           \resizebox{0.5\textwidth}{!}{
           \begin{tikzpicture}
@@ -596,62 +733,95 @@ Each node represents a computational unit; a node's state is indicated by the la
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
                   \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
-                  \draw[->] (l1) edge[bend right]  node[midway,below] {$a$} (l3);
-                  \draw[->] (l1) edge[bend left] node[midway,above] {$a$}  (l3);
+                  \draw[->,red] (l1) edge[bend right]  node[midway,below] {$a$} (l3);
+                  \draw[->,red] (l1) edge[bend left] node[midway,above] {$a$}  (l3);
                   \draw[->] (l3) -- (l4) node[midway,above] {$b$};
                   % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
               }   
           \end{tikzpicture} 
       }
       \end{center}
-      Remarks:
-      \begin{itemize}
-            \item Edges with the same source, target and label are permitted.
-            % \item Enclosed in a box
-            \item  \(G\) : graph name
-            \item Numbers inside nodes are identifiers (omitted when not relevant).
-      \end{itemize}
-\end{adjustwidth}
+
+ 
+         Edges with the same source, target and label are permitted.
+      \newline
+      \newline
+             \(G\): graph name
+             \newline
+      \newline
+             Numbers inside nodes: identifiers
+        % \newline\newline
+        % A non-directed edge is two directed edges with opposite directions.
+  
+    %   Remarks:
+    %   \begin{itemize}
+    %         \item Edges with the same source, target and label are permitted.
+    %         % \item Enclosed in a box
+    %         \item  \(G\) : graph name
+    %         \item Numbers inside nodes are identifiers (omitted when not relevant).
+    %   \end{itemize}
+% \end{adjustwidth}
 \end{frame} 
 
-\begin{frame}{Graph morphisms: structure-preserving functions}
-\begin{adjustwidth}{-0.5cm}{0cm}
+\begin{frame}{Graph Morphisms: Structure-Preserving Functions}
              \begin{center}
-          \resizebox{0.8\textwidth}{!}{
-          \begin{tikzpicture}
-            \graphbox{\( G \)}{0mm}{-20mm}{45mm}{25mm}{2mm}{-10mm}{
-                \coordinate (o) at (-5mm,-8mm); 
-                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {4};
-                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
-                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-            }  
-            \graphbox{\( H \)}{52mm}{-20mm}{50mm}{25mm}{2mm}{-10mm}{
-                \coordinate (o) at (-5mm,-8mm); 
-                \node[draw,circle] (l1) at ($(o)+(-1,0mm)$) {1};
-                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1)+(1.5,0)$) {3\ 4};
-                \draw[->] (l1) edge node[midway,above] {$a$} (l3);
-                \draw[->] (l3) edge [loop above] node[midway,above] {$b$} (l3) ;
-                \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-            }      
-            \node () at (48mm,-30mm) {$\overset{h}{\rightarrow}$};
+          \resizebox{0.7\textwidth}{!}{
+        \begin{tikzpicture}
+          \graphbox{$G$}{-40mm}{0mm}{30mm}{25mm}{0mm}{-3mm}{
+            \coordinate (o) at (0mm,-10mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+            \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
+            \draw[PineGreen,->] (l3) -- (l2) node[midway,above] {$b$};
+        } 
+            \graphbox{$H$}{0mm}{0mm}{30mm}{25mm}{-9mm}{-13mm}{
+                \node[draw,circle] (1) at (0,0) {};
+                \node[draw,circle] (2) at (2,0) {};
+                \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1);
+                \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1);
+                \draw[->,red] (1) edge[bend left] node[midway, above] {$a$}  (2);
+                \draw[->,PineGreen] (2) edge[bend left] node[midway, below] {$b$} (1);
+            }
+            % \node () at (-5mm,-15mm) {$\overset{h}{\to}$};
+            \draw[->] (-9mm,-13mm) to node[midway,above] {$h$} (-2mm,-13mm);
         \end{tikzpicture}
           }
          \end{center}
-        Remarks:
-        \begin{itemize}
-            \item Nodes of H are labeled with the sets of identifiers of nodes of $G$ that map to them.
-            \item $\overset{h}{\rightarrow}$ indicates $h: G \rightarrow H$.
-        \end{itemize}
-\end{adjustwidth}
+
+    Colors show edge correspondence.
+        \begin{center}
+          \resizebox{0.7\textwidth}{!}{
+        \begin{tikzpicture}
+          \graphbox{$G$}{-40mm}{0mm}{30mm}{35mm}{0mm}{-8mm}{
+            \coordinate (o) at (0mm,-10mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {3};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
+            \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
+            \draw[PineGreen,->] (l3) -- (l2) node[midway,above] {$b$};
+        } 
+            \graphbox{$H$}{0mm}{0mm}{30mm}{35mm}{-9mm}{-18mm}{
+                \node[draw,circle] (1) at (0,0) {1 3};
+                \node[draw,circle] (2) at (2,0) {2};
+                \draw[->] (1) edge[loop above] node[midway, above] {$a$} (1);
+                \draw[->] (1) edge[loop below] node[midway, below] {$b$} (1);
+                \draw[->,red] (1) edge[bend left] node[midway, above] {$a$}  (2);
+                \draw[->,PineGreen] (2) edge[bend left] node[midway, below] {$b$} (1);
+            }
+            % \node () at (-5mm,-15mm) {$\overset{h}{\to}$};
+            \draw[->] (-9mm,-18mm) to node[midway,above] {$h$} (-2mm,-18mm);
+        \end{tikzpicture}
+          }
+         \end{center}
+
+    Numbers show node correspondence.
+
+    $h$ : morphism name
 \end{frame}
 
 \begin{frame}{Commutative Diagram}
-    \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
         \begin{center}
             \resizebox{0.3\textwidth}{!}{
                 \begin{tikzpicture}
@@ -666,40 +836,40 @@ Each node represents a computational unit; a node's state is indicated by the la
                 \end{tikzpicture}
             } 
         \end{center}
-        Commutative if \( a \circ b = c \circ d \).
+        commutes if \( a \circ b = c \circ d \).
     \end{beamercolorbox}
         
         \begin{center}
                 \begin{tikzpicture}
                     \graphbox{}{0mm}{0mm}{34mm}{15mm}{2mm}{0mm}{
                         \coordinate (o) at (0mm,-8mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[PineGreen,fill=PineGreen,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                        \node[red,fill=red,draw,circle] (l2) at ($(l1)+(2,0)$) {};
                         \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
                         \draw[->] (l1) -- (l3) node[midway,above] {};
                         \draw[->] (l3) -- (l2) node[midway,above] {};
                     } 
                     \graphbox{}{40mm}{0mm}{34mm}{15mm}{2mm}{0mm}{
                         \coordinate (o) at (0mm,-8mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[PineGreen,fill=PineGreen,draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                        \node[red,fill=red,draw,circle] (l2) at ($(l1)+(2,0)$) {};
                     }  
                 
                     \graphbox{ }{0mm}{-22mm}{34mm}{25mm}{2mm}{-5mm}{
                         \coordinate (o) at (0mm,-3mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[PineGreen,fill=PineGreen,draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                        \node[red,fill=red,draw,circle] (l2) at ($(l1)+(2,0)$) {};
                         \node[draw,circle ] (l3) at ($(l1)+(1,0)$) {};
-                        \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {};
+                        \node[blue,fill=blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {};
                         \draw[->] (l1) -- (l3) node[midway,above] {};
                         \draw[->] (l3) -- (l2) node[midway,above] {};
                         \draw[->] (l2) -- (l4) node[midway,right] {};
                     }    
                     \graphbox{ }{40mm}{-22mm}{34mm}{25mm}{2mm}{-5mm}{
                         \coordinate (o) at (0mm,-3mm); 
-                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                        \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {};
+                        \node[PineGreen,fill=PineGreen,draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                        \node[red,fill=red,draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                        \node[blue,fill=blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {};
                         \draw[->] (l2) -- (l4) node[midway,right] {};
                     }    
                     \node () at (37mm,-8mm) {\( \underset{b}{\leftarrow} \)};  
@@ -710,22 +880,22 @@ Each node represents a computational unit; a node's state is indicated by the la
         \end{center}
 \end{frame}
 
-\begin{frame}{Pushouts: gluing graphs along a common part}
-    \begin{definition}
+\begin{frame}{Pushouts: Gluing Graphs Along a common part}
+\begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
     The \textbf{pushout} of \((\alpha,\beta) \)
     is \begin{onlyenv}<2->
-        \( \textcolor{red}{(\beta',\alpha')}\) such that
+        \( \textcolor{red}{(\beta',\alpha')}\) with
     \end{onlyenv}
     \begin{itemize}
         % \item<2->{commutation:} \textcolor{red}{\( \beta' \mathop{\circ} \alpha  \mathop{=} \alpha'\mathop{\circ} \beta\)},
-        \item<2-> $\square$\text{ABDC} is commutative,
+        \item<2-> $\square$\text{ABDC} commutative,
         % \item<3->{universality:}  \textcolor{PineGreen}{\( \forall \alpha \mathop{\star} \gamma' \mathop{=} \beta \mathop{\star} \gamma \Longrightarrow \exists~!~\delta. \gamma' \mathop{=} \beta' \mathop{\star} \delta  \gamma \mathop{=} \alpha' \mathop{\star} \delta \)}.
-        \item<3->{universality:}  \textcolor{PineGreen}{\( \forall (\gamma,\gamma').~\text{$\square$ABEC is commutative} \Longrightarrow \exists~!~\delta.~ \text{$\triangle$BDE \& $\triangle$CDE are commutative} \)}.
+        \item<3->{universality:} \color{PineGreen}for all $(\gamma,\gamma')$,if $\square ABEC$ commutes, then there is a unique $\delta$ such that \text{$\triangle BDE$} and $\triangle CDE$ both commute.\color{black}
     \end{itemize} 
-\end{definition} 
+\end{beamercolorbox}
 \hspace{-0.075\textwidth}% <-- exact horizontal gap between the two minipages
-\begin{minipage}[t]{0.2\textwidth}
-  \begin{overlayarea}{0.2\textwidth}{0.6\textheight}
+\begin{minipage}[t]{0.15\textwidth}
+  \begin{overlayarea}{0.15\textwidth}{0.6\textheight}
     \begin{tikzpicture}[scale=0.8]
             \node (i) at (0,0) {A};
             \node (r) at (-1.5,-1) {B};
@@ -752,242 +922,153 @@ Each node represents a computational unit; a node's state is indicated by the la
         \end{tikzpicture}
 \end{overlayarea}
 \end{minipage} 
-\hspace{0.25\textwidth}% <-- exact horizontal gap between the two overlayareas
+\hspace{0.2\textwidth}% <-- exact horizontal gap between the two overlayareas
 % Right box: width = 0.3\textwidth
-\begin{minipage}[t]{0.2\textwidth}
-  \begin{overlayarea}{0.2\textwidth}{0.6\textheight}
+\begin{minipage}[t]{0.25\textwidth}
+  \begin{overlayarea}{0.25\textwidth}{0.6\textheight}
+      \vspace{0.20\textheight}
         \begin{onlyenv}<4->
-            \resizebox{8\textwidth}{!}{
+            \resizebox{6\textwidth}{!}{
+                \rotatebox{-45}{
         \begin{tikzpicture}  
             \coordinate (k) at (0, 0);
-            \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
+            \draw[black,fill=black] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
             % \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
         
             \coordinate (c) at (0, -2.2);
-            \draw[fill=blue!20]
+            \draw[fill=blue,blue]
             ($(c)+(0,-0.5)$)
             -- ($(c)+(0,0.5)$) 
             -- ($(c)+(1,0.5)$) 
             arc[start angle=0, end angle=-90, radius=1]
             -- cycle;
             % \node () at ($(c)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-            \draw[fill=white] ($(c)+(0,0)$) rectangle ($(c)+(0.5,0.5)$);
+            \draw[black,fill=black] ($(c)+(0,0)$) rectangle ($(c)+(0.5,0.5)$);
             % \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
     
             \coordinate (r) at (3,0);
-            \draw[fill=red!20] ($(r)+(-0.5,0)$)
+            \draw[fill=red,red] ($(r)+(-0.5,0)$)
             -- ($(r)+(-0.5,0.5)$)
             -- ($(r)+(0,1)$)
             --  ($(r)+(0.5,1)$)
             -- ($(r)+(0.5,0)$)
             -- cycle;
             % \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
-            \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
+            \draw[black,fill=black] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
             % \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
         
-            \coordinate (h) at (3, -2.2);
-            \draw[fill=blue!20]
+            \coordinate (h) at (2.2, -2.2);
+            \draw[fill=blue,blue]
             ($(h)+(0,-0.5)$)
             -- ($(h)+(0,0.5)$)
             -- ($(h)+(1,0.5)$) 
             arc[start angle=0, end angle=-90, radius=1]
             -- cycle;
-            \draw[fill=red!20] ($(h)+(-0.5,0)$)
+            \draw[fill=red,red] ($(h)+(-0.5,0)$)
             -- ($(h)+(-0.5,0.5)$)
             -- ($(h)+(0,1)$)
             --  ($(h)+(0.5,1)$)
             -- ($(h)+(0.5,0)$)
             -- cycle;
         % \node () at ($(h)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-        \draw[fill=white] ($(h)+(0,0)$) rectangle ($(h)+(0.5,0.5)$);
+        \draw[black,fill=black] ($(h)+(0,0)$) rectangle ($(h)+(0.5,0.5)$);
         % \node () at ($(h)+(0.25,0.25)$) {\( \mathrm{K} \)};
         % \node () at ($(h)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
         
-            \node[ font=\huge] (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
-            {\( \rightarrowtail \)}
-            ;  
-            \node[ font=\huge] (ch) at ($(c)!0.5!(h)+(0.25,0.25)$)
-            {\( \rightarrowtail \)}
-        ; 
-            \node[ font=\huge] (kc) at ($(k)!0.5!(c)+(0.2,0.4)$) {\( \downarrowtail \)}; 
-            \node[ font=\huge] (rh) at ($(r)!0.5!(h)+(0.1,0.4)$) {\( \downarrowtail \)}; 
+            \draw[>->] ($(k)!0.5!(r)+(-0.7,0.25)$)
+                    -- node[midway,above] {$\beta$}  
+                ($(k)!0.5!(r)+(0.75,0.25)$);
+            % \node (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
+            % {\( \overset{\rightarrowtail}{s} \)};
+            % ;  
+            \draw[>->]($(c)!0.5!(h)+(0,0.25)$)
+                    -- node[midway,below]  {$\beta'$}  
+                ($(c)!0.5!(h)+(0.5,0.25)$);
+              
+                \draw[<-<]($(k)!0.5!(c)+(0.2,-0.3)$)
+                    -- node[midway,left]  {$\alpha$}  
+                ($(k)!0.5!(c)+(0.2,0.7)$);
+               
+                \draw[>->]($(r)!0.5!(h)+(0.2,0.9)$)
+                    -- node[midway,right]  {$\alpha'$}  
+                ($(r)!0.5!(h)+(0.2,0.2)$);
         \end{tikzpicture}
-            }
+                }
+        }
     \end{onlyenv}
     \end{overlayarea}
 \end{minipage}
-\hspace{0.3\textwidth}% small gap
-\begin{minipage}[t]{0.4\textwidth}
+\hspace{0.25\textwidth}% small gap
+\begin{minipage}[t]{0.38\textwidth}
   \begin{overlayarea}{0.4\textwidth}{0.6\textheight}
     \begin{onlyenv}<5->
-        \resizebox{!}{2.2\textwidth}{
+        \resizebox{!}{1.4\textwidth}{
+                \rotatebox{-45}{
              \begin{tikzpicture}
-              \graphbox{\(A\)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
-                 \coordinate (o) at (0mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              \graphbox{}{0mm}{5mm}{30mm}{17mm}{2mm}{-5mm}{
+                 \coordinate (o) at (-2mm,1mm); 
+                  \node[black,fill=black,draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[black,fill=black,draw,circle] (l2) at ($(l1)+(2,0)$) {};
               } 
 
-              \graphbox{\( B \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
-                \coordinate (o) at (0mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[orange,draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-                  \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
-                  \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
+              \graphbox{}{40mm}{5mm}{30mm}{17mm}{2mm}{-5mm}{
+                \coordinate (o) at (-2mm,1mm); 
+                  \node[black,fill=black,draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[black,fill=black,draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[red,draw,circle,fill=red] (l3) at ($(l1)+(1,0)$) {};
+                  \draw[red] (l1) -- (l3) node[midway,above] {};
+                  \draw[red] (l3) -- (l2) node[midway,above] {};
               }  
 
-               
-              \graphbox{\( C \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
-                \coordinate (o) at (0mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-                  \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
+              \graphbox{}{0mm}{-22mm}{30mm}{17mm}{2mm}{-5mm}{
+                \coordinate (o) at (-2mm,1mm);
+                  \node[black,fill=black,draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[black,fill=black,draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[blue,draw,circle,fill=blue] (l4) at ($(l2)+(0,-1)$) {};
+                  \draw[blue] (l2) -- (l4) node[midway,right] {};
                 %   \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
-                    \node[blue,draw,circle] (l7) at ($(l4)+(-1,0)$) {7};
-                  \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
+                    \node[blue,draw,circle,fill=blue] (l7) at ($(l4)+(-1,0)$) {};
+                  \draw[blue] (l4) -- (l7) node[midway,below] {};
               }    
 
-              \graphbox{\( D \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
-                \coordinate (o) at (0mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[draw,circle,orange] (l3) at ($(l1)+(1,0)$) {3};
-                  \node[blue, draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-                  \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
-                  \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
-                  \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
+              \graphbox{}{40mm}{-22mm}{30mm}{17mm}{2mm}{-5mm}{
+                \coordinate (o) at (-2mm,1mm);
+                  \node[black,fill=black,draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[black,fill=black,draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[red,draw,circle,fill=red] (l3) at ($(l1)+(1,0)$) {};
+                  \node[blue,draw,circle,fill=blue] (l4) at ($(l2)+(0,-1)$) {};
+                  \draw[red] (l1) -- (l3) node[midway,above] {};
+                  \draw[red] (l3) -- (l2) node[midway,above] {};
+                  \draw[blue] (l2) -- (l4) node[midway,right] {};
                 %   \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
                 %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
-                \node[blue,draw,circle] (l7) at ($(l4)+(-1,0)$) {7};
-                  \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
+                \node[blue,draw,circle,fill=blue] (l7) at ($(l4)+(-1,0)$) {};
+                  \draw[blue] (l4) -- (l7) node[midway,below] {};
               }    
 
-              \node () at (37mm,-8mm) {\( \rightarrowtail \)}; % K -> L
-              \node () at (17mm,-18mm) {\(  \downarrowtail \)};
-              \node () at (37mm,-33mm) {\( \rightarrowtail \)};
-              \node () at (52mm,-18mm) {\( \downarrowtail \)};
+              % \node () at (37mm,-8mm) {\( \underset{\rightarrowtail}{\beta} \)}; % K -> L
+              \draw[>->] (32mm,-4mm) to node[midway,above] {$\beta$} (39mm,-4mm);
+              % \node () at (17mm,-18mm) {\(\alpha\ \downarrowtail  \)};
+              \draw[>->] (15mm,-14mm) to node[midway,right] {$\alpha$} (15mm,-20mm);
+              % \node () at (37mm,-33mm) {\( \overset{\rightarrowtail}{\beta'} \)};
+              \draw[>->] (32mm,-30mm) to node[midway,below] {$\beta'$} (39mm,-30mm);
+              % \node () at (52mm,-18mm) {\( \downarrowtail\ \alpha' \)};
+              \draw[>->] (55mm,-14mm) to node[midway,right] {$\alpha'$} (55mm,-20mm);
       \end{tikzpicture}
+                }
         }
     \end{onlyenv}
   \end{overlayarea}
 \end{minipage}
 \end{frame}
+ 
 
-% \begin{frame}{Pushouts}
-%     \begin{overlayarea}{\textwidth}{\textheight}
-%         \begin{center}
-%             \begin{onlyenv}<1>
-%                  \resizebox{!}{0.5\textheight}{
-%                     \begin{tikzpicture}
-%                             \node (i) at (0,0) {A};
-%                             \node (r) at (1,1) {B};
-%                             \node (c) at (1,-1) {C};
-%                             \node (h) at (2,0) {D};
-%                             \draw[->]  (i) -- (r) node [pos=0.6,left] {$ \alpha $};
-%                             \draw[->] (c) -- (h) node [pos=0.6,left] {$ \alpha' $};
-%                             \draw[->] (r) -- (h) node[pos=0.6, left] {$ \beta' $};
-%                             \draw[->] (i) -- (c) node[pos=0.7, left] {$ \beta $};
-%                         \end{tikzpicture}
-%                 }
-%         \end{onlyenv}
-%         \begin{onlyenv}<2>
-%         \resizebox{!}{0.5\textheight}{
-%             \begin{tikzpicture} 
-%                 \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
-%                     \coordinate (o) at (0mm,-8mm); 
-%                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                     \draw[->,red] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-%                     \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
-%                     \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
-%                     \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
-%                 } 
-        
-%                 \graphbox{\( K \)}{0mm}{5mm}{34mm}{12mm}{2mm}{2mm}{
-%                     \coordinate (o) at (0mm,-8mm); 
-%                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%                     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                 }  
-%                 \graphbox{\(G  \)}{85mm}{15mm}{34mm}{40mm}{2mm}{-3mm}{
-%                     \coordinate (o) at (0mm,-20mm); 
-%                     \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
-%                     \draw[->,red] (l1) edge[loop below] node[midway, below] {$a$} (l1) ;
-%                     \node[draw,circle,red] (l3) at ($(l1)+(0,1.4)$) {3};
-%                     \node[draw,circle,blue] (l4) at ($(l1)+(1,-1)$) {6};
-%                     \draw[->,red] (l1) edge[bend left] node[midway,left] {$a$} (l3);
-%                     \draw[->,red] (l3) edge[bend left] node[midway,right] {$a$} (l1);
-%                     \draw[->,blue] (l1) edge  node[midway,right] {$a$} (l4);
-%                     \node[draw,circle,blue] (l6) at ($(l1)+(-1,-1)$) {7};
-%                     \draw[<-,blue] (l1) edge node[midway,left] {$a$} (l6) ;
-%                 }   
-        
-%                 \graphbox{\( C \)}{40mm}{-5mm}{34mm}{35mm}{2mm}{-3mm}{
-%                     \coordinate (o) at (0mm,-14mm); 
-%                     \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
-%                     \node[draw,circle,blue] (l4) at ($(l1)+(1,-1)$) {6};
-%                     \draw[->,blue] (l1) -- (l4) node[midway,right] {$a$};
-%                     \node[ draw,circle,blue] (l6) at ($(l1)+(-1,-1)$) {7};
-%                     \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
-%                 }
-%                 \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
-%                 \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (83mm,-24mm) ;
-%                 \draw[->] (17mm,-10mm) -- node[below] {$\beta$} (37mm,-28mm);
-%                 \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (83mm,7mm);
-%                 % \node () at (57mm,-6mm) {$PO$};
-%             \end{tikzpicture}
-%         }
-%     \end{onlyenv}
-%     \end{center}
-
-%     The diagram is a pushout if it is commutative and:
-    
-%     for all \resizebox{!}{0.3\textheight}{
-%             \begin{tikzpicture}
-%                     \node (i) at (0,0) {A};
-%                     \node (r) at (1,1) {B};
-%                     \node (c) at (1,-1) {C};
-%                     % \node (h) at (2,0) {D};
-%                     % \node () at (1,-1) {\( \Delta \)};
-%                     \draw[->]  (i) -- (r) node [pos=0.6,left] {$ \alpha $};
-%                     % \draw[->] (c) -- (h) node [pos=0.6,left] {$ \alpha' $};
-%                     % \draw[->] (r) -- (h) node[pos=0.6, left] {$ \beta' $};
-%                     \draw[->] (i) -- (c) node[pos=0.7, left] {$ \beta $};
-%                     \node (d') at (4,0) {E};
-%                     \draw[->] (c) -- (d') node [midway,below]{$ \gamma $};
-%                     \draw[->] (r) -- (d') node [midway,above]{$ \gamma' $};
-%                     \draw[->,dashed] (h) -- (d') node [midway]{$ \delta $};
-%                 \end{tikzpicture}
-%             }
-%      \begin{center}
-%         \resizebox{!}{0.3\textheight}{
-%             \begin{tikzpicture}
-%                     \node (i) at (0,0) {A};
-%                     \node (r) at (1,1) {B};
-%                     \node (c) at (1,-1) {C}; 
-%                     \node (h) at (2,0) {D};
-%                     % \node () at (1,-1) {\( \Delta \)};
-%                     \draw[->]  (i) -- (r) node [pos=0.6,left] {$ \alpha $};
-%                     \draw[->] (c) -- (h) node [pos=0.6,left] {$ \alpha' $};
-%                     \draw[->] (r) -- (h) node[pos=0.6, left] {$ \beta' $};
-%                     \draw[->] (i) -- (c) node[pos=0.7, left] {$ \beta $};
-%                     \node (d') at (4,0) {E};
-%                     \draw[->] (c) -- (d') node [midway,below]{$ \gamma $};
-%                     \draw[->] (r) -- (d') node [midway,above]{$ \gamma' $};
-%                     \draw[->,dashed] (h) -- (d') node [midway]{$ \delta $};
-%                 \end{tikzpicture}
-%             }
-%         \end{center}
-%     \end{overlayarea}
-% \end{frame}
-
-\subsection{Graph rewriting with double-pushout approach (DPO)}
-\begin{frame}{Graph rewriting with double-pushout approach (DPO)}
+\subsection{Graph Rewriting with Double-Pushout (DPO)}
+\begin{frame}{Graph Rewriting with Double-Pushout (DPO)}
     \begin{overlayarea}{\textwidth}{\textheight}
-    \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
-        \resizebox{!}{0.3\textheight}{
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
+        \resizebox{!}{0.25\textheight}{
             \begin{tikzpicture}
                 \begin{onlyenv}<1->
                     \node (I) at (0,0) {$K$};
@@ -996,32 +1077,32 @@ Each node represents a computational unit; a node's state is indicated by the la
                     \draw [->] (I) to  node [midway,above] {$l$} (L);
                     \draw [->] (I) to  node [midway,above] {$r$} (R);
                     \draw[fill=red,opacity=0.1 , rounded corners, dotted] (-2.5,-0.5) rectangle (2.5,0.5);
-                    \node () at (5.5,0) {Rewriting rule with interface $K$};
+                    \node () at (5.5,0) {Rewriting rule with \textcolor{red}{interface $K$}};
                 \end{onlyenv} 
                 \begin{onlyenv}<2->
-                    \node (G) at (-2,-2) {$G$};
+                    \node (G) at (-2,-1.5) {$G$};
                     \draw [>->] (L) to node [midway,right] {} (G);
                 \end{onlyenv}
                 \begin{onlyenv}<3->
-                    \node (C) at (0,-2) {$C$};
+                    \node (C) at (0,-1.5) {$C$};
                     \draw [->] (I) to node [midway,right] { } (C);
                     \node [at=($(I)!.5!(G)$)] {\normalfont PO};
                     \draw [->] (C) to node [midway,above] { } (G);
                 \end{onlyenv}
                 \begin{onlyenv}<4->
-                    \node (H) at (2,-2) {$H$};
+                    \node (H) at (2,-1.5) {$H$};
                     \draw [->] (R) to node [midway,left] { } (H);
                     \draw [->] (C) to node [midway,above] { } (H);
                     \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-                    \draw[fill=PineGreen,opacity=0.1 , rounded corners, dotted] (-2.5,-2.5) rectangle (2.5,-1.5);
-                    \node () at (5.5,-2) {\text{rewriting step $G \Rightarrow H$}};
+                    \draw[fill=PineGreen,opacity=0.1 , rounded corners, dotted] (-2.5,-2) rectangle (2.5,-1);
+                    \node () at (5.5,-1.5) {\text{rewriting step $G \Rightarrow H$}};
                 \end{onlyenv}
                 \end{tikzpicture}
         }
     \end{beamercolorbox}
-    \vspace{3mm}
+    \vspace{-0.07\textheight}
   \begin{center}
-    \resizebox{0.78\textwidth}{!}{
+    \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
             \begin{onlyenv}<1->
                  \graphbox{\( L \)}{0mm}{5mm}{34mm}{15mm}{2mm}{0mm}{
@@ -1098,11 +1179,100 @@ Each node represents a computational unit; a node's state is indicated by the la
       \end{tikzpicture}
       }
    \end{center}
-   Remark:
-   \begin{itemize}
-    \item No implicit edge deletion
-   \end{itemize}
 \end{overlayarea}
+\end{frame}
+
+\begin{frame}{An Invalid Rewriting Step}
+    % of the edge \textcolor{red}{$3 \overset{a}{\rightarrow} 6$} in $G$:
+    \begin{center}
+        \resizebox{\textwidth}{!}{
+        \begin{tikzpicture}
+            \graphbox{\( L \)}{0mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l2) node[midway,above] {a};
+            } 
+    
+            \graphbox{\( K \)}{40mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+    
+            \graphbox{\( R \)}{80mm}{-3mm}{45mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (-5mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l4) node[midway,above] {b};
+                \draw[->] (l4) -- (l2) node[midway,above] {a};
+            }    
+    
+            \graphbox{\( G' \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {3};
+                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \draw[->,red] (l3) -- (l4) node[midway,above] {a};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l2) node[midway,above] {a};
+                \draw[->] (l2) -- (l4) node[midway,right] {a};
+                \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-] (l1) -- (l6) node[midway,left] {a};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+            }    
+    
+            \graphbox{\( C'  \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle] (l4) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle,dashed,red] (l3) at ($(l1) + (1,0)$) {3};
+                % \draw[->,red] (l3) -- (l4) node[midway,above] {a};
+                \draw[->,red] (l3) -- (l4) node[midway,above] {a};
+                \draw[->] (l2) -- (l4) node[midway,right] {a};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-] (l1) -- (l6) node[midway,left] {a};
+            }    
+    
+            \graphbox{\( H' \)}{80mm}{-22mm}{45mm}{22mm}{2mm}{-3mm}{
+                \coordinate (o) at (-5mm,-3mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                \node[draw,circle] (l3) at ($(l1) + (1,0)$) {4};
+                \node[draw,circle] (l4) at ($(l1) + (2,0)$) {5};
+                \node[draw,circle] (l5) at ($(l2) + (0,-1)$) {6};
+                \node[draw,circle] (l6) at ($(l1) + (0,-1)$) {7};
+                \draw[<-] (l1) -- (l6) node[midway,left] {a};
+                \draw[->] (l1) -- (l3) node[midway,above] {a};
+                \draw[->] (l3) -- (l4) node[midway,above] {b};
+                \draw[->] (l4) -- (l2) node[midway,above] {a};
+                \draw[->] (l2) -- (l5) node[midway,right] {a};
+                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {a} (l1) ;
+                \node[draw,circle,dashed,red] (l3) at (-0mm,-7mm) {3};
+                \draw[->,red] (l3) -- (l5) node[midway,above] {a};
+            }    
+    
+            \node () at (37mm,-8mm) {\( \leftarrow \)}; % K -> L
+            \node () at (77mm,-8mm) {\( \rightarrow \)}; % K -> R
+            \node () at (15mm,-18mm) {\(\downarrowtail \)};
+            \node () at (37mm,-33mm) {\( \leftarrow \)};
+            % \node () at (37mm,-18mm) {PO};
+            \node () at (58mm,-18mm) {\( \downarrow \)}; 
+            % \node () at (80mm,-18mm) {PO};
+            \node () at (102mm,-18mm) {\( \downarrow \)};
+            \node () at (77mm,-33mm) {\( \rightarrow \)}; % C -> H
+        \end{tikzpicture}
+        }         
+    \end{center}
+    No implicit edge deletion by construction
 \end{frame}
 
 \section{Toward greater usability}
@@ -1110,29 +1280,34 @@ Each node represents a computational unit; a node's state is indicated by the la
   \tableofcontents[currentsection, hideothersubsections]
 \end{frame}
 
-% \begin{frame}{Intuition}
-% $T$ : a weighted type graph 
-   
-% \begin{flalign*}
-%     G &\Longrightarrow \mathcal{F}(G,T)
-%         \\
-%     &\Longrightarrow \{weight(h) \mid h\in \mathcal{F}(G,T)\} 
-%     \\
-%     &\Longrightarrow \opn{agregateur}(\{weight(h) \mid h\in \mathcal{F}(G,T)\}) \in \mathbb{N}
-% \end{flalign*}
+\begin{frame}{Weighted Type Graph Method~\cite{bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt}}
+Termination by interpretation
+\newline\newline
+Parameter: an object $T$ in the category, called \textcolor{PineGreen}{type graph}
+\newline\newline
+Terminology: every graph is \enquote{typed} as morphisms to $T$
+\newline\newline
+Interpretation:
+\vspace{-3mm}
+\begin{flalign*}
+G &\leadsto \mathcal{F}(G,T) \\
+  &\leadsto \mathrm{weight}(\mathcal{F}(G,T)) \\
+  &\leadsto \mathrm{aggregator}(\mathrm{weight}(\mathcal{F}(G,T)))\in\mathbb{N}
+\end{flalign*}
 
-%     Questions: 
-%     \begin{itemize}
-%     \item what is the weight of a morphism?
-%     \item which agregateur to use?
-%     \item How to deal with the unknown context graph in a rewriting step?
-%     \end{itemize}
-% \end{frame}
+% \only<2->{
+\alert{
+What is the morphism weight?
+\newline\newline
+What is the graph weight?}
+% }
+\end{frame}
+
 
 \begin{frame}{Weighted Type Graph}
     \begin{overlayarea}{\textwidth}{\textheight}
-        \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
-            In the context of graph rewriting, a weighted type graph is a graph with weights on its edges.
+        \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
+           A weighted type graph is a graph with weights on edges.
         \end{beamercolorbox}
  
         \begin{center}
@@ -1150,7 +1325,7 @@ Each node represents a computational unit; a node's state is indicated by the la
                         \draw[->] (1) edge[loop above] node[midway, above] {$a^{\textcolor{red}{1}}$} (1);
                         \draw[->] (1) edge[loop below] node[midway, below] {$b^{\textcolor{red}{0}}$} (1) ;
                         \draw[->] (1) edge[bend left] node[midway, above] {$a^{\textcolor{red}{0}}$}  (2)  ;
-                        \draw[->] (2) edge[bend left] node[midway, below] {$a^{\textcolor{red}{0}}$} (1)   ;
+                        \draw[->] (2) edge[bend left] node[midway, below] {$b^{\textcolor{red}{0}}$} (1)   ;
                     \end{onlyenv}
                     
             }
@@ -1161,76 +1336,84 @@ Each node represents a computational unit; a node's state is indicated by the la
 
 \end{frame}
 
-\begin{frame}{Morphism weight}
-    \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
-      The weight of a morphism $h: G \rightarrow T$ is \[\sum_{e \in \opn{Edge(G)}}\mathop{weight}(h(e)) \]
+\begin{frame}{Morphism Weight}
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
+      The weight of a morphism $h: G \rightarrow T$ is \[\sum_{e \in \opn{Edge(G)}}\mathrm{weight}(h(e)) \]
     \end{beamercolorbox}
+    \begin{center}
     \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture}
           \graphbox{}{-50mm}{0mm}{40mm}{39mm}{2mm}{-6mm}{
             \coordinate (o) at (0mm,-10mm); 
-            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
             \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
-            \draw[red,->] (l3) -- (l2) node[midway,above] {$b$};
+            \draw[PineGreen,->] (l3) -- (l2) node[midway,above] {$b$};
         } 
-            \graphbox{$T$}{0mm}{0mm}{40mm}{39mm}{-10mm}{-17mm}{
-                \node[draw,circle] (1) at (0,0) {$1\ 2$};
-                \node[draw,circle] (2) at (2,0) {3};
+            \graphbox{$T$}{0mm}{0mm}{40mm}{39mm}{-12mm}{-19mm}{
+                \node[draw,circle] (1) at (0,0) {};
+                \node[draw,circle] (2) at (2,0) {};
                 \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1);
                 \draw[->] (1) edge[loop below] node[midway, below] {$b^{0}$} (1);
                 \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{0}$}  (2);
-                \draw[->,red] (2) edge[bend left] node[midway, below] {$b^{0}$} (1);
+                \draw[->,PineGreen] (2) edge[bend left] node[midway, below] {$b^{0}$} (1);
             }
-            \node () at (-5mm,-15mm) {$\overset{h}{\to}$};
+            % \node () at (-5mm,-15mm) {$\overset{h}{\to}$};
+            \draw[->] (-9mm,-17mm) to node[midway,above] {$h$} (-2mm,-17mm);
         \end{tikzpicture}
         }
+    \end{center}
 
-        $ \opn{weight}_T(h) \mathop{=} 0 + 0 \mathop{=} 0$
+        $ \mathrm{weight}_T(h) \mathop{=} \textcolor{red}{0} + \textcolor{PineGreen}{0} \mathop{=} 0$
 
 \end{frame}
  
 
-\begin{frame}{Graph weight} 
-    \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
-        The weight of a graph $L$ is \[\min \{h : L \mathop{\to} T \mid \opn{weight}_T(h)\}\]
+\begin{frame}{Graph Weight} 
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
+        The weight of a graph $L$ is \[\min \{h : L \mathop{\to} T \mid \mathrm{weight}_T(h)\}\]
     \end{beamercolorbox}
     \begin{center}
         \resizebox{1\textwidth}{!}{
             \begin{tikzpicture}
-                \graphbox{\(L\)}{0mm}{0mm}{40mm}{20mm}{2mm}{0mm}{
+                \graphbox{\(L\)}{2mm}{0mm}{30mm}{20mm}{0mm}{0mm}{
                     \coordinate (o) at (0mm,-10mm); 
-                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                    \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-                    \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                    \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                    \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                    \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
+                    \draw[->,PineGreen] (l3) -- (l2) node[midway,above] {$b$};
                 } 
-                \graphbox{$T$}{-42mm}{10mm}{35mm}{40mm}{-10mm}{-20mm}{
-                    \node[draw,circle] (1) at (0,0) {$1\ 3\ 2$};
+                \graphbox{$T$}{-42mm}{10mm}{33mm}{40mm}{-8mm}{-20mm}{
+                    \node[draw,circle] (1) at (0,0) {};
                     \node[draw,circle] (2) at (2,0) {};
                     \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
-                    \draw[->] (1) edge[loop below] node[midway, below] {$b^{0}$} (1) ;
+                    \draw[->,PineGreen] (1) edge[loop below] node[midway, below] {$b^{0}$} (1) ;
                     \draw[->] (1) edge[bend left] node[midway, above] {$a^{0}$}  (2)  ;
                     \draw[->] (2) edge[bend left] node[midway, below] {$b^{0}$} (1) ;
                 }
             
-                \graphbox{$T$}{47mm}{10mm}{35mm}{40mm}{-10mm}{-17mm}{
-                    \node[draw,circle] (1) at (0,0) {$1\ 3$};
-                    \node[draw,circle] (2) at (2,0) {$2$};
-                    \draw[->,red] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
+                \graphbox{$T$}{45mm}{10mm}{35mm}{40mm}{-10mm}{-19mm}{
+                    \node[draw,circle] (1) at (0,0) {};
+                    \node[draw,circle] (2) at (2,0) {};
+                    \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
                     \draw[->] (1) edge[loop below] node[midway, below] {$b^{0}$} (1) ;
                     \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{0}$}  (2)  ;
-                    \draw[->] (2) edge[bend left] node[midway, below] {$b^{0}$} (1);
+                    \draw[->,PineGreen] (2) edge[bend left] node[midway, below] {$b^{0}$} (1);
                 }
-                \node () at (43mm,-10mm) {$\overset{h_2}{\to}$};
-                \node () at (-3mm,-10mm) {$\overset{h_1}{\leftarrow}$};
+                % \node () at (43mm,-10mm) {$\overset{h_2}{\to}$};
+                \draw[->] (34mm,-10mm) to node[midway,above] {$h_2$} (43mm,-10mm);
+                % \node () at (-3mm,-10mm) {$\overset{h_1}{\leftarrow}$};
+                \draw[<-] (-7mm,-10mm) to node[midway,above] {$h_1$} (0mm,-10mm);
             \end{tikzpicture}
             }
     \end{center}
-
-        $\opn{weight}_T(L) \mathop{=} \min \{\opn{weight}_T(h_1),\opn{weight}_T(h_2)\} = \min \{1+1, 1+0\}\mathop{=} 1$       
+    \begin{flalign*}
+      & \mathrm{weight}_T(h_1) = \textcolor{red}{1} + \textcolor{PineGreen}{0} = \textcolor{red}{1} \hspace{0.1\textwidth} &\mathrm{weight}_T(h_2) = \textcolor{red}{0} + \textcolor{PineGreen}{0} = \textcolor{PineGreen}{0}\\
+      &\mathrm{weight}_T(L) = \min \{\textcolor{red}{1}, \textcolor{PineGreen}{0}\} = 0 &
+    \end{flalign*}
+        % $\mathrm{weight}_T(L) \mathop{=} \min \{,\mathrm{weight}_T(h_2)\} = \min \{1+1, 1+0\}\mathop{=} 1$       
 \end{frame}
 
 % \begin{frame}
@@ -1280,7 +1463,7 @@ Each node represents a computational unit; a node's state is indicated by the la
 %             \resizebox{0.3\textwidth}{!}{
 %                 \begin{tikzpicture}
 %                     \graphbox{$T$}{0mm}{0mm}{45mm}{50mm}{-10mm}{-25mm}{
-%                         \node[draw,circle] (1) at (0,0) {$1\ 5$};
+%                         \node[draw,circle ] (1) at (0,0) {$1\ 5$};
 %                         \node[draw,circle] (2) at (2,0) {$4\ 2$};
 %                         \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1) ;
 %                         \draw[->] (1) edge[loop below] node[midway, below] {$b^{0}$} (1) ;
@@ -1294,134 +1477,9 @@ Each node represents a computational unit; a node's state is indicated by the la
       
 %      $\opn{weight}_T(R) = \min \{1+0+1, 0+0+1, 0 + 0 + 0\}\mathop{=} 0$.
 % \end{frame}
-
-% \begin{frame}
-%   Since for all $G \mathop{\Rightarrow}_\alpha H$, we have $w_T(G) \mathop{\in} \mathbb{N}$, it remains to show that every rewriting step strictly decreases the weight.
-% %   Not every weighted graph can be a weighted type graph
-% %   It guarantees: for all $G \mathop{\Rightarrow}_\alpha H$, the weight of $G$ is defined and $w_T(G) \mathop{\in} \mathbb{N}$
-% \end{frame}
-
-% \begin{frame}{Condition on Weighted Type Graph: for every rewriting step $G \mathop{\Rightarrow} H$, there exists a morphism $h : G \mathop{\to} T$.}
-  
-
-%   Consequence: for all $G \mathop{\Rightarrow} H$, $G$ has a weight and $w(G) \mathop{\geq} 0$.
-%   % \begin{definition}
-%   %   % Let $T \mathop{=} (T,\mathbb{E}, S, w)$ be a type graph, \(\rho \mathop{=} (L \xleftarrow{l} K \xrightarrow{r} R ) \) a DPO rewriting rule and $\mathfrak{F}$ a rewriting framework. 
-%   %   A \textbf{context closure} for a rule $\rho$ and a $T$ is a morphism $c:L \mathop{\rightarrow} T$ such that for every possible DPO diagram depicted below,
-%   %   there exists $\alpha : G \mathop{\rightarrow} T$ such that $m \mathop{\star} \alpha \mathop{=} c$.
-%   %   \begin{center}
-%   %       \begin{tikzpicture}[rotate=90]
-%   %         \node (I) {$K$}; 
-%   %         \node (L) [left of=I] {$L$};
-%   %         \node (R) [right of=I] {$R$};
-%   %         \node (G) [below of=L] {$G$};
-%   %         \node (C) [below of=I] {$C$};
-%   %         \node (H) [below of=R] {$H$};
-%   %         \node (T) [left=of $(L)!0.5!(G)$] {$T$};
-%   %         \draw [->] (L) to  node [label, above] {$c$}  (T);
-%   %         \draw [->] (G) to  node [label, below] {$\alpha$} (T);
-%   %         \draw [->] (I) to node [label, above] {$l$} (L);
-%   %         \draw [->] (I) to node [label,above] {$r$} (R);
-%   %         \draw [->] (L) to node [label, right] {$m$} (G);
-%   %         \draw [->] (I) to (C);
-%   %         \draw [->] (R) to (H);
-%   %         \draw [->] (C) to (G);
-%   %         \draw [->] (C) to (H);
-%   %       \end{tikzpicture}
-%   %     \end{center}
-%   % \end{definition}
-%   % Consequence:
-% \end{frame}
-
-
-% \begin{frame}{ 
-%   every rewriting step strictly decreases the weight if:
-%   % $w_T(G) \mathop{>} w_T(H)$ for every rewriting step $G \mathop{\Rightarrow}_\varphi H$ using rule $\varphi \mathop{=} L \xleftarrow{l} K \xrightarrow{r} R$ if
-%   }
-%   %  For $G \mathop{\Rightarrow} H$ defined by
-
-%   %  \begin{center}
-%   %     \resizebox{0.3\textwidth}{!}{
-%   %       \begin{tikzpicture}
-%   %           \node (I) at (0,0) {$K$};
-%   %           \node (L) at (-2,0) {$L$};
-%   %           \node (R) at (2,0) {$R$};
-%   %           \node (G) at (-2,-2) {$G$};
-%   %           \node (C) at (0,-2) {$C$};
-%   %           \node (H) at (2,-2) {$H$};
-%   %           \draw [->] (I) to  node [midway,below] {$l$} (L);
-%   %           \draw [->] (I) to  node [midway,below] {$r$} (R);
-%   %           \draw [->] (L) to node [midway,right] {$m$} (G);
-%   %           \draw [->] (I) to node [midway,right] {$u$} (C);
-%   %           \draw [->] (R) to node [midway,left] {$m'$} (H);
-%   %           \draw [->] (C) to node [midway,above] {$l'$} (G);
-%   %           \draw [->] (C) to node [midway,above] {$r'$} (H);
-%   %           \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-%   %           \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-%   %         \end{tikzpicture}
-%   %       }
-%   % \end{center}
-% % It suffices to show
-% % \begin{theorem}
-%   for every $t_K: K \mathop{\rightarrow} T$, 
-
-% \begin{flalign*}
-%   &\text{the sum of the weights of the morphisms $t_L$ that extend $t_K$} 
-%   \\
-%   &\mathop{\geq}
-%   \\
-%   &\text{the sum of the weights of the morphisms $t_R$ that extend $t_K$}
-% \end{flalign*}
-
-%  $$ \sum ( w_T \{t_L :L \mathop{\to} T \mathop{\mid} \text{$t_L$ extends $t_K$}\} )
-%        -  \sum_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} t_R \circ r}}
-%             w_T(t_R) \mathop{\geq} 0 $$ 
-
-%     $$ \sum_{\substack{t_L: L \mathop{\rightarrow} T\\ t_K \mathop{=}  t_L \circ l }}
-%         w_T(t_L) -  \sum_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} t_R \circ r}}
-%             w_T(t_R) \mathop{\geq} 0 $$ 
-
-% for some $t_K: K \mathop{\rightarrow} T$,
-% $$ \sum_{\substack{t_L: L \mathop{\rightarrow} T\\ t_K \mathop{=} t_L \circ l}}
-%         w_T(t_L) - \sum_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} t_R \circ r}}
-%             w_T(t_R) \mathop{>} \delta $$ 
-% for some $t_K: K \mathop{\rightarrow} T$,
-% \begin{flalign*}
-%   &\text{the sum of the weights of the morphisms $t_L$ that extend $t_K$} 
-%   \\
-%   &\mathop{>}
-%   \\
-%   &\text{the sum of the weights of the morphisms $t_R$ that extend $t_K$}
-% \end{flalign*}
-% % \end{theorem}   
-% % then 
-% %   \begin{center}
-% %     $w_T(G) - w_T(H) \mathop{>} \delta$ for every rewriting step $G \mathop{\Rightarrow}_\varphi H$ using rule $\varphi$
-% %   \end{center}
-%   by \cite[Lemma 5.13]{endrullis2024generalized_arxiv_v2}.
-%   % \resizebox{0.9\textwidth}{!}{
-%   %   \begin{flalign*}
-%   %     w_T(G) 
-%   %         & \mathop{=} \sum_{t_K: K \mathop{\rightarrow} T} 
-%   %         \left ( \sum_{\substack{t_C: C \mathop{\rightarrow} T\\ t_K \mathop{=} u \mathop{\star} t_C}}
-%   %           w_T(t_C - u) \right ) 
-%   %           \times
-%   %         \left (\sum_{\substack{t_L: L \mathop{\rightarrow} T\\ t_K \mathop{=} t_L \circ l}}
-%   %         w_T(t_L) \right )
-%   %         \\
-%   %     w_T(H) 
-%   %         &  \mathop{\preceq} \sum_{t_K: K \mathop{\rightarrow} T} 
-%   %         \left ( \sum_{\substack{t_C: C \mathop{\rightarrow} T\\ t_K \mathop{=} u \mathop{\star} t_C}}
-%   %         w_T(t_C - u) \right ) 
-%   %         \mathop{\times} 
-%   %         \left ( \sum_{\substack{t_R: R \mathop{\rightarrow} T\\ t_K \mathop{=} t_R \circ r}}
-%   %             w_T(t_R) \right ) \\
-%   % \end{flalign*}
-%   % }
-% \end{frame}
-
-\begin{frame}{Termination Criterion}
-    %   \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
+   
+\begin{frame}{Termination Criterion~\cite{bruggink2015proving}}
+    %   \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
     \begin{center}
     \begin{tikzpicture}
             \node (k) at (0,0) {$K$};
@@ -1436,25 +1494,25 @@ Each node represents a computational unit; a node's state is indicated by the la
         \end{tikzpicture}
     \end{center}
 
-      \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
+      \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
         Every rewriting step strictly decreases the weight if 
         \begin{itemize}
-        \item for all \textcolor{blue}{$t_K$}, if there is \textcolor{PineGreen}{$t_L$} making $\triangle KLT$ commutative, then 
+        \item for all \textcolor{blue}{$t_K$}, if there is \textcolor{PineGreen}{$t_L$} such that $\triangle KLT$ commutes, then 
         \begin{flalign*}
-            &\min \{\opn{weight}_T(\textcolor{PineGreen}{t_L}) \mid \triangle KLT \text{commutative}\}  
+            &\min \{\opn{weight}_T(\textcolor{PineGreen}{t_L}) \mid t_L.\triangle KLT \text{commutes}\}  
             \\ \mathop{>}
-            &\min \{\opn{weight}_T(\textcolor{red}{t_R}) \mid \triangle KRT \text{commutative}\}  
+            &\min \{\opn{weight}_T(\textcolor{red}{t_R}) \mid t_R.\triangle KRT \text{commutes}\}  
         \end{flalign*}
         \end{itemize} 
     \end{beamercolorbox}
  
-    How to find a suitable weighted type graph ?
+   \alert{How to find a suitable weighted type graph?}
 \end{frame}
-\begin{frame}{Searching for Weighted Type Graphs over Natural Numbers}
+\begin{frame}{Searching for Weighted Type Graphs over $\mathbb{N}$}
     User-specified parameters:
       \begin{itemize}
-        \item $k$ nodes
-        \item maximum edge weight $n\in\mathbb{N}$
+        \item \alert{$k$ nodes}
+        \item \alert{maximum edge weight $n\in\mathbb{N}$}
       \end{itemize}   
     Assumption:
       \begin{itemize}
@@ -1469,12 +1527,12 @@ existential Presburger arithmetic theory} with:
   Challenge:
   \begin{itemize}
     \item $2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights
-    \item maximum edge weight hard to determine to guess
+    \item maximum edge weight hard to guess
   \end{itemize} 
 \end{frame}
 
 
-\begin{frame}{Problem of the size of the search space}
+\begin{frame}{Problem of the Size of the Search Space}
 % def f(k, m, n) -> int:
 %     e = pow(k,2) * m
 %     left = pow(2,e)
@@ -1506,21 +1564,19 @@ With natural numbers as weights:
     Problems can solved by Z3 in exponential-time with respect to the number of variables $2k^2m$.
 \end{frame}
 
-\begin{frame}{Solution}
+\begin{frame}{Idea}
     Using positive real numbers as weights
 
     \vspace{0.5cm}
-    Constraint: there is \textcolor{red}{$\delta > 0$}, every rewriting step strictly decreases the weight by at least \textcolor{red}{$\delta$}.
-    
-    \vspace{0.5cm}
-    What is the impact on complexity ?
+    Additional constraint: there is \textcolor{red}{$\delta > 0$} such that every rewriting step decreases the weight by at least \textcolor{red}{$\delta$}.
+ 
 \end{frame}
 
 
-\begin{frame}{Searching for Weighted Type Graphs over Real Numbers}
+\begin{frame}{Searching for Weighted Type Graphs over \crossout[red]{$\mathbb{N}$} $\mathbb{R}$}
     User-specified parameters:
       \begin{itemize}
-        \item $k$ nodes
+        \item \alert{$k$ nodes}
         \item \crossout[red]{edge weights in $\{0, 1, \ldots, n\}$}
       \end{itemize}   
     Assumption:
@@ -1528,26 +1584,25 @@ With natural numbers as weights:
         \item no parallel edges of the same label 
       \end{itemize}
     The problem amounts to checking the satisfiability of an
-\crossout[red]{existential Presburger arithmetic theory} \textcolor{blue}{existential theory of the reals with binary variables}:
+\crossout[red]{existential Presburger arithmetic theory} \textcolor{red}{existential theory of the reals with binary variables}:
                 \begin{itemize}
                   \item $k^2m$ binary variables where $m$ is the number of labels
-                  \item $k^2m$ \crossout[blue]{integer} \textcolor{red}{real} variables
+                  \item $k^2m$ \crossout[red]{integer} \textcolor{red}{real} variables
                 \end{itemize} 
   Challenge:
   \begin{itemize}
-    \item \crossout[red]{there are $2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights}
-    \item there are $2^{k^2m}$ linear programs which have polynomial-time average-case complexity
+    \item \crossout[red]{there are $2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights}. \textcolor{red}{There are $2^{k^2m}$ linear programs which have polynomial-time average-case complexity.}
   \end{itemize} 
 \end{frame}
 
 
-\begin{frame}{Complexity comparison}
+\begin{frame}{Complexity Comparison}
 % def f(k, m, n) -> int:
 %     e = pow(k,2) * m
 %     left = pow(2,e)
 %     right = pow(n,e)
 %     return left * right
-With natural numbers as weights:
+With weights in $\mathbb{N}$:
     \begin{center}
     \begin{tabular}{ |c|c|c|c| } 
     \hline
@@ -1569,22 +1624,22 @@ With natural numbers as weights:
     \hline
     \end{tabular}
     \end{center}
-
-With real numbers as weights:
+With weights in $\mathbb{R}$:
+\vspace{-4mm}
     \begin{center}
-    \begin{tabular}{ |c|c|c|c| }  
+    \begin{tabular}{ |c|c|c|c|c| }  
     \hline
-    \# nodes (k)&  \# labels (m) & \# linear programs in $\mathbb{R}$\\ 
+    \# nodes (k)&  \# labels (m) & \# variables& \# linear programs in $\mathbb{R}$\\ 
     \hline
-    2 & 2 & $\approx 10^{2}$ \\ 
+    2 & 2 & 8 & $\approx 10^{2}$ \\ 
     \hline
-    3 & 3 & $\approx 10^{8}$ \\ 
+    3 & 3 & 27 & $\approx 10^{8}$ \\ 
     \hline
-    4 & 4 & $\approx 10^{19}$ \\ 
+    4 & 4 & 64 & $\approx 10^{19}$ \\ 
     \hline
     \end{tabular}
     \end{center}
-    Linear programs can be solved in polynomial-time on average.
+    Linear programs can be solved in polynomial time with respect to the number of variables on average.
 \end{frame}
 
 \begin{frame}{Experimental Results}
@@ -1673,9 +1728,11 @@ With real numbers as weights:
  
 \begin{frame}{Implementation}
     \begin{description}
-        \item{LyonParallel}
-        \item{Search parallel with 6 configurations}
-        \item{Z3 for constraint solving}
+        \item[LyonParallel]
+        \item[Tool in Ocaml] 
+        \item[Relative termination]
+        \item[Search parallel with 6 configurations]
+        \item[Z3 for constraint solving]
     \end{description}
 \end{frame}
 
@@ -1757,12 +1814,19 @@ All existing automated methods fail.
   \tableofcontents[currentsection,hideothersubsections]
 \end{frame}
 
+\begin{frame}{Morphism Counting}
+    Termination by interpretation 
+    \newline\newline
+    Parameter: a graph $X$
+    \newline\newline
+    Interpretation of a graph $G$ : number of morphisms from $X$ to $G$
+\end{frame}
 
-\begin{frame}{Inclusions : morphisms $h$ with $h(x) = x$ for all $x$.}
+\begin{frame}{Inclusions: morphisms $h$ with $h(x) = x$ for all $x$.}
          \begin{center} 
-            \resizebox{0.7\textwidth}{!}{
+            \resizebox{\textwidth}{!}{
                 \begin{tikzpicture}
-                    \graphbox{$G$}{39mm}{0mm}{35mm}{40mm}{2mm}{-5mm}{
+                    \graphbox{}{39mm}{0mm}{35mm}{40mm}{2mm}{-5mm}{
                         \coordinate (delta) at (0,-18mm);
                         \node[draw,circle,red] (l1) at ($(delta)+(-1,1.5)$) {1};
                         \node[draw,circle,red] (l2) at ($(delta)+(1,1.5)$) {2};
@@ -1771,8 +1835,8 @@ All existing automated methods fail.
                         \draw[->,red] (l2) -- (l3) node[midway,right] {$s$};
                         \draw[->,red] (l3) edge [loop below] node {0} (l3);
                     }
-                        \node () at (77mm,-18mm) {$\overset{h}{\rightarrow}$};
-                    \graphbox{$H$}{80mm}{0mm}{50mm}{40mm}{2mm}{-5mm}{
+                        \draw[->] (80mm,-18mm) to node[midway,above] {$h$} (97mm,-18mm);
+                    \graphbox{}{100mm}{0mm}{50mm}{40mm}{2mm}{-5mm}{
                         \coordinate (delta) at (-10mm,-18mm);
                         \node[draw,circle,red] (r1) at ($(delta)+(-1,1.5)$) {1};
                         \node[draw,circle,red] (r2) at ($(delta)+(0.5,1.5)$) {2};
@@ -1792,14 +1856,12 @@ All existing automated methods fail.
                 \end{tikzpicture}
                 }
         \end{center}
-    Remarks:
-        \begin{itemize}
-            \item $G$ is a subgraph of $H$.
-        \end{itemize}
+ Subgraph
+ 
 \end{frame}
 
 % \begin{frame}{Graph rewriting rule}
-%       \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
+%       \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
 %         \textcolor{blue}{Rules} $\varphi \mathop{=} (L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R)$ consist of inclusions $l$ and $r$. 
 %       \end{beamercolorbox}
 %     \begin{center} 
@@ -1837,7 +1899,7 @@ All existing automated methods fail.
 %         } 
 %     \end{center}   
 % % to do todo
-%             \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
+%             \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
 %             Rule $\varphi' \mathop{=} (L' \overset{l'}{\leftarrow} K' \overset{r'}{\rightarrow} R')$ and $\varphi$ are \textcolor{blue}{equivalent} if 
 %             there are isomorphisms $a,b,c$ such that:
 %             \begin{center} 
@@ -1924,7 +1986,7 @@ All existing automated methods fail.
 %       \end{center}
 % \end{frame} 
  
-\begin{frame}{A rewriting step with a running example}
+\begin{frame}{Graph Rewriting with Injective Rules}
   A rewriting rules consists of two inclusions. 
   \begin{center}
     $\varphi$=\resizebox{0.78\textwidth}{!}{
@@ -2066,14 +2128,30 @@ All existing automated methods fail.
    \end{center}
 \end{frame}
 
-\begin{frame}{Pre-graphs}
-    \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
-        Pre-graphs are graphs with missing nodes and dangling edges.
+\begin{frame}{Pre-Graphs}
+  \noindent Graph:
+         \begin{center}
+            \resizebox{0.5\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{}{0mm}{-20mm}{45mm}{20mm}{5mm}{-3mm}{ 
+                    \coordinate (o) at (-5mm,-8mm); 
+                    \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
+                    \node[draw,circle] (l4) at ($(l1)+(2,0)$) {3};
+                    \draw[->] (l1) edge[bend right]  node[midway,below] {$a$} (l3);
+                    \draw[->] (l1) edge[bend left] node[midway,above] {$a$}  (l3);
+                    \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                }  
+            \end{tikzpicture} 
+        }
+        \end{center} 
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
+    \noindent Pre-graphs obtained by removing node 2:
     \end{beamercolorbox}
         \begin{center}
-            \resizebox{0.6\textwidth}{!}{
+            \resizebox{0.5\textwidth}{!}{
             \begin{tikzpicture}
-                \graphbox{}{0mm}{-20mm}{45mm}{20mm}{2mm}{-5mm}{ 
+                \graphbox{}{0mm}{-20mm}{45mm}{20mm}{5mm}{-3mm}{ 
                     \coordinate (o) at (-5mm,-8mm); 
                     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                     \node[draw,circle,dashed,red] (l3) at ($(l1)+(1,0)$) {2};
@@ -2085,16 +2163,12 @@ All existing automated methods fail.
             \end{tikzpicture} 
         }
         \end{center} 
-
-    \begin{itemize}
-      \item 1 missing node in red,
-      \item all edges are dangling,
-      \item 2 existing nodes.
-    \end{itemize}
+ All edges are dangling.
+ 
 \end{frame}
 
-\begin{frame}{Pre-graph operations}
-     \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
+\begin{frame}{Pre-Graph Operations}
+     \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
         \textcolor{red}{Union} of two pre-graphs $C \mathop{\subseteq} G$ and $R \mathop{\subseteq} G$, denoted $C \mathop{\cup} R$.
     \end{beamercolorbox}
 \begin{center}
@@ -2133,7 +2207,7 @@ All existing automated methods fail.
         \end{tikzpicture}
     }
     \end{center}
- \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
+ \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
      \textcolor{red}{Relative complement} of $R$ in $H$ where $R \mathop{\subseteq} H$, denoted $H \mathop{\setminus} R$.
 \end{beamercolorbox}
     \begin{center} 
@@ -2146,10 +2220,10 @@ All existing automated methods fail.
                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                 \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
                 \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
-                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
-                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-                \draw[->] (l2) -- (l5) node[midway,right] {$a$};
+                \draw[-] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[-] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[-] (l4) -- (l2) node[midway,above] {$a$};
+                \draw[-] (l2) -- (l5) node[midway,right] {$a$};
             }   
             \graphbox{\( R \)}{40mm}{-22mm}{45mm}{25mm}{2mm}{2mm}{
                 \coordinate (o) at (-5mm,-8mm); 
@@ -2157,85 +2231,230 @@ All existing automated methods fail.
                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                 \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
-                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
-                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+                \draw[-] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[-] (l3) -- (l4) node[midway,above] {$b$};
+                \draw[-] (l4) -- (l2) node[midway,above] {$a$};
             }     
             \graphbox{\textcolor{red}{\( H \mathop{\setminus} R  \)}}{90mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-6mm); 
                 \node[draw,dashed,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,dashed,circle] (l2) at ($(l1)+(2,0)$) {2};
                 \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-                \draw[->] (l2) -- (l4) node[midway,right] {$a$};
+                \draw[-] (l2) -- (l4) node[midway,right] {$a$};
             }   
         \end{tikzpicture}
     }
     \end{center}
 \end{frame}
 
+% \begin{frame}{Decomposition of Graphs in Rewriting Steps}
+%     \begin{center}
+%     \resizebox{\textwidth}{!}{
+%       \begin{tikzpicture}
+%               \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+%                   \coordinate (o) at (0mm,-8mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+%                   \node[orange,draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+%                   \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
+%                   \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
+%               } 
+
+%               \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+%                   \coordinate (o) at (0mm,-8mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+%               }  
+
+%               \graphbox{\( R \mathop{=} R' \mathop{\cup} K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
+%                   \coordinate (o) at (-5mm,-8mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+%                   \node[red,draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                   \node[red,draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+%                   \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
+%                   \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
+%                   \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
+%               }    
+
+%               \graphbox{\( G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+%                   \coordinate (o) at (0mm,-3mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+%                   \node[draw,circle,orange] (l3) at ($(l1)+(1,0)$) {3};
+%                   \node[blue, draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
+%                   \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
+%                   \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
+%                   \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
+%               }    
+
+%               \graphbox{\( C \mathop{=} K \mathop{\cup} C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+%                   \coordinate (o) at (0mm,-3mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+%                   \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
+%                   \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
+%               }    
+
+%               \graphbox{\( H \mathop{=} R' \mathop{\cup} K \mathop{\cup} C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
+%                   \coordinate (o) at (-5mm,-3mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+%                   \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {4};
+%                   \node[draw,circle,red] (l4) at ($(l1)+(2,0)$) {5};
+%                   \node[blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+%                   \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
+%                   \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
+%                   \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
+%                   \draw[blue,->] (l2) -- (l5) node[midway,right] {$a$};
+%               }    
+
+%               \node () at (37mm,-8mm) {\( \leftarrow \)}; % K -> L
+%               \node () at (77mm,-8mm) {\( \rightarrow \)}; % K -> R
+%               \node () at (17mm,-18mm) {\( \downarrow \)};
+%               \node () at (37mm,-33mm) {\( \leftarrow \)};
+%               \node () at (52mm,-18mm) {\( \downarrow \)};
+%               \node () at (92mm,-18mm) {\( \downarrow \)};
+%               \node () at (77mm,-33mm) {\( \rightarrow \)}; % C -> H
+%       \end{tikzpicture}
+%       }
+%    \end{center}
+% \end{frame}
 
 
-\begin{frame}{Decomposition of graphs in rewriting steps}
-     \onslide<1->{
-    \begin{center}
-    \resizebox{0.8\textwidth}{!}{
+% \begin{frame}{Decomposition of Graphs in Rewriting Steps}
+%     \begin{center}
+%     \resizebox{\textwidth}{!}{
+%       \begin{tikzpicture}
+%               \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+%                   \coordinate (o) at (0mm,-8mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+%                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+%                   \node[orange,fill=orange,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+%                   \draw[orange,fill=orange,->] (l1) -- (l3) node[midway,above] {$a$};
+%                   \draw[orange,fill=orange,->] (l3) -- (l2) node[midway,above] {$a$};
+%               } 
+
+%               \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+%                   \coordinate (o) at (0mm,-8mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+%                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+%               }  
+
+%               \graphbox{\( R \mathop{=} R' \mathop{\cup} K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
+%                   \coordinate (o) at (-5mm,-8mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+%                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
+%                   \node[red,fill=red,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+%                   \node[red,fill=red,draw,circle] (l4) at ($(l1)+(2,0)$) {};
+%                   \draw[red,fill=red,->] (l1) -- (l3) node[midway,above] {$a$};
+%                   \draw[red,fill=red,->] (l3) -- (l4) node[midway,above] {$b$};
+%                   \draw[red,fill=red,->] (l4) -- (l2) node[midway,above] {$a$};
+%               }    
+
+%               \graphbox{\( G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+%                   \coordinate (o) at (0mm,-3mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+%                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+%                   \node[draw,circle,orange,fill=orange] (l3) at ($(l1)+(1,0)$) {};
+%                   \node[blue, fill=blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {};
+%                   \draw[orange,fill=orange,->] (l1) -- (l3) node[midway,above] {$a$};
+%                   \draw[orange,fill=orange,->] (l3) -- (l2) node[midway,above] {$a$};
+%                   \draw[blue,fill=blue,->] (l2) -- (l4) node[midway,right] {$a$};
+%               }    
+
+%               \graphbox{\( C \mathop{=} K \mathop{\cup} C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+%                   \coordinate (o) at (0mm,-3mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+%                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+%                   \node[blue,fill=blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {};
+%                   \draw[blue,fill=blue,->] (l2) -- (l4) node[midway,right] {$a$};
+%               }    
+
+%               \graphbox{\( H \mathop{=} R' \mathop{\cup} K \mathop{\cup} C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
+%                   \coordinate (o) at (-5mm,-3mm); 
+%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+%                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
+%                   \node[draw,fill=red,circle] (l3) at ($(l1)+(1,0)$) {};
+%                   \node[draw,fill=red,circle] (l4) at ($(l1)+(2,0)$) {};
+%                   \node[blue,fill=blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {};
+%                   \draw[red,fill=red,->] (l1) -- (l3) node[midway,above] {$a$};
+%                   \draw[red,fill=red,->] (l3) -- (l4) node[midway,above] {$b$};
+%                   \draw[red,fill=red,->] (l4) -- (l2) node[midway,above] {$a$};
+%                   \draw[blue,fill=blue,->] (l2) -- (l5) node[midway,right] {$a$};
+%               }    
+
+%               \node () at (37mm,-8mm) {\( \leftarrow \)}; % K -> L
+%               \node () at (77mm,-8mm) {\( \rightarrow \)}; % K -> R
+%               \node () at (17mm,-18mm) {\( \downarrow \)};
+%               \node () at (37mm,-33mm) {\( \leftarrow \)};
+%               \node () at (52mm,-18mm) {\( \downarrow \)};
+%               \node () at (92mm,-18mm) {\( \downarrow \)};
+%               \node () at (77mm,-33mm) {\( \rightarrow \)}; % C -> H
+%       \end{tikzpicture}
+%       }
+%    \end{center}
+% \end{frame}
+\begin{frame}{Decomposition of Graphs in Rewriting Steps}
+   \begin{center}
+    \resizebox{0.85\textwidth}{!}{
       \begin{tikzpicture}
               \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (0mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[orange,draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-                  \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
-                  \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[orange,fill=orange,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \draw[orange,fill=orange,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[orange,fill=orange,->] (l3) -- (l2) node[midway,above] {$a$};
               } 
 
               \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (0mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
               }  
 
               \graphbox{\( R \mathop{=} R' \mathop{\cup} K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (-5mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[red,draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-                  \node[red,draw,circle] (l4) at ($(l1)+(2,0)$) {5};
-                  \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
-                  \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
-                  \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
+                  \node[red,fill=red,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \node[red,fill=red,draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                  \draw[red,fill=red,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[red,fill=red,->] (l3) -- (l4) node[midway,above] {$b$};
+                  \draw[red,fill=red,->] (l4) -- (l2) node[midway,above] {$a$};
               }    
 
               \graphbox{\( G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (0mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[draw,circle,orange] (l3) at ($(l1)+(1,0)$) {3};
-                  \node[blue, draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-                  \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
-                  \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
-                  \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[draw,circle,orange,fill=orange] (l3) at ($(l1)+(1,0)$) {};
+                  \node[blue, fill=blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {};
+                  \draw[orange,fill=orange,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[orange,fill=orange,->] (l3) -- (l2) node[midway,above] {$a$};
+                  \draw[blue,fill=blue,->] (l2) -- (l4) node[midway,right] {$a$};
               }    
 
               \graphbox{\( C \mathop{=} K \mathop{\cup} C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (0mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-                  \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[blue,fill=blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {};
+                  \draw[blue,fill=blue,->] (l2) -- (l4) node[midway,right] {$a$};
               }    
 
               \graphbox{\( H \mathop{=} R' \mathop{\cup} K \mathop{\cup} C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (-5mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {4};
-                  \node[draw,circle,red] (l4) at ($(l1)+(2,0)$) {5};
-                  \node[blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
-                  \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
-                  \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
-                  \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
-                  \draw[blue,->] (l2) -- (l5) node[midway,right] {$a$};
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
+                  \node[red,fill=red,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \node[red,fill=red,draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                  \node[blue,fill=blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {};
+                  \draw[red,fill=red,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[red,fill=red,->] (l3) -- (l4) node[midway,above] {$b$};
+                  \draw[red,fill=red,->] (l4) -- (l2) node[midway,above] {$a$};
+                  \draw[blue,fill=blue,->] (l2) -- (l5) node[midway,right] {$a$};
               }    
 
               \node () at (37mm,-8mm) {\( \leftarrow \)}; % K -> L
@@ -2248,36 +2467,15 @@ All existing automated methods fail.
       \end{tikzpicture}
       }
    \end{center}
- }
-\only<2->{
-        \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
-   \begin{center}
-       \resizebox{0.45\textwidth}{!}{
-        \begin{tikzpicture}
-            \node (I) at (0,0) {$K$};
-            \node (L)  at (-3,0) {$L' \cup K$};
-            \node (R)  at (3,0) {$R' \cup K$};
-            \node (G)  at (-3,-3) {$L' \cup K \cup C'$};
-            \node (C)  at (0,-3) {$K \cup C'$};
-            \node (H)  at (3,-3) {$R' \cup K \cup C'$};
-            \draw [->] (I) to  node [midway,below] {} (L);
-            \draw [->] (I) to  node [midway,below] {} (R);
-            \draw [->] (L) to node [midway,right] {} (G);
-            \draw [->] (I) to  node [midway,right] {} (C);
-            \draw [->] (R) to  node [midway,right] {} (H);
-            \draw [->] (C) to node [midway,above] {} (G);
-            \draw [->] (C) to node [midway,above] {} (H);
-        \end{tikzpicture}
-    }
-    \hspace{0.8cm}
-    \resizebox{0.45\textwidth}{!}{
+\begin{center}
+    \resizebox{0.55\textwidth}{!}{
             \begin{tikzpicture} 
                 \coordinate (k) at (0, 0);
                 \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
                 \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (c) at (0, -2.2);
-                \draw[fill=blue!20]
+                \draw[fill=blue!30]
                 ($(c)+(0,-0.5)$)
                 -- ($(c)+(0,0.5)$) 
                 -- ($(c)+(1,0.5)$) 
@@ -2288,26 +2486,26 @@ All existing automated methods fail.
                 \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (l) at (-3, 0);
-                \draw[fill=orange!20] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
+                \draw[fill=orange!30] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
                 \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
                 \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
                 \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (g) at (-3, -2.2);
-                \draw[fill=blue!20]
+                \draw[fill=blue!30]
                 ($(g)+(0,-0.5)$)
                 -- ($(g)+(0,0.5)$)
                 -- ($(g)+(1,0.5)$) 
                 arc[start angle=0, end angle=-90, radius=1]
                 -- cycle;
-                \draw[fill=orange!20] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
+                \draw[fill=orange!30] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
                 \node () at ($(g)+(0.75,0.25)$) {\( \mathrm{C'} \)};
                 \node () at ($(g)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
                 \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
                 \node () at ($(g)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (r) at (3,0);
-                \draw[fill=red!20] ($(r)+(-0.5,0)$)
+                \draw[fill=red!30] ($(r)+(-0.5,0)$)
                 -- ($(r)+(-0.5,0.5)$)
                 -- ($(r)+(0,1)$)
                 --  ($(r)+(0.5,1)$)
@@ -2318,13 +2516,13 @@ All existing automated methods fail.
                 \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (h) at (3, -2.2);
-                \draw[fill=blue!20]
+                \draw[fill=blue!30]
                 ($(h)+(0,-0.5)$)
                 -- ($(h)+(0,0.5)$)
                 -- ($(h)+(1,0.5)$) 
                 arc[start angle=0, end angle=-90, radius=1]
                 -- cycle;
-                \draw[fill=red!20] ($(h)+(-0.5,0)$)
+                \draw[fill=red!30] ($(h)+(-0.5,0)$)
                 -- ($(h)+(-0.5,0.5)$)
                 -- ($(h)+(0,1)$)
                 --  ($(h)+(0.5,1)$)
@@ -2353,178 +2551,23 @@ All existing automated methods fail.
             \end{tikzpicture}
           }
    \end{center}
- \end{beamercolorbox}
-}
+   This coloring provides a classification of morphisms in rewriting steps by image node colors.
 \end{frame}
 
-\begin{frame}{Example}
-Let $X$ be the graph 
-\tikz[baseline=-0.5ex]{ 
-        \node (x) at (0,0) {$\bullet$};  
-        \node (y) at (1,0) {$\bullet$};
-        \node (z) at (2,0) {$\bullet$};
-        \draw[->] (x) -- node[midway,below] {$a$} (y) ;
-        \draw[->] (y) -- node[midway,below] {$a$} (z) ;
-}.  
-  \begin{center}
-        \resizebox{0.7\textwidth}{!}{
-      \begin{tikzpicture}
-              \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
-                  \coordinate (o) at (0mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[orange,draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-                  \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
-                  \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
-              } 
 
-              \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
-                  \coordinate (o) at (0mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-              }  
-
-              \graphbox{\( R \mathop{=} R' \mathop{\cup} K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
-                  \coordinate (o) at (-5mm,-8mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[red,draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-                  \node[red,draw,circle] (l4) at ($(l1)+(2,0)$) {5};
-                  \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
-                  \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
-                  \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
-              }    
-
-              \graphbox{\( G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
-                  \coordinate (o) at (0mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[draw,circle,orange] (l3) at ($(l1)+(1,0)$) {3};
-                  \node[blue, draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-                  \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
-                  \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
-                  \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
-                  \node[blue,draw,circle] (l7) at ($(l4)+(-1,0)$) {7};
-                  \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
-              }    
-
-              \graphbox{\( C \mathop{=} K \mathop{\cup} C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
-                  \coordinate (o) at (0mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                  \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-                  \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
-                %   \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
-                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
-                    \node[blue,draw,circle] (l7) at ($(l4)+(-1,0)$) {7};
-                  \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
-              }    
-
-              \graphbox{\( H \mathop{=} R' \mathop{\cup} K \mathop{\cup} C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
-                  \coordinate (o) at (-5mm,-3mm); 
-                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                  \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {4};
-                  \node[draw,circle,red] (l4) at ($(l1)+(2,0)$) {5};
-                  \node[blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
-                %   \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
-                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
-                  \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
-                  \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
-                  \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
-                  \draw[blue,->] (l2) -- (l5) node[midway,right] {$a$};
-                        \node[blue,draw,circle] (l7) at ($(l5)+(-1,0)$) {7};
-                  \draw[blue,->] (l5) -- (l7) node[midway,below] {$a$};
-              }    
-
-              \node () at (37mm,-8mm) {\( \leftarrow \)}; % K -> L
-              \node () at (77mm,-8mm) {\( \rightarrow \)}; % K -> R
-              \node () at (17mm,-18mm) {\( m\ \downarrow \)};
-              \node () at (37mm,-33mm) {\( \leftarrow \)};
-              \node () at (52mm,-18mm) {\( \downarrow \)};
-              \node () at (92mm,-18mm) {\( \downarrow \)};
-              \node () at (77mm,-33mm) {\( \rightarrow \)}; % C -> H
-      \end{tikzpicture}
-        }
-    \end{center}
-The morphisms from $X$ has their images:
-\begin{itemize}
-    \item in $G$ and $L$:
-    \resizebox{0.18\textwidth}{!}{  
-        \tikz[baseline=-0.5ex]{ 
-            \node[draw,circle] (x) at (0,0) {1};  
-            \node[orange,draw,circle] (y) at (1,0) {3};
-            \node[draw,circle] (z) at (2,0) {2};
-            \draw[orange,->] (x) -- node[midway,above] {$a$} (y) ;
-            \draw[orange,->] (y) -- node[midway,above] {$a$} (z) ;
-        }
-    }
-    \item in $H$ and $R$: None
-    \item shared by $G$ and $H$: 
-    \resizebox{0.18\textwidth}{!}{
-        \tikz[baseline=-0.5ex]{ 
-            \node[draw,circle] (x) at (0,0) {2};  
-            \node[blue,draw,circle] (y) at (1,0) {6};
-            \node[blue,draw,circle] (z) at (2,0) {7};
-            \draw[blue,->] (x) -- node[midway,above] {$a$} (y) ;
-            \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
-        }
-    }
-    \item formed by subgraphs of $L$ and $C$:
-     \resizebox{0.18\textwidth}{!}{
-        \tikz[baseline=-0.5ex]{ 
-            \node[orange,draw,circle] (x) at (0,0) {3};  
-            \node[draw,circle] (y) at (1,0) {2};
-            \node[blue,draw,circle] (z) at (2,0) {6};
-            \draw[orange,->] (x) -- node[midway,above] {$a$} (y) ;
-            \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
-        } 
-    }
-
-    \item formed by subgraphs of $R$ and $C$:
-    \resizebox{0.18\textwidth}{!}{
-        \tikz[baseline=-0.5ex]{ 
-            \node[red,draw,circle] (x) at (0,0) {5};  
-            \node[draw,circle] (y) at (1,0) {2};
-            \node[blue,draw,circle] (z) at (2,0) {6};
-            \draw[red,->] (x) -- node[midway,above] {$a$} (y) ;
-            \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
-        }
-    }
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Implicit, Explicit and Shared Occurrences}
-     \begin{beamercolorbox}[wd=\textwidth,sep=1.2ex]{block body}
-        An \textcolor{red}{$X$-occurrence} is an injective morphism from $X$. 
+\begin{frame}{Morphisms by Image Node Colors}
+     \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
+        An $X$-occurrence is an injective morphism from $X$. 
     \end{beamercolorbox}
  \begin{center}
-      \resizebox{0.48\textwidth}{!}{
-        \begin{tikzpicture}
-            % [node distance=15mm]
-            \node (I) at (0,0) {$K$};
-            \node (L)  at (-3,0) {$L $};
-            \node (R)  at (3,0) {$R $};
-            \node (G)  at (-3,-3) {$G$};
-            \node (C)  at (0,-3) {$C$};
-            \node (H)  at (3,-3) {$H$};
-            \draw [->] (I) to  node [midway,below] {} (L);
-            \draw [->] (I) to  node [midway,below] {} (R);
-            \draw [->] (L) to node [midway,right] {} (G);
-            \draw [->] (I) to  node [midway,right] {} (C);
-            \draw [->] (R) to  node [midway,right] {} (H);
-            \draw [->] (C) to node [midway,above] {} (G);
-            \draw [->] (C) to node [midway,above] {} (H);
-        \end{tikzpicture}
-    }
-    \resizebox{0.5\textwidth}{!}{
+    \resizebox{0.49\textwidth}{!}{
             \begin{tikzpicture} 
                 \coordinate (k) at (0, 0);
                 \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
                 \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (c) at (0, -2.2);
-                \draw[fill=blue!20]
+                \draw[fill=blue!30]
                 ($(c)+(0,-0.5)$)
                 -- ($(c)+(0,0.5)$) 
                 -- ($(c)+(1,0.5)$) 
@@ -2535,26 +2578,26 @@ The morphisms from $X$ has their images:
                 \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (l) at (-3, 0);
-                \draw[fill=orange!20] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
+                \draw[fill=orange!30] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
                 \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
                 \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
                 \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (g) at (-3, -2.2);
-                \draw[fill=blue!20]
+                \draw[fill=blue!30]
                 ($(g)+(0,-0.5)$)
                 -- ($(g)+(0,0.5)$)
                 -- ($(g)+(1,0.5)$) 
                 arc[start angle=0, end angle=-90, radius=1]
                 -- cycle;
-                \draw[fill=orange!20] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
+                \draw[fill=orange!30] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
                 \node () at ($(g)+(0.75,0.25)$) {\( \mathrm{C'} \)};
                 \node () at ($(g)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
                 \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
                 \node () at ($(g)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (r) at (3,0);
-                \draw[fill=red!20] ($(r)+(-0.5,0)$)
+                \draw[fill=red!30] ($(r)+(-0.5,0)$)
                 -- ($(r)+(-0.5,0.5)$)
                 -- ($(r)+(0,1)$)
                 --  ($(r)+(0.5,1)$)
@@ -2565,13 +2608,13 @@ The morphisms from $X$ has their images:
                 \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (h) at (3, -2.2);
-                \draw[fill=blue!20]
+                \draw[fill=blue!30]
                 ($(h)+(0,-0.5)$)
                 -- ($(h)+(0,0.5)$)
                 -- ($(h)+(1,0.5)$) 
                 arc[start angle=0, end angle=-90, radius=1]
                 -- cycle;
-                \draw[fill=red!20] ($(h)+(-0.5,0)$)
+                \draw[fill=red!30] ($(h)+(-0.5,0)$)
                 -- ($(h)+(-0.5,0.5)$)
                 -- ($(h)+(0,1)$)
                 --  ($(h)+(0.5,1)$)
@@ -2605,68 +2648,158 @@ The morphisms from $X$ has their images:
           }
    \end{center}
 
-   An $X$-occurrence is 
-   \begin{itemize}
-    \item \textcolor{red}{explicit} if 
-        $\opn{Im(x)}$ is included in 
-            \resizebox{0.1\textwidth}{!}{
-                \begin{tikzpicture}
-                    \coordinate (l) at (-3, 0);
-                    \draw[fill=orange!20] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
-                    \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
-                    \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
-                    \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
-                \end{tikzpicture}
-            }
-    \item \textcolor{red}{shared} if 
-        $\opn{Im(x)}$ is included in 
-            \resizebox{0.1\textwidth}{!}{
-                \begin{tikzpicture} 
-                    \coordinate (c) at (0, -2.2);
-                    \draw[fill=blue!20]
-                    ($(c)+(0,-0.5)$)
-                    -- ($(c)+(0,0.5)$) 
-                    -- ($(c)+(1,0.5)$) 
-                    arc[start angle=0, end angle=-90, radius=1]
-                    -- cycle;
-                    \node () at ($(c)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-                    \draw[fill=white] ($(c)+(0,0)$) rectangle ($(c)+(0.5,0.5)$);
-                    \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
-                \end{tikzpicture}
-            }
-    \item \textcolor{red}{implicit} if 
-        $\opn{Im(x)}$ has elements in both 
-            \resizebox{0.1\textwidth}{!}{
-                \begin{tikzpicture}
-                    \coordinate (g) at (-3, -2.2);
-                    \draw[fill=orange!20] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
-                    \node () at ($(g)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
-                    \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
-                    \draw[white,very thick] (-3, -2.2) -- (-2.5, -2.2) --  (-2.5, -1.7);
-                \end{tikzpicture}
-            } and 
-            \resizebox{0.1\textwidth}{!}{
-                \begin{tikzpicture}
-                    \coordinate (g) at (-3, -2.2);
-                    \draw[fill=blue!20]
-                    ($(g)+(0,-0.5)$)
-                    -- ($(g)+(0,0.5)$)
-                    -- ($(g)+(1,0.5)$) 
-                    arc[start angle=0, end angle=-90, radius=1]
-                    -- cycle;
-                    \node () at ($(g)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-                    \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
-                    \draw[white,very thick]  (-3.0, -2.2) -- (-3.0, -1.7) -- (-2.5, -1.7);
-                \end{tikzpicture}
-            }
-   \end{itemize}
-
-   Similarly, in $H$.
+   An $X$-occurrence $x$ is 
+    \begin{itemize}
+        \item \textcolor{orange}{orange} if $\opn{Im(x)}$ contains only \textcolor{black}{white} and \textcolor{orange}{orange} nodes;
+        \item \textcolor{red}{red} if 
+            $\opn{Im(x)}$ contains only \textcolor{black}{white} and \textcolor{red}{red} nodes; 
+        \item \textcolor{blue}{blue} if 
+            $\opn{Im(x)}$ contains only \textcolor{black}{white} and \textcolor{blue}{blue} nodes;
+        \item \textcolor{blue}{blue}-and-\textcolor{orange}{orange} if $\opn{Im(x)}$ contains both \textcolor{blue}{blue} and \textcolor{orange}{orange} nodes;
+        \item \textcolor{blue}{blue}-and-\textcolor{red}{red} if $\opn{Im(x)}$ contains both \textcolor{blue}{blue} and \textcolor{red}{red} nodes.
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{A sufficient condition for termination}
-            $\varphi$ terminates if for all rewriting step:
-      \begin{center}
+\begin{frame}{Morphisms by Image Node Colors}
+Let $X$ be the graph 
+\tikz[baseline=-0.5ex]{ 
+        \node (x) at (0,0) {$\bullet$};  
+        \node (y) at (1,0) {$\bullet$};
+        \node (z) at (2,0) {$\bullet$};
+        \draw[->] (x) -- node[midway,below] {$a$} (y) ;
+        \draw[->] (y) -- node[midway,below] {$a$} (z) ;
+}.  
+  \begin{center}
+        \resizebox{0.8\textwidth}{!}{
+      \begin{tikzpicture}
+              \graphbox{\(\)}{0mm}{5mm}{34mm}{15mm}{2mm}{-2mm}{
+                  \coordinate (o) at (0mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                  \node[orange,draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                  \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
+              } 
+
+              \graphbox{\(\)}{40mm}{5mm}{34mm}{15mm}{2mm}{-2mm}{
+                  \coordinate (o) at (0mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+              }  
+
+              \graphbox{\(\)}{80mm}{5mm}{45mm}{15mm}{2mm}{-2mm}{
+                  \coordinate (o) at (-5mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                  \node[red,draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                  \node[red,draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+                  \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
+                  \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
+              }    
+
+              \graphbox{\(\)}{0mm}{-17mm}{34mm}{25mm}{2mm}{-7mm}{
+                  \coordinate (o) at (0mm,-3mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                  \node[draw,circle,orange] (l3) at ($(l1)+(1,0)$) {3};
+                  \node[blue, draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
+                  \draw[orange,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
+                  \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
+                  \node[blue,draw,circle] (l7) at ($(l4)+(-1,0)$) {7};
+                  \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
+              }    
+
+              \graphbox{\(\)}{40mm}{-17mm}{34mm}{25mm}{2mm}{-7mm}{
+                  \coordinate (o) at (0mm,-3mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                  \node[blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
+                  \draw[blue,->] (l2) -- (l4) node[midway,right] {$a$};
+                %   \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
+                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
+                    \node[blue,draw,circle] (l7) at ($(l4)+(-1,0)$) {7};
+                  \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
+              }    
+
+              \graphbox{\(\)}{80mm}{-17mm}{45mm}{25mm}{2mm}{-7mm}{
+                  \coordinate (o) at (-5mm,-3mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                  \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {4};
+                  \node[draw,circle,red] (l4) at ($(l1)+(2,0)$) {5};
+                  \node[blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+                %   \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
+                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
+                  \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[red,->] (l3) -- (l4) node[midway,above] {$b$};
+                  \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
+                  \draw[blue,->] (l2) -- (l5) node[midway,right] {$a$};
+                        \node[blue,draw,circle] (l7) at ($(l5)+(-1,0)$) {7};
+                  \draw[blue,->] (l5) -- (l7) node[midway,below] {$a$};
+              }    
+
+              \node () at (37mm,-3mm) {\( \leftarrow \)}; % K -> L
+              \node () at (77mm,-3mm) {\( \rightarrow \)}; % K -> R
+              \node () at (17mm,-13mm) {\( m\ \downarrow \)};
+              \node () at (37mm,-30mm) {\( \leftarrow \)};
+              \node () at (52mm,-13mm) {\( \downarrow \)};
+              \node () at (92mm,-13mm) {\( \downarrow \)};
+              \node () at (77mm,-30mm) {\( \rightarrow \)}; % C -> H
+      \end{tikzpicture}
+        }
+    \end{center}
+
+\textcolor{blue}{Blue} $X$-morphisms:  \resizebox{0.18\textwidth}{!}{
+        \tikz[baseline=-0.5ex]{ 
+            \node[draw,circle] (x) at (0,0) {2};  
+            \node[blue,draw,circle] (y) at (1,0) {6};
+            \node[blue,draw,circle] (z) at (2,0) {7};
+            \draw[blue,->] (x) -- node[midway,above] {$a$} (y) ;
+            \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
+        }
+    } 
+
+\textcolor{orange}{Orange} $X$-morphisms:
+    \resizebox{0.18\textwidth}{!}{  
+        \tikz[baseline=-0.5ex]{ 
+            \node[draw,circle] (x) at (0,0) {1};  
+            \node[orange,draw,circle] (y) at (1,0) {3};
+            \node[draw,circle] (z) at (2,0) {2};
+            \draw[orange,->] (x) -- node[midway,above] {$a$} (y) ;
+            \draw[orange,->] (y) -- node[midway,above] {$a$} (z) ;
+        }
+    }
+
+\textcolor{blue}{Blue}-and-\textcolor{orange}{Orange} $X$-morphisms:
+     \resizebox{0.18\textwidth}{!}{
+        \tikz[baseline=-0.5ex]{ 
+            \node[orange,draw,circle] (x) at (0,0) {3};  
+            \node[draw,circle] (y) at (1,0) {2};
+            \node[blue,draw,circle] (z) at (2,0) {6};
+            \draw[orange,->] (x) -- node[midway,above] {$a$} (y) ;
+            \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
+        } 
+    }
+
+\textcolor{red}{Red} $X$-morphisms: none.
+
+\textcolor{blue}{Blue}-and-\textcolor{red}{red} $X$-morphisms:
+    \resizebox{0.18\textwidth}{!}{
+        \tikz[baseline=-0.5ex]{ 
+            \node[red,draw,circle] (x) at (0,0) {5};  
+            \node[draw,circle] (y) at (1,0) {2};
+            \node[blue,draw,circle] (z) at (2,0) {6};
+            \draw[red,->] (x) -- node[midway,above] {$a$} (y) ;
+            \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
+        }
+    }
+\end{frame}
+
+
+\begin{frame}{A Sufficient Condition for Termination}
+    \begin{center}
     \resizebox{0.5\textwidth}{!}{
             \begin{tikzpicture} 
                 \coordinate (k) at (0, 0);
@@ -2674,7 +2807,7 @@ The morphisms from $X$ has their images:
                 \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (c) at (0, -2.2);
-                \draw[fill=blue!20]
+                \draw[fill=blue!30]
                 ($(c)+(0,-0.5)$)
                 -- ($(c)+(0,0.5)$) 
                 -- ($(c)+(1,0.5)$) 
@@ -2685,26 +2818,26 @@ The morphisms from $X$ has their images:
                 \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (l) at (-3, 0);
-                \draw[fill=orange!20] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
+                \draw[fill=orange!30] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
                 \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
                 \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
                 \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (g) at (-3, -2.2);
-                \draw[fill=blue!20]
+                \draw[fill=blue!30]
                 ($(g)+(0,-0.5)$)
                 -- ($(g)+(0,0.5)$)
                 -- ($(g)+(1,0.5)$) 
                 arc[start angle=0, end angle=-90, radius=1]
                 -- cycle;
-                \draw[fill=orange!20] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
+                \draw[fill=orange!30] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
                 \node () at ($(g)+(0.75,0.25)$) {\( \mathrm{C'} \)};
                 \node () at ($(g)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
                 \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
                 \node () at ($(g)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (r) at (3,0);
-                \draw[fill=red!20] ($(r)+(-0.5,0)$)
+                \draw[fill=red!30] ($(r)+(-0.5,0)$)
                 -- ($(r)+(-0.5,0.5)$)
                 -- ($(r)+(0,1)$)
                 --  ($(r)+(0.5,1)$)
@@ -2715,13 +2848,13 @@ The morphisms from $X$ has their images:
                 \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (h) at (3, -2.2);
-                \draw[fill=blue!20]
+                \draw[fill=blue!30]
                 ($(h)+(0,-0.5)$)
                 -- ($(h)+(0,0.5)$)
                 -- ($(h)+(1,0.5)$) 
                 arc[start angle=0, end angle=-90, radius=1]
                 -- cycle;
-                \draw[fill=red!20] ($(h)+(-0.5,0)$)
+                \draw[fill=red!30] ($(h)+(-0.5,0)$)
                 -- ($(h)+(-0.5,0.5)$)
                 -- ($(h)+(0,1)$)
                 --  ($(h)+(0.5,1)$)
@@ -2750,28 +2883,20 @@ The morphisms from $X$ has their images:
             \end{tikzpicture}
           }
    \end{center}
-            the following holds:
-        \begin{enumerate}
-            \item $|\text{explicit $X$-occurrences in $G$}| 
-                    \mathop{>} 
-                    |\text{explicit $X$-occurrences in $H$}|$;
-            \item $|\text{implicit $X$-occurrences in $G$}|
-                    \mathop{\geq} 
-                    |\text{implicit $X$-occurrences in $H$}|$.
-        \end{enumerate}
+            A rule terminates if, for every rewriting step, there are 
+            \begin{itemize}
+                \item strictly more \textcolor{orange}{orange} X-morphisms than \textcolor{red}{red} X-morphisms, 
+                \item more \textcolor{blue}{blue}-and-\textcolor{orange}{orange} X-morphisms than \textcolor{blue}{blue}-and-\textcolor{red}{red} X-morphisms.
+            \end{itemize}
 
- 
- The \textcolor{red}{first} condition is \textcolor{red}{straightforward}. 
- 
- \textcolor{red}{Challenge}: the \textcolor{red}{second} condition.
+ \textcolor{red}{Challenge}: C' is unknown before rewriting.
 \end{frame} 
 
 \begin{frame}{Analysis of Implicit Occurrences}
-        \only<1->{
-        \begin{center}
-        \resizebox{0.7\textwidth}{!}{
+    \begin{center}
+        \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
-              \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+              \graphbox{\(\)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (0mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -2780,13 +2905,13 @@ The morphisms from $X$ has their images:
                   \draw[orange,->] (l3) -- (l2) node[midway,above] {$a$};
               } 
 
-              \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+              \graphbox{\(\)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (0mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
               }  
 
-              \graphbox{\( R \mathop{=} R' \mathop{\cup} K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
+              \graphbox{\( \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (-5mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
@@ -2797,7 +2922,7 @@ The morphisms from $X$ has their images:
                   \draw[red,->] (l4) -- (l2) node[midway,above] {$a$};
               }    
 
-              \graphbox{\( G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+              \graphbox{\(   \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (0mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -2810,7 +2935,7 @@ The morphisms from $X$ has their images:
                   \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
               }    
 
-              \graphbox{\( C \mathop{=} K \mathop{\cup} C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+              \graphbox{\(  \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (0mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -2820,7 +2945,7 @@ The morphisms from $X$ has their images:
                   \draw[blue,->] (l4) -- (l7) node[midway,below] {$a$};
               }    
 
-              \graphbox{\( H \mathop{=} R' \mathop{\cup} K \mathop{\cup} C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
+              \graphbox{\(   \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
                   \coordinate (o) at (-5mm,-3mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                   \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
@@ -2843,22 +2968,151 @@ The morphisms from $X$ has their images:
               \node () at (92mm,-18mm) {\( \downarrow \)};
               \node () at (77mm,-33mm) {\( \rightarrow \)}; % C -> H
       \end{tikzpicture}
-        }
+      }
     \end{center}
+    \textcolor{blue}{Blue}-and-\textcolor{red}{red} $X$-morphisms:
+    \resizebox{0.18\textwidth}{!}{
+        \tikz[baseline=-0.5ex]{ 
+            \node[red,draw,circle] (x) at (0,0) {5};  
+            \node[draw,circle] (y) at (1,0) {2};
+            \node[blue,draw,circle] (z) at (2,0) {6};
+            \draw[red,->] (x) -- node[midway,above] {$a$} (y) ;
+            \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
+        }
     }
-    \only<2->{
-    \begin{lemma}[More $X$-occurrences before rewriting]
-        For all $G \mathop{\Rightarrow}_\varphi H$, there are more implicit $X$-occurrences in $G$ than in $H$, if 
-       \begin{itemize}
-        \item subgraphs of $R$ that can form an implicit $X$-occurrence in some rewriting step can be mapped to distinct  subgraphs in $L$ while 
-    preserving the interface elements.
-       \end{itemize}
-    \end{lemma}
-     }
+
+    \textcolor{blue}{Blue}-and-\textcolor{orange}{Orange} $X$-morphisms:
+     \resizebox{0.18\textwidth}{!}{
+        \tikz[baseline=-0.5ex]{ 
+            \node[orange,draw,circle] (x) at (0,0) {3};  
+            \node[draw,circle] (y) at (1,0) {2};
+            \node[blue,draw,circle] (z) at (2,0) {6};
+            \draw[orange,->] (x) -- node[midway,above] {$a$} (y) ;
+            \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
+        } 
+    }
+\end{frame}
+
+\begin{frame}{A Sufficient Condition for the Second Condition}
+    \begin{center}
+        \begin{tikzpicture} 
+            \coordinate (k) at (0, 0);
+            \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
+            \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
+        
+            \coordinate (c) at (0, -2.2);
+            \draw[fill=blue!30]
+            ($(c)+(0,-0.5)$)
+            -- ($(c)+(0,0.5)$) 
+            -- ($(c)+(1,0.5)$) 
+            arc[start angle=0, end angle=-90, radius=1]
+            -- cycle;
+            \node () at ($(c)+(0.75,0.25)$) {\( \mathrm{C'} \)};
+            \draw[fill=white] ($(c)+(0,0)$) rectangle ($(c)+(0.5,0.5)$);
+            \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
+        
+            \coordinate (l) at (-3, 0);
+            \draw[fill=orange!30] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
+            \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
+            \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
+            \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
+        
+            \coordinate (g) at (-3, -2.2);
+            \draw[fill=blue!30]
+            ($(g)+(0,-0.5)$)
+            -- ($(g)+(0,0.5)$)
+            -- ($(g)+(1,0.5)$) 
+            arc[start angle=0, end angle=-90, radius=1]
+            -- cycle;
+            \draw[fill=orange!30] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
+            \node () at ($(g)+(0.75,0.25)$) {\( \mathrm{C'} \)};
+            \node () at ($(g)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
+            \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
+            \node () at ($(g)+(0.25,0.25)$) {\( \mathrm{K} \)};
+        
+            \coordinate (r) at (3,0);
+            \draw[fill=red!30] ($(r)+(-0.5,0)$)
+            -- ($(r)+(-0.5,0.5)$)
+            -- ($(r)+(0,1)$)
+            --  ($(r)+(0.5,1)$)
+            -- ($(r)+(0.5,0)$)
+            -- cycle;
+            \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
+            \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
+            \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
+        
+            \coordinate (h) at (3, -2.2);
+            \draw[fill=blue!30]
+            ($(h)+(0,-0.5)$)
+            -- ($(h)+(0,0.5)$)
+            -- ($(h)+(1,0.5)$) 
+            arc[start angle=0, end angle=-90, radius=1]
+            -- cycle;
+            \draw[fill=red!30] ($(h)+(-0.5,0)$)
+            -- ($(h)+(-0.5,0.5)$)
+            -- ($(h)+(0,1)$)
+            --  ($(h)+(0.5,1)$)
+            -- ($(h)+(0.5,0)$)
+            -- cycle;
+        \node () at ($(h)+(0.75,0.25)$) {\( \mathrm{C'} \)};
+        \draw[fill=white] ($(h)+(0,0)$) rectangle ($(h)+(0.5,0.5)$);
+        \node () at ($(h)+(0.25,0.25)$) {\( \mathrm{K} \)};
+        \node () at ($(h)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
+        
+            \node[ font=\huge] (kl) at ($(k)!0.5!(l)+(0.25,0.25)$)
+            {\( \leftarrow \)}
+            ; 
+            \node[ font=\huge] (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
+            {\( \rightarrow \)}
+            ;  
+            \node[ font=\huge] (cg) at ($(c)!0.5!(g)+(0.25,0.25)$) 
+            {\( \leftarrow \)}
+        ;  
+            \node[ font=\huge] (ch) at ($(c)!0.5!(h)+(0.25,0.25)$)
+            {\( \rightarrow \)}
+        ; 
+            \node[ font=\huge] (kc) at ($(k)!0.5!(c)+(0.2,0.4)$) {\( \downarrow \)}; 
+            \node[ font=\huge] (lg) at ($(l)!0.5!(g)+(0.1,0.4)$) {\( \downarrow \)}; 
+            \node[ font=\huge] (rh) at ($(r)!0.5!(h)+(0.1,0.4)$) {\( \downarrow \)}; 
+        \end{tikzpicture}
+    \end{center}
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
+        There more \textcolor{blue}{blue}-and-\textcolor{orange}{orange} X-morphisms than \textcolor{blue}{blue}-and-\textcolor{red}{red} X-morphisms,
+        if  all subgraphs of \resizebox{0.1\textwidth}{!}{
+                \begin{tikzpicture}[baseline=1.5ex]
+                    \coordinate (r) at (3,0);
+                    \draw[fill=red!30] ($(r)+(-0.5,0)$)
+                    -- ($(r)+(-0.5,0.5)$)
+                    -- ($(r)+(0,1)$)
+                    --  ($(r)+(0.5,1)$)
+                    -- ($(r)+(0.5,0)$)
+                    -- cycle;
+                    \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
+                    \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
+                    \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
+                \end{tikzpicture}
+            } that can form an implicit $X$-occurrence in some rewriting step can be mapped to distinct  subgraphs in \resizebox{0.1\textwidth}{!}{
+                \begin{tikzpicture}[baseline=1.5ex]
+                    \coordinate (l) at (-3, 0);
+                    \draw[fill=orange!30] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
+                    \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
+                    \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
+                    \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
+                \end{tikzpicture}
+ } while 
+    preserving elements in \begin{tikzpicture}
+        \coordinate (k) at (0, 0);
+            \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
+            \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
+    \end{tikzpicture}.
+    \end{beamercolorbox}
 \end{frame} 
    
 
-\begin{frame}{A Limitation of the Weighted Type Graph Method}
+\begin{frame}{Imcomparable with Existing Methods}
+ Fail in some cases where other methods succeed.
+\newline\newline
+Succeed in the following case where other methods fail:
      \begin{center}
         \resizebox{\textwidth}{!}{ 
             \begin{tikzpicture}
@@ -2900,31 +3154,13 @@ The morphisms from $X$ has their images:
             }
     \end{center}
 
-    Termination proved :
-    \begin{itemize}
-        \item Number of explicit occurrences from $\tikz[baseline=-0.5ex]{ 
+    Termination proved by counting morphisms from $\tikz[baseline=-0.5ex]{ 
                 \node (x) at (0,0) {$\bullet$}; 
                 \node (y) at (1,0) {$\bullet$};
                 \node (z) at (2,0) {$\bullet$};
                 \draw[->] (x) -- (y) node[midway, above] {$s$};
                 \draw[->] (z) -- (y) node[midway, above] {$s$};
-        }$ strictly decreases
-        \item More implicit occurrences before rewriting
-    \end{itemize}
-
-%  Intuition: the number of morphisms from $\tikz[baseline=-0.5ex]{ 
-%                 \node (x) at (0,0) {$\bullet$}; 
-%                 \node (y) at (1,0) {$\bullet$};
-%                 \node (z) at (2,0) {$\bullet$};
-%                 \draw[->] (x) -- (y) node[midway, above] {$s$};
-%                 \draw[->] (z) -- (y) node[midway, above] {$s$};
-%  }$ strictly decreases.
-\end{frame}
-
-\begin{frame}{Comparison with the weighted type graph method}
-    \begin{description}
-        \item[Morphism counting method has simpler conditions.]
-    \end{description}
+        }$.
 \end{frame}
 
 \section{LyonParallel—A Tool for Termination of
@@ -2938,23 +3174,78 @@ Graph Rewriting}
    \end{description}
 \end{frame}
 
-\section{Conclusion and Future Work}
-\begin{frame}{Conclusion and Future Work}
-    Contributions:
-    \begin{itemize} 
-        \item an extension of an existing method for greater usability
-        \item a new termination criterion for greater power
-        \item an automated tool for termination analysis
-    \end{itemize}
-    Future work:
-    \begin{itemize}
-        \item formal verification of the methods
-        \item morphism counting with multiple forbidden contexts
-        \item extension to other rewriting approaches
-    \end{itemize}
+
+\begin{frame}{Process Flowchart of LyonParallel}
+\centering
+\tikzset{
+  startstop/.style = {rectangle, rounded corners, draw, align=center, minimum width=2.8cm, minimum height=0.8cm},
+  process/.style   = {rectangle, draw, align=center, minimum width=3.4cm, minimum height=0.8cm},
+  decision/.style  = {diamond, draw, aspect=2, align=center, inner sep=2pt, minimum width=2.6cm},
+  >=Stealth
+}
+\resizebox{\textwidth}{!}{
+    \begin{tikzpicture}[node distance=8mm, auto]
+  \node[draw, rounded corners, rectangle] (start) {Start program};
+  \node[draw, rectangle, below=of start] (select) {Select graph rewriting system};
+  \node[draw, diamond, aspect=2, below=of select] (choose) {Choose a method};
+
+  % Two explicit methods
+  \node[draw, rectangle, below left=8mm of choose] (typegraph) {\textcolor{red}{Type Graph Method}};
+  \node[draw, rectangle, below right=8mm of choose] (subcount) {\textcolor{red}{Subgraph Counting}};
+
+  % Z3 step (compact)
+  \node[draw, rectangle, below=of typegraph] (z3) {Solve constraints with \textcolor{red}{Z3}};
+
+  % Continue original flow
+   \node[draw, diamond, aspect=2, below=22mm of choose] (check) {System simplified?};
+  \node[draw, diamond, aspect=2, left=22mm of check] (trynext) {Try other method?};
+  \node[draw, diamond, aspect=2, right=22mm of check] (empty) {Empty system?};
+  \node[draw, rounded corners, rectangle, below=22mm of check] (end) {End};
+
+  % Arrows (keep original structure)
+  \draw[->] (start) -- (select);
+  \draw[->] (select) -- (choose);
+
+  % Branches to methods
+  \draw[->] (choose) -- (typegraph);
+  \draw[->] (choose) -- (subcount);
+
+  % Method subflows back to apply
+  \draw[->] (typegraph) -- (z3);
+  % \draw[->] (z3.south) |- (apply.west);
+  % \draw[->] (subcount.south) |- (apply.east);
+    \draw[->] (z3.south) --  (check.north west);
+  \draw[->] (subcount.south) -- (check.north east);
+
+  % Main flow
+  \draw[->] (check) -- node[midway,above]{Yes} (empty);
+  \draw[->] (empty) |- node[midway,above]{No} (choose);
+  \draw[->] (empty) -- node[midway,above]{Yes} (end);
+  \draw[->] (check) -- node[midway,above]{No} (trynext);
+  \draw[->] (trynext) |- node[midway,above]{Yes} (choose);
+  \draw[->] (trynext) -- node[midway,left]{No} (end);
+    \end{tikzpicture}
+}
 \end{frame}
 
-\begin{frame}{References}
+\begin{frame}{Conclusion and Future Work}
+  \textbf{Contributions}
+  \begin{itemize}
+    \item Extended the Weighted Type Graph Method to improve usability.
+    \item Proposed a termination criterion applicable to new cases.
+    \item Implemented an automated tool for termination analysis.
+  \end{itemize}
+    \vspace{4mm}
+  \textbf{Future work}
+  \begin{itemize}
+    \item Formally verify the methods.
+    \item Generalize Morphism Counting Method to Multiple Forbidden Contexts.
+    \item Extend the approach to other rewriting frameworks.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+    \small % optional: make entries smaller
     \printbibliography
 \end{frame} 
 \end{document} 
