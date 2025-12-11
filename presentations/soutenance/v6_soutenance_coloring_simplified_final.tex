@@ -1299,9 +1299,9 @@ Terminology: every graph is \enquote{typed} as morphisms to $T$
 Interpretation:
 \vspace{-3mm}
 \begin{flalign*}
-G &\leadsto \mathcal{Morphisms}(G,T) \\
-  &\leadsto \mathrm{weight}(\mathcal{Morphisms}(G,T)) \\
-  &\leadsto \mathrm{aggregator}(\mathrm{weight}(\mathcal{Morphisms}(G,T)))\in\mathbb{N}
+G &\leadsto \mathrm{morphisms}(G,T) \\
+  &\leadsto \mathrm{weight}(\mathrm{morphisms}(G,T)) \\
+  &\leadsto \mathrm{aggregator}(\mathrm{weight}(\mathrm{morphisms}(G,T)))\in\mathbb{N}
 \end{flalign*}
 
 % \only<2->{
@@ -1567,7 +1567,15 @@ What is the graph weight?}
     \end{beamercolorbox}
  
    \alert{How to find a suitable weighted type graph?}
+   \note{ 
+        Voici le critère de terminaison.
+
+        Une règle de réécriture termine s'il existe un graphe de type T tel que pour tout morphisme tK de K vers T, si il existe un morphisme tL de L vers T tel que le triangle KLT commute, alors le poids minimal des morphismes tL tels que le triangle KLT commute est strictement supérieur au poids minimal des morphismes tR tels que le triangle KRT commute.
+
+        La question est alors comment trouver un graphe de type pondéré approprié.
+   }
 \end{frame}
+
 \begin{frame}{Searching for Weighted Type Graphs over $\mathbb{N}$~\cite{zantema2014termination,bruggink2015proving}}
     % Restricted search space:
     %   \begin{itemize}
@@ -1586,9 +1594,18 @@ existential Presburger arithmetic theory} with:
                 \end{itemize} 
   Challenge:
   \begin{itemize}
-    \item expertise: impossible to guess $k$ and maximum weight $n$
+    \item expertise: impossible to guess $k$ and $n$
     \item complexity: $2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights
   \end{itemize} 
+
+  \note{ 
+    Les travaux précédents suggerent de se restreindre à des graphes de type avec un nombre fixe de noeuds k et un poids maximum n. 
+    Le problème revient à vérifier la satisfiabilité d'une théorie existentielle de l'arithmétique de Presburger avec des variables binaires et des variables entières.
+    Le défi est double: d'une part, il est impossible pour l'utilisateur de deviner k et n.
+    D'autre part, il y a un nombre exponentiel d'affectations des poids.
+
+    1m
+  }
 \end{frame}
 
 
@@ -1623,42 +1640,68 @@ With natural numbers as weights:
     \end{center}
 
     Problems can solved by Z3 in exponential-time with respect to the number of variables $2k^2m$.
+
+    \note{
+        Voici quelques exemples du nombre d'affectations des poids en fonction des nombres de noeuds, d'étiquettes, et de poids.
+
+        On peut voir que le nombre de possibilités croît très rapidement.
+
+        Z3 peut résoudre les problèmes en temps exponentiel par rapport au nombre de variables.
+
+        30s        
+    }
+
 \end{frame}
-\begin{frame}{Usability Improvement: Using Real Numbers as Weights}
-    Using positive real numbers as weights
+\begin{frame}{Usability Improvement}
+    Using positive real numbers as weights~\cite{lucas2006relative}
 
     \vspace{0.5cm}
     Additional constraint: there is \textcolor{red}{$\delta > 0$} such that every rewriting step decreases the weight by at least \textcolor{red}{$\delta$}.
  
+    \note{ 
+        Afin d'améliorer l'utilisabilité de la méthode, on propose d'utiliser des nombres réels positifs comme poids.
+        
+        Une contrainte supplementaire est tout fois nécessaire: il doit exister un delta strictement positif tel que chaque étape de réécriture diminue le poids d'au moins delta.
+
+        30s
+    }
 \end{frame}
 
-
-\begin{frame}{Searching for Weighted Type Graphs over \crossout[red]{$\mathbb{N}$} $\mathbb{R}$}
-    User-specified parameters:
-      \begin{itemize}
-        \item \alert{$k$ nodes}
-        \item \crossout[red]{edge weights in $\{0, 1, \ldots, n\}$}
-      \end{itemize}   
-    % Assumption:
-    %   \begin{itemize}
-    %     \item no parallel edges of the same label 
-    %   \end{itemize}
-    The problem amounts to checking the satisfiability of an
-\crossout[red]{existential Presburger arithmetic theory} \textcolor{red}{existential theory of the reals with binary variables}:
-                \begin{itemize}
-                  \item $k^2m$ binary variables where $m$ is the number of labels
-                  \item $k^2m$ \crossout[red]{integer} \textcolor{red}{real} variables
-                \end{itemize} 
-%   Challenge:
+% \begin{frame}{Searching for Weighted Type Graphs over \crossout[red]{$\mathbb{N}$} $\mathbb{R}$}
+%     User-specified parameters:
+%       \begin{itemize}
+%         \item \alert{$k$ nodes}
+%         \item \crossout[red]{edge weights in $\{0, 1, \ldots, n\}$}
+%       \end{itemize}   
+%     % Assumption:
+%     %   \begin{itemize}
+%     %     \item no parallel edges of the same label 
+%     %   \end{itemize}
+%     The problem amounts to checking the satisfiability of an
+% \crossout[red]{existential Presburger arithmetic theory} \textcolor{red}{existential theory of the reals with binary variables}:
+%                 \begin{itemize}
+%                   \item $k^2m$ binary variables where $m$ is the number of labels
+%                   \item $k^2m$ \crossout[red]{integer} \textcolor{red}{real} variables
+%                 \end{itemize} 
+% %   Challenge:
+% %   \begin{itemize}
+% %     \item \crossout[red]{there are $2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights}. \textcolor{red}{There are $2^{k^2m}$ linear programs which have polynomial-time average-case complexity.}
+% %   \end{itemize} 
+%     Challenge:
 %   \begin{itemize}
-%     \item \crossout[red]{there are $2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights}. \textcolor{red}{There are $2^{k^2m}$ linear programs which have polynomial-time average-case complexity.}
+%     \item impossible to guess $k$ and \crossout[red]{maximum weight $n$}
+%     \item complexity: \crossout[red]{$2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights} \textcolor{red}{there are $2^{k^2m}$ linear programs with $k^2m$ real variables, which have polynomial-time average-case complexity.}
 %   \end{itemize} 
-    Challenge:
-  \begin{itemize}
-    \item impossible to guess $k$ and \crossout[red]{maximum weight $n$}
-    \item complexity: \crossout[red]{$2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights} \textcolor{red}{there are $2^{k^2m}$ linear programs which have polynomial-time average-case complexity.}
-  \end{itemize} 
-\end{frame}
+%     \note{ 
+%         L'utilisateur n'a plus besoin de deviner le poids maximum.
+
+%         Le problème revient à vérifier la satisfiabilité d'une théorie existentielle des réels avec des variables binaires et des variables réelles.
+
+%         Il suffit de résoudre un nombre relativement petit de programmes linéaires avec peu de variables réelles. Ces programmes linéaires peuvent être résolus en temps polynomial en moyenne par rapport au nombre de variables par un solver.
+
+%         1m
+%     }
+% \end{frame}
 
 
 \begin{frame}{Complexity Comparison}
@@ -1667,48 +1710,39 @@ With natural numbers as weights:
 %     left = pow(2,e)
 %     right = pow(n,e)
 %     return left * right
+$m$: number of labels
+
+Parameters:
+\begin{itemize}
+    \item $k$ nodes
+\end{itemize}
+
 With weights in $\mathbb{N}$:
-    \begin{center}
-    \begin{tabular}{ |c|c|c|c| } 
-    \hline
-    \textcolor{red}{\# nodes (k)}&  \textcolor{red}{\# labels (m)} & \textcolor{red}{\# weights} & \# possibilities \\ 
-    \hline
-    2 & 2 & 2 & $\approx 10^{4}$ \\ 
-    \hline
-    3 & 3 & 3 & $\approx  10^{21}$ \\ 
-    % \hline
-    % 3 & 3 & 10 & $\approx   10^{45}$ \\
-    % \hline
-    % 3 & 3 & 100 & $\approx 10^{87}$ \\
-    \hline
-    4 & 4 & 4 & $\approx  10^{57}$ \\ 
-    % \hline
-    % 4 & 4 & 10 & $\approx 10^{95}$ \\
-    %  \hline
-    % 4 & 4 & 100 & $\approx 10^{181}$ \\
-    \hline
-    5 & 5 & 5 & $\approx 10^{125}$ \\
-    \hline
-    \end{tabular}
-    \end{center}
+\begin{itemize}
+    \item \textcolor{red}{User-specified} parameter: maximum weight $n\in\mathbb{N}$
+    \item \textcolor{red}{Satisfiability of an
+existential Presburger arithmetic theory} with $k^2m$ variables
+    \item \textcolor{PineGreen}{Exponential-time}
+\end{itemize}
 With weights in $\mathbb{R}$:
-\vspace{-4mm}
-    \begin{center}
-    \begin{tabular}{ |c|c|c|c|c| }  
-    \hline
-    \textcolor{red}{\# nodes (k)}&  \textcolor{red}{\# labels (m)} & \textcolor{red}{\# variables}& \# linear programs in $\mathbb{R}$\\ 
-    \hline
-    2 & 2 & 8 & $\approx 10^{2}$ \\ 
-    \hline
-    3 & 3 & 27 & $\approx 10^{8}$ \\ 
-    \hline
-    4 & 4 & 64 & $\approx 10^{19}$ \\ 
-    \hline
-    5 & 5 & 125 & $\approx 10^{32}$ \\
-    \hline
-    \end{tabular}
-    \end{center}
-    Linear programs can be solved in polynomial time with respect to the number of variables on average by Z3.
+    \begin{itemize}
+        \item \textcolor{red}{Solve a linear program in $\mathbb{R}$ with $k^2m$ variables}
+        \item \textcolor{PineGreen}{Polynomial time on average} (e.g by Z3)
+    \end{itemize} 
+\note{
+    Voici une comparaison de la complexité entre les deux approches pour un nombre de noeuds k fixe.
+
+    Avec des poids dans les entiers naturels, l'utilisateur doit deviner un poids maximum n.
+    Ensuite, il faut vérifier la satisfiabilité d'une théorie existentielle de l'arithmétique de Presburger avec k^2m variables entières.
+    Cette vérification demande un temps exponentiel au moins par rapport au nombre de variables.
+
+    Avec des poids dans les réels, 
+    on n'a plus besoin de deviner un poids maximum, 
+    et il suffit de résoudre un programme linéaire dans les réels.
+    La résolution de ce programme linéaire peut être faite en temps polynomial en moyenne par un solver comme Z3.
+
+    75s
+}
 \end{frame}
 
 \begin{frame}{Experimental Results}
@@ -1719,7 +1753,7 @@ With weights in $\mathbb{R}$:
         \begin{adjustbox}{max width=\textwidth,max totalheight=0.8\textheight,keepaspectratio}
     \begin{tabular}{|c|c|c|c|c|c|c |}
         \hline
-        &\;\;$A_{\mathbb{N}}$\;\;&\;\;$a_{\mathbb{R}}$\;\;&\;\;$T_{\mathbb{N}}$\;\;&\;\;$t_{\mathbb{R}}$\;\;&\;\; $N_{\mathbb{N}}$\;\;&\;\;$n_{\mathbb{R}}$\;\; \\
+        &\;\;$A_{\mathbb{N}}$\;\;&\;\;$a_{\textcolor{red}{\mathbb{R}}}$\;\;&\;\;$T_{\mathbb{N}}$\;\;&\;\;$t_{\textcolor{red}{\mathbb{R}}}$\;\;&\;\; $N_{\mathbb{N}}$\;\;&\;\;$n_{\textcolor{red}{\textcolor{red}{\mathbb{R}}}}$\;\; \\
         \hline
     % ~\cite[Example 6.2]{endrullis2024generalized_arxiv_v2} & & & & & 2.68 &1.15   \\
     ~\cite[Example 6.3]{endrullis2024generalized_arxiv_v2} & & & & & 2.74 &\textcolor{PineGreen}{1.16}   \\
@@ -1790,6 +1824,20 @@ With weights in $\mathbb{R}$:
         \end{tabular}
     \end{adjustbox}
     \end{table}
+
+    \note{ 
+        La méthodes par graphe de type pondéré a 3 configurations différentes que je nomme A, T et N.
+        
+        Les colonnes avec une lettre majuscule utilise des poids dans les entiers naturels, tandis que les colonnes avec une lettre minuscule utilise des poids dans les réels.
+
+        Les résultats expérimentaux montrent que pour les deux configurations A et T, l'utilisation de poids dans les réels permet de trouver un graphe de type pondéré plus rapidement dans la plupart des exemples. 
+
+        Pour la configuration N, l'utilisation de poids dans les réels permet de réduire la complexité de l'indécidabilité à double exponentielle. Or La complexité est trop élevée et que l'utilisation de poids dans les réels ne nous permet pas de restreindre le nombre de poids comme dans les entiers naturels. Cela conduit à des timeouts dans plusieurs exemples.
+
+        1m
+
+     
+    }
 \end{frame}
  
 \begin{frame}{Implementation}
@@ -1800,6 +1848,10 @@ With weights in $\mathbb{R}$:
         \item[Search parallel with 6 configurations]
         % \item[Z3 for constraint solving]
     \end{description}
+    \note{ 
+        Vu les avandages et desavantages des deux approches,
+        nous avons implanté un outil en Ocaml qui cherche en parallèle des graphes de type pondéré avec six configurations différentes.
+    }
 \end{frame}
 
 
@@ -1849,6 +1901,15 @@ Type graph fails: existence of surjections from $R$ to $L$.
 All existing automated methods fail.
 
  Remark: the number of occurrences of $L$ strictly decreases.
+ 
+ \note{
+    La méthode par graphe de type pondéré a une limitation importante: elle ne peut pas prouver la terminaison d'une règle si il existe une surjection de R vers L, comme dans cet exemple.
+
+    Dans ce cas, toutes les méthodes automatisées existantes échouent.
+
+    On remarque que le nombre d'occurrences de L diminue strictement à chaque application de la règle.
+    Ça suggère qu'une approche basée sur le comptage de sous-graphes pourrait être utile.
+ }
 \end{frame}
 
 \section{Toward Greater Power}
@@ -1864,11 +1925,21 @@ All existing automated methods fail.
     Interpretation:
         \vspace{-3mm}
         \begin{flalign*}
-        G &\leadsto |\mathcal{Morphisms}(X,G)| \in\mathbb{N}
+        G &\leadsto |\mathrm{morphisms}(X,G)| \in\mathbb{N}
         \end{flalign*}
+
+    \note{
+        On propose une nouvelle methode de termination par interpretation.
+
+        Cette methode utilise un graphe X comme parametre.
+
+        L'interpretation d'un graphe G est le nombre de morphismes de X vers G.
+
+        Pour faciliter notre discussion, on va introduire une autre definition de systems de reécriture de graphe après avoir présenter le concept d'inclusion. 
+    }
 \end{frame}
 
-\begin{frame}{Inclusions: morphisms $h$ with $h(x) = x$ for all $x$.}
+\begin{frame}{Inclusions}
          \begin{center} 
             \resizebox{\textwidth}{!}{
                 \begin{tikzpicture}
@@ -1903,10 +1974,12 @@ All existing automated methods fail.
                 }
         \end{center}
  Subgraph
+ \note{an inclusion is a morphism whose domain is a subgraph of its codomain and every node and edge in the domain is mapped to itself in the codomain.
+ }
  
 \end{frame}
  
-\begin{frame}{Graph Rewriting with Injective Rules}
+\begin{frame}{Graph Rewriting Systems}
   A rewriting rules consists of two inclusions. 
   \begin{center}
     $\varphi$=\resizebox{0.78\textwidth}{!}{
@@ -2046,6 +2119,15 @@ All existing automated methods fail.
       \end{tikzpicture}
       }
    \end{center}
+   \note{
+    Une règle de reécriture de graphes consiste en deux inclusions.
+
+    Deux règles sont équivalentes si elles expriment la même transformation.
+
+    Une étape de reécriture avec une règle est définie par un diagramme de double pushout avec des inclusions et une règle équivalente en haut. 
+
+    Afin de faciliter la discussion, on va introduire le concept de pré-graphe.
+   }
 \end{frame}
 
 \begin{frame}{Pre-Graphs}
@@ -2084,9 +2166,85 @@ All existing automated methods fail.
         }
         \end{center} 
  All edges are dangling.
- 
+ \note{
+    Un pregraph est donc un graphe où certaines arêtes peuvent être pendantes.
+    Par example, en supprimant le noeud 2 du graphe en haut, on obtient un pré-graphe en bas où toutes les arêtes sont pendantes.
+ }
 \end{frame}
+\begin{frame}{Decomposition of Graphs in Rewriting Rules}
+    \begin{center}
+    \resizebox{0.85\textwidth}{!}{
+      \begin{tikzpicture}
+              \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (0mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[orange,fill=orange,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \draw[orange,fill=orange,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[orange,fill=orange,->] (l3) -- (l2) node[midway,above] {$a$};
+              } 
 
+              \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (0mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+              }  
+
+              \graphbox{\( R \mathop{=} R' \mathop{\cup} K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (-5mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
+                  \node[red,fill=red,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \node[red,fill=red,draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                  \draw[red,fill=red,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[red,fill=red,->] (l3) -- (l4) node[midway,above] {$b$};
+                  \draw[red,fill=red,->] (l4) -- (l2) node[midway,above] {$a$};
+              }    
+
+              \node () at (37mm,-8mm) {\( \leftarrow \)}; % K -> L
+              \node () at (77mm,-8mm) {\( \rightarrow \)}; % K -> R
+      \end{tikzpicture}
+      }
+   \end{center}
+\begin{center}
+    \resizebox{0.85\textwidth}{!}{
+            \begin{tikzpicture} 
+                \coordinate (k) at (0, 0);
+                \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
+                \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
+            
+                \coordinate (l) at (-3, 0);
+                \draw[fill=orange!30] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
+                \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
+                \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
+                \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
+             
+                \coordinate (r) at (3,0);
+                \draw[fill=red!30] ($(r)+(-0.5,0)$)
+                -- ($(r)+(-0.5,0.5)$)
+                -- ($(r)+(0,1)$)
+                --  ($(r)+(0.5,1)$)
+                -- ($(r)+(0.5,0)$)
+                -- cycle;
+                \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
+                \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
+                \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
+             
+                \node[ font=\huge] (kl) at ($(k)!0.5!(l)+(0.25,0.25)$)
+                {\( \leftarrow \)}
+                ; 
+                \node[ font=\huge] (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
+                {\( \rightarrow \)}
+                ;  
+            \end{tikzpicture}
+          }
+   \end{center}
+   \note{
+    Pour une règle de reécriture donnée, on peut décomposer le graph L comme l'union du graphe K et un autre pre-graphe L'. Pareil pour R.
+    On peut représenter cette décomposition de manière plus abstraite comme dans le diagramme en bas. 
+
+   }
+\end{frame}
 \begin{frame}{Decomposition of Graphs in Rewriting Steps}
    \begin{center}
     \resizebox{0.85\textwidth}{!}{
@@ -2244,6 +2402,12 @@ All existing automated methods fail.
           }
    \end{center}
    This coloring provides a classification of morphisms in rewriting steps by image node colors.
+   \note{
+    Dans une étape de reécriture, chaque graphe peut etre exprime comme l'union de pré-graphes, comme montre le diagramme en haut. Le cas abstract est represente en bas.
+
+    On peut colorier les differents pré-graphes avec des couleurs différentes.
+    Cette coloration fournit une classification intuitive des morphismes dans les étapes de reécriture par les couleurs des noeuds de leurs images.
+   }
 \end{frame}
 
 
@@ -2364,21 +2528,24 @@ All existing automated methods fail.
     % \end{itemize}
     
     \note{
-        Les occurrences sont nommees par les couleurs des noeuds de leur image.
-    Si l'image contient une couleur autre que le blanc, on ajoute cette couleur au nom de l'occurrence. 
-    Si l'image contient uniquement du blanc, on dit que c'est une occurrence blanche.
+    On appelle X-occurrence un morphisme injectif depuis X.
+
+    Si l'image contient seulement des noeuds blancs, on dit qu'il est blanche.
+    Si l'image contient une seule couleur autre que le blanc, on qu'il est de cette couleur.
+    Si l'image contient des noeuds de deux couleurs differentes autres que le blanc, on dit qu'il est de ces deux couleurs.
     }
 \end{frame}
 
 \begin{frame}{Morphisms by Image Node Colors}
 Let $X$ be the graph 
-\tikz[baseline=-0.5ex]{ 
-        \node (x) at (0,0) {$\bullet$};  
-        \node (y) at (1,0) {$\bullet$};
-        \node (z) at (2,0) {$\bullet$};
-        \draw[->] (x) -- node[midway,below] {$a$} (y) ;
-        \draw[->] (y) -- node[midway,below] {$a$} (z) ;
-}.  
+\raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {};
+            \node [draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \draw[->] (z)--(x) node[midway, above] {$a$};
+            \draw[->] (x)--(y) node[midway, above] {$a$};
+        }}}. 
   \begin{center}
         \resizebox{0.8\textwidth}{!}{
       \begin{tikzpicture}
@@ -2461,7 +2628,7 @@ Let $X$ be the graph
         }
     \end{center}
 
-\textcolor{blue}{Blue} $X$-occurrences:  \resizebox{0.18\textwidth}{!}{
+\textcolor{blue}{Blue} $X$-occurrence:  \resizebox{0.18\textwidth}{!}{
         \tikz[baseline=-0.5ex]{ 
             \node[draw,circle] (x) at (0,0) {2};  
             \node[blue,draw,circle] (y) at (1,0) {6};
@@ -2505,6 +2672,10 @@ Let $X$ be the graph
             \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
         }
     }
+
+\note{ 
+    Une nouvelle critere de termination peut etre établie en termes des occurrences depuis un graphe X. 
+}
 \end{frame}
 
 
@@ -2516,6 +2687,44 @@ Let $X$ be the graph
                 \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
                 \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
+                
+                \coordinate (l) at (-3, 0);
+                \draw[fill=orange!30] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
+                \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
+                \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
+                \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
+            
+                 
+                \coordinate (r) at (3,0);
+                \draw[fill=red!30] ($(r)+(-0.5,0)$)
+                -- ($(r)+(-0.5,0.5)$)
+                -- ($(r)+(0,1)$)
+                --  ($(r)+(0.5,1)$)
+                -- ($(r)+(0.5,0)$)
+                -- cycle;
+                \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
+                \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
+                \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
+            
+                \node[ font=\huge] (kl) at ($(k)!0.5!(l)+(0.25,0.25)$)
+                {\( \leftarrow \)}
+                ; 
+                \node[ font=\huge] (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
+                {\( \rightarrow \)}
+                ;  
+            \end{tikzpicture}
+          }
+   \end{center}
+    terminates if 
+    \begin{itemize}
+        \item strictly more \textcolor{orange}{orange} X-occurrences than \textcolor{red}{red} X-occurrences, 
+        \item for every rewriting step:
+    \begin{center}
+    \resizebox{0.5\textwidth}{!}{
+            \begin{tikzpicture} 
+                \coordinate (k) at (0, 0);
+                \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
+                \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
                 \coordinate (c) at (0, -2.2);
                 \draw[fill=blue!30]
                 ($(c)+(0,-0.5)$)
@@ -2593,13 +2802,10 @@ Let $X$ be the graph
             \end{tikzpicture}
           }
    \end{center}
-            A rule terminates if, for every rewriting step, there are 
-            \begin{itemize}
-                \item strictly more \textcolor{orange}{orange} X-occurrences than \textcolor{red}{red} X-occurrences, 
-                \item more \textcolor{blue}{blue}-and-\textcolor{orange}{orange} X-occurrences than \textcolor{blue}{blue}-and-\textcolor{red}{red} X-occurrences.
-            \end{itemize}
-
- \textcolor{red}{Challenge}: C' is unknown
+        has more \textcolor{blue}{blue}-and-\textcolor{orange}{orange} X-occurrences than \textcolor{blue}{blue}-and-\textcolor{red}{red} X-occurrences.
+\end{itemize} 
+    
+ Challenge: check the second condition under the unknown C'
 \end{frame} 
 
 \begin{frame}{Analysis of Implicit Occurrences}
@@ -2787,7 +2993,7 @@ Let $X$ be the graph
         \end{tikzpicture}
     \end{center}
     \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
-        There more \textcolor{blue}{blue}-and-\textcolor{orange}{orange} X-morphisms than \textcolor{blue}{blue}-and-\textcolor{red}{red} X-morphisms,
+        There are more \textcolor{blue}{blue}-and-\textcolor{orange}{orange} X-morphisms than \textcolor{blue}{blue}-and-\textcolor{red}{red} X-morphisms,
         if  all subgraphs of \resizebox{0.1\textwidth}{!}{
                 \begin{tikzpicture}[baseline=1.5ex]
                     \coordinate (r) at (3,0);
@@ -2861,24 +3067,26 @@ Let $X$ be the graph
             }
     \end{center}
 
-    Termination proved by counting morphisms from $\tikz[baseline=-0.5ex]{ 
-                \node (x) at (0,0) {$\bullet$}; 
-                \node (y) at (1,0) {$\bullet$};
-                \node (z) at (2,0) {$\bullet$};
+    Existing automated methods fail.
+
+    Termination proved by counting morphisms from 
+    $\tikz[baseline=-0.5ex]{ 
+                \node[draw,circle] (x) at (0,0) {}; 
+                \node[draw,circle] (y) at (1,0) {};
+                \node[draw,circle] (z) at (2,0) {};
                 \draw[->] (x) -- (y) node[midway, above] {$s$};
                 \draw[->] (z) -- (y) node[midway, above] {$s$};
-        }$.
+    }$.
 
 \end{frame}
 
 \begin{frame}{Imcomparable with Existing Methods}
 \begin{tikzpicture}
     \node[draw,circle, minimum size=5cm] (n1) at (0,0) {Morphism Counting};
-    \node[draw,circle, minimum size=5cm] (n2) at (4,0) {Existing Methods};
+    \node[draw,circle, minimum size=5cm] (n2) at (4.5,0) {Existing Methods};
 \end{tikzpicture}
 
-
-    Existing automated methods fail.
+Succeed in some cases where all existing automated methods fail.
 
 Fail in some cases where other methods succeed.
 \end{frame}
@@ -2959,13 +3167,9 @@ Graph Rewriting}
     \vspace{4mm}
   \textbf{Future work}
   \begin{itemize}
-    \item Short term: 
-        \begin{itemize}
-            \item Extend Morphism Counting to count morphisms with multiple forbidden contexts.
-            \item Parallelizing Type Graph/Subgraph Counting in the tool.
-        \end{itemize}
-    \item Mid term: Equip our tool with a certificate-generation mechanism.
-    \item Long term: Extend to other graph rewriting frameworks (e.g., PBPO+)
+    \item Short term: Morphism Counting with forbidden contexts.
+    \item Mid term: Certificate-generation mechanism.
+    \item Long term: Extension to other graph rewriting frameworks (e.g., PBPO+)
   \end{itemize}
 \end{frame}
 
