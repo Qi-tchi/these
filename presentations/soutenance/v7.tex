@@ -1,4 +1,6 @@
-\documentclass[draft=true]{beamer}
+\documentclass
+% [draft=true]
+{beamer}
 \usepackage[utf8]{inputenc}
 \usecolortheme{orchid}
 \usepackage{fontawesome5}
@@ -9,7 +11,11 @@
 \usepackage{graphicx}
 \usepackage{changepage} 
 \usepackage{cancel}  
-\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
+%hide table column
+\usepackage{array} \newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+
+\def\checkmark{\resizebox{0.1\textwidth}{!}{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning}
 \usetikzlibrary{positioning,arrows}
@@ -90,21 +96,6 @@ rotating,MnSymbol,mathtools,subcaption,caption}
 \begin{frame}{Motivation \& Goal} 
 
     \begin{description} 
-        % \item[Centralized systems and distributed systems:]\ \\
-        %     \resizebox{0.3\textwidth}{!}{
-        %       \begin{tikzpicture}
-        %           \node (n0) at (0,0) {\faIcon{laptop-code}};
-        %           \node (n1) at (-1.2,0) {\faIcon{laptop-code}};
-        %           \node (n2) at (0,1.2) {\faIcon{laptop-code}};
-        %           \node (n3) at (1.2,0) {\faIcon{laptop-code}};
-        %           \node (n4) at (0,-1.2) {\faIcon{laptop-code}};
-        %           \draw[-,dashed] (n0) -- (n1);
-        %           \draw[-,dashed] (n0) -- (n2);
-        %           \draw[-,dashed] (n0) -- (n3);
-        %           \draw[-,dashed] (n0) -- (n4);
-        %       \end{tikzpicture}
-        %     }
-        %     \hspace{1cm}
         \item[Distributed systems:]\ \\
             \resizebox{0.3\textwidth}{!}{
             \begin{tikzpicture}
@@ -129,11 +120,11 @@ rotating,MnSymbol,mathtools,subcaption,caption}
               \faIcon{rocket} 
         \item[Ensuring correctness is difficult.]\ \\
             \begin{itemize}
-                \item The Needham-Schroeder protocol proved insecure 17 years after its publication.
+                \item Needham-Schroeder protocol shown to be vulnerable 17 years after publication
                 % \item Distributed algorithms are complex.
                 % \item Human proofs are error-prone.
             \end{itemize}
-        \item[This thesis: automated verification.]\ \\
+        \item[This thesis: automated verification]\ \\
             \begin{itemize}
                 \item Minimal user effort
                 \item No expertise required
@@ -141,23 +132,24 @@ rotating,MnSymbol,mathtools,subcaption,caption}
             \end{itemize}
     \end{description}
 \note{
-Ma these s'interesse aux algorithmes distribues. 
-Ils sont utilisees pour cooperer plusieurs machines qui peuvent communiquer entre elles pour realiser une tache commune.
+Ma thèse s'intéresse aux algorithmes distribués.
+Ils permettent à plusieurs machines indépendantes de réaliser une tâche commune. Les machines communiquent entre elles via messages.
 
-Des consequence castastrophiques peuvent arriver en cas de defailance, parce qu'ils sont largement utilises dans systeme medical, systeme de transport.
+Des conséquences catastrophiques peuvent survenir en cas de défaillance, car ces algorithmes sont largement utilisés dans les systèmes médicaux et de transport.
 
-Cependant assurer la correction des systemes distribues est difficile. 
-Par exemple, un protocol d'authentification a été provée vulnérable 17 ans après sa publication.
+Cependant, assurer la correction de ces systemes est difficile.
+Par exemple, un protocole d'authentification a été prouvée vulnérable 17 ans après sa publication.
 
-Cette these se concentre sur la verification automatique des systemes distribues.
-Cette approach demande peu d'effort a l'utilisateur, et ne requiert pas d'expertise particuliere, tout en etant mathematiquement rigoureuse.
+Cette thèse vise à proposer des méthodes rigoureuses et automatiques de vérification des systèmes distribués pour minimiser l'effort de l'utilisateur et ne pas requérir d'expertise particulière.
+
 1m30
+keywords: independant; vise à reduire
 }
 \end{frame}
 
  
-\begin{frame}{Graph Transformation}
-Modelization of distributed systems
+\begin{frame}{Graph Transformation: Intuition}
+Modeling of distributed systems
  \newline\newline
  System configurations: graphs
     \begin{center}
@@ -197,25 +189,25 @@ Modelization of distributed systems
             \draw[very thick, red, dashed, very thick] (0,0) circle (1.65);
         \end{tikzpicture}
     \end{center}
- Algorithm behaviors:
+ Algorithm behavior:
 
- \hspace{2cm}graph transformation according to \begin{tikzpicture}[baseline=-1ex]
+ \hspace{2cm}graph transformation based on \begin{tikzpicture}[baseline=-1ex]
             \node () at (0,0) {\text{local}};
             \draw[red, dashed, very thick] (0,0) circle (0.5);
         \end{tikzpicture} knowledge  
 
     \note{
-On utilise les systèmes de transformation de graphes pour modéliser les systèmes distribués:
+On utilise la transformation de graphes pour modéliser les systèmes distribués.
 
-Une configuration du système est représentée par un graphe, où les nœuds représentent les unités de calcul et les arêtes représentent les canaux de communication entre ces unités.
+Une configuration du système est représentée par un graphe : les nœuds représentent les unités de calcul et les arêtes représentent les canaux de communication entre ces unités.
 
-Un comportement du système est représenté par une transformation de graphe en fonction de la connaissance locale de certain noeuds.
+Le comportement du système est représenté par une transformation du graphe, appliquée en fonction de la connaissance locale de certains nœuds.
 
-1m
+(1 min)
     }
 \end{frame}
 
-\begin{frame}{Graph Transformation}
+\begin{frame}{Graph Transformation: Spanning-tree Construction}
     Graph transformation rule:
         \begin{center}
         \resizebox{0.7\textwidth}{!}{
@@ -242,11 +234,10 @@ Un comportement du système est représenté par une transformation de graphe en
             \end{tikzpicture}
         } 
         \end{center}
-        Replace the left-hand side by the right-hand side.
+        Replace the left-hand side with the right-hand side
         \newline\newline
-        Spanning-tree construction:
-%  \only<1-11>{Configuration of a distributed system:}
-%  \only<12->{A spanning tree is obtained when the rule cannot be applied:}
+        % Spanning-tree construction:
+        Application of the rule while possible:
     \begin{overlayarea}{\textwidth}{\textheight}
         \begin{center}
             \begin{onlyenv}<1>
@@ -488,37 +479,30 @@ Un comportement du système est représenté par une transformation de graphe en
      \end{center}
 
     \begin{onlyenv}<12->
-          \textcolor{PineGreen}{A spanning tree is obtained when the rule cannot be applied.}
+          The result is a spanning tree.
     \end{onlyenv} 
+
         \begin{onlyenv}<13->
-          \textcolor{red}{Does the transformation process terminate for any initial graph?}
-            % \textcolor{red}{Does the transformation process terminate for any initial graph under the strategy of applying the rule while possible?}
+          \textcolor{red}{Does a result always exist?}
         \end{onlyenv} 
     \end{overlayarea}
     
-    \note{The graph models a distributed network of six computational units.
-Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. node $1$ labeled by $A$ represents an active computational unit, the other nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$.}
-
-\note{with each others
-
-behavior is difficult
-
-}
 \note{
-Une regle de transformation de graphes est donnee par deux graphes separes par une fleche. Elle remplace une occurrence du graphe de gauche par celle de droite.
- 
-On peut appliquer cette regle pour construire un arbre couvrant du graphe en bas. 
-A chaque etape, on cherche une occurrence du graphe de gauche dans le graphe courant, puis on la remplace par le graphe de droite.
-Quand on ne peut plus appliquer la regle, on obtient un arbre couvrant avec les aretes rouges.
+L'exemple d'une règle de transformation de graphes est montré en haut.
+Elle remplace une occurrence du graphe de gauche par celle de droite.
 
-Une question importante est de savoir si le processus de transformation termine pour n'importe quel graphe initial.
+On peut appliquer cette règle pour construire un arbre couvrant du graphe en bas. 
+À chaque étape, on recherche une occurrence du graphe de gauche dans le graphe courant, puis on la remplace par une occurrence du graphe de droite. 
+Quand on ne peut plus appliquer la règle, les arêtes rouges du graphe resultant forment un arbre couvrant.
+
+La question est de savoir si ce processus donne toujours un résultat, c'est-à-dire si la transformation se termine toujours.
 
 1m30
 }
 \end{frame}
 
 
-\begin{frame}{Termination of Graph Transformation Systems}
+\begin{frame}{Graph Transformation: Termination}
   \begin{itemize}
     \item No graph $G_0$ can be transformed forever
          $$G_0 \Rightarrow G_1 \Rightarrow \cdots$$
@@ -530,87 +514,139 @@ Une question importante est de savoir si le processus de transformation termine 
          \begin{center}
             \textcolor{blue}{\enquote{every execution (on any input) halts.}}
           \end{center}
-    \item Undecidable in general~\cite[Plump]{plump1995ontermination}
+    \item Undecidable in general
     %    \begin{itemize}
     %     \item Automated techniques for specific subclasses
     %    \end{itemize}
-    \item Automated techniques   
+    \begin{itemize}
+        \item Automated techniques
         \begin{itemize}
-            \item rely on user-privided parameters
-            \item incomplete  
+            \item \textcolor{red}{Power}: incomplete 
+            \item \textcolor{red}{Usability}: rely on user-provided parameters
         \end{itemize}
+    \end{itemize}
   \end{itemize}
     \note{
-La terminaison d'un système de transformation de graphes signifie qu'il n'existe pas de graphe initial qui peut être transformé indéfiniment.
+La terminaison d'un système de transformation de graphes signifie qu'il n'existe pas de graphe initial susceptible d'être transformé indéfiniment.
 
-Cette notion coïncide avec la terminaison des programmes, qui signifie que chaque exécution sur n'importe quelle entrée s'arrête.
+Cette notion coïncide avec la terminaison des programmes : chaque exécution sur n'importe quelle entrée s'arrête.
 
-La terminaison des systèmes de transformation de graphes est indécidable en général. 
-Cependant, il existe des techniques automatisées pour des sous-classes spécifiques.
+La terminaison des systèmes de transformation de graphes est indécidable en général, donc les techniques automatiques pour prouver la terminaison sont forcément incomplètes et reposent souvent sur des paramètres dépendant de l'intuition des utilisateurs.
 
 1m
 }
 \end{frame}
 
-\begin{frame}{Termination by interpretations~\cite[Zantema, Nipkow]{zantema2014termination,nipkow1998term}}
+\begin{frame}{Graph Transformation: A Non-Terminating Rule}
+    \begin{center}
+        \resizebox{0.8\textwidth}{!}{
+    \begin{tikzpicture}[baseline=-10mm]
+        \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{3mm}{
+            \coordinate (o) at (0mm,-11mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+            \draw[thick,->,red] (l1) -- (l3) node[midway,above] {};
+            \draw[thick,->,blue] (l3) -- (l2) node[midway,above] {};
+        } 
+
+        \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{3mm}{
+            \coordinate (o) at (-5mm,-11mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+            % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+            \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+            \draw[thick,->,blue] (l1) -- (l3) node[midway,above] {};
+            \draw[thick,->,red] (l3) -- (l4) node[midway,above] {};
+            % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+        }    
+        % \node () at (37mm,-10mm) {\( \leftarrow \)}; % K -> L
+        \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> R
+    \end{tikzpicture}
+    }
+    \end{center}
+
+\noindent Loop:\resizebox{0.85\textwidth}{!}{
+    \begin{tikzpicture}[baseline=-10mm]
+    \graphbox{\( \)}{0mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
+        \node[draw,circle] (x) at (0,0) {};
+        \node[draw,circle] (y) at (1,0) {};
+        \node[draw,circle] (z) at (0.5,0.86) {};
+        \draw[->,red] (x) -- node[midway,below] {} (y) ;
+        \draw[->,red,very thick] (y) -- node[midway,right] {} (z) ;
+        \draw[->,blue,very thick] (z) -- node[midway,left] {} (x) ;
+    } 
+    \node () at (10mm,-35mm) {\( \Rightarrow  \)};
+    \node () at (-3mm,-23mm) {\( \Swarrow  \)};
+    \graphbox{\( \)}{-25mm}{-25mm}{20mm}{20mm}{-5mm}{-14mm}{
+        \node[draw,circle] (x) at (0,0) {};  
+        \node[draw,circle] (y) at (1,0) {};
+        \node[draw,circle] (z) at (0.5,0.86) {};
+        \draw[->,red,very thick] (x) -- node[midway,below] {} (y) ;
+        \draw[->,blue,very thick] (y) -- node[midway,right] {} (z) ;
+        \draw[->,red] (z) -- node[midway,left] {} (x) ;
+    } 
+    \node () at (23mm,-23mm) {\( \Nwarrow \)};
+    \graphbox{\( \)}{25mm}{-25mm}{20mm}{20mm}{-5mm}{-14mm}{
+        \node[draw,circle] (x) at (0,0) {};  
+        \node[draw,circle] (y) at (1,0) {};
+        \node[draw,circle] (z) at (0.5,0.86) {};
+        \draw[->,blue,very thick] (x) -- node[midway,below] {} (y) ;
+        \draw[->,red] (y) -- node[midway,right] {} (z) ;
+        \draw[->,red,very thick] (z) -- node[midway,left] {} (x) ;
+    }
+    %   \node () at (85mm,-10mm) {\( \Rightarrow  \)};
+    %   \graphbox{\( \)}{90mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
+    %       \node[draw,circle] (x) at (0,0) {};   
+    %       \node[draw,circle] (y) at (1,0) {};
+    %       \node[draw,circle] (z) at (0.5,0.86) {};
+    %       \draw[->,red] (x) -- node[midway,below] {$a$} (y) ;
+    %       \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
+    %       \draw[->] (z) -- node[midway,left] {$b$} (x) ;
+    %   }
+    \end{tikzpicture}
+    }
+
+    \note{
+        De nombreux travaux existent sur la terminaison des systèmes de réécriture de termes. En raison de différences structurelles — notamment la présence possible de circuits dans les graphes — ces méthodes ne s'appliquent pas directement aux systèmes de transformation de graphes.
+
+        Voici un exemple simple d'une règle de transformation de graphes qui échange les couleurs de deux arêtes orientées. En appliquant cette règle au graphe en bas, on peut obtenir un cycle infini de transformations.
+    }
+\end{frame}
+
+\begin{frame}{Graph Transformation: Termination by interpretations}
     \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
-        % Termination by interpretations:
         \begin{description}
             \item[Interpret graphs as natural numbers.]
-            \item[Show each transformation step strictlydecreases the value.]
+            \item[Show that each transformation step strictly decreases the value.]
         \end{description}
     \end{beamercolorbox}
-
-    % \begin{center}
 \noindent   Number of edges: \begin{tikzpicture}[baseline=-12mm]
                     \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
-                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[very thick, red,-] (l1) -- (l2) node[midway,above] {};
                     } 
-                    % \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                    %     \coordinate (o) at (0mm,-11mm); 
-                    %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                    %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    % }  
                     \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                         \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
-                        % \draw[->] (l1) -- (l4) node[midway,above] {};
-                        % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                     }    
                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
-                    % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
                 \end{tikzpicture}
-    % \end{center}
-    % \begin{center}
-
-
      \noindent  Number of nodes: \begin{tikzpicture}[baseline=-12mm]
                     \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
-                        \coordinate (o) at (0mm,-11mm); 
+                        \coordinate (o) at (-5mm,-11mm); 
                         \node[fill=red,red,draw,circle] (l1) at ($(o)+(0mm,0mm)$) {};
                         \node[fill=PineGreen,PineGreen,draw,circle] (l3) at ($(l1)+(1,0)$) {};
-                    } 
-                    % \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                    %     \coordinate (o) at (0mm,-11mm); 
-                    %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                    %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    % }  
-                    \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
-                        \coordinate (o) at (0mm,-11mm); 
-                        \node[fill=red,red,draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                    }                     
+                    \graphbox{}{40mm}{-3mm}{35mm}{15mm}{0mm}{4mm}{
+                        \coordinate (o) at (-5mm,-11mm); 
+                        \node[fill=red,red,draw,circle] (l1) at ($(o)+(0mm,0mm)$) {};
                     }    
                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
-                    % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
                 \end{tikzpicture}
-    % \end{center}
-
 
     \vspace{3mm}
       \noindent Number of edges labeled by $a$: 
@@ -620,87 +656,78 @@ Cependant, il existe des techniques automatisées pour des sous-classes spécifi
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
-                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
                         \draw[very thick, -] (l1) -- (l2) node[midway,above] {\textcolor{red}{a}};
                     } 
-                    % \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-                    %     \coordinate (o) at (0mm,-11mm); 
-                    %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                    %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-                    % }  
                     \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
                         \coordinate (o) at (-5mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
                         \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
                         \draw[very thick, -] (l1) -- (l4) node[midway,above] {\textcolor{red}{b}};
-                        % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
                     }    
                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
-                    % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
                 \end{tikzpicture}
     \end{center}
    
     \note{
-    Une façon de prouver la terminaison est d'interpreter les graphes par des entiers naturels, et de montrer que chaque etape de transformation diminue la valeur.
+La terminaison peut être prouvée en associant aux graphes des valeurs entières, puis en montrant que chaque étape de transformation diminue strictement cette valeur.
 
-    Par example, la premiere règle diminue le nombre d'aretes, la deuxieme diminue le nombre de noeuds, et la troisieme diminue le nombre d'aretes étiquetées par a. Leur terminaison peut être prouvée en interpretant les graphes par le nombre d'aretes, de noeuds, et d'aretes étiquetées par a, respectivement.
+Par exemple, la première règle diminue le nombre d'arêtes, 
+la deuxième diminue le nombre de nœuds, 
+et la troisième diminue le nombre d'arêtes étiquetées par a. 
+Leur terminaison peut être prouvée 
+en interprétant, respectivement, les graphes par le nombre d'arêtes, par le nombre de nœuds, et par le nombre d'arêtes étiquetées par a.
 
     1m
     }
 
 \end{frame}
-\begin{frame}{Limitation}
-    \begin{center}
-      \resizebox{\textwidth}{!}{
-       \begin{tikzpicture}[baseline=-10mm]
-          \graphbox{}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
-              \coordinate (o) at (0mm,-3mm); 
-              \node[draw,circle,red,fill=red] (l1) at ($(o)+(-10mm,0mm)$) {};
-              \node[draw,circle,red,fill=red] (l2) at ($(l1)+(2,0)$) {};
-              \node[draw,circle,blue,fill=blue] (l3) at ($(l1)+(1,0)$) {};
-              \draw[very thick, ->] (l1) -- (l3) node[midway,above] {$a$};
-              \draw[very thick, ->] (l3) -- (l2) node[midway,above] {$a$};
-          }     
-          \graphbox{}{40mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
-              \coordinate (o) at (-5mm,-3mm); 
-              \node[draw,circle,red,fill=red] (l1) at ($(o)+(-10mm,0mm)$) {};
-              \node[draw,circle,red,fill=red] (l2) at ($(l1)+(3,0)$) {};
-              \node[draw,circle,PineGreen,fill=PineGreen] (l3) at ($(l1)+(1,0)$) {};
-              \node[draw,circle,PineGreen,fill=PineGreen] (l4) at ($(l1)+(2,0)$) {};
-              \draw[very thick, ->] (l1) -- (l3) node[midway,above] {$a$};
-              \draw[very thick, ->] (l3) -- (l4) node[midway,above] {$b$};
-              \draw[very thick, ->] (l4) -- (l2) node[midway,above] {$a$};
-          }    
-          \node () at (37mm,-8mm) {$\rightarrow$};
-          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
-      \end{tikzpicture}
-      }
-  \end{center} 
 
-  \begin{description}
-      \item[Number of nodes/edges/labels do not decrease.]
-    % \item[Left-hand side graph:] middle has no other incident edges
-    % \item[Right-hand side graph:] middles are fresh nodes
-    % \item[\noindent Termination:] number of \raisebox{2pt}{
-    %         \scalebox{0.7}{\tikz[baseline=-0.5ex]{
-    %         \node [draw,circle] (z) at (-1,0) {};
-    %         \node [draw,circle] (x) at (0,0) {};
-    %         \node[draw,circle] (y) at (1,0) {};
-    %         \draw[->] (z)--(x) node[midway, above] {$a$};
-    %         \draw[->] (x)--(y) node[midway, above] {$a$};
-    %     }}} decreases
-    \item[Can its termination be proved by interpretations?]\ \\
-      \begin{itemize}
-        % \item Weighted Type Graph Method
-        \item Need a formal definition of graph transformations.
-      \end{itemize}
-  \end{description}
+\begin{frame}{Limitations}
+    \begin{center}
+        \resizebox{\textwidth}{!}{ 
+            \begin{tikzpicture}
+                \graphbox{}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (0,-18mm);
+                    \node[red,fill=red,draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
+                    \node[red,fill=red,draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
+                    \node[red,fill=red,draw,circle] (l3) at ($(delta)+(0,0)$) {3};
+                    \draw[thick,red,->] (l1) -- (l3) node[midway,left] {$s$};
+                    \draw[thick,PineGreen,->] (l2) -- (l3) node[midway,right] {$s$};
+                    \draw[thick,red,->] (l3) edge [loop below] node {0} (l3);
+                }
+                    \node () at (40mm,-18mm) {$\rightarrow$};
+                \graphbox{}{45mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
+                    \coordinate (delta) at (-10mm,-18mm);
+                    \node[red,fill=red,draw,circle] (r1) at ($(delta)+(-1,1.5)$) {1};
+                    \node[red,fill=red,draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {2};
+                    \node[red,fill=red,draw,circle] (r3) at ($(delta)+(0,0)$) {3};
+                    \node[blue,fill=blue,draw,circle] (r4) at ($(delta)+(1,0)$) {};
+                    \draw[thick,red,fill=red,->] (r1) edge node[midway,left] {$s$} (r3) ;
+                    \draw[thick,blue,->] (r2) -- (r4) node[midway,right] {$s$};
+                    \draw[thick,blue,->] (r4) edge [loop below] node {0} (r4);
+                    
+                    \draw[thick,blue,->] (r3) edge [out=190,in=270,looseness=3] node[midway,left] {0} (r3);
+                    \node[blue,fill=blue,draw,circle] (r5) at ($(r2)+(1.5,0)$) {};
+                    \draw[thick,blue,->] (r5) edge [loop below] node {0} (r5);
+                    \draw[thick,blue,->] (r5) edge [loop right] node {0} (r5);
+                    \draw[thick,blue,->] (r5) edge [loop left] node {0} (r5);
+                }
+            \end{tikzpicture}
+            }
+    \end{center}
+
+  \begin{itemize}
+      \item The number of nodes/edges/labels does not decrease
+    \item Can its termination be proved using interpretations?
+  \end{itemize}
   \note{
-Cette règle de transformation ne diminue ni le nombre de noeuds, ni le nombre d'aretes, ni le nombre d'aretes étiquetées par a ou b. 
-Peut-on prouver sa terminaison par une interprétation?
-Afin de répondre à cette question, nous avons besoin d'une définition formelle des transformations de graphes.
+Les interpretations naives présentées précédemment ne peuvent pas prouver la terminaison de cette règle, 
+parce qu'elle ne diminue 
+ni le nombre de nœuds, 
+ni le nombre d'arêtes, 
+ni le nombre d'arêtes avec une étiquette spécifique.
+
+Peut-on trouver une interprétation pour prouver sa terminaison ?
 
 30s
 % 8s + 1m30 + 1m + 1m30 + 1m + 1m + 30s = 6m38s
@@ -708,20 +735,21 @@ Afin de répondre à cette question, nous avons besoin d'une définition formell
 
 \end{frame}
 
-\begin{frame}{Structure of the Remainder}
+\begin{frame}{}
     \tableofcontents
     \note{
-    Le reste de la présentation est structuré comme suit:
-    Tout d'abord, nous présentons une définition formelle des transformations de graphes.
-    Ensuite, nous présentons une contribution qui améliore l'utilisabilité d'une technique existante. 
-    Et puis, nous présentons notre contribution principale: une nouvelle technique de terminaison.
-    Enfin, nous présentons un outil qui implante nos contributions
-    avant de conclure.
+
+    Nous présentons d'abord quelques notions de base, puis une définition formelle des transformations de graphes. 
+
+    Ensuite, nous exposons une contribution qui améliore l'utilisabilité d'une méthode de terminaison, 
+
+    puis notre contribution principale : une nouvelle technique de terminaison. 
+
     1m
     }
 \end{frame}
 
-\begin{frame}{Graph Morphisms: Structure-Preserving Functions~\cite[Barr et al.]{barr1990category}}
+\begin{frame}{Graph Morphisms: Structure-Preserving Functions}
              \begin{center}
           \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture}
@@ -747,7 +775,7 @@ Afin de répondre à cette question, nous avons besoin d'une définition formell
           }
          \end{center}
 
-    Colors show edge correspondence.
+    Colors indicate edge correspondence.
         \begin{center}
           \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture}
@@ -773,37 +801,18 @@ Afin de répondre à cette question, nous avons besoin d'une définition formell
           }
          \end{center}
 
-    Numbers show node correspondence.
+    Numbers indicate node correspondence.
     \note{
-    Un morphisme de graphes est une fonction qui envoie les noeuds et les arêtes d'un graphe sur ceux d'un autre en respectant la structure des graphes.
+Un morphisme de graphes est une fonction qui envoie les nœuds et les arêtes d'un graphe vers ceux d'un autre en préservant la structure.
 
-    On utilise des couleurs pour montrer la correspondance des noeuds et des arêtes. 
-    On utiliser aussi des numéros pour préciser la correspondance des noeuds.
-
+Nous utilisons des couleurs pour montrer la correspondance des arêtes 
+et des numéros pour préciser la correspondance des nœuds, si necesaire.
     45s
     }
 \end{frame}
 
-\begin{frame}{Commutative Diagram~\cite[Barr et al.]{barr1990category}}
-    \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
-        \begin{center}
-            \resizebox{0.3\textwidth}{!}{
-                \begin{tikzpicture}
-                    \node (I) at (0,-0.7) {$K$};
-                    \node (L) at (-2,-0.7) {$L$};
-                    \node (G) at (-2,-2) {$G$};
-                    \node (C) at (0,-2) {$C$};
-                    \draw [thick, ->] (I) to  node [midway,below] {$b$} (L);
-                    \draw [thick, ->] (L) to node [midway,right] {$a$} (G);
-                    \draw [thick, ->] (I) to node [midway,left] {$d$} (C);
-                    \draw [thick, ->] (C) to node [midway,above] {$c$} (G);
-                \end{tikzpicture}
-            } 
-        \end{center}
-        commutes if \( a \circ b = c \circ d \).
-    \end{beamercolorbox}
-        
-        \begin{center}
+\begin{frame}{Commutative Diagram}
+      \begin{center}
                 \begin{tikzpicture}
                     \graphbox{}{0mm}{0mm}{34mm}{15mm}{2mm}{0mm}{
                         \coordinate (o) at (0mm,-8mm); 
@@ -842,10 +851,28 @@ Afin de répondre à cette question, nous avons besoin d'une définition formell
                     \node () at (52mm,-18mm) {\( d\ \downarrow \)};
             \end{tikzpicture}
         \end{center}
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
+        \begin{center}
+            \resizebox{0.3\textwidth}{!}{
+                \begin{tikzpicture}
+                    \node (I) at (0,-0.7) {$K$};
+                    \node (L) at (-2,-0.7) {$L$};
+                    \node (G) at (-2,-2) {$G$};
+                    \node (C) at (0,-2) {$C$};
+                    \draw [thick, ->] (I) to  node [midway,below] {$b$} (L);
+                    \draw [thick, ->] (L) to node [midway,right] {$a$} (G);
+                    \draw [thick, ->] (I) to node [midway,left] {$d$} (C);
+                    \draw [thick, ->] (C) to node [midway,above] {$c$} (G);
+                \end{tikzpicture}
+            } 
+        \end{center}
+        commutes if \( a \circ b = c \circ d \).
+    \end{beamercolorbox}
     \note{
-        Un diagramme des morphismes de graphes commute si pour n'importe quel chemin entre deux graphes, la composition des morphismes le long de ce chemin est la même.
+    Considerons ce diagramme de morphismes de graphes.
+    On dit qu'il commute parce que la composition des morphismes le long du chemin b puis a est égale à la composition le long du chemin d puis c.
 
-        Par example, le rectangle KLGC commute si la composition de a et b est égale à la composition de c et d.
+    En général, on dit qu'un diagramme des morphismes commute si pour n'importe quel chemin entre deux graphes, la composition des morphismes le long de ce chemin est la même.
 
         45s
     }
@@ -888,49 +915,41 @@ Afin de répondre à cette question, nous avons besoin d'une définition formell
             \end{onlyenv}
         \end{tikzpicture}
 \end{center}
-$\square$ABDC: pushout square
+% $\square$ABDC: pushout square
 
 D: pushout object
  \note{
+    Le concept de pushout est essentiel dans la definition de la transformation de graphes que nous allons présenter.
+
     Le pushout d'un couple de morphismes \((\alpha,\beta) \) est un couple de morphismes \((\beta',\alpha')\) qui rend le diagramme ABDC commute et qui satisfait une propriété d'universalité.
 
     1m
  }
 \end{frame}
-\begin{frame}{Pushouts: Gluing Graphs Along an Interface~\cite[Pierce]{pierce1991basic}}
+\begin{frame}{Pushouts: Gluing Graphs Along an Interface}
     \begin{center}
-    \begin{tikzpicture}[scale=0.8]
-            \node (i) at (0,0) {A};
-            \node (r) at (0,-2) {B};
-            \node (c) at (2,0) {C};
-            % \node () at (1,-1) {\( \Delta \)};
-            \begin{onlyenv}<1->
-                \draw[thick, ->]  (i) -- (r) node [pos=0.4,left] {$ \alpha $};
-                \draw[thick, ->] (i) -- (c) node[pos=0.4, above] {$ \beta $};
-            \end{onlyenv}
-            \begin{onlyenv}<1->
-                \node (h) at (2,-2) {\textcolor{red}{D}};
-                \draw[thick, red,->] (c) -- (h) node [midway,left] {$ \alpha' $};
-                \draw[thick, red,->] (r) -- (h) node[midway, above] {$ \beta' $};
-                % \node () at ($(i)!.5!(h)$) {\textcolor{red}{PO}};
-            \end{onlyenv}
-            \begin{onlyenv}<2->
-                \color{PineGreen}
-                \node (d') at (3.5,-3.5) {E};
-                \draw[thick, ->] (c) edge[bend left] node [midway,left]{$ \gamma' $} (d') ;
-                \draw[thick, ->] (r) edge[bend right] node [midway,right]{$ \gamma $} (d') ;
-                \draw[thick, ->,dashed] (h) -- (d') node [midway,above]{$ \delta $};
-                \color{black}
-            \end{onlyenv}
-        \end{tikzpicture}
-\end{center}
-       \begin{center}
-        \resizebox{0.45\textwidth}{!}{
+        \resizebox{0.35\textwidth}{!}{
+        \begin{tikzpicture}[scale=0.8]
+                \node (i) at (0,0) {A};
+                \node (r) at (0,-2) {B};
+                \node (c) at (2,0) {C};
+                % \node () at (1,-1) {\( \Delta \)};
+                \begin{onlyenv}<1->
+                    \draw[thick, ->]  (i) -- (r) node [pos=0.4,left] {$ \alpha $};
+                    \draw[thick, ->] (i) -- (c) node[pos=0.4, above] {$ \beta $};
+                \end{onlyenv}
+                \begin{onlyenv}<1->
+                    \node (h) at (2,-2) {\textcolor{red}{D}};
+                    \draw[thick, red,->] (c) -- (h) node [midway,left] {$ \alpha' $};
+                    \draw[thick, red,->] (r) -- (h) node[midway, above] {$ \beta' $};
+                \end{onlyenv}
+            \end{tikzpicture}
+        }
+        \hspace{0.1\textwidth}
+        \resizebox{0.35\textwidth}{!}{
             \begin{tikzpicture}  
                 \coordinate (k) at (0, 0);
                 \draw[black,fill=black] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
-                % \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
                 \coordinate (c) at (0, -2.2);
                 \draw[fill=blue,blue]
                 ($(c)+(0,-0.5)$)
@@ -938,9 +957,7 @@ D: pushout object
                 -- ($(c)+(1,0.5)$) 
                 arc[start angle=0, end angle=-90, radius=1]
                 -- cycle;
-                % \node () at ($(c)+(0.75,0.25)$) {\( \mathrm{C'} \)};
                 \draw[black,fill=black] ($(c)+(0,0)$) rectangle ($(c)+(0.5,0.5)$);
-                % \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
         
                 \coordinate (r) at (3,0);
                 \draw[fill=red,red] ($(r)+(-0.5,0)$)
@@ -949,9 +966,7 @@ D: pushout object
                 --  ($(r)+(0.5,1)$)
                 -- ($(r)+(0.5,0)$)
                 -- cycle;
-                % \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
                 \draw[black,fill=black] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
-                % \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
             
                 \coordinate (h) at (3, -2.2);
                 \draw[fill=blue,blue]
@@ -966,17 +981,10 @@ D: pushout object
                 --  ($(h)+(0.5,1)$)
                 -- ($(h)+(0.5,0)$)
                 -- cycle;
-            % \node () at ($(h)+(0.75,0.25)$) {\( \mathrm{C'} \)};
             \draw[black,fill=black] ($(h)+(0,0)$) rectangle ($(h)+(0.5,0.5)$);
-            % \node () at ($(h)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            % \node () at ($(h)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
-            
                 \draw[thick, >->] ($(k)!0.5!(r)+(-0.7,0.25)$)
                         -- node[midway,above] {$\beta$}  
                     ($(k)!0.5!(r)+(0.75,0.25)$);
-                % \node (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
-                % {\( \overset{\rightarrowtail}{s} \)};
-                % ;  
                 \draw[thick, >->]($(c)!0.5!(h)+(-0.3,0.25)$)
                         -- node[midway,below]  {$\beta'$}  
                     ($(c)!0.5!(h)+(0.75,0.25)$);
@@ -990,7 +998,8 @@ D: pushout object
                     ($(r)!0.5!(h)+(0.2,0.2)$);
             \end{tikzpicture}
         }
-        % \hspace{0.05\textwidth}
+        \end{center}
+       \begin{center}
         \resizebox{0.5\textwidth}{!}{
              \begin{tikzpicture}
               \graphbox{}{0mm}{5mm}{30mm}{17mm}{2mm}{-5mm}{
@@ -1014,8 +1023,6 @@ D: pushout object
                   \node[black,fill=black,draw,circle] (l2) at ($(l1)+(2,0)$) {};
                   \node[blue,draw,circle,fill=blue] (l4) at ($(l2)+(0,-1)$) {};
                   \draw[thick, blue] (l2) -- (l4) node[midway,right] {};
-                %   \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
-                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
                     \node[blue,draw,circle,fill=blue] (l7) at ($(l4)+(-1,0)$) {};
                   \draw[thick, blue] (l4) -- (l7) node[midway,below] {};
               }    
@@ -1029,35 +1036,30 @@ D: pushout object
                   \draw[thick, red] (l1) -- (l3) node[midway,above] {};
                   \draw[thick, red] (l3) -- (l2) node[midway,above] {};
                   \draw[thick, blue] (l2) -- (l4) node[midway,right] {};
-                %   \node[blue,draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
-                %   \draw[blue,<-] (l1) -- (l6) node[midway,left] {$a$};
                 \node[blue,draw,circle,fill=blue] (l7) at ($(l4)+(-1,0)$) {};
                   \draw[thick, blue] (l4) -- (l7) node[midway,below] {};
               }    
 
-              % \node () at (37mm,-8mm) {\( \underset{\rightarrowtail}{\beta} \)}; % K -> L
               \draw[thick, >->] (32mm,-4mm) to node[midway,above] {$\beta$} (39mm,-4mm);
-              % \node () at (17mm,-18mm) {\(\alpha\ \downarrowtail  \)};
               \draw[thick, >->] (15mm,-14mm) to node[midway,right] {$\alpha$} (15mm,-20mm);
-              % \node () at (37mm,-33mm) {\( \overset{\rightarrowtail}{\beta'} \)};
               \draw[thick, >->] (32mm,-30mm) to node[midway,below] {$\beta'$} (39mm,-30mm);
-              % \node () at (52mm,-18mm) {\( \downarrowtail\ \alpha' \)};
               \draw[thick, >->] (55mm,-14mm) to node[midway,right] {$\alpha'$} (55mm,-20mm);
       \end{tikzpicture}
         }
     \end{center}
-\note{
-    si $\alpha$ et $\beta$ sont injectives, on peut voir les graphes en haut a doit et en bas a gauche comme des extensions du graphe en haut a gauche. 
-    Et le pushout graphe en bas a droite est obtenu en collant ensemble ces deux extensions le long du graphe commun. 
-    Un example concret est montré en bas.
+    \note{
+        quand $\alpha$ et $\beta$ sont injectives, on peut voir les graphes B et C comme deux extensions de l'interface A.
+        Et le pushout object D est obtenu en collant ensemble ces deux extensions via l'interface A.
 
-    40s
-}
+
+
+        40s
+    }
 \end{frame}
 
-\section{Formal Definition of Graph Rewriting with Double-Pushout}
+\section{Formal Definition of Graph Rewriting}
 
-\begin{frame}{Graph Rewriting with Double-Pushout (DPO)~\cite[Ehrig et al.]{ehrig1973graph}}
+\begin{frame}{Graph Rewriting with Double-Pushout (DPO)}
     \begin{description}
         \item[First algebraic approach]
         \item[One of the most studied approaches]  
@@ -1177,6 +1179,8 @@ D: pushout object
    \end{center}
 \end{overlayarea}
 \note{
+    Enfin, nous presentons la notion centrale de cette presentation: la réécriture de graphes avec double pushout.
+    
     Une regle de réécriture de graphes avec double pushout est un couple de morphismes l et r qui partent le meme graphe de depart K, appelé l'interface.
 
     Pour appliquer cette regle a un graphe G, on cherche un morphisme injectif de L vers G, appelé le match.
@@ -1185,11 +1189,15 @@ D: pushout object
 
     Le graphe C est obtenu en supprimant de G les elements qui sont dans L mais pas dans K. 
 
-    Finalement, on construit un autre diagram de pushout.
+    Enfin, on construit un autre diagram de pushout.
 
-    Une etape de réécriture de graphes est ainsi obtenue, transformant G en H.
+    Le graphe H est obtenu en combinant C avec les elements de R via l'interface K.
+
+    On obtient ainsi une étape de réécriture transformant de G vers H.
 
     70s
+
+    keywords: notion centrale
 }
 \end{frame}
 
@@ -1283,28 +1291,25 @@ D: pushout object
         \end{tikzpicture}
         }         
     \end{center}
+    \textcolor{red}{No dangling edges should be created.}
     \note{
-        Voici un exemple d'une etape de réécriture qui n'est pas valide.
 
-        En effet, la suppression du noeud 3 cree une arete dans la vide.
+    Attention,
+     on ne peut pas appliquer la règle avec ce match de L dans G' car la suppression du nœud 3 dans G' créerait une arête dans le vide.
 
-        20s
-
-        % 20s 70s 30s 40s 1m 45s 45s = 5m10s
+    20s
+    % 20s 70s 30s 40s 1m 45s 45s = 5m10s
     } 
 \end{frame}
 
 \section{Toward Greater Usability}
-% \begin{frame}
-%   \tableofcontents[currentsection, hideothersubsections]
-% \end{frame}
 
-\begin{frame}{Weighted Type Graph Method~\cite[Endrullis et al.]{endrullis2024generalized_icgt}}
+\begin{frame}{Weighted Type Graph Method}
 Termination by interpretation
 \newline\newline
-Parameter: an object $T$ in the category, called \textcolor{PineGreen}{type graph}
+Parameter: an object $T$ in the category, called the \textcolor{PineGreen}{type graph}.
 \newline\newline
-Terminology: every graph is \enquote{typed} as morphisms to $T$
+Terminology: every graph is \enquote{typed} by morphisms to $T$
 \newline\newline
 Interpretation:
 \vspace{-3mm}
@@ -1318,24 +1323,32 @@ G &\leadsto \mathrm{morphisms}(G,T) \\
 \alert{
 How to choose the type graph $T$?
 \newline
-What is the morphism weight?
+How to define the morphism weight?
 \newline
-What is the graph weight?}
+How to aggregate the morphism weights?
+}
 \note{
-    La méthode par graphe de type pondéré est une méthode de terminaison par interprétation.
+Une méthode très intéressante a été proposée par Bruggink et collegues en 2014, c'est la méthode par graphe de type pondéré.
 
-    Cette methode a un paramètre qui est un objet T, appelé graphe de type.
+Cette méthode a un paramètre (T), appelé le graphe de type.
 
-    Son nom vient du fait que chaque graphe $G$ est consideré comme étant typé par l'ensemble des morphismes de $G$ vers $T$.
+Le nom vient du fait que chaque graphe (G) est considéré comme typé par l'ensemble des morphismes de (G) vers (T).
 
-    Un graphe $G$ est tout d'abord interprété comme l'ensemble des morphismes de $G$ vers $T$.
-    Ensuite, chaque morphisme est interprété comme un entier naturel.
-    Finalement, les poids des morphismes sont agrégés pour obtenir un entier naturel.
+Un graphe (G) est d'abord interprété comme l'ensemble des morphismes de (G) vers (T). 
 
-    La question est alors comment choisir le graphe de type T, comment définir le poids d'un morphisme, et comment agréger les poids des morphismes.
+Ensuite, chaque morphisme est interprété comme un entier naturel. 
 
-    Il y a 3 configurations possibles, on va utiliser un example dans une configuration pour donner une intuition.
-    
+Enfin, les poids des morphismes sont agrégés pour obtenir un entier naturel.
+
+La question est alors : comment choisir le graphe de type (T), 
+comment définir le poids d'un morphisme, 
+et comment agréger les poids des morphismes ?
+
+Cette méthode a trois configurations possibles. 
+Nous illustrerons l'une d'elles par un exemple 
+afin d'éclairer les réponses aux deux dernières questions, 
+puis nous présenterons la construction du graphe de type pondéré.
+
     90s
 }
 \end{frame}
@@ -1384,37 +1397,12 @@ What is the graph weight?}
             \end{tikzpicture}
             }
     \end{center}
-    % \begin{center}
-    % \resizebox{0.8\textwidth}{!}{
-    %      \begin{tikzpicture}
-    %        \phantom{
-    %       \graphbox{}{-50mm}{0mm}{40mm}{39mm}{2mm}{-6mm}{
-    %         \coordinate (o) at (0mm,-10mm); 
-    %         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-    %         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
-    %         \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
-    %         \draw[red,->] (l1) -- (l3) node[midway,above] {$a$};
-    %         \draw[PineGreen,->] (l3) -- (l2) node[midway,above] {$b$};
-    %     } 
-    %     \draw[->] (-9mm,-17mm) to node[midway,above] {$h$} (-2mm,-17mm);
-    % }
-    %         \graphbox{$T$}{0mm}{0mm}{40mm}{39mm}{-12mm}{-19mm}{
-    %             \node[draw,circle] (1) at (0,0) {};
-    %             \node[draw,circle] (2) at (2,0) {};
-    %             \draw[->] (1) edge[loop above] node[midway, above] {$a^{1}$} (1);
-    %             \draw[->] (1) edge[loop below] node[midway, below] {$b^{0}$} (1);
-    %             \draw[->,red] (1) edge[bend left] node[midway, above] {$a^{0}$}  (2);
-    %             \draw[->,PineGreen] (2) edge[bend left] node[midway, below] {$b^{0}$} (1);
-    %         }
-    %     \end{tikzpicture}
-    %     }
-    % \end{center}
     \phantom{
             $ \mathrm{weight}_T(h) \mathop{=} \textcolor{red}{0} + \textcolor{PineGreen}{0} \mathop{=} 0$
         }
 
     \note{
-        Voici un exemple d'un graphe de type avec des poids sur les arêtes.
+        Nous fixons un graphe de type avec des poids sur les arêtes.
 
 
        10s
@@ -1486,7 +1474,7 @@ What is the graph weight?}
     % \end{center}
             \hspace{0.65\textwidth}$ \mathrm{weight}_T(h_1) \mathop{=} \textcolor{red}{0} + \textcolor{PineGreen}{0} \mathop{=} \textcolor{PineGreen}{0}$
     \note{
-        Pour calculer le poids du morphisme h1, on somme les poids des images des arêtes de L.
+        Le poids du morphisme h1 est la somme des poids des images des arêtes de L.
 
         10s
     }
@@ -1539,18 +1527,17 @@ What is the graph weight?}
     \end{flalign*}
         % $\mathrm{weight}_T(L) \mathop{=} \min \{,\mathrm{weight}_T(h_2)\} = \min \{1+1, 1+0\}\mathop{=} 1$     
     \note{
-        Pour calculer le poids du graphe L, on calcule d'abord les poids de tous les morphismes de L vers T.
-        Ensuite, on prend le minimum de ces poids.
+        Le poids du graphe L est le poids minimal des morphismes de L vers T.
 
         Pour cet exemple, il y a deux morphismes, h1 et h2. 
-        Le poids de h1 est 0, et le poids de h2 est 1.
+        Le poids du morphisme h1 est 0, et le poids du morphisme h2 est 1.
         Donc, le poids de L est 0.
 
         40s
     }  
 \end{frame}
    
-\begin{frame}{Termination Criterion~\cite[Bruggink et al.]{bruggink2015proving}}
+\begin{frame}{Termination Criterion~[Bruggink \textit{et al.}, 2014]}
     %   \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
     \begin{center}
     \begin{tikzpicture}
@@ -1568,7 +1555,7 @@ What is the graph weight?}
 
       \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
         % Every rewriting step strictly decreases the weight
-        A rule terminates \textcolor{red}{if there is $T$} such that for all \textcolor{blue}{$t_K$}, if there is \textcolor{PineGreen}{$t_L$} such that $\triangle KLT$ commutes, then 
+        A rule terminates \textcolor{red}{if there is a type graph $T$} such that for all \textcolor{blue}{$t_K$}, if there is \textcolor{PineGreen}{$t_L$} such that $\triangle KLT$ commutes, then 
         \begin{flalign*}
             &\min \{\opn{weight}_T(\textcolor{PineGreen}{t_L}) \mid t_L.\triangle KLT \text{commutes}\}  
             \\ \mathop{>}
@@ -1578,54 +1565,59 @@ What is the graph weight?}
  
    \alert{How to find a suitable weighted type graph?}
    \note{ 
-        Voici le critère de terminaison.
+        Selon une critère de terminaison proposé par Bruggink et collegues en 2014,
 
-        Une règle de réécriture termine s'il existe un graphe de type T tel que pour tout morphisme tK de K vers T, si il existe un morphisme tL de L vers T tel que le triangle KLT commute, alors le poids minimal des morphismes tL tels que le triangle KLT commute est strictement supérieur au poids minimal des morphismes tR tels que le triangle KRT commute.
+        Une règle de réécriture termine s'il existe un graphe de type T tel que pour tout morphisme tK de K vers T, 
+        si il existe un morphisme tL de L vers T tel que le triangle KLT commute, 
+        alors le poids minimal des morphismes tL tels que le triangle KLT commute est strictement supérieur au poids minimal des morphismes tR tels que le triangle KRT commute.
 
         La question est alors comment trouver un graphe de type pondéré approprié.
    }
 \end{frame}
 
-\begin{frame}{Searching for Weighted Type Graphs over $\mathbb{N}$~\cite[Bruggink et al.]{bruggink2015proving}}
+\begin{frame}{Searching for Weighted Type Graphs over $\mathbb{N}$}
     % Restricted search space:
     %   \begin{itemize}
     %     \item no parallel edges of the same label 
     %   \end{itemize}
     User-specified parameters:
       \begin{itemize}
-        \item \alert{$k$ nodes}
-        \item \alert{maximum edge weight $n\in\mathbb{N}$}
+        \item \textcolor{blue}{$k$ nodes}
+        \item \textcolor{blue}{maximum edge weight $n\in\mathbb{N}$}
       \end{itemize}   
-    The problem amounts to checking the \textcolor{red}{satisfiability of an
-existential Presburger arithmetic theory} with:
+    The problem amounts to checking the satisfiability of an
+\textcolor{blue}{existential Presburger arithmetic theory} with:
                 \begin{itemize}
                   \item $k^2m$ binary variables where $m$ is the number of labels
                   \item $k^2m$ integer variables
                 \end{itemize} 
-  Challenge:
+  Challenges:
   \begin{itemize}
-    \item Usability: difficult to guess $k$ and $n$
-    \item Search space: $2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights
+    \item \textcolor{red}{Usability}: difficult to guess $k$ and $n$
+    \item \textcolor{red}{Search space}: $2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights
   \end{itemize} 
 
   \note{ 
     Les travaux précédents suggerent de se restreindre à des graphes de type avec un nombre fixe de noeuds k et un poids maximum n. 
+
     Le problème revient à vérifier la satisfiabilité d'une théorie existentielle de l'arithmétique de Presburger avec des variables binaires et des variables entières.
+
     Le défi est double: d'une part, il est impossible pour l'utilisateur de deviner k et n.
-    D'autre part, il y a un nombre exponentiel d'affectations des poids.
+    D'autre part, il y a un nombre important d'affectations des poids.
 
     1m
   }
 \end{frame}
 
 \begin{frame}{Usability Improvement}
-    Using positive real numbers as weights~\cite[Lucas]{lucas2006relative}
+    \textcolor{blue}{Idea:} Weights in $\mathbb{R}^{+}$
 
     \vspace{0.5cm}
-    Additional constraint: there is \textcolor{red}{$\delta > 0$} such that every rewriting step decreases the weight by at least \textcolor{red}{$\delta$}.
+    \textcolor{blue}{Additional constraint:} there is \textcolor{red}{$\delta > 0$} such that every rewriting step decreases the weight by at least \textcolor{red}{$\delta$}.
  
     \note{ 
-        Afin d'améliorer l'utilisabilité de la méthode, on propose d'utiliser des nombres réels positifs comme poids.
+        Afin d'améliorer l'utilisabilité de la méthode, 
+        on propose d'utiliser des nombres réels positifs comme poids.
         
         Une contrainte supplementaire est tout fois nécessaire: il doit exister un delta strictement positif tel que chaque étape de réécriture diminue le poids d'au moins delta.
 
@@ -1670,78 +1662,116 @@ existential Presburger arithmetic theory} with:
 % \end{frame}
 
 
-\begin{frame}{Complexity Comparison}
-% def f(k, m, n) -> int:
-%     e = pow(k,2) * m
-%     left = pow(2,e)
-%     right = pow(n,e)
-%     return left * right
-$m$: number of labels
+\begin{frame}{Searching for Weighted Type Graphs over \crossout[red]{$\mathbb{N}$} $\mathbb{R}$}
+    User-specified parameters:
+      \begin{itemize}
+        \item \textcolor{blue}{$k$ nodes}
+        \item \crossout[red]{\textcolor{blue}{edge weights in $\{0, 1, \ldots, n\}$}}
+      \end{itemize}   
+    % Assumption:
+    %   \begin{itemize}
+    %     \item no parallel edges of the same label 
+    %   \end{itemize}
+    The problem amounts to checking the satisfiability of an
+\crossout[red]{\textcolor{blue}{existential Presburger arithmetic theory}} \textcolor{blue}{existential theory of the reals with binary variables}:
+                \begin{itemize}
+                  \item $k^2m$ binary variables where $m$ is the number of labels
+                  \item $k^2m$ \crossout[red]{integer} \textcolor{blue}{real} variables
+                \end{itemize} 
+%   Challenge:
+%   \begin{itemize}
+%     \item \crossout[red]{there are $2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights}. \textcolor{red}{There are $2^{k^2m}$ linear programs which have polynomial-time average-case complexity.}
+%   \end{itemize} 
+    Challenge:
+  \begin{itemize}
+    \item impossible to guess $k$ and \crossout[red]{maximum weight $n$}
+    \item complexity: \crossout[red]{$2^{k^2m} \cdot n^{k^2m}$ possible assignments of weights} \textcolor{blue}{$2^{k^2m}$ linear programs which have polynomial-time average-case complexity.}
+  \end{itemize} 
 
-Parameters:
-\begin{itemize}
-    \item $k$ nodes
-\end{itemize}
+  \note{
 
-With weights in $\mathbb{N}$:
-\begin{itemize}
-    \item \textcolor{red}{User-specified} parameter: maximum weight $n\in\mathbb{N}$
-    \item \textcolor{red}{Satisfiability of an
-existential Presburger arithmetic theory} with $k^2m$ variables
-    \item \textcolor{PineGreen}{Exponential-time}
-\end{itemize}
-With weights in $\mathbb{R}$:
-    \begin{itemize}
-        \item \textcolor{red}{Solve a linear program in $\mathbb{R}$ with $k^2m$ variables}
-        \item \textcolor{PineGreen}{Polynomial time on average} (e.g by Z3)
-    \end{itemize} 
-\note{
-    Voici une comparaison de la complexité entre les deux approches pour un nombre de noeuds k fixe.
+        En utilisant des nombres réels positifs comme poids,
 
-    Avec des poids dans les entiers naturels, l'utilisateur doit deviner un poids maximum n.
-    Ensuite, il faut vérifier la satisfiabilité d'une théorie existentielle de l'arithmétique de Presburger avec k^2m variables entières.
-    Cette vérification demande un temps exponentiel au moins par rapport au nombre de variables.
+        L'utilisateur n'a plus besoin de deviner le poids maximum.
+    
+        Le problème revient à vérifier la satisfiabilité d'une théorie existentielle des réels avec des variables binaires et des variables réelles.
+    
+        Il suffit de résoudre un nombre relativement petit de programmes linéaires avec relativement peu de variables réelles. Ces programmes linéaires peuvent être résolus en temps polynomial en moyenne par rapport au nombre de variables par un solver.
+    
+        1m
 
-    Avec des poids dans les réels, 
-    on n'a plus besoin de deviner un poids maximum, 
-    et il suffit de résoudre un programme linéaire dans les réels.
-    La résolution de ce programme linéaire peut être faite en temps polynomial en moyenne par un solver comme Z3.
+  }
 
-    75s
-}
 \end{frame}
 
 \begin{frame}{Implementation$\leadsto$Experiments}
- 
+ $k$ from 1 to 4
+
+ For every $k$, $n$ from 1 to 3 if over $\mathbb{N}$
     \begin{table}[htb]   
         \renewcommand{\arraystretch}{1.2}
         \centering
         \begin{adjustbox}{max width=\textwidth,max totalheight=0.8\textheight,keepaspectratio}
-    \begin{tabular}{|c|c|c|c|c|c|c |}
+    \begin{tabular}{|c|H|c|H|c|H|c|}
         \hline
-        &\;\;$A_{\mathbb{N}}$\;\;&\;\;$a_{\textcolor{red}{\mathbb{R}}}$\;\;&\;\;$T_{\mathbb{N}}$\;\;&\;\;$t_{\textcolor{red}{\mathbb{R}}}$\;\;&\;\; $N_{\mathbb{N}}$\;\;&\;\;$n_{\textcolor{red}{\textcolor{red}{\mathbb{R}}}}$\;\; \\
+        &\;\;\text{Configuration 1}\;\;&\;\;\text{Configuration 1}\;\;&\;\;$T_{\mathbb{N}}$\;\;&\;\;\text{Configuration 2}\;\;&\;\; $N_{\mathbb{N}}$\;\;&\;\;\text{Configuration 3}\;\; \\
         \hline
     % ~\cite[Example 6.2]{endrullis2024generalized_arxiv_v2} & & & & & 2.68 &1.15   \\
-    ~\cite[Example 6.3]{endrullis2024generalized_arxiv_v2} & & & & & 2.74 &\textcolor{PineGreen}{1.16}   \\
+    ~\cite[Example 6.3]{endrullis2024generalized_arxiv_v2} & & & & & 2.74 &\cellcolor{PineGreen}\textcolor{white}{58\%}
+    % \textcolor{PineGreen}{1.16}  
+     \\
         %~\cite[Example 6.4]{endrullis2024generalized_arxiv_v2}&  && & &  &   &  &  & our only Graph\\
     ~\cite[Example D.3]{endrullis2024generalized_arxiv_v2} &2.25 
         % (2.30+2.188+2.2637+2.2928+ 2.196) 
-        & \textcolor{PineGreen}{1.18}
+        &  
+        \cellcolor{PineGreen}\textcolor{white}{48\%}
+        % \textcolor{PineGreen}{1.18}
         % (1.17+1.2549+1.165+ 1.1576\mathop{+}1.162)
-        & & & 2.24& \textcolor{PineGreen}{1.18}    \\
+        & & & 2.24& \cellcolor{PineGreen}
+        \textcolor{white}{47\%}
+        % \textcolor{PineGreen}{1.18}   
+         \\
     ~\cite[Example 3.8]{plump1995ontermination}
-    & 2.95& \textcolor{PineGreen}{1.90} & 2.94 &\textcolor{PineGreen}{1.87}  & 3.49  &\textcolor{PineGreen}{1.87}   \\
+    & 2.95& 
+    \cellcolor{PineGreen}\textcolor{white}{37\%} 
+    %abs(2.95-1.90)/2.95=0.3559
+    % \textcolor{PineGreen}{1.90} 
+    & 2.94 &
+        \cellcolor{PineGreen}\textcolor{white}{36\%} %abs(2.94-1.87)/2.94=0.3649
+    % \cellcolor{PineGreen}\textcolor{PineGreen}{1.87}  
+    & 3.49  &
+    \textcolor{white}{36\%} %abs(3.49-1.87)/3.49=0.4639
+    % \cellcolor{PineGreen}\textcolor{PineGreen}{1.87}   
+    \\
         %~\cite[Example 3]{plump2018modular}
         % & 3.45& 3.44 & 3.55 &2.38  & 3.96  &17.60 &   4.24 AT &  3.45 at& 4.07 t  \\
-    ~\cite[Example 4]{plump2018modular} &4.26& \textcolor{PineGreen}{3.19} &  4.24 & \textcolor{PineGreen}{3.13} &
+    ~\cite[Example 4]{plump2018modular} &4.26
+    & 
+    \textcolor{white}{25\%}
+    % \cellcolor{PineGreen}\textcolor{PineGreen}{3.19} 
+    &  4.24 & 
+    \textcolor{white}{26\%}
+    \cellcolor{PineGreen}
+    % \textcolor{PineGreen}{3.13} 
+    &
         5.82
         % (5.77+5.83+5.775+5.84+5.818+5.89)
-        & \textcolor{red}{timeout}  \\
+        & \cellcolor{blue}\textcolor{white}{timeout}  \\
 
     ~\cite[Example 5]{plump2018modular} & 5.54
-        &\textcolor{red}{5.55}
+        &\cellcolor{red}
+        \textcolor{white}{1\%}
+        % \textcolor{red}{5.55}
         % (5.53 +5.660\mathop{+}5.5213+5.5369+5.484689\mathop{+}5.6404\mathop{+}5.4877\mathop{+}5.5026)
-        & 5.53& \textcolor{PineGreen}{5.50}& 9.11&  \textcolor{PineGreen}{5.62}  \\
+        & 5.53& 
+        \cellcolor{PineGreen}
+        \textcolor{white}{1\%}
+        % \textcolor{PineGreen}{5.50}
+        & 9.11&  
+        \cellcolor{PineGreen}
+        \textcolor{white}{38\%}
+        % \textcolor{PineGreen}{5.62}
+          \\
     % ~\cite[Example 6]{plump2018modular} &  &  & & &  &   \\
         % (* en haut j'ai enverse tropical et arctic *)
         %~\cite[Example 6]{plump2018modular} &  &6.93 & 6.38 & 6.30 & 7.87&  7.22  &  11.71 at & 7.71 AT& 13.60 ATNat \\
@@ -1749,63 +1779,91 @@ With weights in $\mathbb{R}$:
         2.44
         % (2.4415+ 2.4181+2.4466+2.4366+2.4624+2.4479)
         & 
-        \textcolor{red}{2.46}
+        \cellcolor{red}
+        \textcolor{white}{1\%}
+        % \textcolor{red}{2.46}
         % (2.4405+2.5180+2.4137+2.4539+2.4480+2.4750)
         & 
         2.47
         % (2.4660+2.4457+2.4559+2.4526+2.4588+2.4847+2.5731)/7
         &
-        \textcolor{red}{2.54}
+        \cellcolor{red}
+        \textcolor{white}{1\%}
+        % \textcolor{red}{2.54}
         % (2.4380+2.4557+2.5590+2.5631+2.7245+2.5041+2.5182)/7
         & 4.58 & 
-        \textcolor{PineGreen}{2.46}
+        \cellcolor{PineGreen}
+        \textcolor{white}{46\%}
+        % \textcolor{PineGreen}{2.46}
         % (2.3987+2.4521+2.4620+2.4558+2.5128+2.4507)/6
         \\
-    ~\cite[Example 5]{bruggink2015proving} &  &  &&& 7.80& \textcolor{red}{timeout} \\
-    ~\cite[Example 6]{bruggink2015proving} &  &  &&& 9.75& \textcolor{red}{timeout}   \\
+    ~\cite[Example 5]{bruggink2015proving} &  &  &&& 7.80& 
+    \cellcolor{blue}
+    \textcolor{white}{timeout} 
+    \\
+    ~\cite[Example 6]{bruggink2015proving} &  &  &&& 9.75& \cellcolor{blue}\textcolor{white}{timeout}   \\
     ~\cite[Example 1]{bruggink2014termination} & 
         2.26
         %  (2.2887\mathop{+}2.2386 +2.2719\mathop{+}2.2735 +2.3025\mathop{+}2.1925)/6
-        &\textcolor{PineGreen}{1.18}
+        &\cellcolor{PineGreen}
+        \textcolor{white}{48\%}
+        % \textcolor{PineGreen}{1.18}
         %  (1.1764+1.1837+1.1709+1.2222+1.1608+1.1645)/6
         & & &2.24
         %  (2.2365+2.2388+2.2124+2.2395+2.2550+2.2513)/6
-        & \textcolor{PineGreen}{1.18}  
+        & \cellcolor{PineGreen}\textcolor{white}{47\%}
+        % \textcolor{PineGreen}{1.18}  
         %  (1.2498+1.1710+1.1634+1.1655+1.1687+1.1733)/6
         \\
     ~\cite[Example 4]{bruggink2014termination} &  2.25
         % (2.2545+2.2512+2.2529+2.3498+2.2137+ 2.2257\mathop{+}2.2167\mathop{+}2.2413)/8
-        & \textcolor{PineGreen}{1.22} & 2.24
+        & \cellcolor{PineGreen}
+        \textcolor{white}{46\%}
+        % \textcolor{PineGreen}{1.22} 
+        & 2.24
         % (2.2981+2.2026\mathop{+}2.2229+2.2524+2.2421+2.2415)/6
-        &\textcolor{PineGreen}{1.18}
+        &\cellcolor{PineGreen}
+        \textcolor{white}{47\%}
+        % \textcolor{PineGreen}{1.18}
         % (1.1261+1.1850+1.1848+1.1706+1.2052+1.1920)/6
         &2.25
         % (2.2347+2.3106+2.2130+2.2391+2.2466+2.2493)/6 
-        & \textcolor{PineGreen}{1.19} 
+        & \cellcolor{PineGreen}
+        \textcolor{white}{49\%}
+        % \textcolor{PineGreen}{1.19} 
 
         \\
-    ~\cite[Example 5]{bruggink2014termination} &  4.23 & \textcolor{PineGreen}{3.23}  & 4.25 &\textcolor{PineGreen}{3.28}  & 5.82 & \textcolor{red}{timeout} \\
+    ~\cite[Example 5]{bruggink2014termination} &  4.23 
+    & \cellcolor{PineGreen}
+    \textcolor{white}{24\%}
+    % \textcolor{PineGreen}{3.23}  
+    & 4.25 &
+    \cellcolor{PineGreen}
+    \textcolor{white}{22\%}
+    % \textcolor{PineGreen}{3.28}
+    & 5.82 & \cellcolor{blue}\textcolor{white}{timeout} \\
          
         \hline
         \end{tabular}
     \end{adjustbox}
     \end{table}
-    % \begin{description}
-    %     \item[Ex] 
-    % \end{description}
+
+ \resizebox{0.5\textwidth}{!}{\textbf{Usability Improved~\textcolor{PineGreen}{$\checkmark$}}}
 
     \note{ 
-        La méthodes par graphe de type pondéré a 3 configurations différentes que je nomme A, T et N.
+        On a implémenté la méthode par graphes de type pondérés dans un outil, et on a mené des expériences pour évaluer l'amélioration de la performance.
         
-        Les colonnes avec une lettre majuscule utilise des poids dans les entiers naturels, tandis que les colonnes avec une lettre minuscule utilise des poids dans les réels.
+        Une case blanche indique que la configuration ne permet pas de prouver la terminaison.
+        Une case en vert indique que l'utilisation de poids dans les réels est plus rapide, 
+        une case en rouge indique que l'utilisation de poids dans les réels est plus lente,
+        et une case en bleu indique que l'utilisation de poids dans les réels a entrainé un dépassement de temps, alors que l'utilisation de poids dans les entiers naturels a réussi en peu de temps.
 
-        Les résultats expérimentaux montrent que pour les deux configurations A et T, l'utilisation de poids dans les réels permet de trouver un graphe de type pondéré plus rapidement dans la plupart des exemples. 
+        On remarque que pour les configurations 1 et 2, l'utilisation de poids dans les réels est systématiquement plus rapide.
+        Pour la configuration 3, l'utilisation de poids dans les réels est plus rapide dans la majorité des cas, mais dans 4 cas, elle entraine un dépassement de temps. 
+        Cela est dû au fait que la complexity est double exponentielle en le nombre de variables qui est trop élevé.
+        Alors que dans les entiers naturels, meme si le probleme est undecidable, un graphe de type pondéré peut être trouvé rapidement en essayant l'ensemble des poids 0 et 1.
 
-        Pour la configuration N, l'utilisation de poids dans les réels permet de réduire la complexité de l'indécidabilité à double exponentielle. Or La complexité est trop élevée et que l'utilisation de poids dans les réels ne nous permet pas de restreindre le nombre de poids comme dans les entiers naturels. Cela conduit à des timeouts dans plusieurs exemples.
-
-        1m
-
-     
+        1m     
     }
 \end{frame}
 
@@ -1850,18 +1908,25 @@ With weights in $\mathbb{R}$:
             \end{tikzpicture}
             }
     \end{center}
-Type graph fails: existence of surjections from $R$ to $L$~[\citeauthor{endrullis2024generalized_icgt}].
+Type graph fails: existence of surjections from $R$ to $L$
 
-All existing automated methods fail.
+\textcolor{red}{All existing automated methods fail.}
 
- Remark: the number of occurrences of $L$ strictly decreases.
+ Remark: the number of occurrences of $\tikz[baseline=-0.5ex]{ 
+                \node[draw,circle] (x) at (0,0) {}; 
+                \node[draw,circle] (y) at (1,0) {};
+                \node[draw,circle] (z) at (2,0) {};
+                \draw[->] (x) -- (y) node[midway, above] {$s$};
+                \draw[->] (z) -- (y) node[midway, above] {$s$};
+    }$ strictly decreases.
  
  \note{
-    La méthode par graphe de type pondéré a une limitation importante: elle ne peut pas prouver la terminaison d'une règle si il existe une surjection de R vers L, comme dans cet exemple.
+    On remarque cependant que la méthode par graphe de type pondéré a une limitation importante: elle ne peut pas prouver la terminaison d'une règle si il existe une surjection de R vers L, comme dans cet exemple.
 
-    Dans ce cas, toutes les méthodes automatisées existantes échouent.
+    Pire encore, toutes les méthodes automatisées existantes échouent.
 
-    On remarque que le nombre d'occurrences de L diminue strictement à chaque application de la règle.
+    On remarque que le nombre d'occurrences du graphe en bas diminue strictement.
+    
     Ça suggère qu'une approche basée sur le comptage de sous-graphes pourrait être utile.
  }
 \end{frame}
@@ -1872,8 +1937,6 @@ All existing automated methods fail.
 % \end{frame}
 
 \begin{frame}{Capability Improvement: Morphism Counting}
-    Termination by interpretation 
-    \newline\newline
     Parameter: graph $X$
     \newline\newline
     Interpretation:
@@ -1889,7 +1952,7 @@ All existing automated methods fail.
 
         L'interpretation d'un graphe G est le nombre de morphismes de X vers G.
 
-        Pour faciliter notre discussion, on va introduire une autre definition de systems de reécriture de graphe après avoir présenter le concept d'inclusion. 
+        Pour faciliter notre discussion, on va introduire d'abord une autre definition de reécriture de graphe après avoir présenté le concept d'inclusion. 
     }
 \end{frame}
 
@@ -1928,7 +1991,10 @@ All existing automated methods fail.
                 }
         \end{center}
  Subgraph
- \note{an inclusion is a morphism whose domain is a subgraph of its codomain and every node and edge in the domain is mapped to itself in the codomain.
+ \note{
+ Avant de presenter la nouvelle méthode, je vais introduire le concept d'inclusion de graphe.
+ 
+Une inclusion is a morphism whose domain is a subgraph of its codomain and every node and edge in the domain is mapped to itself in the codomain.
  }
  
 \end{frame}
@@ -2121,10 +2187,12 @@ All existing automated methods fail.
         \end{center} 
 Dangling edges
  \note{
-    Un pregraph est donc un graphe où certaines arêtes peuvent être pendantes.
-    Par example, en supprimant le noeud 2 du graphe en haut, on obtient un pré-graphe en bas où toutes les arêtes sont pendantes.
+    On appelle prégraphe un graphe dans lequel certaines arêtes peuvent être pendantes.
+
+Par exemple, en supprimant le nœud 2 du graphe en haut, on obtient le prégraphe en bas présentant des arêtes pendantes.
  }
 \end{frame}
+
 \begin{frame}{Decomposition of Graphs in Rewriting Rules}
     \begin{center}
     \resizebox{0.85\textwidth}{!}{
@@ -2194,9 +2262,11 @@ Dangling edges
           }
    \end{center}
    \note{
-    Pour une règle de reécriture donnée, on peut décomposer le graph L comme l'union du graphe K et un autre pre-graphe L'. Pareil pour R.
-    On peut représenter cette décomposition de manière plus abstraite comme dans le diagramme en bas. 
+ Pour une règle de réécriture donnée, on peut décomposer le graphe (L) en l'union de l'interface (K) et d'un prégraphe (L'). 
+ Comme l'exemple le montre.
+Il en va de même pour (R). 
 
+Cette décomposition peut être représentée de façon plus abstraite, comme le diagramme l'indique.
    }
 \end{frame}
 \begin{frame}{Decomposition of Graphs in Rewriting Steps}
@@ -2357,10 +2427,12 @@ Dangling edges
    \end{center}
    This coloring provides a classification of morphisms in rewriting steps by image node colors.
    \note{
-    Dans une étape de reécriture, chaque graphe peut etre exprime comme l'union de pré-graphes, comme montre le diagramme en haut. Le cas abstract est represente en bas.
 
-    On peut colorier les differents pré-graphes avec des couleurs différentes.
-    Cette coloration fournit une classification intuitive des morphismes dans les étapes de reécriture par les couleurs des noeuds de leurs images.
+Dans un diagramme de double‑pushout définissant une étape de réécriture, chaque graphe peut être décomposé en une réunion de prégraphes, comme le montre l'exemple. Le cas abstrait est représenté en bas.
+
+On peut colorier ces prégraphes avec des couleurs différentes. 
+Cette coloration fournit une classification intuitive des morphismes intervenant dans une étape de réécriture, 
+selon la couleur des nœuds de leur image.
    }
 \end{frame}
 
@@ -2483,11 +2555,16 @@ Dangling edges
     % \end{itemize}
     
     \note{
+    
     On appelle X-occurrence un morphisme injectif depuis X.
 
-    Si l'image contient seulement des noeuds blancs, on dit qu'il est blanche.
-    Si l'image contient une seule couleur autre que le blanc, on qu'il est de cette couleur.
-    Si l'image contient des noeuds de deux couleurs differentes autres que le blanc, on dit qu'il est de ces deux couleurs.
+   X-occurrences sont classifiées selon les couleurs des nœuds de leur image. 
+  
+
+Si l'image contient seulement des nœuds blancs, on dit qu'elle est blanche.
+Si l'image contient exactement une couleur autre que le blanc, on dit qu'elle est de cette couleur.
+
+ Si l'image contient des nœuds de deux couleurs distinctes autres que le blanc, on dit qu'elle est de ces deux couleurs. 
     }
 \end{frame}
 
@@ -2629,12 +2706,14 @@ Let $X$ be the graph
     }
 
 \note{ 
-    Une nouvelle critere de termination peut etre établie en termes des occurrences depuis un graphe X. 
+  Dans cet exemple, 
+  X est la chaîne aa.
+    On observe qu'il y a une X-occurrence bleue, aucune X-occurrence rouge, et une X-occurrence bleu-et-rouge.
 }
 \end{frame}
 
 
-\begin{frame}{A New Sufficient Condition for Termination~\cite[Qiu]{qiu2025termination_icgt}}
+\begin{frame}{A New Sufficient Condition for Termination~[Qiu]}
     \begin{center}
     \resizebox{0.5\textwidth}{!}{
             \begin{tikzpicture} 
@@ -2670,10 +2749,11 @@ Let $X$ be the graph
             \end{tikzpicture}
           }
    \end{center}
-    terminates if there are strictly more \textcolor{orange}{orange} X-occurrences than \textcolor{red}{red} X-occurrences,
+    terminates if
+    %  there are strictly more \textcolor{orange}{orange} X-occurrences than \textcolor{red}{red} X-occurrences,
     \begin{itemize}
-        % \item  there are strictly more \textcolor{orange}{orange} X-occurrences than \textcolor{red}{red} X-occurrences,
-        \item every rewriting step:
+        \item it contains strictly more \textcolor{orange}{orange} X-occurrences than \textcolor{red}{red} X-occurrences in the rule, and
+        \item for every rewriting step:
     \begin{center}
     \resizebox{0.5\textwidth}{!}{
             \begin{tikzpicture} 
@@ -2757,10 +2837,18 @@ Let $X$ be the graph
             \end{tikzpicture}
           }
    \end{center}
-        has more \textcolor{blue}{blue}-and-\textcolor{orange}{orange} X-occurrences than \textcolor{blue}{blue}-and-\textcolor{red}{red} X-occurrences.
+    there are more \textcolor{blue}{blue}-and-\textcolor{orange}{orange} X-occurrences than \textcolor{blue}{blue}-and-\textcolor{red}{red} X-occurrences.
+
 \end{itemize} 
     
- Challenge: check the second condition under the unknown C'
+ Challenge: verify the second condition for an unknown C'.
+ \note{
+ 
+  La règle de réécriture termine si elle contient strictement plus d'occurrences orange que d'occurrences rouges, 
+  et pour chaque étape de réécriture, il y a plus d'occurrences bleu-et-orange que d'occurrences bleu-et-rouge.
+
+  Le défi est de vérifier la deuxième condition pour un C' inconnu.
+ }
 \end{frame} 
 
 \begin{frame}{Analysis of Implicit Occurrences}
@@ -2862,9 +2950,17 @@ Let $X$ be the graph
             \draw[blue,->] (y) -- node[midway,above] {$a$} (z) ;
         } 
     }
+    \note{
+        Dans cet exemple, il y a une occurrence bleu-et-rouge et une occurrence bleu-et-orange.
+        On observe qu'il y a une correspondance entre eux:
+         elle partage le même sous-graphe blue, 
+         et le sous-graphe rouge et le sous-graphe orange partagent les mêmes elements de l'interface. 
+
+         Cette observation nous permet d'etablir une condition suffisante pour la deuxième condition de la diapositive précédente.
+    }
 \end{frame}
 
-\begin{frame}{Sufficient Condition for the Second Condition~\cite[Qiu]{qiu2025termination_icgt}}
+\begin{frame}{Sufficient Condition for the Second Condition~[Qiu]}
     \begin{center}
         \begin{tikzpicture} 
             \coordinate (k) at (0, 0);
@@ -2948,8 +3044,8 @@ Let $X$ be the graph
         \end{tikzpicture}
     \end{center}
     \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
-        There are more \textcolor{blue}{blue}-and-\textcolor{orange}{orange} X-morphisms than \textcolor{blue}{blue}-and-\textcolor{red}{red} X-morphisms,
-        if  all subgraphs of \resizebox{0.1\textwidth}{!}{
+       
+        If  all subgraphs of \resizebox{0.1\textwidth}{!}{
                 \begin{tikzpicture}[baseline=1.5ex]
                     \coordinate (r) at (3,0);
                     \draw[fill=red!30] ($(r)+(-0.5,0)$)
@@ -2975,8 +3071,13 @@ Let $X$ be the graph
         \coordinate (k) at (0, 0);
             \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
             \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
-    \end{tikzpicture}.
+    \end{tikzpicture},
+     then there are more \textcolor{blue}{blue}-and-\textcolor{orange}{orange} X-morphisms than \textcolor{blue}{blue}-and-\textcolor{red}{red} X-morphisms.
     \end{beamercolorbox}
+
+    \note{
+        On peut garantir qu'il y a plus d'occurrences bleu-et-orange que d'occurrences bleu-et-rouge si tous les sous-graphes de R' qui peuvent former une occurrence bleu-et-rouge dans une étape de réécriture peuvent être envoyés vers des sous-graphes distincts de L' en préservant les éléments de l'interface K.
+    }
 \end{frame} 
    
 
@@ -3022,17 +3123,18 @@ Let $X$ be the graph
             }
     \end{center}
 
-    Existing automated methods fail.
-
-    Termination proved by counting morphisms from 
+    Terminating by counting morphisms from 
     $\tikz[baseline=-0.5ex]{ 
                 \node[draw,circle] (x) at (0,0) {}; 
                 \node[draw,circle] (y) at (1,0) {};
                 \node[draw,circle] (z) at (2,0) {};
                 \draw[->] (x) -- (y) node[midway, above] {$s$};
                 \draw[->] (z) -- (y) node[midway, above] {$s$};
-    }$.
+    }$ \textcolor{PineGreen}{\ding{51}}
 
+    \note{
+        On peut prouver que le système de réécriture de graphes de l'exemple motivant termine en comptant les morphismes depuis le graphe montré.
+    }
 \end{frame}
 
 \begin{frame}{Imcomparable with Existing Methods}
@@ -3045,12 +3147,17 @@ Succeed in some cases where all existing automated methods fail.
 
 Fail in some cases where other methods succeed.
 
-More power if search in parallel \textcolor{PineGreen}{\ding{51}}
+\resizebox{\textwidth}{!}{\textbf{More power if search in parallel \textcolor{PineGreen}{\ding{51}}}}
 
+\note{
+    La methode de comptage de morphismes est incomparable avec les méthodes existantes.
+    
+    % Elle réussit dans certains cas où toutes les méthodes automatisées existantes échouent, 
+    % et échoue dans certains cas où d'autres méthodes réussissent.
+
+    Si on les lance en parallèle, on obtient plus de puissance.
+}
 \end{frame}
-
-\section{LyonParallel—A Tool for Termination of
-Graph Rewriting}
 
 \begin{frame}{LyonParallel}
    \begin{description}
@@ -3058,6 +3165,11 @@ Graph Rewriting}
     \item[Iterative elimination of graph rewriting rules]
     \item[Available : \url{https://github.com/Qi-tchi/LyonParallel}]
    \end{description}
+
+   \note{
+    Les contributions de cette thèse ont été implantées dans un outil appelé; LyonParallel, écrit en Ocaml.
+    Il élimine de manière itérative les règles de réécriture de graphes qui ne peuvent pas contribuer à des processus de réécriture infinis.
+   }
 \end{frame}
 
 
@@ -3077,7 +3189,7 @@ Graph Rewriting}
 
   % Two explicit methods
   \node[draw, rectangle, below left=8mm of choose] (typegraph) {\textcolor{red}{Type Graph Method}};
-  \node[draw, rectangle, below right=8mm of choose] (subcount) {\textcolor{red}{Subgraph Counting}};
+  \node[draw, rectangle, below right=8mm of choose] (subcount) {\textcolor{red}{Morphism Counting}};
 
   % Z3 step (compact)
   \node[draw, rectangle, below=of typegraph] (z3) {Solve constraints with \textcolor{red}{Z3}};
@@ -3112,14 +3224,24 @@ Graph Rewriting}
   \draw[->] (trynext) -- node[midway,left]{No} (end);
     \end{tikzpicture}
 }
+\note{
+    Voici le flux de traitement de LyonParallel.
+    Après avoir démarré le programme et sélectionné le système de réécriture de graphes à analyser, 
+    l'utilisateur choisit une méthode parmi les deux méthodes: la méthode par graphe de type pondéré et le comptage de morphismes.
+    
+    Chaque méthode tente d'éliminer certaines règles.
+    Si des règles ont été éliminées, le programme vérifie si le système est vide.
+    Si c'est le cas, il se termine; sinon, il revient à l'étape de sélection de la méthode.
+    Si aucune règle n'a été éliminée, l'utilisateur a la possibilité d'essayer une autre méthode ou de terminer le programme.
+}
 \end{frame}
 
 \begin{frame}{Conclusion and Future Work}
   \textbf{Contributions}
   \begin{itemize}
-    \item Extended the Weighted Type Graph Method to improve usability.
-    \item Proposed a termination criterion applicable to new cases.
-    \item Extended Morphism Counting to count morphisms with a forbidden context.
+    \item Improved usability of an existing method,
+    \item Proposed a new termination criterion,
+    \item Extended the new termination criterion (not presented here),
     \item Implemented an automated tool for termination analysis.
   \end{itemize}
     \vspace{4mm}
@@ -3129,7 +3251,23 @@ Graph Rewriting}
     \item Mid term: Certificate-generation mechanism.
     \item Long term: Extension to other graph rewriting frameworks (e.g., PBPO+)
   \end{itemize}
-\end{frame}
+
+  \note{
+    Pour conclure, les contributions de cette thèse sont les suivantes:
+    nous avons amélioré l'utilisabilité d'une méthode existante,
+    proposé un nouveau critère de terminaison,
+    étendu ce critère (non présenté ici),
+    et implanté un outil automatique pour l'analyse de terminaison.
+
+    Pour les travaux futurs, 
+    à court terme, nous envisageons d'ajouter des contextes interdits au comptage de morphismes.
+    À moyen terme, nous prévoyons de développer un mécanisme de génération de certificats.
+    À long terme, nous souhaitons étendre notre méthode à d'autres cadres de réécriture de graphes, tels que PBPO+.
+
+
+    Vite fait
+  } 
+\end{frame} 
 
 \begin{frame}[allowframebreaks]{References}
     \small % optional: make entries smaller

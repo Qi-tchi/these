@@ -10,7 +10,7 @@
 \usepackage{graphicx}
 \usepackage{changepage}
 \usepackage{cancel}  
-\usepackage{tikz}
+\usepackage{tikz} 
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning}
 \usetikzlibrary{positioning,arrows}
 \usepackage[dvipsnames]{xcolor}
@@ -83,559 +83,518 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
 
 \maketitle
 
-% \begin{frame}{Motivation \& Goal} 
+\begin{frame}{Motivation \& Goal} 
 
-%     \begin{description} 
-%         \item[Centralized systems and distributed systems:]\ \\
-%             \resizebox{0.3\textwidth}{!}{
-%               \begin{tikzpicture}
-%                   \node (n0) at (0,0) {\faIcon{laptop-code}};
-%                   \node (n1) at (-1.2,0) {\faIcon{laptop-code}};
-%                   \node (n2) at (0,1.2) {\faIcon{laptop-code}};
-%                   \node (n3) at (1.2,0) {\faIcon{laptop-code}};
-%                   \node (n4) at (0,-1.2) {\faIcon{laptop-code}};
-%                   \draw[-,dashed] (n0) -- (n1);
-%                   \draw[-,dashed] (n0) -- (n2);
-%                   \draw[-,dashed] (n0) -- (n3);
-%                   \draw[-,dashed] (n0) -- (n4);
-%               \end{tikzpicture}
-%             }
-%             \hspace{1cm}
-%             \resizebox{0.3\textwidth}{!}{
-%             \begin{tikzpicture}
-%                 \node (n1) at (-1.2,0) {\faIcon{laptop-code}};
-%                 \node (n2) at (0,1.2) {\faIcon{laptop-code}};
-%                 \node (n3) at (1.2,0) {\faIcon{laptop-code}};
-%                 \node (n4) at (0,-1.2) {\faIcon{laptop-code}};
-%                 \draw[-,dashed] (n1) -- (n2);
-%                 \draw[-,dashed] (n2) -- (n3);
-%                 \draw[-,dashed] (n3) -- (n4);
-%                 \draw[-,dashed] (n4) -- (n1);
-%                 \draw[-,dashed] (n1) -- (n3);
-%                 \draw[-,dashed] (n2) -- (n4);
-%             \end{tikzpicture}
-%             }
-%         \item[Failures can be catastrophic:]                
-%               \faIcon{laptop-code}
-%               \faIcon{mobile-alt}
-%               \faIcon{medkit}
-%               \faIcon{train}
-%               \faIcon{plane}
-%               \faIcon{rocket} 
-%         \item[Ensuring correctness is hard.]\ \\
-%             \begin{itemize}
-%                 \item distributed algorithms are complex
-%                 \item The Needham-Schroeder protocol flaw (1978-1995)
-%             \end{itemize}
-%         \item[This thesis: automated verification.]\ \\
-%             \begin{itemize}
-%                 \item mathematically rigorous
-%                 \item Minimal user effort
-%             \end{itemize}
-%     \end{description}
-% \note{Distributed and concurrent systems are everywhere — from medical devices to transport. When they fail, consequences can be severe. Yet proving correctness is hard. In this thesis, I focus on automated, mathematically rigorous verification with minimal user effort.}
-% \end{frame}
+    \begin{description} 
+        \item[Centralized systems and distributed systems:]\ \\
+            \resizebox{0.3\textwidth}{!}{
+              \begin{tikzpicture}
+                  \node (n0) at (0,0) {\faIcon{laptop-code}};
+                  \node (n1) at (-1.2,0) {\faIcon{laptop-code}};
+                  \node (n2) at (0,1.2) {\faIcon{laptop-code}};
+                  \node (n3) at (1.2,0) {\faIcon{laptop-code}};
+                  \node (n4) at (0,-1.2) {\faIcon{laptop-code}};
+                  \draw[-,dashed] (n0) -- (n1);
+                  \draw[-,dashed] (n0) -- (n2);
+                  \draw[-,dashed] (n0) -- (n3);
+                  \draw[-,dashed] (n0) -- (n4);
+              \end{tikzpicture}
+            }
+            \hspace{1cm}
+            \resizebox{0.3\textwidth}{!}{
+            \begin{tikzpicture}
+                \node (n1) at (-1.2,0) {\faIcon{laptop-code}};
+                \node (n2) at (0,1.2) {\faIcon{laptop-code}};
+                \node (n3) at (1.2,0) {\faIcon{laptop-code}};
+                \node (n4) at (0,-1.2) {\faIcon{laptop-code}};
+                \draw[-,dashed] (n1) -- (n2);
+                \draw[-,dashed] (n2) -- (n3);
+                \draw[-,dashed] (n3) -- (n4);
+                \draw[-,dashed] (n4) -- (n1);
+                \draw[-,dashed] (n1) -- (n3);
+                \draw[-,dashed] (n2) -- (n4);
+            \end{tikzpicture}
+            }
+        \item[Failures can be catastrophic:]                
+              \faIcon{laptop-code}
+              \faIcon{mobile-alt}
+              \faIcon{medkit}
+              \faIcon{train}
+              \faIcon{plane}
+              \faIcon{rocket} 
+        \item[Ensuring correctness is hard.]\ \\
+            \begin{itemize}
+                \item distributed algorithms are complex
+                \item The Needham-Schroeder protocol flaw (1978-1995)
+            \end{itemize}
+        \item[This thesis: automated verification.]\ \\
+            \begin{itemize}
+                \item mathematically rigorous
+                \item Minimal user effort
+            \end{itemize}
+    \end{description}
+\note{Distributed and concurrent systems are everywhere — from medical devices to transport. When they fail, consequences can be severe. Yet proving correctness is hard. In this thesis, I focus on automated, mathematically rigorous verification with minimal user effort.}
+\end{frame}
 
 
-% \begin{frame}{Graph Transformation}
-%     \begin{tikzpicture}
-%         \node[draw, circle] (n1) at (0,0) {};
-%         \node[draw, circle] (n2) at (1,1) {};
-%         \node[draw, circle] (n4) at (1,-1) {};
-%         \node[draw, circle] (n3) at (2,0) {};
-%         \node[draw, circle] (n5) at (3,-1) {};
-%         \node[draw, circle] (n6) at (3,1) {};
+\begin{frame}{Graph Transformation}
+    \begin{tikzpicture}
+        \node[draw, circle] (n1) at (0,0) {};
+        \node[draw, circle] (n2) at (1,1) {};
+        \node[draw, circle] (n4) at (1,-1) {};
+        \node[draw, circle] (n3) at (2,0) {};
+        \node[draw, circle] (n5) at (3,-1) {};
+        \node[draw, circle] (n6) at (3,1) {};
 
-%         % \onslide<2->{
-%             \draw[-] (n1)--(n2);
-%             \draw[-] (n2)--(n3)--(n4);
-%             \draw[-] (n4)--(n1);
-%             \draw[-] (n3)--(n6);
-%             \draw[-] (n6)--(n5);
-%             \draw[-] (n5)--(n3);
-%         % }
-%             \draw[fill=blue, opacity=0.2] (0,0) circle (1.65);
+        % \onslide<2->{
+            \draw[-] (n1)--(n2);
+            \draw[-] (n2)--(n3)--(n4);
+            \draw[-] (n4)--(n1);
+            \draw[-] (n3)--(n6);
+            \draw[-] (n6)--(n5);
+            \draw[-] (n5)--(n3);
+        % }
+            \draw[fill=blue, opacity=0.2] (0,0) circle (1.65);
         
-%         % \onslide<3->{
-%         %     \draw[red, -] (n1)--(n2);
-%         %     \draw[red, -] (n2)--(n3)--(n4);
-%         %     \draw[-] (n4)--(n1);
-%         %     \draw[-, red] (n3)--(n6);
-%         %     \draw[-] (n6)--(n5);
-%         %     \draw[-, red] (n5)--(n3);
-%         % }
+        % \onslide<3->{
+        %     \draw[red, -] (n1)--(n2);
+        %     \draw[red, -] (n2)--(n3)--(n4);
+        %     \draw[-] (n4)--(n1);
+        %     \draw[-, red] (n3)--(n6);
+        %     \draw[-] (n6)--(n5);
+        %     \draw[-, red] (n5)--(n3);
+        % }
 
-%         \draw[transparent, rounded corners, rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3);
-%         \draw[transparent, rounded corners, rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3);
-%     \end{tikzpicture}
+        \draw[transparent, rounded corners, rotate around={45:(0,-0.5)}, dotted] (0,-0.5) rectangle (2.2,0.3);
+        \draw[transparent, rounded corners, rotate around={-45:(0,0.5)}, dotted] (0,0.5) rectangle (2.2,-0.3);
+    \end{tikzpicture}
 
-%   An intuitive modelization of distributed systems:
-%     \begin{itemize}
-%         \item computational units $\rightarrow$ nodes
-%         \item communication channels  $\rightarrow$ edges
-%         \item system states  $\rightarrow$ graphs
-%         \item algorithm behaviors \\ $\rightarrow$ graph transformation rules according to local knowledge
-%     \end{itemize}
-% \end{frame}
+  An intuitive modelization of distributed systems:
+    \begin{itemize}
+        \item computational units $\rightarrow$ nodes
+        \item communication channels  $\rightarrow$ edges
+        \item system states  $\rightarrow$ graphs
+        \item algorithm behaviors \\ $\rightarrow$ graph transformation rules according to local knowledge
+    \end{itemize}
+\end{frame}
 
-% \begin{frame}{Graph Transformation}
-%  \only<1-11>{Configuration of a distributed system:}
-%  \only<12->{A spanning tree is obtained when the rule cannot be applied:}
-%     \begin{overlayarea}{\textwidth}{\textheight}
-%         \begin{center}
-%             \begin{onlyenv}<1>
-%             \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n1) at (0,0) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
-%             \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
-%             \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
-%             \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%             \draw[PineGreen,-] (n4)-- node[pos=0.45,left] {}(n1);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
-%             \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%             \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
-%             }
-%             % \draw[red!50, rounded corners] ($(n5)+(-0.3,-0.3)$) rectangle ($(n6)+(0.3,0.3)$);  %n5(bottom) and n6
-%         \end{tikzpicture}
-%         % } 
-%         \end{onlyenv}
-%         \begin{onlyenv}<2>
-%                \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n1) at (0,0) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
-%             \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
-%             \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
-%             \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%             \draw[PineGreen,-] (n4)-- node[pos=0.45,left] {}(n1);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
-%             \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%             \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
-%              \draw[red!50, rounded corners,rotate around={45:(0,-0.5)}] ($(n4)+(-0.3,-0.3)$) rectangle ($(n1)+(0.3,0.3)$); 
-%             }
-%         \end{tikzpicture}
-%         \end{onlyenv}
-%          \begin{onlyenv}<3>
-%                \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%             \node[red,fill=red,draw, circle] (n1) at (0,0) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
-%             \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
-%             \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
-%             \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%             \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
-%             \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%             \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
-%             }
-%         \end{tikzpicture}
-%         \end{onlyenv}
-%         \begin{onlyenv}<4>
-%                \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%             \node[red,fill=red,draw, circle] (n1) at (0,0) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
-%             \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
-%             \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
-%             \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%             \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
-%             \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%             \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
-%             \draw[red!50, rounded corners,rotate around={45:(0,-0.5)}] ($(n1)+(-0.3,-0.3)$) rectangle ($(n2)+(0.3,0.3)$); 
-%             }
-%         \end{tikzpicture}
-%         \end{onlyenv}
-%         \begin{onlyenv}<5>
-%                \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%             \node[red,fill=red,draw, circle] (n1) at (0,0) {};
-%             \node[red,fill=red,draw, circle] (n2) at (1,1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
-%             \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
-%             \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
-%             \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%             \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
-%             \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%             \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
-%             }
-%         \end{tikzpicture}
-%         \end{onlyenv}
-%         \begin{onlyenv}<6>
-%                \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%             \node[red,fill=red,draw, circle] (n1) at (0,0) {};
-%             \node[red,fill=red,draw, circle] (n2) at (1,1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
-%             \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
-%             \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
-%             \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%             \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
-%             \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%             \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
-%             \draw[red!50, rounded corners,rotate around={45:(0.5,0.5)}] ($(n3)+(-0.3,-0.3)$) rectangle ($(n2)+(0.3,0.3)$); 
-%             }
-%         \end{tikzpicture}
-%         \end{onlyenv}
-%          \begin{onlyenv}<7>
-%                \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%             \node[red,fill=red,draw, circle] (n1) at (0,0) {};
-%             \node[red,fill=red,draw, circle] (n2) at (1,1) {};
-%             \node[red,fill=red,draw, circle] (n3) at (2,0) {};
-%             \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
-%             \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
-%             \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%             \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
-%             \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%             \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
-%             }
-%         \end{tikzpicture}
-%         \end{onlyenv}
-%          \begin{onlyenv}<8>
-%                \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%             \node[red,fill=red,draw, circle] (n1) at (0,0) {};
-%             \node[red,fill=red,draw, circle] (n2) at (1,1) {};
-%             \node[red,fill=red,draw, circle] (n3) at (2,0) {};
-%             \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
-%             \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
-%             \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
-%             \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%             \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
-%             \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%             \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
-%             % \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n3)+(-0.3,-0.3)$) rectangle ($(n6)+(0.3,0.3)$); 
-%             \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n5)+(-0.4,-0.4)$) rectangle ($(n3)+(0.3,0.4)$); 
-%             }
-%         \end{tikzpicture}
-%         \end{onlyenv}
-%         \begin{onlyenv}<9>
-%             \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%               \node[red,fill=red,draw, circle] (n1) at (0,0) {};
-%               \node[red,fill=red,draw, circle] (n2) at (1,1) {};
-%               \node[red,fill=red,draw, circle] (n3) at (2,0) {};
-%               \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%               \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
-%               \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
-%               \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
-%               \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
-%               \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%               \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
-%               \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
-%               \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%               \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
-%               }
-%           \end{tikzpicture}
-%         \end{onlyenv}
-%          \begin{onlyenv}<10>
-%                \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%               \node[red,fill=red,draw, circle] (n1) at (0,0) {};
-%               \node[red,fill=red,draw, circle] (n2) at (1,1) {};
-%               \node[red,fill=red,draw, circle] (n3) at (2,0) {};
-%               \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%               \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
-%               \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
-%               \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
-%               \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
-%               \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%               \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
-%               \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
-%               \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%               \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
-%               \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n3)+(-0.3,-0.3)$) rectangle ($(n6)+(0.3,0.3)$); 
-%               % \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n5)+(-0.4,-0.4)$) rectangle ($(n3)+(0.3,0.4)$); 
-%             }
-%         \end{tikzpicture}
-%         \end{onlyenv}
-%         \begin{onlyenv}<11>
-%                \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%             \node[red,fill=red,draw, circle] (n1) at (0,0) {};
-%             \node[red,fill=red,draw, circle] (n2) at (1,1) {};
-%             \node[red,fill=red,draw, circle] (n3) at (2,0) {};
-%             \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%             \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
-%             \node[red,fill=red,draw, circle] (n6) at (3,1) {};
-%             \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
-%             \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
-%             \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%             \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
-%             \draw[red,-] (n3)-- node[pos=0.65,left] {}(n6);
-%             \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%             \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
-%             }
-%         \end{tikzpicture}
-%         \end{onlyenv}
-%           \begin{onlyenv}<12->
-%                \begin{tikzpicture}
-%             \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
-%             \node[red,fill=red,draw, circle] (n1) at (0,0) {};
-%             \node[red,fill=red,draw, circle] (n2) at (1,1) {};
-%             \node[red,fill=red,draw, circle] (n3) at (2,0) {};
-%             \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
-%             \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
-%             \node[red,fill=red,draw, circle] (n6) at (3,1) {};
-%             \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
-%             \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
-%             % \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
-%             \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
-%             \draw[red,-] (n3)-- node[pos=0.65,left] {}(n6);
-%             % \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
-%             \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
-%             }
-%         \end{tikzpicture}
-%         \end{onlyenv}
-%      \end{center}
+\begin{frame}{Graph Transformation}
+ \only<1-11>{Configuration of a distributed system:}
+ \only<12->{A spanning tree is obtained when the rule cannot be applied:}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \begin{center}
+            \begin{onlyenv}<1>
+            \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[PineGreen,fill=PineGreen,draw, circle] (n1) at (0,0) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[PineGreen,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
+            % \draw[red!50, rounded corners] ($(n5)+(-0.3,-0.3)$) rectangle ($(n6)+(0.3,0.3)$);  %n5(bottom) and n6
+        \end{tikzpicture}
+        % } 
+        \end{onlyenv}
+        \begin{onlyenv}<2>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[PineGreen,fill=PineGreen,draw, circle] (n1) at (0,0) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[PineGreen,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+             \draw[red!50, rounded corners,rotate around={45:(0,-0.5)}] ($(n4)+(-0.3,-0.3)$) rectangle ($(n1)+(0.3,0.3)$); 
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+         \begin{onlyenv}<3>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+        \begin{onlyenv}<4>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[PineGreen,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            \draw[red!50, rounded corners,rotate around={45:(0,-0.5)}] ($(n1)+(-0.3,-0.3)$) rectangle ($(n2)+(0.3,0.3)$); 
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+        \begin{onlyenv}<5>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+        \begin{onlyenv}<6>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[PineGreen,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            \draw[red!50, rounded corners,rotate around={45:(0.5,0.5)}] ($(n3)+(-0.3,-0.3)$) rectangle ($(n2)+(0.3,0.3)$); 
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+         \begin{onlyenv}<7>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+         \begin{onlyenv}<8>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n5) at (3,-1) {};
+            \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[PineGreen,-] (n5)-- node[pos=0.4,left] {}(n3);
+            % \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n3)+(-0.3,-0.3)$) rectangle ($(n6)+(0.3,0.3)$); 
+            \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n5)+(-0.4,-0.4)$) rectangle ($(n3)+(0.3,0.4)$); 
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+        \begin{onlyenv}<9>
+            \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+              \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+              \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+              \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+              \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+              \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
+              \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+              \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+              \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+              \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+              \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+              \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+              \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+              \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
+              }
+          \end{tikzpicture}
+        \end{onlyenv}
+         \begin{onlyenv}<10>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+              \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+              \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+              \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+              \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+              \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
+              \node[PineGreen,fill=PineGreen,draw, circle] (n6) at (3,1) {};
+              \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+              \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+              \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+              \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+              \draw[PineGreen,-] (n3)-- node[pos=0.65,left] {}(n6);
+              \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+              \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
+              \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n3)+(-0.3,-0.3)$) rectangle ($(n6)+(0.3,0.3)$); 
+              % \draw[red!50, rounded corners,rotate around={45:(1.5,0.5)}] ($(n5)+(-0.4,-0.4)$) rectangle ($(n3)+(0.3,0.4)$); 
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+        \begin{onlyenv}<11>
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
+            \node[red,fill=red,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+            \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[red,-] (n3)-- node[pos=0.65,left] {}(n6);
+            \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+          \begin{onlyenv}<12->
+               \begin{tikzpicture}
+            \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
+            \node[red,fill=red,draw, circle] (n1) at (0,0) {};
+            \node[red,fill=red,draw, circle] (n2) at (1,1) {};
+            \node[red,fill=red,draw, circle] (n3) at (2,0) {};
+            \node[red,fill=red,draw, circle] (n4) at (1,-1) {};
+            \node[red,fill=red,draw, circle] (n5) at (3,-1) {};
+            \node[red,fill=red,draw, circle] (n6) at (3,1) {};
+            \draw[red,-] (n1)-- node[pos=0.6, left] {} (n2);
+            \draw[red,-] (n2)-- node[pos=0.35,right] {} (n3);
+            % \draw[PineGreen,-] (n3)-- node[pos=0.6,right] {}(n4);
+            \draw[red,-] (n4)-- node[pos=0.45,left] {}(n1);
+            \draw[red,-] (n3)-- node[pos=0.65,left] {}(n6);
+            % \draw[PineGreen,-] (n6)-- node[pos=0.4,right] {}(n5);
+            \draw[red,-] (n5)-- node[pos=0.4,left] {}(n3);
+            }
+        \end{tikzpicture}
+        \end{onlyenv}
+     \end{center}
 
-%     Apply the rule as long as possible:
-%         \begin{center}
-%         \resizebox{0.7\textwidth}{!}{
-%             \begin{tikzpicture}
-%                         \graphbox{\(\)}{0mm}{0mm}{34mm}{15mm}{-10mm}{-10mm}{
-%                             \node[red,fill=red,draw, circle] (x) at (0,0) {};
-%                             \node () at (0,0.55) {};  
-%                             \node[PineGreen,fill=PineGreen,draw, circle] (y) at (2,0) {};
-%                             \node () at (2,0.55) {};
-%                             \draw[PineGreen,-] (x) -- node[midway,above] {} (y) ;
-%                             %             \draw[->] (x) edge [loop above] node {$A$} (x);
-%                             % \draw[->] (y) edge [loop above] node {$N$} (y);
-%                         }
-%                         \graphbox{\(\)}{40mm}{0mm}{34mm}{15mm}{-10mm}{-10mm}{
-%                             \node[red,fill=red,draw, circle]  (x) at (0,0) {};  
-%                             \node () at (0,0.55) {};  
-%                             \node[red,fill=red,draw, circle]  (y) at (2,0) {};
-%                             \node () at (2,0.55) {};
-%                             \draw[red,-] (x) -- node[midway,above] {} (y) ;
-%                             % \draw[->] (x) edge [loop above] node {$A$} (x);
-%                             % \draw[->] (y) edge [loop above] node {$A$} (y);
-%                         }  
-%                         \node () at (37mm,-10mm) {\( \mathop{\rightarrow} \)}; % K -> L
-%             \end{tikzpicture}
-%         } 
-%         \end{center}
-%         \begin{onlyenv}<13->
-%           \textcolor{red}{Can a given set of rules transform a given initial graph forever?}
-%             % \textcolor{red}{Does the transformation process terminate for any initial graph under the strategy of applying the rule while possible?}
-%         \end{onlyenv} 
-%     \end{overlayarea}
+    Apply the rule as long as possible:
+        \begin{center}
+        \resizebox{0.7\textwidth}{!}{
+            \begin{tikzpicture}
+                        \graphbox{\(\)}{0mm}{0mm}{34mm}{15mm}{-10mm}{-10mm}{
+                            \node[red,fill=red,draw, circle] (x) at (0,0) {};
+                            \node () at (0,0.55) {};  
+                            \node[PineGreen,fill=PineGreen,draw, circle] (y) at (2,0) {};
+                            \node () at (2,0.55) {};
+                            \draw[PineGreen,-] (x) -- node[midway,above] {} (y) ;
+                            %             \draw[->] (x) edge [loop above] node {$A$} (x);
+                            % \draw[->] (y) edge [loop above] node {$N$} (y);
+                        }
+                        \graphbox{\(\)}{40mm}{0mm}{34mm}{15mm}{-10mm}{-10mm}{
+                            \node[red,fill=red,draw, circle]  (x) at (0,0) {};  
+                            \node () at (0,0.55) {};  
+                            \node[red,fill=red,draw, circle]  (y) at (2,0) {};
+                            \node () at (2,0.55) {};
+                            \draw[red,-] (x) -- node[midway,above] {} (y) ;
+                            % \draw[->] (x) edge [loop above] node {$A$} (x);
+                            % \draw[->] (y) edge [loop above] node {$A$} (y);
+                        }  
+                        \node () at (37mm,-10mm) {\( \mathop{\rightarrow} \)}; % K -> L
+            \end{tikzpicture}
+        } 
+        \end{center}
+        \begin{onlyenv}<13->
+          \textcolor{red}{Can a given set of rules transform a given initial graph forever?}
+            % \textcolor{red}{Does the transformation process terminate for any initial graph under the strategy of applying the rule while possible?}
+        \end{onlyenv} 
+    \end{overlayarea}
     
-%     \note{The graph models a distributed network of six computational units.
-% Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. node $1$ labeled by $A$ represents an active computational unit, the other nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$.}
+    \note{The graph models a distributed network of six computational units.
+Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. node $1$ labeled by $A$ represents an active computational unit, the other nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$.}
 
-% \note{The algorithm operates as follows: when an active unit detects a neutral neighbor via a channel in state $0$, it activates the neighbor and updates the channel to state $1$.
-%  This behavior is captured by the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_0}.}
-% \end{frame}
+\note{The algorithm operates as follows: when an active unit detects a neutral neighbor via a channel in state $0$, it activates the neighbor and updates the channel to state $1$.
+ This behavior is captured by the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_0}.}
+\end{frame}
 
 
-% % \begin{frame}{A Non-Terminating Case}
-% %     \begin{center}
-% %         \resizebox{0.8\textwidth}{!}{
-% %     \begin{tikzpicture}[baseline=-10mm]
-% %         \graphbox{}{0mm}{-3mm}{20mm}{10mm}{-5mm}{-5mm}{
-% %         \node[PineGreen,fill=PineGreen,draw,circle] (x) at (0,0) {};
-% %         \node[red,fill=red,draw,circle] (y) at (1,0) {};
-% %         \draw[-] (x) -- node[midway,below] {} (y) ;
-% %         }  
-
-% %         \graphbox{}{30mm}{-3mm}{20mm}{10mm}{-5mm}{-5mm}{
-% %         \node[red,fill=red,draw,circle] (x) at (0,0) {};
-% %         \node[PineGreen,fill=PineGreen,draw,circle] (y) at (1,0) {};
-% %         \draw[-] (x) -- node[midway,below] {} (y) ;
-% %         }    
-% %         \node () at (25mm,-10mm) {\( \rightarrow \)}; % K -> R
-% %     \end{tikzpicture}
-% %     }
-% %     \end{center}
-
-% %     \begin{center}
-% %   \resizebox{0.85\textwidth}{!}{
-% %     \begin{tikzpicture}[baseline=-10mm]
-% %     \graphbox{}{0mm}{0mm}{20mm}{10mm}{-5mm}{-5mm}{
-% %              \node[PineGreen,fill=PineGreen,draw,circle] (x) at (0,0) {};
-% %         \node[red,fill=red,draw,circle] (y) at (1,0) {};
-% %         \draw[-] (x) -- node[midway,below] {} (y) ;
-% %     } 
-% %       \graphbox{}{40mm}{0mm}{20mm}{10mm}{-5mm}{-5mm}{
-% %         \node[red,fill=red,draw,circle] (x) at (0,0) {};
-% %         \node[PineGreen,fill=PineGreen,draw,circle] (y) at (1,0) {};
-% %         \draw[-] (x) -- node[midway,below] {} (y) ;
-% %     } 
-% %     \draw[->] (22mm,0mm) to[bend left] (38mm,0mm) ; 
-% %     \draw[<-] (22mm,-10mm) to[bend right] (38mm,-10mm) ; 
-% %     \end{tikzpicture}
-% %     } 
-% %     \end{center}
-
-% % \end{frame}
-
-% \begin{frame}{Termination}
-%   \begin{itemize}
-%     \item No graph $G_0$ can be transformed forever
-%          $$G_0 \Rightarrow G_1 \Rightarrow \cdots$$
-%         %  under the strategy 
-%         %   \begin{center}
-%         %       \textcolor{blue}{\enquote{apply rules as long as possible}}
-%         %   \end{center}
-%     \item Aligns with the notion of program termination: 
-%          \begin{center}
-%             \textcolor{blue}{\enquote{every execution (on any input) halts.}}
-%           \end{center}
-%     \item Undecidable in general 
-%     \item How to prove termination automatically?
-%   \end{itemize}
-% \end{frame}
-
-% \begin{frame}{A non-termination case}
+% \begin{frame}{A Non-Terminating Case}
 %     \begin{center}
 %         \resizebox{0.8\textwidth}{!}{
 %     \begin{tikzpicture}[baseline=-10mm]
-%         \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{3mm}{
-%             \coordinate (o) at (0mm,-11mm); 
-%             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-%             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
-%             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
-%             \draw[-,red] (l1) -- (l3) node[midway,above] {};
-%             \draw[-,blue] (l3) -- (l2) node[midway,above] {};
-%         } 
+%         \graphbox{}{0mm}{-3mm}{20mm}{10mm}{-5mm}{-5mm}{
+%         \node[PineGreen,fill=PineGreen,draw,circle] (x) at (0,0) {};
+%         \node[red,fill=red,draw,circle] (y) at (1,0) {};
+%         \draw[-] (x) -- node[midway,below] {} (y) ;
+%         }  
 
-%         \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{3mm}{
-%             \coordinate (o) at (-5mm,-11mm); 
-%             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-%             % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
-%             \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
-%             \draw[-,blue] (l1) -- (l3) node[midway,above] {};
-%             \draw[-,red] (l3) -- (l4) node[midway,above] {};
-%             % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+%         \graphbox{}{30mm}{-3mm}{20mm}{10mm}{-5mm}{-5mm}{
+%         \node[red,fill=red,draw,circle] (x) at (0,0) {};
+%         \node[PineGreen,fill=PineGreen,draw,circle] (y) at (1,0) {};
+%         \draw[-] (x) -- node[midway,below] {} (y) ;
 %         }    
-%         % \node () at (37mm,-10mm) {\( \leftarrow \)}; % K -> L
-%         \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> R
+%         \node () at (25mm,-10mm) {\( \rightarrow \)}; % K -> R
 %     \end{tikzpicture}
 %     }
 %     \end{center}
 
-% \noindent Loop:\resizebox{0.85\textwidth}{!}{
+%     \begin{center}
+%   \resizebox{0.85\textwidth}{!}{
 %     \begin{tikzpicture}[baseline=-10mm]
-%     \graphbox{\( \)}{0mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
-%         \node[draw,circle] (x) at (0,0) {};
-%         \node[draw,circle] (y) at (1,0) {};
-%         \node[draw,circle] (z) at (0.5,0.86) {};
-%         \draw[-,red] (x) -- node[midway,below] {} (y) ;
-%         \draw[-,red,very thick] (y) -- node[midway,right] {} (z) ;
-%         \draw[-,blue,very thick] (z) -- node[midway,left] {} (x) ;
+%     \graphbox{}{0mm}{0mm}{20mm}{10mm}{-5mm}{-5mm}{
+%              \node[PineGreen,fill=PineGreen,draw,circle] (x) at (0,0) {};
+%         \node[red,fill=red,draw,circle] (y) at (1,0) {};
+%         \draw[-] (x) -- node[midway,below] {} (y) ;
 %     } 
-%     \node () at (10mm,-35mm) {\( \Rightarrow  \)};
-%     \node () at (-3mm,-23mm) {\( \Swarrow  \)};
-%     \graphbox{\( \)}{-25mm}{-25mm}{20mm}{20mm}{-5mm}{-14mm}{
-%         \node[draw,circle] (x) at (0,0) {};  
-%         \node[draw,circle] (y) at (1,0) {};
-%         \node[draw,circle] (z) at (0.5,0.86) {};
-%         \draw[-,red,very thick] (x) -- node[midway,below] {} (y) ;
-%         \draw[-,blue,very thick] (y) -- node[midway,right] {} (z) ;
-%         \draw[-,red] (z) -- node[midway,left] {} (x) ;
+%       \graphbox{}{40mm}{0mm}{20mm}{10mm}{-5mm}{-5mm}{
+%         \node[red,fill=red,draw,circle] (x) at (0,0) {};
+%         \node[PineGreen,fill=PineGreen,draw,circle] (y) at (1,0) {};
+%         \draw[-] (x) -- node[midway,below] {} (y) ;
 %     } 
-%     \node () at (23mm,-23mm) {\( \Nwarrow \)};
-%     \graphbox{\( \)}{25mm}{-25mm}{20mm}{20mm}{-5mm}{-14mm}{
-%         \node[draw,circle] (x) at (0,0) {};  
-%         \node[draw,circle] (y) at (1,0) {};
-%         \node[draw,circle] (z) at (0.5,0.86) {};
-%         \draw[-,blue,very thick] (x) -- node[midway,below] {} (y) ;
-%         \draw[-,red] (y) -- node[midway,right] {} (z) ;
-%         \draw[-,red,very thick] (z) -- node[midway,left] {} (x) ;
-%     }
-%     %   \node () at (85mm,-10mm) {\( \Rightarrow  \)};
-%     %   \graphbox{\( \)}{90mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
-%     %       \node[draw,circle] (x) at (0,0) {};   
-%     %       \node[draw,circle] (y) at (1,0) {};
-%     %       \node[draw,circle] (z) at (0.5,0.86) {};
-%     %       \draw[->,red] (x) -- node[midway,below] {$a$} (y) ;
-%     %       \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
-%     %       \draw[->] (z) -- node[midway,left] {$b$} (x) ;
-%     %   }
+%     \draw[->] (22mm,0mm) to[bend left] (38mm,0mm) ; 
+%     \draw[<-] (22mm,-10mm) to[bend right] (38mm,-10mm) ; 
 %     \end{tikzpicture}
-%     }
-% %         \noindent Rule $\beta$:\resizebox{0.5\textwidth}{!}{ 
-% %        \begin{tikzpicture}[baseline=-10mm]
-% %                     \graphbox{}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-% %                         \coordinate (o) at (0mm,-11mm); 
-% %                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-% %                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-% %                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-% %                         \draw[-] (l1) -- (l2) node[midway,above] {};
-% %                     } 
-% %                     % \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-% %                     %     \coordinate (o) at (0mm,-11mm); 
-% %                     %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-% %                     %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-% %                     % }  
-% %                     \graphbox{}{40mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
-% %                         \coordinate (o) at (-5mm,-11mm); 
-% %                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-% %                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-% %                          % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-% %                         \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
-% %                         % \draw[->] (l1) -- (l4) node[midway,above] {};
-% %                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-% %                     }    
-% %                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
-% %                     % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
-% %                 \end{tikzpicture}
-% %                 }
+%     } 
+%     \end{center}
 
-% %                 \vspace{4mm}
-% % \noindent Terminating by the number of edges if we consider finite graphs only. 
 % \end{frame}
 
-% \begin{frame}{Automated Termination Proofs}
-%     \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
-%         Termination by interpretations:
-%         \begin{itemize}
-%             \item interpret graphs as natural numbers;
-%             \item show that each transformation step decreases the value.
-%         \end{itemize}
-%     \end{beamercolorbox}
+\begin{frame}{Termination}
+  \begin{itemize}
+    \item No graph $G_0$ can be transformed forever
+         $$G_0 \Rightarrow G_1 \Rightarrow \cdots$$
+        %  under the strategy 
+        %   \begin{center}
+        %       \textcolor{blue}{\enquote{apply rules as long as possible}}
+        %   \end{center}
+    \item Aligns with the notion of program termination: 
+         \begin{center}
+            \textcolor{blue}{\enquote{every execution (on any input) halts.}}
+          \end{center}
+    \item Undecidable in general 
+    \item How to prove termination automatically?
+  \end{itemize}
+\end{frame}
 
-%     % \begin{center}
-% \noindent   Number of edges: \begin{tikzpicture}[baseline=-12mm]
-%                     \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
+\begin{frame}{A non-termination case}
+    \begin{center}
+        \resizebox{0.8\textwidth}{!}{
+    \begin{tikzpicture}[baseline=-10mm]
+        \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{3mm}{
+            \coordinate (o) at (0mm,-11mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+            \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+            \draw[-,red] (l1) -- (l3) node[midway,above] {};
+            \draw[-,blue] (l3) -- (l2) node[midway,above] {};
+        } 
+
+        \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{3mm}{
+            \coordinate (o) at (-5mm,-11mm); 
+            \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+            % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+            \node[draw,circle] (l3) at ($(l1)+(1,0)$) {};
+            \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+            \draw[-,blue] (l1) -- (l3) node[midway,above] {};
+            \draw[-,red] (l3) -- (l4) node[midway,above] {};
+            % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+        }    
+        % \node () at (37mm,-10mm) {\( \leftarrow \)}; % K -> L
+        \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> R
+    \end{tikzpicture}
+    }
+    \end{center}
+
+\noindent Loop:\resizebox{0.85\textwidth}{!}{
+    \begin{tikzpicture}[baseline=-10mm]
+    \graphbox{\( \)}{0mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
+        \node[draw,circle] (x) at (0,0) {};
+        \node[draw,circle] (y) at (1,0) {};
+        \node[draw,circle] (z) at (0.5,0.86) {};
+        \draw[-,red] (x) -- node[midway,below] {} (y) ;
+        \draw[-,red,very thick] (y) -- node[midway,right] {} (z) ;
+        \draw[-,blue,very thick] (z) -- node[midway,left] {} (x) ;
+    } 
+    \node () at (10mm,-35mm) {\( \Rightarrow  \)};
+    \node () at (-3mm,-23mm) {\( \Swarrow  \)};
+    \graphbox{\( \)}{-25mm}{-25mm}{20mm}{20mm}{-5mm}{-14mm}{
+        \node[draw,circle] (x) at (0,0) {};  
+        \node[draw,circle] (y) at (1,0) {};
+        \node[draw,circle] (z) at (0.5,0.86) {};
+        \draw[-,red,very thick] (x) -- node[midway,below] {} (y) ;
+        \draw[-,blue,very thick] (y) -- node[midway,right] {} (z) ;
+        \draw[-,red] (z) -- node[midway,left] {} (x) ;
+    } 
+    \node () at (23mm,-23mm) {\( \Nwarrow \)};
+    \graphbox{\( \)}{25mm}{-25mm}{20mm}{20mm}{-5mm}{-14mm}{
+        \node[draw,circle] (x) at (0,0) {};  
+        \node[draw,circle] (y) at (1,0) {};
+        \node[draw,circle] (z) at (0.5,0.86) {};
+        \draw[-,blue,very thick] (x) -- node[midway,below] {} (y) ;
+        \draw[-,red] (y) -- node[midway,right] {} (z) ;
+        \draw[-,red,very thick] (z) -- node[midway,left] {} (x) ;
+    }
+    %   \node () at (85mm,-10mm) {\( \Rightarrow  \)};
+    %   \graphbox{\( \)}{90mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
+    %       \node[draw,circle] (x) at (0,0) {};   
+    %       \node[draw,circle] (y) at (1,0) {};
+    %       \node[draw,circle] (z) at (0.5,0.86) {};
+    %       \draw[->,red] (x) -- node[midway,below] {$a$} (y) ;
+    %       \draw[->,red] (y) -- node[midway,right] {$b$} (z) ;
+    %       \draw[->] (z) -- node[midway,left] {$b$} (x) ;
+    %   }
+    \end{tikzpicture}
+    }
+%         \noindent Rule $\beta$:\resizebox{0.5\textwidth}{!}{ 
+%        \begin{tikzpicture}[baseline=-10mm]
+%                     \graphbox{}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
 %                         \coordinate (o) at (0mm,-11mm); 
-%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-%                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
 %                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
 %                         \draw[-] (l1) -- (l2) node[midway,above] {};
 %                     } 
@@ -644,163 +603,204 @@ rotating,MnSymbol,hyperref,mathtools,subcaption,caption}
 %                     %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                     %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
 %                     % }  
-%                     \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
+%                     \graphbox{}{40mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
 %                         \coordinate (o) at (-5mm,-11mm); 
-%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
 %                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
 %                          % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-%                         \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+%                         \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
 %                         % \draw[->] (l1) -- (l4) node[midway,above] {};
 %                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
 %                     }    
 %                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
 %                     % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
 %                 \end{tikzpicture}
-%     % \end{center}
-%     % \begin{center}
+%                 }
+
+%                 \vspace{4mm}
+% \noindent Terminating by the number of edges if we consider finite graphs only. 
+\end{frame}
+
+\begin{frame}{Automated Termination Proofs}
+    \begin{beamercolorbox}[rounded=true,shadow=true,wd=\textwidth]{block body}
+        Termination by interpretations:
+        \begin{itemize}
+            \item interpret graphs as natural numbers;
+            \item show that each transformation step decreases the value.
+        \end{itemize}
+    \end{beamercolorbox}
+
+    % \begin{center}
+\noindent   Number of edges: \begin{tikzpicture}[baseline=-12mm]
+                    \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                        \draw[-] (l1) -- (l2) node[midway,above] {};
+                    } 
+                    % \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                    %     \coordinate (o) at (0mm,-11mm); 
+                    %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    % }  
+                    \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
+                        \coordinate (o) at (-5mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                        % \draw[->] (l1) -- (l4) node[midway,above] {};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+                    }    
+                    \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
+                    % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
+                \end{tikzpicture}
+    % \end{center}
+    % \begin{center}
 
 
-%      \noindent  Number of nodes: \begin{tikzpicture}[baseline=-12mm]
-%                     \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
-%                         \coordinate (o) at (0mm,-11mm); 
-%                         \node[draw,circle] (l1) at ($(o)+(0mm,0mm)$) {};
-%                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-%                     } 
-%                     % \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-%                     %     \coordinate (o) at (0mm,-11mm); 
-%                     %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%                     %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                     % }  
-%                     \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
-%                     }    
-%                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
-%                     % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
-%                 \end{tikzpicture}
-%     % \end{center}
+     \noindent  Number of nodes: \begin{tikzpicture}[baseline=-12mm]
+                    \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(0mm,0mm)$) {};
+                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                    } 
+                    % \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                    %     \coordinate (o) at (0mm,-11mm); 
+                    %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    % }  
+                    \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
+                    }    
+                    \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
+                    % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
+                \end{tikzpicture}
+    % \end{center}
 
 
-%     \vspace{3mm}
-%       \noindent Number of edges labeled by $a$: 
-%     \begin{center}
-%        \begin{tikzpicture}
-%                     \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
-%                         \coordinate (o) at (0mm,-11mm); 
-%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-%                         \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
-%                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-%                         \draw[-] (l1) -- (l2) node[midway,above] {$a$};
-%                     } 
-%                     % \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
-%                     %     \coordinate (o) at (0mm,-11mm); 
-%                     %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%                     %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-%                     % }  
-%                     \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
-%                         \coordinate (o) at (-5mm,-11mm); 
-%                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
-%                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-%                          % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-%                         \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
-%                         \draw[-] (l1) -- (l4) node[midway,above] {$b$};
-%                         % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-%                     }    
-%                     \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
-%                     % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
-%                 \end{tikzpicture}
-%     \end{center}
-% \end{frame}
+    \vspace{3mm}
+      \noindent Number of edges labeled by $a$: 
+    \begin{center}
+       \begin{tikzpicture}
+                    \graphbox{}{0mm}{-3mm}{34mm}{15mm}{0mm}{4mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                        % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                        \draw[-] (l1) -- (l2) node[midway,above] {$a$};
+                    } 
+                    % \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                    %     \coordinate (o) at (0mm,-11mm); 
+                    %     \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                    %     \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    % }  
+                    \graphbox{}{40mm}{-3mm}{35mm}{15mm}{5mm}{4mm}{
+                        \coordinate (o) at (-5mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                        \draw[-] (l1) -- (l4) node[midway,above] {$b$};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+                    }    
+                    \node () at (37mm,-10mm) {\( \rightarrow \)}; % K -> L
+                    % \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
+                \end{tikzpicture}
+    \end{center}
+\end{frame}
 
-% \begin{frame}{Limitation of Trivial Interpretations}
-%     \begin{center}
-%       \resizebox{\textwidth}{!}{
-%        \begin{tikzpicture}[baseline=-10mm]
-%           \graphbox{}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
-%               \coordinate (o) at (0mm,-3mm); 
-%               \node[draw,circle,red,fill=red] (l1) at ($(o)+(-10mm,0mm)$) {};
-%               \node[draw,circle,red,fill=red] (l2) at ($(l1)+(2,0)$) {};
-%               \node[draw,circle,blue,fill=blue] (l3) at ($(l1)+(1,0)$) {};
-%               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-%               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-%           }     
-%           \graphbox{}{40mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
-%               \coordinate (o) at (-5mm,-3mm); 
-%               \node[draw,circle,red,fill=red] (l1) at ($(o)+(-10mm,0mm)$) {};
-%               \node[draw,circle,red,fill=red] (l2) at ($(l1)+(3,0)$) {};
-%               \node[draw,circle,PineGreen,fill=PineGreen] (l3) at ($(l1)+(1,0)$) {};
-%               \node[draw,circle,PineGreen,fill=PineGreen] (l4) at ($(l1)+(2,0)$) {};
-%               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-%               \draw[->] (l3) -- (l4) node[midway,above] {$b$};
-%               \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-%           }    
-%           \node () at (37mm,-8mm) {$\rightarrow$};
-%           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
-%       \end{tikzpicture}
-%       }
-%   \end{center} 
+\begin{frame}{Limitation of Trivial Interpretations}
+    \begin{center}
+      \resizebox{\textwidth}{!}{
+       \begin{tikzpicture}[baseline=-10mm]
+          \graphbox{}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (0mm,-3mm); 
+              \node[draw,circle,red,fill=red] (l1) at ($(o)+(-10mm,0mm)$) {};
+              \node[draw,circle,red,fill=red] (l2) at ($(l1)+(2,0)$) {};
+              \node[draw,circle,blue,fill=blue] (l3) at ($(l1)+(1,0)$) {};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l2) node[midway,above] {$a$};
+          }     
+          \graphbox{}{40mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
+              \coordinate (o) at (-5mm,-3mm); 
+              \node[draw,circle,red,fill=red] (l1) at ($(o)+(-10mm,0mm)$) {};
+              \node[draw,circle,red,fill=red] (l2) at ($(l1)+(3,0)$) {};
+              \node[draw,circle,PineGreen,fill=PineGreen] (l3) at ($(l1)+(1,0)$) {};
+              \node[draw,circle,PineGreen,fill=PineGreen] (l4) at ($(l1)+(2,0)$) {};
+              \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+              \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+              \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+          }    
+          \node () at (37mm,-8mm) {$\rightarrow$};
+          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+      \end{tikzpicture}
+      }
+  \end{center} 
 
-%   \begin{description}
-%     \item[Left-hand side graph:] middle has no other incident edges
-%     \item[Right-hand side graph:] middles are fresh nodes
-%     \item[\noindent Termination:] number of \raisebox{2pt}{
-%             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
-%             \node [draw,circle] (z) at (-1,0) {};
-%             \node [draw,circle] (x) at (0,0) {};
-%             \node[draw,circle] (y) at (1,0) {};
-%             \draw[->] (z)--(x) node[midway, above] {$a$};
-%             \draw[->] (x)--(y) node[midway, above] {$a$};
-%         }}} decreases
-%     \item[Can its termination be proved by interpretations?]\ \\
-%       \begin{itemize}
-%         \item Weighted Type Graph Method
-%         \item Need a more powerful definition of graph transformations.
-%       \end{itemize}
-%   \end{description}
-% \end{frame}
+  \begin{description}
+    \item[Left-hand side graph:] middle has no other incident edges
+    \item[Right-hand side graph:] middles are fresh nodes
+    \item[\noindent Termination:] number of \raisebox{2pt}{
+            \scalebox{0.7}{\tikz[baseline=-0.5ex]{
+            \node [draw,circle] (z) at (-1,0) {};
+            \node [draw,circle] (x) at (0,0) {};
+            \node[draw,circle] (y) at (1,0) {};
+            \draw[->] (z)--(x) node[midway, above] {$a$};
+            \draw[->] (x)--(y) node[midway, above] {$a$};
+        }}} decreases
+    \item[Can its termination be proved by interpretations?]\ \\
+      \begin{itemize}
+        \item Weighted Type Graph Method
+        \item Need a more powerful definition of graph transformations.
+      \end{itemize}
+  \end{description}
+\end{frame}
 
-% \section{Preliminaries}
-% \begin{frame}
-%     \tableofcontents[hideothersubsections]
-% \end{frame}
-% \subsection{Graphs and Graph Morphisms}
-% \begin{frame}{Graphs: Finite, Directed, Edge-Labeled Multigraphs}
-% % \begin{adjustwidth}{-0.5cm}{0cm}
-%         \begin{center} 
-%           \resizebox{0.5\textwidth}{!}{
-%           \begin{tikzpicture}
-%               \graphbox{\(G\)}{0mm}{-20mm}{35mm}{15mm}{2mm}{-5mm}{ 
-%                   \coordinate (o) at (-2mm,-4mm); 
-%                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-%                   \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
-%                   \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
-%                   \draw[->,red] (l1) edge[bend right]  node[midway,below] {$a$} (l3);
-%                   \draw[->,red] (l1) edge[bend left] node[midway,above] {$a$}  (l3);
-%                   \draw[->] (l3) -- (l4) node[midway,above] {$b$};
-%                   % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-%               }   
-%           \end{tikzpicture} 
-%       }
-%       \end{center}
+\section{Preliminaries}
+\begin{frame}
+    \tableofcontents[hideothersubsections]
+\end{frame}
+\subsection{Graphs and Graph Morphisms}
+\begin{frame}{Graphs: Finite, Directed, Edge-Labeled Multigraphs}
+% \begin{adjustwidth}{-0.5cm}{0cm}
+        \begin{center} 
+          \resizebox{0.5\textwidth}{!}{
+          \begin{tikzpicture}
+              \graphbox{\(G\)}{0mm}{-20mm}{35mm}{15mm}{2mm}{-5mm}{ 
+                  \coordinate (o) at (-2mm,-4mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                  \node[draw,circle] (l3) at ($(l1)+(1,0)$) {2};
+                  \node[draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                  \draw[->,red] (l1) edge[bend right]  node[midway,below] {$a$} (l3);
+                  \draw[->,red] (l1) edge[bend left] node[midway,above] {$a$}  (l3);
+                  \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+                  % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+              }   
+          \end{tikzpicture} 
+      }
+      \end{center}
 
  
-%          Edges with the same source, target and label are permitted.
-%       \newline
-%       \newline
-%              \(G\): graph name
-%              \newline
-%       \newline
-%              Numbers inside nodes: identifiers
-%         % \newline\newline
-%         % A non-directed edge is two directed edges with opposite directions.
+         Edges with the same source, target and label are permitted.
+      \newline
+      \newline
+             \(G\): graph name
+             \newline
+      \newline
+             Numbers inside nodes: identifiers
+        % \newline\newline
+        % A non-directed edge is two directed edges with opposite directions.
   
-%     %   Remarks:
-%     %   \begin{itemize}
-%     %         \item Edges with the same source, target and label are permitted.
-%     %         % \item Enclosed in a box
-%     %         \item  \(G\) : graph name
-%     %         \item Numbers inside nodes are identifiers (omitted when not relevant).
-%     %   \end{itemize}
-% % \end{adjustwidth}
-% \end{frame} 
+    %   Remarks:
+    %   \begin{itemize}
+    %         \item Edges with the same source, target and label are permitted.
+    %         % \item Enclosed in a box
+    %         \item  \(G\) : graph name
+    %         \item Numbers inside nodes are identifiers (omitted when not relevant).
+    %   \end{itemize}
+% \end{adjustwidth}
+\end{frame} 
 
 \begin{frame}{Graph Morphisms: Structure-Preserving Functions}
              \begin{center}
