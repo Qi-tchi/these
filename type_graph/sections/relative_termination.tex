@@ -123,6 +123,7 @@ When the context is clear, we simply call it a \textbf{rewriting chain}.
         \end{figure}
 \end{example}
 
+
 For a set of rewriting rules \(\mathcal{R}\) (and a DPO rewriting framework \(\mathfrak{F}\)), the impossibility of transforming any object indefinitely with the non-deterministic strategy \enquote{apply rules as long as possible} using rules from \(\mathcal{R}\) (in the framework \(\mathfrak{F}\)) is called \emph{termination}~\cite{middeldorp1997simple}. This property corresponds to program termination on all inputs in conventional programming languages, and is undecidable in general~\cite{plump1998terminationundecidable}.
 
 For example of a non-terminating rule set, consider the set consisting of the rule and the infinite rewriting chain in Example~\ref{example:preliminaries:dggdfgnkfsjksfkjsf}.
@@ -237,7 +238,7 @@ For example, the relation $>$ on $\mathbb{N}$ is terminating relative to the emp
 
 % Note that termination and well-foundedness are the same property of a binary relation $\to$ described from two perspectives. Operationally, we read $x \mathop{\to} y$ as \enquote{$x$ can be transformed to $y$}; the absence of infinite $\rightarrow$-chains therefore means that any transformation sequence starting from an initial object $x$ is finite, i.e. every computation or rewrite sequence eventually terminates. Structurally, we read $x \mathop{\to} y$ as \enquote{$x$ is constructed from $y$}; the absence of infinite $\to$-chains then implies that every object $x$ can be traced back along a finite chain to an element that is not constructed from any other, so the structure is well-founded. In this thesis we adopt the operational viewpoint and use the term termination.
 
-Relative termination 
+Relative termination and termination
 carries over to rewriting systems in a straightforward way via their associated rewriting relations.
 \begin{definition}
     \label{termination:def:relative_termination}
@@ -250,4 +251,27 @@ carries over to rewriting systems in a straightforward way via their associated 
 \end{definition}
 In practice, to prove termination of a rewriting system $\mathcal{R}$, one partitions the set of rules into two disjoint subsets \( \mathcal{B} \) and \( \mathcal{A} \) with non-empty $\mathcal{A}$ such that \( \mathcal{A} \) terminates relative to \( \mathcal{B} \). 
 If $\mathcal{B}$ is empty then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.
+
+Many techniques have been developed for proving termination of term rewriting systems~\cite{arts2000termination,nipkow1998term,contejean2011automated,contejean2005mechanically,dershowitz1982orderings,giesl2014proving,middeldorp1997simple,urbain2004modular,marche2004modular,steinbach1995simplification}.
+These methods can not be directly applied to graph rewriting systems.
+
+Many techniques have been developed for proving termination of term rewriting systems~\cite{arts2000termination,nipkow1998term,contejean2011automated,contejean2005mechanically,dershowitz1982orderings,giesl2014proving,middeldorp1997simple,urbain2004modular,marche2004modular,steinbach1995simplification}.
+However, these methods cannot be directly applied to graph rewriting systems.
+
+One reason existing techniques do not carry over from terms to graphs is that 
+they often rely on the fact that
+terms possess a tree-like structure, while graphs do not.
+Consider the term rewriting rule:
+$$f(a,b) \to f(b,a)$$
+A well-known technique for term rewriting systems is the polynomial interpretation method~\cite{nipkow1998term}. In this technique, every n-ary function symbol \(f\) is associated with a polynomial \(P_f(X_1, X_2, \ldots, X_n)\) with coefficients in $\mathbb{N}$, so that terms are mapped to natural numbers. The system is guaranteed to terminate if, for every rewriting rule \(l \to r\), the polynomial interpretation of \(l\) is strictly greater than that of \(r\), then the rewriting system terminates~\cite{xavier2001these}. For instance, for the rule $f(a,b) \to f(b,a)$, one could 
+interpret the constants \(a\) and \(b\) as \(2\) and \(1\), respectively, and the function symbol \(f\) with the polynomial \(P_f(X_1, X_2) = 2X_1 + X_2\). Under this interpretation, \(f(a,b)\) has value \(5\) and \(f(b,a)\) has value \(4\), demonstrating strict decrease under this rule.
+
  
+A further complication in graphs arises from the presence of cycles, while terms are inherently acyclic.
+For example, as illustrated in Example~\ref{example:preliminaries:dggdfgnkfsjksfkjsf}, 
+graphs may contain cycles whereas terms cannot. 
+Returning to the rule
+$$f(a,b) \to f(b,a)$$
+in the context of term rewriting, every application of the rule reduces the total number of occurrences of the pattern \(f(a,b)\) in a term, which, by definition, must be finite. Consequently, no infinite rewriting sequence is possible, and the term rewriting system terminates.
+
+Therefore, new techniques are needed to prove (relative) termination of graph rewriting systems.

@@ -1,26 +1,16 @@
-We extend an existing method for termination of DPO graph rewriting systems, called type graph method.~\footnote{The result presented in this chapter led to a workshop paper~\cite{qiu2025termination_nwf_v2_acceptedgcm}.}
+We extend an existing method for termination of DPO graph rewriting systems, called weighted type graph method.~\footnote{The result presented in this chapter led to a workshop paper~\cite{qiu2025termination_nwf_v2_acceptedgcm}.}
 
-The weighted type graph method was first introduced by Hans, K{\"{o}}nig and Bruggink~\cite{zantema2014termination} for cycle rewriting. Their subsequent work~\cite{bruggink2014termination} generalized it for DPO rewriting on edge-labeled directed multigraphs with injective rules and injective matches; later, it was extended to general DPO rewriting on edge-labeled multigraphs by Bruggink et al.~\cite{bruggink2015proving}; and it was adapted to broader categories and DPO variants by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}.
+The method was first introduced by Zantema, K{\"{o}}nig and Bruggink~\cite{zantema2014termination} for cycle rewriting. Their subsequent work~\cite{bruggink2014termination} generalized it for DPO rewriting on edge-labeled directed multigraphs with injective rules and injective matches; later, it was extended to general DPO rewriting on edge-labeled multigraphs by Bruggink et al.~\cite{bruggink2015proving}; and it was adapted to broader categories and DPO variants by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}.
 
-The method assigns weights to morphisms targeting a weighted type graph over a well-founded semiring. The weight of a graph is defined
- as the sum of the weights of all morphisms from that graph to the type graph. Relative termination of $\mathcal{A}$ with respect to $\mathcal{B}$ is proven by ensuring that rewriting steps using rules in \( \mathcal{A} \) strictly decrease the weights of the host graphs, while rewriting steps using rules in \( \mathcal{B} \) do not increase them.
+The method employes a finite graph $T$, called a weighted type graph, to assign measures from a well-founded semiring to graphs subject to rewriting. Concretely, a graph $G$ is interpreted via the set $\mathsf{Hom}(G,T)$ of all morphisms from $G$ to $T$. Each morphism $h \in \mathsf{Hom}(G,T)$ is assigned a weight, and the weight of $G$ is then obtained by aggregating the weights of all morphisms in $\mathsf{Hom}(G,T)$. Relative termination of $\mathcal{A}$ with respect to $\mathcal{B}$ is proved by ensuring that rewriting steps using rules in $\mathcal{A}$ strictly decrease the weight of the host graph, while rewriting steps using rules in $\mathcal{B}$ do not increase it. The name of the method stems from the fact that each graph can be viewed as having $\mathsf{Hom}(G,T)$ as its type.
+
     
-   Previous work~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving} proposed three concrete semirings (on natural numbers): the natural tropical semiring $\mathfrak{T}$, the natural arctic semiring $\mathfrak{A}$, and the natural arithmetic semiring $\mathfrak{N}$.
+   Previous work~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving} proposed three concrete semirings on natural numbers: the natural tropical semiring $\mathfrak{T}$, the natural arctic semiring $\mathfrak{A}$, and the natural arithmetic semiring $\mathfrak{N}$.
     However, constructing weighted type graphs over these concrete semirings for DPO rewriting on edge-labeled directed multigraphs is difficult in general, because it requires quantifying over all edge-labeled directed multigraphs with weighted edges over $\mathbb{N}$.
 
-    In response to this challenge, these works proposed to reduce the search space by fixing the number of nodes \( k\) and the maximum weight of edges of the weighted type graph, and then by constructing a weighted type graph as follows: 
-    \begin{enumerate}
-      \item Construct a graph with \( k \) nodes, with a directed and labeled edge per ordered pair of nodes and label from the finite set of edge labels $\Sigma$ of the rewriting system. 
-      \item For each edge, decide if there is in the weighted type graph;  if an edge exists, assign a weight (a natural number) to it.
-      \item Check if the weighted type graph fulfils the required conditions.
-    \end{enumerate}
-    where $\Sigma$ is a finite set of edge labels that will be fixed throughout this chapter.
-    Despite these constraints, searching for suitable weighted type graphs
-    %  that witness termination of a DPO rewriting system on edge-labeled directed multigraphs
-    remains challenging. 
-    Let $n \mathop{=} k^2 \cdot | \Sigma |$:
-    
-    For a weighted type graph over the natural tropical semiring $\mathfrak{T}$ or the natural arctic semiring $\mathfrak{A}$, the problem amounts to
+In response to this challenge, previous work restricts the search to weighted type graphs with a fixed number of nodes, where each edge carries a weight bounded by a fixed maximum value. Concretely, one fixes a number of nodes $k$ and a maximum edge weight, and then searches for a candidate weighted type graph $T$ within these bounds. For a fixed finite label alphabet \(\Sigma\), such a candidate $T$ is determined by choices for each potential labeled edge between pairs of nodes: whether the edge is present and, if present, which weight it carries. Despite these restrictions, searching for suitable weighted type graphs remains challenging. 
+
+    Let \(n = k^{2}\cdot|\Sigma|\). For a weighted type graph over the natural tropical semiring $\mathfrak{T}$ or the natural arctic semiring $\mathfrak{A}$, the problem amounts to
     checking the satisfiability of an existential Presburger arithmetic formula with $n$ binary variables and $n$ integer variables.
     While modern SMT solvers, such as Z3~\cite{de2008z3} (which incorporates the dedicated CutSat solver~\cite{z3ilp_cutsat}), can solve practical instances of this problem, its worst-case complexity remains exponential \( O(2^{2n}) \)~\cite{arithmetic2024z3}.
 
@@ -31,27 +21,30 @@ The method assigns weights to morphisms targeting a weighted type graph over a w
     \texttt{TORPAcyc}~\cite{TORPAcyc} implements the weighted type graph method for cycle rewriting and uses \texttt{Yices}~\cite{yices} to solve constraint systems;
     \texttt{Grez}~\cite{grez} implements the weighted type graph method for DPO rewriting on edge-labeled directed multigraphs; \texttt{GraphTT-wtg}~\footnote{
     At the time of writing and to the best of our knowledge, 
-    no publicly available implementation exists.}~\cite{endrullis2024generalized_arxiv_v3} implements the weighted type graph method for DPO rewriting on many categories.
+    it is not publicly available.}~\cite{endrullis2024generalized_arxiv_v3} implements the weighted type graph method for DPO rewriting on many categories.
     \texttt{Grez} and \texttt{GraphTT-wtg}  
     use \texttt{Z3} to solve constraint systems.
  
-    In spite of the theoretical power of the weighted type graph method, its practical applicability is limited by the high computational complexity of searching for suitable weighted type graphs over well-founded semirings on 
-    natural numbers. In fact, to reduce the search space, users of the above-mentioned tools are required
-     to fix the size of the weighted type graph, as well as the maximum weight of edges in the weighted type graph. These are challenging tasks if not impossible to determine a priori even for experts in the field. 
-    Furthermore, our experiments with the two publicly available ones \texttt{TORPAcyc} and \texttt{Grez} show that when the number of edge labels is $2$, they struggle to search for weighted type graphs with $4$ nodes and maximum edge weight of $2$, or to search for weighted type graphs with $3$ nodes when the maximum edge weight is larger than $3$.~\footnote{Experiments were conducted on a laptop equipped with an i5-1038NG7 CPU, which features 4 cores, a base clock speed of 2 GHz, a boost speed of 3.8 GHz, and 16 GB RAM.}
-   We address this limitation to make the weighted type graph method more accessible to non-expert users and to enhance its practical applicability.
+    In spite of the theoretical power of the weighted type graph method, its practical applicability is limited by by the difficulty of
+     guessing, a priori, suitable values for the number of nodes and maximum edge weight, and by the high computational complexity of searching for suitable weighted type graphs. Our experiments with the two publicly available ones \texttt{TORPAcyc} and \texttt{Grez} show that when the number of edge labels is $2$, they struggle to search for weighted type graphs with $4$ nodes and maximum edge weight of $2$, or to search for weighted type graphs with $3$ nodes when the maximum edge weight is larger than $3$.~\footnote{Experiments were conducted on a laptop equipped with an i5-1038NG7 CPU, which features 4 cores, a base clock speed of 2 GHz, a boost speed of 3.8 GHz, and 16 GB RAM.}
+   
+  To address these challenges, we extend the weighted type graph method to non-well-founded semirings and introduce three concrete semirings over $\mathbb{R}$: the real tropical semiring $\mathfrak{T}'$, the real arctic semiring $\mathfrak{A}'$, and the real arithmetic semiring $\mathfrak{N}'$. The idea of using weights from non-well-founded domains to prove termination was first used in the context of term rewriting by Lucas~\cite{lucas2006relative}.
 
-To reduce the complexity of searching for weighted type graphs that witness termination of a DPO rewriting system on edge-labeled directed multigraphs, we propose extending the weighted type graph method to non-well-founded semirings and introduce three concrete semirings over the real numbers: the real tropical semiring $\mathfrak{T}'$, the real arctic semiring $\mathfrak{A}'$, and the real arithmetic semiring $\mathfrak{N}'$. The idea of using weights from non-well-founded domains to prove termination was used in the context of term rewriting by Lucas~\cite{lucas2006relative}.
+Working over \(\mathbb{R}\) is primarily a practical device that simplifies the constraint-solving task during the search for a suitable type graph. 
+The termination argument itself relies on a uniform strict decrease condition: we require graph weight to be elements in $\mathbb{R}^+$, and the existence of a strictly positive constant \(\delta\) such that every rewrite step decreases the weight by at least \(\delta\).
+This assumption discretizes the real-valued measure.
+% : a rule set is \(\delta\)-decreasing over \(\mathbb{R}\) if and only if it is decreasing by at least one unit after a suitable scaling and rounding, and thus admits an equivalent presentation over a well-founded domain such as \(\mathbb{N}\). 
+Consequently, the contribution of this chapter is not that termination becomes provable because the weights are real, but that using real-valued weights can make it easier to find suitable weights in practice.
 
-Under the same constraints, searching for weighted type graphs over these semirings is computationally more tractable.
-%  Specifically,
-% for the real tropical semiring $\mathfrak{T}'$ or the real arctic semiring $\mathfrak{A}'$, the problem amounts to checking the satisfiability of an
-% existential linear real arithmetic formula with $n$ binary variables and $n$ real variables for the real tropical semiring $\mathfrak{T}'$ or the real arctic semiring $\mathfrak{A}'$.
-Z3 can solve practical instances of this problem more easily: Decidable for the real arithmetic semiring $\mathfrak{N}'$;
-%  using CutSat solver, because there are only $n$ integer variables.
-The worst-case complexity for solving this problem is $O(2^n)$ for the real tropical semiring $\mathfrak{T}'$ or the real arctic semiring $\mathfrak{A}'$.
-% For a weighted type graph over the real arithmetic semiring $\mathfrak{N}'$, the task reduces to checking the satisfiability of
-% an existential non-linear real arithmetic formula\textemdash a task that is decidable~\cite{collins1974quantifier,z3realarithmetic}.
+Compared with the integer-weighted setting, our approach turns the edge-weight variables\textemdash accounting for half of the decision variables\textemdash into real-valued variables. This has two advantages:
+\begin{enumerate}
+  \item \textbf{Theoretical complexity and practical performance.} For the arithmetic semiring, integer weights lead to constraint systems involving multiplication of variables, corresponding to fragments of Peano arithmetic that are undecidable in general, whereas using real weights yields constraints in first-order real arithmetic, which is decidable (e.g. by Tarski's decision procedure~\cite{tarski_decision_method}). For the tropical and arctic semirings, the constraints do not involve multiplication of variables; with integer weights they fall into existential Presburger arithmetic, whose complexity is at least exponential, while with real weights they become, after fixing the discrete choices, constraints in linear real arithmetic, which can be handled efficiently (e.g. by simplex algorithm in polynomial time on average or by the interior point method~\cite{interior_point_lp} in polynomial time). 
+   
+  \item \textbf{Usability.} Integer-weighted synthesis requires the user to provide an a priori upper bound on the weights to reduce the size of the search space. Choosing such a bound is difficult in practice; working over \(\mathbb{R}\) allows us to avoid this parameter and thereby makes the method more accessible.
+\end{enumerate}
+
+
+
 
 The implementation of both our approach and the approach proposed by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}, written in OCaml, will be presented in Chapter~\ref{chap:lyonparallel}.
 

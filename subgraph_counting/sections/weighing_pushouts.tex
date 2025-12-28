@@ -662,10 +662,8 @@ We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along
     %  such that $l$ is edge-injective and $r$ is node-injective.
     The \textbf{set \(D(R,X)\)\index{\(D(R,X)\)} of distinguished subgraphs of the right-hand side graph} consists of all subgraphs \( R' \mathop{\subseteq} R \)
     satisfying the following conditions:
-    \begin{itemize}
-        \item $R'$ is not a subgraph of $r(K)$,
-        \item $R'$ is not isomorphic to $X$,
-        \item the following diagram where \(h_{K'K} \mathop{\colon} K' \rightarrowtail K \) and \(h_{R'R} \mathop{\colon} R' \rightarrowtail R \) are inclusion functions can be constructed:
+    \begin{enumerate}
+        \item there are graphs $K'$, $C'$ and morphisms such that the following diagram where $h_{K'K}$ and $h_{R'R}$ are inclusion functions can be constructed:
         \begin{center}
                 \begin{tikzpicture}[node distance=11mm]
                     \node (k) at (0, 0) {K};
@@ -685,8 +683,11 @@ We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along
                     \draw[>->] (r') -- (x);
                 \end{tikzpicture}
         \end{center}
-    \end{itemize}
+        \item $R'$ is not a subgraph of $r(K)$,
+        \item $R'$ is not isomorphic to $X$,
+    \end{enumerate}
 \end{definition}  
+% Note that in the above diagram, the graph $C'$ can be computed as $(X \setminus R') \cup K'$.
 The first and second conditions ensure that such $X$-occurrences are included neither in \( C \) nor in \( R \), thereby guaranteeing that they are implicit.
 The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along some common interface elements with a subgraph $C'$ of a context graph \( C \) to form an \( X \)-occurrence. 
 
@@ -732,56 +733,19 @@ The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[->] (y) -- (z) node[midway, above] {$a$};
     } and $R' \mathop{\in} D(R,X)$. 
-    $R'$ is neither the empty graph nor isomorphic to $X$, by Conditions 2 and 3 of Definition~\ref{subgraph_counting:def:rx}. 
-    Therefore, $R'$ must contain an interface node (either node $1$ 
-    % \tikz[baseline=-0.5ex]{ 
-    %         \node[draw,circle] (y) at (1,0) {1};
-    % }
-     or node $2$
-    % \tikz[baseline=-0.5ex]{ 
-    %         \node[draw,circle] (y) at (1,0) {2};
-    % }
-    ), because if it contains no interface node, Condition 1 of Definition~\ref{subgraph_counting:def:rx} would be violated due to $X$'s connectivity.
-    Additionally, $R'$ must contain node $4$
-    % \tikz[baseline=-0.5ex]{ 
-    %         \node[draw,circle] (y) at (1,0) {4};
-    % }
-     or node $5$
-    % \tikz[baseline=-0.5ex]{ 
-    %         \node[draw,circle] (y) at (1,0) {5};
-    % } 
+    Firstly, $R'$ is neither the empty graph nor isomorphic to $X$, by Conditions 2 and 3 of Definition~\ref{subgraph_counting:def:rx}. 
+    Secondly, $R'$ must contain node $4$ or node $5$
     to avoid being a subgraph of $r(K)$ (Condition 2). 
-    Therefore, $R'$ must contain either 
-    \tikz[baseline=-0.5ex]{ 
-            \node[draw,circle] (x) at (0,0) {1}; 
-            \node[draw,circle] (y) at (1,0) {4};
-            \draw[->] (x) -- (y)  node[midway, above] {$a$};
-    }
-      or 
-        \tikz[baseline=-0.5ex]{ 
-            \node[draw,circle] (x) at (0,0) {5}; 
-            \node[draw,circle] (y) at (1,0) {2};
-            \draw[->] (x) -- (y) node[midway, above] {$a$};
-    }
-    , because if node $4$
-    %     \tikz[baseline=-0.5ex]{ 
-    %         \node[draw,circle] (y) at (1,0) {4};
-    % }
-     or node $5$
-    %     \tikz[baseline=-0.5ex]{ 
-    %         \node[draw,circle] (x) at (0,0) {5}; 
-    % }
-    is isolated, Condition 1 would be violated due to $X$'s connectivity.
-    Also, $R'$ must not contain 
+    Thirdly, if $R'$ contains nodes $4$ or $5$, they must be connected to node $1$ or node $2$ respectively, otherwise $R'$ would be disconnected and it would be impossible to construct the diagram in the first condition of Definition~\ref{subgraph_counting:def:rx}.
+    Fourthly, $R'$ must not contain 
             \tikz[baseline=-0.5ex]{ 
             \node[draw,circle] (x) at (0,0) {4}; 
             \node[draw,circle] (y) at (1,0) {5};
             \draw[->] (x) -- (y) node[midway, above] {$b$};
     }
     by Condition 1.
-    The following graph
-    % in Figure~\ref{fig:subgraph_counting:rx_counter_exdfsdfadfs} 
-    is not in $D(R,X)$ because it violates Condition 1.
+    Finally, the following graph can not be $R'$
+     because it violates Condition 1.
     % \begin{figure}[H]
     %     \centering
     \begin{center}
