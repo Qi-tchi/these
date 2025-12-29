@@ -7,28 +7,30 @@ While Definition~\ref{def:rewriting_inclusion} of injective rewriting rules and 
     A rewriting rule $\varphi \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ consists of two inclusions $l$ and $r$.  
     Two rules $\varphi' \mathop{=} (L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R')$ and $\varphi$ are \textbf{equivalent}\index{DPO rewriting rule!equivalent} if there are isomorphisms $a,b,c$ such that 
     $l' \mathop{\star} a \mathop{=} b \mathop{\star} l$ and $r' \mathop{\star} c \mathop{=} b \mathop{\star} r$, i.e. the following diagram is commutative:    
-    % the commutative diagram illustrated in Figure~\ref{fig:subgraph_counting:general_rewriting_step_sdfsl_sdfjlsdkjfl} can be constructed:
-            \begin{center}
-                        \begin{tikzpicture}
-                                \node (I) at (0,0) {$K'$};
-                                \node (L) at (-2,0) {$L'$};
-                                \node (R) at (2,0) {$R'$};
-                                \node (G) at (-2,-2) {$L$};
-                                \node (C) at (0,-2) {$K$};
-                                \node (H) at (2,-2) {$R$};
-                                \draw [>->] (I) to  node [midway,below] {$l'$} (L);
-                                \draw [>->] (I) to  node [midway,below] {$r'$} (R);
-                                \draw [>->] (L) to node [midway,right] {\textbf{a}} (G);
-                                \draw [>->] (I) to node [midway,right] {\textbf{b}} (C);
-                                \draw [>->] (R) to node [midway,left] {\textbf{c}} (H);
-                                \draw [>->] (C) to node [midway,above] {$l$} (G);
-                                \draw [>->] (C) to node [midway,above] {$r$} (H);
-                                \node [at=($(I)!.5!(G)$)] {$\mathop{=}$};
-                                \node [at=($(I)!.5!(H)$)] {$\mathop{=}$};
-                            \end{tikzpicture}
-                \end{center}
+    \begin{center}
+        \resizebox{0.5\textwidth}{!}{
+                \begin{tikzpicture}
+                        \node (I) at (0,0) {$K'$};
+                        \node (L) at (-2,0) {$L'$};
+                        \node (R) at (2,0) {$R'$};
+                        \node (G) at (-2,-2) {$L$};
+                        \node (C) at (0,-2) {$K$};
+                        \node (H) at (2,-2) {$R$};
+                        \draw [>->] (I) to  node [midway,below] {$l'$} (L);
+                        \draw [>->] (I) to  node [midway,below] {$r'$} (R);
+                        \draw [>->] (L) to node [midway,right] {\textbf{a}} (G);
+                        \draw [>->] (I) to node [midway,right] {\textbf{b}} (C);
+                        \draw [>->] (R) to node [midway,left] {\textbf{c}} (H);
+                        \draw [>->] (C) to node [midway,above] {$l$} (G);
+                        \draw [>->] (C) to node [midway,above] {$r$} (H);
+                        \node [at=($(I)!.5!(G)$)] {$\mathop{=}$};
+                        \node [at=($(I)!.5!(H)$)] {$\mathop{=}$};
+                    \end{tikzpicture}
+        }
+        \end{center}
     A rewriting step $G \mathop{\Rightarrow}_\varphi H$ is a double-pushout:
          \begin{center}
+            \resizebox{0.5\textwidth}{!}{
               \begin{tikzpicture}
                     \node (I) at (0,0) {$K'$};
                     \node (L) at (-2,0) {$L'$};
@@ -45,7 +47,8 @@ While Definition~\ref{def:rewriting_inclusion} of injective rewriting rules and 
                     \draw [>->] (C) to node [midway,above] { } (H);
                     \node [at=($(I)!.5!(G)$)] {\normalfont PO};
                     \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-                  \end{tikzpicture}          
+                  \end{tikzpicture}  
+            }        
       \end{center}
       where all arrows are inclusions and $L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R'$ is equivalent to $\varphi$.
 \end{definition}
@@ -69,12 +72,13 @@ The set of existing nodes, $V(G) \mathop{\setminus} V_{\nexists}(G)$, is denoted
     \label{ex:pregraph}
      A pregraph with node-set $\{1,2,3\}$, a missing node $2$, and 3 dangling edges is illustrated below:
      \begin{center}
+        \resizebox{0.5\textwidth}{!}{
         \begin{tikzpicture}
             \graphbox{}{0mm}{-20mm}{35mm}{15mm}{5mm}{0mm}{ 
                 \coordinate (o) at (-5mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
-                \node[draw,circle,dashed,red] (l3) at ($(l1)+(1,0)$) {2};
+                \node[draw,circle,dashed] (l3) at ($(l1)+(1,0)$) {2};
                 \node[draw,circle] (l4) at ($(l1)+(2,0)$) {3};
                 \draw[->] (l1) edge[bend right]  node[midway,below] {$a$} (l3);
                 \draw[->] (l1) edge[bend left] node[midway,above] {$a$}  (l3);
@@ -82,6 +86,7 @@ The set of existing nodes, $V(G) \mathop{\setminus} V_{\nexists}(G)$, is denoted
                 % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
             }  
         \end{tikzpicture} 
+        }
     \end{center}
  \end{example} 
  
@@ -290,7 +295,8 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
 
     Consider the following double pushout diagram in the category \textbf{Graph}, where all arrows are inclusions:
     \begin{center}
-        \begin{tikzpicture}[scale=0.8]
+        \resizebox{0.4\textwidth}{!}{
+        \begin{tikzpicture} 
             \node (I) at (0,0) {$K$};
             \node (L)  at (-2,0) {$L$};
             \node (R)  at (2,0) {$R$};
@@ -310,6 +316,7 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
             {}
             (H);
         \end{tikzpicture}
+        }
     \end{center}
     % Since all arrows are inclusions, by Definition~\ref{def:rewriting_inclusion}, 
     The
@@ -317,6 +324,7 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
     can be decomposed as unions of pregraphs as illustrated below, 
      where $K, L', R',C'$ are pregraphs and $L \mathop{=} L' \mathop{\cup} K$, $R \mathop{=} R' \mathop{\cup} K$, $C \mathop{=} C' \mathop{\cup} K$, $G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C'$, $H \mathop{=} R' \mathop{\cup} K \mathop{\cup} C'$.
     \begin{center}
+        \resizebox{0.8\textwidth}{!}{
             \begin{tikzpicture} 
                 \coordinate (k) at (0, 0);
                 \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
@@ -401,6 +409,7 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
             %   \node[ font=\LARGE] () at ($(r)!0.5!(h)+(0.55,0.4)$) {$m'$}; 
             %   \node[ font=\LARGE] () at ($(k)!0.5!(c)+(0.5,0.4)$) {$u$}; 
             \end{tikzpicture}
+        }
     \end{center}
 \begin{definition}
     \label{def:x_occurrence}
@@ -455,6 +464,7 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
     % \begin{figure}[H]
     %   \centering
     \begin{center}
+        \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -486,9 +496,7 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
-%       \caption{}
-%       \label{fig:subgraph_counting:occurrdlfdjslfkjsa}
-%   \end{figure}
+        }
     \end{center}
    We illustrate the aforementioned decomposition
     % in Figure~\ref{fig:subgraph_counting:occurrendfsdadsgces_of_x} 
@@ -496,7 +504,8 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
 % \begin{figure}[H]
 %     \centering
     \begin{center}
-      \begin{tikzpicture}[scale=0.9]
+        \resizebox{\textwidth}{!}{
+      \begin{tikzpicture} 
               \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
                   \coordinate (o) at (0mm,-8mm); 
                   \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
@@ -575,6 +584,7 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
               \node () at (92mm,-18mm) {\( \downarrowtail \)};
               \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
       \end{tikzpicture}
+        }
     \end{center}
     In this example, the graph $X$ has 4 distinct $X$-occurrences in $G$ and $H$.
    There are 

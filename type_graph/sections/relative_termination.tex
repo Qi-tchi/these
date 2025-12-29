@@ -41,7 +41,7 @@ When the context is clear, we simply call it a \textbf{rewriting chain}.
     %     \centering
     \begin{center}
             \resizebox{\textwidth}{!}{
-                \begin{tikzpicture}[baseline=-3ex]
+                \begin{tikzpicture} 
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
@@ -58,7 +58,7 @@ When the context is clear, we simply call it a \textbf{rewriting chain}.
                     }  
             
                     \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (-5mm,-11mm); 
+                        \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                         \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
@@ -133,7 +133,7 @@ For example of a terminating rule set, consider the set with the unique rule, sh
 which deletes an edge. 
     \begin{center}
      \resizebox{\textwidth}{!}{ 
-                \begin{tikzpicture}[baseline=-3ex]
+                \begin{tikzpicture}
                     \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
@@ -149,7 +149,7 @@ which deletes an edge.
                     }  
             
                     \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
-                        \coordinate (o) at (-5mm,-11mm); 
+                        \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                         % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
                         % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
@@ -167,9 +167,9 @@ Any rewriting chain using this rule is finite, because each rewriting step decre
 However, in many cases, an interesting property can be proved even if the whole rule set is not terminating. 
 Take the system with rules $\alpha$ and $\beta$ shown below. Rule~$\alpha$ removes one edge per application; rule~$\beta$ introduces a new node. 
 \begin{center}
-        $\alpha$ = {
+        $\alpha$ = { 
              \resizebox{0.9\textwidth}{!}{
-             \begin{tikzpicture}[baseline=-7ex]
+             \begin{tikzpicture}[baseline=-0.065\textheight]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
@@ -193,16 +193,11 @@ Take the system with rules $\alpha$ and $\beta$ shown below. Rule~$\alpha$ remov
                 \end{tikzpicture}
             }
         }
-    %     \caption{A graph transformation rule for edge deletion}
-    % \label{fig:intro:edge_deletion_rule}
-    % \end{subfigure}
-    
-    % \begin{subfigure}{0.3\textwidth}
-    %     % \centering
 
+\vspace{2mm}
         $\beta$ ={
              \resizebox{0.9\textwidth}{!}{
-             \begin{tikzpicture}[baseline=-7ex]
+             \begin{tikzpicture}[baseline=-0.065\textheight]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         
                     } 
@@ -253,25 +248,71 @@ In practice, to prove termination of a rewriting system $\mathcal{R}$, one parti
 If $\mathcal{B}$ is empty then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.
 
 Many techniques have been developed for proving termination of term rewriting systems~\cite{arts2000termination,nipkow1998term,contejean2011automated,contejean2005mechanically,dershowitz1982orderings,giesl2014proving,middeldorp1997simple,urbain2004modular,marche2004modular,steinbach1995simplification}.
-These methods can not be directly applied to graph rewriting systems.
+Some of them can be adapted to prove relative termination, for example the polynomial interpretation method.
+However, most of these techniques cannot be directly applied to graph rewriting systems.
 
-Many techniques have been developed for proving termination of term rewriting systems~\cite{arts2000termination,nipkow1998term,contejean2011automated,contejean2005mechanically,dershowitz1982orderings,giesl2014proving,middeldorp1997simple,urbain2004modular,marche2004modular,steinbach1995simplification}.
-However, these methods cannot be directly applied to graph rewriting systems.
-
-One reason existing techniques do not carry over from terms to graphs is that 
-they often rely on the fact that
-terms possess a tree-like structure, while graphs do not.
-Consider the term rewriting rule:
-$$f(a,b) \to f(b,a)$$
-A well-known technique for term rewriting systems is the polynomial interpretation method~\cite{nipkow1998term}. In this technique, every n-ary function symbol \(f\) is associated with a polynomial \(P_f(X_1, X_2, \ldots, X_n)\) with coefficients in $\mathbb{N}$, so that terms are mapped to natural numbers. The system is guaranteed to terminate if, for every rewriting rule \(l \to r\), the polynomial interpretation of \(l\) is strictly greater than that of \(r\), then the rewriting system terminates~\cite{xavier2001these}. For instance, for the rule $f(a,b) \to f(b,a)$, one could 
+One reason is that techniques for term rewriting systems often rely on the fact that terms are tree-like structures, while graphs are not.
+In the polynomial interpretation method, every n-ary function symbol \(f\) is associated with a polynomial \(P_f(X_1, X_2, \ldots, X_n)\) with coefficients in $\mathbb{N}$, so that ground terms are mapped to natural numbers. The system is guaranteed to terminate if, for every rewriting rule \(l \to r\), the polynomial interpretation of \(l\) is strictly greater than that of \(r\). For instance, consider the term rewriting rule $f(a,b) \to f(b,a)$. One could 
 interpret the constants \(a\) and \(b\) as \(2\) and \(1\), respectively, and the function symbol \(f\) with the polynomial \(P_f(X_1, X_2) = 2X_1 + X_2\). Under this interpretation, \(f(a,b)\) has value \(5\) and \(f(b,a)\) has value \(4\), demonstrating strict decrease under this rule.
 
- 
-A further complication in graphs arises from the presence of cycles, while terms are inherently acyclic.
-For example, as illustrated in Example~\ref{example:preliminaries:dggdfgnkfsjksfkjsf}, 
-graphs may contain cycles whereas terms cannot. 
-Returning to the rule
-$$f(a,b) \to f(b,a)$$
-in the context of term rewriting, every application of the rule reduces the total number of occurrences of the pattern \(f(a,b)\) in a term, which, by definition, must be finite. Consequently, no infinite rewriting sequence is possible, and the term rewriting system terminates.
+ A further complication stems from the presence of cycles in graphs, in contrast to terms, which are inherently acyclic. These cycles may allow graphs to be rewritten indefinitely, making standard termination arguments that rely on acyclicity ineffective.
+For example, the term rewriting rule $f(a,b) \to f(b,a)$ is analogous to the graph rewriting rule in Example~\ref{example:preliminaries:dggdfgnkfsjksfkjsf}:
+\vspace{-2mm}
+ \begin{center}
+            \resizebox{\textwidth}{!}{
+                \begin{tikzpicture}
+                    \graphbox{\( L \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
+                        \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+                        \draw[->] (l3) -- (l2) node[midway,above] {$b$};
+                    } 
+            
+                    \graphbox{\( K \)}{40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                    }  
+            
+                    \graphbox{\( R \)}{80mm}{-3mm}{35mm}{15mm}{2mm}{2mm}{
+                        \coordinate (o) at (0mm,-11mm); 
+                        \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                        % \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+                        \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+                        \node[draw,circle] (l4) at ($(l1)+(2,0)$) {2};
+                        \draw[->] (l1) -- (l3) node[midway,above] {$b$};
+                        \draw[->] (l3) -- (l4) node[midway,above] {$a$};
+                        % \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+                    }    
+                    \node () at (37mm,-10mm) {\( \leftarrowtail \)}; % K -> L
+                    \node () at (77mm,-10mm) {\( \rightarrowtail \)}; % K -> R
+                \end{tikzpicture}
+                }
+            \end{center} 
+However, the term rewriting rule terminates, while the graph rewriting rule does not as shown in Example~\ref{example:preliminaries:dggdfgnkfsjksfkjsf}.
 
-Therefore, new techniques are needed to prove (relative) termination of graph rewriting systems.
+Therefore, termination techniques specific to graph rewriting systems are needed. Below, we provide an overview of some existing techniques for proving (relative) termination of DPO rewriting systems.
+
+The weighted type graph method was first introduced by Zantema, K{\"{o}}nig and Bruggink~\cite{zantema2014termination} for cycle rewriting. Their subsequent work~\cite{bruggink2014termination} generalized it for DPO rewriting on edge-labeled directed multigraphs with injective rules and injective matches; later, it was extended to general DPO rewriting on edge-labeled multigraphs by Bruggink et al.~\cite{bruggink2015proving}; and it was adapted to broader categories and DPO variants by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt}.
+It assigns a weight to each graph by aggregating the weights of all morphisms to a designated weighted type graph. 
+The challenge consists in characterizing the type graphs and the computation of weights that guarantee a decrease in the weight of the graphs with each rule application.
+% An extension of the weighted type graph method which facilitates searching for suitable type graphs will be presented in Chapter~\ref{chap:nwf}.
+
+The subgraph-counting method weigh graphs by summing weights of morphisms from some designated graphs targeting them. This method, developed by Overbeek and Endrullis~\cite{overbeek2024termination_lmcs} is designed for the PBPO+~\cite{overbeek2023graph, overbeek2023apbpotutorial}\textemdash{}a rewriting formalism capable of simulating left-injective DPO rewriting.
+ Additionally, this method can be applied for many different graph notions. 
+%  A uncomparable but related approach based on counting subgraphs will be presented in Chapter~\ref{chap:subgraph_counting}.
+
+Plump~\cite{plump1995ontermination} gives a necessary and sufficient termination criterion for left-injective DPO rewriting rules in terms of forward closure which are derivations satisfying certain property. A rewriting system is terminating if and only if it does not admit an infinite forward closure and for each rule $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$, $l$ is not surjective.
+However, whether a rewriting system admits an infinite forward closure is undecidable, since this criterion is equivalent to termination of systems with non-surjective left morphisms.
+
+Plump~\cite{plump2018modular} later proposed a modular critical pair-based strategy for left-injective DPO hypergraph rewriting with monic matches.
+It decomposes a rewriting system into two subsystems, each of which can be analyzed separately using arbitrary termination techniques, and if both subsystems terminate, then the entire system terminates.
+However, termination of the subsystems still needs to be established using some techniques.
+
+Levendovszky et al.~\cite{levendovszky2007termination} proposed a termination criterion for DPO rewriting with monic matches, injective rules and negative application conditions on finite typed attributed graphs. It is based on the fact that if the application of every infinite sequence of rules requires the initial graph to be infinite, then the system terminates. This technique is theoretically very interesting, but it is hard to check the termination condition automatically as explained in~\cite[\textsection 6]{levendovszky2007termination}. 
+
+Bottoni et al.~\cite{bottoni2005termination} present a termination criterion for DPO rewriting systems with very restrictive external control mechanisms. The method relies on a measuring function satisfying a very strong constraint, and the instance of such a measuring function proposed is node and edge counting, which is subsumed by our method in the setting of DPO rewriting with injective rules.
+
+Bottoni et al. 2010~\cite{bottoni2010atermination} present a criterion for termination of DPO rewriting with monic matches, injective rules and negative application conditions, based on the construction of a labeled transition system.

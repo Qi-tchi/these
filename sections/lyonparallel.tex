@@ -12,10 +12,8 @@ A labeled graph is encoded in the tool as a structure with five fields: a list o
 The representation of a labeled graph is constructed using the function \colorbox{Ivory2}{$MGraph.fromList$} given 2 parameters. The first parameter is a list of integers representing the nodes of the graph. The second parameter is a list of four-tuples representing the labeled edges of the graph, where each tuple \colorbox{Ivory2}{$(s,lab,t,id)$} of type \colorbox{Ivory2}{$\textit{int}\times \textit{string}\times \textit{int}\times \textit{int}$} represents an edge with source node $s$, label $lab$, target node $t$, and identifier $id$.
 
 For example, consider the graph rewriting rule:
-% \begin{figure}[H] 
-%       \centering 
-
       \begin{center}
+        \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -29,9 +27,6 @@ For example, consider the graph rewriting rule:
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
-              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
           \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (-5mm,-3mm); 
@@ -45,12 +40,9 @@ For example, consider the graph rewriting rule:
           }    
           \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
-          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
+        }
     \end{center}
-%       \caption{}
-%       \label{fig:implemented:grsaa_0}
-%   \end{figure}
 \noindent The representation of graphs $K$,$L$, and $R$ in OCaml can be constructed by the following code:
 \begin{lstlisting}
     let graph_K = MGraph.fromList [1;2] []
@@ -72,6 +64,7 @@ A homomorphism between two labeled graphs is encoded as a mapping from the nodes
     \end{enumerate}
 For example, consider morphisms $l$ and $r$ of the rewriting rule:
   \begin{center}
+    \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -85,9 +78,6 @@ For example, consider morphisms $l$ and $r$ of the rewriting rule:
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
-              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
           \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (-5mm,-3mm); 
@@ -101,8 +91,8 @@ For example, consider morphisms $l$ and $r$ of the rewriting rule:
           }    
           \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
-          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
+    }
     \end{center}
 \noindent Their representation in OCaml can be constructed using the following code, where \colorbox{Ivory2}{$morphism\_l$} represents $l$ and \colorbox{Ivory2}{$morphism\_r$} represents $r$, respectively, and \colorbox{Ivory2}{$graph\_K$}, \colorbox{Ivory2}{$graph\_L$}, and \colorbox{Ivory2}{$graph\_R$} represent graphs $K$, $L$, and $R$, respectively (see Section~\ref{lyonparallel:sec:labeled_graphs}):
 \begin{lstlisting}
@@ -119,6 +109,7 @@ given the representations of the left- and right-hand side homomorphisms.
 For example, 
 consider the rewriting rule:
   \begin{center}
+    \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -150,6 +141,7 @@ consider the rewriting rule:
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
+    }
     \end{center}
 \noindent The representation of the rewriting rule is constructed using the following OCaml expression, which creates the representation of a DPO rule from the representations of the left and right morphisms. Here, \colorbox{Ivory2}{$morphism\_l$} and \colorbox{Ivory2}{$morphism\_r$} denote the representations of $l$ and $r$, respectively (see Section~\ref{lyonparallel:sec:homomorphisms}):
 \begin{lstlisting}
@@ -163,6 +155,7 @@ $$\colorbox{Ivory2}{$GraphRewritingSystem.fromRulesListAndName$}$$ given three a
 
 For example, consider the DPO graph rewriting system that consists of the rule:
   \begin{center}
+    \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -194,6 +187,7 @@ For example, consider the DPO graph rewriting system that consists of the rule:
           \node () at (67mm,-7mm) {$\overset{r}{\rightarrowtail}$};
           % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
+    }
     \end{center}
 It is represented by the following OCaml expression that creates a system from the singleton list containing the representation of the rule. Here, \colorbox{Ivory2}{$rl$} denotes the representation of the rewriting rule.
 \begin{lstlisting}
@@ -230,6 +224,7 @@ and the injective graph homomorphism is shown below:
 %  \begin{figure}[H]
 %     \centering
 \begin{center}
+    \resizebox{0.6\textwidth}{!}{
 \begin{tikzpicture}
       \graphbox{$L$}{30mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
           \coordinate (o) at (0mm,-3mm); 
@@ -251,9 +246,7 @@ and the injective graph homomorphism is shown below:
     %   \node () at (37mm,-10mm) {$\leftarrowtail$};
       \node () at (67mm,-9mm) {$\rightarrowtail$};
   \end{tikzpicture}
-%   \caption{}
-%   \label{fig:intro:graph_transformation_rule_anti_patternsfs}
-%  \end{figure} 
+    }
 \end{center}
 Its representation in OCaml
         can be constructed using the following code:
@@ -356,6 +349,7 @@ The LyonParallel REPL lets the user select a set of rewriting rules and run the 
 
 The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewriting systems; user-defined systems can be added as described in~\textsection~\ref{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}. The predefined system consisting of the rule shown below is named \colorbox{Ivory2}{$bruggink14\_ex\_4\_and\_6$}:
 \begin{center}
+    \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -369,9 +363,6 @@ The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewr
               \coordinate (o) at (5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
-              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
           \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (-5mm,-3mm); 
@@ -385,8 +376,9 @@ The REPL command \colorbox{Ivory2}{$systems$} lists the available DPO graph rewr
           }    
           \node () at (37mm,-7mm) {$\overset{l}{\leftarrowtail}$};
           \node () at (67mm,-7mm) {$\overset{r}{\rightarrowtail}$};
-          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
+           
       \end{tikzpicture}
+    }
     \end{center}
 It appears in the list. Select it at the REPL by name:
 \begin{lstlisting}
@@ -397,7 +389,8 @@ It appears in the list. Select it at the REPL by name:
 \subsection{Termination Analysis using the Morphism Counting Method}
 Consider the graph rewriting system presented in Example~\ref{subgraph_counting:ex_contrib_variant} with a single rule:
     \begin{center}
-            \begin{tikzpicture}[scale=0.9]
+        \resizebox{\textwidth}{!}{
+            \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
                     \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
@@ -434,6 +427,7 @@ Consider the graph rewriting system presented in Example~\ref{subgraph_counting:
                 \node () at (38mm,-18mm) {$\leftarrowtail$};
                 \node () at (77mm,-18mm) {$\rightarrowtail$};
             \end{tikzpicture}
+        }
         \end{center}
 Its termination cannot be proved using the weighted type graph method presented in~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt} and in Chapter~\ref{chap:nwf}. However, its relative termination with respect to the empty set can be proved using the morphism counting method.
 
@@ -467,7 +461,7 @@ The ruler-graph is illustrated below.
 %     \centering
 \begin{center}
         \begin{tikzpicture}
-                \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+                \graphbox{$L$}{0mm}{0mm}{35mm}{25mm}{2mm}{-3mm}{
                         \coordinate (delta) at (0,-18mm);
                         \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {};
                         \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {};
@@ -484,6 +478,7 @@ The ruler-graph is illustrated below.
 \subsection{Termination Analysis using the Morphism Counting with Antipattern}
 Consider the graph rewriting system shown in Example~\ref{antipattern:ex:grs_aca}, whose termination cannot be proven either by the morphism counting method without forbidden patterns introduced in Chapter~\ref{chap:subgraph_counting} or by the subgraph counting method presented in~\cite{overbeek2024termination_lmcs}. Its unique rule is illustrated below.
 \begin{center}
+    \resizebox{\textwidth}{!}{
     \begin{tikzpicture}
         \graphbox{$L$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
             \coordinate (o) at (0mm,-3mm); 
@@ -511,6 +506,7 @@ Consider the graph rewriting system shown in Example~\ref{antipattern:ex:grs_aca
         \node () at (37mm,-9mm) {$\leftarrowtail$};
         \node () at (67mm,-9mm) {$\rightarrowtail$};
     \end{tikzpicture}
+    }
 \end{center}
 The rule is predefined in the tool and can be selected with the REPL command:
  \begin{lstlisting}
@@ -538,6 +534,7 @@ Consider the rewriting rule shown below:
 % \begin{figure}[H]
 %       \centering 
 \begin{center}
+    \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
               \coordinate (o) at (0mm,-3mm); 
@@ -565,6 +562,7 @@ Consider the rewriting rule shown below:
           \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
       \end{tikzpicture}
+    }
     \end{center}
 The rewriting system consisting of the rule is predefined in the tool and can be selected with the REPL command:
  \begin{lstlisting}
@@ -616,6 +614,7 @@ The first block indicates that the rule whose representation is indexed by \colo
 %  \begin{figure}[H]
 %     \centering
 \begin{center}
+    \resizebox{0.8\textwidth}{!}{
     \begin{tikzpicture}
       \graphbox{$\mathcal{T}$}{20mm}{0mm}{45mm}{25mm}{2mm}{-5mm}{
           \coordinate (o) at (3mm,-4mm); 
@@ -640,6 +639,7 @@ The first block indicates that the rule whose representation is indexed by \colo
           \draw[->] (l1) to[bend left] node[midway,below] {$a^{2}$} (l0);
       }    
   \end{tikzpicture}
+    }
 \end{center}
 
 
