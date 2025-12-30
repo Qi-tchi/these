@@ -300,29 +300,25 @@ below:
  Once the left pushout square is constructed, the right pushout square can always be constructed and is unique up to isomorphism because of the universal property.
 
 
-However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square cannot always be constructed. For example, consider the same rewriting rule 
+However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square cannot always be constructed. For example, consider the same rewriting rule:
+
+\vspace{-5mm}
 \begin{center}
       \resizebox{\textwidth}{!}{
       \begin{tikzpicture}
-          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{2mm}{-5mm}{
-              \coordinate (o) at (0mm,-3mm); 
-              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+          \graphbox{$L$}{0mm}{0mm}{34mm}{15mm}{0mm}{-8mm}{ 
+              \node[draw,circle] (l1) at ($(-1,0)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
               \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
               \draw[->] (l1) -- (l3) node[midway,above] {$a$};
               \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }     
-          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
-              \coordinate (o) at (5mm,-3mm); 
-              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+          \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{4mm}{-8mm}{
+              \node[draw,circle] (l1) at (-10mm,0mm) {1};
               \node[draw,circle] (l2) at ($(l1)+(1,0)$) {2};
-              % \node[draw,circle] (l3) at ($(l1)+(1,0)$) {$\ $};
-              % \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-              % \draw[->] (l3) -- (l2) node[midway,above] {$a$};
           }    
-          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{2mm}{-5mm}{
-              \coordinate (o) at (-5mm,-3mm); 
-              \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+          \graphbox{$R$}{70mm}{0mm}{45mm}{15mm}{-5mm}{-8mm}{
+              \node[draw,circle] (l1) at (-10mm,0mm) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
               \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
               \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
@@ -332,13 +328,9 @@ However, given a match $L \overset{m}{\rightarrow} G$, the left pushout square c
           }    
           \node () at (37mm,-8mm) {$\overset{l}{\leftarrowtail}$};
           \node () at (67mm,-8mm) {$\overset{r}{\rightarrowtail}$};
-          % \draw[>->] (51mm,2mm) -- (52mm,3mm);
       \end{tikzpicture}
       }
 \end{center} 
-%       \caption{}
-%       \label{fig:preliminaries:a_rewrdfagiting_rule_sfdsgdfa}
-%   \end{figure}
 and the graph $G$ shown below:
 \begin{center}
     \resizebox{0.3\textwidth}{!}{
@@ -362,6 +354,7 @@ and the graph $G$ shown below:
 \end{center}
 The left pushout square cannot be constructed as visualized by the following figure, where the numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges; the dashed circle in the box $C$ indicates that the node 3 is missing.
 
+\vspace{-5mm}
         \begin{center}
         \resizebox{\textwidth}{!}{
             \begin{tikzpicture}
@@ -435,6 +428,8 @@ The left pushout square cannot be constructed as visualized by the following fig
         Therefore, no node of $G$ outside the image of \(m\) should be incident to a node of \(m(L)\) outside the image of \(l\star m\). This requirement is precisely the dangling-edge condition in the following Proposition~\ref{prop:existence_of_pushout_complement}.
 
 There is another requirement for the existence of a pushout complement. To give an intuition, consider the rewriting rule in \(\mathbf{Graph}\), shown below. 
+
+\vspace{-4mm}
     \begin{center}
         \resizebox{\textwidth}{!}{
             \begin{tikzpicture}
@@ -463,7 +458,9 @@ There is another requirement for the existence of a pushout complement. To give 
         } 
         \end{center} 
 This rule deletes a node of the graph, and the match identifies the three nodes of \(L\) with a single node of \(G\). 
-Consider the match \(L \overset{m}{\rightarrow} G\) shown in the following diagram:    
+Consider the match \(L \overset{m}{\rightarrow} G\) shown in the following diagram:   
+
+\vspace{-4mm}
     \begin{center}
         \resizebox{\textwidth}{!}{
             \begin{tikzpicture}
@@ -498,7 +495,7 @@ Consider the match \(L \overset{m}{\rightarrow} G\) shown in the following diagr
         \end{center}     
 Since there are no edges, we may view these graphs as sets of nodes and compute the left pushout square explicitly, as in Example~\ref{ex:cat:posfjsdlkgja}. Suppose that the left pushout square exists—i.e., there is a graph \(C\) and morphisms \(u: K \mathop{\to} C\) and \(l': C \mathop{\to} G\) such that the following diagram is a pushout square:
 \begin{center}
-      \resizebox{0.2\textwidth}{!}{
+      \resizebox{0.3\textwidth}{!}{
       \begin{tikzpicture}
             \node (I) at (0,0) {$K$};
             \node (L)  at (-2,0) {$L$};
@@ -535,7 +532,7 @@ This leads to the following proposition summarizing the conditions under which p
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-        \resizebox{0.2\textwidth}{!}{
+        \resizebox{0.3\textwidth}{!}{
             \begin{tikzpicture}
                 \node (I) at (0,0) {$K$};
                 \node (L) at (-2,0) {$L$};

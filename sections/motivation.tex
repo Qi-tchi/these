@@ -1,4 +1,3 @@
-
 \section{The correctness of distributed algorithms}
 Distributed algorithms run on multiple processors without centralized control and are central to both everyday devices (e.g., smartphones) and safety-critical systems (e.g., medical devices, trains, aircraft, spacecraft).
 Errors in distributed algorithms can have severe consequences, such as the loss of critical data or even human life. Ensuring their correctness is vital but challenging due to the inherent complexity of these systems~\cite{heiser2010theroad, lamport2019thebyzantine}. 
@@ -18,11 +17,11 @@ To enable such methods, distributed algorithms must be modeled using a formalism
 Finite edge-labeled directed multigraphs provide an intuitive yet formal way to model states of distributed algorithms: computational units are represented by nodes; communication channels are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computational units and states of communication channels. 
 
 For example, consider the graph $\mathcal{G}$ shown in Figure~\ref{fig:graph_modeling_state_network}, enclosed in a box labeled with its name in the top-left corner. 
-The graph models a distributed network of six computational units.
-Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. In Figure~\ref{fig:graph_modeling_state_network}, the node labeled by $A$ represents an active computational unit, the other nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$. 
+It models a distributed network of six computational units.
+Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. In Figure~\ref{fig:graph_modeling_state_network}, the node labeled by $A$ represents an active computational unit, the nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$. 
 \begin{figure}[H]
         \centering
-        \resizebox{0.35\textwidth}{!}{
+        \resizebox{0.5\textwidth}{!}{
         \begin{tikzpicture}
             \graphbox{\( \mathcal{G} \)}{0mm}{0mm}{50mm}{50mm}{-10mm}{-25mm}{
                 \node[draw, circle] (n1) at (0,0) {$1$};
@@ -59,7 +58,7 @@ The algorithm operates as follows: when an active unit detects a neutral neighbo
  This behavior is captured by the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_0}.
  \begin{figure}[H]
         \centering 
-        \resizebox{0.6\textwidth}{!}{
+        \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{0mm}{0mm}{34mm}{20mm}{-8mm}{-15mm}{
                         \node[draw, circle] (x) at (0,0) {$1$};  
@@ -88,7 +87,7 @@ Given an initial finite edge-labeled directed multigraph in which all edges are 
  
     \begin{figure}[H]
         \centering
-        \resizebox{0.92\textwidth}{!}{
+        \resizebox{\textwidth}{!}{
         %1
         \resizebox{0.28\textwidth}{!}{
         \begin{tikzpicture}
@@ -152,7 +151,7 @@ Given an initial finite edge-labeled directed multigraph in which all edges are 
         }
 
 %4
-\resizebox{0.92\textwidth}{!}{
+\resizebox{\textwidth}{!}{
 \resizebox{0.28\textwidth}{!}{
      \begin{tikzpicture}  
         \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
@@ -227,14 +226,12 @@ This enables a uniform and elegant definition of graph transformation.
 
  Double-pushout (DPO) graph rewriting~\cite{corradini1997algebraic,habel2001double} is among the most studied algebraic graph transformation formalisms.
   A DPO graph rewriting rule consists of two functions that preserve graph structure, namely $l:\mathcal{K} \mathop{\to} \mathcal{L}$ and $r:\mathcal{K} \mathop{\to} \mathcal{R}$,
- Here, \(\mathcal{L}\) is the left-hand side graph encoding the rule's preconditions, \(\mathcal{R}\) is the right-hand side graph describing the postconditions, and \(\mathcal{K}\) is the interface graph—the part common to \(\mathcal{L}\) and \(\mathcal{R}\) that is preserved by the rule and serves as the interface to the surrounding context. A DPO graph rewriting rule is commonly denoted by \(\mathcal{L} \xleftarrow{l} \mathcal{K} \xrightarrow{r} \mathcal{R}\) in the literature.
- 
- As an example, the graph transformation rule, previously defined and illustrated in Figure~\ref{fig:intro:graph_transformation_rule_0}, can be represented as the DPO graph rewriting rule shown in Figure~\ref{fig:intro:graph_transformation_rule_0_dpo}.
+ Here, \(\mathcal{L}\) is the left-hand side graph encoding the rule's preconditions, \(\mathcal{R}\) is the right-hand side graph describing the postconditions, and \(\mathcal{K}\) is the interface graph—the part common to \(\mathcal{L}\) and \(\mathcal{R}\) that is preserved by the rule and serves as the interface to the surrounding context. A DPO graph rewriting rule is commonly denoted by \(\mathcal{L} \xleftarrow{l} \mathcal{K} \xrightarrow{r} \mathcal{R}\) in the literature. For example, the rule in Figure~\ref{fig:intro:graph_transformation_rule_0}, can be represented as the rule in Figure~\ref{fig:intro:graph_transformation_rule_0_dpo}.
 
 %  \begin{center}
  \begin{figure}[H]
     \centering
-        \resizebox{0.9\textwidth}{!}{
+        \resizebox{\textwidth}{!}{
        \begin{tikzpicture} 
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{-8mm}{-9mm}{
                         \node[draw, circle] (x) at (0,0) {$1$};  
@@ -258,8 +255,7 @@ This enables a uniform and elegant definition of graph transformation.
                     \node () at (-3mm,-10mm) {\( \xleftarrow{l}  \)}; % K -> L
                 \end{tikzpicture}
         }
-    \caption{A DPO graph rewriting rule which replaces an occurrence of \(\mathcal{L}\) by an occurrence of \(\mathcal{R}\).
-    % while preserving the two extremal nodes.
+    \caption{A DPO graph rewriting rule replacing an occurrence of \(\mathcal{L}\) by an occurrence of \(\mathcal{R}\).
     }
     \label{fig:intro:graph_transformation_rule_0_dpo}
     \end{figure} 
@@ -272,7 +268,7 @@ As an example,
 consider the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}.
   \begin{figure}[H]
     \centering
-    \resizebox{0.9\textwidth}{!}{
+    \resizebox{\textwidth}{!}{
     \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -296,7 +292,7 @@ consider the graph transformation rule in Figure~\ref{fig:intro:graph_transforma
                     \node () at (-3mm,-10mm) {\( \overset{r}{\longleftarrow}  \)}; % K -> L
                 \end{tikzpicture}
     }
-    \caption{A DPO graph rewriting rule which removes the middle node and edges of an occurrence of $\mathcal{L}$.}
+    \caption{A DPO graph rewriting rule removing the middle node and edges of an occurrence of $\mathcal{L}$.}
     \label{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}
 \end{figure}
 The graph $\mathcal{G}$ shown in Figure~\ref{fig:intro:graph_G} can be rewritten to yield the graph $\mathcal{H}$ shown in Figure~\ref{fig:intro:graph_H} by applying the rule in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}
@@ -408,7 +404,7 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
     \label{fig:intro:example_dpo_application_sfjsdlgjadlsss}
 \end{figure}
 However, a DPO rewriting rule cannot always be applied to a graph with an occurrence of the left-hand side graph.
-For example, consider the rule, defined earlier and shown in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}. and the graph $\mathcal{G}'$ in Figure~\ref{fig:intro:dangling_edge}. The graph $\mathcal{G}'$ is obtained from the graph $\mathcal{G}$ in Figure~\ref{fig:intro:graph_G} by adding an edge from $3$ to $6$ (in red). This graph has the same occurrence of the graph $\mathcal{L}$ as the graph $\mathcal{G}$ in Figure~\ref{fig:intro:graph_G}.
+For example, consider the rule, defined earlier and shown in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}. and the graph $\mathcal{G}'$ in Figure~\ref{fig:intro:dangling_edge}. The graph $\mathcal{G}'$ is obtained from the graph $\mathcal{G}$ in Figure~\ref{fig:intro:graph_G} by adding an edge from $3$ to $6$ (in red). This graph has the same occurrence of $\mathcal{L}$ as the graph $\mathcal{G}$ in Figure~\ref{fig:intro:graph_G}.
 However, when $3$ is removed, the edge from $3$ to $6$ becomes dangling.
 
 In the literature, different approaches to this problem exist, leading to different algebraic graph rewriting formalisms. Some formalisms implicitly delete dangling edges (e.g., SPO~\cite{ehrig1997algebraic}); 
@@ -425,7 +421,7 @@ Since graph transformation rules in a system are applied repeatedly (and nondete
 Termination is a property of algorithms that ensures they eventually halt. In the context of DPO graph rewriting systems, it ensures that no graph can be transformed indefinitely under a given set of rewriting rules. 
 For example, the following rule terminates because each application (when applicable) reduces the number of nodes in a graph by one:
 \begin{center}
-    \resizebox{0.9\textwidth}{!}{
+    \resizebox{\textwidth}{!}{
     \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -450,11 +446,10 @@ For example, the following rule terminates because each application (when applic
                 \end{tikzpicture}
     }
             \end{center}
-
-For an example of a nonterminating rewriting rule, consider the following rule:
+Consider the following nonterminating rule:
             \begin{center}
-                \resizebox{0.9\textwidth}{!}{
-                \begin{tikzpicture}[baseline=-3ex]
+                \resizebox{\textwidth}{!}{
+                \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
                         \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {$1$};
@@ -504,7 +499,7 @@ It replaces an occurrence of the graph
     A looping sequence of graphs, each obtained by applying the rule to its predecessor, is shown in the following Figure~\ref{fig:intro:sequence_of_transformation_infinite}. 
          \begin{figure}[H]
             \centering
-            \resizebox{0.9\textwidth}{!}{
+            \resizebox{\textwidth}{!}{
             \begin{tikzpicture}
             \graphbox{\( \)}{0mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                 \node[draw,circle] (x) at (0,0) {};
@@ -553,7 +548,7 @@ Most exploit the tree structure of terms, a feature absent in general graphs, ma
 % Moreover, termination may not be the most pertinent property for our purposes. 
 Moreover, in many verification tasks, we do not need global termination; instead, we need to show that certain rules cannot occur infinitely often, even in the presence of other rules that may fire forever.
 
-For example, consider the graph transformation system with two rules shown in Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}. Rule $\alpha$ deletes an arbitrary edge, and rule $\beta$ introduces a fresh isolated node. The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied a finite number of times only: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only a finite number of deletions are possible. Therefore, termination of the full system depends solely on the node-adding rule $\beta$. This observation motivates the notion of \emph{relative termination}.
+For example, consider the graph transformation system with two rules in Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}. Rule $\alpha$ deletes an edge, and rule $\beta$ introduces a fresh isolated node. The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied only a finite number of times: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Thus, termination depends solely on the node-adding rule $\beta$. This observation motivates the notion of \emph{relative termination}.
 
 % \begin{center}
 % in the following Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}
@@ -631,10 +626,8 @@ The rule set $\set{\alpha}$ terminates relative to the rule set $\set{\beta}$, b
 Relative termination generalizes termination in the context of rewriting, because a set of rules terminating relative to an empty set is terminating. In practice, to prove termination of a rewriting system $\mathcal{R}$, one partitions the set of rules into two disjoint subsets \( \mathcal{B} \) and \( \mathcal{A} \) with non-empty $\mathcal{A}$ such that \( \mathcal{A} \) terminates relative to \( \mathcal{B} \), if $\mathcal{B}=\emptyset$ then the termination of $\mathcal{R}$ is established, otherwise, a new iteration starts with the strictly smaller rule set $\mathcal{B}$.
  
 Relative termination has several advantages.
-Firstly, it supports an iterative analysis: once a subset of rules is proved terminating relative to the rest, those rules can be removed from further consideration, allowing us to focus on the remaining rules.
-%   Firstly, by eliminating irrelevant rules, it lets us concentrate termination analysis on the essential part of the system.
-%    it allows for different methods to be combined straightforwardly, leveraging each method's strengths, since different approaches can be tried at each iteration.
-   Secondly, when combined with Plump's modular termination technique~\cite{plump2018modular}\textemdash which proves termination by establishing the termination of two rule sets that partition the system's rule set\textemdash termination analysis becomes much easier.
+Firstly, it supports iterative analysis: once a subset of rules is proved terminating relative to the rest, those rules can be removed from further consideration, allowing us to focus on the remaining rules.
+Secondly, when combined with Plump's modular termination technique~\cite{plump2018modular}\textemdash which proves termination by establishing termination of two rule sets that partition the system's rule set\textemdash termination analysis becomes easier.
 
 
 \section{Termination of DPO graph rewriting systems on edge-labeled directed multigraphs} 
@@ -642,11 +635,9 @@ We consider DPO graph rewriting systems on edge-labeled directed multigraphs in 
 
 First of all, edge-labeled directed multigraphs are simple and intuitive: they are just directed graphs with multiple edges between two nodes allowed, and each edge is labeled by a symbol from a finite alphabet. This notion of graph is widely used in the literature, such as in the work introducing the DPO graph rewriting~\cite{ehrig1973graph}, in previous work~\cite{bruggink2014termination,bruggink2015proving,zantema2014termination} on the method that we extend in Chapter~\ref{chap:nwf}, and in illustrative examples of works~\cite{overbeek2024termination_lmcs,endrullis2024generalized_icgt} which are closely related to our work in Chapter~\ref{chap:subgraph_counting} and Chapter~\ref{chap:antipattern}.
 
- Secondly, while many constructions can be phrased abstractly (e.g., for adhesive categories~\cite{lack2004adhesive}), we intentionally work with concrete edge-labeled directed multigraphs to keep the presentation accessible and to exploit graph-specific measures.
+ Secondly, while many constructions can be phrased abstractly (e.g., for adhesive categories~\cite{lack2004adhesive}), we intentionally work with concrete edge-labeled directed multigraphs to keep the presentation accessible and to exploit graph-specific measures. As a consequence, the correctness of our technique in Chapter~\ref{chap:subgraph_counting} and Chapter~\ref{chap:antipattern} can be checked easily by users with basic knowledge in graph theory and very basic knowledge in category theory.
 
- As a consequence, the correctness of our technique in Chapter~\ref{chap:subgraph_counting} and Chapter~\ref{chap:antipattern} can be checked easily by users with basic knowledge in graph theory and very basic knowledge in category theory.
-
-Finally, specializing to edge-labeled directed multigraphs enables us to leverage graph-specific properties to develop stronger termination criteria. Because termination is undecidable for general DPO graph rewriting systems~\cite{plump1998terminationundecidable}, this specialization is essential for extending the boundaries of practically verifiable termination. 
+Finally, specializing to edge-labeled directed multigraphs enables us to leverage graph-specific properties to develop stronger termination criteria. Because termination is undecidable for general DPO graph rewriting systems~\cite{plump1998terminationundecidable}, this specialization is essential for extending the boundaries of verifiable termination. 
 
 % Chapter~\ref{chap:nwf} extends a existing method for termination of DPO graph rewriting systems, called type graph method~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt}. This work resulted in the following publication:
 % \begin{itemize}
@@ -686,7 +677,7 @@ Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{
 % \begin{figure}[H]
 %     \centering
 \begin{center}
-    \resizebox{0.9\textwidth}{!}{
+    \resizebox{\textwidth}{!}{
 \begin{tikzpicture}
       \graphbox{$\mathcal{L}$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
           \coordinate (o) at (0mm,-3mm); 
@@ -716,13 +707,8 @@ Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{
   \end{tikzpicture}
     }
 \end{center}
-%   \caption{}
-%   \label{fig:intro:graph_transformation_rule_anti_pattern__}
-%  \end{figure} 
 For any application of this rule that rewrites a host graph $G$ to a result graph $H$, and for any choice of pattern graph $X$, the number of injective graph homomorphisms from $X$ to $G$ is less than or equal to the number of injective graph homomorphisms from $X$ to $H$.
 Therefore, the method introduced in Chapter~\ref{chap:subgraph_counting} cannot be applied. However, if we restrict our attention to occurrences of pattern graphs that are not part of a larger occurrence of a specific graph, the number of such occurrences decreases with each application of the rewriting rule. 
 Proofs of some propositions, lemmas, and theorems of this chapter have been moved to Appendix~\ref{antipattern:sec:appendix} to improve readability.
 
-A purely theoretical contribution to automated reasoning would make little sense if it did not lead to a software tool that implements it.
-
-Chapter~\ref{chap:lyonparallel} introduces the termination tool \textbf{LyonParallel} for DPO edge-labeled multigraph rewriting, which integrates the existing type graph method, our extension, and our morphism counting technique and its extension.  
+Since a purely theoretical contribution would be of limited value without an accompanying software tool that implements it, Chapter~\ref{chap:lyonparallel} introduces the termination tool \textbf{LyonParallel} for DPO edge-labeled multigraph rewriting, which integrates the existing type graph method, our extension, and our morphism counting technique and its extension.  
