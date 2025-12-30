@@ -53,6 +53,7 @@ Pushouts play a central role in the double-pushout approach to graph rewriting c
 
 When visualizing a monomorphism, we often use $\rightarrowtail$ instead of $\to$ to emphasize that it is monic. For example, a monomorphism of labeled graphs can be represented as follows:
 \begin{center}
+        \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture}
             \graphbox{$K$}{40mm}{0mm}{24mm}{15mm}{2mm}{-5mm}{
                 \coordinate (o) at (5mm,-3mm); 
@@ -71,6 +72,7 @@ When visualizing a monomorphism, we often use $\rightarrowtail$ instead of $\to$
             }    
             \node () at (67mm,-8mm) {$\rightarrowtail$};
         \end{tikzpicture}
+        }
     \end{center}
 
 \begin{example}
@@ -106,7 +108,7 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
 Consider the diagram below in the category \textbf{Graph}, where the numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
 
 \begin{center}
-        \resizebox{0.9\textwidth}{!}{
+        \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
                 \coordinate (o) at (0mm,-8mm); 
@@ -207,7 +209,7 @@ Consider the diagram below in the category \textbf{Graph}, where the numbers ins
     is used to indicate that the diagram is commutative,
     i.e. the two paths from node 1 to node 2 are equal.
     \begin{center}
-        \resizebox{0.9\textwidth}{!}{
+        \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
                 \coordinate (o) at (0mm,-8mm); 
@@ -277,7 +279,7 @@ The pushout is a construction in category theory that can often be thought of as
         \item for every cospan \( B \overset{\gamma'}{\rightarrow} E \overset{\gamma}{\leftarrow} C \), if \( \alpha \mathop{\star} \gamma' \mathop{=} \beta \mathop{\star} \gamma \) holds, then there is a unique morphism \(\delta : D  \mathop{\to} E\) such that \( \gamma' \mathop{=} \beta' \mathop{\star} \delta \) and \( \gamma \mathop{=} \alpha' \mathop{\star} \delta \).
     \end{itemize} 
     \begin{center}
-        \resizebox{0.5\textwidth}{!}{
+        \resizebox{0.45\textwidth}{!}{
             \begin{tikzpicture}
                     \node (i) at (0,0) {A};
                     \node (r) at (1,1) {B};
@@ -308,14 +310,11 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
     where \(B\mathop{+}C\) denotes the disjoint union of $B$ and $C$ and \(\sim\) is the smallest equivalence relation that includes \(\set{(\alpha(a),\beta(b))\mid a \mathop{\in} A }\). The maps
     \(\beta' \mathop{\colon} B \mathop{\to} D\) and \(\alpha' \mathop{\colon} C \mathop{\to} D\) send each element to its equivalence class.
 
-    %  Consider the functions \(b\) and \(c\) shown in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkjflg} in the category \(\mathbf{Set}\). Each set is drawn as a box; elements of a set are represented by circles. The numbers inside circles indicate how the functions map those elements. 
-    %  The element labeled by $n$ in set $X$ is denoted by $n_X$ to avoid ambiguity.
-    %  The equivalence relation \(\sim\) is the set \(\set{(1_B,1_C),(2_B,2_C)}\). The disjoint union of \(B\) and \(C\) is $D \mathop{=} \set{1_B,2_B,4_B,1_C,2_C,3_C}$. The quotient set $D/{\sim}$ is $\set{[1_B],[2_B],[3_C],[4_B]}$, where $[x]$ denotes the equivalence class of $x$. Note that $[1_C] \mathop{=} [1_B]$ and $[2_C] \mathop{=} [2_B]$, and $\set{[1_B],[2_B],[3_C],[4_B]}$ is isomorphic to $\set{1_D,2_D,3_D,4_D}$.
     For example, consider the functions \(\alpha\) and \(\beta\) in the category \(\mathbf{Set}\) in the diagram, illustrated in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkjflg}.
     In this diagram, each set is drawn as a box and its elements are represented by circles. The numbers inside circles indicate how the functions map those elements.
     \begin{figure}[H]
       \centering 
-      \resizebox{0.8\textwidth}{!}{
+      \resizebox{0.6\textwidth}{!}{
       \begin{tikzpicture}
           \graphbox{\( A\)}{40mm}{-3mm}{34mm}{12mm}{2mm}{2mm}{
               \coordinate (o) at (0mm,-8mm); 
@@ -327,33 +326,19 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
               \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-            %   \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
-            %   \draw[ ] (l1) -- (l3) node[midway,above] {$a$};
-            %   \draw[ ] (l3) -- (l4) node[midway,above] {$b$};
-            %   \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
           }     
           \graphbox{\( C  \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
               \coordinate (o) at (0mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-            %   \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
               \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {3};
-            %   \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
-            %   \draw[ ] (l2) -- (l4) node[midway,right] {$a$};
           }    
           \graphbox{\( D \)}{80mm}{-22mm}{45mm}{22mm}{2mm}{-3mm}{
               \coordinate (o) at (-5mm,-3mm); 
               \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
               \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
               \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-            %   \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
-            %   \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
               \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {3};
-            %   \draw[ ] (l1) -- (l6) node[midway,left] {$a$};
-            %   \draw[] (l1) -- (l3) node[midway,above] {$a$};
-            %   \draw[] (l3) -- (l4) node[midway,above] {$b$};
-            %   \draw[ ] (l4) -- (l2) node[midway,above] {$a$};
-            %   \draw[ ] (l2) -- (l5) node[midway,right] {$a$};
           }    
           \node () at (77mm,-8mm) {\( \overset{\alpha}{\rightarrow} \)}; % K -> R
           \node () at (58mm,-18mm) {\( \beta\downarrow \)};
@@ -391,9 +376,9 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-        \resizebox{0.9\textwidth}{!}{
+        \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture} 
-            \graphbox{\( L \)}{40mm}{20mm}{34mm}{12mm}{2mm}{2mm}{
+            \graphbox{\( L \)}{40mm}{15mm}{34mm}{12mm}{2mm}{2mm}{
                 \coordinate (o) at (0mm,-8mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -421,7 +406,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }   
      
-            \graphbox{\( C \)}{40mm}{-20mm}{34mm}{24mm}{2mm}{-3mm}{
+            \graphbox{\( C \)}{40mm}{-15mm}{34mm}{24mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-5mm); 
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -432,13 +417,13 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }      
             % K to L
-            \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,10mm);
             % C to G
             \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-21mm) ;
             % K to C
             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G
-            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \draw[->] (76mm,10mm) -- node[above] {$\beta'$} (104mm,7mm);
             \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
@@ -458,7 +443,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
     % \begin{figure}[H]
     %     \centering 
     \begin{center}
-        \resizebox{0.9\textwidth}{!}{
+        \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
                 \coordinate (o) at (0mm,-11mm); 
@@ -475,7 +460,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
             }  
-            \graphbox{\(G  \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
+            \graphbox{\(G  \)}{90mm}{10mm}{34mm}{40mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-20mm); 
                  \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
@@ -491,7 +476,7 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }   
      
-            \graphbox{\( C \)}{40mm}{-20mm}{34mm}{25mm}{2mm}{-3mm}{
+            \graphbox{\( C \)}{40mm}{-13mm}{34mm}{25mm}{2mm}{-3mm}{
                 \coordinate (o) at (-2mm,-6mm); 
                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -504,11 +489,11 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
             % K to L  
             \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
-            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (88mm,-24mm) ;
             % K to C
             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G
-            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (88mm,7mm);
             \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
@@ -622,7 +607,7 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
     % \begin{figure}[H]
     %     \centering
     \begin{center}
-        \resizebox{0.9\textwidth}{!}{
+        \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture} 
             \graphbox{\( L \)}{40mm}{20mm}{34mm}{20mm}{2mm}{2mm}{
                 \coordinate (o) at (0mm,-10mm); 
@@ -639,7 +624,7 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
                 \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
             }  
-            \graphbox{\(G  \)}{110mm}{5mm}{34mm}{40mm}{2mm}{-3mm}{
+            \graphbox{\(G  \)}{90mm}{10mm}{34mm}{40mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-20mm); 
                  \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
                 % \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
@@ -655,7 +640,7 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
                 % \draw[->,blue] (l1) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
             }   
      
-            \graphbox{\( C \)}{40mm}{-20mm}{34mm}{24mm}{2mm}{-3mm}{
+            \graphbox{\( C \)}{40mm}{-12mm}{34mm}{24mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-5mm); 
                 \node[draw,circle] (l1) at ($(o)+(0,0)$) {1\ 2};
                 % \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
@@ -668,11 +653,11 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
             % K to L  
             \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
-            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-24mm) ;
+            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (88mm,-26mm) ;
             % K to C
             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G 
-            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (88mm,10mm);
             \node () at (57mm,-6mm) {$PB$};
         \end{tikzpicture}
         }

@@ -22,30 +22,30 @@ The graph models a distributed network of six computational units.
 Each node represents a computational unit; a node's state is indicated by the label of its self-loop; each edge represents a communication channel. In Figure~\ref{fig:graph_modeling_state_network}, the node labeled by $A$ represents an active computational unit, the other nodes labeled by $N$ represent neutral computational units, and edges labeled by $0$ represent communication channels in state $0$. 
 \begin{figure}[H]
         \centering
-        \resizebox{0.4\textwidth}{!}{
-                \begin{tikzpicture}
-                    \graphbox{\( \mathcal{G} \)}{0mm}{0mm}{50mm}{50mm}{-10mm}{-25mm}{
-                        \node[draw, circle] (n1) at (0,0) {$1$};
-                        \node[draw, circle] (n2) at (1,1) {$2$};
-                        \node[draw, circle] (n4) at (1,-1) {$4$};
-                        \node[draw, circle] (n3) at (2,0) {$3$}; 
-                        \node[draw, circle] (n5) at (3,-1){$5$};
-                        \node[draw, circle] (n6) at (3,1){$6$};
-                        \draw[-] (n1) edge node[left] {$0$} (n2);
-                        \draw[-] (n2) edge node[above] {$0$} (n3);
-                        \draw[-] (n3) edge node[above] {$0$} (n4);
-                        \draw[-] (n4) edge node[above] {$0$} (n1);
-                        \draw[-] (n3) edge node[above] {$0$} (n6);
-                        \draw[-] (n6) edge node[right] {$0$} (n5);
-                        \draw[-] (n5) edge node[above] {$0$} (n3);  
-                        \draw[->] (n1) edge [loop left] node {$N$} (n1);
-                        \draw[->] (n2) edge [loop above] node {$N$} (n2);
-                        \draw[->] (n3) edge [loop below] node {$N$} (n3);
-                        \draw[->] (n4) edge [loop below] node {$A$} (n4);
-                        \draw[->] (n5) edge [loop below] node {$N$} (n5);
-                        \draw[->] (n6) edge [loop above] node {$N$} (n6);
-                    } 
-                \end{tikzpicture} 
+        \resizebox{0.35\textwidth}{!}{
+        \begin{tikzpicture}
+            \graphbox{\( \mathcal{G} \)}{0mm}{0mm}{50mm}{50mm}{-10mm}{-25mm}{
+                \node[draw, circle] (n1) at (0,0) {$1$};
+                \node[draw, circle] (n2) at (1,1) {$2$};
+                \node[draw, circle] (n4) at (1,-1) {$4$};
+                \node[draw, circle] (n3) at (2,0) {$3$}; 
+                \node[draw, circle] (n5) at (3,-1){$5$};
+                \node[draw, circle] (n6) at (3,1){$6$};
+                \draw[-] (n1) edge node[left] {$0$} (n2);
+                \draw[-] (n2) edge node[above] {$0$} (n3);
+                \draw[-] (n3) edge node[above] {$0$} (n4);
+                \draw[-] (n4) edge node[above] {$0$} (n1);
+                \draw[-] (n3) edge node[above] {$0$} (n6);
+                \draw[-] (n6) edge node[right] {$0$} (n5);
+                \draw[-] (n5) edge node[above] {$0$} (n3);  
+                \draw[->] (n1) edge [loop left] node {$N$} (n1);
+                \draw[->] (n2) edge [loop above] node {$N$} (n2);
+                \draw[->] (n3) edge [loop below] node {$N$} (n3);
+                \draw[->] (n4) edge [loop below] node {$A$} (n4);
+                \draw[->] (n5) edge [loop below] node {$N$} (n5);
+                \draw[->] (n6) edge [loop above] node {$N$} (n6);
+            } 
+        \end{tikzpicture} 
     }
     \caption{A graph modeling a network configuration. An undirected edge between nodes $u$ and $v$ denotes two directed edges from $u$ to $v$ and from $v$ to $u$. The numbers inside the nodes are node identifiers.}
     \label{fig:graph_modeling_state_network}
@@ -59,6 +59,7 @@ The algorithm operates as follows: when an active unit detects a neutral neighbo
  This behavior is captured by the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_0}.
  \begin{figure}[H]
         \centering 
+        \resizebox{0.6\textwidth}{!}{
         \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{0mm}{0mm}{34mm}{20mm}{-8mm}{-15mm}{
                         \node[draw, circle] (x) at (0,0) {$1$};  
@@ -76,16 +77,18 @@ The algorithm operates as follows: when an active unit detects a neutral neighbo
                     }  
                     \node () at (37mm,-10mm) {\( \mathop{\rightarrow} \)}; % K -> L
         \end{tikzpicture}
+        }
         \caption{Graph rewriting rule for the spanning-tree construction of a connected network with one node labeled by $A$ and all other nodes labeled by $N$ and all edges labeled by $0$. It relabels an occurrence of \(\mathcal{L}\) to \(\mathcal{R}\).}
         \label{fig:intro:graph_transformation_rule_0}
     \end{figure}
-\noindent This rule applies as follows: when an active unit detects a neutral neighbor via a channel in state $0$, the corresponding subgraph \(\mathcal{L}\) appears in the network model and is replaced by the subgraph \(\mathcal{R}\), which represents the neighbor's activation and the channel updated to state $1$.
+This rule applies as follows: when an active unit detects a neutral neighbor via a channel in state $0$, the corresponding subgraph \(\mathcal{L}\) appears in the network model and is replaced by the subgraph \(\mathcal{R}\), which represents the neighbor's activation and the channel updated to state $1$.
 
 Given an initial finite edge-labeled directed multigraph in which all edges are labeled \textit{0} and all nodes are in the neutral state $N$ except for a single node in the active state $A$, the subgraph induced by edges labeled \textit{1} constitutes a spanning tree once no further rule applications are possible. A sample execution sequence starting from the initial configuration, previously defined and illustrated in Figure~\ref{fig:graph_modeling_state_network}, is shown in Figure~\ref{fig:intro_sequence_of_transformation}, where self-loops are omitted and their labels are displayed directly on the nodes to improve readability. 
 % When no further rule applications are possible, the subgraph induced by edges labeled $1$ constitutes a spanning tree (see rightmost and bottom most graphs in Figure~\ref{fig:intro_sequence_of_transformation}).
-
+ 
     \begin{figure}[H]
         \centering
+        \resizebox{0.92\textwidth}{!}{
         %1
         \resizebox{0.28\textwidth}{!}{
         \begin{tikzpicture}
@@ -146,9 +149,10 @@ Given an initial finite edge-labeled directed multigraph in which all edges are 
         }
     \end{tikzpicture}
 }
+        }
 
-\vspace{0.5mm}
 %4
+\resizebox{0.92\textwidth}{!}{
 \resizebox{0.28\textwidth}{!}{
      \begin{tikzpicture}  
         \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
@@ -169,7 +173,7 @@ Given an initial finite edge-labeled directed multigraph in which all edges are 
     \end{tikzpicture}
 }
 %5
-\vspace{0.5mm}
+% \vspace{0.3mm}
 \resizebox{0.28\textwidth}{!}{
     \begin{tikzpicture}  
         \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
@@ -190,7 +194,7 @@ Given an initial finite edge-labeled directed multigraph in which all edges are 
     \end{tikzpicture}
 }
 %6
-\vspace{0.5mm}
+% \vspace{0.5mm}
 \resizebox{0.28\textwidth}{!}{
    \begin{tikzpicture}  
         \graphbox{}{0mm}{0mm}{45mm}{35mm}{-14mm}{-17mm}{
@@ -210,10 +214,10 @@ Given an initial finite edge-labeled directed multigraph in which all edges are 
         }
     \end{tikzpicture}
 }
+        }
         \caption{Sequence of graph transformation, to be read from left to right and from top to bottom. In each graph, the subgraph in red is to be relabeled according to the rule to obtain the next graph.}
         \label{fig:intro_sequence_of_transformation}
     \end{figure}
- 
  Graph transformation has many applications, such as topology-based geometric modeling~\cite{poudret2007topology,poudret2008graph_transformation, belhaouari2014jerboa, bellet2017geometric, pascale2022Geometric_modeling,arnould2022preserving_consistency}, DNA computing~\cite{harju2004tutorial_dna_computation}, life sciences~\cite{behr2021rewriting_life_sciences}, programming~\cite{plump2009graph_programming_language}, administrative access control policies~\cite{bertolissi2025category_based, bertolissi2021graph_based,koch2001specification_evolution_access_control}, and software engineering and security~\cite{heckel2020software_engineers}. Its broad applicability stems from the fact that graphs and graph-like structures provide a natural and intuitive way to model complex systems. 
  
  A predominant school of thought in this area is called algebraic graph rewriting~\cite{ehrig1997handbook1,ehrig1999handbook2,ehrig1999handbook3}, which uses concepts from category theory~\cite{pierce1991basic,barr1990category,maclane2013categories} to define graph transformation. 
@@ -230,6 +234,7 @@ This enables a uniform and elegant definition of graph transformation.
 %  \begin{center}
  \begin{figure}[H]
     \centering
+        \resizebox{0.9\textwidth}{!}{
        \begin{tikzpicture} 
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{-8mm}{-9mm}{
                         \node[draw, circle] (x) at (0,0) {$1$};  
@@ -252,7 +257,7 @@ This enables a uniform and elegant definition of graph transformation.
                     \node () at (37mm,-10mm) {\( \xrightarrow{r} \)}; % K -> L
                     \node () at (-3mm,-10mm) {\( \xleftarrow{l}  \)}; % K -> L
                 \end{tikzpicture}
-            % \end{center}
+        }
     \caption{A DPO graph rewriting rule which replaces an occurrence of \(\mathcal{L}\) by an occurrence of \(\mathcal{R}\).
     % while preserving the two extremal nodes.
     }
@@ -267,6 +272,7 @@ As an example,
 consider the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}.
   \begin{figure}[H]
     \centering
+    \resizebox{0.9\textwidth}{!}{
     \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -289,10 +295,11 @@ consider the graph transformation rule in Figure~\ref{fig:intro:graph_transforma
                     \node () at (37mm,-10mm) {\( \overset{l}{\longrightarrow}\)}; % K -> L
                     \node () at (-3mm,-10mm) {\( \overset{r}{\longleftarrow}  \)}; % K -> L
                 \end{tikzpicture}
+    }
     \caption{A DPO graph rewriting rule which removes the middle node and edges of an occurrence of $\mathcal{L}$.}
     \label{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}
 \end{figure}
-\noindent The graph $\mathcal{G}$ shown in Figure~\ref{fig:intro:graph_G} can be rewritten to yield the graph $\mathcal{H}$ shown in Figure~\ref{fig:intro:graph_H} by applying the rule in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}
+The graph $\mathcal{G}$ shown in Figure~\ref{fig:intro:graph_G} can be rewritten to yield the graph $\mathcal{H}$ shown in Figure~\ref{fig:intro:graph_H} by applying the rule in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}
 to the unique occurrence 
 \raisebox{2pt}{
             \scalebox{0.7}{\tikz[baseline=-0.5ex]{
@@ -309,8 +316,10 @@ Specifically, in this occurrence the subgraph matched to the interface graph $\m
 The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal{R}$ and the context graph $\mathcal{C}$ via the interface graph.
 \begin{figure}[H]
     \centering
+    \resizebox{0.95\textwidth}{!}{
     \begin{subfigure}{0.45\textwidth}
         \centering
+        % \resizebox{\textwidth}{!}{
         \begin{tikzpicture}
             \graphbox{\( \mathcal{G} \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -325,11 +334,13 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
                     \draw[] (l1) -- (l6) node[midway,left] {$b$};
                 }  
         \end{tikzpicture}
+        % }
         \caption{Graph $\mathcal{G}$}
         \label{fig:intro:graph_G}
     \end{subfigure}
     \begin{subfigure}{0.45\textwidth}
         \centering  
+        % \resizebox{\textwidth}{!}{
         \begin{tikzpicture}
                 \graphbox{\( \mathcal{H} \)}{40mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -341,12 +352,16 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
                     \draw[ ] (l1) -- (l6) node[midway,left] {$b$};
                 }    
         \end{tikzpicture}
+        % }
         \caption{Graph $\mathcal{H}$}
         \label{fig:intro:graph_H}
     \end{subfigure}
+    }
 
+    \resizebox{0.95\textwidth}{!}{
     \begin{subfigure}{0.45\textwidth}
     \centering
+    % \resizebox{\textwidth}{!}{
     \begin{tikzpicture}
         \graphbox{\( \mathcal{G} \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
                 \coordinate (o) at (0mm,-3mm); 
@@ -361,11 +376,13 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
                 \draw[blue] (l1) -- (l6) node[midway,left] {$b$};
             }  
     \end{tikzpicture}
+    % }
     \caption{Decomposition of $\mathcal{G}$}
     \label{fig:intro:decomposition_of_G}
     \end{subfigure}
     \begin{subfigure}{0.45\textwidth}
     \centering
+    % \resizebox{\textwidth}{!}{
     \begin{tikzpicture}
         \graphbox{\( \mathcal{G}' \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
                     \coordinate (o) at (0mm,-3mm); 
@@ -382,14 +399,14 @@ The result graph $\mathcal{H}$ is obtained by gluing the occurrence of $\mathcal
                     % \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
                 }   
     \end{tikzpicture} 
+    % }
     \caption{Graph $\mathcal{G}'$}
     \label{fig:intro:dangling_edge}
     \end{subfigure}
+    }
     \caption{Application of the rule shown in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}: (a) host graph $\mathcal{G}$ with a unique occurrence of $\mathcal{L}$, (b) result $\mathcal{H}$, (c) decomposition of $\mathcal{G}$ into interface K (in black), occurrence of $\mathcal{L}$ (in orange and black), and context C (in blue and black), (d) a graph $\mathcal{G}'$ where the rule is not applicable because deleting the middle node would create a dangling edge (in red).}
     \label{fig:intro:example_dpo_application_sfjsdlgjadlsss}
 \end{figure}
-
-
 However, a DPO rewriting rule cannot always be applied to a graph with an occurrence of the left-hand side graph.
 For example, consider the rule, defined earlier and shown in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}. and the graph $\mathcal{G}'$ in Figure~\ref{fig:intro:dangling_edge}. The graph $\mathcal{G}'$ is obtained from the graph $\mathcal{G}$ in Figure~\ref{fig:intro:graph_G} by adding an edge from $3$ to $6$ (in red). This graph has the same occurrence of the graph $\mathcal{L}$ as the graph $\mathcal{G}$ in Figure~\ref{fig:intro:graph_G}.
 However, when $3$ is removed, the edge from $3$ to $6$ becomes dangling.
@@ -408,7 +425,7 @@ Since graph transformation rules in a system are applied repeatedly (and nondete
 Termination is a property of algorithms that ensures they eventually halt. In the context of DPO graph rewriting systems, it ensures that no graph can be transformed indefinitely under a given set of rewriting rules. 
 For example, the following rule terminates because each application (when applicable) reduces the number of nodes in a graph by one:
 \begin{center}
-    \resizebox{\textwidth}{!}{
+    \resizebox{0.9\textwidth}{!}{
     \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -436,7 +453,7 @@ For example, the following rule terminates because each application (when applic
 
 For an example of a nonterminating rewriting rule, consider the following rule:
             \begin{center}
-                \resizebox{\textwidth}{!}{
+                \resizebox{0.9\textwidth}{!}{
                 \begin{tikzpicture}[baseline=-3ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -487,7 +504,7 @@ It replaces an occurrence of the graph
     A looping sequence of graphs, each obtained by applying the rule to its predecessor, is shown in the following Figure~\ref{fig:intro:sequence_of_transformation_infinite}. 
          \begin{figure}[H]
             \centering
-            \resizebox{\textwidth}{!}{
+            \resizebox{0.9\textwidth}{!}{
             \begin{tikzpicture}
             \graphbox{\( \)}{0mm}{0mm}{20mm}{20mm}{-5mm}{-14mm}{
                 \node[draw,circle] (x) at (0,0) {};
@@ -544,9 +561,8 @@ For example, consider the graph transformation system with two rules shown in Fi
         \centering
 %   \begin{subfigure}{0.3\textwidth}
 %         % \centering
-\resizebox{\textwidth}{!}{
+        \resizebox{\textwidth}{!}{
         $\alpha$={
-            %  \resizebox{0.9\textwidth}{!}{
              \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -570,8 +586,9 @@ For example, consider the graph transformation system with two rules shown in Fi
                     \node () at (77mm,-10mm) {\( \rightarrow \)}; % K -> R
                 \end{tikzpicture}
             }
-        % }
+        }
 
+         \resizebox{\textwidth}{!}{
         $\beta$={
             %  \resizebox{0.9\textwidth}{!}{
              \begin{tikzpicture}[baseline=-7ex]
@@ -669,7 +686,7 @@ Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{
 % \begin{figure}[H]
 %     \centering
 \begin{center}
-    \resizebox{\textwidth}{!}{
+    \resizebox{0.9\textwidth}{!}{
 \begin{tikzpicture}
       \graphbox{$\mathcal{L}$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
           \coordinate (o) at (0mm,-3mm); 

@@ -206,11 +206,7 @@ Chapter~\ref{chap:subgraph_counting}
 } 
 
 
-The subgraph-counting method by Overbeek and Endrullis~\cite{overbeek2024termination_lmcs} is designed for the PBPO+~\cite{overbeek2023graph, overbeek2023apbpotutorial}\textemdash{}a rewriting formalism capable of simulating left-injective DPO rewriting.
-%  It can prove termination for systems like~\cite[Examples 5.2, 5.7, 5.9]{overbeek2024termination_lmcs} and~\cite[Example 6]{plump2018modular}, which lie beyond the scope of our technique. 
- Additionally, this method can be applied for many categories. 
-
-It is very closely related to our work in the setting where they are both defined. Both methods weigh objects by summing weighted morphisms targeting them, and, for both methods, the key challenge lies in estimating weights for morphisms whose images partially overlap with the rewriting context, because morphisms fully embedded in the context are shared between host and resulting graphs, while those entirely within left- or right-hand-side graphs are trivial to quantify.  
+The subgraph-counting method by Overbeek and Endrullis (2024)~\cite{overbeek2024termination_lmcs} is very closely related to our work in the setting where they are both defined. Both methods weigh objects by summing weighted morphisms targeting them, and, for both methods, the key challenge lies in estimating weights for morphisms whose images partially overlap with the rewriting context, because morphisms fully embedded in the context are shared between host and resulting graphs, while those entirely within left- or right-hand-side graphs are trivial to quantify.  
 
 The two methods employ distinct strategies to overcome this challenge. The subgraph counting method relies on type-morphisms (see~\cite[page 9, remark 4.11, Lemma 4.23]{overbeek2024termination_lmcs}), whereas our approach requires injective mappings from (i) subgraph occurrences partially overlapping the rewriting context in the result graph to (ii) those in the host graph.
 
@@ -323,13 +319,8 @@ Similarly, it fails to prove termination for Example~\ref{subgraph_counting:ex_c
   \end{center} 
 % (~\cite[\hyperref[ex:plump95_4d1]{Example 4.1}]{plump1995ontermination}) 
 which remains beyond the scope of our technique. Finally, both approaches cannot handle Example~\ref{ex:endrullis:d3:limitation} (see~\cite[Remark 6.2]{overbeek2024termination_lmcs}).
-% ,
-% ~\cite[Example D.3]{endrullis2024generalized_arxiv_v2} (see~\cite[Remark 6.2]{overbeek2024termination_lmcs} and Example~\ref{ex:endrullis:d3:limitation}).
-% The type graph method, which weighs an object by summing the weights of morphisms from the object to a type graph, was initially introduced by Zantema, K{\"o}nig and Bruggink~\cite{zantema2014termination} for cycle-rewriting systems. 
-% This method has since been generalized to edge-labeled multigraphs by Bruggink et al.~\cite{bruggink2014termination} for DPO rewriting with monic matches and injective rules, later extended to DPO rewriting in general by Bruggink et al.~\cite{bruggink2015proving}, and further adapted to more categories and different DPO variants by Endrullis et al.~\cite{endrullis2024generalized_arxiv_v2}. 
-% These methods are not directly comparable with our technique in general.
 
-The type graph method is also related to our approach, as both methods involve counting morphisms. However, they differ in direction: the type graph method counts morphisms from the object to a fixed type graph, while our method counts morphisms from a fixed pattern graph to the object.
+The type graph method~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt} is also related to our approach, as both methods involve counting morphisms. However, they differ in direction: the type graph method counts morphisms from the object to a fixed type graph, while our method counts morphisms from a fixed pattern graph to the object.
 Concerning their applicability, neither method strictly subsumes the other.
 On the one hand, the termination of Example~\ref{subgraph_counting:ex_contrib_variant}, shown below, can be proved by our method but not by the type graph methods due to the existence of a surjection from the output graph to the input graph as explained in~\cite[Example D.4]{endrullis2024generalized_arxiv_v2}.
 \begin{center}
@@ -392,12 +383,9 @@ On the one hand, the termination of Example~\ref{subgraph_counting:ex_contrib_va
     \end{center}
           %  On the other hand, our method cannot prove the termination of~\cite[Example 1, 5 and Ad-hoc Routing Protocol]{bruggink2014termination}, nor~\cite[Example 5, 6]{bruggink2015proving}, nor~\cite[Examples D2 and D3]{endrullis2024generalized_arxiv_v2}.
 
-Plump~\cite{plump1995ontermination} gives a necessary and sufficient termination criterion for left-injective DPO hypergraph rewriting in terms of forward closure. Here, a hypergraph generalizes a graph: its edges (hyperedges) may connect more than two vertices. Deciding whether a system satisfies forward closure is undecidable, since forward closure holds if and only if the rewriting system terminates.
-% While this method proves termination of Example~\ref{subgraph_counting:ex_contrib_variant}, our approach succeeds on~\cite[Example 3.8]{plump1995ontermination} but fails in proving termination of~\cite[Example 4.1]{plump1995ontermination}. 
+Plump (1995)~\cite{plump1995ontermination} gives a necessary and sufficient termination criterion for left-injective DPO hypergraph rewriting in terms of forward closure. However, the verification of the criterion is undecidable in general.
 
-Plump~\cite{plump2018modular} later proposed a modular critical pair-based strategy for left-injective DPO hypergraph rewriting with monic matches.
-It decomposes a rewriting system into two subsystems, each of which can be analyzed separately using arbitrary termination techniques, and if both subsystems terminate, then the entire system terminates.
-Our method complements this: while modularity reduces global complexity, each subsystem requires individual termination proofs.  
+Our method complements the approach proposed by Plump (2018)~\cite{plump2018modular}: whereas the method decomposes a rewriting system into subsystems and proves termination of the entire system by combining termination proofs for the subsystems, the termination of each subsystem must still be established separately.
 For example, the measure based on the indegree proposed in~\cite{plump2018modular} cannot prove the termination of Example~\ref{subgraph_counting:ex_contrib_variant}, illustrated below, due to the loops on the node 5 in the right-hand side graph $R$. 
 \begin{center}
             \begin{tikzpicture}[scale=0.9]
@@ -469,16 +457,6 @@ Specifically, consider the following rewriting step with the rule:
             \end{tikzpicture}
           \end{center}
 For all $k \mathop{\in} \mathbb{N}$, the weight of the host graph $G$\textemdash{}defined as the sum of node indegrees raised to the power of $k$\textemdash{}is $0^k + 0^k + 3^k = 3^k$, while the weight of the result graph $H$ is $0^k + 0^k + 2^k + 2^k + 3^k = 2^k + 2^k + 3^k$. Since $3^k < 2^k + 2^k + 3^k$, the weight does not decrease. However, our method succeeds (see Example~\ref{subgraph_counting:ex_contrib_variant}).
-% Additionally, our method proves termination of~\cite[Examples 1 and 5]{plump2018modular} but not~\cite[Example 4]{plump2018modular}, and non-injective rules (e.g.,~\cite[Example 6]{plump2018modular}) fall outside our scope.
-
-In~\cite{levendovszky2007termination}, a termination criterion for DPO rewriting with monic matches, injective rules and negative application conditions on finite typed attributed graphs is proposed. It is based on the fact that if the application of every infinite sequence of rules requires the initial graph to be infinite, then the system terminates. This technique is theoretically very interesting, but it is hard to check the termination condition automatically as explained in~\cite[\textsection 6]{levendovszky2007termination}. 
-
-Bottoni et al.~\cite{bottoni2005termination} present a termination criterion for DPO and SPO rewriting on high-level replacement units. The high-level replacement units that they consider are rewriting systems with very restrictive external control mechanisms. \todo{todo to do: xu : jamais introduit} The method relies on a measuring function satisfying a very strong constraint, and the instance of such a measuring function proposed is node and edge counting, which is subsumed by our method in the setting of DPO rewriting with injective rules.
-
-Bottoni et al.~\cite{bottoni2010atermination} present a criterion for termination of DPO rewriting with monic matches, injective rules and negative application conditions, based on the construction of a labeled transition system,
-whose states represent overlaps between the negative application condition and the right-hand side that can give rise to cycles.
-
-
 
 
 
