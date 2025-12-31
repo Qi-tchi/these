@@ -105,7 +105,8 @@ B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C
 \). 
 \end{definition}
 \begin{example}
-Consider the diagram below in the category \textbf{Graph}, where the numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
+Consider the diagram below in the category \textbf{Graph}, where the numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. $(\alpha, \beta)$ is a span, and $(\beta', \alpha')$ is a cospan.
+
 
 \begin{center}
         \resizebox{0.8\textwidth}{!}{
@@ -160,9 +161,6 @@ Consider the diagram below in the category \textbf{Graph}, where the numbers ins
         \end{tikzpicture}
         }
     \end{center}
-
-%  in Figure~\ref{fig:preliminaries:span_cospan}. 
- $(\alpha, \beta)$ is a span, and $(\beta', \alpha')$ is a cospan.
 \end{example}
 
 \begin{definition}[\cite{barr1990category}]
@@ -207,7 +205,7 @@ Consider the diagram below in the category \textbf{Graph}, where the numbers ins
     A commutative diagram in the category \textbf{Graph} of finite, directed, edge-labeled multigraphs is illustrated below. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
      The symbol $\mathop{=}$ in the center of the diagram
     is used to indicate that the diagram is commutative,
-    i.e. the two paths from node 1 to node 2 are equal.
+    i.e. the composition of morphisms along every path from node 1 to node 2 is the same.
     \begin{center}
         \resizebox{0.8\textwidth}{!}{
         \begin{tikzpicture} 
@@ -297,13 +295,13 @@ The pushout is a construction in category theory that can often be thought of as
                 \end{tikzpicture}
         }
             \end{center}
-The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \textbf{pushout square}\index{Pushout!square}, with \(D\) as the \textbf{pushout object}\index{Pushout!object}. The existence of a unique morphism is known as the \textbf{Universal mapping property of the pushout}\index{Pushout!universal mapping property}.
+The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called a \textbf{pushout square}\index{Pushout!square}, or simply a \textbf{pushout}, with \(D\) as the \textbf{pushout object}\index{Pushout!object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pushout}\index{Pushout!universal mapping property}.
 \end{definition} 
 
 \begin{example}
     \label{ex:cat:posfjsdlkgja}
-     Pushouts of two morphisms always exist in \(\mathbf{Set}\), and (up to isomorphism) can be described as follows. Let
-    \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) be a span. Its pushout is the cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) where the pushout object of \((\alpha,\beta)\) is the set
+     Pushouts of a span always exist in \(\mathbf{Set}\), and (up to isomorphism) can be described as follows. Let
+    \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) be a span. Its pushout is the cospan \( B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) where the pushout object of \((\alpha,\beta)\) is the quotient set
     \[
     D \;=\; (B\mathop{+}C)/{\sim}
     \]
@@ -356,10 +354,11 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
     \[ 
     D' \mathop{=} \{1_B,2_B,4_B,1_C,2_C,3_C\},
     \]
-    and the quotient \(D'/\sim\) is
+    and the quotient set is
     \[
     D'/\sim \mathop{=} \{[1_B],[2_B],[3_C],[4_B]\},
     \]
+    where $[x]$ denotes the equivalence class of the element \(x\).
     We have \([1_C]=[1_B]\) and \([2_C]=[2_B]\), and the maps
     \(\beta'' \mathop{\colon} B \mathop{\to} D'\) and \(\alpha'' \mathop{\colon} C \mathop{\to} D'\) send each element to its equivalence class. Note that \(\{[1_B],[2_B],[3_C],[4_B]\}\) is isomorphic to \(D\), shown in Figure~\ref{fig:preliminaries:a_rewriting_step_dfjalsdkjflg}, which is expected because the pushout of a span is unique up to isomorphism.
 \end{example}
@@ -417,13 +416,13 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }      
             % K to L
-            \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,10mm);
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,10mm);
             % C to G
-            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-21mm) ;
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-21mm) ;
             % K to C
-            \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            \draw[>->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G
-            \draw[->] (76mm,10mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \draw[>->] (76mm,10mm) -- node[above] {$\beta'$} (104mm,7mm);
             \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
         }
@@ -487,16 +486,16 @@ The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \text
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }
             % K to L  
-            \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
-            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (88mm,-24mm) ;
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (88mm,-24mm) ;
             % K to C
             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G
             \draw[->] (76mm,16mm) -- node[above] {$\beta'$} (88mm,7mm);
             \node () at (57mm,-6mm) {$PO$};
         \end{tikzpicture}
-        }
+        } 
     \end{center}
 \end{example}
 The \emph{pullback} is the dual construction of the pushout, and it can be thought of as construction of the interface structure along which two structures are glued together. 
@@ -534,15 +533,15 @@ is a span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) 
     %     \label{fig:preliminaries:pullback_ssdsfd}
     % \end{figure}
                 \end{center}
-The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called the \textbf{pullback square}\index{Pullback!square}, with \(A\) as the \textbf{pullback object}\index{Pullback!object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pullback}\index{Pullback!universal mapping property}.
+The diagram involving \( (\alpha, \beta, \alpha', \beta') \) is called a \textbf{pullback square}, or simply a \textbf{pullback}\index{Pullback!square}, with \(A\) as the \textbf{pullback object}\index{Pullback!object}. The existence of a unique morphism is known as the \textbf{universal mapping property of the pullback}\index{Pullback!universal mapping property}.
 \end{definition} 
-In the category \textbf{Graph} pullbacks always exist and are computed pointwise: take the pullback in \textbf{Set} of the node sets and of the edge sets, and equip the resulting graph with source, target and labeling maps induced componentwise; the projection graph homomorphisms are the corresponding componentwise projections and they satisfy the universal property.
+
 \begin{example} 
     \label{ex:cat:pbfsdljkgjasssss}
     In the category \textbf{Set},
     the pullback 
     of a cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \) is the span \( B \overset{\alpha}{\leftarrow} A \overset{\beta}{\rightarrow} C \) where
-    the pullback object $A$ is the set $A \mathop{=} \set{(b,c) \mathop{\mid} \beta (c) \mathop{=} \alpha (b)} \mathop{\subseteq} B \mathop{\times} C$; $\alpha$ and $\beta$ are defined as the corresponding projections, e.g., $\alpha((b, c)) \mathop{=} b$ and $\beta((b, c)) \mathop{=} c$.
+    the pullback object is the set $A \mathop{=} \set{(b,c)\in B \mathop{\times} C \mathop{\mid} \beta (c) \mathop{=} \alpha (b)}$; $\alpha$ and $\beta$ are defined as the corresponding projections, e.g., $\alpha((b, c)) \mathop{=} b$ and $\beta((b, c)) \mathop{=} c$.
     Consider the following diagram in the category \textbf{Set}, where 
     sets are drawn as boxes,
     circles represent elements of sets, and numbers inside circles indicate how the functions map those elements.
@@ -599,7 +598,7 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
     is the pullback of the cospan \(B \overset{\beta'}{\rightarrow} D \overset{\alpha'}{\leftarrow} C \).
     Indeed, the pullback object can be taken as the set $A' \mathop{=} \set{(1_B,1_C),(2_B,2_C)} \mathop{\subseteq} B \mathop{\times} C$, and the morphisms $\alpha'' \mathop{\colon} A'  \mathop{\to} B$ and $\beta'' \mathop{\colon} A'  \mathop{\to} C$ are defined as the corresponding projections, e.g., $\alpha''((x,y)) \mathop{=} x$ and $\beta''((x,y)) \mathop{=} y$. Note that $A$ is isomorphic to $A'$, which is expected because the pullback of a cospan is unique up to isomorphism.
 \end{example}
-
+In the category \textbf{Graph} pullbacks always exist and are computed pointwise: take the pullback in \textbf{Set} of the node sets and of the edge sets, and equip the resulting graph with source, target and labeling maps induced componentwise; the projection graph homomorphisms are the corresponding componentwise projections and they satisfy the universal property.
 \begin{example}
     \label{ex:cat:pbfsdljkgjasssss2222ssss}
     Consider the diagram in the category \textbf{Graph}, shown below. The numbers inside nodes and the subgraphs in different colors illustrate how the morphisms map nodes and edges. 
@@ -651,9 +650,9 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
                 \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
             }
             % K to L  
-            \draw[->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,15mm);
             % C to G
-            \draw[->] (76mm,-28mm)-- node[below] {$\alpha'$} (88mm,-26mm) ;
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (88mm,-26mm) ;
             % K to C
             \draw[->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
             % L to G 
@@ -663,7 +662,60 @@ In the category \textbf{Graph} pullbacks always exist and are computed pointwise
         }
     \end{center}
 \end{example} 
-An interesting phenomenon about pushouts and pullbacks in the category \textbf{Graph} is stated in the following proposition. 
+Consider the following diagram in the category \textbf{Graph}:\begin{center}
+        \resizebox{0.8\textwidth}{!}{
+        \begin{tikzpicture} 
+            \graphbox{\( L \)}{40mm}{15mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
+            } 
+    
+            \graphbox{\( K \)}{0mm}{0mm}{34mm}{12mm}{2mm}{2mm}{
+                \coordinate (o) at (0mm,-8mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+            }  
+            \graphbox{\(G  \)}{90mm}{5mm}{34mm}{24mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-5mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,red] (l3) at ($(l1)+(1,0)$) {3};
+                \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
+                \draw[->,red] (l1) -- (l3) node[midway,above] {$a$};
+                \draw[->,red] (l3) -- (l2) node[midway,above] {$a$};
+                \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
+                \node[draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
+                \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
+            }   
+     
+            \graphbox{\( C \)}{40mm}{-15mm}{34mm}{24mm}{2mm}{-3mm}{
+                \coordinate (o) at (0mm,-5mm); 
+                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+                \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
+                \node[draw,circle,blue] (l4) at ($(l2)+(0,-1)$) {6};
+                \draw[->,blue] (l2) -- (l4) node[midway,right] {$a$};
+                \draw[->,blue] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
+                \node[ draw,circle,blue] (l6) at ($(l1)+(0,-1)$) {7};
+                \draw[<-,blue] (l1) -- (l6) node[midway,left] {$a$};
+            }      
+            % K to L
+            \draw[>->] (17mm,5mm) -- node[above] {$\alpha$} (37mm,10mm);
+            % C to G
+            \draw[>->] (76mm,-28mm)-- node[below] {$\alpha'$} (104mm,-21mm) ;
+            % K to C
+            \draw[>->] (17mm,-17mm) -- node[below] {$\beta$} (37mm,-28mm);
+            % L to G
+            \draw[>->] (76mm,10mm) -- node[above] {$\beta'$} (104mm,7mm);
+            \node () at (57mm,-6mm) {$PO$};
+        \end{tikzpicture}
+        }
+    \end{center}
+We observe that it is a pushout square as well as a pullback square. This is not a coincidence, as stated in the following proposition.
 \begin{proposition}[\text{\cite[Lemma 13]{lack2004adhesive}}]
     \label{prop:pb_eq_po}
     In the category \textbf{Graph}, pushouts along monomorphisms are also pullbacks. 
