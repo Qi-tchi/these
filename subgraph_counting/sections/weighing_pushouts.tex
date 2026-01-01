@@ -50,7 +50,7 @@ However, systems like Example~\ref{subgraph_counting:ex:grsaa_rx} require more c
         \draw[->] (x) -- (y) node[midway, above] {$a$};
         \draw[->] (y) -- (z) node[midway, above] {$a$};
     },
-    because neither the number of nodes nor the number of edges decreases in every rewriting step.
+    because neither the number of nodes nor the number of edges decreases in every possible rewriting step.
     For such ruler-graph, the change in the number of monomorphisms when applying a rewriting rule is unpredictable in general, because the number of monomorphisms 
     % from such ruler-graph 
     depends on the context graph\textemdash a challenge that we address in later sections.
@@ -61,7 +61,7 @@ To combine measurements from multiple ruler-graphs (analogous to combining measu
     \index{Weight function}
     A \textbf{weight function} for a set of ruler-graphs \( \mathbb{X} \) is a map \( s_{\mathbb{X}} \mathop{\colon} \mathbb{X} \mathop{\to} \mathbb{N} \) assigning a weight in $\mathbb{N}$ to each ruler-graph. The weight of a monomorphism from a ruler-graph $X$ is defined to be $s_\mathbb{X}(X)$. 
 \end{definition}
-Assigning different weights to measurements from distinct ruler-graphs enhences the technique, as we will demonstrate in Example~\ref{ex:overbeek_5d6}.
+
 \begin{definition} 
     \label{subgraph_counting:def:graph_weight}  
     \index{Graph weight!morphism counting}
@@ -71,7 +71,7 @@ Assigning different weights to measurements from distinct ruler-graphs enhences 
         w_{s_{\mathbb{X}}}(G) \mathop{=} \sum_{X \mathop{\in} \mathbb{X}} s_{\mathbb{X}}(X) \cdot m_X(G).  
     \]  
 \end{definition} 
-
+Assigning different weights to measurements from distinct ruler-graphs enhances the technique, as we will demonstrate in Example~\ref{ex:overbeek_5d6}.
 \section{General idea and key challenge}
 \label{subgraph_counting:sec:general_idea}
 For the remainder of this section, we assume: a set \( \mathcal{R} \mathop{=} \mathcal{A} \mathop{\cup} \mathcal{B} \) of injective DPO rewriting rules, a set \( \mathbb{X} \) of ruler-graphs, and a weight function \( s_{\mathbb{X}} \).  Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) denote a rule in \( \mathcal{R} \) and \( X \mathop{\in} \mathbb{X} \). 
@@ -107,7 +107,7 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
         \end{tikzpicture}
     }
 \end{center}
- We define the following sets of monomorphisms from $X$ in $G$ based on their interaction with $\alpha$ and $\beta$: 
+ We define the following sets:
  \index{mono(@$\operatorname{Mono}(X,G,\alpha)$}
  \index{mono(@$\operatorname{Mono}(X,G,\lnot \alpha)$}
  \index{mono(@$\operatorname{Mono}(X,G,\lnot \alpha, \beta)$}
@@ -134,7 +134,7 @@ Thus, we aim to provide a rule-based sufficient condition for termination.
         \right\}.
     \end{align*}
 \end{notation}
-Consider a rewriting step \( G \mathop{\Rightarrow}_{\rho,\mathfrak{M}} H \) defined by the DPO diagram illustrated below:
+Consider a rewriting step \( G \mathop{\Rightarrow}_{\rho,\mathfrak{M}} H \) defined by the DPO diagram:
 \begin{center}
      \begin{tikzpicture}
             \node (I) at (0,0) {$K$};
@@ -691,11 +691,8 @@ We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along
         \item $R'$ is not isomorphic to $X$,
     \end{enumerate}
 \end{definition}  
-% Note that in the above diagram, the graph $C'$ can be computed as $(X \setminus R') \cup K'$.
-The first and second conditions ensure that such $X$-occurrences are included neither in \( C \) nor in \( R \), thereby guaranteeing that they are implicit.
-The third condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along some common interface elements with a subgraph $C'$ of a context graph \( C \) to form an \( X \)-occurrence. 
-
-% In another word, the set $D(R,X)$ contains all subgraphs $R''$ of $R$ which is not a subgraph of $K$ such that there is a rewriting step defined by the diagram above such that $R'' \mathop{\cup} C''$ for a subgraph $C''$ of $C$ is an $X$-occurrence created by the rewriting step.
+The first condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along some common interface elements with a subgraph $C'$ of a context graph \( C \) to form an \( X \)-occurrence.
+The second and third conditions ensure that such $X$-occurrences are included neither in \( C \) nor in \( R \), thereby guaranteeing that they are implicit.  
 
 \begin{example}
     \label{subgraph_counting:ex:grsaa_rx}
@@ -1625,10 +1622,7 @@ The following example shows an $X$-non-increasing rule.
 
 \section{Solution to the key challenge}
 \label{subgraph_counting:sec:solution_to_the_key_challenge}
-% the cardinality of the set of \( X \)-occurrences implicitly destroyed by the rewriting step is at least as large as the cardinality of the set of \( X \)-occurrences implicitly created by the rewriting step.
-% There are more implicitly destroyed X-occurrences than implicitly created X-occurrences.
-Using the notion of X-non-increasing, we state the following lemma.
- It formalizes the intuition that if $\rho$ is $X$-non-increasing, then, for any rewriting step using $\rho$, 
+T following lemma formalizes the intuition that if $\rho$ is $X$-non-increasing, then, for any rewriting step using $\rho$, 
 more X-occurrences are implicitly destroyed than implicitly created by the rewriting step.
 \begin{lemma} 
     \label{subgraph_counting:lem:w_u_l_not_geq_r_not}

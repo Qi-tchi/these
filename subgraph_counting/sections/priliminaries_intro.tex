@@ -1,4 +1,4 @@
-While Definition~\ref{def:rewriting_inclusion} of injective rewriting rules and rewriting steps may appear more restrictive, they are equivalent to those introduced in \textsection~\ref{sec:dpo}. This equivalence arises because algebraic graph rewriting via double pushouts is defined up to isomorphism. Our preference for these definitions stems from their practical advantage: they provide a clearer view of how the number of monomorphisms from specific graphs changes after a rewriting step. 
+The morphism-counting method presented in this chapter is specifically designed for DPO rewriting systems with injective rules and matches. However, we employ an equivalent definition of these systems due to its practical advantage: it provides a clearer perspective on how the number of monomorphisms from specific graphs changes following a rewriting step.
  
 \begin{definition}
     \label{def:rewriting_inclusion}
@@ -53,20 +53,26 @@ While Definition~\ref{def:rewriting_inclusion} of injective rewriting rules and 
       where all arrows are inclusions and $L' \overset{l'}{\leftarrowtail} K' \overset{r'}{\rightarrowtail} R'$ is equivalent to $\varphi$.
 \end{definition}
 
-\subsection{pregraphs}
-Graphs in double-pushouts that define rewriting steps in \textbf{Graph} can be decomposed into unions of pregraphs. pregraphs model finite directed edge-labeled multigraphs that may contain dangling edges.
+\subsection{Pregraphs}
+Graphs can be decomposed into unions of pregraphs. These pregraphs are used to model finite directed edge-labeled multigraphs that may contain dangling edges.
 \begin{definition}
-    \label{def:pregraph}
-    A \textbf{pregraph}\index{Pregraph} $G$ consists of
+    \label{def:pregraph}\index{Pregraph}
+    % A \textbf{pregraph} $G$ consists of
+    % \begin{itemize}
+    %     \item a finite set of nodes, denoted by $V(G)$,
+    %     \item a subset $V_{\nexists}(G) \mathop{\subseteq} V(G)$ of missing nodes,
+    %     \item a finite set of edges, denoted by $E(G)$,
+    %     \item a source function, denoted by \( \textbf{src}_G \)\index{src@\( \textbf{src}_G \)}, (resp. a target function, denoted by \( \textbf{dst}_G \)\index{dst@\( \textbf{dst}_G \)}) that assigns to each edge an existing or missing node,
+    %     \item an edge-labeling function, denoted by $l_G$, that assigns labels to edges.
+    % \end{itemize}
+Let \(\Sigma\) be a finite set of labels. A \textbf{directed edge-labeled multigraph}\index{Directed edge-labeled multigraph} is a structure \((G, V_{\nexists})\) where
     \begin{itemize}
-        \item a finite set of nodes, denoted by $V(G)$,
-        \item a subset $V_{\nexists}(G) \mathop{\subseteq} V(G)$ of missing nodes,
-        \item a finite set of edges, denoted by $E(G)$,
-        \item a source function, denoted by \( \textbf{src}_G \)\index{src@\( \textbf{src}_G \)}, (resp. a target function, denoted by \( \textbf{dst}_G \)\index{dst@\( \textbf{dst}_G \)}) that assigns to each edge an existing or missing node,
-        \item an edge-labeling function, denoted by $l_G$, that assigns labels to edges.
+        \item G is a graph,
+        \item $V_{\nexists}$ is a subset of nodes of $G$ called \textbf{missing nodes}.
     \end{itemize}
 \end{definition} 
-The set of existing nodes, $V(G) \mathop{\setminus} V_{\nexists}(G)$, is denoted by $V_\exists(G)$.
+For a pregraph \( G \), we write \( V_{\nexists}(G) \) for its set of missing nodes, and denote the set of existing nodes by $V_\exists(G)= V(G) \mathop{\setminus} V_{\nexists}(G)$.
+% the set of existing nodes, $V(G) \mathop{\setminus} V_{\nexists}(G)$, is denoted by $V_\exists(G)$. 
 
  \begin{example}
     \label{ex:pregraph}
@@ -90,45 +96,45 @@ The set of existing nodes, $V(G) \mathop{\setminus} V_{\nexists}(G)$, is denoted
     \end{center}
  \end{example} 
  
- A homomorphism of pregraphs is a mapping between two pregraphs that preserves structure and respects missing and existing nodes.
- \begin{definition} 
-    \label{def:pregraph:homomorphism}
-    Let \( G \) and \( H \) be pregraphs. A \textbf{homomorphism of pregraphs}\index{Homomorphism!pregraph} $h: G \mathop{\to} H$ consists a pair of functions $h_V: V(G) \mathop{\to} V(H) $ and $h_E: E(G) \mathop{\to} E(H)$ such that
-    \begin{itemize}
-        \item for every edge \( a \mathop{\colon} s \mathop{\to} t \) in \( G \), the edge \( h_E(a) \) in $H$ has source \( h_V(s) \) and target \( h_V(t) \),
-        \item for all $s \mathop{\in} V_{\nexists}(G)$, we have $h_V(s) \mathop{\in} V_{\nexists}(H)$,
-        \item for all $t \mathop{\in} V_\exists(G)$, we have $h_V(t) \mathop{\in} V_\exists(H)$.
-    \end{itemize} 
+A homomorphism of pregraphs is a homomorphism between their underlying graphs that preserves missing.
+%  \begin{definition} 
+%     \label{def:pregraph:homomorphism}
+%     Let \( G \) and \( H \) be pregraphs. A \textbf{homomorphism of pregraphs}\index{Homomorphism!pregraph} $h: G \mathop{\to} H$ consists a pair of functions $h_V: V(G) \mathop{\to} V(H) $ and $h_E: E(G) \mathop{\to} E(H)$ such that
+%     \begin{itemize}
+%         \item for every edge \( a \mathop{\colon} s \mathop{\to} t \) in \( G \), the edge \( h_E(a) \) in $H$ has source \( h_V(s) \) and target \( h_V(t) \),
+%         \item for all $s \mathop{\in} V_{\nexists}(G)$, we have $h_V(s) \mathop{\in} V_{\nexists}(H)$,
+%         \item for all $t \mathop{\in} V_\exists(G)$, we have $h_V(t) \mathop{\in} V_\exists(H)$.
+%     \end{itemize} 
+% \end{definition}
+
+% \begin{definition} 
+%     \label{def:pregraph:composition}
+%     Let $f: (G,\lambda) \mathop{\to} (G',\lambda')$ and $g: (G',\lambda') \mathop{\to} (G'',\lambda'')$ be homomorphisms of pregraphs. Their composition, denoted by $g \circ f$, is the homomorphism defined by the component-wise composition of functions $g_V \circ f_V$ and $g_E \circ f_E$.
+% \end{definition}
+% \begin{definition} 
+%     \label{def:subpregraph} Let $G$ be a pregraph. A pregraph $H$ is a \textbf{subpregraph}\index{Subpregraph} of $G$, written $H \mathop{\rightarrowtail} G$, if all of the following conditions hold:
+%      \begin{itemize} 
+%             \item $V(H) \mathop{\subseteq} V(G)$, \item $V_{\nexists}(H) \mathop{=} V(H) \mathop{\cap} V_{\nexists}(G)$, 
+%             \item $E(H) \mathop{\subseteq} E(G)$, 
+%             \item the source and target functions of $H$ are the restrictions of those of $G$ to $E(H)$,
+%             \item the edge-labeling function of $H$ is the restriction $l_H \mathop{=} {l_G}_{|_{E(H)}}$. 
+%         \end{itemize} 
+% \end{definition}
+\begin{definition}
+    \label{def:subpregraph}
+    \index{Subpregraph}
+    A pregraph $H$ is a \textbf{subgraph} of a pregraph $G$ (denoted $H \subseteq G$) if:
+    \begin{enumerate}
+        \item the underlying graph of $H$ is a subgraph of the underlying graph of $G$,
+        \item The status of a node (whether it is existing or missing) is inherited from $G$:
+        \[ V_\exists(H) = V(H) \cap V_\exists(G) \quad \text{and} \quad V_{\nexists}(H) = V(H) \cap V_{\nexists}(G) \]
+    \end{enumerate}
 \end{definition}
 
-\begin{definition} 
-    \label{def:pregraph:composition}
-    Let $f: (G,\lambda) \mathop{\to} (G',\lambda')$ and $g: (G',\lambda') \mathop{\to} (G'',\lambda'')$ be homomorphisms of pregraphs. Their composition, denoted by $g \circ f$, is the homomorphism defined by the component-wise composition of functions $g_V \circ f_V$ and $g_E \circ f_E$.
-\end{definition}
-\begin{definition} 
-    \label{def:subpregraph} Let $G$ be a pregraph. A pregraph $H$ is a \textbf{subpregraph}\index{Subpregraph} of $G$, written $H \mathop{\rightarrowtail} G$, if all of the following conditions hold:
-     \begin{itemize} 
-            \item $V(H) \mathop{\subseteq} V(G)$, \item $V_{\nexists}(H) \mathop{=} V(H) \mathop{\cap} V_{\nexists}(G)$, 
-            \item $E(H) \mathop{\subseteq} E(G)$, 
-            \item the source and target functions of $H$ are the restrictions of those of $G$ to $E(H)$,
-            \item the edge-labeling function of $H$ is the restriction $l_H \mathop{=} {l_G}_{|_{E(H)}}$. 
-        \end{itemize} 
-\end{definition}
-We define two operations on pregraphs that will be used in the following discussion.
-The \textbf{union}\index{Union of pregraphs} $C \mathop{\cup} R$ of two subpregraphs $C \mathop{\subseteq} G$ and $R \mathop{\subseteq} G$ is a pregraph with 
-\begin{itemize}
-    \item Node set: $ V(C) \mathop{\cup} V(R) $,
-    \item Missing nodes:
-        $(
-            V_{\nexists}(C) \mathop{\cup} V_{\nexists}(R)) \mathop{\setminus} 
-            (   V_\exists(C) \mathop{\cup} 
-             V_\exists(R)  
-                   )$
-    \item Edge set: $ E(C) \mathop{\cup} E(R) $, 
-    \item Source function: $ \opn{src}_C \mathop{\cup} \opn{src}_R $,  
-    \item Target function: $ \opn{dst}_C \mathop{\cup} \opn{dst}_R $,  
-    \item Edge-labeling function: $ l_C \mathop{\cup} l_R $.   
-\end{itemize} 
+\index{Union of pregraphs}
+Let $C$ and $R$ be subpregraphs of a pregraph $G$. Their \textbf{union}, denoted $C \cup R$, is the pregraph whose underlying graph is the union of the underlying graphs of $C$ and $R$, and whose set of existing nodes is:
+\[ V_{\nexists}(C \cup R) = (V_{\nexists}(C) \cup V_{\nexists}(R)) \setminus (V_\exists(C) \cup V_\exists(R)) \]
+    
 The definition is illustrated below:
 \begin{center}
   \resizebox{\textwidth}{!}{
@@ -174,121 +180,77 @@ The definition is illustrated below:
         }
     \end{center}
 
-    % \textcolor{red}{Intersection} $G \mathop{\cap} H$: 
-    % \vspace{1mm}
+%     \index{Relative complement}
+    
 
-    % % \begin{center}
-    %     \resizebox{0.95\textwidth}{!}{
-    %     \begin{tikzpicture}
-    %         \graphbox{\( G \)}{0mm}{-22mm}{34mm}{26mm}{2mm}{-3mm}{
-    %             \coordinate (o) at (0mm,-6mm); 
-    %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {3};
-    %             \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-    %             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-    %             \draw[->] (l3) -- (l2) node[midway,above] {$a$};
-    %             \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-    %             \node[draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
-    %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
-    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %         }    
-    
-    %         \graphbox{ \textcolor{red}{\(G \mathop{\cap} H\)}  }{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
-    %             \coordinate (o) at (0mm,-6mm); 
-    %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %             \node[draw,circle] (l2) at ($(l1)+(2,0)$) {2};
-    %             \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-    %             \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %             \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
-    %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
-    %         }    
-    
-    %         \graphbox{\( H \)}{80mm}{-22mm}{45mm}{25mm}{2mm}{-6mm}{
-    %             \coordinate (o) at (-5mm,-3mm); 
-    %             \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-    %             \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-    %             \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-    %             \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
-    %             \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
-    %             \node[ draw,circle] (l6) at ($(l1)+(0,-1)$) {7};
-    %             \draw[<-] (l1) -- (l6) node[midway,left] {$a$};
-    %             \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-    %             \draw[->] (l3) -- (l4) node[midway,above] {$b$};
-    %             \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-    %             \draw[->] (l2) -- (l5) node[midway,right] {$a$};
-    %             \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-    %         }    
-           
-    %         % \node () at (37mm,-33mm) {\( \leftarrowtail \)};
-    %         % \node () at (77mm,-33mm) {\( \rightarrowtail \)}; % C -> H
-    %     \end{tikzpicture}
-    %     }         
-    % \end{center}
-The \textbf{relative complement}\index{Relative complement} of $R$ in $H$ where $R \mathop{\subseteq} H$, denoted by $H \mathop{\setminus} R$, is the pregraph with
-\begin{itemize}
-    \item Edge set: $X \isdef E(H) \mathop{\setminus} E(R)$,
-    \item Node set: $Y \isdef \bigcup_{e \mathop{\in} X} \{\opn{src}(e), \opn{dst}(e)\}$,
-    \item Set of missing nodes: $
-   ( V_{\nexists}(H)  \mathop{\cup}
-        (
-                  V_\exists(H) 
-                  \mathop{\cap} 
-                  V_\exists(R)
-                  )
-   )
-        \mathop{\cap}  
-        Y
-                  $,
-    \item Source function: ${\opn{src}_H}$ restricted to $X$,
-    \item Target function: ${\opn{dst}_H}$ restricted to $X$,
-    \item Edge-labeling function : $l_H$ restricted to $X$.
-\end{itemize}
-An example is shown below where the graph $H$, $R$ and the relative complement $H \mathop{\setminus} R$ are illustrated:
-\begin{center}  
-  \resizebox{\textwidth}{!}{
-        \begin{tikzpicture}  
-            \phantom{
-                \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
-                }  
-            }
-            \graphbox{\( R \)}{80mm}{-22mm}{45mm}{25mm}{2mm}{2mm}{
-                \coordinate (o) at (-5mm,-8mm); 
-                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
-                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
-                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-            }    
+% Let $R$ be a subpregraph of a pregraph $H$. The \textbf{relative complement} of $R$ in $H$, denoted $H \setminus R$, is the pregraph whose underlying graph is the subgraph of the underlying graph of $H$ formed by the edge set $X \isdef E(H) \setminus E(R)$ and the set $Y$ of their incident nodes, and whose set of missing nodes is:
+% \[ V_{\nexists}(H \setminus R) = \left( V_{\nexists}(H) \cup (V_\exists(H) \cap V_\exists(R)) \right) \cap Y \]
+
+% The \textbf{relative complement} of $R$ in $H$ where $R \mathop{\subseteq} H$, denoted by $H \mathop{\setminus} R$, is the pregraph with
+% \begin{itemize}
+%     \item Edge set: $X \isdef E(H) \mathop{\setminus} E(R)$,
+%     \item Node set: $Y \isdef \bigcup_{e \mathop{\in} X} \{\opn{src}(e), \opn{dst}(e)\}$,
+%     \item Set of missing nodes: $
+%    ( V_{\nexists}(H)  \mathop{\cup}
+%         (
+%                   V_\exists(H) 
+%                   \mathop{\cap} 
+%                   V_\exists(R)
+%                   )
+%    )
+%         \mathop{\cap}  
+%         Y
+%                   $,
+%     \item Source function: ${\opn{src}_H}$ restricted to $X$,
+%     \item Target function: ${\opn{dst}_H}$ restricted to $X$,
+%     \item Edge-labeling function : $l_H$ restricted to $X$.
+% \end{itemize}
+
+
+% An example is shown below where the graph $H$, $R$ and the relative complement $H \mathop{\setminus} R$ are illustrated:
+% \begin{center}  
+%   \resizebox{\textwidth}{!}{
+%         \begin{tikzpicture}  
+%             \phantom{
+%                 \graphbox{\( G \)}{0mm}{-22mm}{34mm}{22mm}{2mm}{-3mm}{
+%                 }  
+%             }
+%             \graphbox{\( R \)}{80mm}{-22mm}{45mm}{25mm}{2mm}{2mm}{
+%                 \coordinate (o) at (-5mm,-8mm); 
+%                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                 \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+%                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+%                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+%                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+%             }    
         
-            \graphbox{\( H \mathop{\setminus} R  \)}{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
-                \coordinate (o) at (0mm,-6mm); 
-                \node[draw,dashed,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                \node[draw,dashed,circle] (l2) at ($(l1)+(2,0)$) {2};
-                \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
-                \draw[->] (l2) -- (l4) node[midway,right] {$a$};
-                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-            }    
+%             \graphbox{\( H \mathop{\setminus} R  \)}{40mm}{-22mm}{34mm}{25mm}{2mm}{-3mm}{
+%                 \coordinate (o) at (0mm,-6mm); 
+%                 \node[draw,dashed,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                 \node[draw,dashed,circle] (l2) at ($(l1)+(2,0)$) {2};
+%                 \node[draw,circle] (l4) at ($(l2)+(0,-1)$) {6};
+%                 \draw[->] (l2) -- (l4) node[midway,right] {$a$};
+%                 \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
+%             }    
 
-            \graphbox{\( H \)}{-11mm}{-22mm}{45mm}{25mm}{2mm}{-3mm}{
-                \coordinate (o) at (-5mm,-6mm); 
-                \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
-                \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
-                \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
-                \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
-                \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
-                \draw[->] (l1) -- (l3) node[midway,above] {$a$};
-                \draw[->] (l3) -- (l4) node[midway,above] {$b$};
-                \draw[->] (l4) -- (l2) node[midway,above] {$a$};
-                \draw[->] (l2) -- (l5) node[midway,right] {$a$};
-                \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
-            }    
-        \end{tikzpicture}
-    }
-\end{center}
+%             \graphbox{\( H \)}{-11mm}{-22mm}{45mm}{25mm}{2mm}{-3mm}{
+%                 \coordinate (o) at (-5mm,-6mm); 
+%                 \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {1};
+%                 \node[draw,circle] (l2) at ($(l1)+(3,0)$) {2};
+%                 \node[draw,circle] (l3) at ($(l1)+(1,0)$) {4};
+%                 \node[draw,circle] (l4) at ($(l1)+(2,0)$) {5};
+%                 \node[ draw,circle] (l5) at ($(l2)+(0,-1)$) {6};
+%                 \draw[->] (l1) -- (l3) node[midway,above] {$a$};
+%                 \draw[->] (l3) -- (l4) node[midway,above] {$b$};
+%                 \draw[->] (l4) -- (l2) node[midway,above] {$a$};
+%                 \draw[->] (l2) -- (l5) node[midway,right] {$a$};
+%                 \draw[->] (l2) edge[out=-135,in=-45]node[midway,below] {$a$} (l1) ;
+%             }    
+%         \end{tikzpicture}
+%     }
+% \end{center}
 
  
 \subsection{X-occurrences}
@@ -415,27 +377,27 @@ An example is shown below where the graph $H$, $R$ and the relative complement $
     \label{def:x_occurrence}
      Let $X$ be a subgraph of $L$.  An \textbf{$X$-occurrence}\index{x-occurrence@$X$-occurrence} in a graph $G$ is a monomorphism from $X$ to $G$. An $X$-occurrence in $G$ is 
     \begin{itemize}
-        \item \textbf{shared} if its image is included in $C$,
         \item \textbf{explicit} if its image is  included in $L$,
+        \item \textbf{shared} if its image is included in $C'$,
         \item \textbf{implicit} if its image has elements in both $C'$ and $L'$.
     \end{itemize}  
     An $X$-occurrence in $H$ is 
     \begin{itemize}
-        \item \textbf{shared} if its image is included in $C$,
         \item \textbf{explicit} if its image is included in $R$,
+        \item \textbf{shared} if its image is included in $C'$,
         \item \textbf{implicit} if its image has elements in both $C'$ and $R'$.
     \end{itemize} 
 
     Intuitively, the rewriting step implicitly creates the implicit $X$-occurrences in $H$ and implicitly destroys implicit $X$-occurrences in $G$. 
     
-    Given an implicit $X$-occurrence $x$ in $H$, its image can be decomposed as the union $R_x \mathop{\cup} C_x$, where $R_x \mathop{=} \opn{Im}(x) \mathop{\cap} R$ (the part of the image overlapping the right-hand side R), and $C_x \mathop{=} \opn{Im}(x) \mathop{\cap} C$ (the part overlapping the context C).
+    Given an implicit $X$-occurrence $x$ in $H$, its image can be decomposed as the union $R_x \mathop{\cup} C_x$ of pregraphs, where $R_x \mathop{=} \opn{Im}(x) \mathop{\cap} R$ (the part of the image overlapping the right-hand side $R$), and $C_x \mathop{=} \opn{Im}(x) \mathop{\cap} C'$ (the part overlapping the context C).
     
     For every graph monomorphism $h : R_x \rightarrowtail L$ that preserves interface elements (i.e., \( h(k) \mathop{=} k \) for all \( k \mathop{\in} K \)), we define the \textbf{corresponding $X$-occurrence of $x$ relative to $h$} as the $X$-occurrence $y$ in $G$ given by:
         $$
         y(z) \mathop{=} 
         \begin{cases}
-        z & \text{if } z \mathop{\in} x^{-1}(C_x), \\
-        h(x(z)) & \text{if } z \mathop{\in} x^{-1}(R_x \mathop{\setminus} C_x).
+        x(z) & \text{if } z \mathop{\in} x^{-1}(C_x), \\
+        h(x(z)) & \text{if } z \mathop{\in} x^{-1}(R_x).
         \end{cases}
         $$
    \end{definition} 

@@ -4,6 +4,56 @@ For DPO graph rewriting systems with monic matches,
 the type graph method presented by Endrullis and Overbeek~\cite{endrullis2024generalized_icgt} is more powerful than the versions presented by Zantema et al. and Bruggink et al.~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving}, which are implemented in TORPAcyc~\cite{TORPAcyc} and Grez~\cite{grez}. At the time of writing and to the best of our knowledge, the method presented by Overbeek and Endrullis has no publicly available implementation.
 
 LyonParallel implements the notions of DPO rewriting systems on finite directed, edge-labeled multigraphs introduced in Chapter~\ref{chap:preliminaries}. Using the \texttt{REPL} (Read-Eval-Print Loop)\textemdash{}an interactive environment that reads user commands, evaluates them, prints results, and waits for the next input\textemdash{}users can select a set of rules encoded in the tool, then choose a method to partition the rules of the system into two sets $\mathcal{A}$ and $\mathcal{B}$ such that $\mathcal{A}$ terminates relative to $\mathcal{B}$. If such a partition is found, the tool replaces the current rule set with \(\mathcal{B}\) and a new iteration begins; otherwise, users may try a different method. When the rule set becomes empty, the termination of the original system is proved.
+
+Below is a flowchart illustrating the workflow of LyonParallel:
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+    \begin{tikzpicture}[node distance=8mm, auto]
+  \node[draw, rounded corners, rectangle] (start) {Start program};
+  \node[draw, rectangle, below=of start] (select) {Select graph rewriting system};
+  \node[draw, diamond, aspect=2, below=of select] (choose) {Choose a method};
+
+  % Two explicit methods
+  \node[draw, rectangle, below left=8mm of choose] (typegraph) {\textcolor{red}{Type Graph Method}};
+  \node[draw, rectangle, below right=8mm of choose] (subcount) {\textcolor{red}{Morphism Counting}};
+
+  % Z3 step (compact)
+  \node[draw, rectangle, below=of typegraph] (z3) {Solve constraints with \textcolor{red}{Z3}};
+
+  % Continue original flow
+   \node[draw, diamond, aspect=2, below=22mm of choose] (check) {System simplified?};
+  \node[draw, diamond, aspect=2, left=22mm of check] (trynext) {Try other method?};
+  \node[draw, diamond, aspect=2, right=22mm of check] (empty) {Empty system?};
+  \node[draw, rounded corners, rectangle, below=22mm of check] (end) {End};
+
+  % Arrows (keep original structure)
+  \draw[->] (start) -- (select);
+  \draw[->] (select) -- (choose);
+
+  % Branches to methods
+  \draw[->] (choose) -- (typegraph);
+  \draw[->] (choose) -- (subcount);
+
+  % Method subflows back to apply
+  \draw[->] (typegraph) -- (z3);
+  % \draw[->] (z3.south) |- (apply.west);
+  % \draw[->] (subcount.south) |- (apply.east);
+    \draw[->] (z3.south) --  (check.north west);
+  \draw[->] (subcount.south) -- (check.north east);
+
+  % Main flow
+  \draw[->] (check) -- node[midway,above]{Yes} (empty);
+  \draw[->] (empty) |- node[midway,above]{No} (choose);
+  \draw[->] (empty) -- node[midway,above]{Yes} (end);
+  \draw[->] (check) -- node[midway,above]{No} (trynext);
+  \draw[->] (trynext) |- node[midway,above]{Yes} (choose);
+  \draw[->] (trynext) -- node[midway,left]{No} (end);
+    \end{tikzpicture}
+}
+\end{center}
+
+
 \section{DPO graph rewriting systems}
 \label{lyonparallel:sec:implementation_of_dpo_graph_rewriting_systems}
 \subsection{Labeled graphs}
@@ -57,10 +107,10 @@ For example, consider the graph rewriting rule:
 A homomorphism between two labeled graphs is encoded as a mapping from the nodes of the source graph to the nodes of the target graph, which preserves the edge labels and the source and target nodes of each edge. Its representation can be constructed using the function
 \colorbox{Ivory2}{$GraphHomomorphism.fromList$}, given 4 arguments:
     \begin{enumerate}
-        \item the first argument is the source graph,
-        \item the second argument is the target graph,
-        \item the third argument is a list of pairs, where each pair $(s,t)$ means that node $s$ of the source graph is mapped to node $t$ of the target graph,
-        \item the fourth argument is a list of pairs similar to the third argument, but for the edges.
+        \item the source graph,
+        \item the target graph,
+        \item a list of pairs, where each pair $(s,t)$ means that node $s$ of the source graph is mapped to node $t$ of the target graph,
+        \item a list of pairs similar to the third argument, but for the edges.
     \end{enumerate}
 For example, consider morphisms $l$ and $r$ of the rewriting rule:
   \begin{center}
@@ -464,9 +514,9 @@ The ruler-graph is illustrated below.
         \begin{tikzpicture}
                 \graphbox{$L$}{0mm}{0mm}{35mm}{25mm}{2mm}{-3mm}{
                         \coordinate (delta) at (0,-18mm);
-                        \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {};
-                        \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {};
-                        \node[draw,circle] (l3) at ($(delta)+(0,0)$) {};
+                        \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {1};
+                        \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {2};
+                        \node[draw,circle] (l3) at ($(delta)+(0,0)$) {3};
                         \draw[->] (l1) -- (l3) node[midway,left] {$s$};
                         \draw[->] (l2) -- (l3) node[midway,right] {$s$};
                 }
@@ -511,7 +561,7 @@ The rule is predefined in the tool and can be selected with the REPL command:
  \begin{lstlisting}
    >> select_system_by_name bruggink14_ex1
  \end{lstlisting}
-The REPL provides the command \colorbox{Ivory2}{$rulergraphs$} to list available ruler-graphs. User-defined ruler-graphs can be added to this list using the method presented in the previous section. The ruler-graph shown in Figure~\ref{fig:implemented:ruler_graph_representation} is predefined in the tool and appears in the list of available ruler-graphs.
+The REPL provides the command \colorbox{Ivory2}{$rulergraphs$} to list available ruler-graphs. User-defined ruler-graphs can be added to this list using the method presented in the previous section. 
 
 The ruler-graph shown in Figure~\ref{fig:implemented:ruler_graph_representation} is predefined and can be selected with the REPL command:
  \begin{lstlisting}
@@ -525,7 +575,7 @@ The following command displays a summary of the termination analysis.
  \begin{lstlisting}
    >> recap
 \end{lstlisting} 
-The message displayed contains \colorbox{Ivory2}{$Terminating:\ yes$}, which shows that the method applied successfully proved the relative termination of the rule with respect to the empty set of rules.
+The message displayed contains \colorbox{Ivory2}{$Terminating:\ yes$}, which shows that the method applied successfully proved the relative termination of the rule with respect to the empty set of rules using the selected ruler-graph. If the method fails, the message contains \colorbox{Ivory2}{$Terminating:\ unknown$} and \colorbox{Ivory2}{$Remaining\ Rules:$}, followed by a list of rules to be analyzed.
 
 \subsection{Termination Analysis using the Type Graph Method}
 Consider the rewriting rule shown below:

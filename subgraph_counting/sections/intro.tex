@@ -1,6 +1,6 @@
 We present a new automated method for relative termination of double-pushout (DPO) graph rewriting systems with injective rules~\cite{corradini1997algebraic,habel2001double}.~\footnote{This work resulted in a publication at the 18th International Conference on Graph Transformation (ICGT 2025)~\cite{qiu2025termination_icgt}. Reproduced with permission from Springer Nature.} To prove the relative termination of a set of rules \(\mathcal{A}\) with respect to another set of rules \(\mathcal{B}\), the method requires identifying patterns whose counts decrease with each application of a rule from \(\mathcal{A}\) and do not increase with each application of a rule from \(\mathcal{B}\). 
 Left-hand sides of the rules are typical examples of such patterns, and we leave it to future work to explore whether other patterns are useful.
- 
+
 Let \( \mathbb{X} \) denote a fixed set of patterns. We assign weights (natural numbers) to monomorphisms from graphs in \( \mathbb{X} \), and define the weight of a graph $G$ as the sum of the weights of all monomorphisms from graphs in \( \mathbb{X} \) to $G$. 
   
 Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \mathop{\in} \mathbb{X}$ and $G \mathop{\Rightarrow} H$ be a rewriting step defined by the double-pushouts diagram shown below. 
@@ -31,16 +31,16 @@ Let $\mathcal{A}$ and $\mathcal{B}$ be sets of DPO rewriting rules. Let $X \math
 The image of a monomorphism from $X$ to $G$ falls into exactly one of the following three mutually exclusive cases:
 \begin{enumerate}
     \item the image is fully included in $m(L)$;
-    \item the image is fully included in $l'(C)$; 
+    \item the image is fully included in $l'(C)$ but not fully included in $m(L)$;
     \item the image is neither fully included in $m(L)$ nor fully included in $l'(C)$.
 \end{enumerate} 
  Similary, the image of a monomorphism from $X$ to $H$ falls into exactly one of the following three mutually exclusive cases:
  \begin{enumerate}
     \item the image is fully included in $m'(R)$;
-    \item the image is fully included in $r'(C)$;
+    \item the image is fully included in $r'(C)$ but not fully included in $m'(R)$;
     \item the image is neither fully included in $m'(R)$ nor fully included in $r'(C)$.
  \end{enumerate}
-  The number of monomorphisms $h: X \to G$ whose image is fully included in $m(L)$ can be computed exactly; likewise, the number of monomorphisms $x: X \to H$ whose image is fully included in $m'(R)$ can be computed exactly. Moreover, the number of monomorphisms $x: X \to G$ whose image is fully included in $l'(C)$ equals to the number of monomorphisms $x: X \to H$ whose image is fully included in $r'(C)$. Therefore, to estimate the change in weight when applying a rewriting rule, it suffices to compare the numbers of monomorphisms in the third cases above.
+  The number of monomorphisms $h: X \to G$ whose image is fully included in $m(L)$ can be computed exactly; likewise, the number of monomorphisms $x: X \to H$ whose image is fully included in $m'(R)$ can be computed exactly. Moreover, the number of monomorphisms $x: X \to G$ the image is fully included in $l'(C)$ but not fully included in $m(L)$ equals to the number of monomorphisms $x: X \to H$ whose the image is fully included in $r'(C)$ but not fully included in $m'(R)$. Therefore, to estimate the change in weight when applying a rewriting rule, it suffices to compare the numbers of monomorphisms in the third cases above.
   
   To enable this comparison, we suppose that for every $X \in \mathbb{X}$, 
   the following conditions hold: 

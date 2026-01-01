@@ -206,13 +206,13 @@ Chapter~\ref{chap:subgraph_counting}
 } 
 
 
-The subgraph-counting method by Overbeek and Endrullis (2024)~\cite{overbeek2024termination_lmcs} is very closely related to our work in the setting where they are both defined. Both methods weigh objects by summing weighted morphisms targeting them, and, for both methods, the key challenge lies in estimating weights for morphisms whose images partially overlap with the rewriting context, because morphisms fully embedded in the context are shared between host and resulting graphs, while those entirely within left- or right-hand-side graphs are trivial to quantify.  
+The subgraph-counting method by Overbeek and Endrullis (2024)~\cite{overbeek2024termination_lmcs} is designed for a more general rewriting formalism capable of simulating left-injective DPO rewriting, and it can be applied to various graph notions. It is very closely related to our work in the setting where they are both defined. Both methods weigh objects by summing weighted morphisms targeting them, and, for both methods, the key challenge lies in estimating weights for morphisms whose images partially overlap with the rewriting context, because morphisms fully embedded in the context are shared between host and resulting graphs, while those entirely within left- or right-hand-side graphs are trivial to quantify.  
 
 The two methods employ distinct strategies to overcome this challenge. The subgraph counting method relies on type-morphisms (see~\cite[page 9, remark 4.11, Lemma 4.23]{overbeek2024termination_lmcs}), whereas our approach requires injective mappings from (i) subgraph occurrences partially overlapping the rewriting context in the result graph to (ii) those in the host graph.
 
 Both approaches have limitations and strengths. Endrullis and Overbeek's approach suffers from discrete interface\textemdash{}interface graph with no edges, as mentioned in~\cite[Example 5.5]{overbeek2024termination_lmcs}. For instance, it proves termination of Example~\ref{ex:overbeek_5d5}:
 \begin{center}
-      \resizebox{0.95\textwidth}{!}{
+      \resizebox{0.9\textwidth}{!}{
           \begin{tikzpicture}
               \graphbox{$L$}{0mm}{0mm}{35mm}{25mm}{2mm}{-8mm}{
                   \coordinate (delta) at (0,-18mm);
@@ -243,6 +243,7 @@ Both approaches have limitations and strengths. Endrullis and Overbeek's approac
   \end{center}
    but fails for Example~\ref{ex_endrullis_6d3_endrullis_5d8}:
    \begin{center}
+    \resizebox{0.9\textwidth}{!}{
           \begin{tikzpicture}
               \graphbox{$L$}{0mm}{0mm}{35mm}{25mm}{2mm}{-8mm}{
                   \coordinate (delta) at (0,-18mm);
@@ -268,13 +269,15 @@ Both approaches have limitations and strengths. Endrullis and Overbeek's approac
               \node () at (37mm,-12mm) {$\leftarrow$};
               \node () at (78mm,-12mm) {$\rightarrow$};
           \end{tikzpicture}
+    }
   \end{center}
 % ~\cite[Example 6.3]{endrullis2024generalized_arxiv_v2}
 while the rules differ only by an edge in the interface graph.
 Similarly, it fails to prove termination for Example~\ref{subgraph_counting:ex_contrib_variant}:
  \begin{center}
-            \begin{tikzpicture}[scale=0.9]
-                \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+  \resizebox{0.9\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{$L$}{0mm}{0mm}{35mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
                     \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {$1$};
                     \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {$2$};
@@ -283,7 +286,7 @@ Similarly, it fails to prove termination for Example~\ref{subgraph_counting:ex_c
                     \draw[->] (l2) -- (l3) node[midway,right] {$s$};
                     \draw[->] (l3) edge [loop below] node {$0$} (l3);
                 }
-                \graphbox{$K$}{40mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+                \graphbox{$K$}{40mm}{0mm}{35mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
                     \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
                     \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {$1$};
@@ -292,7 +295,7 @@ Similarly, it fails to prove termination for Example~\ref{subgraph_counting:ex_c
                     % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                     % \draw[->] (r3) edge [loop below] node {$0$} (r3);
                 }
-                \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
+                \graphbox{$R$}{80mm}{0mm}{50mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (-10mm,-18mm);
                     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
                     \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {$2$};
@@ -310,7 +313,8 @@ Similarly, it fails to prove termination for Example~\ref{subgraph_counting:ex_c
                 \node () at (38mm,-18mm) {$\leftarrow$};
                 \node () at (77mm,-18mm) {$\rightarrow$};
             \end{tikzpicture}
-          \end{center}
+      } 
+    \end{center}
       but if an edge labeled by ``s'' from node $1$ to node $3$ is added to the interface graph, then it succeeds. Our approach, however, can handle all the aforementioned cases. Nevertheless, their method can address the system in Example~\ref{ex:plump95_4d1}:
         \begin{center}
     $\rho'\mathop{=}$\scalebox{0.9} { \input{subgraph_counting/tikz/OE_ex5d6_rho_bis.tex}}
@@ -324,8 +328,9 @@ The type graph method~\cite{zantema2014termination,bruggink2014termination,brugg
 Concerning their applicability, neither method strictly subsumes the other.
 On the one hand, the termination of Example~\ref{subgraph_counting:ex_contrib_variant}, shown below, can be proved by our method but not by the type graph methods due to the existence of a surjection from the output graph to the input graph as explained in~\cite[Example D.4]{endrullis2024generalized_arxiv_v2}.
 \begin{center}
-            \begin{tikzpicture}[scale=0.9]
-                \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+  \resizebox{0.9\textwidth}{!}{
+            \begin{tikzpicture} 
+                \graphbox{$L$}{0mm}{0mm}{35mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
                     \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {$1$};
                     \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {$2$};
@@ -334,7 +339,7 @@ On the one hand, the termination of Example~\ref{subgraph_counting:ex_contrib_va
                     \draw[->] (l2) -- (l3) node[midway,right] {$s$};
                     \draw[->] (l3) edge [loop below] node {$0$} (l3);
                 }
-                \graphbox{$K$}{40mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+                \graphbox{$K$}{40mm}{0mm}{35mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
                     \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
                     \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {$1$};
@@ -343,7 +348,7 @@ On the one hand, the termination of Example~\ref{subgraph_counting:ex_contrib_va
                     % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                     % \draw[->] (r3) edge [loop below] node {$0$} (r3);
                 }
-                \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
+                \graphbox{$R$}{80mm}{0mm}{50mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (-10mm,-18mm);
                     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
                     \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {$2$};
@@ -361,9 +366,11 @@ On the one hand, the termination of Example~\ref{subgraph_counting:ex_contrib_va
                 \node () at (38mm,-18mm) {$\leftarrow$};
                 \node () at (77mm,-18mm) {$\rightarrow$};
             \end{tikzpicture}
+  }
           \end{center}
         On the other hand, our method cannot prove the termination of Example~\ref{ex:endrullis:d3:limitation}, shown below, because of the injection from the left-hand side graph $L$ to the right-hand side graph $R$, but the type graph methods can handle it.
     \begin{center}
+      \resizebox{0.9\textwidth}{!}{
         \begin{tikzpicture}  
           \graphbox{$L$}{0mm}{-11mm}{32mm}{15mm}{2mm}{-8mm}{  
               \node[draw,circle]  (x) at (-6mm,0mm) {$1$};  
@@ -380,6 +387,7 @@ On the one hand, the termination of Example~\ref{subgraph_counting:ex_contrib_va
               \node () at (34mm,-19mm) {$\leftarrow$};
               \node () at (70mm,-19mm) {$\rightarrow$};
       \end{tikzpicture}
+      }
     \end{center}
           %  On the other hand, our method cannot prove the termination of~\cite[Example 1, 5 and Ad-hoc Routing Protocol]{bruggink2014termination}, nor~\cite[Example 5, 6]{bruggink2015proving}, nor~\cite[Examples D2 and D3]{endrullis2024generalized_arxiv_v2}.
 
@@ -388,8 +396,9 @@ Plump (1995)~\cite{plump1995ontermination} gives a necessary and sufficient term
 Our method complements the approach proposed by Plump (2018)~\cite{plump2018modular}: whereas the method decomposes a rewriting system into subsystems and proves termination of the entire system by combining termination proofs for the subsystems, the termination of each subsystem must still be established separately.
 For example, the measure based on the indegree proposed in~\cite{plump2018modular} cannot prove the termination of Example~\ref{subgraph_counting:ex_contrib_variant}, illustrated below, due to the loops on the node 5 in the right-hand side graph $R$. 
 \begin{center}
-            \begin{tikzpicture}[scale=0.9]
-                \graphbox{$L$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+  \resizebox{0.9\textwidth}{!}{
+            \begin{tikzpicture} 
+                \graphbox{$L$}{0mm}{0mm}{35mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
                     \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {$1$};
                     \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {$2$};
@@ -398,7 +407,7 @@ For example, the measure based on the indegree proposed in~\cite{plump2018modula
                     \draw[->] (l2) -- (l3) node[midway,right] {$s$};
                     \draw[->] (l3) edge [loop below] node {$0$} (l3);
                 }
-                \graphbox{$K$}{40mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+                \graphbox{$K$}{40mm}{0mm}{35mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
                     \coordinate (interfaceorigin) at ($(delta) +(5,0)$);
                     \node[draw,circle] (r1) at ($(delta) +(-1,1.5)$) {$1$};
@@ -407,7 +416,7 @@ For example, the measure based on the indegree proposed in~\cite{plump2018modula
                     % \draw[->] (r1) -- (r3) node[midway,left] {$s$};
                     % \draw[->] (r3) edge [loop below] node {$0$} (r3);
                 }
-                \graphbox{$R$}{80mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
+                \graphbox{$R$}{80mm}{0mm}{50mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (-10mm,-18mm);
                     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
                     \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {$2$};
@@ -425,11 +434,13 @@ For example, the measure based on the indegree proposed in~\cite{plump2018modula
                 \node () at (38mm,-18mm) {$\leftarrow$};
                 \node () at (77mm,-18mm) {$\rightarrow$};
             \end{tikzpicture}
+  }
           \end{center}
 Specifically, consider the following rewriting step with the rule:
 \begin{center}
-            \begin{tikzpicture}[scale=0.9]
-                \graphbox{$G$}{0mm}{0mm}{35mm}{35mm}{2mm}{-5mm}{
+  \resizebox{0.7\textwidth}{!}{
+            \begin{tikzpicture}
+                \graphbox{$G$}{0mm}{0mm}{35mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (0,-18mm);
                     \node[draw,circle] (l1) at ($(delta)+(-1,1.5)$) {$1$};
                     \node[draw,circle] (l2) at ($(delta)+(1,1.5)$) {$2$};
@@ -438,7 +449,7 @@ Specifically, consider the following rewriting step with the rule:
                     \draw[->] (l2) -- (l3) node[midway,right] {$s$};
                     \draw[->] (l3) edge [loop below] node {$0$} (l3);
                 }
-                \graphbox{$H$}{40mm}{0mm}{50mm}{35mm}{2mm}{-5mm}{
+                \graphbox{$H$}{40mm}{0mm}{50mm}{37mm}{2mm}{-5mm}{
                     \coordinate (delta) at (-10mm,-18mm);
                     \node[draw,circle] (r1) at ($(delta)+(-1,1.5)$) {$1$};
                     \node[draw,circle] (r2) at ($(delta)+(0.5,1.5)$) {$2$};
@@ -455,6 +466,7 @@ Specifically, consider the following rewriting step with the rule:
                 }
                 \node () at (38mm,-18mm) {$\Rightarrow$};
             \end{tikzpicture}
+  }
           \end{center}
 For all $k \mathop{\in} \mathbb{N}$, the weight of the host graph $G$\textemdash{}defined as the sum of node indegrees raised to the power of $k$\textemdash{}is $0^k + 0^k + 3^k = 3^k$, while the weight of the result graph $H$ is $0^k + 0^k + 2^k + 2^k + 3^k = 2^k + 2^k + 3^k$. Since $3^k < 2^k + 2^k + 3^k$, the weight does not decrease. However, our method succeeds (see Example~\ref{subgraph_counting:ex_contrib_variant}).
 

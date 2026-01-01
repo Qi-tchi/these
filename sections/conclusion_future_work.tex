@@ -1,9 +1,9 @@
-This dissertation focused on automated techniques for proving the relative termination of DPO graph rewriting systems.
+This dissertation focused on automated techniques for proving the relative termination of DPO graph rewriting systems on edge-labeled directed multigraphs.
 
-We first extended an existing technique, the type graph method, to non-well-founded semirings, enabling more efficient implementation of the method.
-A new automated termination technique, called morphism counting, is also proposed for proving relative termination of injective DPO graph rewriting systems on edge-labeled directed multigraphs. It is based on counting monomorphisms from specific pattern-graphs to the graph before and after transformation. This technique can handle cases, such as Example~\ref{subgraph_counting:ex_contrib_variant}, that existing interpretation-based approaches cannot.
+We first extended an existing technique, the type graph method, to non-well-founded semirings, improving its usability.
+Then, a new automated termination technique, called morphism counting, was proposed for injective DPO graph rewriting systems. It is based on counting monomorphisms from specific pattern-graphs to the graph before and after transformation. This technique can handle cases, such as Example~\ref{subgraph_counting:ex_contrib_variant}, that existing interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt,overbeek2024termination_lmcs} cannot.
 Finally, we extended our morphism counting method to count specific subgraphs that are not included in forbidden contexts. This extension successfully proves termination for systems like those presented
-in Example~\ref{antipattern:ex:grs_aca} and Example~\ref{antipattern:ex:endrullis:d3:termination} which prior interpretation-based approaches~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs} and the morphism counting method presented in Chapter~\ref{chap:subgraph_counting} fail to handle.
+in Examples~\ref{antipattern:ex:grs_aca} and~\ref{antipattern:ex:endrullis:d3:termination} which the morphism counting method presented in Chapter~\ref{chap:subgraph_counting} fails to handle.
 
 An implementation of the type graph method and its extension, along with our morphism counting technique and its extension, was integrated into a unified tool, called LyonParallel, written in OCaml.
 
