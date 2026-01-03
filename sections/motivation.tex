@@ -1,11 +1,11 @@
-\section{The correctness of distributed algorithms}
+\section{Correctness of distributed algorithms}
 Distributed algorithms run on multiple processors without centralized control and are central to both everyday devices (e.g., smartphones) and safety-critical systems (e.g., medical devices, trains, aircraft, spacecraft).
 Errors in distributed algorithms can have severe consequences, such as the loss of critical data or even human life. Ensuring their correctness is vital but challenging due to the inherent complexity of these systems~\cite{heiser2010theroad, lamport2019thebyzantine}. 
-The Needham-Schroeder protocol~\cite{needham1978using}\textemdash intended for two computers to verify each other's identity\textemdash exemplifies this challenge: a serious security flaw was discovered 17 years after its publication~\cite{lowe1996breaking}.
+The Needham-Schroeder protocol~\cite{needham1978using}\textemdash intended for two computers to verify each other's identity\textemdash exemplifies this challenge: a security flaw was discovered 17 years after its publication~\cite{lowe1996breaking}.
 To address the challenge of uncovering subtle vulnerabilities in distributed algorithms, one natural approach is to test all possible scenarios. This is effective when the number of scenarios is small, but becomes infeasible otherwise. For example, when there are an infinite number of scenarios, program testing may reveal bugs, but cannot prove the absence of bugs\textemdash a fundamental limitation that motivates the use of formal verification techniques.
 
 Formal verification techniques are mathematically rigorous methods for proving system correctness. 
-This thesis focuses on automated verification techniques~\cite{zantema1995termination,zantema2014termination,bruggink2015proving,bruggink2023proving,endrullis2024generalized_icgt,overbeek2024termination_lmcs} that perform proof search automatically for specific properties, and need little user intervention.
+This thesis focuses on automated verification techniques~\cite{zantema2014termination,bruggink2015proving,bruggink2023proving,endrullis2024generalized_icgt,overbeek2024termination_lmcs} that perform proof search automatically for specific properties, and need little user intervention.
    
 \section{Automated verification techniques}
 Automated verification techniques are particularly interesting because they can be implemented as automated tools accessible to non-experts in formal verification while also accelerating verification for experts.
@@ -13,7 +13,7 @@ To verify a specific property of an algorithm, the user only needs to model the 
 Although theoretically incomplete for certain properties (meaning some inputs may yield no answer), well-designed techniques can handle many practical cases and significantly reduce verification effort. 
 To enable such methods, distributed algorithms must be modeled using a formalism that facilitates rigorous analysis of their properties. Specifically, states and behaviors of distributed algorithms must be formally represented.
 
-\section{Finite edge-labeled directed multigraphs} 
+\section{Directed edge-labeled multigraphs} 
 Finite edge-labeled directed multigraphs provide an intuitive yet formal way to model states of distributed algorithms: computational units are represented by nodes; communication channels are represented by edges; states of the system are modeled by graphs whose edges have labels representing information encoded in computational units and states of communication channels. 
 
 For example, consider the graph $\mathcal{G}$ shown in Figure~\ref{fig:graph_modeling_state_network}, enclosed in a box labeled with its name in the top-left corner. 
@@ -58,7 +58,7 @@ The algorithm operates as follows: when an active unit detects a neutral neighbo
  This behavior is captured by the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_0}.
  \begin{figure}[H]
         \centering 
-        \resizebox{0.8\textwidth}{!}{
+        \resizebox{0.7\textwidth}{!}{
         \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{0mm}{0mm}{34mm}{20mm}{-8mm}{-15mm}{
                         \node[draw, circle] (x) at (0,0) {$1$};  
@@ -231,7 +231,7 @@ This enables a uniform and elegant definition of graph transformation.
 %  \begin{center}
  \begin{figure}[H]
     \centering
-        \resizebox{\textwidth}{!}{
+        \resizebox{0.9\textwidth}{!}{
        \begin{tikzpicture} 
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{-8mm}{-9mm}{
                         \node[draw, circle] (x) at (0,0) {$1$};  
@@ -268,7 +268,7 @@ As an example,
 consider the graph transformation rule in Figure~\ref{fig:intro:graph_transformation_rule_dpo_sssssfggaaadww}.
   \begin{figure}[H]
     \centering
-    \resizebox{\textwidth}{!}{
+    \resizebox{0.9\textwidth}{!}{
     \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -421,7 +421,7 @@ Since graph transformation rules in a system are applied repeatedly (and nondete
 Termination is a property of algorithms that ensures they eventually halt. In the context of DPO graph rewriting systems, it ensures that no graph can be transformed indefinitely under a given set of rewriting rules. 
 For example, the following rule terminates because each application (when applicable) reduces the number of nodes in a graph by one:
 \begin{center}
-    \resizebox{\textwidth}{!}{
+    \resizebox{0.9\textwidth}{!}{
     \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{-40mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -448,7 +448,7 @@ For example, the following rule terminates because each application (when applic
             \end{center}
 Consider the following nonterminating rule:
             \begin{center}
-                \resizebox{\textwidth}{!}{
+                \resizebox{0.9\textwidth}{!}{
                 \begin{tikzpicture}
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         \coordinate (o) at (0mm,-11mm); 
@@ -544,19 +544,13 @@ It replaces an occurrence of the graph
 
 Many termination techniques exist for term rewriting systems~\cite{arts2000termination,nipkow1998term,contejean2011automated,contejean2005mechanically,dershowitz1982orderings,giesl2014proving,middeldorp1997simple,urbain2004modular,marche2004modular,steinbach1995simplification}.  
 Most exploit the tree structure of terms, a feature absent in general graphs, making direct adaptation impossible. 
-% Therefore, new techniques are needed for proving termination of DPO graph rewriting systems.  
-% Moreover, termination may not be the most pertinent property for our purposes. 
 Moreover, in many verification tasks, we do not need global termination; instead, we need to show that certain rules cannot occur infinitely often, even in the presence of other rules that may fire forever.
 
-For example, consider the graph transformation system with two rules in Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}. Rule $\alpha$ deletes an edge, and rule $\beta$ introduces a fresh isolated node. The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied only a finite number of times: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Thus, termination depends solely on the node-adding rule $\beta$. This observation motivates the notion of \emph{relative termination}.
+For example, consider the graph transformation system with two rules in Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}. 
 
-% \begin{center}
-% in the following Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}
   \begin{figure}[H]
         \centering
-%   \begin{subfigure}{0.3\textwidth}
-%         % \centering
-        \resizebox{\textwidth}{!}{
+        \resizebox{0.9\textwidth}{!}{
         $\alpha$={
              \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
@@ -583,9 +577,8 @@ For example, consider the graph transformation system with two rules in Figure~\
             }
         }
 
-         \resizebox{\textwidth}{!}{
+         \resizebox{0.9\textwidth}{!}{
         $\beta$={
-            %  \resizebox{0.9\textwidth}{!}{
              \begin{tikzpicture}[baseline=-7ex]
                     \graphbox{\( \mathcal{L} \)}{0mm}{-3mm}{34mm}{15mm}{2mm}{2mm}{
                         
@@ -604,13 +597,10 @@ For example, consider the graph transformation system with two rules in Figure~\
                 \end{tikzpicture}
             }
         }
-    %     \caption{A graph transformation rule for node addition}
-    %     \label{fig:intro:node_addition_rule}
-    % \end{subfigure} 
     \caption{Rule $\alpha$ deletes an edge, and rule $\beta$ adds a fresh node.}
     \label{fig:intro:edge_deletion_and_node_addition_rule}
   \end{figure}
-% \end{center}
+Rule $\alpha$ deletes an edge, and rule $\beta$ introduces a fresh isolated node. The system does not terminate because the node-adding rule $\beta$ can be applied indefinitely. However, the edge-deleting rule $\alpha$ can be applied only a finite number of times: it deletes an edge on each application, and since no rule increases the edge count and the initial graph is finite, only finitely many deletions are possible. Thus, termination depends solely on the node-adding rule $\beta$. This observation motivates the notion of \emph{relative termination}.
 
 
 \section{Relative termination} 
@@ -619,7 +609,6 @@ Relative termination was initially introduced for binary relations~\cite{klop198
 Since a set of rewriting rules defines a binary relation \enquote{object $X$ can be rewritten to object $Y$ using rules from the rule set}, called a rewriting relation,
 the concept of relative termination
 carries over to rewriting systems in a straightforward way via their associated rewriting relations: a rule set $\mathcal{A}$ terminates relative to another rule set $\mathcal{B}$, if the binary relation induced by $\mathcal{A}$ terminates relative to the binary relation induced by $\mathcal{B}$.
-% let \( \mathcal{A} \) and \( \mathcal{B} \) be two sets of rewriting rules, \( \mathcal{A} \) is said to be relatively terminating with respect to $\mathcal{B}$ if, for any infinite sequence of elements \( x_0, x_1, \ldots \) with $x_i$ can be rewritten to $x_{i+1}$ by a rule in $\mathcal{A}$ or $\mathcal{B}$ for all \( i \mathop{\in} \mathbb{N} \), there are only finitely many \( i \mathop{\in} \mathbb{N} \) such that $x_i$ can be rewritten to $x_{i+1}$ by a rule in $\mathcal{A}$. 
 As an example, consider the edge-deleting rule $\alpha$ and the node-adding rule $\beta$, defined earlier and shown in Figure~\ref{fig:intro:edge_deletion_and_node_addition_rule}. 
 The rule set $\set{\alpha}$ terminates relative to the rule set $\set{\beta}$, because any infinite sequence of graph transformations can apply the edge-deleting rule only a finite number of times.
 
@@ -638,46 +627,20 @@ First of all, edge-labeled directed multigraphs are simple and intuitive: they a
  Secondly, while many constructions can be phrased abstractly (e.g., for adhesive categories~\cite{lack2004adhesive}), we intentionally work with concrete edge-labeled directed multigraphs to keep the presentation accessible and to exploit graph-specific measures. As a consequence, the correctness of our technique in Chapter~\ref{chap:subgraph_counting} and Chapter~\ref{chap:antipattern} can be checked easily by users with basic knowledge in graph theory and very basic knowledge in category theory.
 
 Finally, specializing to edge-labeled directed multigraphs enables us to leverage graph-specific properties to develop stronger termination criteria. Because termination is undecidable for general DPO graph rewriting systems~\cite{plump1998terminationundecidable}, this specialization is essential for extending the boundaries of verifiable termination. 
-
-% Chapter~\ref{chap:nwf} extends a existing method for termination of DPO graph rewriting systems, called type graph method~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt}. This work resulted in the following publication:
-% \begin{itemize}
-% \item Qi Qiu. Termination of Graph Rewriting using Weighted Type Graphs over Non-well-founded Semirings. 16th International Workshop on Graph Computation Models, Jun 2025, Koblenz, Germany. 2025. ⟨hal-04954960v3⟩
-% \end{itemize}
  
-%  Chapter~\ref{chap:subgraph_counting} introduces a new machine-checkable sufficient condition for relative termination of DPO graph rewriting with injective rules on edge-labeled multigraphs. The method is based on counting injective graph homomorphisms: let $\mathcal{A}$ and $\mathcal{B}$ be two sets of rewriting rules, if the number of injective homomorphisms from a chosen set of pattern graphs into the host graph strictly decreases when a rule from $\mathcal{A}$ is applied, and the number does not increase when any rule from $\mathcal{B}$ is applied, then rules in $\mathcal{A}$ can only be applied finitely many times.
-% This work resulted in the following publication:
-% \begin{itemize}
-%     \item Qiu, Q. (2025). Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting. In: Endrullis, J., Tichy, M. (eds) Graph Transformation. ICGT 2025. Lecture Notes in Computer Science, vol 15720. Springer, Cham. \url{https://doi.org/10.1007/978-3-031-94706-3_1}
-% \end{itemize}
-
-%  Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{chap:subgraph_counting} to handle cases like the one shown in Figure~\ref{fig:intro:{fig:intro:graph_transformation_rule_anti_pattern_}} which cannot be addressed by the method presented in Chapter~\ref{chap:subgraph_counting}.
- 
-%  Chapter~\ref{chap:lyonparallel} presents a termination tool, \textit{LyonParallel}, developed for DPO edge-labeled multigraph rewriting that integrates the existing type graph method, our extension presented in Chapter~\ref{chap:nwf}, and our technique presented in Chapter~\ref{chap:subgraph_counting} and its extension presented in Chapter~\ref{chap:antipattern}.
 \section{Contributions}
-% \paragraph{Contribution 1: Extension of Weighted Type Graph Method}\ \newline
 Chapter~\ref{chap:nwf} extends an existing method for termination of DPO graph rewriting systems, called type graph method~\cite{zantema2014termination,bruggink2014termination,bruggink2015proving,endrullis2024generalized_icgt}. 
 The method assigns weights to morphisms targeting a weighted type graph over a well-founded semiring. The weight of a graph is defined
  as the sum of the weights of all morphisms from that graph to the type graph. Relative termination of $\mathcal{A}$ with respect to $\mathcal{B}$ is proven by ensuring that rewriting steps using rules in \( \mathcal{A} \) strictly decrease the weights of the host graphs, while rewriting steps using rules in \( \mathcal{B} \) do not increase them. However, searching for a suitable type graph over a well-founded semiring is challenging. We propose to consider type graphs over non-well-founded semirings, which can be easier to find in some scenarios. 
-% \paragraph{Contribution 2: Termination by Morphism Counting}
-% \ \newline
 
 Chapter~\ref{chap:subgraph_counting} introduces a new automated technique for relative termination of DPO graph rewriting with injective rules on edge-labeled multigraphs.
 The method is based on counting injective graph homomorphisms: let $\mathcal{A}$ and $\mathcal{B}$ be two sets of rewriting rules, if the number of injective homomorphisms from a chosen set of pattern graphs into the host graph strictly decreases when a rule from $\mathcal{A}$ is applied, and the number does not increase when any rule from $\mathcal{B}$ is applied, then rules in $\mathcal{A}$ can only be applied a finite number of times. This technique can handle some cases that prior interpretation-based approaches cannot.
 Proofs of some propositions, lemmas, and theorems of this chapter
  have been moved to Appendix~\ref{subgraph_counting:sec:appendix} to improve readability.
-% \begin{itemize}
-%     \item Qiu, Q. (2025). Termination of Injective DPO Graph Rewriting Systems Using Subgraph Counting. In: Endrullis, J., Tichy, M. (eds) Graph Transformation. ICGT 2025. Lecture Notes in Computer Science, vol 15720. Springer, Cham. \url{https://doi.org/10.1007/978-3-031-94706-3_1}
-% \end{itemize}
 
-% \paragraph{Contribution 3: Termination by Morphism Counting with Antipattern}
-% \ \newline
 Chapter~\ref{chap:antipattern} extends the technique introduced in Chapter~\ref{chap:subgraph_counting} to handle rewriting systems with rules like the following one:
-%  shown in Figure~\ref{fig:intro:graph_transformation_rule_anti_pattern__}.
-
-% \begin{figure}[H]
-%     \centering
 \begin{center}
-    \resizebox{\textwidth}{!}{
+    \resizebox{0.9\textwidth}{!}{
 \begin{tikzpicture}
       \graphbox{$\mathcal{L}$}{0mm}{0mm}{34mm}{20mm}{2mm}{-5mm}{
           \coordinate (o) at (0mm,-3mm); 

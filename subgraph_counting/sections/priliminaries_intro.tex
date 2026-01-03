@@ -1,4 +1,4 @@
-The morphism-counting method presented in this chapter is specifically designed for DPO rewriting systems with injective rules and matches. However, we employ an equivalent definition of these systems due to its practical advantage: it provides a clearer perspective on how the number of monomorphisms from specific graphs changes following a rewriting step.
+The morphism counting method presented in this chapter is specifically designed for DPO rewriting systems with injective rules and matches. However, we employ an equivalent definition of these systems because it facilitates the presentation of our results.
  
 \begin{definition}
     \label{def:rewriting_inclusion}
@@ -65,7 +65,7 @@ Graphs can be decomposed into unions of pregraphs. These pregraphs are used to m
     %     \item a source function, denoted by \( \textbf{src}_G \)\index{src@\( \textbf{src}_G \)}, (resp. a target function, denoted by \( \textbf{dst}_G \)\index{dst@\( \textbf{dst}_G \)}) that assigns to each edge an existing or missing node,
     %     \item an edge-labeling function, denoted by $l_G$, that assigns labels to edges.
     % \end{itemize}
-Let \(\Sigma\) be a finite set of labels. A \textbf{directed edge-labeled multigraph}\index{Directed edge-labeled multigraph} is a structure \((G, V_{\nexists})\) where
+Let \(\Sigma\) be a finite set of labels. A \textbf{pregraph} is a structure \((G, V_{\nexists})\) where
     \begin{itemize}
         \item G is a graph,
         \item $V_{\nexists}$ is a subset of nodes of $G$ called \textbf{missing nodes}.
@@ -96,7 +96,7 @@ For a pregraph \( G \), we write \( V_{\nexists}(G) \) for its set of missing no
     \end{center}
  \end{example} 
  
-A homomorphism of pregraphs is a homomorphism between their underlying graphs that preserves missing.
+A homomorphism of pregraphs is a homomorphism between their underlying graphs that preserves missing nodes.
 %  \begin{definition} 
 %     \label{def:pregraph:homomorphism}
 %     Let \( G \) and \( H \) be pregraphs. A \textbf{homomorphism of pregraphs}\index{Homomorphism!pregraph} $h: G \mathop{\to} H$ consists a pair of functions $h_V: V(G) \mathop{\to} V(H) $ and $h_E: E(G) \mathop{\to} E(H)$ such that
@@ -126,13 +126,13 @@ A homomorphism of pregraphs is a homomorphism between their underlying graphs th
     A pregraph $H$ is a \textbf{subgraph} of a pregraph $G$ (denoted $H \subseteq G$) if:
     \begin{enumerate}
         \item the underlying graph of $H$ is a subgraph of the underlying graph of $G$,
-        \item The status of a node (whether it is existing or missing) is inherited from $G$:
+        \item the status of a node (whether it is existing or missing) is inherited from $G$:
         \[ V_\exists(H) = V(H) \cap V_\exists(G) \quad \text{and} \quad V_{\nexists}(H) = V(H) \cap V_{\nexists}(G) \]
     \end{enumerate}
 \end{definition}
 
 \index{Union of pregraphs}
-Let $C$ and $R$ be subpregraphs of a pregraph $G$. Their \textbf{union}, denoted $C \cup R$, is the pregraph whose underlying graph is the union of the underlying graphs of $C$ and $R$, and whose set of existing nodes is:
+Let $C$ and $R$ be subpregraphs of a pregraph $G$. Their \textbf{union}, denoted $C \cup R$, is the pregraph whose underlying graph is the union of the underlying graphs of $C$ and $R$, and whose set of missing nodes is:
 \[ V_{\nexists}(C \cup R) = (V_{\nexists}(C) \cup V_{\nexists}(R)) \setminus (V_\exists(C) \cup V_\exists(R)) \]
     
 The definition is illustrated below:
@@ -179,6 +179,240 @@ The definition is illustrated below:
         \end{tikzpicture}
         }
     \end{center}
+
+Graphs in a DPO rewriting rule can be decomposed into unions of pregraphs as shown below, where different colors are used to distinguish the pregraphs.
+   \begin{center}
+    \resizebox{0.85\textwidth}{!}{
+      \begin{tikzpicture}
+              \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (0mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[orange,fill=orange,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \draw[orange,fill=orange,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[orange,fill=orange,->] (l3) -- (l2) node[midway,above] {$a$};
+              } 
+
+              \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (0mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+              }  
+
+              \graphbox{\( R \mathop{=} R' \mathop{\cup} K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (-5mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
+                  \node[red,fill=red,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \node[red,fill=red,draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                  \draw[red,fill=red,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[red,fill=red,->] (l3) -- (l4) node[midway,above] {$b$};
+                  \draw[red,fill=red,->] (l4) -- (l2) node[midway,above] {$a$};
+              }    
+
+              \node () at (37mm,-8mm) {\( \leftarrow \)}; % K -> L
+              \node () at (77mm,-8mm) {\( \rightarrow \)}; % K -> R
+      \end{tikzpicture}
+      }
+   \end{center}
+This decomposition is abstractly represented as follows:
+
+\begin{center}
+    \resizebox{0.85\textwidth}{!}{
+            \begin{tikzpicture} 
+                \coordinate (k) at (0, 0);
+                \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
+                \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
+            
+                \coordinate (l) at (-3, 0);
+                \draw[fill=orange!30] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
+                \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
+                \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
+                \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
+             
+                \coordinate (r) at (3,0);
+                \draw[fill=red!30] ($(r)+(-0.5,0)$)
+                -- ($(r)+(-0.5,0.5)$)
+                -- ($(r)+(0,1)$)
+                --  ($(r)+(0.5,1)$)
+                -- ($(r)+(0.5,0)$)
+                -- cycle;
+                \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
+                \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
+                \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
+             
+                \node[ font=\huge] (kl) at ($(k)!0.5!(l)+(0.25,0.25)$)
+                {\( \leftarrow \)}
+                ; 
+                \node[ font=\huge] (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
+                {\( \rightarrow \)}
+                ;  
+            \end{tikzpicture}
+          }
+   \end{center}
+
+   Graphs in a DPO rewriting step can likewise be decomposed into unions of pregraphs as shown below:
+
+   \begin{center}
+    \resizebox{0.85\textwidth}{!}{
+      \begin{tikzpicture}
+              \graphbox{\( L \mathop{=} L' \mathop{\cup} K \)}{0mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (0mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[orange,fill=orange,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \draw[orange,fill=orange,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[orange,fill=orange,->] (l3) -- (l2) node[midway,above] {$a$};
+              } 
+
+              \graphbox{\( K \)}{40mm}{5mm}{34mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (0mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+              }  
+
+              \graphbox{\( R \mathop{=} R' \mathop{\cup} K \)}{80mm}{5mm}{45mm}{20mm}{2mm}{-5mm}{
+                  \coordinate (o) at (-5mm,-8mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
+                  \node[red,fill=red,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \node[red,fill=red,draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                  \draw[red,fill=red,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[red,fill=red,->] (l3) -- (l4) node[midway,above] {$b$};
+                  \draw[red,fill=red,->] (l4) -- (l2) node[midway,above] {$a$};
+              }    
+
+              \graphbox{\( G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C' \)}{0mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+                  \coordinate (o) at (0mm,-3mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[draw,circle,orange,fill=orange] (l3) at ($(l1)+(1,0)$) {};
+                  \node[blue, fill=blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {};
+                  \draw[orange,fill=orange,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[orange,fill=orange,->] (l3) -- (l2) node[midway,above] {$a$};
+                  \draw[blue,fill=blue,->] (l2) -- (l4) node[midway,right] {$a$};
+              }    
+
+              \graphbox{\( C \mathop{=} K \mathop{\cup} C' \)}{40mm}{-22mm}{34mm}{30mm}{2mm}{-10mm}{
+                  \coordinate (o) at (0mm,-3mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(2,0)$) {};
+                  \node[blue,fill=blue,draw,circle] (l4) at ($(l2)+(0,-1)$) {};
+                  \draw[blue,fill=blue,->] (l2) -- (l4) node[midway,right] {$a$};
+              }    
+
+              \graphbox{\( H \mathop{=} R' \mathop{\cup} K \mathop{\cup} C' \)}{80mm}{-22mm}{45mm}{30mm}{2mm}{-10mm}{
+                  \coordinate (o) at (-5mm,-3mm); 
+                  \node[draw,circle] (l1) at ($(o)+(-10mm,0mm)$) {};
+                  \node[draw,circle] (l2) at ($(l1)+(3,0)$) {};
+                  \node[red,fill=red,draw,circle] (l3) at ($(l1)+(1,0)$) {};
+                  \node[red,fill=red,draw,circle] (l4) at ($(l1)+(2,0)$) {};
+                  \node[blue,fill=blue,draw,circle] (l5) at ($(l2)+(0,-1)$) {};
+                  \draw[red,fill=red,->] (l1) -- (l3) node[midway,above] {$a$};
+                  \draw[red,fill=red,->] (l3) -- (l4) node[midway,above] {$b$};
+                  \draw[red,fill=red,->] (l4) -- (l2) node[midway,above] {$a$};
+                  \draw[blue,fill=blue,->] (l2) -- (l5) node[midway,right] {$a$};
+              }    
+
+              \node () at (37mm,-8mm) {\( \leftarrow \)}; % K -> L
+              \node () at (77mm,-8mm) {\( \rightarrow \)}; % K -> R
+              \node () at (17mm,-18mm) {\( \downarrow \)};
+              \node () at (37mm,-33mm) {\( \leftarrow \)};
+              \node () at (52mm,-18mm) {\( \downarrow \)};
+              \node () at (92mm,-18mm) {\( \downarrow \)};
+              \node () at (77mm,-33mm) {\( \rightarrow \)}; % C -> H
+      \end{tikzpicture}
+      }
+   \end{center}
+   The abstract representation is as follows:
+\begin{figure}[H]
+    \centering
+    \resizebox{0.9\textwidth}{!}{
+            \begin{tikzpicture} 
+                \coordinate (k) at (0, 0);
+                \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
+                \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
+            
+                \coordinate (c) at (0, -2.2);
+                \draw[fill=blue!30]
+                ($(c)+(0,-0.5)$)
+                -- ($(c)+(0,0.5)$) 
+                -- ($(c)+(1,0.5)$) 
+                arc[start angle=0, end angle=-90, radius=1]
+                -- cycle;
+                \node () at ($(c)+(0.75,0.25)$) {\( \mathrm{C'} \)};
+                \draw[fill=white] ($(c)+(0,0)$) rectangle ($(c)+(0.5,0.5)$);
+                \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
+            
+                \coordinate (l) at (-3, 0);
+                \draw[fill=orange!30] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
+                \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
+                \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
+                \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
+            
+                \coordinate (g) at (-3, -2.2);
+                \draw[fill=blue!30]
+                ($(g)+(0,-0.5)$)
+                -- ($(g)+(0,0.5)$)
+                -- ($(g)+(1,0.5)$) 
+                arc[start angle=0, end angle=-90, radius=1]
+                -- cycle;
+                \draw[fill=orange!30] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
+                \node () at ($(g)+(0.75,0.25)$) {\( \mathrm{C'} \)};
+                \node () at ($(g)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
+                \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
+                \node () at ($(g)+(0.25,0.25)$) {\( \mathrm{K} \)};
+            
+                \coordinate (r) at (3,0);
+                \draw[fill=red!30] ($(r)+(-0.5,0)$)
+                -- ($(r)+(-0.5,0.5)$)
+                -- ($(r)+(0,1)$)
+                --  ($(r)+(0.5,1)$)
+                -- ($(r)+(0.5,0)$)
+                -- cycle;
+                \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
+                \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
+                \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
+            
+                \coordinate (h) at (3, -2.2);
+                \draw[fill=blue!30]
+                ($(h)+(0,-0.5)$)
+                -- ($(h)+(0,0.5)$)
+                -- ($(h)+(1,0.5)$) 
+                arc[start angle=0, end angle=-90, radius=1]
+                -- cycle;
+                \draw[fill=red!30] ($(h)+(-0.5,0)$)
+                -- ($(h)+(-0.5,0.5)$)
+                -- ($(h)+(0,1)$)
+                --  ($(h)+(0.5,1)$)
+                -- ($(h)+(0.5,0)$)
+                -- cycle;
+            \node () at ($(h)+(0.75,0.25)$) {\( \mathrm{C'} \)};
+            \draw[fill=white] ($(h)+(0,0)$) rectangle ($(h)+(0.5,0.5)$);
+            \node () at ($(h)+(0.25,0.25)$) {\( \mathrm{K} \)};
+            \node () at ($(h)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
+            
+                \node[ font=\huge] (kl) at ($(k)!0.5!(l)+(0.25,0.25)$)
+                {\( \leftarrow \)}
+                ; 
+                \node[ font=\huge] (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
+                {\( \rightarrow \)}
+                ;  
+                \node[ font=\huge] (cg) at ($(c)!0.5!(g)+(0.25,0.25)$) 
+                {\( \leftarrow \)}
+            ;  
+                \node[ font=\huge] (ch) at ($(c)!0.5!(h)+(0.25,0.25)$)
+                {\( \rightarrow \)}
+            ; 
+                \node[ font=\huge] (kc) at ($(k)!0.5!(c)+(0.2,0.4)$) {\( \downarrow \)}; 
+                \node[ font=\huge] (lg) at ($(l)!0.5!(g)+(0.1,0.4)$) {\( \downarrow \)}; 
+                \node[ font=\huge] (rh) at ($(r)!0.5!(h)+(0.1,0.4)$) {\( \downarrow \)}; 
+            \end{tikzpicture}
+          } 
+          \caption{Decomposition of graphs in a DPO rewriting step}
+          \label{fig:dpo_decomposition_pregraph}
+   \end{figure}
+   
 
 %     \index{Relative complement}
     
@@ -254,125 +488,7 @@ The definition is illustrated below:
 
  
 \subsection{X-occurrences}
-
-    Consider the following double pushout diagram in the category \textbf{Graph}, where all arrows are inclusions:
-    \begin{center}
-        \resizebox{0.4\textwidth}{!}{
-        \begin{tikzpicture} 
-            \node (I) at (0,0) {$K$};
-            \node (L)  at (-2,0) {$L$};
-            \node (R)  at (2,0) {$R$};
-            \node (G)  at (-2,-2) {$G$};
-            \node (C)  at (0,-2) {$C$};
-            \node (H)  at (2,-2) {$H$};
-            \draw [>->] (I) to  node [midway,below] { } (L);
-            \draw [>->] (I) to  node [midway,below] { } (R);
-            \draw [>->] (L) to node [midway,right] { } (G);
-            \draw [>->] (I) to  node [midway,right] 
-            {} (C);
-            \draw [>->] (R) to  node [midway,right] 
-            {}
-            (H);
-            \draw [>->] (C) to node [midway,above] {} (G);
-            \draw [>->] (C) to node [midway,above] 
-            {}
-            (H);
-        \end{tikzpicture}
-        }
-    \end{center}
-    % Since all arrows are inclusions, by Definition~\ref{def:rewriting_inclusion}, 
-    The
-    graphs in the double pushout above 
-    can be decomposed as unions of pregraphs as illustrated below, 
-     where $K, L', R',C'$ are pregraphs and $L \mathop{=} L' \mathop{\cup} K$, $R \mathop{=} R' \mathop{\cup} K$, $C \mathop{=} C' \mathop{\cup} K$, $G \mathop{=} L' \mathop{\cup} K \mathop{\cup} C'$, $H \mathop{=} R' \mathop{\cup} K \mathop{\cup} C'$.
-    \begin{center}
-        \resizebox{0.7\textwidth}{!}{
-            \begin{tikzpicture} 
-                \coordinate (k) at (0, 0);
-                \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
-                \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-                \coordinate (c) at (0, -2.2);
-                \draw[fill=blue!20]
-                ($(c)+(0,-0.5)$)
-                -- ($(c)+(0,0.5)$) 
-                -- ($(c)+(1,0.5)$) 
-                arc[start angle=0, end angle=-90, radius=1]
-                -- cycle;
-                \node () at ($(c)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-                \draw[fill=white] ($(c)+(0,0)$) rectangle ($(c)+(0.5,0.5)$);
-                \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-                \coordinate (l) at (-3, 0);
-                \draw[fill=orange!20] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
-                \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
-                \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
-                \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-                \coordinate (g) at (-3, -2.2);
-                \draw[fill=blue!20]
-                ($(g)+(0,-0.5)$)
-                -- ($(g)+(0,0.5)$)
-                -- ($(g)+(1,0.5)$) 
-                arc[start angle=0, end angle=-90, radius=1]
-                -- cycle;
-                \draw[fill=orange!20] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
-                \node () at ($(g)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-                \node () at ($(g)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
-                \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
-                \node () at ($(g)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-                \coordinate (r) at (3,0);
-                \draw[fill=red!20] ($(r)+(-0.5,0)$)
-                -- ($(r)+(-0.5,0.5)$)
-                -- ($(r)+(0,1)$)
-                --  ($(r)+(0.5,1)$)
-                -- ($(r)+(0.5,0)$)
-                -- cycle;
-                \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
-                \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
-                \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-                \coordinate (h) at (3, -2.2);
-                \draw[fill=blue!20]
-                ($(h)+(0,-0.5)$)
-                -- ($(h)+(0,0.5)$)
-                -- ($(h)+(1,0.5)$) 
-                arc[start angle=0, end angle=-90, radius=1]
-                -- cycle;
-                \draw[fill=red!20] ($(h)+(-0.5,0)$)
-                -- ($(h)+(-0.5,0.5)$)
-                -- ($(h)+(0,1)$)
-                --  ($(h)+(0.5,1)$)
-                -- ($(h)+(0.5,0)$)
-                -- cycle;
-            \node () at ($(h)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-            \draw[fill=white] ($(h)+(0,0)$) rectangle ($(h)+(0.5,0.5)$);
-            \node () at ($(h)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            \node () at ($(h)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
-            
-                \node[ font=\huge] (kl) at ($(k)!0.5!(l)+(0.25,0.25)$)
-            %    {\( \overset{l}{\leftarrowtail} \)}
-                {\( \leftarrowtail \)}
-                ; 
-                \node[ font=\huge] (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
-                {\( \rightarrowtail \)}
-                ;  
-                \node[ font=\huge] (cg) at ($(c)!0.5!(g)+(0.25,0.25)$) 
-                {\( \leftarrowtail \)}
-            ;  
-                \node[ font=\huge] (ch) at ($(c)!0.5!(h)+(0.25,0.25)$)
-                {\( \rightarrowtail \)}
-            ; 
-                \node[ font=\huge] (kc) at ($(k)!0.5!(c)+(0.2,0.4)$) {\( \downarrowtail \)}; 
-            %   \node[ font=\LARGE] () at ($(l)!0.5!(g)+(0.5,0.4)$) {$m$}; 
-                \node[ font=\huge] (lg) at ($(l)!0.5!(g)+(0.1,0.4)$) {\( \downarrowtail \)}; 
-                \node[ font=\huge] (rh) at ($(r)!0.5!(h)+(0.1,0.4)$) {\( \downarrowtail \)}; 
-            %   \node[ font=\LARGE] () at ($(r)!0.5!(h)+(0.55,0.4)$) {$m'$}; 
-            %   \node[ font=\LARGE] () at ($(k)!0.5!(c)+(0.5,0.4)$) {$u$}; 
-            \end{tikzpicture}
-        }
-    \end{center}
+The decomposition shown in~Figure~\ref{fig:dpo_decomposition_pregraph} provides a convenient way to classify morphisms into the host and result graphs of a rewriting step.
 \begin{definition}
     \label{def:x_occurrence}
      Let $X$ be a subgraph of $L$.  An \textbf{$X$-occurrence}\index{x-occurrence@$X$-occurrence} in a graph $G$ is a monomorphism from $X$ to $G$. An $X$-occurrence in $G$ is 
@@ -390,7 +506,7 @@ The definition is illustrated below:
 
     Intuitively, the rewriting step implicitly creates the implicit $X$-occurrences in $H$ and implicitly destroys implicit $X$-occurrences in $G$. 
     
-    Given an implicit $X$-occurrence $x$ in $H$, its image can be decomposed as the union $R_x \mathop{\cup} C_x$ of pregraphs, where $R_x \mathop{=} \opn{Im}(x) \mathop{\cap} R$ (the part of the image overlapping the right-hand side $R$), and $C_x \mathop{=} \opn{Im}(x) \mathop{\cap} C'$ (the part overlapping the context C).
+    Given an implicit $X$-occurrence $x$ in $H$, its image can be decomposed as the union $R_x \mathop{\cup} C_x$ of pregraphs, where $R_x \mathop{=} \opn{Im}(x) \mathop{\cap} R$ (the part of the image overlapping the right-hand side $R$), and $C_x \mathop{=} \opn{Im}(x) \mathop{\cap} C'$ (the part overlapping the context $C$).
     
     For every graph monomorphism $h : R_x \rightarrowtail L$ that preserves interface elements (i.e., \( h(k) \mathop{=} k \) for all \( k \mathop{\in} K \)), we define the \textbf{corresponding $X$-occurrence of $x$ relative to $h$} as the $X$-occurrence $y$ in $G$ given by:
         $$
@@ -568,7 +684,7 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
         \draw[orange,->] (y) -- node[midway,above] {$a$} (z) ;
     }
  
-    \item 1 implicit occurrences in $G$:
+    \item 1 implicit occurrence in $G$:
     \tikz[baseline=-0.5ex]{ 
         \node[orange,draw,circle] (x) at (0,0) {3};  
         \node[draw,circle] (y) at (1,0) {2};
@@ -588,7 +704,7 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
 }
  
 \end{itemize}
-    The corresponding X-occurrence of the implicit occurrences \tikz[baseline=-0.5ex]{ 
+    The corresponding X-occurrence of the implicit occurrence \tikz[baseline=-0.5ex]{ 
         \node[red,draw,circle] (x) at (0,0) {5};  
         \node[draw,circle] (y) at (1,0) {2};
         \node[blue,draw,circle] (z) at (2,0) {6};
@@ -606,7 +722,7 @@ Consider the $X$-occurrences in the decomposition of a rewriting step using the 
       \node[draw,circle] (y) at (1,0) {2};
       \draw[orange,->] (x) -- (y) node[midway, above] {$a$};
   }
-    is the implicit occurrences 
+    is the implicit occurrence 
        \tikz[baseline=-0.5ex]{ 
         \node[orange,draw,circle] (x) at (0,0) {3};  
         \node[draw,circle] (y) at (1,0) {2};

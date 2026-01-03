@@ -116,9 +116,12 @@ Thus, the following equality holds:
             \mathop{-} 
         \card{\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', \mathop{\lnot} r')_{\operatorname{NF}}} 
     ). \label{eq:lkdfjasnveennnaa}
-\end{flalign}
-In the remainder of this section, we suppose that $\rho^{-1}$ is $F$-non-increasing if $\mathcal{C} \mathop{=} \set{f:X \mathop{\rightarrowtail} F}$ and that $\rho$ and $\rho^{-1}$ are $X$-non-increasing.  
-Lemma~\ref{antipattern:lem:xglnotmlp_xhlnotmrp} asserts that $\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, l')_{\operatorname{NF}}$ contains more elements than $\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', r')_{\operatorname{NF}}$, and Lemma~\ref{antipattern:lem:xglnotmlnotlp_xhlnotmrnotrp} asserts that $\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, \mathop{\lnot} l')_{\operatorname{NF}}$ contains more elements than $\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', \mathop{\lnot} r')_{\operatorname{NF}}$.
+\end{flalign} 
+
+In the remainder of this section, we assume the following.
+ If $\mathcal{C} \mathop{=} \set{f:X \mathop{\rightarrowtail} F}$,
+ then $\rho^{-1}$ is $F$-non-increasing. Moreover, $\rho$ and $\rho^{-1}$ are $X$-non-increasing.
+Lemma~\ref{antipattern:lem:xglnotmlp_xhlnotmrp} asserts that $\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, l')_{\operatorname{NF}}$ has at least as many elements as than $\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', r')_{\operatorname{NF}}$, and Lemma~\ref{antipattern:lem:xglnotmlnotlp_xhlnotmrnotrp} asserts that $\operatorname{Mono}(\mathcal{X},G,\mathop{\lnot} m, \mathop{\lnot} l')_{\operatorname{NF}}$ contains more elements than $\operatorname{Mono}(\mathcal{X},H,\mathop{\lnot} m', \mathop{\lnot} r')_{\operatorname{NF}}$.
 Hence, $\card{\operatorname{Mono}(\mathcal{X},G)_{\operatorname{NF}}} \mathop{-} 
     \card{\operatorname{Mono}(\mathcal{X},H)_{\operatorname{NF}}}$ can be bounded below using these lemmas.
 \begin{lemma}
@@ -146,7 +149,7 @@ Under the assumptions of the above two lemmas, by~\eqref{eq:lkdfjasnveennnaa}, w
  \end{flalign*}
 
  The following definition introduces a subset of $\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}$ that consists of occurrences of $X$ whose images are not included in any occurrence of the forbidden context in $L$,
-    but, in some rewriting step $G \mathop{\Rightarrow}_\rho^m H$, their images may possibly be included in an occurrence of the forbidden context in the host graph $G$.
+    but in some rewriting step $G \mathop{\Rightarrow}_\rho^m H$ their images may possibly be included in an occurrence of the forbidden context in the host graph $G$.
 \begin{definition}
     \label{antipattern:def:gamma_l_rho_x}
     Let $\mathcal{X}=(X,\mathcal{C})$ be a ruler-graph, and let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be a rule.
@@ -184,12 +187,12 @@ Under the assumptions of the above two lemmas, by~\eqref{eq:lkdfjasnveennnaa}, w
     \end{itemize} 
 %    \trackedtext{Intuitively, $\Lambda(\mathcal{X},\rho)$ is the number of $X$-occurrences in $L$ ...}
 \end{definition}
-To improve the readability of the subsequent discussion, we define $$\Lambda(\mathcal{X},\rho) \overset{\operatorname{def}}{=} (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} \mathop{-} 
+To improve readability of the subsequent discussion, we define $$\Lambda(\mathcal{X},\rho) \overset{\operatorname{def}}{=} (\card{\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}}} \mathop{-} 
     \card{\Gamma(\operatorname{Mono}(\mathcal{X},L)_{\operatorname{NF}})}) -
    \card{\operatorname{Mono}(\mathcal{X},R)_{\operatorname{NF}}}.$$\index{$\Lambda(\mathcal{X},\rho)$}
 
 Note that in the category \textbf{Graph}, the pushout of two arrows always exists~\cite[p.188]{corradini1997algebraic}. This justifies the existence of the pushout square in the second condition of the above definition.
-Furthermore, since $X$ and the forbidden context (if exists) are finite graphs, $\Lambda(\mathcal{X},\rho)$ can be precisely computed. Consequently, it provides a lower bound for the change in the number of $X$-occurrences in a rewriting step using $\rho$, as shown in the following lemma whose proof is given in~\textsection~\ref{antipattern:proof:lem:xgm_xhmp_xl_xr}.
+Furthermore, since $X$ and the forbidden context (if it exists) are finite graphs, $\Lambda(\mathcal{X},\rho)$ can be precisely computed. Consequently, it provides a lower bound for the change in the number of $X$-occurrences in a rewriting step using $\rho$, as shown in the following lemma whose proof is given in~\textsection~\ref{antipattern:proof:lem:xgm_xhmp_xl_xr}.
 
 % \begin{lemma}
 %     \label{lem:decomp_w_u}
@@ -305,7 +308,7 @@ Finally, our main result follows.
             \sum_{\mathcal{X} \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(\mathcal{X}) \mathop{*} \Lambda(\mathcal{X},\rho) \mathop{\geq} 0 
         $,
     \end{enumerate}
-    then \(\mathop{\Rightarrow}_{\mathcal{A},\mathcal{M}}\) terminates relative to \(\mathop{\Rightarrow}_{\mathcal{B},\mathcal{M}}\).
+    then \(\mathop{\Rightarrow}_{\mathcal{A},\mathfrak{M}}\) terminates relative to \(\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{M}}\).
 \end{theorem}
 \begin{remark}
     This work focuses on deriving sufficient conditions for termination, deferring the construction of ruler-graphs to future work.

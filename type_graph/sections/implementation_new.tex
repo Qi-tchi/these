@@ -1,8 +1,8 @@
-We present the implementation of our approach and the one proposed by Endrullis and Overbeek~\cite{endrullis2024generalized_arxiv_v2} in our tool, called LyonParallel.
+We present the implementation of our approach and of the one proposed by Endrullis and Overbeek~\cite{endrullis2024generalized_arxiv_v2} in our tool, called LyonParallel, which is described in Chapter~\ref{chap:lyonparallel}.
 
 \paragraph{Searching Strategy.}
-Consider a DPO rewriting system $\mathcal{R}$. Given a fixed semiring $S$, a processor is spawned to iteratively search for a suitable weighted type graph over $S$.
-The search begins with a weighted type graph containing $1$ node and increases the node count by $1$ until it reaches a maximum of 4 nodes.
+Let $\mathcal{R}$ be a DPO rewriting system. For a specific semiring $S$, a processor is spawned to search iteratively for a suitable weighted type graph over $S$.
+The search begins with a weighted type graph containing $1$ node and increments the node count by $1$ until it reaches a maximum of 4 nodes.
 
 For a fixed number of nodes,
  if $S$ is a semiring over the natural numbers, the maximum edge weight is initialized to 1 and incremented by 1 (up to a limit of 3) if no suitable weighted type graph is found;
@@ -16,9 +16,9 @@ $k$ nodes and no parallel edges of the same label.
 %  and (2) the set $\mathbb{E}$ of morphism-rulers consists of identity morphisms from subgraphs of the type graph $T$ (each is a labeled edge with its incident nodes) to the type graph $T$.
 The search proceeds as follows: 
 \begin{enumerate}
-    \item decide if $s \overset{l}{\to} t$ exists for every pair of nodes \( s, t\) and label \( l\);
+    \item decide whether $s \overset{l}{\to} t$ exists for every pair of nodes \( s, t\) and label \( l\);
     \item assign a weight to every existing edge;
-    \item verify the existence of a constant $\delta >0$ and a partition of the rule set $\mathcal{R}$ into a non-empty subset $\mathcal{A}$ and a subset $\mathcal{B}$
+    \item verify the existence of a constant $\delta >0$, and a partition of the rule set $\mathcal{R}$ into a non-empty subset $\mathcal{A}$ and a subset $\mathcal{B}$
  such that:
     \begin{itemize}
         \item either all rules in $\mathcal{A}$ are $\delta$-uniformly decreasing or all rules in $\mathcal{A}$ are $\delta$-closure decreasing, and
@@ -29,7 +29,8 @@ The search proceeds as follows:
 %  Check if the weighted type graph satisfy requirements
 % (1) construct a graph with \( k \) nodes and no parallel edges of the same label, which has a directed edge from node $s$ to node $t$ labeled by $l$ for each ordered pair $(s,t)$ of nodes and label $l$ from the finite set of edge labels $\Sigma$ of the rewriting system; (2) decide whether each edge exists in the weighted type graph; (3) assign a weight (a natural number or a real number according to $S$) to every existing edge; (4) 
 
-This procedure amounts to checking the satisfiability of an existential Presburger arithmetic, Peano arithmetic, linear real arithmetic, or non-linear real arithmetic formula depending on the semiring $S$ considered.
+This procedure amounts to checking 
+the satisfiability of an existential Presburger arithmetic, Peano arithmetic, linear real arithmetic, or non-linear real arithmetic formula depending on the semiring $S$ considered.
 
 \paragraph{Z3 Modeling.}
 The type graph $T$ is modeled in Z3 by defining 
@@ -37,10 +38,10 @@ a boolean variable $x_{u,v,l} \mathop{\in} \mathbb{B}$ for every directed labele
 The variable $x_{u,v,l}$ has the value \textit{true} if the directed edge $u\overset{l}{\to} v$ exists in the result type graph, \textit{false} otherwise. 
 
 The weight function $w$ and the set $\mathbb{E}$ of morphism-rulers are modeled by defining 
-a variable $y_{u,v,l}$ of Z3's \textit{Real} sort or \textit{Int} sort (the solver's default theory for real numbers and integers), depending on the semiring $\mathcal{S}$ considered,
+a variable $y_{u,v,l}$ of Z3's \textit{Real} sort or \textit{Int} sort (the solver's default theory for real numbers and integers), depending on the semiring $S$ considered,
  for every pair $u,v\in\{1,...,k\}$ of nodes and edge label $l \mathop{\in} \Sigma$. 
 The variable $y_{u,v,l}$ represents the weight of the directed labeled edge $u\overset{l}{\to} v$ in the resulting weighted type graph, but only if edge $u\overset{l}{\to} v$ exists (i.e. $x_{u,v,l}$ has the value \textit{true}). 
-They are constrained to be non-negative.
+The variable $y_{u,v,l}$ are constrained to be non-negative.
 
 A variable $\delta \mathop{\in} \mathbb{R}_{>0}$ is defined to ensure that there is
 a partition of the rule set $\mathcal{R}$ into a non-empty subset $\mathcal{A}$ and a subset $\mathcal{B}$ such that all rules in $\mathcal{A}$ are either $\delta$-uniformly decreasing or $\delta$-closure decreasing, and all rules in $\mathcal{B}$ are weakly decreasing.
@@ -51,9 +52,9 @@ For convenience, the following auxiliary variables are also defined:
     \item a real-valued variable $v_{h'} \mathop{\in} \mathbb{R}_{\geq 0}$ for every morphism $h$ from $L$ or $R$ to $T$;
     \item a boolean variable $v_c \mathop{\in} \mathbb{B}$ for every morphism $c$ from $L$ to $T$.
 \end{itemize}  
-The value of $v_h$ has the value \textit{true} if the morphism $h$ exists in the result type graph (i.e. all edges in its image exist), and \textit{false} otherwise.
-The variable $v_{h'}$ holds the weight of the morphism $h$, provided the morphism $h$ exists (i.e., $v_h$ has the value \textit{true}).
-The variable $v_c$ has the value \textit{true} if the morphism $c$ exists in the result type graph and can serve as a context closure for the rule, and \textit{false} otherwise.
+The value of $v_h$ has value \textit{true} if the morphism $h$ exists in the result type graph (i.e. all edges in its image exist), and \textit{false} otherwise.
+The variable $v_{h'}$ holds the weight of the morphism $h$, provided the morphism $h$ exists (i.e., $v_h$ has value \textit{true}).
+The variable $v_c$ has value \textit{true} if the morphism $c$ exists in the result type graph and can serve as a context closure for the rule, and \textit{false} otherwise.
 
 If there is an assignment of values to 
     \begin{itemize}

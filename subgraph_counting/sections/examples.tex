@@ -44,9 +44,9 @@ In contrast, our criterion requires checking simpler conditions.
         \draw[<-] (z) -- (y) node[midway, above] {$a$};
     }, $\mathbb{X}\mathop{=}\{X\}$ and $s_\mathbb{X}(X)\mathop{=}1$. The rule is $X$-non-increasing as shown in Example~\ref{example:grs_aa:has_more_left}. 
     Since \(w_{s_\mathbb{X}}(\operatorname{lhs}(\rho))\mathop{=}1\mathop{>}0\mathop{=}w_{s_\mathbb{X}}(\operatorname{rhs}(\rho)) \),
-    it terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
+    the system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
 \end{example}
-The techniques from some previous works~\cite{bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,plump2018modular,overbeek2024termination_lmcs} fail to prove termination of the following examples, while our method can be applied to prove their termination.
+The techniques from some previous works~\cite{bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,plump2018modular,overbeek2024termination_lmcs} fail to prove termination of the following examples, whereas our method does.
 \begin{example} 
     \label{subgraph_counting:ex_contrib_variant}
     The rewriting rule shown below 
@@ -118,8 +118,8 @@ The techniques from some previous works~\cite{bruggink2014termination,bruggink20
         }}}. 
         Each \( R'_i \) admits a unique monomorphism \( h_{R'_i L} \mathop{\colon} R'_i \rightarrowtail L \) preserving interface elements. 
         The rule is $X$-non-increasing under 
-        the function $\Psi$ that maps each element $R'_i \mathop{\in}  D(R,X)$ to $h_{R_i'L}$, because 
-        the following diagrams can be constructed, and other conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are straightforward to verify. Since \(w_{s_\mathbb{X}}(L)\mathop{=}1\mathop{>}0\mathop{=}w_{s_\mathbb{X}}(R)\), the system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
+        the function $\Psi$ that maps each element $R'_i \mathop{\in}  D(R,X)$ to $h_{R'_iL}$, because 
+        the following diagrams can be constructed, and the remaining conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are straightforward to verify. Since \(w_{s_\mathbb{X}}(L)\mathop{=}1\mathop{>}0\mathop{=}w_{s_\mathbb{X}}(R)\), the system terminates by Theorem~\ref{subgraph_counting:thm:termination_grs}.
         \begin{center}
           \resizebox{0.95\textwidth}{!}{
             \begin{tikzpicture} 
@@ -253,7 +253,7 @@ The techniques from some previous works~\cite{bruggink2014termination,bruggink20
           \end{center}
 \end{example}
 
-The following example demonstrates the usefulness of a weight function that assigns distinct weight to measurements from different ruler-graphs.
+The following example demonstrates the usefulness of a weight function that assigns distinct weights to measurements from different ruler-graphs.
 \begin{example} 
     \label{ex:overbeek_5d6}
     Consider the rewriting rules~\cite[Example 5.6]{overbeek2024termination_lmcs}:
@@ -581,9 +581,6 @@ The following example demonstrates the usefulness of a weight function that assi
         }
       }
    \end{center}
-  %  \caption{}
-  %  \label{fig:subgraph_counting:ex_plump_ex4}
-  % \end{figure}
   The rule $r_3$ can be eliminated by considering occurrences of \tikz[baseline=-0.5ex]{
     \node[draw,circle] (x) at (0,0) { };
     \node[draw,circle] (y) at (1,0) { };
@@ -664,9 +661,6 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
       \end{tikzpicture}
   }
   \end{center}
-%   \caption{}
-%   \label{fig:subgraph_counting:overbeek_5d8_plump1995_3d8_plump2018_3_overbeek_5d8}
-% \end{figure}
   Let $X$ be  \tikz[baseline=-0.5ex]{
       \node[draw,circle] (x) at (0,0) { };
       \node[draw,circle] (y) at (1,0) { };
@@ -765,10 +759,6 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
 \begin{example} 
   \label{ex:endrullis2024_6d2}  
   Consider the rule~\cite[Example 6.2]{endrullis2024generalized_arxiv_v2}:
-  %  in Figure~\ref{fig:subgraph_counting:ex_endrullis2024_6d2}.
-
-  % \begin{figure}[H]
-  %   \centering
   \begin{center}
   \begin{tikzpicture}  
      \graphbox{$L$}{0mm}{-11mm}{32mm}{17mm}{2mm}{-11mm}{  
@@ -790,10 +780,6 @@ However, our method cannot eliminate $r_1$ and $r_2$. Yet, combined with the tec
     \node () at (70mm,-19mm) {$\rightarrow$};
  \end{tikzpicture}  
 \end{center}
-%  \caption{}
-%  \label{fig:subgraph_counting:ex_endrullis2024_6d2}
-% \end{figure}
-
  Our method proves termination for this rule using the ruler-graph 
  \tikz[baseline=-0.5ex]{
   \node[draw,circle] (x) at (0,0) {};
@@ -956,9 +942,6 @@ and, finally, \(\rho_4\) can be eliminated by considering occurrences of
 \begin{example}[Limitation]
   \label{ex:plump95_4d1}
  Consider the rule~\cite[Example 4.1]{plump1995ontermination}:
-%  in Figure~\ref{fig:subgraph_counting:ex_plump95_4d1}.
-  % \begin{figure}[H]
-  %   \centering
 \begin{center}
     \resizebox{\textwidth}{!}{
     $\rho\mathop{=}$  \begin{tikzpicture}[baseline=-20mm]
@@ -1082,11 +1065,9 @@ and, finally, \(\rho_4\) can be eliminated by considering occurrences of
  
 \begin{example}[Limitation]
   \label{ex:overbeek:5d6_bis:limitation} 
-  Consider the rewriting rule with monic matches~\cite[Example 5.6]{overbeek2024termination_lmcs}:
+  Consider the rewriting rule~\cite[Example 5.6]{overbeek2024termination_lmcs}:
   \begin{center}
     $\rho'\mathop{=}$\scalebox{0.9} { \input{subgraph_counting/tikz/OE_ex5d6_rho_bis.tex}}
-    % \caption{}
-    % \label{fig:subgraph_counting:ex_overbeek_5d6_bis}
   \end{center} 
   Its termination is not in the scope of our method due to its non-node-injective left-hand side morphism. 
 \end{example}

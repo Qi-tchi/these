@@ -1,5 +1,5 @@
-A comparative analysis of termination techniques for DPO graph rewriting systems, drawn from prior work~\cite{plump1995ontermination,plump2018modular,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs}, is summarized in Table~\ref{tab:comparison:subgraph_counting}. Our approach successfully proves termination for 14 of these systems. 
-For ease of reading, many cells in Table~\ref{tab:comparison:subgraph_counting} are marked with "\textbf{$-$}", indicating that the corresponding technique is out of scope for the given example or, more often, that it is not relevant to our discussion, since other entries already show that the technique and ours are not directly comparable.
+A comparative analysis of termination techniques for DPO graph rewriting systems, drawn from prior work~\cite{plump1995ontermination,plump2018modular,bruggink2014termination,bruggink2015proving,endrullis2024generalized_arxiv_v2,overbeek2024termination_lmcs}, is presented in Table~\ref{tab:comparison:subgraph_counting}. Our approach successfully proves termination for 14 of these systems. 
+For ease of reading, many cells in Table~\ref{tab:comparison:subgraph_counting} are marked with "\textbf{$-$}", indicating that the corresponding technique is out of scope for the given example or, more often, that it is not relevant to our discussion, since other entries already show that the technique and our method are not directly comparable.
 
 In the remainder of this section, we compare our method with some existing methods in more detail.
 
@@ -11,7 +11,7 @@ In the remainder of this section, we compare our method with some existing metho
    \centering
   \small % Reduce font size
   \caption{Applicability of termination techniques to DPO rewriting examples.
-  The symbol \ding{51} indicates termination can be proved by the technique,
+  The symbol \ding{51} indicates that termination can be proved by the technique,
   \ding{55} indicates it cannot be proved, and 
   \textbf{$-$} denotes irrelevance or out-of-scope cases.
         }
@@ -206,11 +206,11 @@ Chapter~\ref{chap:subgraph_counting}
 } 
 
 
-The subgraph-counting method by Overbeek and Endrullis (2024)~\cite{overbeek2024termination_lmcs} is designed for a more general rewriting formalism capable of simulating left-injective DPO rewriting, and it can be applied to various graph notions. It is very closely related to our work in the setting where they are both defined. Both methods weigh objects by summing weighted morphisms targeting them, and, for both methods, the key challenge lies in estimating weights for morphisms whose images partially overlap with the rewriting context, because morphisms fully embedded in the context are shared between host and resulting graphs, while those entirely within left- or right-hand-side graphs are trivial to quantify.  
+The subgraph counting method by Overbeek and Endrullis (2024)~\cite{overbeek2024termination_lmcs} is designed for a more general rewriting formalism capable of simulating left-injective DPO rewriting, and it can be applied to various graph notions. It is very closely related to our work in the setting where they are both defined. Both methods weigh objects by summing weighted morphisms targeting them, and, for both methods, the key challenge lies in estimating weights for morphisms whose images partially overlap with the rewriting context, because morphisms fully embedded in the context are shared between host and resulting graphs, while those entirely within left- or right-hand-side graphs are trivial to quantify.  
 
 The two methods employ distinct strategies to overcome this challenge. The subgraph counting method relies on type-morphisms (see~\cite[page 9, remark 4.11, Lemma 4.23]{overbeek2024termination_lmcs}), whereas our approach requires injective mappings from (i) subgraph occurrences partially overlapping the rewriting context in the result graph to (ii) those in the host graph.
 
-Both approaches have limitations and strengths. Endrullis and Overbeek's approach suffers from discrete interface\textemdash{}interface graph with no edges, as mentioned in~\cite[Example 5.5]{overbeek2024termination_lmcs}. For instance, it proves termination of Example~\ref{ex:overbeek_5d5}:
+Both approaches have limitations and strengths. Endrullis and Overbeek's approach suffers from discrete interfaces\textemdash{}interface graphs with no edges, as mentioned in~\cite[Example 5.5]{overbeek2024termination_lmcs}. For instance, it proves termination of Example~\ref{ex:overbeek_5d5}:
 \begin{center}
       \resizebox{0.9\textwidth}{!}{
           \begin{tikzpicture}
@@ -272,7 +272,7 @@ Both approaches have limitations and strengths. Endrullis and Overbeek's approac
     }
   \end{center}
 % ~\cite[Example 6.3]{endrullis2024generalized_arxiv_v2}
-while the rules differ only by an edge in the interface graph.
+However, the two rules differ only by an edge in the interface graph.
 Similarly, it fails to prove termination for Example~\ref{subgraph_counting:ex_contrib_variant}:
  \begin{center}
   \resizebox{0.9\textwidth}{!}{
@@ -315,7 +315,7 @@ Similarly, it fails to prove termination for Example~\ref{subgraph_counting:ex_c
             \end{tikzpicture}
       } 
     \end{center}
-      but if an edge labeled by ``s'' from node $1$ to node $3$ is added to the interface graph, then it succeeds. Our approach, however, can handle all the aforementioned cases. Nevertheless, their method can address the system in Example~\ref{ex:plump95_4d1}:
+    However, it succeeds if if an edge labeled by ``s'' from node $1$ to node $3$ is added to the interface graph. Our approach, however, can handle all the aforementioned cases. Nevertheless, their method can address the system in Example~\ref{ex:plump95_4d1}:
         \begin{center}
     $\rho'\mathop{=}$\scalebox{0.9} { \input{subgraph_counting/tikz/OE_ex5d6_rho_bis.tex}}
     % \caption{}
@@ -394,7 +394,7 @@ On the one hand, the termination of Example~\ref{subgraph_counting:ex_contrib_va
 Plump (1995)~\cite{plump1995ontermination} gives a necessary and sufficient termination criterion for left-injective DPO hypergraph rewriting in terms of forward closure. However, the verification of the criterion is undecidable in general.
 
 Our method complements the approach proposed by Plump (2018)~\cite{plump2018modular}: whereas the method decomposes a rewriting system into subsystems and proves termination of the entire system by combining termination proofs for the subsystems, the termination of each subsystem must still be established separately.
-For example, the measure based on the indegree proposed in~\cite{plump2018modular} cannot prove the termination of Example~\ref{subgraph_counting:ex_contrib_variant}, illustrated below, due to the loops on the node 5 in the right-hand side graph $R$. 
+For example, the measure based on the indegree proposed in~\cite{plump2018modular} cannot prove the termination of Example~\ref{subgraph_counting:ex_contrib_variant}, illustrated below, due to the loops on the node $5$ in the right-hand side graph $R$. 
 \begin{center}
   \resizebox{0.9\textwidth}{!}{
             \begin{tikzpicture} 
@@ -436,7 +436,7 @@ For example, the measure based on the indegree proposed in~\cite{plump2018modula
             \end{tikzpicture}
   }
           \end{center}
-Specifically, consider the following rewriting step with the rule:
+Specifically, consider the following rewriting step using the rule:
 \begin{center}
   \resizebox{0.7\textwidth}{!}{
             \begin{tikzpicture}

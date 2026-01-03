@@ -1,17 +1,10 @@
-% In this section, we present a method for termination analysis of DPO graph rewriting systems with injective rules and monic matches. 
-% Since it is an interpretation method~\cite{nipkow1998term}, we first define the weight of a graph in Definition~\ref{def:graph_weight}. 
-% With this definition, we explain the general idea of the method and identify the key challenge in~\autoref{sec:general_idea}. 
-% In~\autoref{sec:non-increasing}, we introduce the concept of non-increasing rules. 
-% Using this concept, a solution to this challenge is then proposed in~\autoref{sec:solution_to_the_key_challenge}. 
-% Finally, in~\autoref{sec:termination}, we state our termination criterion.
-
 \section{Measuring graphs by counting morphisms from specific graphs}
 \label{subgraph_counting:sec:interpretation}
 \index{Ruler-graph!morphism counting}
 Let $\mathcal{R} \mathop{=} \mathcal{A} \mathop{\cup} \mathcal{B}$ be a set of injective rules.
 Define $\opn{Sub}(\opn{left}(\mathcal{R}))$ as the set of all subgraphs of left-hand sides of rules in $\mathcal{R}$.
 We call the elements of $\opn{Sub}(\opn{left}(\mathcal{R}))$~\textbf{ruler-graphs}. Ruler-graphs in a set $\mathbb{X}$ provide a measure for a graph
-G, and the total weight of G is determined by a weighted linear
+$G$, and the total weight of $G$ is determined by a weighted linear
 combination of these measures.
 
 \begin{definition} 
@@ -23,9 +16,9 @@ combination of these measures.
     \).
 \end{definition} 
 Counting monomorphisms from ruler-graphs before and after a rewriting step provides a termination criterion: 
-    If there is a ruler-graph $X$ such that every rewriting step using a rule in $\mathcal{A}$ strictly decreases the number monomorphism from $X$, and every rewriting step using a rule in $\mathcal{B}$ never increases it, then the rewriting relation induced by $\mathcal{A}$ terminates relative to the rewriting relation induced by $\mathcal{B}$.
+    If there is a ruler-graph $X$ such that every rewriting step using a rule in $\mathcal{A}$ strictly decreases the number of monomorphisms from $X$, and every rewriting step using a rule in $\mathcal{B}$ never increases it, then the rewriting relation induced by $\mathcal{A}$ terminates relative to the rewriting relation induced by $\mathcal{B}$.
  
-For some ruler-graphs, the change in the number of monomorphism when applying a rewriting step using an injective rule is precisely computable by simply counting the numbers of monomorphisms from these ruler-graphs in the left- and right-hand side graphs. 
+For some ruler-graphs, the change in the number of monomorphisms when applying a rewriting step using an injective rule is precisely computable by simply counting the numbers of monomorphisms from these ruler-graphs in the left- and right-hand side graphs. 
 
 Examples include: 
 \begin{itemize}
@@ -51,7 +44,7 @@ However, systems like Example~\ref{subgraph_counting:ex:grsaa_rx} require more c
         \draw[->] (y) -- (z) node[midway, above] {$a$};
     },
     because neither the number of nodes nor the number of edges decreases in every possible rewriting step.
-    For such ruler-graph, the change in the number of monomorphisms when applying a rewriting rule is unpredictable in general, because the number of monomorphisms 
+    For such a ruler-graph, the change in the number of monomorphisms when applying a rewriting rule is unpredictable in general, because the number of monomorphisms 
     % from such ruler-graph 
     depends on the context graph\textemdash a challenge that we address in later sections.
     
@@ -74,7 +67,7 @@ To combine measurements from multiple ruler-graphs (analogous to combining measu
 Assigning different weights to measurements from distinct ruler-graphs enhances the technique, as we will demonstrate in Example~\ref{ex:overbeek_5d6}.
 \section{General idea and key challenge}
 \label{subgraph_counting:sec:general_idea}
-For the remainder of this section, we assume: a set \( \mathcal{R} \mathop{=} \mathcal{A} \mathop{\cup} \mathcal{B} \) of injective DPO rewriting rules, a set \( \mathbb{X} \) of ruler-graphs, and a weight function \( s_{\mathbb{X}} \).  Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) denote a rule in \( \mathcal{R} \) and \( X \mathop{\in} \mathbb{X} \). 
+For the remainder of this section, we fix a set \( \mathcal{R} \mathop{=} \mathcal{A} \mathop{\cup} \mathcal{B} \) of injective DPO rewriting rules, a set \( \mathbb{X} \) of ruler-graphs, and a weight function \( s_{\mathbb{X}} \).  Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) denote a rule in \( \mathcal{R} \) and \( X \mathop{\in} \mathbb{X} \). 
 Recall that \(\mathfrak{M}\), defined in Definition~\ref{def:rewriting_framework}, denotes the DPO rewriting framework that associates each rule with the collection of all DPO diagrams witnessing rewriting steps using the rule, where the matches are monic.
 
 The rewriting relation \( \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{M}} \) terminates relative to $\mathop{\Rightarrow}_{\mathcal{B},\mathfrak{M}}$ if the following conditions hold:
@@ -84,13 +77,8 @@ The rewriting relation \( \mathop{\Rightarrow}_{\mathcal{A},\mathfrak{M}} \) ter
 \end{itemize}   
 However, directly verifying all rewriting steps is infeasible due to their potential infiniteness. 
 Thus, we aim to provide a rule-based sufficient condition for termination.
-% \begin{remark}
-%     To simplify our presentation, we treat the following three notions interchangeably when the monomorphism \( h: A \mathop{\to} B \) is understood: the domain graph \( A \), the monomorphism \( h: A \mathop{\to} B \), the image \( h(A) \mathop{\subseteq} B \) (an occurrence of \( A \) in \( B \)).
-%     Consequently, in a rewriting step defined by the diagram in Definition~\ref{def:rewriting_step}, we streamline descriptions involving subgraph images. Rather than stating that there is an occurrence of a ruler-graph \( X \) formed by the image of subgraphs \( R' \mathop{\subseteq} R \) and \( C' \mathop{\subseteq} C \) around the image of \( K' \mathop{\subseteq} K \), we simply say \( X \) is formed by \( R' \) and \( C' \) around \( K' \). Rather than stating that $b \notin h(A)$, we simply say that $b \notin A$.
-% \end{remark}
 \begin{notation}
     \label{subgraph_counting:notation:mono_sets}
-    % The disjoint union of two sets \( S \) and \( S' \) will be denoted by \( S \uplus S' \). Let \( X, A, B, G \) be graphs, and let \( \alpha \mathop{\colon} A \mathop{\to} G \) and \( \beta \mathop{\colon} B \mathop{\to} G \) be morphisms. We define the following sets of monomorphisms of $X$ in $G$: 
  The disjoint union of two sets \( S \) and \( S' \) will be denoted by \( S \uplus S' \). Let \( X, A, B, G \) be graphs, and let \( \alpha \mathop{\colon} A \mathop{\to} G \) and \( \beta \mathop{\colon} B \mathop{\to} G \) be morphisms shown below:
 \begin{center}
     \resizebox{0.4\textwidth}{!}{
@@ -263,7 +251,7 @@ By Lemma~\ref{subgraph_counting:lem:xlnlmxrnr}, the following equalities hold:
 \end{flalign*}
 Consequently, the weight difference satisfies:
 \begin{flalign*}
-     w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H)
+       &w_{s_\mathbb{X}}(G) - w_{s_\mathbb{X}}(H)\\
     \overset{\operatorname{def}}{=}&\sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(G) - \sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * m_X(H)\\
     \overset{\operatorname{def}}{=}&\sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * |\operatorname{Mono}(X,G)| - \sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * |\operatorname{Mono}(X,H)|\\
     =&\sum_{X \mathop{\in} \mathbb{X}}^{}s_\mathbb{X}(X) * \left( \card{\operatorname{Mono}(X,G)} -  \card{\operatorname{Mono}(X,H)} \right)\\
@@ -283,376 +271,6 @@ Since $\sum_{X \mathop{\in} \mathbb{X}}^{}s(X) * \left(  \card{\operatorname{Mon
 In the next section, we introduce the concept of non-increasing rules, which helps to address this challenge.
 \section{Non-increasing rules}
 \label{subgraph_counting:sec:non-increasing}
-% \noindent
-% \begin{minipage}{0.7\textwidth}
-%     % \setlength{\parindent}{1em}
-%     Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be an injective DPO rewriting rule. 
-%     A DPO diagram as illustrated on the right defines a rewriting step using $\rho$ with injective match \( m \).
-% \end{minipage}%
-% \hfill 
-% \begin{minipage}{0.3\textwidth}
-%     \hfill
-%     % \begin{figure}[htbp] 
-%     %     \center
-%         \begin{tikzpicture}
-%             % [node distance=15mm]
-%             \node (I) {$K$};
-%             \node (L) [left of=I] {$L$};
-%             \node (R) [right of=I] {$R$};
-%             \node (G) [below of=L] {$G$};
-%             \node (C) [below of=I] {$C$};
-%             \node (H) [below of=R] {$H$};
-%             \draw [>->] (I) to  node [midway,below] {$l$} (L);
-%             \draw [>->] (I) to  node [midway,below] {$r$} (R);
-%             \draw [>->] (L) to node [midway,right] {$m$} (G);
-%             \draw [>->] (I) to  node [midway,right] 
-%             % {$u$}
-%             {} (C);
-%             \draw [>->] (R) to  node [midway,right] 
-%             % {$m'$}
-%             {} (H);
-%             \draw [>->] (C) to node [midway,above] {$l'$} (G);
-%             \draw [>->] (C) to node [midway,above] 
-%             % {$r'$} 
-%             {}
-%             (H);
-%             % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-%             % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-%         \end{tikzpicture}
-%             % \caption{}
-%     %         \label{diag:set_dpo_intuition_1}
-%     % \end{figure}
-% \end{minipage}
-
-% \noindent
-% \begin{minipage}{0.5\textwidth}
-%     % \setlength{\parindent}{1em}
-%      It follows that the DPO diagram depicted on the right, where all morphisms are inclusion functions and $H'$ is a graph isomorphic to $H$, holds.
-% \end{minipage}%
-% \hfill 
-% \begin{minipage}{0.5\textwidth}  
-%     \hfill
-%     \begin{tikzpicture}
-%         [node distance=20mm]
-%         \node (I) at (0,0) {$\operatorname{Im}(l \mathop{\star} m)$};
-%         \node (L) at (-2,0) {$\operatorname{Im}(m)$};
-%         \node (R) at (2,0) {$\operatorname{Im}(m')$};
-%         \node (G) at (-2,-1) {$G$};
-%         \node (C) at (0,-1) {$\operatorname{Im}(l')$};
-%         \node (H) at (2,-1) {$H'$};
-%         \draw [>->] (I) to  node [midway,above] {} (L);
-%         \draw [>->] (I) to  node [midway,above] {} (R);
-%         \draw [>->] (L) to node [midway,right] {} (G);
-%         \draw [>->] (I) to  node [midway,right] {} (C);
-%         \draw [>->] (R) to  node [midway,right] {} (H);
-%         \draw [>->] (C) to node [midway,above] {} (G);
-%         \draw [>->] (C) to node [midway,above] {} (H);
-%         % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-%         % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-%       \end{tikzpicture}
-% \end{minipage}
-
-
-%  \noindent
-%     \begin{minipage}{0.6\textwidth}
-%         By viewing a graph as a set o f nodes and edges and graph monomorphisms as set injections, the above DPO diagram can be considered as a DPO diagram in the category of sets, illustrated on the right.
-%     \end{minipage}
-%     \hfill
-%     \begin{minipage}{0.3\textwidth}
-%           \hfill
-%           \resizebox{\textwidth}{!}{
-%             \begin{tikzpicture}
-%               \coordinate (k) at (0, 0);
-%               \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
-%               \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
-          
-%               \coordinate (c) at (0, -2.2);
-%               \draw[fill=blue!20]
-%               ($(c)+(0,-0.5)$)
-%               -- ($(c)+(0,0.5)$) 
-%               -- ($(c)+(1,0.5)$) 
-%               arc[start angle=0, end angle=-90, radius=1]
-%               -- cycle;
-%               \node () at ($(c)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-%               \draw[fill=white] ($(c)+(0,0)$) rectangle ($(c)+(0.5,0.5)$);
-%               \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
-          
-%               \coordinate (l) at (-3, 0);
-%               \draw[fill=orange!20] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
-%               \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
-%               \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
-%               \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
-          
-%               \coordinate (g) at (-3, -2.2);
-%               \draw[fill=blue!20]
-%               ($(g)+(0,-0.5)$)
-%               -- ($(g)+(0,0.5)$)
-%               -- ($(g)+(1,0.5)$) 
-%               arc[start angle=0, end angle=-90, radius=1]
-%               -- cycle;
-%               \draw[fill=orange!20] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
-%               \node () at ($(g)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-%               \node () at ($(g)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
-%               \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
-%               \node () at ($(g)+(0.25,0.25)$) {\( \mathrm{K} \)};
-          
-%               \coordinate (r) at (3,0);
-%               \draw[fill=red!20] ($(r)+(-0.5,0)$)
-%                 -- ($(r)+(-0.5,0.5)$)
-%                 -- ($(r)+(0,1)$)
-%                 --  ($(r)+(0.5,1)$)
-%                 -- ($(r)+(0.5,0)$)
-%                 -- cycle;
-%               \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
-%               \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
-%               \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
-          
-%               \coordinate (h) at (3, -2.2);
-%               \draw[fill=blue!20]
-%               ($(h)+(0,-0.5)$)
-%               -- ($(h)+(0,0.5)$)
-%               -- ($(h)+(1,0.5)$) 
-%               arc[start angle=0, end angle=-90, radius=1]
-%               -- cycle;
-%               \draw[fill=red!20] ($(h)+(-0.5,0)$)
-%               -- ($(h)+(-0.5,0.5)$)
-%               -- ($(h)+(0,1)$)
-%               --  ($(h)+(0.5,1)$)
-%               -- ($(h)+(0.5,0)$)
-%               -- cycle;
-%              \node () at ($(h)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-%              \draw[fill=white] ($(h)+(0,0)$) rectangle ($(h)+(0.5,0.5)$);
-%              \node () at ($(h)+(0.25,0.25)$) {\( \mathrm{K} \)};
-%              \node () at ($(h)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
-          
-%               \node[ font=\huge] (kl) at ($(k)!0.5!(l)+(0.25,0.25)$)
-%              %    {\( \overset{l}{\leftarrowtail} \)}
-%                 {\( \leftarrowtail \)}
-%                ; 
-%               \node[ font=\huge] (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
-%                {\( \rightarrowtail \)}
-%                ;  
-%               \node[ font=\huge] (cg) at ($(c)!0.5!(g)+(0.25,0.25)$) 
-%               {\( \leftarrowtail \)}
-%              ;  
-%               \node[ font=\huge] (ch) at ($(c)!0.5!(h)+(0.25,0.25)$)
-%                {\( \rightarrowtail \)}
-%              ; 
-%               \node[ font=\huge] (kc) at ($(k)!0.5!(c)+(0.2,0.4)$) {\( \downarrowtail \)}; 
-%             %   \node[ font=\LARGE] () at ($(l)!0.5!(g)+(0.5,0.4)$) {$m$}; 
-%               \node[ font=\huge] (lg) at ($(l)!0.5!(g)+(0.1,0.4)$) {\( \downarrowtail \)}; 
-%               \node[ font=\huge] (rh) at ($(r)!0.5!(h)+(0.1,0.4)$) {\( \downarrowtail \)}; 
-%             %   \node[ font=\LARGE] () at ($(r)!0.5!(h)+(0.55,0.4)$) {$m'$}; 
-%             %   \node[ font=\LARGE] () at ($(k)!0.5!(c)+(0.5,0.4)$) {$u$}; 
-%             \end{tikzpicture}
-%         }
-%     \end{minipage}
-% \begin{minipage}{0.59\textwidth}
-%     % \setlength{\parindent}{1em}
-%     Let \( \rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R) \) be an injective DPO rewriting rule. 
-%     A rewriting step using $\rho$ with injective match \( m \) is defined by a DPO diagram as shown on the upper right.
-%      % \setlength{\parindent}{1em}
-%      It follows that both squares in the diagram depicted on the middle right, where all morphisms are inclusion functions and $H'$ is a graph isomorphic to $H$, are pushouts.
-%      By viewing a graph as a set of nodes and edges and graph monomorphisms as set injections, the DPO diagram on the middle right can be considered as a DPO diagram in the category of sets, illustrated on the lower right. In
-% \end{minipage}%
-% \hfill 
-% \begin{minipage}{0.39\textwidth}
-%     % \hfill 
-%     %     \resizebox{0.7\textwidth}{!}{
-%     %         \begin{tikzpicture}
-%     %             % [node distance=15mm]
-%     %             \node (I) {$K$};
-%     %             \node (L) [left of=I] {$L$};
-%     %             \node (R) [right of=I] {$R$};
-%     %             \node (G) [below of=L] {$G$};
-%     %             \node (C) [below of=I] {$C$};
-%     %             \node (H) [below of=R] {$H$};
-%     %             \draw [>->] (I) to  node [midway,below] {$l$} (L);
-%     %             \draw [>->] (I) to  node [midway,below] {$r$} (R);
-%     %             \draw [>->] (L) to node [midway,right] {$m$} (G);
-%     %             \draw [>->] (I) to  node [midway,right] 
-%     %             % {$u$}
-%     %             {} (C);
-%     %             \draw [>->] (R) to  node [midway,right] 
-%     %             % {$m'$}
-%     %             {} (H);
-%     %             \draw [>->] (C) to node [midway,above] {$l'$} (G);
-%     %             \draw [>->] (C) to node [midway,above] 
-%     %             % {$r'$} 
-%     %             {}
-%     %             (H);
-%     %             % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-%     %             % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-%     %         \end{tikzpicture}
-%     %     }
-%     \centering
-%     \resizebox{0.7\textwidth}{!}{
-%         \begin{tikzpicture}
-%             % [node distance=15mm]
-%             \node (I) at (0,0) {$K$};
-%             \node (L)  at (-2,0) {$L$};
-%             \node (R)  at (2,0) {$R$};
-%             \node (G)  at (-2,-2) {$G$};
-%             \node (C)  at (0,-2) {$C$};
-%             \node (H)  at (2,-2) {$H$};
-%             \draw [>->] (I) to  node [midway,below] {$l$} (L);
-%             \draw [>->] (I) to  node [midway,below] {$r$} (R);
-%             \draw [>->] (L) to node [midway,right] {$m$} (G);
-%             \draw [>->] (I) to  node [midway,right] 
-%             % {$u$}
-%             {} (C);
-%             \draw [>->] (R) to  node [midway,right] 
-%             {$m'$}
-%             (H);
-%             \draw [>->] (C) to node [midway,above] {$l'$} (G);
-%             \draw [>->] (C) to node [midway,above] 
-%             % {$r'$} 
-%             {}
-%             (H);
-%             % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-%             % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-%         \end{tikzpicture}
-%     }
-
-%         \resizebox{0.7\textwidth}{!}{
-%             \begin{tikzpicture}
-%                 [node distance=20mm]
-%                 \node (I) at (0,0) {$\operatorname{Im}(l \mathop{\star} m)$};
-%                 \node (L) at (-2,0) {$\operatorname{Im}(m)$};
-%                 \node (R) at (2,0) {$\operatorname{Im}(m')$};
-%                 \node (G) at (-2,-2) {$G$};
-%                 \node (C) at (0,-2) {$\operatorname{Im}(l')$};
-%                 \node (H) at (2,-2) {$H'$};
-%                 \draw [>->] (I) to  node [midway,above] {} (L);
-%                 \draw [>->] (I) to  node [midway,above] {} (R);
-%                 \draw [>->] (L) to node [midway,right] {} (G);
-%                 \draw [>->] (I) to  node [midway,right] {} (C);
-%                 \draw [>->] (R) to  node [midway,right] {} (H);
-%                 \draw [>->] (C) to node [midway,above] {} (G);
-%                 \draw [>->] (C) to node [midway,above] {} (H);
-%                 % \node [at=($(I)!.5!(G)$)] {\normalfont PO};
-%                 % \node [at=($(I)!.5!(H)$)] {\normalfont PO};
-%             \end{tikzpicture}
-%         }
-
-%           \resizebox{0.7\textwidth}{!}{
-%             \begin{tikzpicture}
-%                 \coordinate (k) at (0, 0);
-%                 \draw[fill=white] ($(k)+(0,0)$) rectangle ($(k)+(0.5,0.5)$);
-%                 \node () at ($(k)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-%                 \coordinate (c) at (0, -2.2);
-%                 \draw[fill=blue!20]
-%                 ($(c)+(0,-0.5)$)
-%                 -- ($(c)+(0,0.5)$) 
-%                 -- ($(c)+(1,0.5)$) 
-%                 arc[start angle=0, end angle=-90, radius=1]
-%                 -- cycle;
-%                 \node () at ($(c)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-%                 \draw[fill=white] ($(c)+(0,0)$) rectangle ($(c)+(0.5,0.5)$);
-%                 \node () at ($(c)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-%                 \coordinate (l) at (-3, 0);
-%                 \draw[fill=orange!20] ($(l)+(-0.5,0)$) rectangle ($(l)+(0.5,1)$);
-%                 \node () at ($(l)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
-%                 \draw[fill=white] ($(l)+(0,0)$) rectangle ($(l)+(0.5,0.5)$);
-%                 \node () at ($(l)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-%                 \coordinate (g) at (-3, -2.2);
-%                 \draw[fill=blue!20]
-%                 ($(g)+(0,-0.5)$)
-%                 -- ($(g)+(0,0.5)$)
-%                 -- ($(g)+(1,0.5)$) 
-%                 arc[start angle=0, end angle=-90, radius=1]
-%                 -- cycle;
-%                 \draw[fill=orange!20] ($(g)+(-0.5,0)$) rectangle ($(g)+(0.5,1)$);
-%                 \node () at ($(g)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-%                 \node () at ($(g)+(-0.23,0.25)$) {\( \mathrm{L'} \)};
-%                 \draw[fill=white] ($(g)+(0,0)$) rectangle ($(g)+(0.5,0.5)$);
-%                 \node () at ($(g)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-%                 \coordinate (r) at (3,0);
-%                 \draw[fill=red!20] ($(r)+(-0.5,0)$)
-%                 -- ($(r)+(-0.5,0.5)$)
-%                 -- ($(r)+(0,1)$)
-%                 --  ($(r)+(0.5,1)$)
-%                 -- ($(r)+(0.5,0)$)
-%                 -- cycle;
-%                 \node () at ($(r)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
-%                 \draw[fill=white] ($(r)+(0,0)$) rectangle ($(r)+(0.5,0.5)$);
-%                 \node () at ($(r)+(0.25,0.25)$) {\( \mathrm{K} \)};
-            
-%                 \coordinate (h) at (3, -2.2);
-%                 \draw[fill=blue!20]
-%                 ($(h)+(0,-0.5)$)
-%                 -- ($(h)+(0,0.5)$)
-%                 -- ($(h)+(1,0.5)$) 
-%                 arc[start angle=0, end angle=-90, radius=1]
-%                 -- cycle;
-%                 \draw[fill=red!20] ($(h)+(-0.5,0)$)
-%                 -- ($(h)+(-0.5,0.5)$)
-%                 -- ($(h)+(0,1)$)
-%                 --  ($(h)+(0.5,1)$)
-%                 -- ($(h)+(0.5,0)$)
-%                 -- cycle;
-%             \node () at ($(h)+(0.75,0.25)$) {\( \mathrm{C'} \)};
-%             \draw[fill=white] ($(h)+(0,0)$) rectangle ($(h)+(0.5,0.5)$);
-%             \node () at ($(h)+(0.25,0.25)$) {\( \mathrm{K} \)};
-%             \node () at ($(h)+(-0.23,0.25)$) {\( \mathrm{R'} \)};
-            
-%                 \node[ font=\huge] (kl) at ($(k)!0.5!(l)+(0.25,0.25)$)
-%             %    {\( \overset{l}{\leftarrowtail} \)}
-%                 {\( \leftarrowtail \)}
-%                 ; 
-%                 \node[ font=\huge] (kr) at ($(k)!0.5!(r)+(0.25,0.25)$)
-%                 {\( \rightarrowtail \)}
-%                 ;  
-%                 \node[ font=\huge] (cg) at ($(c)!0.5!(g)+(0.25,0.25)$) 
-%                 {\( \leftarrowtail \)}
-%             ;  
-%                 \node[ font=\huge] (ch) at ($(c)!0.5!(h)+(0.25,0.25)$)
-%                 {\( \rightarrowtail \)}
-%             ; 
-%                 \node[ font=\huge] (kc) at ($(k)!0.5!(c)+(0.2,0.4)$) {\( \downarrowtail \)}; 
-%             %   \node[ font=\LARGE] () at ($(l)!0.5!(g)+(0.5,0.4)$) {$m$}; 
-%                 \node[ font=\huge] (lg) at ($(l)!0.5!(g)+(0.1,0.4)$) {\( \downarrowtail \)}; 
-%                 \node[ font=\huge] (rh) at ($(r)!0.5!(h)+(0.1,0.4)$) {\( \downarrowtail \)}; 
-%             %   \node[ font=\LARGE] () at ($(r)!0.5!(h)+(0.55,0.4)$) {$m'$}; 
-%             %   \node[ font=\LARGE] () at ($(k)!0.5!(c)+(0.5,0.4)$) {$u$}; 
-%             \end{tikzpicture}
-%           }
-% \end{minipage}
-% the lower right diagram, $L', C', R', K$ are mutually disjoint sets such that $K$, 
-%          $K \uplus L'$, 
-%          $K \uplus R'$, 
-%          $K \uplus C'$, 
-%          $L' \uplus K \uplus C'$ and 
-%          $R' \uplus K \uplus C'$ 
-%             are corresponding sets of 
-%          $\operatorname{Im}(l \mathop{\star} m)$, 
-%          $\operatorname{Im}(m)$, 
-%          $\operatorname{Im}(m')$,
-%          $\operatorname{Im}(l')$,
-%          $G$ and
-%          $H'$ respectively,
-%          and all morphisms as inclusion functions.
-%     % Up to isomorphism, we can further consider all morphisms as inclusion functions, illustrated on the right. In this visualization, $L',R',C',K$ are mutually disjoint sets with $L' \uplus K \mathop{=} L$, $R' \uplus K= R$, $C' \uplus K \mathop{=} C$, $G \mathop{=} L \mathop{\cup} C$ and $H \mathop{=} R \mathop{\cup} C$.
-%     Thus, any subgraph of $G$ (resp. $H$) can be considered as a union of subgraphs of $C$ and $L$ (resp. $R$), up to isomorphism.
-%     % \color{red}\begin{definition}
-% %         Consider a rewriting step defined by the DPO diagram above. Let $X$ be a ruler-graph and $G$ a graph. An \textbf{$X$-occurrence} in $G$ is a subgraph of $G$ isomorphic to $X$. An \textbf{$X$-occurrence $x$ implicitly created by the rewriting step} is an \( X \)-occurrence in $H$ which is included neither in \( R \) nor in $C$. 
-% %         Let $R' \mathop{=} x \mathop{\cap} R$, $C' \mathop{=} x \mathop{\cap} C$ and $h_{R'L}:R' \rightarrowtail L$ a monomorphism preserving interface elements. The \textbf{corresponding $X$-occurrence relative to $h_{R'L}$} of $x$ is the $X$-occurrence in $G$ defined by $h_{R'L}(R') \mathop{\cup} C'$.
-% %         An \textbf{$X$-occurrence $x$ implicitly destroyed by the rewriting step} is an \( X \)-occurrence in $G$ which is included neither in \( L \) nor in $C$. 
-% %     \end{definition}
-% % \color{black}
-
-% With the above DPO diagrams in mind, we define:
-
-% \begin{definition}
-%     \label{def:corresponding_occurrence}
-%      An \textbf{$X$-occurrence} in $G$ is a subgraph of $G$ isomorphic to $X$. An \textbf{$X$-occurrence $x$ implicitly created by the rewriting step} is an \( X \)-occurrence in $H$ which is included neither in \( R \) nor in $C$. 
-%       The occurrence $x$ can be decomposed as the union of graphs $x \mathop{=} R_x \mathop{\cup} C_x$ where $R_x \mathop{=} x \mathop{\cap} R$ and $C_x \mathop{=} x \mathop{\cap} C$. For every graph monomorphism $h : R_x \rightarrowtail L$ that preserves interface elements (i.e., \( h(k) \mathop{=} k \) for all \( k \mathop{\in} K \)), we define the \textbf{corresponding $X$-occurrence of $x$ relative to $h$} as the $X$-occurrence in $G$ given by $h(R_x) \mathop{\cup} C_x$.
-%     An \textbf{$X$-occurrence implicitly destroyed by the rewriting step} is an \( X \)-occurrence in $G$ which is included neither in \( L \) nor in $C$.
-% \end{definition}
 We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along some common interface elements with a subgraph $C'$ of a context graph \( C \), can form an implicit \( X \)-occurrence.
 
 \begin{definition}
@@ -665,7 +283,7 @@ We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along
     The \textbf{set \(D(R,X)\)\index{\(D(R,X)\)} of distinguished subgraphs of the right-hand side graph} consists of all subgraphs \( R' \mathop{\subseteq} R \)
     satisfying the following conditions:
     \begin{enumerate}
-        \item there are graphs $K'$, $C'$ and morphisms such that the following diagram where $h_{K'K}$ and $h_{R'R}$ are inclusion functions can be constructed:
+        \item there are graphs $K'$, $C'$ and morphisms such that the following diagram can be constructed, where $h_{K'K}$ and $h_{R'R}$ are inclusion functions:
         \begin{center}
             \resizebox{0.4\textwidth}{!}{
                 \begin{tikzpicture}
@@ -688,7 +306,7 @@ We define the set \(D(R,X)\) of all subgraphs of \( R \) which, when glued along
             }
         \end{center}
         \item $R'$ is not a subgraph of $r(K)$,
-        \item $R'$ is not isomorphic to $X$,
+        \item $R'$ is not isomorphic to $X$.
     \end{enumerate}
 \end{definition}  
 The first condition ensures that any $R' \mathop{\in} D(R,X)$ can be glued along some common interface elements with a subgraph $C'$ of a context graph \( C \) to form an \( X \)-occurrence.
@@ -893,11 +511,11 @@ We introduce the concept of non-increasing occurrences. Intuitively, if a rule $
     % We say that \textbf{the number of occurrences of $X$ is non-increasing from left to right in any $\rho$-rewriting step under the mapping \(\Psi\)}
     % (or that $\rho$ is $X$-\textbf{non-increasing} under $\Psi$. When $\Psi$ is clear from context or irrelevant to the discussion, we may simply say that $\rho$ is $X$-\textbf{non-increasing}.)
     Let \(\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a graph. 
-    Let \( \Psi \) be a function associating $R' \mathop{\in} D(R,X)$ to a homomorphism in $\operatorname{Mono}(R',L)$.
+    Let \( \Psi \) be a function associating each $R' \mathop{\in} D(R,X)$ with a homomorphism in $\operatorname{Mono}(R',L)$.
     Rule $\rho$ is said to be $X$-\textbf{non-increasing}\index{$X$-non-increasing} under $\Psi$ 
     if the following four conditions hold:
     \begin{enumerate}
-        \item For all $R' \mathop{\in} D(R,X)$, we can construct the following diagram where all morphisms other than $\Psi(R')$, $l$ and $r$ are inclusion functions:
+        \item For all $R' \mathop{\in} D(R,X)$, we can construct the following diagram where all morphisms other than $\Psi(R')$ are inclusion functions:
       \begin{center}
                 \begin{tikzpicture} 
                     \node (k) at (0,-2) {$K$};
@@ -928,78 +546,8 @@ We introduce the concept of non-increasing occurrences. Intuitively, if a rule $
     \end{enumerate} 
     When $\Psi$ is clear from context or irrelevant to the discussion, we may simply say that $\rho$ is $X$-\textbf{non-increasing}.
 \end{definition}
-% \begin{definition}[Non-increasing rule]
-%     \label{def:creates_more_x_on_the_left}
-%     Let \(\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)\) be a rule and \(X\) a ruler-graph. 
-%     Rule \( \rho \) is \emph{\( X \)-non-increasing} if the following four conditions hold:
-%     \newline
-%     \vspace{1mm}
-%     \noindent
-%     \begin{minipage}{0.64\textwidth} 
-%     \begin{enumerate}
-%         \item For all $R' \mathop{\in} D(R,X)$, there is a morphism \(h_{R'L}: R' \rightarrowtail L \) such that both squares in the diagram shown on the right are pullbacks, where all morphisms other than $h_{R'L}$, $l$ and $r$ are inclusion functions, 
-%         \item \label{def:non_increasing:non_clapse} For all $R' \mathop{\in} D(R,X)$, for all node or edge $r'$ in $R'$, if $ r' \notin \operatorname{Im}(r)$ then $h_{R'L}(r') \notin \operatorname{Im}(l)$,
-%         \item \label{def:non_increasing_rule_img_edges_distinct} For all $R',R'' \mathop{\in} D(R,X)$, for all edges $x \mathop{\in} R'$ and $y \mathop{\in} R''$, if $x \mathop{\neq} y$, then $h_{R'L}(x) \mathop{\neq} h_{R''L}(y)$,
-%         \item If $X$ has isolated nodes, then for all $R',R'' \mathop{\in} D(R,X)$ and nodes $x \mathop{\in} R', y \mathop{\in} R''$, if $x \mathop{\neq} y$, then $h_{R'L}(x) \mathop{\neq} h_{R''L}(y)$.
-%     \end{enumerate} 
-%     \end{minipage}
-%     \hfill
-%     \begin{minipage}{0.4\textwidth}
-%         % \hfill
-%         \begin{center}
-%             % \resizebox{0.9\textwidth}{!}{ 
-%                 % \begin{tikzpicture}[rotate=90]
-%                 %     \node (k) {K}; 
-%                 %     \node (k') [above=of k] {$K'$};
-%                 %     \node (l) [left=of k] {$L$};
-%                 %     \node (rb) [above=of l] {$R'$};
-%                 %     \node (r) [right=of k] {$R$};
-%                 %     \node (rb') [above=of r] {$R'$};
-%                 %     \draw[<-<]  (l) -- (k) node [midway,below] {$l$};
-%                 %     \draw[<-<]  (r) -- (k) node [midway,below] {$r$};
-%                 %     \draw[>->]  (k') -- (rb');
-%                 %     \draw[>->]  (rb') -- (r);
-%                 %     \draw[>->]  (k') -- (rb);
-%                 %     \draw[>->]  (k') -- (k);
-%                 %     \draw[>->]  (rb) -- (l) node [midway,above,sloped] {$h_{R'L}$};
-%                 %     \node () [at=($(k)!0.5!(rb)$)] {$PB$};
-%                 %     \node () [at=($(k)!0.5!(rb')$)] {$PB$};
-%                 % \end{tikzpicture}
-%                 \begin{tikzpicture} 
-%                     \node (k) {K}; 
-%                     \node (k') [left=of k] {$K'$};
-%                     \node (l) [above=of k] {$L$};
-%                     \node (rb) [left=of l] {$R'$};
-%                     \node (r) [below=of k] {$R$};
-%                     \node (rb') [left=of r] {$R'$};
-%                     \draw[<-<]  (l) -- (k) node [midway,right] {$l$};
-%                     \draw[<-<]  (r) -- (k) node [midway,right] {$r$};
-%                     \draw[>->]  (k') -- (rb');
-%                     \draw[>->]  (rb') -- (r);
-%                     \draw[>->]  (k') -- (rb);
-%                     \draw[>->]  (k') -- (k);
-%                     \draw[>->]  (rb) -- (l) node [midway,above] {$h_{R'L}$};
-%                     \node () [at=($(k)!0.5!(rb)$)] {$PB$};
-%                     \node () [at=($(k)!0.5!(rb')$)] {$PB$};
-%                 \end{tikzpicture}
-%             % }
-%         \end{center}
-%     \end{minipage}
-
-%     %  \begin{enumerate}
-%     %     % \item[(2)] \label{def:non_increasing:non_clapse} For all node or arrow $r'$ in $R'$, if $ r' \notin \operatorname{Im}(r)$ then $h_{R'L}(r') \notin \operatorname{Im}(l)$,
-%     %     % \item there is a morphism $h_{R_XL}$ such that
-%     %     %     \( h_{R'R_X} \mathop{\star} h_{R_XL} \mathop{=} h_{R'L} \) for all $R' \mathop{\in} D(R,X)$;
-%     %     % \item[(3)] \label{def:non_increasing:edge_injective} For all $R',R'' \mathop{\in} D(R,X)$, for all edges $x \mathop{\in} R'$ and $y \mathop{\in} R''$, if $x \mathop{\neq} y$, then $h_{R'L}(x) \mathop{\neq} h_{R''L}(y)$,
-%     %     %  \item $h$  is edge-injective 
-%     %     % \item $\bigcup_{R' \mathop{\in} D(R,X)} h_{R'L}$ is an edge-injective morphism from $R_X$ to $L$;
-%     %     % \item[(4)] \label{def:non_increasing:isolated_nodes} If $X$ has isolated nodes, then for all $R',R'' \mathop{\in} D(R,X)$ and nodes $x \mathop{\in} R', y \mathop{\in} R''$, if $x \mathop{\neq} y$, then $h_{R'L}(x) \mathop{\neq} h_{R''L}(y)$.
-%     %     % \item $h$ is node-injective if $X$ has isolated nodes;
-%     %  \end{enumerate}
-%     %  \todo{est il util d'avoir "or arrow?" c'est une partie de edge injective, non ?}
-% \end{definition} 
 The first condition ensures that whenever $R' \mathop{\in} D(R,X)$ forms an $X$-occurrence in the result graph $H$, this occurrence has a corresponding $X$-occurrence relative to the morphism $h_{R'L}$ (as defined in Definition~\ref{def:x_occurrence}) in the host graph $G$.
-The second condition guarantees that any $X$-occurrence implicitly created by the rewriting step has its corresponding $X$-occurrence not included in the context (Consequently, its corresponding $X$-occurrence is implicitly destroyed by the rewriting step). Example~\ref{subgraph_counting:ex:cond_2_necessaire} and Example~\ref{subgraph_counting:ex:cond_2_necessaire2} show the necessity of this condition.
+The second condition guarantees that any $X$-occurrence implicitly created by the rewriting step has its corresponding $X$-occurrence not included in the context (consequently, its corresponding $X$-occurrence is implicitly destroyed by the rewriting step). Example~\ref{subgraph_counting:ex:cond_2_necessaire} and Example~\ref{subgraph_counting:ex:cond_2_necessaire2} show the necessity of this condition.
 The third and fourth conditions ensure that distinct $X$-occurrences created implicitly have distinct corresponding $X$-occurrences.
 Example~\ref{subgraph_counting:ex:cond3_necessaire} and Example~\ref{subgraph_counting:ex:cond4_necessaire} show the necessity of these conditions.
 
@@ -1047,10 +595,10 @@ The following example shows an $X$-non-increasing rule.
         \draw[<-] (z) -- (y) node[midway, above] {$a$};
     }.
     As explained in Example~\ref{subgraph_counting:ex:grsaa_rx}, the set \( D(R,X) \) consists of exactly four graphs: $R'_1$, $R'_2$, $R'_3$ and $R'_4$.
-    The rule is $X$-non-increasing under the function $\Psi$ that maps each $R'_i$ to the inclusion morphism from $R'_i$ to $L$. specifically, it satisfies Condition 1 of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}
+    The rule is $X$-non-increasing under the function $\Psi$ that maps each $R'_i$ to the inclusion morphism from $R'_i$ to $L$. Specifically, it satisfies Condition 1 of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}
      because the following diagrams
     %  in Figure~\ref{fig:subgraph_counting:decodkfjasddgsf} 
-     can be constructed, and other conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are straightforward to verify.
+     can be constructed, and the remaining conditions in Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left} are straightforward to verify.
     %1
     \begin{center}
         \resizebox{0.9\textwidth}{!}{
@@ -1407,8 +955,9 @@ The following example shows an $X$-non-increasing rule.
         \end{tikzpicture}
         }
     \end{center}
-    Whenever \( R'_i \) (for \( 1 \leq i \leq 4 \)) forms an \( X \)-occurrence $x$ in $H$ that is included neither in \( R \) nor in $C$ with a subgraph $C' \mathop{\subseteq} C \mathop{\cap} x \mathop{\subseteq} C$, the graph
-    \( \operatorname{\Psi(R')} \mathop{\subseteq} L\) forms a \( X \)-occurrence in $G$ with $C'$ that is included neither in \( L \) nor in $C$.
+    Whenever \( R'_i \) (for \( 1 \leq i \leq 4 \)) forms an \( X \)-occurrence $x$ in $H$ that is included in neither \( R \) nor $C$, and whose intersection with $C$ is a subgraph $C' \mathop{\subseteq} C \mathop{\cap} x \mathop{\subseteq} C$, the graph
+    \( \operatorname{\Psi(R')} \mathop{\subseteq} L\) forms
+    a corresponding \( X \)-occurrence in $G$ with the same $C'$, which is included in neither \( L \) nor $C$.
     Furthermore, distinct $X$-occurrences in $H$ that are included neither in \( R \) nor in $C$ have distinct corresponding $X$-occurrences in $G$ that are included neither in \( L \) nor in $C$.
 \end{example}
 % cond 2 necessaire  1
@@ -1567,7 +1116,7 @@ The following example shows an $X$-non-increasing rule.
         \node[draw,circle] (y) at (1,0) {z};
         \draw[->] (x) -- (y) {};
     }}}. 
-    Despite unique monomorphisms \( h_{R'L}: R' \rightarrowtail L \) and \( h_{R''L}: R'' \rightarrowtail L \) preserving interface elements, they fail the third condition of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}. 
+    Despite the unique monomorphisms \( h_{R'L}: R' \rightarrowtail L \) and \( h_{R''L}: R'' \rightarrowtail L \) preserving interface elements, they fail the third condition of Definition~\ref{subgraph_counting:def:creates_more_x_on_the_left}. 
     For any rewriting step using this rule, implicitly created $X$-occurrences with the same subgraph of the context have the same corresponding $X$-occurrence. 
 \end{example}
  
@@ -1622,8 +1171,8 @@ The following example shows an $X$-non-increasing rule.
 
 \section{Solution to the key challenge}
 \label{subgraph_counting:sec:solution_to_the_key_challenge}
-T following lemma formalizes the intuition that if $\rho$ is $X$-non-increasing, then, for any rewriting step using $\rho$, 
-more X-occurrences are implicitly destroyed than implicitly created by the rewriting step.
+The following lemma formalizes the intuition that if $\rho$ is $X$-non-increasing, then, for any rewriting step using $\rho$, 
+more $X$-occurrences are implicitly destroyed than implicitly created by the rewriting step.
 \begin{lemma} 
     \label{subgraph_counting:lem:w_u_l_not_geq_r_not}
         Let $X$ be a ruler-graph and $\rho \mathop{=} (L \overset{l}{\leftarrowtail} K \overset{r}{\rightarrowtail} R)$ an injective DPO rewriting rule.

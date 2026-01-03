@@ -293,20 +293,19 @@ However, the term rewriting rule terminates, while the graph rewriting rule does
 
 Therefore, termination techniques specific to graph rewriting systems are needed. 
 
-\subsection{Termination Techniques in DPO Graph Rewriting}
+\section{Termination techniques}
 We provide an overview of some existing techniques for proving (relative) termination of DPO rewriting systems.
 
-The weighted type graph method was first introduced by Zantema, K{\"{o}}nig and Bruggink~(2014)~\cite{zantema2014termination} for proving relative termination of cycle rewriting. Their subsequent work in 2014~\cite{bruggink2014termination} generalized it for DPO rewriting on edge-labeled directed multigraphs with injective rules and injective matches; later, it was extended to general DPO rewriting on edge-labeled multigraphs by Bruggink et al.~(2015)~\cite{bruggink2015proving}; and it was adapted to broader categories and DPO variants by Endrullis and Overbeek~(2024)~\cite{endrullis2024generalized_icgt}.
+The type graph method was first introduced by Zantema, K{\"{o}}nig and Bruggink~(2014)~\cite{zantema2014termination} for proving relative termination of cycle rewriting. Their subsequent work in 2014~\cite{bruggink2014termination} generalized it for DPO rewriting on edge-labeled directed multigraphs with injective rules and injective matches; later, it was extended to general DPO rewriting on edge-labeled multigraphs by Bruggink et al.~(2015)~\cite{bruggink2015proving}; and it was adapted to broader categories and DPO variants by Endrullis and Overbeek~(2024)~\cite{endrullis2024generalized_icgt}.
 It assigns a weight to each graph by aggregating the weights of all morphisms to a designated weighted type graph. 
-The challenge consists in characterizing the type graphs and the computation of weights that guarantee a decrease in the weight of the graphs with each rule application.
+The challenge consists of characterizing the type graphs and the computation of weights that guarantee 
+that the graph weight decreases with each rule application.
+Overbeek and Endrullis~(2024)~\cite{overbeek2024termination_lmcs} introduced the subgraph counting method.
+It is designed for proving relative termination of PBPO+~(2023)~\cite{overbeek2023graph, overbeek2023apbpotutorial}, which is a rewriting formalism capable of simulating left-injective DPO rewriting.
+It assigns a weight to a graph by summing the weights of morphisms from a set of designated graphs into the target graph.
+Additionally, it can be applied for many different graph notions. 
 
-The subgraph-counting method was developed by Overbeek and Endrullis~(2024)~\cite{overbeek2024termination_lmcs}.
-It is designed for proving relative termination of PBPO+~(2023)~\cite{overbeek2023graph, overbeek2023apbpotutorial}\textemdash{}a rewriting formalism capable of simulating left-injective DPO rewriting.
-This method assigns a weight to a graph by summing the weights of morphisms from a set of designated graphs into the target graph.
-This method, 
- Additionally, this method can be applied for many different graph notions. 
-
-Plump (1995)~\cite{plump1995ontermination} gives a necessary and sufficient termination criterion for left-injective DPO rewriting rules in terms of forward closure which are derivations satisfying certain property. A rewriting system is terminating if and only if it does not admit an infinite forward closure and for each rule $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$, $l$ is not surjective.
+Plump (1995)~\cite{plump1995ontermination} gives a necessary and sufficient termination criterion for left-injective DPO rewriting rules in terms of forward closures, which are derivations satisfying certain properties. A rewriting system is terminating if and only if it does not admit an infinite forward closure and for each rule $L \overset{l}{\leftarrow} K \overset{r}{\rightarrow} R$, $l$ is not surjective.
 However, absence of infinite forward closures is undecidable, since this criterion is equivalent to termination of systems with non-surjective left morphisms.
 
 Plump (2018)~\cite{plump2018modular} later proposed a modular critical pair-based strategy for left-injective DPO graph rewriting with monic matches.
@@ -315,11 +314,8 @@ However, termination of the subsystems still needs to be established using some 
 
 Levendovszky et al.~(2007)~\cite{levendovszky2007termination} proposed a termination criterion for DPO rewriting with monic matches, injective rules and negative application conditions on finite typed attributed graphs. It is based on the fact that if the application of every infinite sequence of rules requires the initial graph to be infinite, then the system terminates. This technique is theoretically very interesting, but it is hard to check the termination condition automatically as explained in~\cite[\textsection 6]{levendovszky2007termination}. 
 
-Bottoni et al.~(2005)~\cite{bottoni2005termination} present a termination criterion for DPO rewriting systems with very restrictive external control mechanisms. The method relies on a measuring function satisfying a very strong constraint, and the instance of such a measuring function proposed is node and edge counting which is subsumed by the subgraph-counting method and the weighted type graph method.
+Bottoni et al.~(2005)~\cite{bottoni2005termination} present a termination criterion for DPO rewriting systems with very restrictive external control mechanisms. The method relies on a measuring function satisfying a very strong constraint, and the instance of such a measuring function proposed is node and edge counting which is subsumed by the subgraph counting method and the type graph method.
 
 Bottoni et al.~(2010)~\cite{bottoni2010atermination} present a criterion for termination of DPO rewriting with monic matches, injective rules and negative application conditions, based on the construction of a labeled transition system.
 
-In Chapter~\ref{chap:nwf}, we extend the weighted type graph method to facilitate the search for suitable type graphs and improve its usability.
- In Chapter~\ref{chap:subgraph_counting}, we present a new approach for proving relative termination of DPO rewriting systems based on morphism counting.
-
-Motivated by the need for methods that are both usable and applicable to new cases, we advance the state of the art in two ways. Chapter~\ref{chap:nwf} extends the weighted type graph method to facilitate the search for suitable type graphs and to improve its usability, while Chapters~\ref{chap:subgraph_counting} and~\ref{chap:antipattern} present a morphism-counting approach that is incomparable with existing techniques and can tackle new cases.
+Motivated by the need for methods that are both easy to use and capable of deciding as many instances as possible, we advance the state of the art in two ways. Chapter~\ref{chap:nwf} extends the type graph method to facilitate the search for suitable type graphs and to improve its usability, while Chapters~\ref{chap:subgraph_counting} and~\ref{chap:antipattern} present a morphism counting approach that is incomparable with existing techniques and can tackle new cases.
